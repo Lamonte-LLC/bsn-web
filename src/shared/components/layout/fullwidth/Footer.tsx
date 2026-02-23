@@ -84,12 +84,12 @@ export default function FooterBoxLayout() {
             </div>
             <ul className="mb-6 space-y-1">
               <li className="text-center md:text-right lg:text-left">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Inicio
-                </a>
+                </Link>
               </li>
               <li className="text-center md:text-right lg:text-left hidden">
                 <a
@@ -100,12 +100,12 @@ export default function FooterBoxLayout() {
                 </a>
               </li>
               <li className="text-center md:text-right lg:text-left">
-                <a
-                  href="#"
+                <Link
+                  href="/noticias"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Noticias
-                </a>
+                </Link>
               </li>
               <li className="text-center md:text-right lg:text-left hidden">
                 <a

@@ -1,0 +1,66 @@
+import moment from 'moment';
+import Link from 'next/link';
+
+type Props = {
+  title: string;
+  slug: string;
+  excerpt?: string;
+  publishedAt: string;
+  tags?: {
+    name: string;
+    slug: string;
+  }[];
+};
+
+export default function NewsItem({
+  title,
+  slug,
+  excerpt = '',
+  publishedAt,
+  tags = [],
+}: Props) {
+  return (
+    <div className="flex flex-row gap-[15px] items-start justify-start md:gap-[25px]">
+      <figure>
+        <Link href={`/noticias/${slug}`}>
+          <img
+            src="https://dummyimage.com/242x152/000/fff"
+            alt=""
+            className="aspect-3/2 rounded-[10px] w-[96px] border border-[rgba(125,125,125,0.4)] object-cover md:w-[242px]"
+          />
+        </Link>
+      </figure>
+      <div className="flex flex-col gap-0 flex-1 md:gap-2">
+        <div className="hidden md:block">
+          <ul className="flex flex-row gap-[8px]">
+            {tags.map((tag) => (
+              <li key={`tag-${tag.slug}`}>
+                <a href="#">
+                  <span className="text-[13px] text-[rgba(0,0,0,0.6)] uppercase">
+                    {tag.name}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="mb-1">
+          <Link href={`/noticias/${slug}`} className="flex-1">
+            <h4 className="font-barlow font-semibold text-sm text-[rgba(15,23,31,0.9)] md:font-bold md:text-[20px]">
+              {title}
+            </h4>
+          </Link>
+        </div>
+        <div className="hidden md:block">
+          <div className="font-barlow mb-1 text-sm text-[rgba(15,23,31,0.7)]" dangerouslySetInnerHTML={{ __html: excerpt }} />
+        </div>
+        <p
+          className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] md:text-[13px]"
+          title={moment(publishedAt).format('D [de] MMMM, YYYY')}
+        >
+          {moment(publishedAt).format('D [de] MMMM, YYYY')}
+        </p>
+      </div>
+    </div>
+  );
+}

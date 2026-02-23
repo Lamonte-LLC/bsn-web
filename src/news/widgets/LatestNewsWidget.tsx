@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import LatestNewsItem from '../components/latest-news/LatestNewsItem';
 import { NewsType } from '../types';
 import { getClient } from '@/apollo-client';
@@ -44,7 +45,7 @@ export default async function LatestNewsWidget() {
         {data.map((item) => (
           <LatestNewsItem
             key={`latest-news-${item.id}`}
-            slug="noticia-ejemplo"
+            slug={item.slug}
             title={item.title}
             publishedAt={item.publishedAt}
             thumbnailUrl={item.imageUrl}
@@ -52,14 +53,14 @@ export default async function LatestNewsWidget() {
         ))}
       </div>
       <div className="sm:pb-[20px] sm:px-[30px]">
-        <a
-          href="#"
+        <Link
+          href="/noticias"
           className="bg-[#FCFCFC] block border border-[#D9D3D3] rounded-[12px] px-[12px] py-[9px] text-center"
         >
           <span className="font-special-gothic-condensed-one text-base text-black">
             Ver más noticias
           </span>
-        </a>
+        </Link>
       </div>
     </div>
   );
