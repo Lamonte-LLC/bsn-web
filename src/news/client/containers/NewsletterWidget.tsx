@@ -88,9 +88,9 @@ export default function NewsletterWidget() {
             <button
               onClick={loadMore}
               disabled={loading}
-              className="font-barlow font-semibold text-[15px] text-[#0F171F] border border-[#0F171F] px-[32px] py-[12px] hover:bg-[#0F171F] hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="cursor-pointer font-barlow font-semibold text-[15px] text-[#0F171F] border border-[#D9D3D3] px-[32px] py-[12px] rounded-[12px] shadow-[0px_1px_2px_0px_#14181F0D] mx-auto md:w-5/12"
             >
-              {loading ? 'Cargando...' : 'Cargar más noticias'}
+              {loading ? 'Cargando...' : 'Cargar más'}
             </button>
           </div>
         )}
