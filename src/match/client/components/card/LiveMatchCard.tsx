@@ -75,8 +75,8 @@ export default function LiveMatchCard({
   }, [overtimePeriods, currentQuarter]);
 
   return (
-    <Card className="w-[308px]">
-      <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-5">
+    <Card className="w-[220px] md:w-[308px]">
+      <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-[15px] py-[8px] md:mx-[20px]">
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row justify-start items-center gap-[7px]">
             <Lottie
@@ -92,73 +92,72 @@ export default function LiveMatchCard({
               MATCH_STATUS.INTERRUPTED,
               MATCH_STATUS.RESCHEDULED,
             ].includes(status) && (
-              <p className="text-base text-white">
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 {currentStatusLabel} - {currentPeriodTime}
               </p>
             )}
             {status === MATCH_STATUS.READY && (
-              <p className="text-base text-white">
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Por comenzar
               </p>
             )}
             {status === MATCH_STATUS.DELAYED && (
-              <p className="text-base text-white">
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Atrasado
               </p>
             )}
             {status === MATCH_STATUS.PERIOD_BREAK &&
               overtimePeriods === 0 &&
               currentQuarter === '2' && (
-                <p className="text-base text-white">
+                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                   Mediotiempo
                 </p>
               )}
             {status === MATCH_STATUS.PERIOD_BREAK &&
               overtimePeriods === 0 &&
               currentQuarter !== '2' && (
-                <p className="text-base text-white">
+                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                   Fin de Q{currentQuarter}
                 </p>
               )}
             {status === MATCH_STATUS.PERIOD_BREAK && overtimePeriods > 0 && (
-              <p className="text-base text-white">
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Fin de OT{overtimePeriods > 1 ? overtimePeriods : ''}
               </p>
             )}
             {status === MATCH_STATUS.INTERRUPTED && (
-              <p className="text-base text-white">
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Interrumpido
               </p>
             )}
             {status === MATCH_STATUS.RESCHEDULED && (
-              <p className="text-base text-white">
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Reprogramado
               </p>
             )}
           </div>
           <div className="flex flex-row items-center gap-2">
             <img src="/assets/images/icons/icon-tv.png" />
-            <p className="font-barlow font-medium text-sm text-[rgba(255,255,255,0.8)]">
+            <p className="font-barlow font-medium text-sm text-[rgba(255,255,255,0.8)] hidden md:block">
               {mediaProvider}
             </p>
           </div>
         </div>
       </CardHeader>
-      <CardBody>
-        <div className="flex flex-row justify-between items-center mb-3">
-          <div className="flex flex-col flex-1 gap-1">
+      <CardBody className="pt-[3px]">
+        <div className="flex flex-row justify-between items-center mb-[7px]">
+          <div className="flex flex-col flex-1">
             <div className="flex flex-row justify-between items-center gap-3">
               <div className="flex-1">
                 <MatchCompetitor
                   code={visitorTeam.code}
                   name={getFirstWord(visitorTeam.nickname)}
                   city={visitorTeam.city}
-                  avatarSpaceHorizontal={14}
                   avatarSize={33}
                 />
               </div>
               <div className="flex flex-row items-center gap-2">
-                <p className="text-[32px] text-white">
+                <p className="text-[24px] text-white md:text-[32px]">
                   {visitorTeam.score}
                 </p>
               </div>
@@ -169,25 +168,24 @@ export default function LiveMatchCard({
                   code={homeTeam.code}
                   name={getFirstWord(homeTeam.nickname)}
                   city={homeTeam.city}
-                  avatarSpaceHorizontal={14}
                   avatarSize={33}
                 />
               </div>
               <div className="flex flex-row items-center gap-2">
-                <p className="text-[32px] text-white">
+                <p className="text-[24px] text-white md:text-[32px]">
                   {homeTeam.score}
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div>
+        <div className="pb-[12px] md:pb-[17px]">
           <Link
             href={`/partidos/${matchProviderId}`}
-            className="bg-[rgba(15,15,15,0.19)] border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[5px]"
+            className="bg-[rgba(15,15,15,0.19)] border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]"
             style={{ backdropFilter: 'blur(40px)' }}
           >
-            <span className="text-[15px] text-white">
+            <span className="text-sm text-white md:text-[15px]">
               Ver resultados
             </span>
           </Link>

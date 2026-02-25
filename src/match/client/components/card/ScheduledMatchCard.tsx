@@ -2,7 +2,6 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
-import moment from 'moment';
 import {
   Card,
   CardBody,
@@ -12,6 +11,7 @@ import {
 import MatchCompetitor from '../competitor/MatchCompetitor';
 import { getFirstWord } from '@/utils/text';
 import { MATCH_DATE_FORMAT, MATCH_TIME_FORMAT } from '@/constants';
+import { formatDate } from '@/utils/date-formatter';
 
 type Props = {
   matchProviderId?: string;
@@ -65,23 +65,23 @@ export default function ScheduledMatchCard({
   }, [visitorTeam.competitionStandings]);
 
   return (
-    <Card className="w-[308px]">
-      <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-5">
+    <Card className="w-[220px] md:w-[308px]">
+      <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-[15px] py-[8px] md:mx-[20px]">
         <div className="flex flex-row justify-between items-center">
-          <p className="font-barlow font-medium leading-[24px] text-sm text-[rgba(255,255,255,0.8)]">
-            {moment(startAt).format(MATCH_DATE_FORMAT)}
+          <p className="font-barlow font-medium text-[rgba(255,255,255,0.8)] text-[13px] leading-[22px] md:text-sm md:leading-[24px]">
+            {formatDate(startAt, MATCH_DATE_FORMAT)}
           </p>
           <div className="flex flex-row items-center gap-2">
             <img src="/assets/images/icons/icon-tv.png" />
-            <p className="font-barlow font-medium text-sm text-[rgba(255,255,255,0.8)]">
+            <p className="font-barlow font-medium text-[13px] text-[rgba(255,255,255,0.8)] hidden md:block md:text-sm">
               {mediaProvider}
             </p>
           </div>
         </div>
       </CardHeader>
-      <CardBody>
-        <div className="flex flex-row justify-between items-center mb-3">
-          <div className="flex flex-1 flex-col gap-1">
+      <CardBody className="pt-[3px]">
+        <div className="flex flex-row justify-between items-center mb-[7px]">
+          <div className="flex flex-1 flex-col">
             <div className="flex flex-row justify-between items-center gap-3">
               <div className="flex-1">
                 <MatchCompetitor
@@ -92,8 +92,8 @@ export default function ScheduledMatchCard({
                   avatarSize={33}
                 />
               </div>
-              <p className="font-special-gothic-condensed-one text-[32px] text-white">
-                {moment(startAt).format(MATCH_TIME_FORMAT)}
+              <p className="font-special-gothic-condensed-one text-[24px] leading-[36px] text-white md:text-[32px] md:leading-[48px]">
+                {formatDate(startAt, MATCH_TIME_FORMAT)}
               </p>
             </div>
             <div className="flex flex-row justify-between items-center gap-3">
@@ -106,17 +106,17 @@ export default function ScheduledMatchCard({
                   avatarSize={33}
                 />
               </div>
-              <div className="flex h-[48px] items-center"></div>
+              <div className="flex h-[36px] items-center md:h-[48px]"></div>
             </div>
           </div>
         </div>
-        <div>
+        <div className="pb-[12px] md:pb-[17px]">
           <Link
             href={`/partidos/${matchProviderId}`}
-            className="bg-[rgba(15,15,15,0.19)] border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[5px]"
+            className="bg-[rgba(15,15,15,0.19)] border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]"
             style={{ backdropFilter: 'blur(40px)' }}
           >
-            <span className="text-[15px] text-white">
+            <span className="text-sm text-white md:text-[15px]">
               Ver previa
             </span>
           </Link>

@@ -1,5 +1,5 @@
-import moment from 'moment';
 import Link from 'next/link';
+import { formatDate } from '@/utils/date-formatter';
 
 type Props = {
   title: string;
@@ -58,9 +58,9 @@ export default function NewsItem({
         </div>
         <p
           className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] md:text-[13px]"
-          title={moment(publishedAt).format('D [de] MMMM, YYYY')}
+          title={formatDate(publishedAt, 'D [de] MMMM, YYYY')}
         >
-          {moment(publishedAt).format('D [de] MMMM, YYYY')}
+          {formatDate(publishedAt, 'D [de] MMMM, YYYY')}
         </p>
       </div>
     </div>

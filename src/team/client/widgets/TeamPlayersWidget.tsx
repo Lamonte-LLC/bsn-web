@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
 import numeral from 'numeral';
 
 import PlayerPhotoAvatar from '@/player/components/avatar/PlayerPhotoAvatar';
@@ -11,6 +10,7 @@ import { formatInches } from '@/utils/unit-formater';
 import { useTeamPlayersConnection } from '../hooks/teams';
 
 import { PLAYER_BIRTHDAY_FORMAT } from '@/constants';
+import { formatDate } from '@/utils/date-formatter';
 
 type Props = {
   teamCode: string;
@@ -147,7 +147,7 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
               >
                 <span className="font-barlow text-[13px]">
                   {node.dob
-                    ? moment(node.dob).format(PLAYER_BIRTHDAY_FORMAT)
+                    ? formatDate(node.dob, PLAYER_BIRTHDAY_FORMAT)
                     : 'N/A'}
                 </span>
               </td>

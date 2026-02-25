@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import moment from 'moment';
 
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import { MATCH_DATE_FULL_FORMAT, MATCH_TIME_FORMAT } from '@/constants';
+import { formatDate } from '@/utils/date-formatter';
 
 type Props = {
   providerId: string;
@@ -33,14 +33,14 @@ export default function ScheduledMatchCardInline({
     <div>
       <div className="mb-[20px]">
         <p className="font-barlow font-medium text-[15px] text-[rgba(0,0,0,0.7)]">
-          {moment(startAt).format(MATCH_DATE_FULL_FORMAT)}
+          {formatDate(startAt, MATCH_DATE_FULL_FORMAT)}
         </p>
       </div>
       <div className="border border-[rgba(125,125,125,0.15)] rounded-[12px] p-[10px]">
         <div className="flex flex-row items-center justify-between">
           <div className="px-[28px]">
             <p className="text-[18px] text-black">
-              {moment(startAt).format(MATCH_TIME_FORMAT)}
+              {formatDate(startAt, MATCH_TIME_FORMAT)}
             </p>
           </div>
           <div className="border-l border-l-[rgba(125,125,125,0.15)] flex-1 flex flex-row gap-[20px] pl-[28px]">

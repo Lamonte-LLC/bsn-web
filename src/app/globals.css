@@ -79,3 +79,10 @@ body {
   background-repeat: no-repeat;  
   right: -12px;
 }
+
+@media (max-width: 767px) {
+  .recent-calendar-slider .slick-prev,
+  .recent-calendar-slider .slick-next {
+    display: none !important;
+  }
+}

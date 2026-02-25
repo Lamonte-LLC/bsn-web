@@ -9,7 +9,6 @@ export default function CardHeader({ children, className }: Props) {
   return (
     <div
       className={cx(
-        'py-[10px]',
         className,
       )}
     >

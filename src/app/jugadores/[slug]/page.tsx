@@ -1,4 +1,3 @@
-import moment from 'moment';
 import numeral from 'numeral';
 import { getClient } from '@/apollo-client';
 import { PLAYER_PROFILE } from '@/graphql/player';
@@ -9,6 +8,7 @@ import PlayerPhotoAvatar from '@/player/components/avatar/PlayerPhotoAvatar';
 import { centimeterToInches, kilogramToPounds } from '@/utils/unit-converter';
 import { formatInches } from '@/utils/unit-formater';
 import { PLAYER_BIRTHDAY_FORMAT } from '@/constants';
+import { formatDate } from '@/utils/date-formatter';
 
 type PlayerPageResponse = {
   player: PlayerType;
@@ -199,7 +199,7 @@ export default async function DetalleJugadorPage({
                 </h5>
                 <p className="text-[18px] text-white">
                   {data.player.dob
-                    ? moment(data.player.dob).format(PLAYER_BIRTHDAY_FORMAT)
+                    ? formatDate(data.player.dob, PLAYER_BIRTHDAY_FORMAT)
                     : 'N/A'}
                 </p>
               </div>

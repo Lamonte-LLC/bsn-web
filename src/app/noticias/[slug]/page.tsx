@@ -5,8 +5,8 @@ import { NewsType } from '@/news/types';
 import LatestNewsWidget from '@/news/widgets/LatestNewsWidget';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
+import { formatDate } from '@/utils/date-formatter';
 import { stripHtmlTags } from '@/utils/html';
-import moment from 'moment';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -91,8 +91,8 @@ export default async function DetalleNoticiaPage({
           </div>
           <div className="mb-8 md:mb-10">
             <p className="font-barlow font-medium text-[15px] text-[rgba(49,49,50,0.8)]">
-              {moment(data[0]?.publishedAt).format('D')} de{' '}
-              {moment(data[0]?.publishedAt).format('MMMM')}
+              {formatDate(data[0]?.publishedAt, 'D')} de{' '}
+              {formatDate(data[0]?.publishedAt, 'MMMM')}
             </p>
           </div>
           <div className="grid grid-cols-12 gap-8">

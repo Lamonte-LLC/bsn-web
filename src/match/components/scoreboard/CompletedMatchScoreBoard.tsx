@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import moment from 'moment';
 import { MATCH_DATE_FORMAT } from '@/constants';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
+import { formatDate } from '@/utils/date-formatter';
 
 type Props = {
   startAt: string;
@@ -119,7 +119,7 @@ export default function CompletedMatchScoreBoard({
           </div>
           <div className="md:-mt-6">
             <p className="font-barlow text-[13px] text-white text-center md:mb-2 md:text-[15px]">
-              {moment(startAt).format(MATCH_DATE_FORMAT)}
+              {formatDate(startAt, MATCH_DATE_FORMAT)}
             </p>
             <p className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.5)] text-center">
               {venue.name}

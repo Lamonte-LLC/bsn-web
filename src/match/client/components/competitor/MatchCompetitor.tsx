@@ -8,7 +8,6 @@ type Props = {
   ranking?: string;
   disabled?: boolean;
   avatarSize?: number;
-  avatarSpaceHorizontal?: number;
 };
 
 export default function MatchCompetitor({
@@ -18,30 +17,33 @@ export default function MatchCompetitor({
   ranking,
   disabled = false,
   avatarSize = 42,
-  avatarSpaceHorizontal = 6,
 }: Props) {
   return (
     <div
-      className="flex flex-row items-center justify-center"
-      style={{ gap: `${avatarSpaceHorizontal}px` }}
+      className="flex flex-row items-center justify-center gap-[6px] md:gap-[12px]"
     >
-      <TeamLogoAvatar teamCode={code} size={avatarSize} />
+      <div className="hidden md:block">
+        <TeamLogoAvatar teamCode={code} size={avatarSize} />
+      </div>
+      <div className="md:hidden">
+        <TeamLogoAvatar teamCode={code} size={25} />
+      </div>
       <div className="flex-1">
         <p
-          className="font-special-gothic-condensed-one text-lg"
+          className="text-base md:text-lg/5"
           style={{
             color: disabled ? 'rgba(255, 255, 255, 0.5)' : '#fff',
           }}
         >
           {name}{' '}
           {ranking && (
-            <span className="font-barlow text-xs text-[rgba(255,255,255,0.6)]">
+            <span className="font-barlow text-xs text-[rgba(255,255,255,0.6)] hidden md:inline">
               {' '}
               {ranking}
             </span>
           )}
         </p>
-        <p className="font-barlow text-xs text-[rgba(255,255,255,0.6)]">
+        <p className="font-barlow text-xs text-[rgba(255,255,255,0.6)] hidden md:block">
           {city}
         </p>
       </div>

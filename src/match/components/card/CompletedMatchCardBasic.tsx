@@ -1,6 +1,6 @@
 import { MATCH_DATE_FORMAT } from '@/constants';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import moment from 'moment';
+import { formatDate } from '@/utils/date-formatter';
 import { useMemo } from 'react';
 
 type Props = {
@@ -41,7 +41,7 @@ export default function CompletedMatchCardBasic({
     <div className="border border-[#EAEAEA] flex-1 rounded-[12px] bg-white shadow-[0px_1px_3px_0px_#14181F0A] min-w-[142px]">
       <div className="border-b border-b-[rgba(125,125,125,0.15)] flex flex-row justify-between items-center mx-[12px] py-[10px]">
         <p className="font-barlow font-medium text-xs text-[rgba(0,0,0,0.7)]">
-          {moment(startAt).format(MATCH_DATE_FORMAT)}
+          {formatDate(startAt, MATCH_DATE_FORMAT)}
         </p>
         <p className="font-barlow-condensed font-semibold text-[13px] text-black">
           Final {overtimePeriodLabel}

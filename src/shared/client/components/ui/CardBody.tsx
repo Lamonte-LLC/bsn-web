@@ -6,5 +6,5 @@ type Props = {
 };
 
 export default function CardBody({ children, className }: Props) {
-  return <div className={cx('px-5 py-3', className)}>{children}</div>;
+  return <div className={cx('px-[15px] md:px-[20px]', className)}>{children}</div>;
 }

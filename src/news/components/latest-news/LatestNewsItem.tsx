@@ -1,5 +1,5 @@
+import { formatDate } from '@/utils/date-formatter';
 import { truncateText } from '@/utils/text';
-import moment from 'moment';
 import Link from 'next/link';
 
 type LatestNewsItemProps = {
@@ -25,10 +25,9 @@ export default function LatestNewsItem({
         </Link>
         <p
           className="font-barlow text-xs text-color-[rgba(15,23,31,0.7)] hidden"
-          title={moment(publishedAt).format('LL')}
+          title={formatDate(publishedAt, 'LL')}
         >
-          {moment(publishedAt).format('D')} de{' '}
-          {moment(publishedAt).format('MMMM')}
+          {formatDate(publishedAt, 'D')} de {formatDate(publishedAt, 'MMMM')}
         </p>
       </div>
       <figure>

@@ -1,6 +1,6 @@
-import moment from 'moment';
 import { MATCH_DATE_FORMAT, MATCH_TIME_FORMAT } from '@/constants';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
+import { formatDate } from '@/utils/date-formatter';
 
 type Props = {
   startAt: string;
@@ -75,7 +75,7 @@ export default function ScheduledMatchScoreBoard({
               <h4 className="text-[40px] text-white">{homeTeam.code}</h4>
             </div>
             <p className="text-[19px] text-white text-center md:text-[37px]">
-              {moment(startAt).format(MATCH_TIME_FORMAT)}
+              {formatDate(startAt, MATCH_TIME_FORMAT)}
             </p>
             <div className="md:hidden">
               <h4 className="text-[40px] text-white">{visitorTeam.code}</h4>
@@ -83,7 +83,7 @@ export default function ScheduledMatchScoreBoard({
           </div>
           <div>
             <p className="font-barlow text-[13px] text-white text-center md:mb-2 md:text-[15px]">
-              {moment(startAt).format(MATCH_DATE_FORMAT)}
+              {formatDate(startAt, MATCH_DATE_FORMAT)}
             </p>
             <p className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.5)] text-center">
               {venue.name}

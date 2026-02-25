@@ -2,8 +2,8 @@ import { TopPerformancesType } from '../types';
 import { getClient } from '@/apollo-client';
 import { BSN_TV_DATE_FORMAT } from '@/constants';
 import { TOP_PERFORMANCES } from '@/graphql/highlights';
+import { formatDate } from '@/utils/date-formatter';
 import { truncateText } from '@/utils/text';
-import moment from 'moment';
 
 type TopPerformancesResponse = {
   topPerformances: {
@@ -34,7 +34,9 @@ export default async function BsnTvWidget() {
       <div className="px-[20px] py-[25px] lg:px-[50px] lg:py-[45px]">
         <div className="flex flex-row justify-between items-center mb-[26px] md:mb-[34px]">
           <div className="flex-1">
-            <h3 className="text-[32px] text-white text-center md:text-left">BSN TV</h3>
+            <h3 className="text-[32px] text-white text-center md:text-left">
+              BSN TV
+            </h3>
             <p className="font-barlow font-medium text-[rgba(255,255,255,0.7)] text-center text-sm md:text-left md:text-[15px]">
               Lo más reciente en nuestro canal de YouTube
             </p>
@@ -51,27 +53,39 @@ export default async function BsnTvWidget() {
         <div className="flex flex-col gap-[25px] lg:flex-row lg:gap-[54px]">
           <div className="lg:w-[66%]">
             <div>
-              <a href={`https://www.youtube.com/watch?v=${firstItem?.videoId}`} target="_blank" rel="noopener noreferrer">
+              <a
+                href={`https://www.youtube.com/watch?v=${firstItem?.videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <figure className="border border-[rgba(125,125,125,0.4)] relative rounded-[6px] shrink-0 overflow-hidden w-full mb-[15px] lg:mb-[26px]">
                   <img
                     src={firstItem?.coverUrl || ''}
                     alt={firstItem?.title || ''}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bg-[rgba(0,0,0,0.43)] left-0 top-0 right-0 bottom-0"/>
-                  <img src="/assets/images/icons/icon-play-youtube.png" alt="" className="absolute left-[50%] top-[50%] transform -translate-x-[50%] -translate-y-[50%]"/>
+                  <div className="absolute bg-[rgba(0,0,0,0.43)] left-0 top-0 right-0 bottom-0" />
+                  <img
+                    src="/assets/images/icons/icon-play-youtube.png"
+                    alt=""
+                    className="absolute left-[50%] top-[50%] transform -translate-x-[50%] -translate-y-[50%]"
+                  />
                 </figure>
               </a>
               <div>
                 <div className="mb-[10px]">
-                  <a href={`https://www.youtube.com/watch?v=${firstItem?.videoId}`} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={`https://www.youtube.com/watch?v=${firstItem?.videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <h2 className="font-barlow font-semibold text-white text-base lg:text-[24px]/7">
                       {firstItem?.title || ''}
                     </h2>
                   </a>
                 </div>
                 <p className="font-barlow font-medium text-[rgba(255,255,255,0.5)] text-[13px]">
-                  {moment(firstItem?.publishedAt).format(BSN_TV_DATE_FORMAT) || ''}
+                  {formatDate(firstItem?.publishedAt, BSN_TV_DATE_FORMAT)}
                 </p>
               </div>
             </div>
@@ -83,7 +97,11 @@ export default async function BsnTvWidget() {
                   key={`highlight-${item.videoId}`}
                   className="flex flex-row gap-[18px] items-center pb-[15px]"
                 >
-                  <a href={`https://www.youtube.com/watch?v=${item.videoId}`} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={`https://www.youtube.com/watch?v=${item.videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <figure className="border border-[rgba(125,125,125,0.4)] relative rounded-[6px] shrink-0 overflow-hidden w-[178px]">
                       <img
                         src={item?.coverUrl || ''}
@@ -91,7 +109,11 @@ export default async function BsnTvWidget() {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_0.01%,rgba(0,0,0,0.8)_100%)]" />
-                      <img src="/assets/images/icons/icon-play-youtube2.png" alt="" className="absolute right-[8px] bottom-[8px]"/>
+                      <img
+                        src="/assets/images/icons/icon-play-youtube2.png"
+                        alt=""
+                        className="absolute right-[8px] bottom-[8px]"
+                      />
                     </figure>
                   </a>
                   <div>
@@ -103,7 +125,7 @@ export default async function BsnTvWidget() {
                       </a>
                     </div>
                     <p className="font-barlow font-medium text-[rgba(255,255,255,0.5)] text-xs">
-                      {moment(item?.publishedAt).format(BSN_TV_DATE_FORMAT) || ''}
+                      {formatDate(item?.publishedAt, BSN_TV_DATE_FORMAT)}
                     </p>
                   </div>
                 </div>

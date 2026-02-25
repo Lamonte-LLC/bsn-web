@@ -3,9 +3,9 @@ import { getClient } from '@/apollo-client';
 import { LATEST_NEWS } from '@/graphql/news';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import { stripHtmlTags } from '@/utils/html';
-import moment from 'moment';
 import NewsletterWidget from '@/news/client/containers/NewsletterWidget';
 import Link from 'next/link';
+import { formatDate } from '@/utils/date-formatter';
 
 const NEWS_PER_PAGE = 1;
 
@@ -70,8 +70,8 @@ export default async function NoticiasPage() {
                 </div>
                 <div className="mb-5 md:mb-7">
                   <p className="font-barlow font-medium text-sm text-[rgba(15,23,31,0.6)]">
-                    {moment(data[0]?.publishedAt).format('D')} de{' '}
-                    {moment(data[0]?.publishedAt).format('MMMM')}
+                    {formatDate(data[0]?.publishedAt, 'D')} de{' '}
+                    {formatDate(data[0]?.publishedAt, 'MMMM')}
                   </p>
                 </div>
                 <div>

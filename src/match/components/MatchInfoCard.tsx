@@ -1,5 +1,5 @@
 import { MATCH_DATE_FORMAT, MATCH_TIME_FORMAT } from '@/constants';
-import moment from 'moment';
+import { formatDate } from '@/utils/date-formatter';
 
 type Props = {
   startAt?: string;
@@ -28,7 +28,7 @@ export default function MatchInfoCard({
           <li className="flex flex-row items-center gap-[12px]">
             <img src="/assets/images/icons/icon-calendar-circle.png" alt="" />
             <p className="font-barlow font-medium text-sm">
-              {moment(startAt).format(MATCH_DATE_FORMAT)}
+              {formatDate(startAt, MATCH_DATE_FORMAT)}
             </p>
           </li>
           <li className="flex flex-row items-center gap-[12px]">
@@ -38,7 +38,7 @@ export default function MatchInfoCard({
           <li className="flex flex-row items-center gap-[12px]">
             <img src="/assets/images/icons/icon-clock-circle.png" alt="" />
             <p className="font-barlow font-medium text-sm">
-              {moment(startAt).format(MATCH_TIME_FORMAT)}
+              {formatDate(startAt, MATCH_TIME_FORMAT)}
             </p>
           </li>
           <li className="flex flex-row items-center gap-[12px]">
