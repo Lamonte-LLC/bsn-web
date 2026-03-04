@@ -51,6 +51,7 @@ export const useWscBlazeSDK = () => {
 
   return {
     blazeSDK,
-    isBlazeSDKReady: !loading,
+    // Only ready when loading is done AND the SDK actually loaded (not null due to an error)
+    isBlazeSDKReady: !loading && !!blazeSDK,
   };
 };

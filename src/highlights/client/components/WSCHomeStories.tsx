@@ -8,14 +8,18 @@ import WSCBlazeWidget, {
 import { useWscBlazeSDK } from '@/shared/client/components/wsc/hooks/useWscBlazeSDK';
 import { useScreenDetector } from '@/shared/client/components/wsc/hooks/useScreenDetector';
 
-export default function WSCHomeStories() {
+type WSCHomeStoriesProps = {
+  label?: string;
+};
+
+export default function WSCHomeStories({ label = 'home-stories' }: WSCHomeStoriesProps) {
   const widgetRowRectangleRef = useRef<IWSCWidgetActions>(null);
   const { isMobile, isTablet, isDesktop } = useScreenDetector();
   const { isBlazeSDKReady } = useWscBlazeSDK();
 
   const widgetRowRectangleProps: WSCBlazeWidgetProps = {
     id: 'home-stories-container-row-rectangle',
-    labels: 'home-stories',
+    labels: label,
     orderType: 'RecentlyUpdatedFirst',
     contentType: 'story',
     theme: 'row-rectangle',

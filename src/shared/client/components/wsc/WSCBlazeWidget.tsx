@@ -38,6 +38,10 @@ import {
   useState,
 } from 'react';
 
+// Module-level flag: tracks whether onBlazeSDKConnect has already fired.
+// Widgets that mount after the event won't miss it.
+let blazeSDKConnected = false;
+
 export type SizeState = {
   width: string;
   height: string;
@@ -156,9 +160,16 @@ const WSCBlazeWidget = forwardRef<
     blazeTheme,
   ]);
 
-  // Set up event listener for the onBlazeSDKConnect event
+  // Set up event listener for the onBlazeSDKConnect event.
+  // If the event already fired before this widget mounted, set state immediately.
   useEffect(() => {
+    if (blazeSDKConnected) {
+      setOnBlazeSDKConnect(true);
+      return;
+    }
+
     const handleBlazeSDKConnect = () => {
+      blazeSDKConnected = true;
       setOnBlazeSDKConnect(true);
     };
 

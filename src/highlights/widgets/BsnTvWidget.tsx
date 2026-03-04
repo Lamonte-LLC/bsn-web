@@ -60,7 +60,7 @@ export default async function BsnTvWidget() {
               >
                 <figure className="border border-[rgba(125,125,125,0.4)] relative rounded-[6px] shrink-0 overflow-hidden w-full mb-[15px] lg:mb-[26px]">
                   <img
-                    src={firstItem?.coverUrl || ''}
+                    src={firstItem?.videoId ? `https://img.youtube.com/vi/${firstItem.videoId}/maxresdefault.jpg` : firstItem?.coverUrl || ''}
                     alt={firstItem?.title || ''}
                     className="w-full h-full object-cover"
                   />
@@ -104,7 +104,7 @@ export default async function BsnTvWidget() {
                   >
                     <figure className="border border-[rgba(125,125,125,0.4)] relative rounded-[6px] shrink-0 overflow-hidden w-[178px]">
                       <img
-                        src={item?.coverUrl || ''}
+                        src={item?.videoId ? `https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg` : item?.coverUrl || ''}
                         alt={item?.title || ''}
                         className="w-full h-full object-cover"
                       />
