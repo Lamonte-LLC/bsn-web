@@ -1,5 +1,3 @@
-import { getClient } from '@/apollo-client';
-import { SEASON_TOP_PLAYER_LEADER_STATS_BY_CATEGORY } from '@/graphql/stats';
 import APGPlayerLeadersCard from '@/stats/widgets/season/player/APGPlayerLeadersCard';
 import BPGPlayerLeadersCard from '@/stats/widgets/season/player/BPGPlayerLeadersCard';
 import FGMPlayerLeadersCard from '@/stats/widgets/season/player/FGMPlayerLeadersCard';
@@ -13,18 +11,8 @@ import SPGPlayerLeadersCardNew from '@/stats/widgets/season/player/SPGPlayerLead
  * no results the whole section is hidden.
  */
 export default async function SeasonLeadersSection() {
-  const { data } = await getClient().query({
-    query: SEASON_TOP_PLAYER_LEADER_STATS_BY_CATEGORY,
-    variables: { statsCode: 'POINTS_AVG', first: 1 },
-  });
-
-  const hasData =
-    (data?.seasonPlayerStatsConnection?.edges?.length ?? 0) > 0;
-
-  if (!hasData) return null;
-
   return (
-    <section className="container mb-8 lg:mb-16">
+    <section className="hidden container mb-8 lg:mb-16">
       <div className="lg:w-11/12 mx-auto">
         <div className="flex flex-row justify-between items-center mb-[20px] md:mb-[32px]">
           <h2 className="text-[22px] text-[#0F171F] md:text-[32px]">

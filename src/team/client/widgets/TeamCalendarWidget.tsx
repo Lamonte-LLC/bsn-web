@@ -3,6 +3,7 @@
 import ScheduledMatchCardInline from '@/match/components/calendar/ScheduledMatchCardInline';
 import { useUpcomingCalendarConnection } from '../hooks/teams';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
+import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 
 type Props = {
   teamCode: string;
@@ -34,17 +35,28 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
               homeTeam={{
                 code: node.homeTeam.code,
                 nickname: node.homeTeam.nickname,
+                city: node.homeTeam.city,
                 ticketUrl: node.homeTeam.ticketUrl || '',
+                competitionStandings: {
+                  won: node.homeTeam.competitionStandings?.won ?? 0,
+                  lost: node.homeTeam.competitionStandings?.lost ?? 0,
+                },
               }}
               visitorTeam={{
                 code: node.visitorTeam.code,
                 nickname: node.visitorTeam.nickname,
+                city: node.visitorTeam.city,
                 ticketUrl: node.visitorTeam.ticketUrl || '',
+                competitionStandings: {
+                  won: node.visitorTeam.competitionStandings?.won ?? 0,
+                  lost: node.visitorTeam.competitionStandings?.lost ?? 0,
+                },
               }}
               contextTeam={{
                 code: teamCode,
               }}
               providerId={node.providerId}
+              mediaProvider={node.channel || DEFAULT_MEDIA_PROVIDER}
             />
           ))}
           {data?.edges.length === 0 && (
