@@ -12,10 +12,11 @@ import {
   PopoverButton,
   PopoverPanel,
 } from '@headlessui/react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export default function HeaderBoxLayout() {
   const [isOpen, setIsOpen] = useState(false);
+  const equiposButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -70,7 +71,12 @@ export default function HeaderBoxLayout() {
                 </li>
                 <li>
                   <Popover>
-                    <PopoverButton className="cursor-pointer text-[20px] text-white focus-visible:outline-none data-open:border-b-1 data-open:border-white data-open:text-[rgba(255,255,255,0.7)]">
+                    {({ open, close }) => (
+                    <div
+                      onMouseEnter={() => { if (!open) equiposButtonRef.current?.click(); }}
+                      onMouseLeave={() => close()}
+                    >
+                    <PopoverButton ref={equiposButtonRef} className="cursor-pointer text-[20px] text-white focus-visible:outline-none data-open:border-b-1 data-open:border-white data-open:text-[rgba(255,255,255,0.7)]">
                       Equipos
                     </PopoverButton>
                     <PopoverPanel
@@ -243,6 +249,8 @@ export default function HeaderBoxLayout() {
                         </Link>
                       </div>
                     </PopoverPanel>
+                    </div>
+                    )}
                   </Popover>
                   {/* <ul>
                     <li>
