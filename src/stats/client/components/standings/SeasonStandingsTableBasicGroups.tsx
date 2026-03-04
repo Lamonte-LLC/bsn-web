@@ -23,7 +23,7 @@ type Props = {
 };
 
 export default function SeasonStandingsTableBasicGroups({ groups }: Props) {
-  const [tab, setTab] = useState(groups[0].name);
+  const [tab, setTab] = useState(groups[0]?.name ?? '');
 
   return (
     <div>
