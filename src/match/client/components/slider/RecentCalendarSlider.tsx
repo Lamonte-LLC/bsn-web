@@ -2,14 +2,25 @@
 
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
+import { useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 
 type Props<T> = {
   data: T[];
   render: (item: T, index: number) => React.ReactNode;
   keyExtractor?: (item: T, index: number) => string;
+  initialSlide?: number;
 };
 
-export default function RecentCalendarSlider<T>({ data, render, keyExtractor }: Props<T>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function RecentCalendarSliderInner<T>({ data, render, keyExtractor, initialSlide = 0 }: Props<T>, _ref: any) {
+  const sliderRef = useRef<Slider>(null);
+
+  useEffect(() => {
+    if (initialSlide > 0) {
+      sliderRef.current?.slickGoTo(initialSlide, true);
+    }
+  }, [initialSlide]);
+
   const settings = {
     dots: false,
     infinite: false,
@@ -30,8 +41,9 @@ export default function RecentCalendarSlider<T>({ data, render, keyExtractor }: 
     ],
     className: 'recent-calendar-slider',
   };
+
   return (
-    <Slider {...settings}>
+    <Slider ref={sliderRef} {...settings}>
       {data.map((item, index) => (
         <div key={keyExtractor ? keyExtractor(item, index) : index}>
           {render(item, index)}
@@ -40,3 +52,9 @@ export default function RecentCalendarSlider<T>({ data, render, keyExtractor }: 
     </Slider>
   );
 }
+
+const RecentCalendarSlider = forwardRef(RecentCalendarSliderInner) as <T>(
+  props: Props<T> & { ref?: React.Ref<unknown> }
+) => React.ReactElement;
+
+export default RecentCalendarSlider;

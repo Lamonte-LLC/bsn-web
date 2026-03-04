@@ -27,6 +27,8 @@ type SliderItem = DateItem | MatchItem;
 export default function RecentCalendarSliderWidget() {
   const { data, loading, error } = useRecentCalendar();
 
+  const today = useMemo(() => moment().startOf('day'), []);
+
   const sortedMatches = useMemo(() => {
     // Primero ordenar los partidos
     const sorted = data.slice().sort((a: MatchType, b: MatchType) => {
@@ -84,6 +86,22 @@ export default function RecentCalendarSliderWidget() {
     return groupedItems;
   }, [data]);
 
+  // Find the date-item index closest to today
+  const initialSlide = useMemo(() => {
+    let closestIdx = 0;
+    let closestDiff = Infinity;
+    sortedMatches.forEach((item, idx) => {
+      if (item.type === 'date-item') {
+        const diff = Math.abs(moment(item.date).diff(today, 'days'));
+        if (diff < closestDiff) {
+          closestDiff = diff;
+          closestIdx = idx;
+        }
+      }
+    });
+    return closestIdx;
+  }, [sortedMatches, today]);
+
   if (loading) {
     return <div>Cargando partidos...</div>;
   }
@@ -91,6 +109,7 @@ export default function RecentCalendarSliderWidget() {
   return (
     <RecentCalendarSlider
       data={sortedMatches}
+      initialSlide={initialSlide}
       render={(item: SliderItem) => {
         // Renderizar header de fecha
         if (item.type === 'date-item') {

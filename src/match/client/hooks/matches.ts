@@ -1,22 +1,22 @@
 import { RECENT_CALENDAR, MATCH_TEAM_PLAYERS_BOXSCORE } from '@/graphql/match';
 import { MatchType } from '@/match/types';
 import { useQuery } from '@apollo/client/react';
+import moment from 'moment';
 
 type RecentCalendarResponse = {
-  recentCalendarConnection: {
-    edges: {
-      node: MatchType;
-    }[];
-  };
+  matches: MatchType[];
 };
 
 export function useRecentCalendar(usePolling = false) {
+  const fromDate = moment().subtract(90, 'days').format('YYYY-MM-DD');
+  const toDate = moment().add(90, 'days').format('YYYY-MM-DD');
+
   const { data, loading, error } = useQuery<RecentCalendarResponse>(
     RECENT_CALENDAR,
     {
-      variables: { first: 9 },
+      variables: { fromDate, toDate },
       fetchPolicy: 'network-only',
-      pollInterval: usePolling ? 30 * 1000 : 0, // 30 seconds in milliseconds
+      pollInterval: usePolling ? 30 * 1000 : 0,
     },
   );
 
@@ -24,7 +24,7 @@ export function useRecentCalendar(usePolling = false) {
     console.error(error);
   }
 
-  return { data: data?.recentCalendarConnection.edges.map(edge => edge.node) ?? [], loading, error };
+  return { data: data?.matches ?? [], loading, error };
 }
 
 type MatchTeamPlayersBoxScoreResponse = {
