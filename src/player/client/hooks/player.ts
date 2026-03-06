@@ -1,4 +1,4 @@
-import { PLAYER_MATCHES, PLAYER_SEASON_STATS } from '@/graphql/player';
+import { PLAYER_MATCHES, PLAYER_SEASON_AVG_STATS, PLAYER_SEASON_TOTAL_STATS } from '@/graphql/player';
 import { PlayerMatchesConnectionType, PlayerMatchType, PlayerType } from '@/player/types';
 import { useQuery } from '@apollo/client/react';
 
@@ -6,9 +6,29 @@ type PlayerPageResponse = {
   player: PlayerType;
 };
 
-export const usePlayerStats = (playerProviderId: string, seasonProviderId: string) => {
+export const usePlayerAvgStats = (playerProviderId: string, seasonProviderId: string) => {
   const { data, loading, error } = useQuery<PlayerPageResponse>(
-    PLAYER_SEASON_STATS,
+    PLAYER_SEASON_AVG_STATS,
+    {
+      variables: { geniusId: 0, providerId: playerProviderId, seasonProviderId },
+      fetchPolicy: 'network-only',
+    },
+  );
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data ?? { player: {} as PlayerType },
+    loading,
+    error,
+  };
+};
+
+export const usePlayerTotalStats = (playerProviderId: string, seasonProviderId: string) => {
+  const { data, loading, error } = useQuery<PlayerPageResponse>(
+    PLAYER_SEASON_TOTAL_STATS,
     {
       variables: { geniusId: 0, providerId: playerProviderId, seasonProviderId },
       fetchPolicy: 'network-only',

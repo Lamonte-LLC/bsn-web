@@ -2,12 +2,12 @@
 
 import numeral from 'numeral';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
-import { usePlayerStats } from '../hooks/player';
+import { usePlayerAvgStats } from '../hooks/player';
 
 const STATS_HEADER: Record<string, string>[] = [
-  { label: 'PJ', key: 'games' },
-  { label: 'MIN', key: 'minutes' },
-  { label: 'PTS', key: 'points' },
+  { label: 'PJ', key: 'gamesAvg' },
+  { label: 'MIN', key: 'minutesAvg' },
+  { label: 'PTS', key: 'pointsAvg' },
   { label: 'FGM', key: 'fieldGoalsMadeAvg' },
   { label: 'FGA', key: 'fieldGoalsAttemptedAvg' },
   { label: 'FG%', key: 'fieldGoalsPercentage' },
@@ -33,11 +33,11 @@ type Props = {
   seasonProviderId: string;
 };
 
-export default function PlayerStatsWidget({
+export default function PlayerSeasonAvgStatsWidget({
   playerProviderId,
   seasonProviderId,
 }: Props) {
-  const { data, loading } = usePlayerStats(playerProviderId, seasonProviderId);
+  const { data, loading } = usePlayerAvgStats(playerProviderId, seasonProviderId);
 
   if (loading) {
     return (
@@ -69,17 +69,17 @@ export default function PlayerStatsWidget({
           <tr>
             <td className="px-2 py-2 text-center">
               <span className="font-barlow text-[13px]">
-                {numeral(data.player.seasonStats?.games ?? 0).format('0.0')}
+                {numeral(data.player.seasonStats?.gamesAvg ?? 0).format('0.0')}
               </span>
             </td>
             <td className="px-2 py-2 text-center">
               <span className="font-barlow text-[13px]">
-                {numeral(data.player.seasonStats?.minutes ?? 0).format('0.0')}
+                {numeral(data.player.seasonStats?.minutesAvg ?? 0).format('0.0')}
               </span>
             </td>
             <td className="px-2 py-2 text-center">
               <span className="font-barlow text-[13px]">
-                {numeral(data.player.seasonStats?.points ?? 0).format('0.0')}
+                {numeral(data.player.seasonStats?.pointsAvg ?? 0).format('0.0')}
               </span>
             </td>
             <td className="px-2 py-2 text-center">

@@ -47,14 +47,13 @@ export const PLAYER_PROFILE = gql`
   }
 `;
 
-export const PLAYER_SEASON_STATS = gql`
+export const PLAYER_SEASON_AVG_STATS = gql`
   query getPlayerSeasonStats($geniusId: Int!, $providerId: String, $seasonProviderId: String) {
     player(geniusId: $geniusId, providerId: $providerId) {
       providerId
       seasonStats(seasonProviderId: $seasonProviderId) {
-        games
-        minutes
-        points
+        gamesAvg
+        minutesAvg
         pointsAvg
         fieldGoalsMadeAvg
         fieldGoalsAttemptedAvg
@@ -74,6 +73,24 @@ export const PLAYER_SEASON_STATS = gql`
         blocksAvg
         foulsPersonalAvg
         plusMinusPointsAvg
+      }
+    }
+  }
+`;
+
+export const PLAYER_SEASON_TOTAL_STATS = gql`
+  query getPlayerSeasonStats($geniusId: Int!, $providerId: String, $seasonProviderId: String) {
+    player(geniusId: $geniusId, providerId: $providerId) {
+      providerId
+      seasonStats(seasonProviderId: $seasonProviderId) {
+        games
+        minutes
+        points
+        threePointersMade
+        reboundsTotal
+        assists
+        steals
+        blocks
       }
     }
   }

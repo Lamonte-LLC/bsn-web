@@ -1,24 +1,36 @@
 export type PlayerStatsType = {
   games: number;
+  gamesAvg: number;
   minutes: number;
+  minutesAvg: number;
   points: number;
   pointsAvg: number;
   fieldGoalsMadeAvg: number;
   fieldGoalsAttemptedAvg: number;
   fieldGoalsPercentage: number;
+  threePointersMade: number;
   threePointersMadeAvg: number;
   threePointersAttemptedAvg: number;
   threePointersPercentage: number;
+  freeThrowsMade: number;
   freeThrowsMadeAvg: number;
   freeThrowsAttemptedAvg: number;
   freeThrowsPercentage: number;
+  offensiveRebounds: number;
   offensiveReboundsAvg: number;
+  defensiveRebounds: number;
   defensiveReboundsAvg: number;
+  reboundsTotal: number;
   reboundsTotalAvg: number;
+  assists: number;
   assistsAvg: number;
+  turnovers: number;
   turnoversAvg: number;
+  steals: number;
   stealsAvg: number;
+  blocks: number;
   blocksAvg: number;
+  foulsPersonal: number;
   foulsPersonalAvg: number;
   plusMinusPointsAvg: number;
 }
@@ -50,7 +62,7 @@ export type PlayerMatchType = {
     homeTeam: TeamType;
     visitorTeam: TeamType;
   };
-  oponentTeam: {
+  opponentTeam: {
     providerId: string;
     code: string;
     nickname: string;

@@ -27,6 +27,7 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/numeral": "^2.0.5",
