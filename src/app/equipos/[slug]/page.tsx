@@ -1,5 +1,7 @@
+
+import Link from 'next/link';
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 import { getClient } from '@/apollo-client';
-import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import {
   TEAM_DETAIL,
   TEAM_RECENT_CALENDAR,
@@ -22,8 +24,7 @@ import TeamLeadersCard from '@/team/components/card/TeamLeadersCard';
 import { TeamType } from '@/team/types';
 import { ordinalNumber } from '@/utils/number-formater';
 import { getFirstWord } from '@/utils/text';
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
-import Link from 'next/link';
+import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 
 type TeamPageResponse = {
   team: TeamType;

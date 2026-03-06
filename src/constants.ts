@@ -38,4 +38,5 @@ export const MATCH_DATE_FULL_FORMAT = 'dddd, D [de] MMMM [de] YYYY';
 export const MATCH_TIME_FORMAT = 'h:mm A';
 
 export const PLAYER_BIRTHDAY_FORMAT = 'D/M/YYYY';
+export const PLAYER_MATCH_DATE_FORMAT = 'D MMM, YYYY';
 export const BSN_TV_DATE_FORMAT = 'MMMM D, YYYY';
