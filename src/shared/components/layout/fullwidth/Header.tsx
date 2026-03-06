@@ -14,19 +14,27 @@ import {
 } from '@headlessui/react';
 import { useState, useRef } from 'react';
 
-export default function HeaderBoxLayout() {
+type HeaderProps = {
+  hideNavBorder?: boolean;
+};
+
+export default function HeaderBoxLayout({
+  hideNavBorder = false,
+}: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const equiposButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
-      <div className="py-[16px]">
+      <div
+        className={`py-[20px] ${hideNavBorder ? '' : 'border-b-[1px] border-[rgba(255,255,255,0.12)]'}`}
+      >
         <div className="container">
           <div className="flex flex-row justify-between items-center">
             <div>
               <Link href="/">
                 <img
-                  src="/assets/images/logo.png"
+                  src="/assets/images/bsn-logo.svg"
                   alt="BSN"
                   width="113"
                   className="w-[68px] md:w-[113px]"
@@ -76,8 +84,13 @@ export default function HeaderBoxLayout() {
                       onMouseEnter={() => { if (!open) equiposButtonRef.current?.click(); }}
                       onMouseLeave={() => close()}
                     >
-                    <PopoverButton ref={equiposButtonRef} className="cursor-pointer text-[20px] text-white focus-visible:outline-none data-open:border-b-1 data-open:border-white data-open:text-[rgba(255,255,255,0.7)]">
+                    <PopoverButton ref={equiposButtonRef} className="flex items-center gap-1.5 cursor-pointer text-[20px] text-white focus-visible:outline-none data-open:border-b-1 data-open:border-white data-open:text-[rgba(255,255,255,0.7)]">
                       Equipos
+                      <img
+                        src="/assets/images/icons/chevron-mobile-menu.svg"
+                        alt=""
+                        className="w-[10px] opacity-70 rotate-180"
+                      />
                     </PopoverButton>
                     <PopoverPanel
                       transition
@@ -334,6 +347,18 @@ export default function HeaderBoxLayout() {
                   >
                     <img
                       src="/assets/images/icons/social/icon-tiktok.svg"
+                      alt=""
+                    />
+                  </a>
+                </li>
+                <li className="flex items-center justify-center h-[40px] w-[40px]">
+                  <a
+                    href="https://www.youtube.com/@BaloncestoSuperiorNacionalPR"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="/assets/images/icons/social/icon-youtube.svg"
                       alt=""
                     />
                   </a>

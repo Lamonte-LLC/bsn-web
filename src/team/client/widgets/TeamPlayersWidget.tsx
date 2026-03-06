@@ -37,32 +37,32 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
       <table className="w-full text-left">
         <thead>
           <tr>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 whitespace-nowrap w-[1%]">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">#</span>
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 whitespace-nowrap w-[1%] min-w-[48px]">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">#</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 min-w-[180px]">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 JUGADOR
               </span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 text-center whitespace-nowrap w-[1%]">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[80px]">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 POSICIÓN
               </span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 text-center whitespace-nowrap w-[1%]">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[80px]">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 ESTATURA
               </span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 text-center whitespace-nowrap w-[1%]">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">PESO</span>
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[72px]">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">PESO</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 text-center whitespace-nowrap w-[1%]">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">DOB</span>
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[88px]">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">DOB</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 text-center whitespace-nowrap w-[1%]">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">&nbsp;</span>
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap w-[1%] min-w-[100px]">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">&nbsp;</span>
             </th>
           </tr>
         </thead>
@@ -70,23 +70,23 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
           {data.edges.map(({ node }, index) => (
             <tr key={`player-${node.providerId}`}>
               <td
-                className="px-3 py-2"
+                className="px-4 py-3"
                 style={{
                   backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
+                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
                   borderTopLeftRadius: '8px',
                   borderBottomLeftRadius: '8px',
                 }}
               >
                 <span className="font-barlow text-[13px]">
-                  {node.shirtNumber}
+                  {node.shirtNumber ?? '—'}
                 </span>
               </td>
               <td
-                className="px-3 py-2"
+                className="px-4 py-3"
                 style={{
                   backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
+                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
                 }}
               >
                 <Link
@@ -98,25 +98,25 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
                     name={node.name}
                     size={30}
                   />
-                  <span className="text-base">{node.name}</span>
+                  <span className="text-[15px]">{node.name}</span>
                 </Link>
               </td>
               <td
-                className="px-3 py-2 text-center"
+                className="px-4 py-3 text-center"
                 style={{
                   backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
+                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
                 }}
               >
                 <span className="font-barlow text-[13px]">
-                  {node.playingPosition}
+                  {node.playingPosition || 'N/A'}
                 </span>
               </td>
               <td
-                className="px-3 py-2 text-center"
+                className="px-4 py-3 text-center"
                 style={{
                   backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
+                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
                 }}
               >
                 <span className="font-barlow text-[13px]">
@@ -126,10 +126,10 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
                 </span>
               </td>
               <td
-                className="px-3 py-2 text-center"
+                className="px-4 py-3 text-center"
                 style={{
                   backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
+                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
                 }}
               >
                 <span className="font-barlow text-[13px]">
@@ -139,10 +139,10 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
                 </span>
               </td>
               <td
-                className="px-3 py-2 text-center"
+                className="px-4 py-3 text-center"
                 style={{
                   backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
+                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
                 }}
               >
                 <span className="font-barlow text-[13px]">
@@ -152,10 +152,10 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
                 </span>
               </td>
               <td
-                className="px-3 py-2 text-center whitespace-nowrap w-[1%]"
+                className="px-4 py-3 text-center whitespace-nowrap w-[1%]"
                 style={{
                   backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
+                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
                 }}
               >
                 <Link
@@ -173,7 +173,7 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
           ))}
           {data.edges.length === 0 && (
             <tr>
-              <td className="px-3 py-2 text-center" colSpan={7}>
+              <td className="px-4 py-3 text-center" colSpan={7}>
                 <span className="text-[rgba(0,0,0,0.6)]">
                   No hay datos disponibles.
                 </span>

@@ -16,7 +16,7 @@ export default function FooterBoxLayout() {
                 href="#"
                 className="font-barlow font-medium text-[20px] text-neutral-500"
               >
-                #LaLigaMásDura
+                #LaMásDura
               </a>
             </p>
             <div className="flex flex-row gap-[13px] items-center mb-4">

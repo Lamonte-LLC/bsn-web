@@ -13,6 +13,7 @@ import BsnTvWidget from '@/highlights/widgets/BsnTvWidget';
 export default function Home() {
   return (
     <FullWidthLayout
+      hideNavBorder
       subheader={
         <section className="pb-[116px] lg:pt-[8px] lg:pb-[108px]">
           <div className="container relative">
@@ -23,7 +24,7 @@ export default function Home() {
       }
     >
       <WSCBlazeSDK apiKey={process.env.NEXT_PUBLIC_WSC_API_KEY || ''} />
-      <section className="container mb-4 -mt-[94px] lg:mb-7 lg:-mt-[76px]">
+      <section className="container mb-4 -mt-[74px] lg:mb-7 lg:-mt-[60px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           <div className="lg:col-span-8">
             <div className="mb-4 md:mb-8 lg:mb-10">
@@ -52,7 +53,7 @@ export default function Home() {
               <div className="flex flex-row justify-between items-center mb-4 md:mb-[26px]">
                 <div>
                   <h3 className="text-[22px] text-[#0F171F] md:text-[24px]">
-                    #LaLigaMásDura
+                    #LaMásDura
                   </h3>
                 </div>
               </div>
@@ -93,19 +94,15 @@ export default function Home() {
         </div>
       </section>
       <SeasonLeadersSection />
-      <section className="container mb-8 lg:mb-16">
-        <div className="mb-10">
-          <BsnTvWidget />
+      <section className="container mb-[100px]">
+        <div className="flex justify-center py-[70px]">
+          <AdSlot
+            adUnit="/23296921845/728-90-2"
+            size={[728, 90]}
+            elementId="home-gpt-ad-728-90-2"
+          />
         </div>
-        <div className="mb-10">
-          <div className="flex justify-center">
-            <AdSlot
-              adUnit="/23296921845/728-90-2"
-              size={[728, 90]}
-              elementId="home-gpt-ad-728-90-2"
-            />
-          </div>
-        </div>
+        <BsnTvWidget />
       </section>
     </FullWidthLayout>
   );

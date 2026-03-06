@@ -95,7 +95,7 @@ export default async function DetalleNoticiaPage({
               {formatDate(data[0]?.publishedAt, 'MMMM')}
             </p>
           </div>
-          <div className="grid grid-cols-12 gap-8">
+          <div className="grid grid-cols-12 gap-8 lg:gap-16">
             <div className="col-span-12 lg:col-span-8">
               <figure className="mb-8 md:mb-10">
                 <div

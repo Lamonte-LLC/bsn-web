@@ -10,7 +10,7 @@ export default function FooterBoxLayout() {
             <p className="mb-4 text-center md:mb-[58px] md:text-left">
               <a href="#" className="inline-block">
                 <img
-                  src="/assets/images/logo.png"
+                  src="/assets/images/bsn-logo.svg"
                   alt=""
                   className="w-[100px] md:w-auto"
                 />
@@ -21,7 +21,7 @@ export default function FooterBoxLayout() {
                 href="#"
                 className="font-barlow font-medium text-[20px] text-neutral-500"
               >
-                #LaLigaMásDura
+                #LaMásDura
               </a>
             </p>
             <div className="flex flex-row gap-[8px] justify-center items-center mb-4 md:justify-start xl:gap-[12px]">

@@ -27,7 +27,7 @@ export default function SeasonStandingsTableBasicGroups({ groups }: Props) {
 
   return (
     <div>
-      <div className="flex flex-row justify-between items-center mb-[30px]">
+      <div className="flex flex-row justify-between items-center mb-3">
         <h3 className="text-[22px] text-black md:text-[24px]">
           Posiciones
         </h3>

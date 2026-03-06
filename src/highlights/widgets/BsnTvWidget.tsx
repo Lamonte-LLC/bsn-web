@@ -61,7 +61,7 @@ export default async function BsnTvWidget() {
       <div className="px-[20px] py-[25px] lg:px-[50px] lg:py-[45px]">
         <div className="flex flex-row justify-between items-center mb-[26px] md:mb-[34px]">
           <div className="flex-1">
-            <h3 className="text-[32px] text-white text-center md:text-left">
+            <h3 className="text-[22px] text-white text-center md:text-left md:text-[32px]">
               BSN TV
             </h3>
             <p className="font-barlow font-medium text-[rgba(255,255,255,0.7)] text-center text-sm md:text-left md:text-[15px]">

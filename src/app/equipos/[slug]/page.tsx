@@ -326,7 +326,7 @@ export default async function DetalleEquipoPage({
                 <div className="flex flex-row justify-between items-center mb-[30px]">
                   <div>
                     <h3 className="text-[22px] text-black md:text-[24px]">
-                      Estadísticas del equipo
+                      Equipo
                     </h3>
                   </div>
                   <div>
@@ -341,7 +341,7 @@ export default async function DetalleEquipoPage({
                 <div className="flex flex-row justify-between items-center mb-[30px]">
                   <div>
                     <h3 className="text-[22px] text-black md:text-[24px]">
-                      Estadísticas de jugadores
+                      Jugadores
                     </h3>
                   </div>
                   <div>

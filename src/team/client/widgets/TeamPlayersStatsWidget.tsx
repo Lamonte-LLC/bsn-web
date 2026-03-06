@@ -52,17 +52,17 @@ export default function TeamPlayersStatsWidget({ teamCode }: Props) {
       <table className="w-full text-left">
         <thead>
           <tr>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2">
-              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3">
+              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 JUGADOR
               </span>
             </th>
             {STATS_HEADER.map((item) => (
               <th
                 key={`header-${item.key}`}
-                className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 text-center whitespace-nowrap w-[1%]"
+                className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap w-[1%]"
               >
-                <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
+                <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                   {item.label}
                 </span>
               </th>
@@ -70,9 +70,14 @@ export default function TeamPlayersStatsWidget({ teamCode }: Props) {
           </tr>
         </thead>
         <tbody>
-          {data.edges.map(({ node }) => (
-            <tr key={`player-${node.providerId}`}>
-              <td className="px-3 py-2">
+          {data.edges.map(({ node }, index) => (
+            <tr
+              key={`player-${node.providerId}`}
+              style={{
+                backgroundColor: index % 2 === 1 ? '#F9F9F9' : 'transparent',
+              }}
+            >
+              <td className="px-4 py-3">
                 <div className="flex flex-row items-center gap-2">
                   <span className="text-base">{node.name}</span>
                   <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.7)]">
@@ -81,7 +86,7 @@ export default function TeamPlayersStatsWidget({ teamCode }: Props) {
                 </div>
               </td>
               {STATS_HEADER.map((item) => (
-                <td key={`value-${item.key}`} className="px-3 py-2 text-center">
+                <td key={`value-${item.key}`} className="px-4 py-3 text-center">
                   <span className="font-barlow text-[13px]">
                     {['FG%', '3PT%', 'FT%'].includes(item.label)
                       ? numeral(
@@ -99,7 +104,7 @@ export default function TeamPlayersStatsWidget({ teamCode }: Props) {
             <tr>
               <td
                 colSpan={STATS_HEADER.length + 1}
-                className="px-3 py-2 text-center"
+                className="px-4 py-3 text-center"
               >
                 <span className="text-[rgba(0,0,0,0.6)]">
                   No hay estadísticas disponibles
