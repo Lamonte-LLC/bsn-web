@@ -52,6 +52,7 @@ export type TeamType = {
   providerId: string;
   nickname: string;
   code: string;
+  colorPrimary: string;
   score: string;
 };
 
@@ -80,6 +81,12 @@ export type PlayerMatchesConnectionType = {
   };
 };
 
+export type PlayerSeasonRosterType = {
+  jerseyNumber: number;
+  playingPosition: string;
+  team?: TeamType;
+};
+
 export type PlayerType = {
   providerId: string;
   name: string;
@@ -99,4 +106,5 @@ export type PlayerType = {
   };
   stats?: PlayerStatsType;
   seasonStats?: PlayerStatsType;
+  seasonRoster?: PlayerSeasonRosterType;
 };

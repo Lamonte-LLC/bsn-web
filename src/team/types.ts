@@ -23,6 +23,11 @@ export type TeamPlayerStatsType = {
   plusMinusPointsAvg: number;
 };
 
+export type TeamPlayerSeasonRosterType = {
+  jerseyNumber: number;
+  playingPosition: string;
+}
+
 export type TeamPlayerType = {
   providerId: string;
   name: string;
@@ -35,6 +40,7 @@ export type TeamPlayerType = {
   nationality?: string;
   shirtNumber?: number;
   stats?: TeamPlayerStatsType;
+  seasonRoster?: TeamPlayerSeasonRosterType;
 };
 
 export type TeamCompetitionStandingType = {

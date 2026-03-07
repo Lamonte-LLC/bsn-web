@@ -79,7 +79,7 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
                 }}
               >
                 <span className="font-barlow text-[13px]">
-                  {node.shirtNumber ?? '—'}
+                  {node.seasonRoster?.jerseyNumber ?? '—'}
                 </span>
               </td>
               <td
@@ -109,7 +109,7 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
                 }}
               >
                 <span className="font-barlow text-[13px]">
-                  {node.playingPosition || 'N/A'}
+                  {node.seasonRoster?.playingPosition || 'N/A'}
                 </span>
               </td>
               <td

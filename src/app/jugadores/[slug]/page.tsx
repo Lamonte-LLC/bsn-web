@@ -64,7 +64,7 @@ export default async function DetalleJugadorPage({
                     <figure
                       className="hidden w-[125px] h-[125px] rounded-full border border-2 overflow-hidden md:block"
                       style={{
-                        borderColor: data.player.team?.colorPrimary || '#ccc',
+                        borderColor: data.player.seasonRoster?.team?.colorPrimary || '#ccc',
                       }}
                     >
                       <PlayerPhotoAvatar
@@ -76,7 +76,7 @@ export default async function DetalleJugadorPage({
                     <figure
                       className="w-[75px] h-[75px] rounded-full border border-2 overflow-hidden md:hidden"
                       style={{
-                        borderColor: data.player.team?.colorPrimary || '#ccc',
+                        borderColor: data.player.seasonRoster?.team?.colorPrimary || '#ccc',
                       }}
                     >
                       <PlayerPhotoAvatar
@@ -85,11 +85,11 @@ export default async function DetalleJugadorPage({
                         name={data.player.name}
                       />
                     </figure>
-                    {data.player.shirtNumber && (
+                    {data.player.seasonRoster?.jerseyNumber && (
                       <div className="absolute -bottom-2 left-0 right-0 text-center">
                         <p className="bg-[#232323] border border-[rgba(125,125,125,0.23)] inline px-2 py-0.5 rounded-[100px]">
                           <span className="font-barlow font-semibold text-[15px] text-white">
-                            #{data.player.shirtNumber}
+                            #{data.player.seasonRoster.jerseyNumber}
                           </span>
                         </p>
                       </div>
@@ -104,18 +104,18 @@ export default async function DetalleJugadorPage({
                     <div className="flex flex-row items-center gap-2">
                       <div className="hidden md:block">
                         <TeamLogoAvatar
-                          teamCode={data.player.team?.code ?? ''}
+                          teamCode={data.player.seasonRoster?.team?.code ?? ''}
                           size={24}
                         />
                       </div>
                       <div className="md:hidden">
                         <TeamLogoAvatar
-                          teamCode={data.player.team?.code ?? ''}
+                          teamCode={data.player.seasonRoster?.team?.code ?? ''}
                           size={20}
                         />
                       </div>
                       <span className="font-barlow font-medium text-[13px] text-[rgba(255,255,255,0.7)] md:text-[15px]">
-                        {getFirstWord(data.player.team?.nickname || '')}
+                        {getFirstWord(data.player.seasonRoster?.team?.nickname || '')}
                       </span>
                     </div>
                   </div>
@@ -128,7 +128,7 @@ export default async function DetalleJugadorPage({
                       Puntos por juego
                     </h5>
                     <p className="text-[22px] text-white md:text-[27px]">
-                      {numeral(data.player.stats?.pointsAvg ?? 0).format('0.0')}
+                      {numeral(data.player.seasonStats?.pointsAvg ?? 0).format('0.0')}
                     </p>
                   </div>
                   <div className="border border-[rgba(255,255,255,0.2)] rounded-[12px] px-[14px] py-[12px]">
@@ -136,7 +136,7 @@ export default async function DetalleJugadorPage({
                       Rebotes por juego
                     </h5>
                     <p className="text-[22px] text-white md:text-[27px]">
-                      {numeral(data.player.stats?.reboundsTotalAvg ?? 0).format(
+                      {numeral(data.player.seasonStats?.reboundsTotalAvg ?? 0).format(
                         '0.0',
                       )}
                     </p>
@@ -146,7 +146,7 @@ export default async function DetalleJugadorPage({
                       Asistencias por juego
                     </h5>
                     <p className="text-[22px] text-white md:text-[27px]">
-                      {numeral(data.player.stats?.assistsAvg ?? 0).format(
+                      {numeral(data.player.seasonStats?.assistsAvg ?? 0).format(
                         '0.0',
                       )}
                     </p>
@@ -157,8 +157,8 @@ export default async function DetalleJugadorPage({
                     </h5>
                     <p className="text-[22px] text-white md:text-[27px]">
                       {numeral(
-                        data.player.stats?.fieldGoalsPercentage ?? 0,
-                      ).format('0.0')}
+                        data.player.seasonStats?.fieldGoalsPercentage ?? 0,
+                      ).format('0.0%')}
                     </p>
                   </div>
                 </div>
@@ -174,7 +174,7 @@ export default async function DetalleJugadorPage({
                     Posición
                   </h5>
                   <p className="text-base text-white md:text-[18px]">
-                    {data.player.playingPosition || 'N/A'}
+                    {data.player.seasonRoster?.playingPosition || 'N/A'}
                   </p>
                 </div>
                 <div>

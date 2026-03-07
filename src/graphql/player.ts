@@ -19,31 +19,24 @@ export const PLAYER_PROFILE = gql`
         nickname
         colorPrimary
       }
-      stats {
-        games
-        minutes
-        points
+      seasonRoster {
+        jerseyNumber
+        playingPosition
+        team {
+          providerId
+          code
+          name
+          nickname
+          colorPrimary
+        }
+      }
+      seasonStats {
         pointsAvg
-        fieldGoalsMadeAvg
-        fieldGoalsAttemptedAvg
-        fieldGoalsPercentage
-        threePointersMadeAvg
-        threePointersAttemptedAvg
-        threePointersPercentage
-        freeThrowsMadeAvg
-        freeThrowsAttemptedAvg
-        freeThrowsPercentage
-        offensiveReboundsAvg
-        defensiveReboundsAvg
         reboundsTotalAvg
         assistsAvg
-        turnoversAvg
-        stealsAvg
-        blocksAvg
-        foulsPersonalAvg
-        plusMinusPointsAvg
+        fieldGoalsPercentage
       }
-    }
+  }
   }
 `;
 

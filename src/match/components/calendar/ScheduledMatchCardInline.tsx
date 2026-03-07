@@ -7,6 +7,7 @@ import {
   MATCH_TIME_FORMAT,
 } from '@/constants';
 import { formatDate } from '@/utils/date-formatter';
+import { getFirstWord } from '@/utils/text';
 
 type Props = {
   providerId: string;
@@ -70,7 +71,7 @@ export default function ScheduledMatchCardInline({
                   </div>
                   <div className="flex-1">
                     <p className="text-base/6 tracking-[2%]">
-                      {homeTeam.nickname}&nbsp;&nbsp;
+                      {getFirstWord(homeTeam.nickname)}&nbsp;&nbsp;
                       <span className="font-barlow text-xs text-[#717171]">
                         {homeTeam.competitionStandings?.won ?? 0}-{homeTeam.competitionStandings?.lost ?? 0}
                       </span>
@@ -93,7 +94,7 @@ export default function ScheduledMatchCardInline({
                   </div>
                   <div className="flex-1">
                     <p className="text-base/6 tracking-[2%]">
-                      {visitorTeam.nickname}&nbsp;&nbsp;
+                      {getFirstWord(visitorTeam.nickname)}&nbsp;&nbsp;
                       <span className="font-barlow text-xs text-[#717171]">
                         {visitorTeam.competitionStandings?.won ?? 0}-{visitorTeam.competitionStandings?.lost ?? 0}
                       </span>
@@ -138,7 +139,7 @@ export default function ScheduledMatchCardInline({
             </div>
             <div className="border-l border-l-[rgba(125,125,125,0.15)] flex-1 flex flex-row gap-[20px] pl-[28px] py-[12px]">
               <h4 className="text-[20px] text-[#0F171F] hidden xl:block">
-                {homeTeam.nickname}
+                {getFirstWord(homeTeam.nickname)}
               </h4>
               <TeamLogoAvatar teamCode={homeTeam.code} size={30} />
               <div className="border border-[#E1E1E1] flex items-center justify-center rounded-full h-[30px] w-[30px]">
@@ -148,7 +149,7 @@ export default function ScheduledMatchCardInline({
               </div>
               <TeamLogoAvatar teamCode={visitorTeam.code} size={30} />
               <h4 className="text-[20px] text-[#0F171F] hidden xl:block">
-                {visitorTeam.nickname}
+                {getFirstWord(visitorTeam.nickname)}
               </h4>
             </div>
             <div className="space-x-[8px]">

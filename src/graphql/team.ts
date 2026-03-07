@@ -124,6 +124,10 @@ export const TEAM_PLAYERS_CONNECTION = gql`
           height
           playingPosition
           shirtNumber
+          seasonRoster {
+            jerseyNumber
+            playingPosition
+          }
         }
       }
     }
