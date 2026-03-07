@@ -122,6 +122,7 @@ export const TEAM_PLAYERS_CONNECTION = gql`
           avatarUrl
           dob
           height
+          weight
           playingPosition
           shirtNumber
           seasonRoster {
