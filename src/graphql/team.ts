@@ -145,22 +145,36 @@ export const TEAM_PLAYERS_STATS_CONNECTION = gql`
             minutes
             points
             pointsAvg
+            fieldGoalsMade
             fieldGoalsMadeAvg
+            fieldGoalsAttempted
             fieldGoalsAttemptedAvg
             fieldGoalsPercentage
+            threePointersMade
             threePointersMadeAvg
+            threePointersAttempted
             threePointersAttemptedAvg
             threePointersPercentage
+            freeThrowsMade
             freeThrowsMadeAvg
+            freeThrowsAttempted
             freeThrowsAttemptedAvg
             freeThrowsPercentage
+            offensiveRebounds
             offensiveReboundsAvg
+            defensiveRebounds
             defensiveReboundsAvg
+            reboundsTotal
             reboundsTotalAvg
+            assists
             assistsAvg
+            turnovers
             turnoversAvg
+            steals
             stealsAvg
+            blocks
             blocksAvg
+            foulsPersonal
             foulsPersonalAvg
             plusMinusPointsAvg
           }
@@ -340,24 +354,39 @@ export const TEAM_STATS = gql`
       code
       name
       nickname
-      competitionStandings {
+      seasonStats {
+        points
         pointsAverage
-        reboundsTotalAverage
+        assists
         assistsAverage
-        fieldGoalsPercentage
+        fieldGoalsMade
         fieldGoalsMadeAverage
+        fieldGoalsAttempted
         fieldGoalsAttemptedAverage
+        fieldGoalsPercentage
+        threePointersMade
         threePointersMadeAverage
+        threePointersAttempted
         threePointersAttemptedAverage
         threePointersPercentage
+        freeThrowsMade
         freeThrowsMadeAverage
+        freeThrowsAttempted
         freeThrowsAttemptedAverage
         freeThrowsPercentage
+        offensiveRebounds
         offensiveReboundsAverage
+        defensiveRebounds
         defensiveReboundsAverage
+        reboundsTotal
+        reboundsTotalAverage
+        turnovers
         turnoversAverage
+        steals
         stealsAverage
+        blocks
         blocksAverage
+        foulsPersonal
         foulsPersonalAverage
       }
     }

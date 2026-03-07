@@ -17,7 +17,7 @@ import TeamCalendarWidget from '@/team/client/widgets/TeamCalendarWidget';
 import TeamLeadersWidget from '@/team/client/widgets/TeamLeadersWidget';
 import TeamPlayersStatsWidget from '@/team/client/widgets/TeamPlayersStatsWidget';
 import TeamPlayersWidget from '@/team/client/widgets/TeamPlayersWidget';
-import TeamStatsWidget from '@/team/client/widgets/TeamStatsWidget';
+import TeamSeasonStatsWidget from '@/team/client/widgets/TeamSeasonStatsWidget';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import TeamExternalLinksCard from '@/team/components/card/TeamExternalLinksCard';
 import TeamLeadersCard from '@/team/components/card/TeamLeadersCard';
@@ -334,14 +334,7 @@ export default async function DetalleEquipoPage({
                   </TabList>
                   <TabPanels>
                     <TabPanel>
-                      <div className="mb-6 md:mb-8">
-                        <h2 className="font-special-gothic-condensed-one text-[24px] leading-none text-black tracking-[0.24px]">
-                          Promedios - Temporada 2026
-                        </h2>
-                      </div>
-                      <div className="mb-6 md:mb-10 lg:mb-15">
-                        <TeamStatsWidget teamCode={data.team.code} />
-                      </div>
+                      <TeamSeasonStatsWidget teamCode={data.team.code} />
                     </TabPanel>
                     <TabPanel>
                       <div className="flex flex-row justify-between items-center mb-[30px]">
@@ -349,11 +342,6 @@ export default async function DetalleEquipoPage({
                           <h3 className="text-[22px] text-black md:text-[24px]">
                             Jugadores - Temporada 2026
                           </h3>
-                        </div>
-                        <div>
-                          <p className="font-barlow text-[13px] text-[rgba(15,23,31,0.7)]">
-                            Temporada 2026 • Regular
-                          </p>
                         </div>
                       </div>
                       <div className="mb-6 md:mb-10 lg:mb-15">
