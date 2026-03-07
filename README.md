@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+**Code style:** see [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md) for project conventions (structure, naming, Tailwind, GraphQL, etc.).
+
 ## Getting Started
 
 First, run the development server:
