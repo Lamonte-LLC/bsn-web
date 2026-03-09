@@ -125,7 +125,7 @@ export default async function DetalleEquipoPage({
 }: PageProps<'/equipos/[slug]'>) {
   const { slug } = await params;
   const data: TeamPageResponse = await fetchTeam(slug);
-  const currentSeason: SeasonType = await fetchCurrentSeason();
+  const currentSeason: SeasonType | null = await fetchCurrentSeason();
 
   return (
     <FullWidthLayout
