@@ -39,12 +39,16 @@
   }
 } */
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-special-gothic-condensed-one), Arial, Helvetica, sans-serif;
   overscroll-behavior: none;
-  overflow-x: none;
+  overflow-x: hidden;
 }
 
 .bg-bsn {
