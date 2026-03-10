@@ -12,6 +12,12 @@ export const TEAM_DETAIL = gql`
       colorPrimary
       streamUrl
       ticketUrl
+      socialInstagramUrl
+      socialFacebookUrl
+      socialYoutubeUrl
+      socialXUrl
+      socialTiktokUrl
+      socialWebsiteUrl
       competitionStandings {
         positionInGroup
         won

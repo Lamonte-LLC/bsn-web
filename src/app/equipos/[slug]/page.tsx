@@ -135,8 +135,8 @@ export default async function DetalleEquipoPage({
           <div className="mx-auto pb-[20px] pt-[25px] md:py-[42px] xl:py-[38px] lg:w-9/12 xl:w-8/12">
             <div className="flex items-center justify-center mb-[18px]">
               <div
-                className="border border-3 w-[90px] h-[90px] rounded-full flex items-center justify-center md:w-[120px] md:h-[120px]"
-                style={{ borderColor: data.team.colorPrimary || '#cccccc' }}
+                className="border border-2 w-[90px] h-[90px] rounded-full flex items-center justify-center md:w-[120px] md:h-[120px]"
+                style={{ borderColor: data.team.colorPrimary || 'rgba(255, 255, 255, 0.5)' }}
               >
                 <figure className="hidden md:block">
                   <TeamLogoAvatar teamCode={data.team.code} size={68} />
