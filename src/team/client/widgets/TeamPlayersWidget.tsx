@@ -33,7 +33,7 @@ export default function TeamPlayersWidget({ teamCode }: Props) {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto -mx-4">
       <table className="w-full text-left">
         <thead>
           <tr>

@@ -50,13 +50,14 @@ export default function ScheduledMatchCardInline({
     <div>
       {/* Mobile */}
       <div className="sm:hidden">
-        <div className="border border-[rgba(125,125,125,0.15)] rounded-[12px]">
+        <div className="relative border border-[rgba(125,125,125,0.15)] rounded-[12px]">
+          <Link href={`/partidos/${providerId}`} className="absolute inset-0 z-0" aria-label="Ver partido" />
           <div className="border-b border-b-[rgba(125,125,125,0.1)] flex flex-row items-center justify-between mx-[20px] py-[12px]">
             <p className="font-barlow font-medium text-[13px] text-[rgba(0,0,0,0.9)]">
               {formatDate(startAt, MATCH_DATE_FORMAT)}
             </p>
             <div className="flex flex-row items-center gap-2">
-              <img src="/assets/images/icons/icon-tv2.svg" />
+              <img src="/assets/images/icons/icon-tv2.svg" alt="" />
               <p className="font-barlow text-xs text-[#717171]">
                 {mediaProvider}
               </p>
@@ -105,7 +106,7 @@ export default function ScheduledMatchCardInline({
                   </div>
                 </div>
               </div>
-              <div className="flex h-[36px] items-center">
+              <div className="relative z-10 flex h-[36px] items-center">
                 <a
                   href={
                     contextTeam.code === homeTeam.code

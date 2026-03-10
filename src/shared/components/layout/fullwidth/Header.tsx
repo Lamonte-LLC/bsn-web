@@ -21,7 +21,7 @@ export default function HeaderBoxLayout() {
   return (
     <>
       <div
-        className="py-[20px]"
+        className="py-[10px] sm:py-[20px]"
       >
         <div className="container">
           <div className="flex flex-row justify-between items-center">

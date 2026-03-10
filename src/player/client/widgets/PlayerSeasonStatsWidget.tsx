@@ -33,7 +33,7 @@ export default function PlayerSeasonStatsWidget({ playerProviderId }: Props) {
             </h3>
           </div>
         </div>
-        <div className="mb-6 md:mb-10 lg:mb-15">
+        <div className="mb-6 -mx-4 md:mb-10 lg:mb-15 sm:mx-0">
           {appliedView === 'AVERAGE' ? (
             <PlayerSeasonAvgStatsWidget
               playerProviderId={playerProviderId}

@@ -3,6 +3,7 @@
 import numeral from 'numeral';
 import { useTeamPlayersStatsConnection } from '../hooks/teams';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
+import { getInitials } from '@/utils/text';
 
 type Props = {
   teamCode: string;
@@ -10,26 +11,34 @@ type Props = {
 
 const STATS_HEADER: Record<string, string>[] = [
   { label: 'PJ', key: 'games' },
-  { label: 'MIN', key: 'minutes' },
-  { label: 'PTS', key: 'points' },
-  { label: 'FGM', key: 'fieldGoalsMade' },
-  { label: 'FGA', key: 'fieldGoalsAttempted' },
+  { label: 'MIN', key: 'minutesAvg' },
+  { label: 'PTS', key: 'pointsAvg' },
+  { label: 'FGM', key: 'fieldGoalsMadeAvg' },
+  { label: 'FGA', key: 'fieldGoalsAttemptedAvg' },
   { label: 'FG%', key: 'fieldGoalsPercentage' },
-  { label: '3PM', key: 'threePointersMade' },
-  { label: '3PA', key: 'threePointersAttempted' },
+  { label: '3PM', key: 'threePointersMadeAvg' },
+  { label: '3PA', key: 'threePointersAttemptedAvg' },
   { label: '3P%', key: 'threePointersPercentage' },
-  { label: 'FTM', key: 'freeThrowsMade' },
-  { label: 'FTA', key: 'freeThrowsAttempted' },
+  { label: 'FTM', key: 'freeThrowsMadeAvg' },
+  { label: 'FTA', key: 'freeThrowsAttemptedAvg' },
   { label: 'FT%', key: 'freeThrowsPercentage' },
-  { label: 'OREB', key: 'offensiveRebounds' },
-  { label: 'DREB', key: 'defensiveRebounds' },
+  { label: 'OREB', key: 'offensiveReboundsAvg' },
+  { label: 'DREB', key: 'defensiveReboundsAvg' },
   { label: 'REB', key: 'reboundsTotal' },
-  { label: 'AST', key: 'assists' },
-  { label: 'TOV', key: 'turnovers' },
-  { label: 'STL', key: 'steals' },
-  { label: 'BLK', key: 'blocks' },
-  { label: 'PF', key: 'foulsPersonal' },
+  { label: 'AST', key: 'assistsAvg' },
+  { label: 'TOV', key: 'turnoversAvg' },
+  { label: 'STL', key: 'stealsAvg' },
+  { label: 'BLK', key: 'blocksAvg' },
+  { label: 'PF', key: 'foulsPersonalAvg' },
+  { label: '+/-', key: 'plusMinusPointsAvg' },
 ];
+
+const getStatFormat = (key: string) => {
+  const lower = key.toLowerCase();
+  if (lower.includes('percentage')) return '0.0%';
+  if (lower.includes('avg')) return '0.0';
+  return '0';
+}
 
 export default function TeamPlayersStatsWidget({ teamCode }: Props) {
   const { data, loading } = useTeamPlayersStatsConnection(teamCode);
@@ -48,7 +57,7 @@ export default function TeamPlayersStatsWidget({ teamCode }: Props) {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto -mx-4">
       <table className="w-full text-left">
         <thead>
           <tr>
@@ -78,23 +87,19 @@ export default function TeamPlayersStatsWidget({ teamCode }: Props) {
               }}
             >
               <td className="px-4 py-3">
-                <div className="flex flex-row items-center gap-2 w-[140px]">
-                  <span className="text-base">{node.name}</span>
+                <div className="flex flex-row items-center gap-2 w-[120px] md:w-[140px]">
+                  <span className="hidden text-base md:inline">{node.name}</span>
+                  <span className="text-base md:hidden">{getInitials(node.name)}</span>
                   <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.7)]">
-                    {node.playingPosition}
+                    {node.seasonRoster?.playingPosition}
                   </span>
                 </div>
               </td>
               {STATS_HEADER.map((item) => (
                 <td key={`value-${item.key}`} className="px-4 py-3 text-center">
                   <span className="font-barlow text-[13px]">
-                    {['FG%', '3PT%', 'FT%'].includes(item.label)
-                      ? numeral(
-                          node.stats?.[item.key as keyof typeof node.stats] ??
-                            0,
-                        ).format('0.0%')
-                      : numeral(node.stats?.[item.key as keyof typeof node.stats] ??
-                        0).format('0')}
+                    {numeral(node.seasonStats?.[item.key as keyof typeof node.seasonStats] ??
+                        0).format(getStatFormat(item.key))}
                   </span>
                 </td>
               ))}

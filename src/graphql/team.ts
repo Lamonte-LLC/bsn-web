@@ -189,6 +189,49 @@ export const TEAM_PLAYERS_STATS_CONNECTION = gql`
             foulsPersonalAvg
             plusMinusPointsAvg
           }
+          seasonRoster {
+            jerseyNumber
+            playingPosition
+          }
+          seasonStats {
+            games
+            minutes
+            minutesAvg
+            points
+            pointsAvg
+            fieldGoalsMade
+            fieldGoalsMadeAvg
+            fieldGoalsAttempted
+            fieldGoalsAttemptedAvg
+            fieldGoalsPercentage
+            threePointersMade
+            threePointersMadeAvg
+            threePointersAttempted
+            threePointersAttemptedAvg
+            threePointersPercentage
+            freeThrowsMade
+            freeThrowsMadeAvg
+            freeThrowsAttempted
+            freeThrowsAttemptedAvg
+            freeThrowsPercentage
+            offensiveRebounds
+            offensiveReboundsAvg
+            defensiveRebounds
+            defensiveReboundsAvg
+            reboundsTotal
+            reboundsTotalAvg
+            assists
+            assistsAvg
+            turnovers
+            turnoversAvg
+            steals
+            stealsAvg
+            blocks
+            blocksAvg
+            foulsPersonal
+            foulsPersonalAvg
+            plusMinusPointsAvg
+          }
         }
       }
     }

@@ -68,11 +68,11 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
             <ShimmerLine height="24px" />
           </div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
             <table className="w-full text-left">
               <thead>
                 <tr>
-                  <th className="border-b border-b-[rgba(0,0,0,0.1)] py-3 pr-3 whitespace-nowrap w-[1%] hidden md:table-cell">
+                  <th className="border-b border-b-[rgba(0,0,0,0.1)] py-3 pr-4 whitespace-nowrap w-[1%] hidden md:table-cell">
                     <span className="font-normal text-[13px] tracking-[0.52px] text-[rgba(0,0,0,0.6)] uppercase">
                       EQUIPO
                     </span>
@@ -80,7 +80,7 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
                   {AVG_STATS_HEADER.map((item) => (
                     <th
                       key={`header-${item.key}`}
-                      className="border-b border-b-[rgba(0,0,0,0.1)] py-3 px-2 text-center whitespace-nowrap w-[1%]"
+                      className="border-b border-b-[rgba(0,0,0,0.1)] py-3 px-4 text-center whitespace-nowrap w-[1%] sm:px-2"
                     >
                       <span className="font-normal text-[13px] tracking-[1.17px] text-[rgba(0,0,0,0.6)] uppercase">
                         {item.label}
@@ -91,7 +91,7 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
               </thead>
               <tbody>
                 <tr>
-                  <td className="py-3 pr-3 whitespace-nowrap w-[1%] hidden md:table-cell">
+                  <td className="py-3 pr-4 whitespace-nowrap w-[1%] hidden md:table-cell">
                     <div className="flex flex-row items-center gap-2 w-[200px]">
                       <TeamLogoAvatar teamCode={data?.code ?? ''} size={20} />
                       <span className="font-special-gothic-condensed-one text-[16px] leading-[1.4] tracking-[0.32px] text-black">
@@ -102,9 +102,9 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
                   {AVG_STATS_HEADER.map((item) => (
                     <td
                       key={`value-${item.key}`}
-                      className="py-3 px-2 text-center"
+                      className="py-3 px-4 text-center"
                     >
-                      <span className="font-barlow text-[13px] text-black">
+                      <span className="f sm:px-2ont-barlow text-[13px] text-black">
                         {['FG%', '3P%', 'FT%'].includes(item.label)
                           ? numeral(
                               data?.seasonStats?.[
@@ -137,11 +137,11 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
             <ShimmerLine height="24px" />
           </div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
             <table className="w-full text-left">
               <thead>
                 <tr>
-                  <th className="border-b border-b-[rgba(0,0,0,0.1)] py-3 pr-3 whitespace-nowrap w-[1%] hidden md:table-cell">
+                  <th className="border-b border-b-[rgba(0,0,0,0.1)] py-3 pr-4 whitespace-nowrap w-[1%] hidden md:table-cell">
                     <span className="font-normal text-[13px] tracking-[0.52px] text-[rgba(0,0,0,0.6)] uppercase">
                       EQUIPO
                     </span>
@@ -149,7 +149,7 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
                   {TOTAL_STATS_HEADER.map((item) => (
                     <th
                       key={`header-${item.key}`}
-                      className="border-b border-b-[rgba(0,0,0,0.1)] py-3 px-2 text-center whitespace-nowrap w-[1%]"
+                      className="border-b border-b-[rgba(0,0,0,0.1)] py-3 px-4 text-center whitespace-nowrap w-[1%] sm:px-2"
                     >
                       <span className="font-normal text-[13px] tracking-[1.17px] text-[rgba(0,0,0,0.6)] uppercase">
                         {item.label}
@@ -160,7 +160,7 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
               </thead>
               <tbody>
                 <tr>
-                  <td className="py-3 pr-3 whitespace-nowrap w-[1%] hidden md:table-cell">
+                  <td className="py-3 pr-4 whitespace-nowrap w-[1%] hidden md:table-cell">
                     <div className="flex flex-row items-center gap-2 w-[180px]">
                       <TeamLogoAvatar teamCode={data?.code ?? ''} size={20} />
                       <span className="font-special-gothic-condensed-one text-[16px] leading-[1.4] tracking-[0.32px] text-black">
@@ -171,9 +171,9 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
                   {TOTAL_STATS_HEADER.map((item) => (
                     <td
                       key={`value-${item.key}`}
-                      className="py-3 px-2 text-center"
+                      className="py-3 px-4 text-center"
                     >
-                      <span className="font-barlow text-[13px] text-black">
+                      <span className="f sm:px-2ont-barlow text-[13px] text-black">
                         {numeral(
                           data?.seasonStats?.[
                             item.key as keyof typeof data.seasonStats

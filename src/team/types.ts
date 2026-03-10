@@ -1,6 +1,7 @@
 export type TeamPlayerStatsType = {
   games: number;
   minutes: number;
+  minutesAvg: number;
   points: number;
   pointsAvg: number;
   fieldGoalsMade: number;
@@ -55,6 +56,7 @@ export type TeamPlayerType = {
   shirtNumber?: number;
   stats?: TeamPlayerStatsType;
   seasonRoster?: TeamPlayerSeasonRosterType;
+  seasonStats?: TeamPlayerStatsType;
 };
 
 export type TeamCompetitionStandingType = {
