@@ -1,16 +1,8 @@
 import { TopPerformancesType } from '../types';
-import { getClient } from '@/apollo-client';
-import { TOP_PERFORMANCES } from '@/graphql/highlights';
 import BsnTvPlayer from '@/highlights/client/components/BsnTvPlayer';
 
-type TopPerformancesResponse = {
-  topPerformances: {
-    items: TopPerformancesType[];
-  };
-};
-
-const CHANNEL_ID = 'UCZOFf3DbBqAMSwmzYl8RPnA';
-const YOUTUBE_RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+const PLAYLIST_ID = 'PLe58A2MSZ7Qfq0jbRsHZeGmGrv4YLDcI7';
+const YOUTUBE_RSS_URL = `https://www.youtube.com/feeds/videos.xml?playlist_id=${PLAYLIST_ID}`;
 
 function parseYoutubeRss(xml: string): TopPerformancesType[] {
   const entries: TopPerformancesType[] = [];
@@ -32,25 +24,15 @@ function parseYoutubeRss(xml: string): TopPerformancesType[] {
   return entries.slice(0, 5);
 }
 
-const fetchFromGraphQL = async (): Promise<TopPerformancesType[]> => {
-  const { data, error } = await getClient().query<TopPerformancesResponse>({
-    query: TOP_PERFORMANCES,
-  });
-  if (error) return [];
-  return data?.topPerformances.items ?? [];
-};
-
 const fetchLatestVideos = async (): Promise<TopPerformancesType[]> => {
   try {
     const res = await fetch(YOUTUBE_RSS_URL, { next: { revalidate: 300 } });
     if (!res.ok) throw new Error(`RSS ${res.status}`);
     const xml = await res.text();
-    const items = parseYoutubeRss(xml);
-    if (items.length > 0) return items;
-    throw new Error('Empty RSS');
+    return parseYoutubeRss(xml);
   } catch (err) {
-    console.warn('YouTube RSS unavailable, falling back to GraphQL:', err);
-    return fetchFromGraphQL();
+    console.warn('YouTube RSS unavailable:', err);
+    return [];
   }
 };
 
