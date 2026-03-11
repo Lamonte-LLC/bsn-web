@@ -136,3 +136,99 @@ export const PLAYER_MATCHES = gql`
     }
   }
 `;
+
+
+export const PLAYER_ALL_SEASONS_AVG_STATS = gql`
+  query getPlayerAllSeasonsAvgStatsConnection($playerProviderId: String!, $first: Int, $after: String) {
+    playerStatsConnection(playerProviderId: $playerProviderId, first: $first, after: $after) {
+      edges {
+        node {
+          season {
+            name
+            year
+          }
+          team {
+            providerId
+            code
+            name
+            nickname
+            colorPrimary
+          }
+          player {
+            providerId
+          }
+          stats {
+            gamesAvg
+            minutesAvg
+            pointsAvg
+            fieldGoalsMadeAvg
+            fieldGoalsAttemptedAvg
+            fieldGoalsPercentage
+            threePointersMadeAvg
+            threePointersAttemptedAvg
+            threePointersPercentage
+            freeThrowsMadeAvg
+            freeThrowsAttemptedAvg
+            freeThrowsPercentage
+            offensiveReboundsAvg
+            defensiveReboundsAvg
+            reboundsTotalAvg
+            assistsAvg
+            turnoversAvg
+            stealsAvg
+            blocksAvg
+            foulsPersonalAvg
+            plusMinusPointsAvg
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const PLAYER_ALL_SEASONS_TOTAL_STATS = gql`
+  query getPlayerAllSeasonsTotalStatsConnection($playerProviderId: String!, $first: Int, $after: String) {
+    playerStatsConnection(playerProviderId: $playerProviderId, first: $first, after: $after) {
+      edges {
+        node {
+          season {
+            name
+            year
+          }
+          team {
+            providerId
+            code
+            name
+            nickname
+            colorPrimary
+          }
+          player {
+            providerId
+          }
+          stats {
+            games
+            minutes
+            points
+            fieldGoalsMade
+            fieldGoalsAttempted
+            fieldGoalsPercentage
+            threePointersMade
+            threePointersAttempted
+            threePointersPercentage
+            freeThrowsMade
+            freeThrowsAttempted
+            freeThrowsPercentage
+            offensiveRebounds
+            defensiveRebounds
+            reboundsTotal
+            assists
+            turnovers
+            steals
+            blocks
+            foulsPersonal
+          }
+        }
+      }
+    }
+  }
+`;

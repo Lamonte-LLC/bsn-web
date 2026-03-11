@@ -10,9 +10,12 @@ import { centimeterToInches, kilogramToPounds } from '@/utils/unit-converter';
 import { formatInches } from '@/utils/unit-formater';
 import { PLAYER_BIRTHDAY_FORMAT } from '@/constants';
 import { formatDate } from '@/utils/date-formatter';
-import PlayerSeasonStatsWidget from '@/player/client/widgets/PlayerSeasonStatsWidget';
 import { getFirstWord } from '@/utils/text';
 import PlayerMatchesWidget from '@/player/client/widgets/PlayerMatchesWidget';
+import { CURRENT_SEASON } from '@/graphql/season';
+import PlayerAllSeasonsAvgStatsWidget from '@/player/client/widgets/PlayerAllSeasonsAvgStatsWidget';
+import PlayerAllSeasonsTotalStatsWidget from '@/player/client/widgets/PlayerAllSeasonsTotalStatsWidget';
+import { SeasonType } from '@/season/types';
 
 type PlayerPageResponse = {
   player: PlayerType;
@@ -43,6 +46,22 @@ const fetchPlayer = async (slug: string): Promise<PlayerPageResponse> => {
   return playerPageResponse;
 };
 
+type CurrentSeasonResponse = {
+  currentSeason?: SeasonType;
+};
+
+const fetchCurrentSeason = async (): Promise<SeasonType | null> => {
+  const { data, error } = await getClient().query<CurrentSeasonResponse>({
+    query: CURRENT_SEASON,
+  });
+
+  if (error) {
+    console.error('Error fetching current season:', error);
+    return null;
+  }
+  return data?.currentSeason ?? null;
+};
+
 export default async function DetalleJugadorPage({
   params,
 }: {
@@ -50,6 +69,7 @@ export default async function DetalleJugadorPage({
 }) {
   const { slug } = await params;
   const data: PlayerPageResponse = await fetchPlayer(slug);
+  const currentSeason: SeasonType | null = await fetchCurrentSeason();
 
   return (
     <FullWidthLayout
@@ -122,6 +142,9 @@ export default async function DetalleJugadorPage({
                 </div>
               </div>
               <div className="col-span-1 md:col-span-12 lg:col-span-7">
+                <div className="mb-3">
+                  <h4 className="text-[13px] text-[rgba(255,255,255,0.5)] uppercase">{currentSeason?.name}</h4>
+                </div>
                 <div className="grid grid-cols-2 gap-[10px] sm:grid-cols-2 md:grid-cols-4">
                   <div className="border border-[rgba(255,255,255,0.2)] rounded-[12px] px-[14px] py-[12px]">
                     <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">
@@ -223,11 +246,14 @@ export default async function DetalleJugadorPage({
     >
       <TabGroup>
         <TabList className="mt-[30px] md:mt-[40px] lg:mt-[50px]">
-          <div className="container text-center space-x-[10px]">
-            <Tab className="border border-[#D5D5D5] bg-white cursor-pointer w-[170px] outline-none px-[20px] py-[5px] rounded-[100px] text-[15px] text-[rgba(0,0,0,0.65)] data-selected:text-white data-selected:border-[#0F171F] data-selected:bg-[#0F171F]">
-              Estadísticas
+          <div className="container text-center space-x-[8px] md:space-x-[10px]">
+            <Tab className="border border-[#D5D5D5] bg-white cursor-pointer w-[114px] outline-none px-[14px] py-[5px] rounded-[100px] text-[15px] text-[rgba(0,0,0,0.65)] data-selected:text-white data-selected:border-[#0F171F] data-selected:bg-[#0F171F] md:px-[20px] md:w-[170px]">
+              Promedios
             </Tab>
-            <Tab className="border border-[#D5D5D5] bg-white cursor-pointer w-[170px] outline-none px-[20px] py-[5px] rounded-[100px] text-[15px] text-[rgba(0,0,0,0.65)] data-selected:text-white data-selected:border-[#0F171F] data-selected:bg-[#0F171F]">
+            <Tab className="border border-[#D5D5D5] bg-white cursor-pointer w-[114px] outline-none px-[14px] py-[5px] rounded-[100px] text-[15px] text-[rgba(0,0,0,0.65)] data-selected:text-white data-selected:border-[#0F171F] data-selected:bg-[#0F171F] md:px-[20px] md:w-[170px]">
+              Totales
+            </Tab>
+            <Tab className="border border-[#D5D5D5] bg-white cursor-pointer w-[114px] outline-none px-[14px] py-[5px] rounded-[100px] text-[15px] text-[rgba(0,0,0,0.65)] data-selected:text-white data-selected:border-[#0F171F] data-selected:bg-[#0F171F] md:px-[20px] md:w-[170px]">
               Juego por juego
             </Tab>
           </div>
@@ -237,7 +263,18 @@ export default async function DetalleJugadorPage({
             <section>
               <div className="mt-[28px] mb-6 md:mt-[30px] md:mb-10 lg:mb-15 lg:mt-[45px]">
                 <div className="container">
-                  <PlayerSeasonStatsWidget
+                  <PlayerAllSeasonsAvgStatsWidget
+                    playerProviderId={data.player.providerId}
+                  />
+                </div>
+              </div>
+            </section>
+          </TabPanel>
+          <TabPanel>
+            <section>
+              <div className="mt-[28px] mb-6 md:mt-[30px] md:mb-10 lg:mb-15 lg:mt-[45px]">
+                <div className="container">
+                  <PlayerAllSeasonsTotalStatsWidget
                     playerProviderId={data.player.providerId}
                   />
                 </div>
