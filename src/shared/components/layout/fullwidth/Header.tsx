@@ -410,10 +410,19 @@ export default function HeaderBoxLayout() {
               </li>
               <li className="px-[30px]">
                 <Disclosure>
-                  <DisclosureButton className="cursor-pointer py-[8px] text-[36px] text-left text-white w-full">
-                    Equipos
-                  </DisclosureButton>
-                  <DisclosurePanel>
+                  {({ open }) => (
+                    <>
+                      <DisclosureButton className="cursor-pointer py-[8px] text-[36px] text-left text-white w-full flex items-center justify-between">
+                        <span className="leading-none">Equipos</span>
+                        <img
+                          src="/assets/images/icons/chevron-mobile-menu.svg"
+                          alt=""
+                          className={`w-[18px] transition-transform duration-150 ${
+                            open ? 'rotate-0' : 'rotate-180'
+                          }`}
+                        />
+                      </DisclosureButton>
+                      <DisclosurePanel>
                     <div className="grid grid-cols-4 gap-[12px] pb-[24px] pt-[12px]">
                       <Link href="/equipos/AGU">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
@@ -561,6 +570,8 @@ export default function HeaderBoxLayout() {
                       </Link>
                     </div>
                   </DisclosurePanel>
+                    </>
+                  )}
                 </Disclosure>
               </li>
               <li className="px-[30px] hidden">
