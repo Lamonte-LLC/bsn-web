@@ -11,6 +11,7 @@ import { MatchType } from '@/match/types';
 import MatchFeaturedPlayers from '../MatchFeaturedPlayers';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
+import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 
 type LeadersCategoryStatsType = {
   player: {
@@ -97,37 +98,41 @@ export default function ScheduledMatchPage({
   }, [headToHeadMatches, match.visitorTeam.code]);
 
   return (
-    <>
-      <section className="bg-[#0F171F] mb-6 md:mb-10 lg:mb-15">
-        <div className="container">
-          <div className="mx-auto py-[32px] md:py-[42px] xl:py-[52px] lg:w-9/12 xl:w-8/12">
-            <ScheduledMatchScoreBoard
-              startAt={match.startAt}
-              homeTeam={{
-                code: match.homeTeam.code,
-                nickname: match.homeTeam.nickname,
-                color: match.homeTeam.color,
-                city: match.homeTeam.city,
-                competitionStandings: {
-                  won: match.homeTeam.competitionStandings?.won ?? 0,
-                  lost: match.homeTeam.competitionStandings?.lost ?? 0,
-                },
-              }}
-              visitorTeam={{
-                code: match.visitorTeam.code,
-                nickname: match.visitorTeam.nickname,
-                color: match.visitorTeam.color,
-                city: match.visitorTeam.city,
-                competitionStandings: {
-                  won: match.visitorTeam.competitionStandings?.won ?? 0,
-                  lost: match.visitorTeam.competitionStandings?.lost ?? 0,
-                },
-              }}
-              venue={{ name: match.venue?.name ?? '' }}
-            />
+    <FullWidthLayout
+      divider
+      subheader={
+        <section className="mb-6 md:mb-10 lg:mb-15">
+          <div className="container">
+            <div className="mx-auto py-[32px] md:py-[42px] xl:py-[52px] lg:w-9/12 xl:w-8/12">
+              <ScheduledMatchScoreBoard
+                startAt={match.startAt}
+                homeTeam={{
+                  code: match.homeTeam.code,
+                  nickname: match.homeTeam.nickname,
+                  color: match.homeTeam.color,
+                  city: match.homeTeam.city,
+                  competitionStandings: {
+                    won: match.homeTeam.competitionStandings?.won ?? 0,
+                    lost: match.homeTeam.competitionStandings?.lost ?? 0,
+                  },
+                }}
+                visitorTeam={{
+                  code: match.visitorTeam.code,
+                  nickname: match.visitorTeam.nickname,
+                  color: match.visitorTeam.color,
+                  city: match.visitorTeam.city,
+                  competitionStandings: {
+                    won: match.visitorTeam.competitionStandings?.won ?? 0,
+                    lost: match.visitorTeam.competitionStandings?.lost ?? 0,
+                  },
+                }}
+                venue={{ name: match.venue?.name ?? '' }}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      }
+    >
       <section>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
@@ -243,6 +248,6 @@ export default function ScheduledMatchPage({
           </div>
         </div>
       </section>
-    </>
+    </FullWidthLayout>
   );
 }

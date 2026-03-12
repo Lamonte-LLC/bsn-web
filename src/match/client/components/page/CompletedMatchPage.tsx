@@ -1,7 +1,4 @@
-'use client';
-
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
-import { YouTubeEmbed } from '@next/third-parties/google';
 
 import MatchInfoCard from '@/match/components/MatchInfoCard';
 import CompletedMatchScoreBoard from '@/match/components/scoreboard/CompletedMatchScoreBoard';
@@ -12,6 +9,8 @@ import AdSlot from '@/shared/client/components/gtm/AdSlot';
 
 import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import { MatchType } from '@/match/types';
+import MatchYoutubeVideoCard from '../card/MatchYoutubeVideoCard';
+import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 
 type MatchPlayerBoxScore = {
   player: {
@@ -54,34 +53,38 @@ export default function CompletedMatchPage({
   threePointersMadeLeaders = [],
 }: Props) {
   return (
-    <>
-      <section className="bg-[#0F171F]">
-        <div className="container">
-          <div className="mx-auto py-[32px] md:py-[42px] xl:py-[52px] lg:w-9/12 xl:w-8/12">
-            <CompletedMatchScoreBoard
-              startAt={match.startAt}
-              homeTeam={{
-                code: match.homeTeam.code,
-                nickname: match.homeTeam.nickname,
-                score: match.homeTeam.score,
-                city: match.homeTeam.city,
-                color: match.homeTeam.color,
-              }}
-              visitorTeam={{
-                code: match.visitorTeam.code,
-                nickname: match.visitorTeam.nickname,
-                score: match.visitorTeam.score,
-                city: match.visitorTeam.city,
-                color: match.visitorTeam.color,
-              }}
-              venue={{ name: match.venue?.name ?? '' }}
-              overtimePeriods={match.overtimePeriods}
-            />
+    <FullWidthLayout
+      divider
+      subheader={
+        <section>
+          <div className="container">
+            <div className="mx-auto py-[32px] md:py-[42px] xl:py-[52px] lg:w-9/12 xl:w-8/12">
+              <CompletedMatchScoreBoard
+                startAt={match.startAt}
+                homeTeam={{
+                  code: match.homeTeam.code,
+                  nickname: match.homeTeam.nickname,
+                  score: match.homeTeam.score,
+                  city: match.homeTeam.city,
+                  color: match.homeTeam.color,
+                }}
+                visitorTeam={{
+                  code: match.visitorTeam.code,
+                  nickname: match.visitorTeam.nickname,
+                  score: match.visitorTeam.score,
+                  city: match.visitorTeam.city,
+                  color: match.visitorTeam.color,
+                }}
+                venue={{ name: match.venue?.name ?? '' }}
+                overtimePeriods={match.overtimePeriods}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      }
+    >
       <TabGroup>
-        <TabList className="bg-[#0F171F] pb-[28px]">
+        <TabList className="bg-bsn pb-[28px]">
           <div className="container text-center space-x-[30px]">
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-[22px] data-selected:text-white data-selected:border-b data-selected:border-b-white">
               Resumen
@@ -243,18 +246,7 @@ export default function CompletedMatchPage({
                 <div className="lg:col-span-4">
                   {match.youtube && (
                     <div className="mb-5">
-                      <div className="border border-[#EAEAEA] flex-1 rounded-[12px] bg-white shadow-[0px_1px_3px_0px_#14181F0A]">
-                        <div className="px-[20px] pt-[20px] flex flex-row justify-between items-center lg:px-[30px] lg:pt-[24px]">
-                          <h3 className="text-[22px] text-black md:text-[24px]">
-                            Resumen
-                          </h3>
-                        </div>
-                        <div className="p-[20px] lg:pt-[20px] lg:p-[30px]">
-                          <div className="rounded-[8px] overflow-hidden">
-                            <YouTubeEmbed videoid={match.youtube} />
-                          </div>
-                        </div>
-                      </div>
+                      <MatchYoutubeVideoCard youtubeVideoId={match.youtube} />
                     </div>
                   )}
                   <div className="mb-5">
@@ -285,6 +277,6 @@ export default function CompletedMatchPage({
           </TabPanel>
         </TabPanels>
       </TabGroup>
-    </>
+    </FullWidthLayout>
   );
 }

@@ -32,7 +32,7 @@ type Props = {
   overtimePeriods?: number;
 };
 
-export default function LiveMatchScoreBoard({
+export default function LiveMatchScoreBoardWidget({
   startAt,
   homeTeam,
   visitorTeam,

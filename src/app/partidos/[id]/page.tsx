@@ -11,7 +11,6 @@ import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPag
 import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
 import ScheduledMatchPage from '@/match/client/components/page/ScheduledMatchPage';
 import { MatchType } from '@/match/types';
-import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 
 type LeadersCategoryStatsType = {
   player: {
@@ -342,7 +341,7 @@ export default async function PartidoPage({
   const data: MatchResponse = await fetchMatch(id);
 
   return (
-    <FullWidthLayout>
+    <>
       {[MATCH_STATUS.IN_PROGRESS, MATCH_STATUS.PERIOD_BREAK].includes(
         data.match.status,
       ) && <LiveMatchPage match={data.match} />}
@@ -375,6 +374,6 @@ export default async function PartidoPage({
           visitorTeamReboundsLeaders={data.visitorTeamReboundsLeaders}
         />
       )}
-    </FullWidthLayout>
+    </>
   );
 }

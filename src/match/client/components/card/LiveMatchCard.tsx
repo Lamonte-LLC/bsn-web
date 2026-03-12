@@ -226,7 +226,7 @@ export default function LiveMatchCard({
             style={{ backdropFilter: 'blur(40px)' }}
           >
             <span className="text-sm text-white md:text-[15px]">
-              Ver resultados
+              Ver en vivo
             </span>
           </Link>
         </div>
