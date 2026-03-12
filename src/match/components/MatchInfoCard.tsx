@@ -47,10 +47,10 @@ export default function MatchInfoCard({
           </li>
         </ul>
       </div>
-      {ticketUrl && (
+      {ticketUrl && ticketUrl.trim() !== '' && ticketUrl !== '#' && (
         <div className="px-[30px] pb-[24px]">
           <a
-            href="{ticketUrl}"
+            href={ticketUrl}
             className="bg-[#FCFCFC] block border border-[#D9D3D3] rounded-[12px] p-[12px] text-center"
             target="_blank"
             rel="noopener noreferrer"
