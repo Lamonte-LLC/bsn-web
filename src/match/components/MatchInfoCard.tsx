@@ -26,23 +26,47 @@ export default function MatchInfoCard({
       <div className="px-[30px] py-[24px] space-y-4">
         <ul className="space-y-[14px]">
           <li className="flex flex-row items-center gap-[12px]">
-            <img src="/assets/images/icons/icon-calendar-circle.svg" alt="" />
+            <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
+              <img
+                src="/assets/images/icons/icon-calendar-circle.svg"
+                alt=""
+                className="h-[18px] w-[18px]"
+              />
+            </span>
             <p className="font-barlow font-medium text-sm">
               {formatDate(startAt, MATCH_DATE_FORMAT)}
             </p>
           </li>
           <li className="flex flex-row items-center gap-[12px]">
-            <img src="/assets/images/icons/icon-map-pin-circle.svg" alt="" />
+            <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
+              <img
+                src="/assets/images/icons/icon-map-pin-circle.svg"
+                alt=""
+                className="h-[18px] w-[18px]"
+              />
+            </span>
             <p className="font-barlow font-medium text-sm">{venue?.name}</p>
           </li>
           <li className="flex flex-row items-center gap-[12px]">
-            <img src="/assets/images/icons/icon-clock-circle.svg" alt="" />
+            <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
+              <img
+                src="/assets/images/icons/icon-clock-circle.svg"
+                alt=""
+                className="h-[18px] w-[18px]"
+              />
+            </span>
             <p className="font-barlow font-medium text-sm">
               {formatDate(startAt, MATCH_TIME_FORMAT)}
             </p>
           </li>
           <li className="flex flex-row items-center gap-[12px]">
-            <img src="/assets/images/icons/icon-tv-circle.svg" alt="" />
+            <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
+              <img
+                src="/assets/images/icons/icon-tv-circle.svg"
+                alt=""
+                className="h-[18px] w-[18px]"
+              />
+            </span>
             <p className="font-barlow font-medium text-sm">{channel}</p>
           </li>
         </ul>

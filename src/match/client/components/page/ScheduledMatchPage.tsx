@@ -131,7 +131,8 @@ export default function ScheduledMatchPage({
       <section>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-            <div className="lg:col-span-8 lg:pr-16">
+            {/* On mobile, show match info above featured players; on desktop, keep info on the right */}
+            <div className="order-2 lg:order-1 lg:col-span-8 lg:pr-16">
               <div className="mb-6 md:mb-10 lg:mb-15">
                 <MatchFeaturedPlayers
                   homeTeam={{ code: match.homeTeam.code }}
@@ -207,7 +208,7 @@ export default function ScheduledMatchPage({
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-4">
+            <div className="order-1 lg:order-2 lg:col-span-4">
               <div className="mb-5">
                 <MatchInfoCard
                   startAt={match.startAt}
