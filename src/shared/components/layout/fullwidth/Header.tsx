@@ -37,9 +37,17 @@ export default function HeaderBoxLayout() {
             </div>
             <div className="md:hidden">
               <button
-                className="w-[42px] h-[42px] flex justify-center items-center bg-[rgba(51,51,51,0.2)] rounded-full cursor-pointer"
+                className="w-[42px] h-[42px] flex justify-center items-center rounded-full cursor-pointer"
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.04)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  boxShadow:
+                    '0 0 1.5px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.15), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.06)',
+                  backdropFilter: 'blur(4px)',
+                  borderRadius: '100px',
+                }}
               >
                 <img
                   src="/assets/images/icons/icon-bars.svg"
@@ -52,18 +60,13 @@ export default function HeaderBoxLayout() {
             <div className="hidden md:block">
               <ul className="flex flex-row gap-[20px] lg:gap-[30px]">
                 <li>
-                  <Link href="/" className="text-[20px] text-white">
-                    Inicio
+                  <Link href="/calendario" className="text-[20px] text-white">
+                    Calendario
                   </Link>
                 </li>
                 <li className="hidden">
                   <Link href="/playoffs" className="text-[20px] text-white">
                     Playoffs
-                  </Link>
-                </li>
-                <li className="hidden">
-                  <Link href="/calendario" className="text-[20px] text-white">
-                    Calendario
                   </Link>
                 </li>
                 <li>
@@ -368,22 +371,19 @@ export default function HeaderBoxLayout() {
         className="relative z-50"
       >
         <div className="fixed inset-0 flex h-screen w-screen">
-          <DialogPanel className="bg-[#171819] w-full py-[30px]">
-            <div className="flex justify-end px-[30px]">
-              <CloseButton
-                onClick={() => setIsOpen(false)}
-                className="bg-[#252933] cursor-pointer rounded-full w-[42px] h-[42px] flex justify-center items-center"
-              >
-                <img src="/assets/images/icons/icon-close.svg" alt="Close" />
-              </CloseButton>
+          <DialogPanel className="bg-[#171819] w-full py-[10px]">
+            <div className="container">
+              <div className="flex justify-end">
+                <CloseButton
+                  onClick={() => setIsOpen(false)}
+                  className="bg-[#252933] cursor-pointer rounded-full w-[42px] h-[42px] flex justify-center items-center"
+                >
+                  <img src="/assets/images/icons/icon-close.svg" alt="Close" />
+                </CloseButton>
+              </div>
             </div>
             <ul className="divide-y divide-[rgba(255,255,255,0.05)]">
               <li className="px-[30px]">
-                <Link href="/" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Inicio</span>
-                </Link>
-              </li>
-              <li className="px-[30px] hidden">
                 <Link href="/calendario" className="block py-[8px]">
                   <span className="text-[36px] text-white">Calendario</span>
                 </Link>
@@ -400,10 +400,19 @@ export default function HeaderBoxLayout() {
               </li>
               <li className="px-[30px]">
                 <Disclosure>
-                  <DisclosureButton className="cursor-pointer py-[8px] text-[36px] text-left text-white w-full">
-                    Equipos
-                  </DisclosureButton>
-                  <DisclosurePanel>
+                  {({ open }) => (
+                    <>
+                      <DisclosureButton className="cursor-pointer py-[8px] text-[36px] text-left text-white w-full flex items-center justify-between">
+                        <span className="leading-none">Equipos</span>
+                        <img
+                          src="/assets/images/icons/chevron-mobile-menu.svg"
+                          alt=""
+                          className={`w-[18px] transition-transform duration-150 ${
+                            open ? 'rotate-0' : 'rotate-180'
+                          }`}
+                        />
+                      </DisclosureButton>
+                      <DisclosurePanel>
                     <div className="grid grid-cols-4 gap-[12px] pb-[24px] pt-[12px]">
                       <Link href="/equipos/AGU">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
@@ -551,6 +560,8 @@ export default function HeaderBoxLayout() {
                       </Link>
                     </div>
                   </DisclosurePanel>
+                    </>
+                  )}
                 </Disclosure>
               </li>
               <li className="px-[30px] hidden">

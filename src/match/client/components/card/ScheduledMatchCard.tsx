@@ -64,18 +64,62 @@ export default function ScheduledMatchCard({
     return '';
   }, [visitorTeam.competitionStandings]);
 
+  const matchHref =
+    matchProviderId != null ? `/partidos/${matchProviderId}` : '#';
+
+  const lowerMedia = (mediaProvider || '').toLowerCase();
+  const hasPunto2 =
+    lowerMedia.includes('punto 2') || lowerMedia.includes('punto2');
+  const hasYouTube = lowerMedia.includes('youtube');
+  const hasTelemundo = lowerMedia.includes('telemundo');
+
   return (
-    <Card className="w-[220px] md:w-[308px]">
+    <Link href={matchHref} className="block">
+      <Card className="w-[220px] md:w-[308px]">
       <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-[15px] py-[8px] md:mx-[20px]">
         <div className="flex flex-row justify-between items-center">
           <p className="font-barlow font-medium text-[rgba(255,255,255,0.8)] text-[13px] leading-[22px] md:text-sm md:leading-[24px]">
             {formatDate(startAt, MATCH_DATE_FORMAT)}
           </p>
-          <div className="flex flex-row items-center gap-2">
-            <img src="/assets/images/icons/icon-tv.svg" />
-            <p className="font-barlow font-medium text-[13px] text-[rgba(255,255,255,0.8)] hidden md:block md:text-sm">
-              {mediaProvider}
-            </p>
+          <div className="flex flex-row items-center gap-2 flex-shrink-0">
+            {hasPunto2 && (
+              <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+                <img
+                  src="/assets/images/icons/channels/punto2.svg"
+                  alt="Punto 2"
+                  className="max-h-[14px] w-auto object-contain object-center"
+                  style={{ height: 14 }}
+                />
+              </span>
+            )}
+            {hasYouTube && (
+              <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+                <img
+                  src="/assets/images/icons/channels/youtube.svg"
+                  alt="YouTube"
+                  className="max-h-[14px] w-auto object-contain object-center"
+                  style={{ height: 14 }}
+                />
+              </span>
+            )}
+            <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+              <img
+                src="/assets/images/icons/channels/bsnapp.svg"
+                alt="BSN App"
+                className="max-h-[14px] w-auto object-contain object-center"
+                style={{ height: 14 }}
+              />
+            </span>
+            {hasTelemundo && (
+              <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+                <img
+                  src="/assets/images/icons/channels/telemundo.svg"
+                  alt="Telemundo"
+                  className="max-h-[14px] w-auto object-contain object-center"
+                  style={{ height: 14 }}
+                />
+              </span>
+            )}
           </div>
         </div>
       </CardHeader>
@@ -111,15 +155,14 @@ export default function ScheduledMatchCard({
           </div>
         </div>
         <div className="pb-[12px] md:pb-[17px]">
-          <Link
-            href={`/partidos/${matchProviderId}`}
+          <div
             className="bg-[rgba(15,15,15,0.19)] border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]"
             style={{ backdropFilter: 'blur(40px)' }}
           >
             <span className="text-sm text-white md:text-[15px]">
               Ver previa
             </span>
-          </Link>
+          </div>
         </div>
       </CardBody>
       {isFinals && (
@@ -131,6 +174,7 @@ export default function ScheduledMatchCard({
           </div>
         </CardFooter>
       )}
-    </Card>
+      </Card>
+    </Link>
   );
 }

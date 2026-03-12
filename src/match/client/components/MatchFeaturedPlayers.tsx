@@ -40,12 +40,10 @@ export default function MatchFeaturedPlayers({
   const [tab, setTab] = useState('points');
   return (
     <div>
-      <div className="flex flex-row justify-between items-center mb-[30px]">
-        <div>
-          <h3 className="text-[22px] text-black md:text-[24px]">
-            Jugadores destacados
-          </h3>
-        </div>
+      <div className="mb-[30px] flex flex-col gap-[12px] md:flex-row md:items-center md:justify-between">
+        <h3 className="text-[22px] text-black md:text-[24px]">
+          Jugadores destacados
+        </h3>
         <div className="flex flex-row gap-[8px]">
           {TABS.map((tabItem) => (
             <button

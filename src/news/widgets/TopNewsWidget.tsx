@@ -39,7 +39,7 @@ export default async function TopNewsWidget() {
           style={{ backgroundImage: `url(${data[0]?.imageUrl || 'https://dummyimage.com/600x400/cccccc/ffffff'})` }}
         />
         <div className="md:absolute md:bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_0.01%,rgba(0,0,0,0.8)_60%)] bottom-0 left-0 right-0 px-[5px] py-[15px] rounded-b-[12px] md:p-[40px]">
-          <h2 className="font-barlow font-bold text-lg/6 tracking-[-1px] md:text-[34px]/9 md:text-white">
+          <h2 className="font-barlow font-bold text-[19px]/6 tracking-[0px] md:text-[34px]/9 md:text-white">
             {data[0]?.title}
           </h2>
           {data[0]?.excerpt && (

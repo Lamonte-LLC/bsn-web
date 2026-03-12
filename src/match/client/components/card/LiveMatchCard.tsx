@@ -74,6 +74,12 @@ export default function LiveMatchCard({
     return statusLabel;
   }, [overtimePeriods, currentQuarter]);
 
+  const lowerMedia = (mediaProvider || '').toLowerCase();
+  const hasPunto2 =
+    lowerMedia.includes('punto 2') || lowerMedia.includes('punto2');
+  const hasYouTube = lowerMedia.includes('youtube');
+  const hasTelemundo = lowerMedia.includes('telemundo');
+
   return (
     <Card className="w-[220px] md:w-[308px]">
       <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-[15px] py-[8px] md:mx-[20px]">
@@ -136,11 +142,45 @@ export default function LiveMatchCard({
               </p>
             )}
           </div>
-          <div className="flex flex-row items-center gap-2">
-            <img src="/assets/images/icons/icon-tv.svg" />
-            <p className="font-barlow font-medium text-sm text-[rgba(255,255,255,0.8)] hidden md:block">
-              {mediaProvider}
-            </p>
+          <div className="flex flex-row items-center gap-2 flex-shrink-0">
+            {hasPunto2 && (
+              <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+                <img
+                  src="/assets/images/icons/channels/punto2.svg"
+                  alt="Punto 2"
+                  className="max-h-[14px] w-auto object-contain object-center"
+                  style={{ height: 14 }}
+                />
+              </span>
+            )}
+            {hasYouTube && (
+              <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+                <img
+                  src="/assets/images/icons/channels/youtube.svg"
+                  alt="YouTube"
+                  className="max-h-[14px] w-auto object-contain object-center"
+                  style={{ height: 14 }}
+                />
+              </span>
+            )}
+            <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+              <img
+                src="/assets/images/icons/channels/bsnapp.svg"
+                alt="BSN App"
+                className="max-h-[14px] w-auto object-contain object-center"
+                style={{ height: 14 }}
+              />
+            </span>
+            {hasTelemundo && (
+              <span className="inline-flex shrink-0 items-center" style={{ height: 14 }}>
+                <img
+                  src="/assets/images/icons/channels/telemundo.svg"
+                  alt="Telemundo"
+                  className="max-h-[14px] w-auto object-contain object-center"
+                  style={{ height: 14 }}
+                />
+              </span>
+            )}
           </div>
         </div>
       </CardHeader>

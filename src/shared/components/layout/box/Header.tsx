@@ -13,13 +13,13 @@ export default function HeaderBoxLayout() {
           <div>
             <ul className="flex flex-row gap-[30px]">
               <li>
-                <Link href="/playoffs" className="text-[20px] text-white">
-                  Playoffs
+                <Link href="/calendario" className="text-[20px] text-white">
+                  Calendario
                 </Link>
               </li>
               <li>
-                <Link href="/calendario" className="text-[20px] text-white">
-                  Calendario
+                <Link href="/playoffs" className="text-[20px] text-white">
+                  Playoffs
                 </Link>
               </li>
               <li>

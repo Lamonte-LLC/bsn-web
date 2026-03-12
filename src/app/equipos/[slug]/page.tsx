@@ -200,7 +200,7 @@ export default async function DetalleEquipoPage({
                       </div>
                     </div>
                     <div className="space-y-[20px] md:space-y-[30px] lg:space-y-[50px]">
-                      {data.teamUpcomingCalendar.map((match) => (
+                      {data.teamUpcomingCalendar.slice(0, 1).map((match) => (
                         <ScheduledMatchCardInline
                           key={`upcoming-calendar-${match.providerId}`}
                           startAt={match.startAt}

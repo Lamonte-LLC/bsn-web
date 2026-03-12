@@ -7,9 +7,9 @@ export default function FooterBoxLayout() {
         <div className="grid grid-cols-1 md:grid-cols-12">
           <div className="md:col-span-6 lg:col-span-3">
             <p className="md:mb-[58px]">
-              <a href="#">
+              <Link href="/">
                 <img src="/assets/images/logo.png" alt="" />
-              </a>
+              </Link>
             </p>
             <p className="mb-4">
               <a
@@ -69,28 +69,20 @@ export default function FooterBoxLayout() {
             </div>
             <ul className="mb-6">
               <li className="text-center md:text-right lg:text-left">
-                <a
-                  href="#"
-                  className="font-special-gothic-condensed-one text-white text-[26px]"
-                >
-                  Inicio
-                </a>
-              </li>
-              <li className="text-center md:text-right lg:text-left">
-                <a
-                  href="#"
+                <Link
+                  href="/calendario"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Calendario
-                </a>
+                </Link>
               </li>
               <li className="text-center md:text-right lg:text-left">
-                <a
-                  href="#"
+                <Link
+                  href="/noticias"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Noticias
-                </a>
+                </Link>
               </li>
               <li className="text-center md:text-right lg:text-left">
                 <a

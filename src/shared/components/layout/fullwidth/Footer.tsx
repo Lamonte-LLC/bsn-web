@@ -8,13 +8,13 @@ export default function FooterBoxLayout() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
           <div className="md:col-span-6 lg:col-span-3">
             <p className="mb-4 text-center md:mb-[58px] md:text-left">
-              <a href="#" className="inline-block">
+              <Link href="/" className="inline-block">
                 <img
                   src="/assets/images/bsn-logo.svg"
                   alt=""
                   className="w-[100px] md:w-auto"
                 />
-              </a>
+              </Link>
             </p>
             <p className="hidden mb-4 md:block">
               <a
@@ -85,19 +85,11 @@ export default function FooterBoxLayout() {
             <ul className="mb-6 space-y-1">
               <li className="text-center md:text-right lg:text-left">
                 <Link
-                  href="/"
-                  className="font-special-gothic-condensed-one text-white text-[26px]"
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li className="text-center md:text-right lg:text-left hidden">
-                <a
-                  href="#"
+                  href="/calendario"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Calendario
-                </a>
+                </Link>
               </li>
               <li className="text-center md:text-right lg:text-left">
                 <Link

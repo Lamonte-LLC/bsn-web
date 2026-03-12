@@ -9,17 +9,19 @@ import { useWscBlazeSDK } from '@/shared/client/components/wsc/hooks/useWscBlaze
 import { useScreenDetector } from '@/shared/client/components/wsc/hooks/useScreenDetector';
 
 type WSCHomeStoriesProps = {
-  label?: string;
+  labels?: string[];
 };
 
-export default function WSCHomeStories({ label = 'home-stories' }: WSCHomeStoriesProps) {
+export default function WSCHomeStories({
+  labels = ['featured-weekly', 'home-stories'],
+}: WSCHomeStoriesProps) {
   const widgetRowRectangleRef = useRef<IWSCWidgetActions>(null);
   const { isMobile, isTablet, isDesktop } = useScreenDetector();
   const { isBlazeSDKReady } = useWscBlazeSDK();
 
   const widgetRowRectangleProps: WSCBlazeWidgetProps = {
     id: 'home-stories-container-row-rectangle',
-    labels: label,
+    labels,
     orderType: 'RecentlyUpdatedFirst',
     contentType: 'story',
     theme: 'row-rectangle',

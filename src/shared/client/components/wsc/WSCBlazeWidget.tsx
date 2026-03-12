@@ -117,8 +117,12 @@ const WSCBlazeWidget = forwardRef<
 
         // preferd way to create a data source
         // use labels or ids to create a data source
+        const labelList = Array.isArray(widgetProps.labels)
+          ? widgetProps.labels
+          : [widgetProps.labels];
+
         const dataSource = blazeSDK.DataSourceBuilder().labels({
-          labels: widgetProps.labels,
+          labels: labelList,
           orderType: widgetProps.orderType,
           maxItems: widgetProps.maxItemsCount,
         });

@@ -67,7 +67,7 @@ export default function PlayerStatsFilter({ onApply }: Props) {
                         Vista
                       </label>
                       <select
-                        className="border border-[#D4D4D4] bg-[#fafafa] h-[40px] px-[16px] py-1.5 rounded-[6px] text-sm text-[rgba(0,0,0,0.8)] disabled:opacity-50 w-full"
+                        className="border border-[#D4D4D4] bg-[#fafafa] h-[40px] px-[16px] py-1.5 rounded-[6px] text-sm font-barlow text-[rgba(0,0,0,0.8)] disabled:opacity-50 w-full"
                         value={selectedView}
                         onChange={(e) => setSelectedView(e.target.value)}
                       >

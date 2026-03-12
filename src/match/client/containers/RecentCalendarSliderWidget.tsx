@@ -103,7 +103,13 @@ export default function RecentCalendarSliderWidget() {
   }, [sortedMatches, today]);
 
   if (loading) {
-    return <div>Cargando partidos...</div>;
+    return (
+      <div className="flex h-[180px] items-center justify-center text-center">
+        <p className="font-barlow text-sm text-[rgba(255,255,255,0.8)] md:text-base">
+          Cargando partidos...
+        </p>
+      </div>
+    );
   }
 
   return (

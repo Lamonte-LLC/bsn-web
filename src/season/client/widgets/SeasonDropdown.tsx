@@ -22,7 +22,7 @@ export default function SeasonDropdown({ value, onChange, placeholder }: Props) 
       value={value ?? ''}
       onChange={handleChange}
       disabled={loading}
-      className="border border-[#D4D4D4] bg-[#fafafa] h-[40px] px-[16px] py-1.5 rounded-[6px] text-sm text-[rgba(0,0,0,0.8)] disabled:opacity-50 w-full"
+      className="border border-[#D4D4D4] bg-[#fafafa] h-[40px] px-[16px] py-1.5 rounded-[6px] text-sm font-barlow text-[rgba(0,0,0,0.8)] disabled:opacity-50 w-full"
     >
       {loading ? (
         <option value="">Cargando...</option>
