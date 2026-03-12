@@ -36,6 +36,7 @@ type Props = {
     code: string;
   };
   mediaProvider: string;
+  showDesktopDateHeader?: boolean;
 };
 
 export default function ScheduledMatchCardInline({
@@ -45,6 +46,7 @@ export default function ScheduledMatchCardInline({
   visitorTeam,
   contextTeam,
   mediaProvider,
+  showDesktopDateHeader = true,
 }: Props) {
   return (
     <div>
@@ -126,11 +128,13 @@ export default function ScheduledMatchCardInline({
       </div>
       {/* Desktop */}
       <div className="hidden sm:block">
-        <div className="mb-[20px]">
-          <p className="font-barlow font-medium text-[15px] text-[rgba(0,0,0,0.7)]">
-            {formatDate(startAt, MATCH_DATE_FULL_FORMAT)}
-          </p>
-        </div>
+        {showDesktopDateHeader && (
+          <div className="mb-[20px]">
+            <p className="text-[20px] leading-normal text-black">
+              {formatDate(startAt, MATCH_DATE_FULL_FORMAT).toLowerCase()}
+            </p>
+          </div>
+        )}
         <div className="border border-[rgba(125,125,125,0.15)] rounded-[12px] bg-white py-[10px] px-[25px]">
           <div className="flex flex-row items-center justify-between">
             <div className="pl-[10px] pr-[35px]">

@@ -5,31 +5,35 @@ import { useMemo, useState } from 'react';
 
 import CalendarSidebar from '@/match/client/components/calendar/CalendarSidebar';
 import ScheduledMatchCardInline from '@/match/components/calendar/ScheduledMatchCardInline';
-import { useUpcomingCalendarConnection } from '../hooks/teams';
+import { useRecentCalendar } from '@/match/client/hooks/matches';
+import {
+  DEFAULT_MEDIA_PROVIDER,
+  MATCH_DATE_FULL_FORMAT,
+  MATCH_STATUS,
+} from '@/constants';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
-import { DEFAULT_MEDIA_PROVIDER, MATCH_DATE_FULL_FORMAT } from '@/constants';
 import { formatDate } from '@/utils/date-formatter';
 
-type Props = {
-  teamCode: string;
-};
+export default function LeagueCalendarWidget() {
+  const { data, loading } = useRecentCalendar();
 
-export default function TeamCalendarWidget({ teamCode }: Props) {
-  const { data, loading } = useUpcomingCalendarConnection(teamCode);
-
-  const matches = useMemo(
+  const allScheduled = useMemo(
     () =>
-      (data?.edges ?? [])
-        .map((edge) => edge.node)
+      data
+        .filter((match) =>
+          [MATCH_STATUS.SCHEDULED, MATCH_STATUS.RESCHEDULED].includes(
+            match.status ?? '',
+          ),
+        )
         .sort((a, b) => moment(a.startAt).diff(moment(b.startAt))),
     [data],
   );
 
   const initialStart = useMemo(() => {
     const today = moment().startOf('day');
-    if (matches.length === 0) return today;
+    if (allScheduled.length === 0) return today;
 
-    const upcomingDates = matches
+    const upcomingDates = allScheduled
       .map((m) => moment(m.startAt).startOf('day'))
       .filter((d) => d.isSameOrAfter(today));
 
@@ -37,9 +41,9 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
       return upcomingDates[0];
     }
 
-    // Si no hay juegos futuros, usa la fecha del último partido del equipo
-    return moment(matches[matches.length - 1].startAt).startOf('day');
-  }, [matches]);
+    // Si no hay juegos futuros, usa la fecha del último partido
+    return moment(allScheduled[allScheduled.length - 1].startAt).startOf('day');
+  }, [allScheduled]);
 
   const [startDate, setStartDate] = useState<moment.Moment>(initialStart);
   const [weeksShown, setWeeksShown] = useState(1);
@@ -49,7 +53,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
     [startDate, weeksShown],
   );
 
-  const visibleMatches = matches.filter((match) => {
+  const upcomingMatches = allScheduled.filter((match) => {
     const day = moment(match.startAt).startOf('day');
     return day.isSameOrAfter(startDate) && day.isSameOrBefore(endDate);
   });
@@ -109,7 +113,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
         </div>
         <hr className="mb-6 border-0 border-t border-[#E4E4E4]" />
         <div className="flex flex-col gap-6">
-          {loading && matches.length === 0 && (
+          {loading && allScheduled.length === 0 && (
             <div className="space-y-4">
               <ShimmerLine height="76px" />
               <ShimmerLine height="76px" />
@@ -119,65 +123,65 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
             </div>
           )}
           {!loading &&
-            visibleMatches.map((node) => {
-              const dateKey = moment(node.startAt).format('YYYY-MM-DD');
+            upcomingMatches.map((match) => {
+              const dateKey = moment(match.startAt).format('YYYY-MM-DD');
               const showHeader = dateKey !== lastDateKey;
               if (showHeader) {
                 lastDateKey = dateKey;
               }
 
               return (
-                <div key={`upcoming-calendar-${node.providerId}`}>
+                <div key={`league-calendar-${match.providerId}`}>
                   {showHeader && (
                     <div className="mb-2 hidden sm:block">
                       <p className="text-[20px] leading-normal text-black">
-                        {formatDate(node.startAt, MATCH_DATE_FULL_FORMAT).toLowerCase()}
+                        {formatDate(match.startAt, MATCH_DATE_FULL_FORMAT).toLowerCase()}
                       </p>
                     </div>
                   )}
                   <ScheduledMatchCardInline
-                    startAt={node.startAt}
+                    providerId={match.providerId}
+                    startAt={match.startAt}
                     homeTeam={{
-                      code: node.homeTeam.code,
-                      nickname: node.homeTeam.nickname,
-                      city: node.homeTeam.city,
-                      ticketUrl: node.homeTeam.ticketUrl || '',
+                      code: match.homeTeam.code,
+                      nickname: match.homeTeam.nickname,
+                      city: match.homeTeam.city,
+                      ticketUrl: match.homeTeam.ticketUrl || '',
                       competitionStandings: {
-                        won: node.homeTeam.competitionStandings?.won ?? 0,
-                        lost: node.homeTeam.competitionStandings?.lost ?? 0,
+                        won: match.homeTeam.competitionStandings?.won ?? 0,
+                        lost: match.homeTeam.competitionStandings?.lost ?? 0,
                       },
                     }}
                     visitorTeam={{
-                      code: node.visitorTeam.code,
-                      nickname: node.visitorTeam.nickname,
-                      city: node.visitorTeam.city,
-                      ticketUrl: node.visitorTeam.ticketUrl || '',
+                      code: match.visitorTeam.code,
+                      nickname: match.visitorTeam.nickname,
+                      city: match.visitorTeam.city,
+                      ticketUrl: match.visitorTeam.ticketUrl || '',
                       competitionStandings: {
-                        won: node.visitorTeam.competitionStandings?.won ?? 0,
-                        lost: node.visitorTeam.competitionStandings?.lost ?? 0,
+                        won: match.visitorTeam.competitionStandings?.won ?? 0,
+                        lost: match.visitorTeam.competitionStandings?.lost ?? 0,
                       },
                     }}
                     contextTeam={{
-                      code: teamCode,
+                      code: match.homeTeam.code,
                     }}
-                    providerId={node.providerId}
-                    mediaProvider={node.channel || DEFAULT_MEDIA_PROVIDER}
+                    mediaProvider={match.channel || DEFAULT_MEDIA_PROVIDER}
                     showDesktopDateHeader={false}
                   />
                 </div>
               );
             })}
-          {!loading && visibleMatches.length === 0 && (
+          {!loading && upcomingMatches.length === 0 && (
             <div>
-              <span className="text-[rgba(0,0,0,0.6)]">
+              <span className="text-[15px] text-[rgba(0,0,0,0.6)]">
                 Esta semana no hay juegos.
               </span>
             </div>
           )}
         </div>
         {!loading &&
-          visibleMatches.length > 0 &&
-          visibleMatches.length < matches.length && (
+          upcomingMatches.length > 0 &&
+          upcomingMatches.length < allScheduled.length && (
             <div className="mt-4 w-full">
               <button
                 type="button"
@@ -194,10 +198,11 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
           <CalendarSidebar
             selectedDate={startDate}
             onSelectDate={handleSelectDate}
-            showFullCalendarLink
+            showFullCalendarLink={false}
           />
         </div>
       </div>
     </div>
   );
 }
+
