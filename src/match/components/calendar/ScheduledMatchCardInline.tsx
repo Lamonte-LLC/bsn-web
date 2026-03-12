@@ -50,7 +50,7 @@ export default function ScheduledMatchCardInline({
     <div>
       {/* Mobile */}
       <div className="sm:hidden">
-        <div className="relative border border-[rgba(125,125,125,0.15)] rounded-[12px]">
+        <div className="relative border border-[rgba(125,125,125,0.15)] rounded-[12px] bg-white">
           <Link href={`/partidos/${providerId}`} className="absolute inset-0 z-0" aria-label="Ver partido" />
           <div className="border-b border-b-[rgba(125,125,125,0.1)] flex flex-row items-center justify-between mx-[20px] py-[12px]">
             <p className="font-barlow font-medium text-[13px] text-[rgba(0,0,0,0.9)]">
@@ -113,7 +113,7 @@ export default function ScheduledMatchCardInline({
                       ? homeTeam.ticketUrl
                       : visitorTeam.ticketUrl
                   }
-                  className="border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
+                  className="bg-[#FAFAFA] border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -131,7 +131,7 @@ export default function ScheduledMatchCardInline({
             {formatDate(startAt, MATCH_DATE_FULL_FORMAT)}
           </p>
         </div>
-        <div className="border border-[rgba(125,125,125,0.15)] rounded-[12px] py-[10px] px-[25px]">
+        <div className="border border-[rgba(125,125,125,0.15)] rounded-[12px] bg-white py-[10px] px-[25px]">
           <div className="flex flex-row items-center justify-between">
             <div className="pl-[10px] pr-[35px]">
               <p className="text-[18px] text-black">
@@ -160,7 +160,7 @@ export default function ScheduledMatchCardInline({
                     ? homeTeam.ticketUrl
                     : visitorTeam.ticketUrl
                 }
-                className="border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
+                className="bg-[#FAFAFA] border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -168,7 +168,7 @@ export default function ScheduledMatchCardInline({
               </a>
               <Link
                 href={`/partidos/${providerId}`}
-                className="border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
+                className="bg-[#FAFAFA] border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
               >
                 <span className="text-[15px] text-black">Ver previa</span>
               </Link>
