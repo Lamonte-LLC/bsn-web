@@ -41,10 +41,11 @@
 
 html {
   overflow-x: hidden;
+  background: #0F171F;
 }
 
 body {
-  background: var(--background);
+  background: #0F171F;
   color: var(--foreground);
   font-family: var(--font-special-gothic-condensed-one), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
