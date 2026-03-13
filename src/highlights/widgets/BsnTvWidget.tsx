@@ -52,10 +52,12 @@ export default async function BsnTvWidget() {
           </div>
           <div className="hidden md:block">
             <a
-              href="#"
+              href="https://www.youtube.com/watch?v=fvcPG7aKc9A&list=PLe58A2MSZ7Qfq0jbRsHZeGmGrv4YLDcI7"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#FCFCFC] inline-block shadow-[0px_1px_2px_0px_#14181F0D] py-[12px] px-[20px] rounded-[12px] min-w-[212px] text-center"
             >
-              <span className="text-base text-black">Ver canal en Youtube</span>
+              <span className="text-base text-black">Ver canal en YouTube</span>
             </a>
           </div>
         </div>
