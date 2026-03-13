@@ -49,7 +49,7 @@ export default function MatchTeamBoxScoreWidget({
   }
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       <table className="w-full text-left">
         <thead>
           <tr>
@@ -57,7 +57,7 @@ export default function MatchTeamBoxScoreWidget({
               <span className="text-[13px] text-[rgba(0,0,0,0.6)]">#</span>
             </th>
             <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2">
-              <span className="text-[13px] text-[rgba(0,0,0,0.6)]">
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                 JUGADOR
               </span>
             </th>
@@ -66,7 +66,7 @@ export default function MatchTeamBoxScoreWidget({
                 key={header}
                 className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 text-center whitespace-nowrap w-[1%]"
               >
-                <span className="text-[13px] text-[rgba(0,0,0,0.6)]">
+                <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   {header}
                 </span>
               </th>
@@ -85,7 +85,7 @@ export default function MatchTeamBoxScoreWidget({
                   borderBottomLeftRadius: '8px',
                 }}
               >
-                <span className="font-barlow text-[13px]">
+                <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.6)]">
                   {item.player.shirtNumber || '-'}
                 </span>
               </td>
@@ -96,12 +96,14 @@ export default function MatchTeamBoxScoreWidget({
                     index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
                 }}
               >
-                <Link href={`/jugadores/${item.player.providerId}`}>
-                  <span className="text-base">{item.player.name}</span>
-                  <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.7)] ml-2">
-                    {item.player.playingPosition}
-                  </span>
-                </Link>
+                <div className="w-[120px]">
+                  <Link href={`/jugadores/${item.player.providerId}`}>
+                    <span className="text-base">{item.player.name}</span>
+                    <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.7)] ml-2">
+                      {item.player.playingPosition}
+                    </span>
+                  </Link>
+                </div>
               </td>
               <td
                 className="px-3 py-2 text-center"

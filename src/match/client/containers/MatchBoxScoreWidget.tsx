@@ -20,10 +20,10 @@ export default function MatchBoxScoreWidget({ match }: Props) {
       </div>
       <TabGroup defaultIndex={0} className="md:-mt-[38px]">
         <TabList className="text-center space-x-[8px] mb-[36px]">
-          <Tab className="border border-[#D5D5D5] cursor-pointer text-[15px] data-[selected]:border-[#0F171F] p-[8px] rounded-[100px] min-w-[150px] data-[selected]:bg-[#0F171F] data-[selected]:text-white">
+          <Tab className="border border-[#D5D5D5] cursor-pointer text-[15px] data-[selected]:border-[#0F171F] px-[8px] py-[6px] rounded-[100px] min-w-[150px] data-[selected]:bg-[#0F171F] data-[selected]:text-white">
             {match.visitorTeam.nickname}
           </Tab>
-          <Tab className="border border-[#D5D5D5] cursor-pointer text-[15px] data-[selected]:border-[#0F171F] p-[8px] rounded-[100px] min-w-[150px] data-[selected]:bg-[#0F171F] data-[selected]:text-white">
+          <Tab className="border border-[#D5D5D5] cursor-pointer text-[15px] data-[selected]:border-[#0F171F] px-[8px] py-[6px] rounded-[100px] min-w-[150px] data-[selected]:bg-[#0F171F] data-[selected]:text-white">
             {match.homeTeam.nickname}
           </Tab>
         </TabList>

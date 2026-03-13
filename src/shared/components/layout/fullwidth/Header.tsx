@@ -162,7 +162,7 @@ export default function HeaderBoxLayout() {
                             </div>
                           </div>
                         </Link>
-                        <Link href="/equipos/GUA">
+                        <Link href="/equipos/GBO">
                           <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
@@ -474,7 +474,7 @@ export default function HeaderBoxLayout() {
                           </div>
                         </div>
                       </Link>
-                      <Link href="/equipos/GUA">
+                      <Link href="/equipos/GBO">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
                           <div className="flex flex-col justify-center items-center gap-0.5">
                             <img
