@@ -384,6 +384,11 @@ export default function HeaderBoxLayout() {
             </div>
             <ul className="divide-y divide-[rgba(255,255,255,0.05)]">
               <li className="px-[30px]">
+                <Link href="/" className="block py-[8px]">
+                  <span className="text-[36px] text-white">Inicio</span>
+                </Link>
+              </li>
+              <li className="px-[30px]">
                 <Link href="/calendario" className="block py-[8px]">
                   <span className="text-[36px] text-white">Calendario</span>
                 </Link>
@@ -399,20 +404,21 @@ export default function HeaderBoxLayout() {
                 </Link>
               </li>
               <li className="px-[30px]">
-                <Disclosure>
-                  {({ open }) => (
-                    <>
-                      <DisclosureButton className="cursor-pointer py-[8px] text-[36px] text-left text-white w-full flex items-center justify-between">
-                        <span className="leading-none">Equipos</span>
-                        <img
-                          src="/assets/images/icons/chevron-mobile-menu.svg"
-                          alt=""
-                          className={`w-[18px] transition-transform duration-150 ${
-                            open ? 'rotate-0' : 'rotate-180'
-                          }`}
-                        />
-                      </DisclosureButton>
-                      <DisclosurePanel>
+                <div className="py-[8px]">
+                  <Disclosure>
+                    {({ open }) => (
+                      <>
+                        <DisclosureButton className="cursor-pointer text-[36px] text-left text-white w-full flex items-center justify-between">
+                          <span>Equipos</span>
+                          <img
+                            src="/assets/images/icons/chevron-mobile-menu.svg"
+                            alt=""
+                            className={`w-[18px] transition-transform duration-150 ${
+                              open ? 'rotate-0' : 'rotate-180'
+                            }`}
+                          />
+                        </DisclosureButton>
+                        <DisclosurePanel>
                     <div className="grid grid-cols-4 gap-[12px] pb-[24px] pt-[12px]">
                       <Link href="/equipos/AGU">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
@@ -559,10 +565,11 @@ export default function HeaderBoxLayout() {
                         </div>
                       </Link>
                     </div>
-                  </DisclosurePanel>
-                    </>
-                  )}
-                </Disclosure>
+                        </DisclosurePanel>
+                      </>
+                    )}
+                  </Disclosure>
+                </div>
               </li>
               <li className="px-[30px] hidden">
                 <Link href="/estadisticas" className="block py-[8px]">

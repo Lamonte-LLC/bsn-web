@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { formatDate } from '@/utils/date-formatter';
+import { stripHtmlTags } from '@/utils/html';
 
 type Props = {
   title: string;
@@ -54,7 +55,9 @@ export default function NewsItem({
           </Link>
         </div>
         <div className="hidden md:block">
-          <div className="font-barlow mb-1 text-sm text-[rgba(15,23,31,0.7)]" dangerouslySetInnerHTML={{ __html: excerpt }} />
+          <div className="font-barlow mb-1 text-sm text-[rgba(15,23,31,0.7)]">
+            {stripHtmlTags(excerpt)}
+          </div>
         </div>
         <p
           className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] md:text-[13px]"
