@@ -9,7 +9,7 @@ type Props = {
 
 export default function FullWidthLayout({ children, subheader, divider = false }: Props) {
   return (
-    <div>
+    <div className="bg-[#fdfdfd]">
       <header className="bg-bsn">
         <div className="border-b" style={{ borderColor: divider ? 'rgba(55, 55, 55, 0.5)' : 'transparent' }}>
           <Header />

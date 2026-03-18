@@ -10,8 +10,6 @@ import { usePlayerAllSeasonsAvgStats } from '../hooks/player';
 const STATS_HEADER: Record<string, string>[] = [
   { label: 'MIN', key: 'minutesAvg' },
   { label: 'PTS', key: 'pointsAvg' },
-  { label: 'FGM', key: 'fieldGoalsMadeAvg' },
-  { label: 'FGA', key: 'fieldGoalsAttemptedAvg' },
   { label: 'FG%', key: 'fieldGoalsPercentage' },
   { label: '3PM', key: 'threePointersMadeAvg' },
   { label: '3PA', key: 'threePointersAttemptedAvg' },
@@ -104,18 +102,6 @@ export default function PlayerAllSeasonsAvgStatsWidget({
               <td className="px-2 py-2 text-center">
                 <span className="font-barlow text-[13px]">
                   {numeral(item.stats?.pointsAvg ?? 0).format('0.0')}
-                </span>
-              </td>
-              <td className="px-2 py-2 text-center">
-                <span className="font-barlow text-[13px]">
-                  {numeral(item.stats?.fieldGoalsMadeAvg ?? 0).format('0.0')}
-                </span>
-              </td>
-              <td className="px-2 py-2 text-center">
-                <span className="font-barlow text-[13px]">
-                  {numeral(item.stats?.fieldGoalsAttemptedAvg ?? 0).format(
-                    '0.0',
-                  )}
                 </span>
               </td>
               <td className="px-2 py-2 text-center">

@@ -102,6 +102,14 @@ export default function CompletedMatchPage({
             <div className="container">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6 md:mt-[30px] lg:mt-[60px]">
                 <div className="lg:col-span-8 lg:pr-16">
+                  <div className="mb-[30px] lg:hidden">
+                    <MatchInfoCard
+                      startAt={match.startAt}
+                      venue={{ name: match.venue?.name ?? '' }}
+                      channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
+                      ticketUrl={match.homeTeam.ticketUrl}
+                    />
+                  </div>
                   <div className="mb-6 md:mb-10 lg:mb-15">
                     <div className="flex flex-row justify-between items-center">
                       <div>
@@ -269,7 +277,7 @@ export default function CompletedMatchPage({
                       <MatchYoutubeVideoCard youtubeVideoId={match.youtube} />
                     </div>
                   )}
-                  <div className="mb-5">
+                  <div className="hidden mb-5 lg:block">
                     <MatchInfoCard
                       startAt={match.startAt}
                       venue={{ name: match.venue?.name ?? '' }}
@@ -277,7 +285,7 @@ export default function CompletedMatchPage({
                       ticketUrl={match.homeTeam.ticketUrl}
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="mb-10 md:mb-4">
                     <div className="flex justify-center">
                       <AdSlot
                         adUnit="/23296921845/300-250"

@@ -111,7 +111,9 @@ export default function LeagueCalendarWidget() {
             </button>
           </div>
         </div>
-        <hr className="border-0 border-t border-[#E4E4E4]" />
+        <div className="hidden md:block">
+          <hr className="border-0 border-t border-[#E4E4E4]" />
+        </div>
         <div className="flex flex-col gap-[15px]">
           {loading && allScheduled.length === 0 && (
             <div className="space-y-4">

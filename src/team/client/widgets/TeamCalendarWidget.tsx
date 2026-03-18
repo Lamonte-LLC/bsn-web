@@ -77,10 +77,10 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
       <div className="lg:col-span-8 lg:pr-16">
         <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <h3 className="text-2xl font-normal leading-none text-black">
+          <h3 className="hidden text-2xl font-normal leading-none text-black md:block">
             Calendario de juegos
           </h3>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 self-center md:self-auto">
             <button
               type="button"
               onClick={handlePrevWeek}
@@ -107,7 +107,9 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
             </button>
           </div>
         </div>
-        <hr className="mb-6 border-0 border-t border-[#E4E4E4]" />
+        <div className="hidden md:block">
+          <hr className="mb-6 border-0 border-t border-[#E4E4E4]" />
+        </div>        
         <div className="flex flex-col gap-6">
           {loading && matches.length === 0 && (
             <div className="space-y-4">

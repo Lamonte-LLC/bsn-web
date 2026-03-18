@@ -96,28 +96,30 @@ export default function LiveMatchPage({ match }: Props) {
                   </div> */}
                 </div>
                 <div className="lg:col-span-4">
-                  <div className="mb-[30px] md:mb-[40px]">
-                    <MatchInfoCard
-                      startAt={match.startAt}
-                      venue={{ name: match.venue?.name ?? '' }}
-                      channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
-                      ticketUrl={match.homeTeam.ticketUrl}
-                    />
-                  </div>
-                  <div className="mb-[30px] md:mb-[40px]">
-                    <div className="hidden justify-center xl:flex">
-                      <AdSlot
-                        adUnit="/23296921845/300-250"
-                        size={[300, 250]}
-                        elementId={`match-gpt-ad-300-250-${match.providerId}`}
+                  <div className="flex flex-col">
+                    <div className="mb-[30px] order-last md:order-none md:mb-[40px]">
+                      <MatchInfoCard
+                        startAt={match.startAt}
+                        venue={{ name: match.venue?.name ?? '' }}
+                        channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
+                        ticketUrl={match.homeTeam.ticketUrl}
                       />
                     </div>
-                    <div className="bg-[#F8F8F8] flex justify-center py-[15px] -mx-[1rem] md:mx-0 md:py-0 md:bg-transparent xl:hidden">
-                      <AdSlot
-                        adUnit="/23296921845/320-50"
-                        size={[320, 50]}
-                        elementId={`match-gpt-ad-320-50-${match.providerId}`}
-                      />
+                    <div className="mb-[30px] md:mb-[40px]">
+                      <div className="hidden justify-center xl:flex">
+                        <AdSlot
+                          adUnit="/23296921845/300-250"
+                          size={[300, 250]}
+                          elementId={`match-gpt-ad-300-250-${match.providerId}`}
+                        />
+                      </div>
+                      <div className="bg-[#F8F8F8] flex justify-center py-[15px] -mx-[1rem] md:mx-0 md:py-0 md:bg-transparent xl:hidden">
+                        <AdSlot
+                          adUnit="/23296921845/320-50"
+                          size={[320, 50]}
+                          elementId={`match-gpt-ad-320-50-${match.providerId}`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
