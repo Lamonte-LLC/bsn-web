@@ -24,27 +24,7 @@ export default function LiveMatchPage({ match }: Props) {
         <section className="pb-[170px] md:pb-[310px]">
           <div className="container">
             <div className="mx-auto py-[32px] md:py-[42px] xl:py-[52px] lg:w-9/12 xl:w-8/12">
-              <LiveMatchScoreBoardWidget
-                startAt={match.startAt}
-                homeTeam={{
-                  code: match.homeTeam.code,
-                  nickname: match.homeTeam.nickname,
-                  score: match.homeTeam.score,
-                  color: match.homeTeam.color,
-                  city: match.homeTeam.city,
-                }}
-                visitorTeam={{
-                  code: match.visitorTeam.code,
-                  nickname: match.visitorTeam.nickname,
-                  score: match.visitorTeam.score,
-                  color: match.visitorTeam.color,
-                  city: match.visitorTeam.city,
-                }}
-                venue={{ name: match.venue?.name ?? '' }}
-                currentPeriod={match.currentPeriod}
-                currentTime={match.currentTime}
-                overtimePeriods={match.overtimePeriods}
-              />
+              <LiveMatchScoreBoardWidget matchProviderId={match.providerId} />
             </div>
           </div>
         </section>

@@ -4,6 +4,7 @@ type Props = {
   teamCode: string;
   size?: number;
   rounded?: boolean;
+  defaultLogo?: string;
 };
 
 const TEAM_LOGOS: Record<string, string> = {
@@ -28,14 +29,15 @@ const TEAM_LOGOS: Record<string, string> = {
 export default function TeamLogoAvatar({
   teamCode,
   size = 50,
+  defaultLogo = 'default-dark.png',
 }: Props) {
   const imageSource = useMemo(() => {
     if (teamCode in TEAM_LOGOS) {
       return TEAM_LOGOS[teamCode];
     }
 
-    return `/assets/images/teams/default.png`;
-  }, [teamCode]);
+    return `/assets/images/teams/${defaultLogo}`;
+  }, [teamCode, defaultLogo]);
 
   return (
     <div className="flex shrink-0 items-center justify-center">

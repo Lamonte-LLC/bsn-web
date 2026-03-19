@@ -1,4 +1,8 @@
-import { RECENT_CALENDAR, MATCH_TEAM_PLAYERS_BOXSCORE } from '@/graphql/match';
+import {
+  RECENT_CALENDAR,
+  MATCH_TEAM_PLAYERS_BOXSCORE,
+  MATCH,
+} from '@/graphql/match';
 import { MatchType } from '@/match/types';
 import { useQuery } from '@apollo/client/react';
 import moment from 'moment';
@@ -83,4 +87,27 @@ export function useMatchTeamPlayersBoxscore(
   }
 
   return { data: data?.matchPlayersBoxscore ?? [], loading, error };
+}
+
+type MatchResponse = {
+  match: MatchType;
+};
+
+export function useMatch(matchProviderId: string, usePoll = false) {
+  const { data, loading, error } = useQuery<MatchResponse>(MATCH, {
+    variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
+    fetchPolicy: 'network-only',
+    pollInterval: usePoll ? 30 * 1000 : 0, // 30 seconds in milliseconds
+    notifyOnNetworkStatusChange: false,
+  });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.match,
+    loading,
+    error,
+  };
 }
