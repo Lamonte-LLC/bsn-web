@@ -48,6 +48,9 @@ export default function ScheduledMatchCardInline({
   mediaProvider,
   showDesktopDateHeader = true,
 }: Props) {
+  // Tickets are sold by the home team (venue), including away games ("en").
+  const ticketsLink = homeTeam.ticketUrl;
+
   return (
     <div>
       {/* Mobile */}
@@ -110,11 +113,7 @@ export default function ScheduledMatchCardInline({
               </div>
               <div className="relative z-10 flex h-[36px] items-center">
                 <a
-                  href={
-                    contextTeam.code === homeTeam.code
-                      ? homeTeam.ticketUrl
-                      : visitorTeam.ticketUrl
-                  }
+                  href={ticketsLink}
                   className="bg-[#FAFAFA] border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -159,11 +158,7 @@ export default function ScheduledMatchCardInline({
             </div>
             <div className="space-x-[8px]">
               <a
-                href={
-                  contextTeam.code === homeTeam.code
-                    ? homeTeam.ticketUrl
-                    : visitorTeam.ticketUrl
-                }
+                href={ticketsLink}
                 className="bg-[#FAFAFA] border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px]"
                 target="_blank"
                 rel="noopener noreferrer"
