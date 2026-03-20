@@ -17,7 +17,7 @@ export const stripHtmlTags = (html: string): string => {
     .replace(/&#39;|&apos;/g, "'")
     .replace(/&quot;/g, '"')
     .replace(/&amp;/g, '&')
-    // WordPress often appends this marker to excerpts.
-    .replace(/\[\s*(?:…|\.{3})\s*\]$/g, '')
+    // WordPress often appends bracketed ellipsis markers in excerpts.
+    .replace(/\[\s*(?:…|\.{3}|&hellip;|&#8230;)\s*\]/gi, '…')
     .trim();
 };

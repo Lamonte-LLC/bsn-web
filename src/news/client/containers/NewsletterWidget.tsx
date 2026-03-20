@@ -13,7 +13,11 @@ const FILTER_PILLS = [
   { label: 'Playoffs', slug: 'playoffs' },
 ];
 
-export default function NewsletterWidget() {
+type Props = {
+  featuredNewsSlug?: string;
+};
+
+export default function NewsletterWidget({ featuredNewsSlug }: Props) {
   const { data, loading, hasMore, loadMore } = useNewsletter();
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -27,9 +31,9 @@ export default function NewsletterWidget() {
       )
     : data;
 
-  // The first item (index 0) is already shown as the hero on the page.
-  const displayedData = filteredData.filter((_, index) =>
-    activeTag !== null ? true : index !== 0,
+  // Avoid showing the featured (hero) news item again in the list.
+  const displayedData = filteredData.filter(
+    (newsItem) => newsItem.slug !== featuredNewsSlug,
   );
 
   return (

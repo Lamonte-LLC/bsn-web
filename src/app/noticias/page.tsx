@@ -89,7 +89,7 @@ export default async function NoticiasPage() {
               </div>
             </div>
           </div>
-          <NewsletterWidget />
+          <NewsletterWidget featuredNewsSlug={data[0]?.slug} />
         </div>
       </section>
     </FullWidthLayout>
