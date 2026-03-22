@@ -35,7 +35,13 @@ export default function LiveMatchPage({ match }: Props) {
       <div className="-mt-[170px] md:-mt-[316px]">
         <div className="container">
           <div className="mb-[26px] mx-auto md:mb-[40px] md:w-[688px]">
-            <LiveMatchStream streamUrl={match.streamUrl} />
+            <LiveMatchStream
+              streamUrl={
+                match.streamUrl ??
+                match.homeTeam.streamUrl ??
+                match.visitorTeam.streamUrl
+              }
+            />
           </div>
         </div>
       </div>

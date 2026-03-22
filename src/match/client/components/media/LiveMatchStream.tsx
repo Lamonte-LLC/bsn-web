@@ -2,12 +2,8 @@
 
 import { MatchLiveStreamVideo } from './MatchLiveStreamVideo';
 
-/** Castr embed — hardcoded (overrides GraphQL `streamUrl` for live games). */
-const CASTR_LIVE_PLAYER_URL =
-  'https://player.castr.com/live_2b3583f0256811f1b803d7b743b93ee0';
-
 type Props = {
-  /** From GraphQL `streamUrl` — ignored while {@link CASTR_LIVE_PLAYER_URL} is hardcoded. */
+  /** GraphQL `streamUrl` — HLS (.m3u8) or embed page (e.g. Castr `player.castr.com/...`). */
   streamUrl?: string | null;
 };
 
@@ -17,10 +13,10 @@ function isLikelyHlsUrl(url: string): boolean {
 }
 
 /**
- * Renders the live stream: HLS via hls.js, or iframe for player pages.
+ * Renders the live stream from the API: HLS via hls.js, or iframe for player pages (Castr, etc.).
  */
-export function LiveMatchStream({ streamUrl: _streamUrl }: Props) {
-  const src = CASTR_LIVE_PLAYER_URL;
+export function LiveMatchStream({ streamUrl }: Props) {
+  const src = streamUrl?.trim() ?? '';
 
   if (!src) {
     return (

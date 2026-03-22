@@ -12,6 +12,7 @@ import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPag
 import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
 import ScheduledMatchPage from '@/match/client/components/page/ScheduledMatchPage';
 import { MatchType } from '@/match/types';
+import { isLiveMatchPageStatus } from '@/match/utils/matchStatus';
 
 type LeadersCategoryStatsType = {
   player: {
@@ -388,11 +389,9 @@ export default async function PartidoPage({
 
   return (
     <>
-      {[
-        MATCH_STATUS.IN_PROGRESS,
-        MATCH_STATUS.PERIOD_BREAK,
-        MATCH_STATUS.PENDING,
-      ].includes(data.match.status) && <LiveMatchPage match={data.match} />}
+      {isLiveMatchPageStatus(data.match.status) && (
+        <LiveMatchPage match={data.match} />
+      )}
       {[MATCH_STATUS.COMPLETE, MATCH_STATUS.FINISHED].includes(
         data.match.status,
       ) && (
