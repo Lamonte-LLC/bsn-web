@@ -68,6 +68,7 @@ const fetchSeasonStandingsTableBasicGroups = async (): Promise<
 > => {
   const { data, error } = await getClient().query<StandingsTableBasicResponse>({
     query: STANDINGS_TABLE_BASIC,
+    fetchPolicy: 'network-only',
   });
 
   if (error) {
