@@ -6,9 +6,11 @@ import MatchTeamBoxScoreWidget from "./MatchTeamBoxScoreWidget";
 
 type Props = {
   match: MatchType;
+  /** Refresh player box score periodically (e.g. live games). */
+  usePolling?: boolean;
 };
 
-export default function MatchBoxScoreWidget({ match }: Props) {
+export default function MatchBoxScoreWidget({ match, usePolling = false }: Props) {
   return (
     <div className="py-[20px] md:py-[30px] lg:py-[50px]">
       <div className="hidden px-[10px] flex-row justify-between items-center md:flex">
@@ -29,10 +31,18 @@ export default function MatchBoxScoreWidget({ match }: Props) {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <MatchTeamBoxScoreWidget matchProviderId={match.providerId} teamProviderId={match.visitorTeam.providerId} />
+            <MatchTeamBoxScoreWidget
+              matchProviderId={match.providerId}
+              teamProviderId={match.visitorTeam.providerId}
+              usePolling={usePolling}
+            />
           </TabPanel>
           <TabPanel>
-            <MatchTeamBoxScoreWidget matchProviderId={match.providerId} teamProviderId={match.homeTeam.providerId} />
+            <MatchTeamBoxScoreWidget
+              matchProviderId={match.providerId}
+              teamProviderId={match.homeTeam.providerId}
+              usePolling={usePolling}
+            />
           </TabPanel>
         </TabPanels>
       </TabGroup>

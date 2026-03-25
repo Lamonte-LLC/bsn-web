@@ -10,6 +10,7 @@ import { formatDate } from '@/utils/date-formatter';
 import { getFirstWord } from '@/utils/text';
 import { useMatch } from '../hooks/matches';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
+import { formatGameClockDisplay } from '@/utils/game-clock';
 
 type Props = {
   matchProviderId: string;
@@ -135,7 +136,7 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
                 />
               </div>
               <p className="barlow-condensed font-semibold text-base text-white text-center md:text-[25px]">
-                {periodLabel} - {data?.currentTime ?? '00:00:00'}
+                {periodLabel} - {formatGameClockDisplay(data?.currentTime)}
               </p>
             </div>
             <div className="flex flex-row items-center justify-end gap-2 w-[54px] md:w-[100px]">

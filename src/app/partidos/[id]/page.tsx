@@ -7,10 +7,12 @@ import {
   MATCH_TEAMS_BOXSCORE,
 } from '@/graphql/match';
 import { MATCH_LEADERS_STATS, SEASON_TEAM_LEADER_PLAYER_STATS } from '@/graphql/stats';
+import { TEAM_DETAIL } from '@/graphql/team';
 import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPage';
 import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
 import ScheduledMatchPage from '@/match/client/components/page/ScheduledMatchPage';
 import { MatchType } from '@/match/types';
+import { isLiveMatchPageStatus } from '@/match/utils/matchStatus';
 
 type LeadersCategoryStatsType = {
   player: {
@@ -118,6 +120,16 @@ type MatchLeadersStatsResponse = {
   };
 };
 
+/** `team(code)` — misma fuente que ficha de equipo; alinea W–L con la temporada actual. */
+type TeamDetailStandingsResponse = {
+  team?: {
+    competitionStandings?: {
+      won: number;
+      lost: number;
+    };
+  };
+};
+
 type HeadToHeadMatchesResponse = {
   headToHeadMatchesConnection: {
     edges: {
@@ -198,6 +210,41 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
   };
 
   if (match.status === MATCH_STATUS.SCHEDULED) {
+    const [{ data: homeTeamDetail }, { data: visitorTeamDetail }] =
+      await Promise.all([
+        getClient().query<TeamDetailStandingsResponse>({
+          query: TEAM_DETAIL,
+          variables: { code: match.homeTeam.code },
+        }),
+        getClient().query<TeamDetailStandingsResponse>({
+          query: TEAM_DETAIL,
+          variables: { code: match.visitorTeam.code },
+        }),
+      ]);
+
+    const homeFromTeam = homeTeamDetail?.team?.competitionStandings;
+    const visitorFromTeam = visitorTeamDetail?.team?.competitionStandings;
+
+    if (homeFromTeam != null || visitorFromTeam != null) {
+      response.match = {
+        ...response.match,
+        homeTeam: {
+          ...response.match.homeTeam,
+          competitionStandings:
+            homeFromTeam != null
+              ? { won: homeFromTeam.won, lost: homeFromTeam.lost }
+              : response.match.homeTeam.competitionStandings,
+        },
+        visitorTeam: {
+          ...response.match.visitorTeam,
+          competitionStandings:
+            visitorFromTeam != null
+              ? { won: visitorFromTeam.won, lost: visitorFromTeam.lost }
+              : response.match.visitorTeam.competitionStandings,
+        },
+      };
+    }
+
     const { data: matchTeamsBoxScoreData } =
       await getClient().query<MatchTeamsBoxScoreResponse>({
         query: MATCH_TEAMS_BOXSCORE,
@@ -343,9 +390,9 @@ export default async function PartidoPage({
 
   return (
     <>
-      {[MATCH_STATUS.IN_PROGRESS, MATCH_STATUS.PERIOD_BREAK].includes(
-        data.match.status,
-      ) && <LiveMatchPage match={data.match} />}
+      {isLiveMatchPageStatus(data.match.status) && (
+        <LiveMatchPage match={data.match} />
+      )}
       {[MATCH_STATUS.COMPLETE, MATCH_STATUS.FINISHED].includes(
         data.match.status,
       ) && (

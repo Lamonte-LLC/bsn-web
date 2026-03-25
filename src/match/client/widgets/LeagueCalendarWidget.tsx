@@ -15,7 +15,10 @@ import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { formatDate } from '@/utils/date-formatter';
 
 export default function LeagueCalendarWidget() {
-  const { data, loading } = useRecentCalendar();
+  const { data, loading } = useRecentCalendar({
+    daysBefore: 21,
+    daysAfter: 45,
+  });
 
   const allScheduled = useMemo(
     () =>
@@ -57,7 +60,6 @@ export default function LeagueCalendarWidget() {
     const day = moment(match.startAt).startOf('day');
     return day.isSameOrAfter(startDate) && day.isSameOrBefore(endDate);
   });
-
   const handlePrevWeek = () => {
     setStartDate((d) => d.clone().subtract(7, 'days'));
   };
@@ -114,7 +116,7 @@ export default function LeagueCalendarWidget() {
         <div className="hidden md:block">
           <hr className="border-0 border-t border-[#E4E4E4]" />
         </div>
-        <div className="flex flex-col gap-[15px]">
+        <div className="flex min-h-[460px] flex-col gap-[15px]">
           {loading && allScheduled.length === 0 && (
             <div className="space-y-4">
               <ShimmerLine height="76px" />

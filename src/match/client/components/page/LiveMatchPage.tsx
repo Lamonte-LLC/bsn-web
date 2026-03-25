@@ -9,8 +9,9 @@ import MatchInfoCard from '@/match/components/MatchInfoCard';
 import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import WSCBlazeSDK from '@/shared/client/components/wsc/WSCBlazeSDK';
-import { MatchLiveStreamVideo } from '../media/MatchLiveStreamVideo';
-import WSCBsnWidget from '@/highlights/client/components/WSCBsnWidget';
+import { LiveMatchStream } from '../media/LiveMatchStream';
+import WSCMoments from '@/highlights/client/components/WSCMoments';
+import MatchBoxScoreWidget from '../../containers/MatchBoxScoreWidget';
 
 type Props = {
   match: MatchType;
@@ -34,7 +35,13 @@ export default function LiveMatchPage({ match }: Props) {
       <div className="-mt-[170px] md:-mt-[316px]">
         <div className="container">
           <div className="mb-[26px] mx-auto md:mb-[40px] md:w-[688px]">
-            <MatchLiveStreamVideo src={match.streamUrl ?? ''} />
+            <LiveMatchStream
+              streamUrl={
+                match.streamUrl ??
+                match.homeTeam.streamUrl ??
+                match.visitorTeam.streamUrl
+              }
+            />
           </div>
         </div>
       </div>
@@ -58,17 +65,12 @@ export default function LiveMatchPage({ match }: Props) {
                     <div className="flex flex-row justify-between items-center mb-[30px]">
                       <div>
                         <h3 className="text-[22px] text-black md:text-[24px]">
-                          Highlights
+                          Mejores jugadas
                         </h3>
                       </div>
                     </div>
                     <div>
-                      <WSCBsnWidget
-                        id={`match-highlights-widget-${match.providerId}`}
-                        labels={[`g-${match.providerId}`]}
-                        orderType="RecentlyUpdatedFirst"
-                        contentType="moment"
-                      />
+                      <WSCMoments />
                     </div>
                   </div>
                   {/* <div className="mb-6 md:mb-10 lg:mb-15">
@@ -106,7 +108,11 @@ export default function LiveMatchPage({ match }: Props) {
               </div>
             </div>
           </TabPanel>
-          <TabPanel></TabPanel>
+          <TabPanel>
+            <div className="container">
+              <MatchBoxScoreWidget match={match} usePolling />
+            </div>
+          </TabPanel>
         </TabPanels>
       </TabGroup>
     </FullWidthLayout>

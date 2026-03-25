@@ -12,7 +12,7 @@ import { MatchType } from '@/match/types';
 import MatchYoutubeVideoCard from '../card/MatchYoutubeVideoCard';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import WSCBlazeSDK from '@/shared/client/components/wsc/WSCBlazeSDK';
-import WSCBsnWidget from '@/highlights/client/components/WSCBsnWidget';
+import WSCMoments from '@/highlights/client/components/WSCMoments';
 
 type MatchPlayerBoxScore = {
   player: {
@@ -155,12 +155,7 @@ export default function CompletedMatchPage({
                       </div>
                     </div>
                     <div>
-                      <WSCBsnWidget
-                        id={`match-highlights-widget-${match.providerId}`}
-                        labels={[`g-${match.providerId}`]}
-                        orderType="RecentlyUpdatedFirst"
-                        contentType="moment"
-                      />
+                      <WSCMoments />
                     </div>
                   </div>
                   <div className="mb-6 md:mb-10 lg:mb-15">

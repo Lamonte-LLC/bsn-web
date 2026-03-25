@@ -10,6 +10,7 @@ export type MatchTeamCompetitorType = {
     won: number;
     lost: number;
   },
+  streamUrl?: string;
   ticketUrl?: string;
 }
 

@@ -14,7 +14,6 @@ export function MatchLiveStreamVideo({ src }: Props) {
   const [committedSrc, setCommittedSrc] = useState(src);
   const [status, setStatus] = useState<Status>('loading');
 
-  // Reset to loading when src changes (during render, not inside an effect)
   if (committedSrc !== src) {
     setCommittedSrc(src);
     setStatus('loading');
@@ -35,7 +34,6 @@ export function MatchLiveStreamVideo({ src }: Props) {
       return () => hls.destroy();
     }
 
-    // Native HLS support (Safari)
     if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = src;
       const onCanPlay = () => setStatus('ready');
@@ -48,7 +46,6 @@ export function MatchLiveStreamVideo({ src }: Props) {
       };
     }
 
-    // Browser doesn't support HLS
     queueMicrotask(() => setStatus('error'));
   }, [src]);
 
@@ -70,9 +67,11 @@ export function MatchLiveStreamVideo({ src }: Props) {
       {status === 'error' && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black">
           <figure className="mb-4">
-            <img src="/assets/images/stream-error.png" />
+            <img src="/assets/images/stream-error.png" alt="" />
           </figure>
-          <span className="text-[rgba(255,255,255,0.5)] text-base md:text-lg">Transmisión no disponible por el momento.</span>
+          <span className="text-[rgba(255,255,255,0.5)] text-base md:text-lg">
+            Transmisión no disponible por el momento.
+          </span>
         </div>
       )}
     </div>
