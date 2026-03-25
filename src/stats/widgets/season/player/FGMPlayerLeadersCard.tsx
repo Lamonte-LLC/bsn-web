@@ -16,6 +16,7 @@ const fetchTopPlayerLeaders = async (): Promise<TopPlayerLeaderStatsType[]> => {
   const { data, error } = await getClient().query<PlayerLeadersResponse>({
     query: SEASON_TOP_PLAYER_LEADER_STATS_BY_CATEGORY,
     variables: { statsCode: 'FIELD_GOALS_AVG', first: ITEMS_PER_PAGE },
+    fetchPolicy: 'network-only',
   });
 
   if (error) {

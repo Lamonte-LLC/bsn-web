@@ -2,22 +2,33 @@
 
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
-import { useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
+import { useRef, useEffect, forwardRef } from 'react';
 
 type Props<T> = {
   data: T[];
   render: (item: T, index: number) => React.ReactNode;
   keyExtractor?: (item: T, index: number) => string;
   initialSlide?: number;
+  onEdge?: (direction: 'left' | 'right') => void;
+  onSlideChange?: (index: number, total: number) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function RecentCalendarSliderInner<T>({ data, render, keyExtractor, initialSlide = 0 }: Props<T>, _ref: any) {
+function RecentCalendarSliderInner<T>({
+  data,
+  render,
+  keyExtractor,
+  initialSlide = 0,
+  onEdge,
+  onSlideChange,
+}: Props<T>, _ref: any) {
   const sliderRef = useRef<Slider>(null);
+  const initialSlideAppliedRef = useRef(false);
 
   useEffect(() => {
-    if (initialSlide > 0) {
+    if (!initialSlideAppliedRef.current && initialSlide > 0) {
       sliderRef.current?.slickGoTo(initialSlide, true);
+      initialSlideAppliedRef.current = true;
     }
   }, [initialSlide]);
 
@@ -40,6 +51,10 @@ function RecentCalendarSliderInner<T>({ data, render, keyExtractor, initialSlide
       },
     ],
     className: 'recent-calendar-slider',
+    onEdge,
+    afterChange: (current: number) => {
+      onSlideChange?.(current, data.length);
+    },
   };
 
   return (

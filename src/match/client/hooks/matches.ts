@@ -6,20 +6,86 @@ import {
 import { MatchType } from '@/match/types';
 import { useQuery } from '@apollo/client/react';
 import moment from 'moment';
+import { useCallback, useMemo, useState } from 'react';
 
 type RecentCalendarResponse = {
   matches: MatchType[];
 };
 
-export function useRecentCalendar(usePolling = false) {
-  const fromDate = moment().subtract(90, 'days').format('YYYY-MM-DD');
-  const toDate = moment().add(90, 'days').format('YYYY-MM-DD');
+type RecentCalendarOptions = {
+  usePolling?: boolean;
+  daysBefore?: number;
+  daysAfter?: number;
+};
 
-  const { data, loading, error } = useQuery<RecentCalendarResponse>(
+type CalendarRange = {
+  fromDate: string;
+  toDate: string;
+};
+
+let sharedLoadedRange: CalendarRange | null = null;
+
+const getEarlierDate = (a: string, b: string) =>
+  moment(a).isBefore(moment(b)) ? a : b;
+
+const getLaterDate = (a: string, b: string) =>
+  moment(a).isAfter(moment(b)) ? a : b;
+
+const mergeRanges = (
+  base: CalendarRange,
+  extra: CalendarRange | null,
+): CalendarRange => {
+  if (!extra) return base;
+
+  return {
+    fromDate: getEarlierDate(base.fromDate, extra.fromDate),
+    toDate: getLaterDate(base.toDate, extra.toDate),
+  };
+};
+
+const mergeMatches = (prev: MatchType[], next: MatchType[]) => {
+  const map = new Map<string, MatchType>();
+
+  [...prev, ...next].forEach((match) => {
+    const key =
+      match.providerId ||
+      `${match.startAt}-${match.homeTeam.code}-${match.visitorTeam.code}`;
+    map.set(key, match);
+  });
+
+  return Array.from(map.values());
+};
+
+export function useRecentCalendar(
+  optionsOrPolling: RecentCalendarOptions | boolean = false,
+) {
+  const options: RecentCalendarOptions =
+    typeof optionsOrPolling === 'boolean'
+      ? { usePolling: optionsOrPolling }
+      : optionsOrPolling;
+
+  const usePolling = options.usePolling ?? false;
+  const daysBefore = options.daysBefore ?? 3;
+  const daysAfter = options.daysAfter ?? 3;
+
+  const initialRange = useMemo<CalendarRange>(() => {
+    const fromDate = moment().subtract(daysBefore, 'days').format('YYYY-MM-DD');
+    const toDate = moment().add(daysAfter, 'days').format('YYYY-MM-DD');
+    return mergeRanges({ fromDate, toDate }, sharedLoadedRange);
+  }, [daysBefore, daysAfter]);
+
+  const [loadedRange, setLoadedRange] = useState<CalendarRange>(initialRange);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+
+  // Share loaded range between widget instances/routes during the same session.
+  sharedLoadedRange = mergeRanges(initialRange, sharedLoadedRange);
+
+  const { data, loading, error, fetchMore } = useQuery<RecentCalendarResponse>(
     RECENT_CALENDAR,
     {
-      variables: { fromDate, toDate },
-      fetchPolicy: 'network-only',
+      variables: initialRange,
+      fetchPolicy: 'cache-first',
+      nextFetchPolicy: 'cache-first',
       pollInterval: usePolling ? 30 * 1000 : 0,
     },
   );
@@ -28,7 +94,62 @@ export function useRecentCalendar(usePolling = false) {
     console.error(error);
   }
 
-  return { data: data?.matches ?? [], loading, error };
+  const fetchRange = useCallback(
+    async (range: CalendarRange) => {
+      setIsFetchingMore(true);
+      try {
+        await fetchMore({
+          variables: range,
+          updateQuery(prev, { fetchMoreResult }) {
+            if (!fetchMoreResult) return prev;
+            return {
+              matches: mergeMatches(
+                prev.matches ?? [],
+                fetchMoreResult.matches ?? [],
+              ),
+            };
+          },
+        });
+      } finally {
+        setIsFetchingMore(false);
+      }
+    },
+    [fetchMore],
+  );
+
+  const ensureDateRangeLoaded = useCallback(
+    async (fromDate: string, toDate: string) => {
+      let nextRange = { ...loadedRange };
+
+      if (moment(fromDate).isBefore(moment(loadedRange.fromDate))) {
+        await fetchRange({ fromDate, toDate: loadedRange.fromDate });
+        nextRange.fromDate = fromDate;
+      }
+
+      if (moment(toDate).isAfter(moment(loadedRange.toDate))) {
+        await fetchRange({ fromDate: loadedRange.toDate, toDate });
+        nextRange.toDate = toDate;
+      }
+
+      if (
+        nextRange.fromDate !== loadedRange.fromDate ||
+        nextRange.toDate !== loadedRange.toDate
+      ) {
+        setLoadedRange(nextRange);
+        sharedLoadedRange = mergeRanges(nextRange, sharedLoadedRange);
+      }
+    },
+    [fetchRange, loadedRange],
+  );
+
+  return {
+    data: data?.matches ?? [],
+    loading,
+    error,
+    isFetchingMore,
+    loadedRange,
+    ensureDateRangeLoaded,
+  };
 }
 
 type MatchTeamPlayersBoxScoreResponse = {

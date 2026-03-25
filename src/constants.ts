@@ -25,6 +25,8 @@ export const MATCH_STATUS = {
   ONCOURT: 'ONCOURT',
   STANDBY: 'STANDBY',
   COUNTDOWN: 'COUNTDOWN',
+  /** Pre-live / waiting — treat like live for match page UI */
+  PENDING: 'PENDING',
 };
 
 export const DATE_ISO_FORMAT = 'YYYY-MM-DD';

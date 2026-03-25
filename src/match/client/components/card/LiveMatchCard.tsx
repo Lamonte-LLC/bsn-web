@@ -3,8 +3,6 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import Lottie from 'lottie-react';
-import moment from 'moment';
-
 import {
   Card,
   CardBody,
@@ -14,6 +12,7 @@ import {
 import MatchCompetitor from '../competitor/MatchCompetitor';
 import animationLiveStreamData from './live-stream.json';
 import { getFirstWord } from '@/utils/text';
+import { formatGameClockDisplay } from '@/utils/game-clock';
 import { MATCH_STATUS } from '@/constants';
 
 type Props = {
@@ -59,12 +58,10 @@ export default function LiveMatchCard({
   isFinals = false,
   finalsDescription = '',
 }: Props) {
-  const currentPeriodTime = useMemo(() => {
-    if (!currentTime) {
-      return '00:00';
-    }
-    return moment(currentTime, 'mm:ss:SS').format('m:ss');
-  }, [currentTime]);
+  const currentPeriodTime = useMemo(
+    () => formatGameClockDisplay(currentTime),
+    [currentTime],
+  );
 
   const currentStatusLabel = useMemo(() => {
     let statusLabel = overtimePeriods > 0 ? 'OT' : `Q${currentQuarter}`;
@@ -80,6 +77,8 @@ export default function LiveMatchCard({
   const hasYouTube = lowerMedia.includes('youtube');
   const hasTelemundo = lowerMedia.includes('telemundo');
 
+  const statusU = status.toUpperCase();
+
   return (
     <Card className="w-[220px] md:w-[308px]">
       <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-[15px] py-[8px] md:mx-[20px]">
@@ -93,50 +92,56 @@ export default function LiveMatchCard({
             />
             {![
               MATCH_STATUS.READY,
+              MATCH_STATUS.PENDING,
               MATCH_STATUS.DELAYED,
               MATCH_STATUS.PERIOD_BREAK,
               MATCH_STATUS.INTERRUPTED,
               MATCH_STATUS.RESCHEDULED,
-            ].includes(status) && (
+            ].includes(statusU) && (
               <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 {currentStatusLabel} - {currentPeriodTime}
               </p>
             )}
-            {status === MATCH_STATUS.READY && (
+            {statusU === MATCH_STATUS.READY && (
               <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Por comenzar
               </p>
             )}
-            {status === MATCH_STATUS.DELAYED && (
+            {statusU === MATCH_STATUS.PENDING && (
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
+                En espera
+              </p>
+            )}
+            {statusU === MATCH_STATUS.DELAYED && (
               <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Atrasado
               </p>
             )}
-            {status === MATCH_STATUS.PERIOD_BREAK &&
+            {statusU === MATCH_STATUS.PERIOD_BREAK &&
               overtimePeriods === 0 &&
               currentQuarter === '2' && (
                 <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                   Mediotiempo
                 </p>
               )}
-            {status === MATCH_STATUS.PERIOD_BREAK &&
+            {statusU === MATCH_STATUS.PERIOD_BREAK &&
               overtimePeriods === 0 &&
               currentQuarter !== '2' && (
                 <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                   Fin de Q{currentQuarter}
                 </p>
               )}
-            {status === MATCH_STATUS.PERIOD_BREAK && overtimePeriods > 0 && (
+            {statusU === MATCH_STATUS.PERIOD_BREAK && overtimePeriods > 0 && (
               <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Fin de OT{overtimePeriods > 1 ? overtimePeriods : ''}
               </p>
             )}
-            {status === MATCH_STATUS.INTERRUPTED && (
+            {statusU === MATCH_STATUS.INTERRUPTED && (
               <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Interrumpido
               </p>
             )}
-            {status === MATCH_STATUS.RESCHEDULED && (
+            {statusU === MATCH_STATUS.RESCHEDULED && (
               <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
                 Reprogramado
               </p>
