@@ -308,6 +308,7 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
       await getClient().query<MatchLeadersStatsResponse>({
         query: MATCH_LEADERS_STATS,
         variables: { matchProviderId: matchProviderId, first: 3 },
+        fetchPolicy: 'network-only',
       });
 
     response.pointsLeaders = matchLeadersStatsData?.pointsLeaders.edges.map(
