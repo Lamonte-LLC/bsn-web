@@ -6,8 +6,6 @@ import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import CompletedMatchCardBasic from '@/match/components/card/CompletedMatchCardBasic';
 import MatchInfoCard from '@/match/components/MatchInfoCard';
 import ScheduledMatchScoreBoard from '@/match/components/scoreboard/ScheduledMatchScoreBoard';
-import MatchTeamStatsComparison from '@/match/components/stats/MatchTeamStatsComparison';
-import type { MatchTeamComparisonBoxScore } from '@/match/components/stats/MatchTeamStatsComparison';
 import { MatchType } from '@/match/types';
 import MatchFeaturedPlayers from '../MatchFeaturedPlayers';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
@@ -25,8 +23,6 @@ type LeadersCategoryStatsType = {
 
 type Props = {
   match: MatchType;
-  homeTeamBoxScore: MatchTeamComparisonBoxScore;
-  visitorTeamBoxScore: MatchTeamComparisonBoxScore;
   headToHeadMatches: MatchType[];
   homeTeamPointsLeaders: LeadersCategoryStatsType[];
   homeTeamAssistsLeaders: LeadersCategoryStatsType[];
@@ -38,8 +34,6 @@ type Props = {
 
 export default function ScheduledMatchPage({
   match,
-  homeTeamBoxScore,
-  visitorTeamBoxScore,
   headToHeadMatches,
   homeTeamPointsLeaders,
   homeTeamAssistsLeaders,
@@ -215,14 +209,6 @@ export default function ScheduledMatchPage({
                   venue={{ name: match.venue?.name ?? '' }}
                   channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
                   ticketUrl={match.homeTeam.ticketUrl}
-                />
-              </div>
-              <div className="mb-6 md:mb-10 lg:mb-15">
-                <MatchTeamStatsComparison
-                  homeTeam={{ code: match.homeTeam.code }}
-                  visitorTeam={{ code: match.visitorTeam.code }}
-                  homeTeamBoxScore={homeTeamBoxScore}
-                  visitorTeamBoxScore={visitorTeamBoxScore}
                 />
               </div>
             </div>

@@ -310,24 +310,6 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
       };
     }
 
-    const { data: matchTeamsBoxScoreData } =
-      await getClient().query<MatchTeamsBoxScoreResponse>({
-        query: MATCH_TEAMS_BOXSCORE,
-        variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
-      });
-
-    const matchTeamsBoxScore = matchTeamsBoxScoreData?.matchTeamsBoxscore;
-
-    if (matchTeamsBoxScore == null) {
-      console.error(
-        'No match teams boxscore data found for provider ID:',
-        matchProviderId,
-      );
-      throw new Error('Match teams boxscore not found');
-    }
-
-    applyMatchTeamsBoxscoreToResponse(response, matchTeamsBoxScore);
-
     const { data: headToHeadMatchesData } =
       await getClient().query<HeadToHeadMatchesResponse>({
         query: HEAD_TO_HEAD_MATCHES,
@@ -491,8 +473,6 @@ export default async function PartidoPage({
       ) && (
         <ScheduledMatchPage
           match={data.match}
-          homeTeamBoxScore={data.homeTeamBoxScore}
-          visitorTeamBoxScore={data.visitorTeamBoxScore}
           headToHeadMatches={data.headToHeadMatches}
           homeTeamPointsLeaders={data.homeTeamPointsLeaders}
           homeTeamAssistsLeaders={data.homeTeamAssistsLeaders}
