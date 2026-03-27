@@ -14,6 +14,9 @@ import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayou
 import WSCBlazeSDK from '@/shared/client/components/wsc/WSCBlazeSDK';
 import MatchWscStoriesWidget from '../MatchWscStoriesWidget';
 
+/** Desactivado: tabla de resultado por parcial (Q1–Q4); reactivar cuando datos/API estén listos. */
+const SHOW_MATCH_QUARTER_SCOREBOARD = false;
+
 type MatchPlayerBoxScore = {
   player: {
     providerId: string;
@@ -110,42 +113,47 @@ export default function CompletedMatchPage({
                       ticketUrl={match.homeTeam.ticketUrl}
                     />
                   </div>
-                  <div className="mb-6 md:mb-10 lg:mb-15">
-                    <div className="flex flex-row justify-between items-center">
-                      <div>
-                        <h3 className="text-[22px] text-black md:text-[24px]">
-                          Resultado
-                        </h3>
+                  {SHOW_MATCH_QUARTER_SCOREBOARD && (
+                    <div className="mb-6 md:mb-10 lg:mb-15">
+                      <div className="flex flex-row justify-between items-center">
+                        <div>
+                          <h3 className="text-[22px] text-black md:text-[24px]">
+                            Resultado
+                          </h3>
+                        </div>
                       </div>
+                      <MatchQuarterScoreBoard
+                        homeTeam={{
+                          code: match.homeTeam.code,
+                          nickname: match.homeTeam.nickname,
+                          competitionStandings: {
+                            won: match.homeTeam.competitionStandings?.won ?? 0,
+                            lost:
+                              match.homeTeam.competitionStandings?.lost ?? 0,
+                          },
+                        }}
+                        visitorTeam={{
+                          code: match.visitorTeam.code,
+                          nickname: match.visitorTeam.nickname,
+                          competitionStandings: {
+                            won:
+                              match.visitorTeam.competitionStandings?.won ?? 0,
+                            lost:
+                              match.visitorTeam.competitionStandings?.lost ??
+                              0,
+                          },
+                        }}
+                        quarters={
+                          match.periods?.map((period) => ({
+                            periodNumber: period.periodNumber,
+                            periodType: period.periodType,
+                            homeTeam: { score: period.homeTeam.score },
+                            visitorTeam: { score: period.visitorTeam.score },
+                          })) ?? []
+                        }
+                      />
                     </div>
-                    <MatchQuarterScoreBoard
-                      homeTeam={{
-                        code: match.homeTeam.code,
-                        nickname: match.homeTeam.nickname,
-                        competitionStandings: {
-                          won: match.homeTeam.competitionStandings?.won ?? 0,
-                          lost: match.homeTeam.competitionStandings?.lost ?? 0,
-                        },
-                      }}
-                      visitorTeam={{
-                        code: match.visitorTeam.code,
-                        nickname: match.visitorTeam.nickname,
-                        competitionStandings: {
-                          won: match.visitorTeam.competitionStandings?.won ?? 0,
-                          lost:
-                            match.visitorTeam.competitionStandings?.lost ?? 0,
-                        },
-                      }}
-                      quarters={
-                        match.periods?.map((period) => ({
-                          periodNumber: period.periodNumber,
-                          periodType: period.periodType,
-                          homeTeam: { score: period.homeTeam.score },
-                          visitorTeam: { score: period.visitorTeam.score },
-                        })) ?? []
-                      }
-                    />
-                  </div>
+                  )}
                   <div className="mb-6 md:mb-10 lg:mb-15">
                     <div className="flex flex-row justify-between items-center mb-[30px]">
                       <div>
