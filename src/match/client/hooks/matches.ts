@@ -199,7 +199,8 @@ export function useMatchTeamPlayersBoxscore(
         providerTeamId,
       },
       fetchPolicy: 'network-only',
-      pollInterval: usePolling ? 120 * 1000 : 0, // 120 seconds in milliseconds
+      pollInterval: usePolling ? 15 * 1000 : 0, // 15 seconds in milliseconds
+      notifyOnNetworkStatusChange: false,
     },
   );
 
@@ -218,7 +219,7 @@ export function useMatch(matchProviderId: string, usePoll = false) {
   const { data, loading, error } = useQuery<MatchResponse>(MATCH, {
     variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
     fetchPolicy: 'network-only',
-    pollInterval: usePoll ? 30 * 1000 : 0, // 30 seconds in milliseconds
+    pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
     notifyOnNetworkStatusChange: false,
   });
 

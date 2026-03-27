@@ -77,7 +77,7 @@ export default function LiveMatchCard({
   const hasYouTube = lowerMedia.includes('youtube');
   const hasTelemundo = lowerMedia.includes('telemundo');
 
-  const statusU = status.toUpperCase();
+  const statusU = status?.toUpperCase() ?? '';
 
   return (
     <Card className="w-[220px] md:w-[308px]">
