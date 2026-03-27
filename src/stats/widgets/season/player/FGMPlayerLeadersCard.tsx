@@ -49,7 +49,7 @@ export default async function FGMPlayerLeadersCard() {
             name: item.player.teamCode,
           },
         },
-        statValue: numeral(item.value).format('0.0'),
+        statValue: numeral(item.value).format('0%'),
       }))}
     />
   );

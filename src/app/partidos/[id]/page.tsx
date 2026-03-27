@@ -212,49 +212,6 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
     threePointersMadeLeaders: [],
   };
 
-  if (
-    [
-      MATCH_STATUS.IN_PROGRESS,
-      MATCH_STATUS.PERIOD_BREAK,
-      MATCH_STATUS.PENDING,
-      MATCH_STATUS.READY,
-      MATCH_STATUS.SCHEDULED,
-    ].includes(match.status)
-  ) {
-    const { data: matchTeamsBoxScoreData } =
-      await getClient().query<MatchTeamsBoxScoreResponse>({
-        query: MATCH_TEAMS_BOXSCORE,
-        variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
-      });
-
-    const matchTeamsBoxScore = matchTeamsBoxScoreData?.matchTeamsBoxscore;
-
-    if (matchTeamsBoxScore == null) {
-      console.error(
-        'No match teams boxscore data found for provider ID:',
-        matchProviderId,
-      );
-      throw new Error('Match teams boxscore not found');
-    }
-
-    response.homeTeamBoxScore = {
-      points: matchTeamsBoxScore.homeTeamBoxscore?.points ?? 0,
-      rebounds: matchTeamsBoxScore.homeTeamBoxscore?.reboundsTotal ?? 0,
-      assists: matchTeamsBoxScore.homeTeamBoxscore?.assists ?? 0,
-      steals: matchTeamsBoxScore.homeTeamBoxscore?.steals ?? 0,
-      blocks: matchTeamsBoxScore.homeTeamBoxscore?.blocks ?? 0,
-      turnovers: matchTeamsBoxScore.homeTeamBoxscore?.turnovers ?? 0,
-    };
-    response.visitorTeamBoxScore = {
-      points: matchTeamsBoxScore.visitorTeamBoxscore?.points ?? 0,
-      rebounds: matchTeamsBoxScore.visitorTeamBoxscore?.reboundsTotal ?? 0,
-      assists: matchTeamsBoxScore.visitorTeamBoxscore?.assists ?? 0,
-      steals: matchTeamsBoxScore.visitorTeamBoxscore?.steals ?? 0,
-      blocks: matchTeamsBoxScore.visitorTeamBoxscore?.blocks ?? 0,
-      turnovers: matchTeamsBoxScore.visitorTeamBoxscore?.turnovers ?? 0,
-    };
-  }
-
   if (match.status === MATCH_STATUS.SCHEDULED) {
     const [{ data: homeTeamDetail }, { data: visitorTeamDetail }] =
       await Promise.all([
@@ -290,6 +247,39 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
         },
       };
     }
+
+    const { data: matchTeamsBoxScoreData } =
+      await getClient().query<MatchTeamsBoxScoreResponse>({
+        query: MATCH_TEAMS_BOXSCORE,
+        variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
+      });
+
+    const matchTeamsBoxScore = matchTeamsBoxScoreData?.matchTeamsBoxscore;
+
+    if (matchTeamsBoxScore == null) {
+      console.error(
+        'No match teams boxscore data found for provider ID:',
+        matchProviderId,
+      );
+      throw new Error('Match teams boxscore not found');
+    }
+
+    response.homeTeamBoxScore = {
+      points: matchTeamsBoxScore.homeTeamBoxscore?.points ?? 0,
+      rebounds: matchTeamsBoxScore.homeTeamBoxscore?.reboundsTotal ?? 0,
+      assists: matchTeamsBoxScore.homeTeamBoxscore?.assists ?? 0,
+      steals: matchTeamsBoxScore.homeTeamBoxscore?.steals ?? 0,
+      blocks: matchTeamsBoxScore.homeTeamBoxscore?.blocks ?? 0,
+      turnovers: matchTeamsBoxScore.homeTeamBoxscore?.turnovers ?? 0,
+    };
+    response.visitorTeamBoxScore = {
+      points: matchTeamsBoxScore.visitorTeamBoxscore?.points ?? 0,
+      rebounds: matchTeamsBoxScore.visitorTeamBoxscore?.reboundsTotal ?? 0,
+      assists: matchTeamsBoxScore.visitorTeamBoxscore?.assists ?? 0,
+      steals: matchTeamsBoxScore.visitorTeamBoxscore?.steals ?? 0,
+      blocks: matchTeamsBoxScore.visitorTeamBoxscore?.blocks ?? 0,
+      turnovers: matchTeamsBoxScore.visitorTeamBoxscore?.turnovers ?? 0,
+    };
 
     const { data: headToHeadMatchesData } =
       await getClient().query<HeadToHeadMatchesResponse>({
@@ -402,11 +392,7 @@ export default async function PartidoPage({
   return (
     <>
       {isLiveMatchPageStatus(data.match.status) && (
-        <LiveMatchPage
-          match={data.match}
-          homeTeamBoxScore={data.homeTeamBoxScore}
-          visitorTeamBoxScore={data.visitorTeamBoxScore}
-        />
+        <LiveMatchPage match={data.match} />
       )}
       {[MATCH_STATUS.COMPLETE, MATCH_STATUS.FINISHED].includes(
         data.match.status,

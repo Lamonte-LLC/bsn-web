@@ -15,3 +15,24 @@ export function isLiveMatchPageStatus(status: string | undefined): boolean {
     MATCH_STATUS.READY,
   ].includes(s);
 }
+
+export function isLiveMatch(matchStatus?: string): boolean {
+  if (matchStatus == null) {
+    return false;
+  }
+  return [
+    MATCH_STATUS.IN_PROGRESS,
+    MATCH_STATUS.PERIOD_BREAK,
+    MATCH_STATUS.PENDING,
+    MATCH_STATUS.READY,
+  ].includes(matchStatus.toUpperCase());
+}
+
+export function isCompletedMatch(matchStatus?: string): boolean {
+  if (matchStatus == null) {
+    return false;
+  }
+  return [MATCH_STATUS.COMPLETE, MATCH_STATUS.FINISHED].includes(
+    matchStatus.toUpperCase(),
+  );
+}

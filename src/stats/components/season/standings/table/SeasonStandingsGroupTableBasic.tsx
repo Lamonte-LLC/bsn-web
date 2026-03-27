@@ -79,7 +79,7 @@ export default function SeasonStandingsGroupTableBasic({ data }: Props) {
             </div>
             <div className="flex-none pl-2 pr-3 py-1 text-center w-12">
               <span className="font-barlow text-sm text-[rgba(0,0,0,0.9)]">
-                {numeral(row.pct).format('.000')}
+                {numeral(row.pct).format('0%')}
               </span>
             </div>
           </div>

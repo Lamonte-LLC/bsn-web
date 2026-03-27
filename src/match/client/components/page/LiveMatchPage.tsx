@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { MatchType } from '@/match/types';
-import LiveMatchScoreBoardWidget from '../../containers/LiveMatchScoreBoardWidget';
+import LiveMatchScoreBoardWidget from '../scoreboard/LiveMatchScoreBoardWidget';
 // import LiveMatchBasicBoxScoreBasicWidget from '../../containers/LiveMatchBoxScoreBasicWidget';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
@@ -12,7 +14,9 @@ import WSCBlazeSDK from '@/shared/client/components/wsc/WSCBlazeSDK';
 import { LiveMatchStream } from '../media/LiveMatchStream';
 import MatchWscStoriesWidget from '../MatchWscStoriesWidget';
 import MatchBoxScoreWidget from '../../containers/MatchBoxScoreWidget';
-import MatchTeamStatsComparison from '@/match/components/stats/MatchTeamStatsComparison';
+import MatchTeamStatsComparisonWidget from '../../widgets/MatchTeamStatsComparisonWidget';
+import { useMatch } from '../../hooks/matches';
+import { isCompletedMatch } from '@/match/utils/matchStatus';
 
 type Props = {
   match: MatchType;
@@ -34,7 +38,22 @@ type Props = {
   };
 };
 
-export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxScore }: Props) {
+export default function LiveMatchPage({ match }: Props) {
+  const router = useRouter();
+  const { data, loading, stopPolling } = useMatch(match.providerId, true);
+
+  useEffect(() => {
+    if (isCompletedMatch(data?.status)) {
+      router.refresh();
+    }
+  }, [data, router]);
+
+  useEffect(() => {
+    return () => {
+      stopPolling();
+    };
+  }, [stopPolling]);
+
   return (
     <FullWidthLayout
       divider
@@ -42,7 +61,7 @@ export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxS
         <section className="pb-[170px] md:pb-[310px]">
           <div className="container">
             <div className="mx-auto py-[32px] md:py-[42px] xl:py-[52px] lg:w-9/12 xl:w-8/12">
-              <LiveMatchScoreBoardWidget matchProviderId={match.providerId} />
+              <LiveMatchScoreBoardWidget match={match} loading={loading} />
             </div>
           </div>
         </section>
@@ -71,6 +90,9 @@ export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxS
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
               Box Score
             </Tab>
+            <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
+              Equipos
+            </Tab>
           </div>
         </TabList>
         <TabPanels>
@@ -87,7 +109,9 @@ export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxS
                       </div>
                     </div>
                     <div>
-                      <MatchWscStoriesWidget matchProviderId={match.providerId} />
+                      <MatchWscStoriesWidget
+                        matchProviderId={match.providerId}
+                      />
                     </div>
                   </div>
                   {/* <div className="mb-6 md:mb-10 lg:mb-15">
@@ -102,28 +126,6 @@ export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxS
                         venue={{ name: match.venue?.name ?? '' }}
                         channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
                         ticketUrl={match.homeTeam.ticketUrl}
-                      />
-                    </div>
-                    <div className="mb-6 md:mb-10 lg:mb-15">
-                      <MatchTeamStatsComparison
-                        homeTeam={{ code: match.homeTeam.code }}
-                        visitorTeam={{ code: match.visitorTeam.code }}
-                        homeTeamBoxScore={{
-                          points: homeTeamBoxScore?.points ?? 0,
-                          rebounds: homeTeamBoxScore?.rebounds ?? 0,
-                          assists: homeTeamBoxScore?.assists ?? 0,
-                          steals: homeTeamBoxScore?.steals ?? 0,
-                          blocks: homeTeamBoxScore?.blocks ?? 0,
-                          turnovers: homeTeamBoxScore?.turnovers ?? 0,
-                        }}
-                        visitorTeamBoxScore={{
-                          points: visitorTeamBoxScore?.points ?? 0,
-                          rebounds: visitorTeamBoxScore?.rebounds ?? 0,
-                          assists: visitorTeamBoxScore?.assists ?? 0,
-                          steals: visitorTeamBoxScore?.steals ?? 0,
-                          blocks: visitorTeamBoxScore?.blocks ?? 0,
-                          turnovers: visitorTeamBoxScore?.turnovers ?? 0,
-                        }}
                       />
                     </div>
                     <div className="mb-[30px] md:mb-[40px]">
@@ -150,6 +152,11 @@ export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxS
           <TabPanel>
             <div className="container">
               <MatchBoxScoreWidget match={match} usePolling />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="container">
+              <MatchTeamStatsComparisonWidget matchProviderId={match.providerId} />
             </div>
           </TabPanel>
         </TabPanels>

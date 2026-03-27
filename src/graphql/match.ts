@@ -187,6 +187,18 @@ export const MATCH = gql`
   }
 `;
 
+export const MATCH_STATUS = gql`
+  query findMatchStatus($geniusMatchId: Int!, $providerMatchId: String) {
+    match(geniusMatchId: $geniusMatchId, providerMatchId: $providerMatchId) {
+      id
+      geniusId
+      providerId
+      startAt
+      status
+    }
+  }
+`;
+
 export const GET_PLAYOFFS = gql`
   query getPlayoffs {
     playoffs {
@@ -239,8 +251,11 @@ export const MATCH_TEAMS_BOXSCORE = gql`
         turnovers
         steals
         blocks
-        foulsPersonal
         points
+        foulsPersonal
+        twoPointersMade
+        twoPointersAttempted
+        twoPointersPercentage
       }
       visitorTeamBoxscore {
         fieldGoalsMade
@@ -258,8 +273,11 @@ export const MATCH_TEAMS_BOXSCORE = gql`
         turnovers
         steals
         blocks
-        foulsPersonal
         points
+        foulsPersonal
+        twoPointersMade
+        twoPointersAttempted
+        twoPointersPercentage
       }
     }
   }

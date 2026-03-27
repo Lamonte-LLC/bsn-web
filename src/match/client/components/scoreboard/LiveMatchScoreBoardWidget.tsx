@@ -5,32 +5,36 @@ import Lottie from 'lottie-react';
 import Link from 'next/link';
 import { MATCH_DATE_FORMAT } from '@/constants';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import animationLiveStreamData from './live-stream.json';
+import animationLiveStreamData from '../../../../lottie/live-stream.json';
 import { formatDate } from '@/utils/date-formatter';
 import { getFirstWord } from '@/utils/text';
-import { useMatch } from '../hooks/matches';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { formatGameClockDisplay } from '@/utils/game-clock';
+import { MatchType } from '@/match/types';
 
 type Props = {
-  matchProviderId: string;
+  match?: MatchType;
+  loading?: boolean;
 };
 
-export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
-  const { data, loading } = useMatch(matchProviderId, true);
-
+export default function LiveMatchScoreBoardWidget({
+  match,
+  loading = true,
+}: Props) {
   const periodLabel = useMemo(() => {
-    if (!data) {
+    if (!match) {
       return '';
     }
 
     let label =
-      (data?.overtimePeriods ?? 0) > 0 ? 'OT' : `Q${data?.currentPeriod ?? 1}`;
-    if ((data?.overtimePeriods ?? 0) > 1) {
-      label += `${data?.overtimePeriods ?? 0}`;
+      (match?.overtimePeriods ?? 0) > 0
+        ? 'OT'
+        : `Q${match?.currentPeriod ?? 1}`;
+    if ((match?.overtimePeriods ?? 0) > 1) {
+      label += `${match?.overtimePeriods ?? 0}`;
     }
     return label;
-  }, [data]);
+  }, [match]);
 
   if (loading) {
     return (
@@ -75,36 +79,36 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
     <div>
       <div className="flex flex-row justify-between items-start gap-3 md:gap-4">
         <Link
-          href={`/equipos/${data?.visitorTeam.code ?? ''}`}
+          href={`/equipos/${match?.visitorTeam.code ?? ''}`}
           className="flex flex-col items-center gap-[7px] md:gap-[24px] md:flex-row"
         >
           <div className="hidden text-right md:block">
             <h4 className="text-white lg:text-[26px]/8">
-              {getFirstWord(data?.visitorTeam.nickname ?? '')}
+              {getFirstWord(match?.visitorTeam.nickname ?? '')}
             </h4>
             <p className="font-barlow text-[15px] text-[rgba(255,255,255,0.7)]">
-              {data?.visitorTeam.city ?? ''}
+              {match?.visitorTeam.city ?? ''}
             </p>
           </div>
           <div
             className="flex flex-row items-center justify-center border-2 rounded-full  h-[60px] w-[60px] md:h-[100px] md:w-[100px]"
             style={{
               borderColor:
-                data?.visitorTeam.color != null
-                  ? data.visitorTeam.color
+                match?.visitorTeam.color != null
+                  ? match.visitorTeam.color
                   : 'rgba(255, 255, 255, 0.5)',
             }}
           >
             <div className="scale-[0.6] md:scale-[1]">
               <TeamLogoAvatar
-                teamCode={data?.visitorTeam.code ?? ''}
+                teamCode={match?.visitorTeam.code ?? ''}
                 size={60}
               />
             </div>
           </div>
           <div className="md:hidden">
             <p className="text-[21px] text-white">
-              {data?.visitorTeam.code ?? ''}
+              {match?.visitorTeam.code ?? ''}
             </p>
           </div>
         </Link>
@@ -123,7 +127,7 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
           <div className="flex flex-row items-center justify-between gap-2">
             <div className="flex flex-row items-center justify-start gap-2 w-[54px] md:w-[100px]">
               <h4 className="text-[42px] text-white md:text-[64px]">
-                {data?.visitorTeam.score ?? 0}
+                {match?.visitorTeam.score ?? 0}
               </h4>
             </div>
             <div className="flex flex-row items-center justify-center gap-1">
@@ -136,52 +140,52 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
                 />
               </div>
               <p className="barlow-condensed font-semibold text-base text-white text-center md:text-[25px]">
-                {periodLabel} - {formatGameClockDisplay(data?.currentTime)}
+                {periodLabel} - {formatGameClockDisplay(match?.currentTime)}
               </p>
             </div>
             <div className="flex flex-row items-center justify-end gap-2 w-[54px] md:w-[100px]">
               <h4 className="text-[42px] text-white md:text-[64px]">
-                {data?.homeTeam.score ?? 0}
+                {match?.homeTeam.score ?? 0}
               </h4>
             </div>
           </div>
           <div className="md:-mt-6">
             <p className="font-barlow text-[13px] text-white text-center md:mb-2 md:text-[15px]">
-              {formatDate(data?.startAt, MATCH_DATE_FORMAT)}
+              {formatDate(match?.startAt, MATCH_DATE_FORMAT)}
             </p>
             <p className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.5)] text-center">
-              {data?.venue?.name ?? ''}
+              {match?.venue?.name ?? ''}
             </p>
           </div>
         </div>
         <Link
-          href={`/equipos/${data?.homeTeam.code ?? ''}`}
+          href={`/equipos/${match?.homeTeam.code ?? ''}`}
           className="flex flex-col items-center gap-[7px] md:gap-[24px] md:flex-row"
         >
           <div
             className="flex flex-row items-center justify-center border-2 rounded-full  h-[60px] w-[60px] md:h-[100px] md:w-[100px]"
             style={{
               borderColor:
-                data?.homeTeam.color != null
-                  ? data.homeTeam.color
+                match?.homeTeam.color != null
+                  ? match.homeTeam.color
                   : 'rgba(255, 255, 255, 0.5)',
             }}
           >
             <div className="scale-[0.6] md:scale-[1]">
-              <TeamLogoAvatar teamCode={data?.homeTeam.code ?? ''} size={60} />
+              <TeamLogoAvatar teamCode={match?.homeTeam.code ?? ''} size={60} />
             </div>
           </div>
           <div className="hidden text-left md:block">
             <h4 className="text-white lg:text-[26px]/8">
-              {getFirstWord(data?.homeTeam.nickname ?? '')}
+              {getFirstWord(match?.homeTeam.nickname ?? '')}
             </h4>
             <p className="font-barlow text-[15px] text-[rgba(255,255,255,0.7)]">
-              {data?.homeTeam.city ?? ''}
+              {match?.homeTeam.city ?? ''}
             </p>
           </div>
           <div className="md:hidden">
             <p className="text-[21px] text-white">
-              {data?.homeTeam.code ?? ''}
+              {match?.homeTeam.code ?? ''}
             </p>
           </div>
         </Link>

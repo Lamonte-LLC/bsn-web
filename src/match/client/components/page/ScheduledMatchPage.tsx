@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
+import { DEFAULT_MEDIA_PROVIDER, MATCH_STATUS } from '@/constants';
 import CompletedMatchCardBasic from '@/match/components/card/CompletedMatchCardBasic';
 import MatchInfoCard from '@/match/components/MatchInfoCard';
 import ScheduledMatchScoreBoard from '@/match/components/scoreboard/ScheduledMatchScoreBoard';
@@ -12,6 +12,11 @@ import MatchFeaturedPlayers from '../MatchFeaturedPlayers';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
+import { useMatchStatus } from '../../hooks/matches';
+import { useRouter } from 'next/navigation';
+import moment from 'moment';
+import { isToday } from '@/utils/date-utils';
+import { isLiveMatch } from '@/match/utils/matchStatus';
 
 type LeadersCategoryStatsType = {
   player: {
@@ -61,6 +66,25 @@ export default function ScheduledMatchPage({
   visitorTeamAssistsLeaders,
   visitorTeamReboundsLeaders,
 }: Props) {
+  const router = useRouter();
+  const { data, stopPolling } = useMatchStatus(match.providerId);
+
+  useEffect(() => {
+    if (data?.startAt) {
+      if (isToday(data.startAt)) {
+        if (isLiveMatch(data?.status)) {
+          router.refresh();
+        }
+      }
+    }
+  }, [data, router]);
+
+  useEffect(() => {
+    return () => {
+      stopPolling();
+    };
+  }, [stopPolling]);
+
   const homeTeamWon = useMemo(() => {
     let won = 0;
     headToHeadMatches.forEach((item) => {

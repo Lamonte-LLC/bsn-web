@@ -2,6 +2,8 @@ import {
   RECENT_CALENDAR,
   MATCH_TEAM_PLAYERS_BOXSCORE,
   MATCH,
+  MATCH_STATUS,
+  MATCH_TEAMS_BOXSCORE,
 } from '@/graphql/match';
 import { MatchType } from '@/match/types';
 import { useQuery } from '@apollo/client/react';
@@ -216,12 +218,13 @@ type MatchResponse = {
 };
 
 export function useMatch(matchProviderId: string, usePoll = false) {
-  const { data, loading, error } = useQuery<MatchResponse>(MATCH, {
-    variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
-    fetchPolicy: 'network-only',
-    pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
-    notifyOnNetworkStatusChange: false,
-  });
+  const { data, loading, error, startPolling, stopPolling } =
+    useQuery<MatchResponse>(MATCH, {
+      variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
+      fetchPolicy: 'network-only',
+      pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
+      notifyOnNetworkStatusChange: false,
+    });
 
   if (error) {
     console.error(error);
@@ -231,5 +234,51 @@ export function useMatch(matchProviderId: string, usePoll = false) {
     data: data?.match,
     loading,
     error,
+    startPolling,
+    stopPolling,
+  };
+}
+
+export function useMatchStatus(matchProviderId: string) {
+  const { data, loading, error, startPolling, stopPolling } =
+    useQuery<MatchResponse>(MATCH_STATUS, {
+      variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
+      fetchPolicy: 'network-only',
+      pollInterval: 15 * 1000, // 15 seconds in milliseconds
+      notifyOnNetworkStatusChange: false,
+    });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.match,
+    loading,
+    error,
+    startPolling,
+    stopPolling,
+  };
+}
+
+export function useMatchTeamsBoxscore(matchProviderId: string, usePoll = false) {
+  const { data, loading, error, startPolling, stopPolling } =
+    useQuery<MatchResponse>(MATCH_TEAMS_BOXSCORE, {
+      variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
+      fetchPolicy: 'network-only',
+      pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
+      notifyOnNetworkStatusChange: false,
+    });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.match,
+    loading,
+    error,
+    startPolling,
+    stopPolling,
   };
 }
