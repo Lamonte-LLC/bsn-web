@@ -20,6 +20,8 @@ async function fetchHeroNews(): Promise<NewsType | null> {
   const { data, error } = await getClient().query<LatestNewsResponse>({
     query: LATEST_NEWS,
     variables: { first: HERO_NEWS_BATCH },
+    fetchPolicy: 'network-only',
+    context: { fetchOptions: { cache: 'no-store' } },
   });
 
   if (error) {

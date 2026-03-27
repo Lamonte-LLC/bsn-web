@@ -22,6 +22,8 @@ const fetchSingleNews = async (slug: string): Promise<NewsType[]> => {
   const { data, error } = await getClient().query<LatestNewsResponse>({
     query: SINGLE_NEWS,
     variables: { first: NEWS_PER_PAGE, slug },
+    fetchPolicy: 'network-only',
+    context: { fetchOptions: { cache: 'no-store' } },
   });
 
   if (error) {

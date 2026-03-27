@@ -16,6 +16,8 @@ const fetchLatestNews = async (): Promise<NewsType[]> => {
   const { data, error } = await getClient().query<LatestNewsResponse>({
     query: LATEST_NEWS,
     variables: { first: NEWS_PER_PAGE },
+    fetchPolicy: 'network-only',
+    context: { fetchOptions: { cache: 'no-store' } },
   });
 
   if (error) {

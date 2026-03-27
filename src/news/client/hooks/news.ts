@@ -21,6 +21,8 @@ export function useNewsletter() {
     LATEST_NEWS,
     {
       variables: { first: PAGE_SIZE },
+      fetchPolicy: 'network-only',
+      context: { fetchOptions: { cache: 'no-store' } },
     },
   );
 
@@ -37,6 +39,7 @@ export function useNewsletter() {
         first: PAGE_SIZE,
         after: data?.news.pageInfo.endCursor,
       },
+      context: { fetchOptions: { cache: 'no-store' } },
       updateQuery(prev, { fetchMoreResult }) {
         if (!fetchMoreResult) return prev;
         return {
