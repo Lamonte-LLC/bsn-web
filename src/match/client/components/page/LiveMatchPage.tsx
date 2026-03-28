@@ -17,6 +17,7 @@ import MatchBoxScoreWidget from '../../containers/MatchBoxScoreWidget';
 import MatchTeamStatsComparisonWidget from '../../widgets/MatchTeamStatsComparisonWidget';
 import { useMatch } from '../../hooks/matches';
 import { isCompletedMatch } from '@/match/utils/matchStatus';
+import MatchQuarterScoreBoardWidget from '../../widgets/MatchQuarterScoreBoardWidget';
 
 type Props = {
   match: MatchType;
@@ -100,6 +101,9 @@ export default function LiveMatchPage({ match }: Props) {
             <div className="container">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6 md:mt-[30px] lg:mt-[40px]">
                 <div className="lg:col-span-8 lg:pr-16">
+                  <div className="mb-6 md:mb-10 lg:mb-15">
+                    <MatchQuarterScoreBoardWidget matchProviderId={match.providerId} />
+                  </div>
                   <div className="mb-6 md:mb-10 lg:mb-15">
                     <div className="flex flex-row justify-between items-center mb-[30px]">
                       <div>

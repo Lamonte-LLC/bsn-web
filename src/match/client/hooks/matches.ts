@@ -4,6 +4,7 @@ import {
   MATCH,
   MATCH_STATUS,
   MATCH_TEAMS_BOXSCORE,
+  MATCH_PERIODS_BOXSCORE,
 } from '@/graphql/match';
 import { MatchType } from '@/match/types';
 import { useQuery } from '@apollo/client/react';
@@ -264,6 +265,28 @@ export function useMatchStatus(matchProviderId: string) {
 export function useMatchTeamsBoxscore(matchProviderId: string, usePoll = false) {
   const { data, loading, error, startPolling, stopPolling } =
     useQuery<MatchResponse>(MATCH_TEAMS_BOXSCORE, {
+      variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
+      fetchPolicy: 'network-only',
+      pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
+      notifyOnNetworkStatusChange: false,
+    });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.match,
+    loading,
+    error,
+    startPolling,
+    stopPolling,
+  };
+}
+
+export function useMatchQuarterScoreBoard(matchProviderId: string, usePoll = false) {
+  const { data, loading, error, startPolling, stopPolling } =
+    useQuery<MatchResponse>(MATCH_PERIODS_BOXSCORE, {
       variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
       fetchPolicy: 'network-only',
       pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
