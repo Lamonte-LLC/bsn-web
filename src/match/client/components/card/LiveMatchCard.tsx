@@ -12,8 +12,7 @@ import {
 import MatchCompetitor from "../competitor/MatchCompetitor";
 import animationLiveStreamData from "./live-stream.json";
 import { getFirstWord } from "@/utils/text";
-import { formatGameClockDisplay } from "@/utils/game-clock";
-import { MATCH_STATUS } from "@/constants";
+import { getLiveScoreboardCenterLine } from "@/match/client/utils/calendarView";
 
 type Props = {
   matchProviderId?: string;
@@ -38,6 +37,8 @@ type Props = {
     };
   };
   status: string;
+  /** Opcional: alinea “Marcador final” con el proveedor en tarjetas del calendario. */
+  providerFixtureStatus?: string | null;
   currentQuarter?: string;
   currentTime?: string;
   mediaProvider?: string;
@@ -51,6 +52,7 @@ export default function LiveMatchCard({
   homeTeam,
   visitorTeam,
   status,
+  providerFixtureStatus,
   currentQuarter = "",
   currentTime = "0:00",
   mediaProvider = "",
@@ -58,26 +60,29 @@ export default function LiveMatchCard({
   isFinals = false,
   finalsDescription = "",
 }: Props) {
-  const currentPeriodTime = useMemo(
-    () => formatGameClockDisplay(currentTime),
-    [currentTime],
+  const headerLine = useMemo(
+    () =>
+      getLiveScoreboardCenterLine(
+        status,
+        providerFixtureStatus,
+        currentQuarter || undefined,
+        currentTime,
+        overtimePeriods,
+      ),
+    [
+      status,
+      providerFixtureStatus,
+      currentQuarter,
+      currentTime,
+      overtimePeriods,
+    ],
   );
-
-  const currentStatusLabel = useMemo(() => {
-    let statusLabel = overtimePeriods > 0 ? "OT" : `Q${currentQuarter}`;
-    if (overtimePeriods > 1) {
-      statusLabel += `${overtimePeriods}`;
-    }
-    return statusLabel;
-  }, [overtimePeriods, currentQuarter]);
 
   const lowerMedia = (mediaProvider || "").toLowerCase();
   const hasPunto2 =
     lowerMedia.includes("punto 2") || lowerMedia.includes("punto2");
   const hasYouTube = lowerMedia.includes("youtube");
   const hasTelemundo = lowerMedia.includes("telemundo");
-
-  const statusU = status?.toUpperCase() ?? "";
 
   const href = `/partidos/${matchProviderId}`;
 
@@ -96,62 +101,9 @@ export default function LiveMatchCard({
                 autoplay
                 style={{ width: "16px", height: "16px" }}
               />
-              {![
-                MATCH_STATUS.READY,
-                MATCH_STATUS.PENDING,
-                MATCH_STATUS.DELAYED,
-                MATCH_STATUS.PERIOD_BREAK,
-                MATCH_STATUS.INTERRUPTED,
-                MATCH_STATUS.RESCHEDULED,
-              ].includes(statusU) && (
-                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                  {currentStatusLabel} - {currentPeriodTime}
-                </p>
-              )}
-              {statusU === MATCH_STATUS.READY && (
-                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                  Por comenzar
-                </p>
-              )}
-              {statusU === MATCH_STATUS.PENDING && (
-                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                  En espera
-                </p>
-              )}
-              {statusU === MATCH_STATUS.DELAYED && (
-                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                  Atrasado
-                </p>
-              )}
-              {statusU === MATCH_STATUS.PERIOD_BREAK &&
-                overtimePeriods === 0 &&
-                currentQuarter === "2" && (
-                  <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                    Mediotiempo
-                  </p>
-                )}
-              {statusU === MATCH_STATUS.PERIOD_BREAK &&
-                overtimePeriods === 0 &&
-                currentQuarter !== "2" && (
-                  <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                    Fin de Q{currentQuarter}
-                  </p>
-                )}
-              {statusU === MATCH_STATUS.PERIOD_BREAK && overtimePeriods > 0 && (
-                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                  Fin de OT{overtimePeriods > 1 ? overtimePeriods : ""}
-                </p>
-              )}
-              {statusU === MATCH_STATUS.INTERRUPTED && (
-                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                  Interrumpido
-                </p>
-              )}
-              {statusU === MATCH_STATUS.RESCHEDULED && (
-                <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
-                  Reprogramado
-                </p>
-              )}
+              <p className="text-[15px] leading-[22px] text-white md:text-base md:leading-[24px]">
+                {headerLine}
+              </p>
             </div>
             <div className="flex flex-row items-center gap-2 flex-shrink-0">
               {hasPunto2 && (

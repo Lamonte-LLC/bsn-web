@@ -1,5 +1,10 @@
 import { gql } from '@apollo/client';
 
+/**
+ * Donde el partido expone `status`, varias queries también piden `providerFixtureStatus`
+ * (estado crudo Sportradar/DataCore en el backend) para calendarios y `/partidos/[id]`
+ * sin depender solo del `status` interno mapeado.
+ */
 export const COMPLETED_MATCHES = gql`
   query findCompletedMatches($fromDate: String!, $toDate: String!) {
     matches(fromDate: $fromDate, toDate: $toDate) {
@@ -8,6 +13,7 @@ export const COMPLETED_MATCHES = gql`
       startAt
       endAt
       status
+      providerFixtureStatus
       homeTeam {
         code
         name
@@ -81,6 +87,8 @@ export const SCHEDULED_MATCHES = gql`
       phaseName
       gameNumber
       finalsDescription
+      status
+      providerFixtureStatus
     }
   }
 `;
@@ -91,6 +99,7 @@ export const RECENT_CALENDAR = gql`
       providerId
       startAt
       status
+      providerFixtureStatus
       currentPeriod
       currentTime
       homeTeam {
@@ -141,6 +150,7 @@ export const MATCH = gql`
       providerId
       startAt
       status
+      providerFixtureStatus
       currentPeriod
       currentTime
       homeTeam {
@@ -379,6 +389,7 @@ export const NEXT_SCHEDULED_MATCH_FOR_TEAM = gql`
             }
           }
           status
+          providerFixtureStatus
           channel
           ticketUrl
         }
@@ -407,6 +418,7 @@ export const TEAM_CALENDAR = gql`
             score
           }
           status
+          providerFixtureStatus
           overtimePeriods
           youtube
         }
@@ -422,6 +434,7 @@ export const TEAM_LIVE_MATCH = gql`
       providerId
       startAt
       status
+      providerFixtureStatus
       currentPeriod
       currentTime
       homeTeam {
@@ -457,6 +470,7 @@ export const TEAM_LIVE_MATCH = gql`
 `;
 
 export const HEAD_TO_HEAD_MATCHES = gql`
+  # Antes el nodo repetía el campo status dos veces; quedó una sola y se añadió providerFixtureStatus.
   query getHeadToHeadMatches(
     $teamCodeA: String!
     $teamCodeB: String!
@@ -475,6 +489,7 @@ export const HEAD_TO_HEAD_MATCHES = gql`
           providerId
           startAt
           status
+          providerFixtureStatus
           homeTeam {
             code
             score
@@ -483,7 +498,6 @@ export const HEAD_TO_HEAD_MATCHES = gql`
             code
             score
           }
-          status
         }
       }
     }

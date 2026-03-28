@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import { getCalendarLivePrimaryLine } from '@/match/client/utils/calendarView';
+import { getLiveScoreboardCenterLine } from '@/match/client/utils/calendarView';
 import { getFirstWord } from '@/utils/text';
 
 type TeamSlice = {
@@ -22,6 +22,7 @@ type Props = {
   homeTeam: TeamSlice;
   visitorTeam: TeamSlice;
   status: string;
+  providerFixtureStatus?: string | null;
   currentQuarter?: string;
   currentTime?: string;
   overtimePeriods?: number;
@@ -40,6 +41,7 @@ export default function CalendarLiveMatchRow({
   homeTeam,
   visitorTeam,
   status,
+  providerFixtureStatus,
   currentQuarter,
   currentTime,
   overtimePeriods = 0,
@@ -47,8 +49,9 @@ export default function CalendarLiveMatchRow({
 }: Props) {
   const href = `/partidos/${providerId}`;
   const centerLabel = contextTeamCode === homeTeam.code ? 'vs' : 'en';
-  const primary = getCalendarLivePrimaryLine(
+  const primary = getLiveScoreboardCenterLine(
     status,
+    providerFixtureStatus,
     currentQuarter,
     currentTime,
     overtimePeriods,

@@ -57,6 +57,11 @@ export type MatchType = {
   visitorTeam: MatchTeamCompetitorType;
   providerId: string;
   status: string;
+  /**
+   * Estado del fixture según proveedor (GraphQL `providerFixtureStatus`); ej. CONFIRMED, IN_PROGRESS, FINISHED.
+   * Complementa `status` (interno/mapeado) para UI y líderes alineados con el servidor.
+   */
+  providerFixtureStatus?: string | null;
   overtimePeriods?: number;
   currentPeriod?: string;
   currentTime?: string;

@@ -1,5 +1,6 @@
 import { MATCH_STATUS } from '@/constants';
 import { MatchType } from '@/match/types';
+import { isCompletedMatchForUi } from '@/match/utils/matchStatus';
 import { formatGameClockDisplay } from '@/utils/game-clock';
 import moment from 'moment';
 
@@ -8,18 +9,29 @@ const EXCLUDED_CALENDAR_STATUSES = new Set([
   MATCH_STATUS.CANCELLED,
 ]);
 
-/** Partidos con marcador final para listados de calendario */
-export function isCalendarFinishedMatch(status: string | undefined): boolean {
-  return (
-    status === MATCH_STATUS.COMPLETE || status === MATCH_STATUS.FINISHED
-  );
+/**
+ * Partidos con marcador final en listados de calendario.
+ * Antes solo miraba `status` (COMPLETE/FINISHED); ahora también `providerFixtureStatus` vía `isCompletedMatchForUi`.
+ */
+export function isCalendarFinishedMatch(
+  status: string | undefined,
+  /** Opcional: estado Sportradar/DataCore en GraphQL; alinea filas “finalizado” con el backend. */
+  providerFixtureStatus?: string | null,
+): boolean {
+  return isCompletedMatchForUi(status, providerFixtureStatus);
 }
 
-/** En vivo / no programado puro: muestra fila estilo Figma (no aplica a SCHEDULED/RESCHEDULED). */
-export function isCalendarLiveMatch(status: string | undefined): boolean {
+/**
+ * En vivo u otro estado no programado “puro”: fila estilo calendario (no SCHEDULED/RESCHEDULED).
+ * `providerFixtureStatus` evita mostrar fila “en vivo” si el fixture ya está cerrado en el proveedor.
+ */
+export function isCalendarLiveMatch(
+  status: string | undefined,
+  providerFixtureStatus?: string | null,
+): boolean {
   if (!status) return false;
   const u = status.toUpperCase();
-  if (isCalendarFinishedMatch(status)) return false;
+  if (isCalendarFinishedMatch(status, providerFixtureStatus)) return false;
   if (u === MATCH_STATUS.SCHEDULED || u === MATCH_STATUS.RESCHEDULED) {
     return false;
   }
@@ -50,26 +62,42 @@ export function getCalendarLivePrimaryLine(
       MATCH_STATUS.PERIOD_BREAK,
       MATCH_STATUS.INTERRUPTED,
       MATCH_STATUS.RESCHEDULED,
+      MATCH_STATUS.WARMUP,
+      MATCH_STATUS.PREMATCH,
+      MATCH_STATUS.ANTHEM,
+      MATCH_STATUS.ONCOURT,
+      MATCH_STATUS.STANDBY,
+      MATCH_STATUS.COUNTDOWN,
+      MATCH_STATUS.LOADED,
     ].includes(statusU)
   ) {
     return `${currentStatusLabel} – ${currentPeriodTime}`;
   }
   if (statusU === MATCH_STATUS.READY) return 'Por comenzar';
   if (statusU === MATCH_STATUS.PENDING) return 'En espera';
-  if (statusU === MATCH_STATUS.DELAYED) return 'Atrasado';
   if (
-    statusU === MATCH_STATUS.PERIOD_BREAK &&
-    overtimePeriods === 0 &&
-    currentQuarter === '2'
+    [
+      MATCH_STATUS.WARMUP,
+      MATCH_STATUS.PREMATCH,
+      MATCH_STATUS.ANTHEM,
+      MATCH_STATUS.ONCOURT,
+      MATCH_STATUS.STANDBY,
+      MATCH_STATUS.COUNTDOWN,
+      MATCH_STATUS.LOADED,
+    ].includes(statusU)
   ) {
-    return 'Mediotiempo';
+    return 'Por comenzar';
   }
-  if (
-    statusU === MATCH_STATUS.PERIOD_BREAK &&
-    overtimePeriods === 0 &&
-    currentQuarter !== '2'
-  ) {
-    return `Fin de Q${currentQuarter}`;
+  if (statusU === MATCH_STATUS.DELAYED) return 'Atrasado';
+  // Descanso entre cuartos: Q2 suele ser medio tiempo; si no viene periodo, mostrar algo claro al usuario.
+  if (statusU === MATCH_STATUS.PERIOD_BREAK && overtimePeriods === 0) {
+    const q =
+      currentQuarter != null && String(currentQuarter).trim() !== ''
+        ? String(currentQuarter).trim()
+        : '';
+    if (q === '2') return 'Mediotiempo';
+    if (q === '') return 'Descanso';
+    return `Fin de Q${q}`;
   }
   if (statusU === MATCH_STATUS.PERIOD_BREAK && overtimePeriods > 0) {
     return `Fin de OT${overtimePeriods > 1 ? overtimePeriods : ''}`;
@@ -77,6 +105,28 @@ export function getCalendarLivePrimaryLine(
   if (statusU === MATCH_STATUS.INTERRUPTED) return 'Interrumpido';
   if (statusU === MATCH_STATUS.RESCHEDULED) return 'Reprogramado';
   return `${currentStatusLabel} – ${currentPeriodTime}`;
+}
+
+/**
+ * Línea central del marcador en vivo (header del partido): prioriza “Marcador final” cuando el API
+ * ya cerró el juego (status o proveedor), luego estados como medio tiempo / por comenzar.
+ */
+export function getLiveScoreboardCenterLine(
+  status: string | undefined,
+  providerFixtureStatus: string | null | undefined,
+  currentQuarter: string | undefined,
+  currentTime: string | undefined,
+  overtimePeriods = 0,
+): string {
+  if (isCompletedMatchForUi(status, providerFixtureStatus)) {
+    return 'Marcador final';
+  }
+  return getCalendarLivePrimaryLine(
+    status,
+    currentQuarter,
+    currentTime,
+    overtimePeriods,
+  );
 }
 
 export function filterLeagueCalendarMatches(matches: MatchType[]): MatchType[] {

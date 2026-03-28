@@ -159,7 +159,11 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
                       </p>
                     </div>
                   )}
-                  {isCalendarFinishedMatch(match.status) ? (
+                  {/* Igual que calendario de liga: estado del proveedor para no confundir en vivo vs final. */}
+                  {isCalendarFinishedMatch(
+                    match.status,
+                    match.providerFixtureStatus,
+                  ) ? (
                     <CalendarFinishedMatchRow
                       providerId={match.providerId}
                       startAt={match.startAt}
@@ -179,10 +183,14 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
                       }}
                       overtimePeriods={match.overtimePeriods}
                     />
-                  ) : isCalendarLiveMatch(match.status) ? (
+                  ) : isCalendarLiveMatch(
+                    match.status,
+                    match.providerFixtureStatus,
+                  ) ? (
                     <CalendarLiveMatchRow
                       providerId={match.providerId}
                       status={match.status}
+                      providerFixtureStatus={match.providerFixtureStatus}
                       currentQuarter={match.currentPeriod}
                       currentTime={match.currentTime}
                       overtimePeriods={match.overtimePeriods}

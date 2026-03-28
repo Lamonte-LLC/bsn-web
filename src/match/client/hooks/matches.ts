@@ -8,6 +8,9 @@ import { useQuery } from '@apollo/client/react';
 import moment from 'moment';
 import { useCallback, useMemo, useState } from 'react';
 
+/** Mismo intervalo para marcador en cabecera y box score por jugador en partidos en vivo. */
+const LIVE_MATCH_POLL_MS = 5_000;
+
 type RecentCalendarResponse = {
   matches: MatchType[];
 };
@@ -198,9 +201,10 @@ export function useMatchTeamPlayersBoxscore(
         providerMatchId,
         providerTeamId,
       },
-      fetchPolicy: 'network-only',
-      pollInterval: usePolling ? 15 * 1000 : 0, // 15 seconds in milliseconds
-      notifyOnNetworkStatusChange: false,
+      fetchPolicy: 'cache-and-network',
+      nextFetchPolicy: 'cache-first',
+      pollInterval: usePolling ? LIVE_MATCH_POLL_MS : 0,
+      notifyOnNetworkStatusChange: true,
     },
   );
 
@@ -218,18 +222,24 @@ type MatchResponse = {
 export function useMatch(matchProviderId: string, usePoll = false) {
   const { data, loading, error } = useQuery<MatchResponse>(MATCH, {
     variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
-    fetchPolicy: 'network-only',
-    pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
-    notifyOnNetworkStatusChange: false,
+    // Primera pintura puede usar caché; luego red para no quedar en blanco si falla una petición suelta.
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
+    pollInterval: usePoll ? LIVE_MATCH_POLL_MS : 0,
+    notifyOnNetworkStatusChange: true,
   });
 
   if (error) {
     console.error(error);
   }
 
+  const match = data?.match;
+  // No enmascarar datos ya recibidos con skeleton cuando Apollo hace refetch en segundo plano.
+  const showInitialLoading = !match && loading;
+
   return {
-    data: data?.match,
-    loading,
+    data: match,
+    loading: showInitialLoading,
     error,
   };
 }

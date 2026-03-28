@@ -12,6 +12,8 @@ export const MATCH_STATUS = {
   CANCELLED: 'CANCELLED',
   RESCHEDULED: 'RESCHEDULED',
   FINISHED: 'FINISHED',
+  /** Sportradar/DataCore: juego oficialmente cerrado (también en `providerFixtureStatus`). */
+  CONFIRMED: 'CONFIRMED',
   PROTESTED: 'PROTESTED',
   COMPLETE: 'COMPLETE',
   DRAFT: 'DRAFT',
@@ -25,7 +27,7 @@ export const MATCH_STATUS = {
   ONCOURT: 'ONCOURT',
   STANDBY: 'STANDBY',
   COUNTDOWN: 'COUNTDOWN',
-  /** Pre-live / waiting — treat like live for match page UI */
+  /** Pre-en vivo / en espera: en la UI de partido se trata como tramo “live” (ver `isLiveMatchPageStatus`). */
   PENDING: 'PENDING',
 };
 

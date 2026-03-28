@@ -4,7 +4,9 @@ import MatchInfoCard from '@/match/components/MatchInfoCard';
 import CompletedMatchScoreBoard from '@/match/components/scoreboard/CompletedMatchScoreBoard';
 import MatchQuarterScoreBoard from '@/match/components/scoreboard/MatchQuarterScoreBoard';
 import MatchBoxScoreWidget from '../../containers/MatchBoxScoreWidget';
-import MatchPlayerLeadersCard from '@/stats/components/season/leader/player/MatchPlayerLeadersCard';
+import MatchGameLeadersSection, {
+  type MatchGameLeaderPlayerBoxScore,
+} from '@/match/components/stats/MatchGameLeadersSection';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
 
 import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
@@ -14,38 +16,23 @@ import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayou
 import WSCBlazeSDK from '@/shared/client/components/wsc/WSCBlazeSDK';
 import MatchWscStoriesWidget from '../MatchWscStoriesWidget';
 
-/** Desactivado: tabla de resultado por parcial (Q1–Q4); reactivar cuando datos/API estén listos. */
+/**
+ * Partido finalizado: la sección “Líderes del juego” pasó a `MatchGameLeadersSection`
+ * (antes: seis `MatchPlayerLeadersCard` repetidos en este archivo).
+ *
+ * `SHOW_MATCH_QUARTER_SCOREBOARD`: tabla por parcial (Q1–Q4) desactivada hasta que datos/API estén listos.
+ */
 const SHOW_MATCH_QUARTER_SCOREBOARD = false;
-
-type MatchPlayerBoxScore = {
-  player: {
-    providerId: string;
-    name: string;
-    avatarUrl: string;
-    teamCode?: string;
-    team?: {
-      code: string;
-      name: string;
-    };
-  };
-  boxscore: {
-    points: number;
-    reboundsTotal: number;
-    assists: number;
-    steals: number;
-    blocks: number;
-    threePointersMade: number;
-  };
-};
 
 type Props = {
   match: MatchType;
-  pointsLeaders?: MatchPlayerBoxScore[];
-  reboundsLeaders?: MatchPlayerBoxScore[];
-  assistsLeaders?: MatchPlayerBoxScore[];
-  stealsLeaders?: MatchPlayerBoxScore[];
-  blocksLeaders?: MatchPlayerBoxScore[];
-  threePointersMadeLeaders?: MatchPlayerBoxScore[];
+  /** Todas las listas: líderes de este partido (`matchLeadersConnection`), no de liga ni un solo equipo. */
+  pointsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  reboundsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  assistsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  stealsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  blocksLeaders?: MatchGameLeaderPlayerBoxScore[];
+  threePointersMadeLeaders?: MatchGameLeaderPlayerBoxScore[];
 };
 
 export default function CompletedMatchPage({
@@ -166,113 +153,15 @@ export default function CompletedMatchPage({
                       <MatchWscStoriesWidget matchProviderId={match.providerId} />
                     </div>
                   </div>
-                  <div className="mb-6 md:mb-10 lg:mb-15">
-                    <div className="flex flex-row justify-between items-center mb-6 md:mb-[28px]">
-                      <div>
-                        <h3 className="text-[22px] text-black md:text-[24px]">
-                          Líderes del juego
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <MatchPlayerLeadersCard
-                        title="Puntos"
-                        data={pointsLeaders.map((leader, index) => ({
-                          position: index + 1,
-                          player: {
-                            id: leader.player.providerId,
-                            avatarUrl: leader.player.avatarUrl,
-                            name: leader.player.name,
-                            team: {
-                              code: leader.player.teamCode ?? '',
-                              name: leader.player.teamCode ?? '',
-                            },
-                          },
-                          statValue: leader.boxscore.points,
-                        }))}
-                      />
-                      <MatchPlayerLeadersCard
-                        title="Rebotes"
-                        data={reboundsLeaders.map((leader, index) => ({
-                          position: index + 1,
-                          player: {
-                            id: leader.player.providerId,
-                            avatarUrl: leader.player.avatarUrl,
-                            name: leader.player.name,
-                            team: {
-                              code: leader.player.teamCode ?? '',
-                              name: leader.player.teamCode ?? '',
-                            },
-                          },
-                          statValue: leader.boxscore.reboundsTotal,
-                        }))}
-                      />
-                      <MatchPlayerLeadersCard
-                        title="Asistencias"
-                        data={assistsLeaders.map((leader, index) => ({
-                          position: index + 1,
-                          player: {
-                            id: leader.player.providerId,
-                            avatarUrl: leader.player.avatarUrl,
-                            name: leader.player.name,
-                            team: {
-                              code: leader.player.teamCode ?? '',
-                              name: leader.player.teamCode ?? '',
-                            },
-                          },
-                          statValue: leader.boxscore.assists,
-                        }))}
-                      />
-                      <MatchPlayerLeadersCard
-                        title="Robos"
-                        data={stealsLeaders.map((leader, index) => ({
-                          position: index + 1,
-                          player: {
-                            id: leader.player.providerId,
-                            avatarUrl: leader.player.avatarUrl,
-                            name: leader.player.name,
-                            team: {
-                              code: leader.player.teamCode ?? '',
-                              name: leader.player.teamCode ?? '',
-                            },
-                          },
-                          statValue: leader.boxscore.steals,
-                        }))}
-                      />
-                      <MatchPlayerLeadersCard
-                        title="Tapones"
-                        data={blocksLeaders.map((leader, index) => ({
-                          position: index + 1,
-                          player: {
-                            id: leader.player.providerId,
-                            avatarUrl: leader.player.avatarUrl,
-                            name: leader.player.name,
-                            team: {
-                              code: leader.player.teamCode ?? '',
-                              name: leader.player.teamCode ?? '',
-                            },
-                          },
-                          statValue: leader.boxscore.blocks,
-                        }))}
-                      />
-                      <MatchPlayerLeadersCard
-                        title="3PTM"
-                        data={threePointersMadeLeaders.map((leader, index) => ({
-                          position: index + 1,
-                          player: {
-                            id: leader.player.providerId,
-                            avatarUrl: leader.player.avatarUrl,
-                            name: leader.player.name,
-                            team: {
-                              code: leader.player.teamCode ?? '',
-                              name: leader.player.teamCode ?? '',
-                            },
-                          },
-                          statValue: leader.boxscore.threePointersMade,
-                        }))}
-                      />
-                    </div>
-                  </div>
+                  {/* Datos de `MATCH_LEADERS_STATS` en el servidor (por `matchProviderId`). */}
+                  <MatchGameLeadersSection
+                    pointsLeaders={pointsLeaders}
+                    reboundsLeaders={reboundsLeaders}
+                    assistsLeaders={assistsLeaders}
+                    stealsLeaders={stealsLeaders}
+                    blocksLeaders={blocksLeaders}
+                    threePointersMadeLeaders={threePointersMadeLeaders}
+                  />
                 </div>
                 <div className="lg:col-span-4">
                   {match.youtube && (

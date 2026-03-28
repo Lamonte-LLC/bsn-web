@@ -1,7 +1,11 @@
 'use client';
 
-import { DEFAULT_MEDIA_PROVIDER, MATCH_STATUS } from '@/constants';
+import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import { MatchType } from '@/match/types';
+import {
+  isCompletedMatchForUi,
+  isScheduledMatchPageStatus,
+} from '@/match/utils/matchStatus';
 import RecentCalendarSlider from '@/match/client/components/slider/RecentCalendarSlider';
 import { useMemo } from 'react';
 import moment from 'moment';
@@ -114,11 +118,18 @@ export default function RecentCalendarSliderWidget() {
           const match = item.data;
           return (
             <div key={`match-${match.providerId}`} className="px-[5px]">
-              {![
-                MATCH_STATUS.COMPLETE,
-                MATCH_STATUS.FINISHED,
-                MATCH_STATUS.SCHEDULED,
-              ].includes(match.status ?? '') && (
+              {/*
+               * Sustituye comparaciones directas con MATCH_STATUS: ahora entra `providerFixtureStatus`
+               * y RESCHEDULED usa la misma tarjeta programada que SCHEDULED (antes solo SCHEDULED).
+               */}
+              {!isCompletedMatchForUi(
+                match.status,
+                match.providerFixtureStatus,
+              ) &&
+                !isScheduledMatchPageStatus(
+                  match.status,
+                  match.providerFixtureStatus,
+                ) && (
                 <LiveMatchCard
                   matchProviderId={match.providerId}
                   homeTeam={match.homeTeam}
@@ -127,13 +138,15 @@ export default function RecentCalendarSliderWidget() {
                   currentTime={match.currentTime}
                   mediaProvider={match.channel || DEFAULT_MEDIA_PROVIDER}
                   status={match.status}
+                  providerFixtureStatus={match.providerFixtureStatus}
                   overtimePeriods={match.overtimePeriods}
                   isFinals={match.isFinals}
                   finalsDescription={match.finalsDescription}
                 />
               )}
-              {[MATCH_STATUS.COMPLETE, MATCH_STATUS.FINISHED].includes(
+              {isCompletedMatchForUi(
                 match.status,
+                match.providerFixtureStatus,
               ) && (
                 <CompletedMatchCard
                   matchProviderId={match.providerId}
@@ -145,7 +158,10 @@ export default function RecentCalendarSliderWidget() {
                   finalsDescription={match.finalsDescription}
                 />
               )}
-              {[MATCH_STATUS.SCHEDULED].includes(match.status) && (
+              {isScheduledMatchPageStatus(
+                match.status,
+                match.providerFixtureStatus,
+              ) && (
                 <ScheduledMatchCard
                   matchProviderId={match.providerId}
                   startAt={match.startAt}

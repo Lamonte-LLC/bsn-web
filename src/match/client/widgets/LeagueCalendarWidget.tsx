@@ -158,7 +158,11 @@ export default function LeagueCalendarWidget() {
                       </p>
                     </div>
                   )}
-                  {isCalendarFinishedMatch(match.status) ? (
+                  {/* `providerFixtureStatus`: mismo criterio de “finalizado” que en `matchStatus.ts`. */}
+                  {isCalendarFinishedMatch(
+                    match.status,
+                    match.providerFixtureStatus,
+                  ) ? (
                     <CalendarFinishedMatchRow
                       providerId={match.providerId}
                       startAt={match.startAt}
@@ -178,10 +182,14 @@ export default function LeagueCalendarWidget() {
                       }}
                       overtimePeriods={match.overtimePeriods}
                     />
-                  ) : isCalendarLiveMatch(match.status) ? (
+                  ) : isCalendarLiveMatch(
+                    match.status,
+                    match.providerFixtureStatus,
+                  ) ? (
                     <CalendarLiveMatchRow
                       providerId={match.providerId}
                       status={match.status}
+                      providerFixtureStatus={match.providerFixtureStatus}
                       currentQuarter={match.currentPeriod}
                       currentTime={match.currentTime}
                       overtimePeriods={match.overtimePeriods}

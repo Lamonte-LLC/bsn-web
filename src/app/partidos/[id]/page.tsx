@@ -15,8 +15,19 @@ import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPag
 import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
 import ScheduledMatchPage from '@/match/client/components/page/ScheduledMatchPage';
 import { MatchType } from '@/match/types';
-import { isLiveMatchPageStatus } from '@/match/utils/matchStatus';
+import {
+  isCompletedMatchForUi,
+  isLiveMatchPageStatus,
+  isScheduledMatchPageStatus,
+  shouldUseLiveMatchPageLayout,
+} from '@/match/utils/matchStatus';
 
+/*
+ * Página de detalle de partido: el layout (live / finalizado / programado) y los datos extra
+ * (líderes, períodos, H2H) siguen `isCompletedMatchForUi`, `isLiveMatchPageStatus` e
+ * `isScheduledMatchPageStatus`, usando `providerFixtureStatus` cuando el proveedor y el `status`
+ * interno no van sincronizados.
+ */
 type LeadersCategoryStatsType = {
   player: {
     providerId: string;
@@ -212,6 +223,7 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
     threePointersMadeLeaders: [],
   };
 
+  // Totales de equipo (boxscore agregado): aplica a en vivo, pre-partido y otros estados listados.
   if (
     [
       MATCH_STATUS.IN_PROGRESS,
@@ -219,6 +231,15 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
       MATCH_STATUS.PENDING,
       MATCH_STATUS.READY,
       MATCH_STATUS.SCHEDULED,
+      MATCH_STATUS.DELAYED,
+      MATCH_STATUS.INTERRUPTED,
+      MATCH_STATUS.WARMUP,
+      MATCH_STATUS.PREMATCH,
+      MATCH_STATUS.ANTHEM,
+      MATCH_STATUS.ONCOURT,
+      MATCH_STATUS.STANDBY,
+      MATCH_STATUS.COUNTDOWN,
+      MATCH_STATUS.LOADED,
     ].includes(match.status)
   ) {
     const { data: matchTeamsBoxScoreData } =
@@ -255,7 +276,8 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
     };
   }
 
-  if (match.status === MATCH_STATUS.SCHEDULED) {
+  // Programado o reprogramado: W–L desde `team`, cara a cara, líderes de TEMPORADA por equipo (no del juego).
+  if (isScheduledMatchPageStatus(match.status, match.providerFixtureStatus)) {
     const [{ data: homeTeamDetail }, { data: visitorTeamDetail }] =
       await Promise.all([
         getClient().query<TeamDetailStandingsResponse>({
@@ -343,7 +365,8 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
       ) ?? [];
   }
 
-  if ([MATCH_STATUS.COMPLETE, MATCH_STATUS.FINISHED].includes(match.status)) {
+  // Partido cerrado: parciales + líderes del JUEGO (`matchLeadersConnection` por `matchProviderId`).
+  if (isCompletedMatchForUi(match.status, match.providerFixtureStatus)) {
     const { data: matchPeriodsBoxScoreData } =
       await getClient().query<MatchPeriodsBoxScoreResponse>({
         query: MATCH_PERIODS_BOXSCORE,
@@ -388,6 +411,31 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
       matchLeadersStatsData?.threePointersMadeLeaders.edges.map(
         (edge) => edge.node,
       ) ?? [];
+  } else if (isLiveMatchPageStatus(match.status, match.providerFixtureStatus)) {
+    // En vivo: mismos líderes con scope de partido que al finalizar (no líderes de liga ni solo un equipo).
+    const { data: matchLeadersStatsData } =
+      await getClient().query<MatchLeadersStatsResponse>({
+        query: MATCH_LEADERS_STATS,
+        variables: { matchProviderId: matchProviderId, first: 3 },
+        fetchPolicy: 'network-only',
+      });
+
+    response.pointsLeaders =
+      matchLeadersStatsData?.pointsLeaders.edges.map((edge) => edge.node) ?? [];
+    response.reboundsLeaders =
+      matchLeadersStatsData?.reboundsLeaders.edges.map((edge) => edge.node) ??
+      [];
+    response.assistsLeaders =
+      matchLeadersStatsData?.assistsLeaders.edges.map((edge) => edge.node) ??
+      [];
+    response.stealsLeaders =
+      matchLeadersStatsData?.stealsLeaders.edges.map((edge) => edge.node) ?? [];
+    response.blocksLeaders =
+      matchLeadersStatsData?.blocksLeaders.edges.map((edge) => edge.node) ?? [];
+    response.threePointersMadeLeaders =
+      matchLeadersStatsData?.threePointersMadeLeaders.edges.map(
+        (edge) => edge.node,
+      ) ?? [];
   }
 
   return response;
@@ -401,15 +449,24 @@ export default async function PartidoPage({
 
   return (
     <>
-      {isLiveMatchPageStatus(data.match.status) && (
+      {/* Layout “En vivo” solo según estado del partido (no según streamUrl). */}
+      {shouldUseLiveMatchPageLayout(data.match) && (
         <LiveMatchPage
           match={data.match}
           homeTeamBoxScore={data.homeTeamBoxScore}
           visitorTeamBoxScore={data.visitorTeamBoxScore}
+          pointsLeaders={data.pointsLeaders}
+          reboundsLeaders={data.reboundsLeaders}
+          assistsLeaders={data.assistsLeaders}
+          stealsLeaders={data.stealsLeaders}
+          blocksLeaders={data.blocksLeaders}
+          threePointersMadeLeaders={data.threePointersMadeLeaders}
         />
       )}
-      {[MATCH_STATUS.COMPLETE, MATCH_STATUS.FINISHED].includes(
+      {/* Partido cerrado: mismo criterio que `!shouldUseLiveMatchPageLayout` cuando no es programado. */}
+      {isCompletedMatchForUi(
         data.match.status,
+        data.match.providerFixtureStatus,
       ) && (
         <CompletedMatchPage
           match={data.match}
@@ -421,8 +478,10 @@ export default async function PartidoPage({
           threePointersMadeLeaders={data.threePointersMadeLeaders}
         />
       )}
-      {[MATCH_STATUS.SCHEDULED, MATCH_STATUS.RESCHEDULED].includes(
+      {/* SCHEDULED / RESCHEDULED y no cerrado: antes solo se cargaba preview si `status === SCHEDULED`. */}
+      {isScheduledMatchPageStatus(
         data.match.status,
+        data.match.providerFixtureStatus,
       ) && (
         <ScheduledMatchPage
           match={data.match}

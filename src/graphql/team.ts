@@ -37,6 +37,10 @@ export const TEAM_DETAIL = gql`
   }
 `;
 
+/**
+ * Calendario reciente/próximo del equipo: incluye `providerFixtureStatus` en cada partido
+ * para alinear filas finalizado/en vivo con el backend (igual que liga).
+ */
 export const TEAM_RECENT_CALENDAR = gql`
   query getTeamRecentCalendar(
     $code: String!
@@ -65,12 +69,14 @@ export const TEAM_RECENT_CALENDAR = gql`
           }
           overtimePeriods
           status
+          providerFixtureStatus
         }
       }
     }
   }
 `;
 
+/** Igual que `TEAM_RECENT_CALENDAR`: estado del proveedor en el nodo para UI consistente. */
 export const TEAM_UPCOMING_CALENDAR = gql`
   query getTeamUpcomingCalendar(
     $code: String!
@@ -110,6 +116,7 @@ export const TEAM_UPCOMING_CALENDAR = gql`
             }
           }
           status
+          providerFixtureStatus
           channel
         }
       }

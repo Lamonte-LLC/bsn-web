@@ -3,21 +3,37 @@
 import { useMemo } from 'react';
 import Lottie from 'lottie-react';
 import Link from 'next/link';
-import { MATCH_DATE_FORMAT } from '@/constants';
+import { MATCH_DATE_FORMAT, MATCH_STATUS } from '@/constants';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import animationLiveStreamData from './live-stream.json';
 import { formatDate } from '@/utils/date-formatter';
 import { getFirstWord } from '@/utils/text';
 import { useMatch } from '../hooks/matches';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
-import { formatGameClockDisplay } from '@/utils/game-clock';
+import { getLiveScoreboardCenterLine } from '@/match/client/utils/calendarView';
+import { isCompletedMatchForUi, normalizeMatchStatus } from '@/match/utils/matchStatus';
+import { useTickingGameClock } from '../hooks/useTickingGameClock';
 
 type Props = {
   matchProviderId: string;
 };
 
 export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
-  const { data, loading } = useMatch(matchProviderId, true);
+  const { data, loading, error } = useMatch(matchProviderId, true);
+
+  const completedForScore = useMemo(
+    () => isCompletedMatchForUi(data?.status, data?.providerFixtureStatus),
+    [data?.status, data?.providerFixtureStatus],
+  );
+
+  const statusU = normalizeMatchStatus(data?.status);
+  const inPlayClockTick =
+    !completedForScore && statusU === MATCH_STATUS.IN_PROGRESS;
+
+  const tickingClock = useTickingGameClock(
+    data?.currentTime,
+    inPlayClockTick,
+  );
 
   const periodLabel = useMemo(() => {
     if (!data) {
@@ -31,6 +47,27 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
     }
     return label;
   }, [data]);
+
+  const centerLine = useMemo(() => {
+    if (!data) return '';
+    if (inPlayClockTick) {
+      return `${periodLabel} – ${tickingClock}`;
+    }
+    return getLiveScoreboardCenterLine(
+      data.status,
+      data.providerFixtureStatus,
+      data.currentPeriod,
+      data.currentTime,
+      data.overtimePeriods,
+    );
+  }, [
+    data,
+    inPlayClockTick,
+    periodLabel,
+    tickingClock,
+  ]);
+
+  const badgeLabel = completedForScore ? 'POSTPARTIDO' : 'EN VIVO';
 
   if (loading) {
     return (
@@ -67,6 +104,16 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
         <div className="scale-[0.6] md:scale-[1]">
           <TeamLogoAvatar teamCode="ZZZ" size={100} />
         </div>
+      </div>
+    );
+  }
+
+  if (error && !data) {
+    return (
+      <div className="px-2 text-center">
+        <p className="font-barlow text-sm text-white/90 md:text-base">
+          No se pudo cargar el marcador. Reintenta en unos segundos.
+        </p>
       </div>
     );
   }
@@ -117,7 +164,7 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
               style={{ width: '16px', height: '16px' }}
             />
             <p className="font-barlow-condensed font-semibold text-center text-lg text-[#FF4747]">
-              EN VIVO
+              {badgeLabel}
             </p>
           </div>
           <div className="flex flex-row items-center justify-between gap-2">
@@ -126,7 +173,7 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
                 {data?.visitorTeam.score ?? 0}
               </h4>
             </div>
-            <div className="flex flex-row items-center justify-center gap-1">
+            <div className="flex flex-row items-center justify-center gap-1 min-w-0 px-1">
               <div className="md:hidden">
                 <Lottie
                   animationData={animationLiveStreamData}
@@ -135,8 +182,8 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
                   style={{ width: '16px', height: '16px' }}
                 />
               </div>
-              <p className="barlow-condensed font-semibold text-base text-white text-center md:text-[25px]">
-                {periodLabel} - {formatGameClockDisplay(data?.currentTime)}
+              <p className="barlow-condensed font-semibold text-base text-white text-center md:text-[25px] whitespace-normal text-balance">
+                {centerLine}
               </p>
             </div>
             <div className="flex flex-row items-center justify-end gap-2 w-[54px] md:w-[100px]">

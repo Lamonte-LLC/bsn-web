@@ -1,7 +1,12 @@
 'use client';
 
+/**
+ * Partido en vivo: se añadieron props de líderes del juego (misma fuente que partido finalizado)
+ * y el bloque UI en `MatchGameLeadersSection`.
+ */
 import { MatchType } from '@/match/types';
 import LiveMatchScoreBoardWidget from '../../containers/LiveMatchScoreBoardWidget';
+// Widget de box score básico en vivo desactivado (sustituido en parte por comparación de equipos + líderes).
 // import LiveMatchBasicBoxScoreBasicWidget from '../../containers/LiveMatchBoxScoreBasicWidget';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
@@ -13,6 +18,9 @@ import { LiveMatchStream } from '../media/LiveMatchStream';
 import MatchWscStoriesWidget from '../MatchWscStoriesWidget';
 import MatchBoxScoreWidget from '../../containers/MatchBoxScoreWidget';
 import MatchTeamStatsComparison from '@/match/components/stats/MatchTeamStatsComparison';
+import MatchGameLeadersSection, {
+  type MatchGameLeaderPlayerBoxScore,
+} from '@/match/components/stats/MatchGameLeadersSection';
 
 type Props = {
   match: MatchType;
@@ -32,9 +40,26 @@ type Props = {
     blocks: number;
     turnovers: number;
   };
+  /** Líderes del encuentro en curso (`matchLeadersConnection`); vacíos hasta que haya box por jugador. */
+  pointsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  reboundsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  assistsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  stealsLeaders?: MatchGameLeaderPlayerBoxScore[];
+  blocksLeaders?: MatchGameLeaderPlayerBoxScore[];
+  threePointersMadeLeaders?: MatchGameLeaderPlayerBoxScore[];
 };
 
-export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxScore }: Props) {
+export default function LiveMatchPage({
+  match,
+  homeTeamBoxScore,
+  visitorTeamBoxScore,
+  pointsLeaders = [],
+  reboundsLeaders = [],
+  assistsLeaders = [],
+  stealsLeaders = [],
+  blocksLeaders = [],
+  threePointersMadeLeaders = [],
+}: Props) {
   return (
     <FullWidthLayout
       divider
@@ -90,6 +115,7 @@ export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxS
                       <MatchWscStoriesWidget matchProviderId={match.providerId} />
                     </div>
                   </div>
+                  {/* Bloque antiguo de box score básico comentado (ver import arriba). */}
                   {/* <div className="mb-6 md:mb-10 lg:mb-15">
                     <LiveMatchBasicBoxScoreBasicWidget />
                   </div> */}
@@ -126,6 +152,15 @@ export default function LiveMatchPage({ match, homeTeamBoxScore, visitorTeamBoxS
                         }}
                       />
                     </div>
+                    {/* Misma sección que en partido finalizado: estadísticas acumuladas en este juego. */}
+                    <MatchGameLeadersSection
+                      pointsLeaders={pointsLeaders}
+                      reboundsLeaders={reboundsLeaders}
+                      assistsLeaders={assistsLeaders}
+                      stealsLeaders={stealsLeaders}
+                      blocksLeaders={blocksLeaders}
+                      threePointersMadeLeaders={threePointersMadeLeaders}
+                    />
                     <div className="mb-[30px] md:mb-[40px]">
                       <div className="hidden justify-center xl:flex">
                         <AdSlot
