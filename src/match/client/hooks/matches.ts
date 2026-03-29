@@ -11,6 +11,8 @@ import { useQuery } from '@apollo/client/react';
 import moment from 'moment';
 import { useCallback, useMemo, useState } from 'react';
 
+import { usePollIntervalWhenTabVisible } from './usePollIntervalWhenTabVisible';
+
 /** Mismo intervalo para marcador en cabecera y box score por jugador en partidos en vivo. */
 const LIVE_MATCH_POLL_MS = 5_000;
 
@@ -86,13 +88,17 @@ export function useRecentCalendar(
   // Share loaded range between widget instances/routes during the same session.
   sharedLoadedRange = mergeRanges(initialRange, sharedLoadedRange);
 
+  const calendarPollMs = usePollIntervalWhenTabVisible(
+    usePolling ? 30 * 1000 : 0,
+  );
+
   const { data, loading, error, fetchMore } = useQuery<RecentCalendarResponse>(
     RECENT_CALENDAR,
     {
       variables: initialRange,
       fetchPolicy: 'cache-first',
       nextFetchPolicy: 'cache-first',
-      pollInterval: usePolling ? 30 * 1000 : 0,
+      pollInterval: calendarPollMs,
     },
   );
 
@@ -247,6 +253,10 @@ export function useMatchTeamPlayersBoxscore(
   usePolling = false,
   options?: { skip?: boolean },
 ) {
+  const playerBoxPollMs = usePollIntervalWhenTabVisible(
+    usePolling ? LIVE_MATCH_POLL_MS : 0,
+  );
+
   const { data, loading, error } = useQuery<MatchTeamPlayersBoxScoreResponse>(
     MATCH_TEAM_PLAYERS_BOXSCORE,
     {
@@ -259,7 +269,7 @@ export function useMatchTeamPlayersBoxscore(
       },
       fetchPolicy: 'cache-and-network',
       nextFetchPolicy: 'cache-first',
-      pollInterval: usePolling ? LIVE_MATCH_POLL_MS : 0,
+      pollInterval: playerBoxPollMs,
       notifyOnNetworkStatusChange: true,
     },
   );
@@ -280,13 +290,17 @@ export function useMatchTeamAggregateBoxscore(
   teamProviderId: string,
   usePolling = false,
 ) {
+  const teamAggPollMs = usePollIntervalWhenTabVisible(
+    usePolling ? LIVE_MATCH_POLL_MS : 0,
+  );
+
   const { data, loading, error } = useQuery<MatchTeamsBoxscoreQueryResponse>(
     MATCH_TEAMS_BOXSCORE,
     {
       variables: { geniusMatchId: 0, providerMatchId },
       fetchPolicy: 'cache-and-network',
       nextFetchPolicy: 'cache-first',
-      pollInterval: usePolling ? LIVE_MATCH_POLL_MS : 0,
+      pollInterval: teamAggPollMs,
       notifyOnNetworkStatusChange: true,
     },
   );
@@ -324,6 +338,10 @@ export function useMatchBothTeamsPlayersBoxscore(
   homeTeamProviderId: string,
   usePolling = false,
 ) {
+  const bothTeamsPollMs = usePollIntervalWhenTabVisible(
+    usePolling ? LIVE_MATCH_POLL_MS : 0,
+  );
+
   const { data, loading, error } = useQuery<BothTeamsPlayersBoxScoreResponse>(
     MATCH_BOTH_TEAMS_PLAYERS_BOXSCORE,
     {
@@ -335,7 +353,7 @@ export function useMatchBothTeamsPlayersBoxscore(
       },
       fetchPolicy: 'cache-and-network',
       nextFetchPolicy: 'cache-first',
-      pollInterval: usePolling ? LIVE_MATCH_POLL_MS : 0,
+      pollInterval: bothTeamsPollMs,
       notifyOnNetworkStatusChange: true,
     },
   );
@@ -362,13 +380,17 @@ type MatchResponse = {
 };
 
 export function useMatch(matchProviderId: string, usePoll = false) {
+  const matchPollMs = usePollIntervalWhenTabVisible(
+    usePoll ? LIVE_MATCH_POLL_MS : 0,
+  );
+
   const { data, loading, error } = useQuery<MatchResponse>(
     usePoll ? MATCH_LIVE_SCOREBOARD : MATCH,
     {
       variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
       fetchPolicy: 'cache-and-network',
       nextFetchPolicy: 'cache-first',
-      pollInterval: usePoll ? LIVE_MATCH_POLL_MS : 0,
+      pollInterval: matchPollMs,
       notifyOnNetworkStatusChange: true,
     },
   );
