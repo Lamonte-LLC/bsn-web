@@ -276,12 +276,15 @@ export const MATCH_TEAM_AGGREGATE_BOXSCORE_FIELDS = gql`
   }
 `;
 
-/** One player row (per-team box score list). */
+/**
+ * Filas jugador en box score. Omitimos `avatarUrl` y `defensiveRebounds` en jugador
+ * hasta que producción exponga el mismo schema que bsn-main actual (evita GraphQL
+ * "Cannot query field" en Heroku). El UI ya tolera null/undefined.
+ */
 export const MATCH_PLAYER_BOXSCORE_ROW_FIELDS = gql`
   fragment MatchPlayerBoxscoreRowFields on MatchPlayersBoxscoreType {
     player {
       providerId
-      avatarUrl
       name
       nickname
       shirtNumber
@@ -292,7 +295,6 @@ export const MATCH_PLAYER_BOXSCORE_ROW_FIELDS = gql`
       points
       reboundsTotal
       offensiveRebounds
-      defensiveRebounds
       isStarter
       assists
       fieldGoalsMade
