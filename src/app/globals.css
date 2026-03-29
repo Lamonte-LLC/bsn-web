@@ -122,12 +122,3 @@ body {
     display: none !important;
   }
 }
-
-/* Home calendar: native horizontal scroll (no react-slick / translate3d on iOS WebKit) */
-.home-calendar-strip {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.home-calendar-strip::-webkit-scrollbar {
-  display: none;
-}
