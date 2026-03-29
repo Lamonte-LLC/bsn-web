@@ -11,7 +11,14 @@ import { InMemoryCache } from '@apollo/client-integration-nextjs';
  *
  * Si necesitas normalizar: `keyFields: false` para incrustar sin ID global, o asegurar
  * el mismo campo en **todas** las selecciones GraphQL de ese tipo.
+ *
+ * `keyFields: false` en MatchTeamType evita que Apollo intente `providerId`/`id` cuando la
+ * query solo trae code, nickname y standings (p. ej. calendario / home SSR).
  */
 export function createBsnInMemoryCache() {
-  return new InMemoryCache();
+  return new InMemoryCache({
+    typePolicies: {
+      MatchTeamType: { keyFields: false },
+    },
+  });
 }

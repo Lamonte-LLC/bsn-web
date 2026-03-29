@@ -245,7 +245,12 @@ export const GET_PLAYOFFS = gql`
   }
 `;
 
-/** Shared team totals + extended metrics (box score tabs, SSR). */
+/**
+ * Totales de equipo en `matchTeamsBoxscore` / panel tabbed.
+ * Mantener alineado con el schema GraphQL desplegado: APIs antiguas no exponían
+ * `defensiveRebounds` ni las métricas extendidas en `MatchTeamBoxscoreType` (Heroku 500).
+ * Tras desplegar `bsn-main` actual, se pueden volver a añadir esos campos aquí.
+ */
 export const MATCH_TEAM_AGGREGATE_BOXSCORE_FIELDS = gql`
   fragment MatchTeamAggregateBoxscoreFields on MatchTeamBoxscoreType {
     fieldGoalsMade
@@ -258,7 +263,6 @@ export const MATCH_TEAM_AGGREGATE_BOXSCORE_FIELDS = gql`
     freeThrowsAttempted
     freeThrowsPercentage
     offensiveRebounds
-    defensiveRebounds
     reboundsTotal
     assists
     turnovers
@@ -269,13 +273,6 @@ export const MATCH_TEAM_AGGREGATE_BOXSCORE_FIELDS = gql`
     twoPointersMade
     twoPointersAttempted
     twoPointersPercentage
-    pointsFromTurnover
-    pointsInThePaint
-    pointsSecondChance
-    pointsFastBreak
-    pointsFromBench
-    biggestLead
-    biggestScoringRun
   }
 `;
 
