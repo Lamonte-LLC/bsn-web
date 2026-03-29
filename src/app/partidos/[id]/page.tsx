@@ -20,6 +20,8 @@ import {
   isDevForcedLiveMatchPage,
   isLiveMatchPageStatus,
   isScheduledMatchPageStatus,
+  normalizeMatchStatus,
+  shouldRenderScheduledMatchPageFallback,
   shouldUseLiveMatchPageLayout,
 } from '@/match/utils/matchStatus';
 import {
@@ -243,13 +245,14 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
     MATCH_STATUS.STANDBY,
     MATCH_STATUS.COUNTDOWN,
     MATCH_STATUS.LOADED,
+    MATCH_STATUS.ABOUT_TO_START,
+    MATCH_STATUS.ON_PITCH,
   ] as const;
 
+  const statusNorm = normalizeMatchStatus(match.status);
   const needsMatchTeamsBoxscore =
     devForceLive ||
-    (statusesNeedingMatchTeamsBoxscore as readonly string[]).includes(
-      match.status,
-    );
+    (statusesNeedingMatchTeamsBoxscore as readonly string[]).includes(statusNorm);
 
   const response: MatchResponse = {
     match,
@@ -666,6 +669,20 @@ export default async function PartidoPage({
           data.match.status,
           data.match.providerFixtureStatus,
         ) && (
+        <ScheduledMatchPage
+          match={data.match}
+          homeTeamBoxScore={data.homeTeamBoxScore}
+          visitorTeamBoxScore={data.visitorTeamBoxScore}
+          headToHeadMatches={data.headToHeadMatches}
+          homeTeamPointsLeaders={data.homeTeamPointsLeaders}
+          homeTeamAssistsLeaders={data.homeTeamAssistsLeaders}
+          homeTeamReboundsLeaders={data.homeTeamReboundsLeaders}
+          visitorTeamPointsLeaders={data.visitorTeamPointsLeaders}
+          visitorTeamAssistsLeaders={data.visitorTeamAssistsLeaders}
+          visitorTeamReboundsLeaders={data.visitorTeamReboundsLeaders}
+        />
+      )}
+      {shouldRenderScheduledMatchPageFallback(data.match) && (
         <ScheduledMatchPage
           match={data.match}
           homeTeamBoxScore={data.homeTeamBoxScore}

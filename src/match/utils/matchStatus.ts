@@ -27,9 +27,14 @@ export function isDevForcedLiveMatchPage(
  *
  * En GraphQL: `status` puede ser el mapeo interno; `providerFixtureStatus` refleja el texto del proveedor.
  */
-/** Normaliza mayúsculas/espacios: el API o el feed pueden enviar distinto casing. */
+/**
+ * Normaliza mayúsculas/espacios: el API o el feed pueden enviar distinto casing.
+ * `WARM_UP` viene del modelo Django/Synergy; en la web el token histórico es `WARMUP`.
+ */
 export function normalizeMatchStatus(status: string | undefined): string {
-  return (status ?? '').trim().toUpperCase();
+  const s = (status ?? '').trim().toUpperCase();
+  if (s === MATCH_STATUS.WARM_UP) return MATCH_STATUS.WARMUP;
+  return s;
 }
 
 /** Igual que `normalizeMatchStatus` pero para el estado crudo del proveedor (`providerFixtureStatus`). */
@@ -78,6 +83,8 @@ export function isLiveMatchPageStatus(
     MATCH_STATUS.STANDBY,
     MATCH_STATUS.COUNTDOWN,
     MATCH_STATUS.LOADED,
+    MATCH_STATUS.ABOUT_TO_START,
+    MATCH_STATUS.ON_PITCH,
   ].includes(s);
 }
 
@@ -110,5 +117,23 @@ export function isScheduledMatchPageStatus(
 ): boolean {
   if (isCompletedMatchForUi(status, providerFixtureStatus)) return false;
   const s = normalizeMatchStatus(status);
-  return s === MATCH_STATUS.SCHEDULED || s === MATCH_STATUS.RESCHEDULED;
+  return (
+    s === MATCH_STATUS.SCHEDULED ||
+    s === MATCH_STATUS.RESCHEDULED ||
+    s === MATCH_STATUS.IF_NEEDED
+  );
+}
+
+/**
+ * Estados no contemplados explícitamente (p. ej. POSTPONED, CANCELLED, valores nuevos del API):
+ * mejor vista “programada” con datos del partido que pantalla vacía.
+ */
+export function shouldRenderScheduledMatchPageFallback(
+  m: Pick<MatchType, 'status' | 'providerFixtureStatus' | 'providerId'>,
+): boolean {
+  if (isDevForcedLiveMatchPage(m.providerId)) return false;
+  if (shouldUseLiveMatchPageLayout(m)) return false;
+  if (isCompletedMatchForUi(m.status, m.providerFixtureStatus)) return false;
+  if (isScheduledMatchPageStatus(m.status, m.providerFixtureStatus)) return false;
+  return true;
 }

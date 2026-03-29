@@ -29,6 +29,11 @@ export const MATCH_STATUS = {
   COUNTDOWN: 'COUNTDOWN',
   /** Pre-en vivo / en espera: en la UI de partido se trata como tramo “live” (ver `isLiveMatchPageStatus`). */
   PENDING: 'PENDING',
+  /** Synergy/Django; en UI se normaliza a `WARMUP` (ver `normalizeMatchStatus`). */
+  WARM_UP: 'WARM_UP',
+  ABOUT_TO_START: 'ABOUT_TO_START',
+  ON_PITCH: 'ON_PITCH',
+  IF_NEEDED: 'IF_NEEDED',
 };
 
 export const DATE_ISO_FORMAT = 'YYYY-MM-DD';

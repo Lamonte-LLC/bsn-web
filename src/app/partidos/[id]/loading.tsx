@@ -3,7 +3,7 @@
  */
 export default function PartidoLoading() {
   return (
-    <div className="flex min-h-[50vh] w-full flex-col items-center justify-center gap-3 px-4">
+    <div className="flex min-h-[50vh] w-full flex-col items-center justify-center gap-3 bg-[#0F171F] px-4">
       <div
         className="h-9 w-9 animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.25)] border-t-white"
         aria-hidden
