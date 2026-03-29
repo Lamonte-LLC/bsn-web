@@ -100,6 +100,16 @@ export default function RecentCalendarSliderWidget() {
     );
   }
 
+  if (sortedMatches.length === 0) {
+    return (
+      <div className="flex h-[180px] items-center justify-center text-center px-4">
+        <p className="font-barlow text-sm text-[rgba(255,255,255,0.8)] md:text-base">
+          No hay partidos en esta fecha.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <RecentCalendarSlider

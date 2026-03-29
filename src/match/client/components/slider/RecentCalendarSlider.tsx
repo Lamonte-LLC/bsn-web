@@ -40,7 +40,8 @@ function RecentCalendarSliderInner<T>({
     slidesToScroll: 1,
     initialSlide,
     variableWidth: true,
-    adaptiveHeight: true,
+    // adaptiveHeight causes bad layout on iOS Safari with variableWidth (track height explodes → dark header fills the viewport).
+    adaptiveHeight: false,
     swipeToSlide: true,
     responsive: [
       {
