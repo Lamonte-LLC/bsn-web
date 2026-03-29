@@ -9,7 +9,7 @@ export type Props = {
 };
 
 export default function MatchQuarterScoreBoardWidget({ matchProviderId }: Props) {
-  const { data, stopPolling } = useMatchQuarterScoreBoard(matchProviderId);
+  const { data, stopPolling } = useMatchQuarterScoreBoard(matchProviderId, true);
 
   const homeTeamTotalScore = useMemo(() => {
     return data?.periods?.reduce(

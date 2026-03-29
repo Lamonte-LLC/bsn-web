@@ -284,9 +284,13 @@ export function useMatchTeamsBoxscore(matchProviderId: string, usePoll = false) 
   };
 }
 
+type MatchQuarterScoreBoardResponse = {
+  matchPeriods: MatchType;
+};
+
 export function useMatchQuarterScoreBoard(matchProviderId: string, usePoll = false) {
   const { data, loading, error, startPolling, stopPolling } =
-    useQuery<MatchResponse>(MATCH_PERIODS_BOXSCORE, {
+    useQuery<MatchQuarterScoreBoardResponse>(MATCH_PERIODS_BOXSCORE, {
       variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
       fetchPolicy: 'network-only',
       pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
@@ -298,7 +302,7 @@ export function useMatchQuarterScoreBoard(matchProviderId: string, usePoll = fal
   }
 
   return {
-    data: data?.match,
+    data: data?.matchPeriods,
     loading,
     error,
     startPolling,
