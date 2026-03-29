@@ -1,9 +1,9 @@
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import SeasonLeadersSection from '@/stats/widgets/season/SeasonLeadersSection';
-// import LatestNewsWidget from '@/news/widgets/LatestNewsWidget';
+import LatestNewsWidget from '@/news/widgets/LatestNewsWidget';
 import RecentCalendarSliderWidget from '@/match/client/containers/RecentCalendarSliderWidget';
 import SeasonStandingsTableBasicGroupsWidget from '@/stats/widgets/standings/table/SeasonStandingsTableBasicGroupsWidget';
-// import TopNewsWidget from '@/news/widgets/TopNewsWidget';
+import TopNewsWidget from '@/news/widgets/TopNewsWidget';
 import WSCBlazeSDK from '@/shared/client/components/wsc/WSCBlazeSDK';
 import WSCHomeStories from '@/highlights/client/components/WSCHomeStories';
 import WSCMoments from '@/highlights/client/components/WSCMoments';
@@ -27,7 +27,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           <div className="lg:col-span-8">
             <div className="mb-4 md:mb-8 lg:mb-10">
-              {/* <TopNewsWidget /> */}
+              <TopNewsWidget />
             </div>
             <div className="mb-8 lg:mb-10">
               <div className="hidden justify-center xl:flex">
@@ -46,7 +46,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mb-15 lg:hidden">
-              {/* <LatestNewsWidget /> */}
+              <LatestNewsWidget />
             </div>
             <div className="mb-4 md:mb-8 lg:mb-17">
               <div className="flex flex-row justify-between items-center mb-4 md:mb-[26px]">
@@ -75,7 +75,7 @@ export default function Home() {
           </div>
           <div className="lg:col-span-4">
             <div className="hidden mb-15 md:mb-5 lg:block">
-              {/* <LatestNewsWidget /> */}
+              <LatestNewsWidget />
             </div>
             <div className="mb-15 md:mb-10">
               <SeasonStandingsTableBasicGroupsWidget />
