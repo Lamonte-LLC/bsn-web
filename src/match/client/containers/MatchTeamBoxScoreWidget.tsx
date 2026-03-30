@@ -10,7 +10,6 @@ type Props = {
 };
 
 const BOXSCORE_HEADER = [
-  'MIN',
   'PTS',
   'FG',
   'FG%',
@@ -24,7 +23,6 @@ const BOXSCORE_HEADER = [
   'STL',
   'BLK',
   'PF',
-  '+/-',
 ];
 
 export default function MatchTeamBoxScoreWidget({
@@ -107,15 +105,6 @@ export default function MatchTeamBoxScoreWidget({
                     </span>
                   </Link>
                 </div>
-              </td>
-              <td
-                className="px-3 py-2 text-center"
-                style={{
-                  backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
-                }}
-              >
-                <span className="font-barlow text-[13px]">{numeral(item.boxscore.minutes).format('0.0')}</span>
               </td>
               <td
                 className="px-3 py-2 text-center"
@@ -248,19 +237,6 @@ export default function MatchTeamBoxScoreWidget({
               >
                 <span className="font-barlow text-[13px]">
                   {numeral(item.boxscore.foulsPersonal).format('0')}
-                </span>
-              </td>
-              <td
-                className="px-3 py-2 text-center"
-                style={{
-                  backgroundColor:
-                    index % 2 == 0 ? 'transparent' : 'rgba(247, 247, 247, 0.7)',
-                  borderTopRightRadius: '8px',
-                  borderBottomRightRadius: '8px',
-                }}
-              >
-                <span className="font-barlow text-[13px]">
-                  {numeral(item.boxscore.plusMinusPoints).format('0')}
                 </span>
               </td>
             </tr>

@@ -17,7 +17,6 @@ import MatchBoxScoreWidget from '../../containers/MatchBoxScoreWidget';
 import MatchTeamStatsComparisonWidget from '../../widgets/MatchTeamStatsComparisonWidget';
 import { useMatch } from '../../hooks/matches';
 import { isCompletedMatch } from '@/match/utils/matchStatus';
-import MatchQuarterScoreBoardWidget from '../../widgets/MatchQuarterScoreBoardWidget';
 
 type Props = {
   match: MatchType;
@@ -45,9 +44,10 @@ export default function LiveMatchPage({ match }: Props) {
 
   useEffect(() => {
     if (isCompletedMatch(data?.status)) {
+      stopPolling();
       router.refresh();
     }
-  }, [data, router]);
+  }, [data, router, stopPolling]);
 
   useEffect(() => {
     return () => {
@@ -91,9 +91,9 @@ export default function LiveMatchPage({ match }: Props) {
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
               Box Score
             </Tab>
-            <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
+            {/* <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
               Equipos
-            </Tab>
+            </Tab> */}
           </div>
         </TabList>
         <TabPanels>
@@ -101,9 +101,6 @@ export default function LiveMatchPage({ match }: Props) {
             <div className="container">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6 md:mt-[30px] lg:mt-[40px]">
                 <div className="lg:col-span-8 lg:pr-16">
-                  <div className="mb-6 md:mb-10 lg:mb-15">
-                    <MatchQuarterScoreBoardWidget matchProviderId={match.providerId} />
-                  </div>
                   <div className="mb-6 md:mb-10 lg:mb-15">
                     <div className="flex flex-row justify-between items-center mb-[30px]">
                       <div>
@@ -158,11 +155,11 @@ export default function LiveMatchPage({ match }: Props) {
               <MatchBoxScoreWidget match={match} usePolling />
             </div>
           </TabPanel>
-          <TabPanel>
+          {/* <TabPanel>
             <div className="container">
               <MatchTeamStatsComparisonWidget matchProviderId={match.providerId} />
             </div>
-          </TabPanel>
+          </TabPanel> */}
         </TabPanels>
       </TabGroup>
     </FullWidthLayout>

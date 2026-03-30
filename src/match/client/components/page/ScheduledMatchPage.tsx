@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { DEFAULT_MEDIA_PROVIDER, MATCH_STATUS } from '@/constants';
+import moment from 'moment';
+import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import CompletedMatchCardBasic from '@/match/components/card/CompletedMatchCardBasic';
 import MatchInfoCard from '@/match/components/MatchInfoCard';
 import ScheduledMatchScoreBoard from '@/match/components/scoreboard/ScheduledMatchScoreBoard';
@@ -14,8 +15,6 @@ import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import { useMatchStatus } from '../../hooks/matches';
 import { useRouter } from 'next/navigation';
-import moment from 'moment';
-import { isToday } from '@/utils/date-utils';
 import { isLiveMatch } from '@/match/utils/matchStatus';
 
 type LeadersCategoryStatsType = {
@@ -71,13 +70,22 @@ export default function ScheduledMatchPage({
 
   useEffect(() => {
     if (data?.startAt) {
-      if (isToday(data.startAt)) {
-        if (isLiveMatch(data?.status)) {
-          router.refresh();
-        }
+      const now = moment();
+      const startAt = moment(data.startAt);
+
+      const isTooEarly = startAt.diff(now, 'minutes') > 60;
+      const isAlreadyPast = now.diff(startAt, 'minutes') > 30;
+
+      if (isTooEarly || isAlreadyPast) {
+        stopPolling();
+        return;
+      }
+
+      if (isLiveMatch(data?.status)) {
+        router.refresh();
       }
     }
-  }, [data, router]);
+  }, [data, router, stopPolling]);
 
   useEffect(() => {
     return () => {
