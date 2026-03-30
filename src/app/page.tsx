@@ -75,7 +75,7 @@ export default function Home() {
           </div>
           <div className="lg:col-span-4">
             <div className="hidden mb-15 md:mb-5 lg:block">
-              {/* <LatestNewsWidget /> */}
+              <LatestNewsWidget />
             </div>
             <div className="mb-15 md:mb-10">
               <SeasonStandingsTableBasicGroupsWidget />
