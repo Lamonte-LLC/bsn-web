@@ -70,6 +70,9 @@ export default async function DetalleJugadorPage({
   const { slug } = await params;
   const data: PlayerPageResponse = await fetchPlayer(slug);
   const currentSeason: SeasonType | null = await fetchCurrentSeason();
+  const avatarUrl = data.player.avatarUrl
+    ? `${data.player.avatarUrl}?size=400`
+    : '';
 
   return (
     <FullWidthLayout
@@ -82,14 +85,14 @@ export default async function DetalleJugadorPage({
                 <div className="flex flex-row items-center gap-4">
                   <div className="relative">
                     <figure
-                      className="hidden w-[125px] h-[125px] rounded-full border border-2 overflow-hidden md:block"
+                      className="hidden w-[190px] h-[190px] rounded-full border border-2 overflow-hidden md:block"
                       style={{
                         borderColor: data.player.seasonRoster?.team?.colorPrimary || '#ccc',
                       }}
                     >
                       <PlayerPhotoAvatar
-                        photoUrl={data.player.avatarUrl}
-                        size={125}
+                        photoUrl={avatarUrl}
+                        size={190}
                         name={data.player.name}
                       />
                     </figure>
@@ -100,7 +103,7 @@ export default async function DetalleJugadorPage({
                       }}
                     >
                       <PlayerPhotoAvatar
-                        photoUrl={data.player.avatarUrl}
+                        photoUrl={avatarUrl}
                         size={75}
                         name={data.player.name}
                       />
@@ -187,13 +190,13 @@ export default async function DetalleJugadorPage({
                 </div>
               </div>
             </div>
-            <div className="py-[12px] md:py-[40px]">
+            <div className="mt-[12px] md:mt-[40px]">
               <div className="border-b border-transparent md:border-[rgba(255,255,255,0.07)]"></div>
             </div>
-            <div className="pb-[24px] lg:w-7/12">
+            <div className="py-[24px] md:py-[40px] lg:w-7/12">
               <div className="grid grid-cols-3 gap-x-3 gap-y-[24px] md:grid-cols-5">
                 <div>
-                  <h5 className="text-sm text-[rgba(255,255,255,0.7)] md:text-base">
+                  <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">
                     Posición
                   </h5>
                   <p className="text-base text-white md:text-[18px]">
@@ -201,7 +204,7 @@ export default async function DetalleJugadorPage({
                   </p>
                 </div>
                 <div>
-                  <h5 className="text-sm text-[rgba(255,255,255,0.7)] md:text-base">
+                  <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">
                     Altura
                   </h5>
                   <p className="text-base text-white md:text-[18px]">
@@ -211,7 +214,7 @@ export default async function DetalleJugadorPage({
                   </p>
                 </div>
                 <div>
-                  <h5 className="text-sm text-[rgba(255,255,255,0.7)] md:text-base">
+                  <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">
                     Peso
                   </h5>
                   <p className="text-base text-white md:text-[18px]">
@@ -221,7 +224,7 @@ export default async function DetalleJugadorPage({
                   </p>
                 </div>
                 <div>
-                  <h5 className="text-sm text-[rgba(255,255,255,0.7)] md:text-base">
+                  <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">
                     Fecha de nacimiento
                   </h5>
                   <p className="text-base text-white md:text-[18px]">
@@ -231,7 +234,7 @@ export default async function DetalleJugadorPage({
                   </p>
                 </div>
                 <div>
-                  <h5 className="text-sm text-[rgba(255,255,255,0.7)] md:text-base">
+                  <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">
                     Lugar de origen
                   </h5>
                   <p className="text-base text-white md:text-[18px]">
