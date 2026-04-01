@@ -4,8 +4,15 @@ import moment from 'moment';
 import { useMemo, useState } from 'react';
 
 import CalendarSidebar from '@/match/client/components/calendar/CalendarSidebar';
+import CalendarFinishedMatchRow from '@/match/components/calendar/CalendarFinishedMatchRow';
+import CalendarLiveMatchRow from '@/match/components/calendar/CalendarLiveMatchRow';
 import ScheduledMatchCardInline from '@/match/components/calendar/ScheduledMatchCardInline';
-import { useUpcomingCalendarConnection } from '../hooks/teams';
+import { useRecentCalendar } from '@/match/client/hooks/matches';
+import {
+  filterTeamCalendarMatches,
+  isCalendarFinishedMatch,
+  isCalendarLiveMatch,
+} from '@/match/client/utils/calendarView';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { DEFAULT_MEDIA_PROVIDER, MATCH_DATE_FULL_FORMAT } from '@/constants';
 import { formatDate } from '@/utils/date-formatter';
@@ -15,21 +22,21 @@ type Props = {
 };
 
 export default function TeamCalendarWidget({ teamCode }: Props) {
-  const { data, loading } = useUpcomingCalendarConnection(teamCode);
+  const { data, loading, ensureDateRangeLoaded } = useRecentCalendar({
+    daysBefore: 21,
+    daysAfter: 45,
+  });
 
-  const matches = useMemo(
-    () =>
-      (data?.edges ?? [])
-        .map((edge) => edge.node)
-        .sort((a, b) => moment(a.startAt).diff(moment(b.startAt))),
-    [data],
+  const calendarMatches = useMemo(
+    () => filterTeamCalendarMatches(data, teamCode),
+    [data, teamCode],
   );
 
   const initialStart = useMemo(() => {
     const today = moment().startOf('day');
-    if (matches.length === 0) return today;
+    if (calendarMatches.length === 0) return today;
 
-    const upcomingDates = matches
+    const upcomingDates = calendarMatches
       .map((m) => moment(m.startAt).startOf('day'))
       .filter((d) => d.isSameOrAfter(today));
 
@@ -37,9 +44,10 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
       return upcomingDates[0];
     }
 
-    // Si no hay juegos futuros, usa la fecha del último partido del equipo
-    return moment(matches[matches.length - 1].startAt).startOf('day');
-  }, [matches]);
+    return moment(
+      calendarMatches[calendarMatches.length - 1].startAt,
+    ).startOf('day');
+  }, [calendarMatches]);
 
   const [startDate, setStartDate] = useState<moment.Moment>(initialStart);
   const [weeksShown, setWeeksShown] = useState(1);
@@ -49,25 +57,39 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
     [startDate, weeksShown],
   );
 
-  const visibleMatches = matches.filter((match) => {
+  const visibleMatches = calendarMatches.filter((match) => {
     const day = moment(match.startAt).startOf('day');
     return day.isSameOrAfter(startDate) && day.isSameOrBefore(endDate);
   });
 
-  const handlePrevWeek = () => {
-    setStartDate((d) => d.clone().subtract(7, 'days'));
+  const loadRangeForStart = async (newStart: moment.Moment) => {
+    const rangeEnd = newStart.clone().add(weeksShown * 7 - 1, 'days');
+    await ensureDateRangeLoaded(
+      newStart.format('YYYY-MM-DD'),
+      rangeEnd.format('YYYY-MM-DD'),
+    );
   };
 
-  const handleNextWeek = () => {
-    setStartDate((d) => d.clone().add(7, 'days'));
+  const handlePrevWeek = async () => {
+    const newStart = startDate.clone().subtract(7, 'days');
+    await loadRangeForStart(newStart);
+    setStartDate(newStart);
+  };
+
+  const handleNextWeek = async () => {
+    const newStart = startDate.clone().add(7, 'days');
+    await loadRangeForStart(newStart);
+    setStartDate(newStart);
   };
 
   const handleLoadMore = () => {
     setWeeksShown((w) => w + 1);
   };
 
-  const handleSelectDate = (date: moment.Moment) => {
-    setStartDate(date.clone().startOf('day'));
+  const handleSelectDate = async (date: moment.Moment) => {
+    const d = date.clone().startOf('day');
+    await loadRangeForStart(d);
+    setStartDate(d);
     setWeeksShown(1);
   };
 
@@ -83,7 +105,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
           <div className="flex items-center gap-6 self-center md:self-auto">
             <button
               type="button"
-              onClick={handlePrevWeek}
+              onClick={() => void handlePrevWeek()}
               className="font-barlow flex items-center gap-1.5 text-[14px] font-normal leading-normal tracking-[-0.14px] text-[rgba(15,23,31,0.9)]"
             >
               <img
@@ -95,7 +117,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
             </button>
             <button
               type="button"
-              onClick={handleNextWeek}
+              onClick={() => void handleNextWeek()}
               className="font-barlow flex items-center gap-1.5 text-[14px] font-normal leading-normal tracking-[-0.14px] text-[rgba(15,23,31,0.9)]"
             >
               <span>Próxima semana</span>
@@ -109,9 +131,9 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
         </div>
         <div className="hidden md:block">
           <hr className="mb-6 border-0 border-t border-[#E4E4E4]" />
-        </div>        
+        </div>
         <div className="flex flex-col gap-6">
-          {loading && matches.length === 0 && (
+          {loading && calendarMatches.length === 0 && (
             <div className="space-y-4">
               <ShimmerLine height="76px" />
               <ShimmerLine height="76px" />
@@ -121,65 +143,110 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
             </div>
           )}
           {!loading &&
-            visibleMatches.map((node) => {
-              const dateKey = moment(node.startAt).format('YYYY-MM-DD');
+            visibleMatches.map((match) => {
+              const dateKey = moment(match.startAt).format('YYYY-MM-DD');
               const showHeader = dateKey !== lastDateKey;
               if (showHeader) {
                 lastDateKey = dateKey;
               }
 
               return (
-                <div key={`upcoming-calendar-${node.providerId}`}>
+                <div key={`team-calendar-${match.providerId}`}>
                   {showHeader && (
                     <div className="mb-2 hidden sm:block">
                       <p className="text-[20px] leading-normal text-black">
-                        {formatDate(node.startAt, MATCH_DATE_FULL_FORMAT).toLowerCase()}
+                        {formatDate(match.startAt, MATCH_DATE_FULL_FORMAT).toLowerCase()}
                       </p>
                     </div>
                   )}
-                  <ScheduledMatchCardInline
-                    startAt={node.startAt}
-                    homeTeam={{
-                      code: node.homeTeam.code,
-                      nickname: node.homeTeam.nickname,
-                      city: node.homeTeam.city,
-                      ticketUrl: node.homeTeam.ticketUrl || '',
-                      competitionStandings: {
-                        won: node.homeTeam.competitionStandings?.won ?? 0,
-                        lost: node.homeTeam.competitionStandings?.lost ?? 0,
-                      },
-                    }}
-                    visitorTeam={{
-                      code: node.visitorTeam.code,
-                      nickname: node.visitorTeam.nickname,
-                      city: node.visitorTeam.city,
-                      ticketUrl: node.visitorTeam.ticketUrl || '',
-                      competitionStandings: {
-                        won: node.visitorTeam.competitionStandings?.won ?? 0,
-                        lost: node.visitorTeam.competitionStandings?.lost ?? 0,
-                      },
-                    }}
-                    contextTeam={{
-                      code: teamCode,
-                    }}
-                    providerId={node.providerId}
-                    mediaProvider={node.channel || DEFAULT_MEDIA_PROVIDER}
-                    showDesktopDateHeader={false}
-                  />
+                  {isCalendarFinishedMatch(match.status) ? (
+                    <CalendarFinishedMatchRow
+                      providerId={match.providerId}
+                      startAt={match.startAt}
+                      homeTeam={{
+                        code: match.homeTeam.code,
+                        nickname: match.homeTeam.nickname,
+                        city: match.homeTeam.city,
+                        score: match.homeTeam.score ?? '0',
+                        competitionStandings: match.homeTeam.competitionStandings,
+                      }}
+                      visitorTeam={{
+                        code: match.visitorTeam.code,
+                        nickname: match.visitorTeam.nickname,
+                        city: match.visitorTeam.city,
+                        score: match.visitorTeam.score ?? '0',
+                        competitionStandings: match.visitorTeam.competitionStandings,
+                      }}
+                      overtimePeriods={match.overtimePeriods}
+                    />
+                  ) : isCalendarLiveMatch(match.status) ? (
+                    <CalendarLiveMatchRow
+                      providerId={match.providerId}
+                      status={match.status}
+                      currentQuarter={match.currentPeriod}
+                      currentTime={match.currentTime}
+                      overtimePeriods={match.overtimePeriods}
+                      homeTeam={{
+                        code: match.homeTeam.code,
+                        nickname: match.homeTeam.nickname,
+                        city: match.homeTeam.city,
+                        score: match.homeTeam.score ?? '0',
+                        competitionStandings: match.homeTeam.competitionStandings,
+                      }}
+                      visitorTeam={{
+                        code: match.visitorTeam.code,
+                        nickname: match.visitorTeam.nickname,
+                        city: match.visitorTeam.city,
+                        score: match.visitorTeam.score ?? '0',
+                        competitionStandings: match.visitorTeam.competitionStandings,
+                      }}
+                      contextTeamCode={teamCode}
+                    />
+                  ) : (
+                    <ScheduledMatchCardInline
+                      startAt={match.startAt}
+                      homeTeam={{
+                        code: match.homeTeam.code,
+                        nickname: match.homeTeam.nickname,
+                        city: match.homeTeam.city,
+                        ticketUrl: match.homeTeam.ticketUrl || '',
+                        competitionStandings: {
+                          won: match.homeTeam.competitionStandings?.won ?? 0,
+                          lost: match.homeTeam.competitionStandings?.lost ?? 0,
+                        },
+                      }}
+                      visitorTeam={{
+                        code: match.visitorTeam.code,
+                        nickname: match.visitorTeam.nickname,
+                        city: match.visitorTeam.city,
+                        ticketUrl: match.visitorTeam.ticketUrl || '',
+                        competitionStandings: {
+                          won: match.visitorTeam.competitionStandings?.won ?? 0,
+                          lost: match.visitorTeam.competitionStandings?.lost ?? 0,
+                        },
+                      }}
+                      contextTeam={{
+                        code: teamCode,
+                      }}
+                      providerId={match.providerId}
+                      mediaProvider={match.channel || DEFAULT_MEDIA_PROVIDER}
+                      showDesktopDateHeader={false}
+                    />
+                  )}
                 </div>
               );
             })}
           {!loading && visibleMatches.length === 0 && (
             <div>
               <span className="text-[rgba(0,0,0,0.6)]">
-                Esta semana no hay juegos.
+                No hay juegos en este periodo.
               </span>
             </div>
           )}
         </div>
         {!loading &&
           visibleMatches.length > 0 &&
-          visibleMatches.length < matches.length && (
+          visibleMatches.length < calendarMatches.length && (
             <div className="mt-4 w-full">
               <button
                 type="button"
@@ -195,7 +262,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
         <div className="lg:sticky lg:top-4">
           <CalendarSidebar
             selectedDate={startDate}
-            onSelectDate={handleSelectDate}
+            onSelectDate={(d) => void handleSelectDate(d)}
             showFullCalendarLink
           />
         </div>
