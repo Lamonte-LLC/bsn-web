@@ -102,15 +102,7 @@ export default function CompletedMatchPage({
             <div className="container">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6 md:mt-[30px] lg:mt-[60px]">
                 <div className="lg:col-span-8 lg:pr-16">
-                  <div className="mb-[30px] lg:hidden">
-                    <MatchInfoCard
-                      startAt={match.startAt}
-                      venue={{ name: match.venue?.name ?? '' }}
-                      channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
-                      ticketUrl={match.homeTeam.ticketUrl}
-                    />
-                  </div>
-                  <div className="mb-6 md:mb-10 lg:mb-15">
+                  <div className="mb-10 md:mb-10 lg:mb-15">
                     <div className="flex flex-row justify-between items-center">
                       <div>
                         <h3 className="text-[22px] text-black md:text-[24px]">
@@ -146,7 +138,7 @@ export default function CompletedMatchPage({
                       }
                     />
                   </div>
-                  <div className="mb-6 md:mb-10 lg:mb-15">
+                  <div className="mb-10 md:mb-10 lg:mb-15">
                     <div className="flex flex-row justify-between items-center mb-[30px]">
                       <div>
                         <h3 className="text-[22px] text-black md:text-[24px]">
@@ -158,7 +150,7 @@ export default function CompletedMatchPage({
                       <WSCMoments />
                     </div>
                   </div>
-                  <div className="mb-6 md:mb-10 lg:mb-15">
+                  <div className="mb-10 md:mb-10 lg:mb-15">
                     <div className="flex flex-row justify-between items-center mb-6 md:mb-[28px]">
                       <div>
                         <h3 className="text-[22px] text-black md:text-[24px]">
@@ -265,6 +257,16 @@ export default function CompletedMatchPage({
                       />
                     </div>
                   </div>
+                  <div className="mt-10 lg:hidden">
+                    <MatchInfoCard
+                      startAt={match.startAt}
+                      venue={{ name: match.venue?.name ?? '' }}
+                      channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
+                      ticketUrl={match.homeTeam.ticketUrl}
+                      hideTicket
+                      hideChannel
+                    />
+                  </div>
                 </div>
                 <div className="lg:col-span-4">
                   {match.youtube && (
@@ -280,7 +282,7 @@ export default function CompletedMatchPage({
                       ticketUrl={match.homeTeam.ticketUrl}
                     />
                   </div>
-                  <div className="mb-10 md:mb-4">
+                  <div className="my-10 md:my-4">
                     <div className="flex justify-center">
                       <AdSlot
                         adUnit="/23296921845/300-250"

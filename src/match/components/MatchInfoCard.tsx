@@ -6,6 +6,8 @@ type Props = {
   venue?: { name: string };
   channel?: string;
   ticketUrl?: string;
+  hideTicket?: boolean;
+  hideChannel?: boolean;
 };
 
 export default function MatchInfoCard({
@@ -13,6 +15,8 @@ export default function MatchInfoCard({
   venue,
   channel,
   ticketUrl,
+  hideTicket = false,
+  hideChannel = false,
 }: Props) {
   return (
     <div className="border border-[#EAEAEA] flex-1 rounded-[12px] bg-white shadow-[0px_1px_3px_0px_#14181F0A]">
@@ -59,19 +63,21 @@ export default function MatchInfoCard({
               {formatDate(startAt, MATCH_TIME_FORMAT)}
             </p>
           </li>
-          <li className="flex flex-row items-center gap-[12px]">
-            <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
-              <img
-                src="/assets/images/icons/icon-tv-circle.svg"
-                alt=""
-                className="h-[18px] w-[18px]"
-              />
-            </span>
-            <p className="font-barlow font-medium text-sm">{channel}</p>
-          </li>
+          {!hideChannel && (
+            <li className="flex flex-row items-center gap-[12px]">
+              <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
+                <img
+                  src="/assets/images/icons/icon-tv-circle.svg"
+                  alt=""
+                  className="h-[18px] w-[18px]"
+                />
+              </span>
+              <p className="font-barlow font-medium text-sm">{channel}</p>
+            </li>
+          )}
         </ul>
       </div>
-      {ticketUrl && ticketUrl.trim() !== '' && ticketUrl !== '#' && (
+      {!hideTicket && ticketUrl && ticketUrl.trim() !== '' && ticketUrl !== '#' && (
         <div className="px-[30px] pb-[24px]">
           <a
             href={ticketUrl}

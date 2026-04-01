@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import Link from 'next/link';
 import PlayerPhotoAvatar from '@/player/components/avatar/PlayerPhotoAvatar';
+import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 
 type Props = {
   position: number;
@@ -36,11 +37,16 @@ export default function SeasonPlayerLeaderItem({
         </span>
       </div>
       <div className="flex flex-1 flex-row items-center gap-3">
-        <PlayerPhotoAvatar
-          photoUrl={player.avatarUrl}
-          size={avatarSize}
-          name={player.name}
-        />
+        <div
+          className="rounded-full overflow-hidden shrink-0"
+          style={{ width: avatarSize, height: avatarSize, outline: '0.5px solid rgba(81,81,81,0.25)' }}
+        >
+          <PlayerPhotoAvatar
+            photoUrl={player.avatarUrl}
+            size={avatarSize}
+            name={player.name}
+          />
+        </div>
         <div className="flex-1">
           <p
             className={cx('text-[rgba(15,23,31,0.9)]', {
@@ -51,9 +57,14 @@ export default function SeasonPlayerLeaderItem({
           >
             {player.name}
           </p>
-          <p className="font-barlow font-medium text-[13px] text-[rgba(15,23,31,0.5)]">
-            {player.team?.name}
-          </p>
+          {player.team && (
+            <div className="flex items-center gap-1 mt-[1px]">
+              <TeamLogoAvatar teamCode={player.team.code} size={12} />
+              <span className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.5)]">
+                {player.team.code}
+              </span>
+            </div>
+          )}
         </div>
       </div>
       <p
