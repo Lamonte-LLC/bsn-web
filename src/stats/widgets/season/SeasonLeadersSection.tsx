@@ -33,7 +33,7 @@ export default async function SeasonLeadersSection() {
   const currentSeason: SeasonType | null = await fetchCurrentSeason();
 
   return (
-    <section className="container mb-8 lg:mb-16">
+    <section className="container">
       <div className="flex flex-row justify-between items-center mb-[20px] md:mb-[32px]">
         <h2 className="text-[22px] text-[#0F171F] md:text-[32px]">
           Líderes {currentSeason ? `de ${currentSeason.name}` : ''}

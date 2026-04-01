@@ -22,7 +22,7 @@ type Props = {
 
 export default function SeasonPlayerLeadersCard({ title, subtitle, data }: Props) {
   return (
-    <div className="border border-[#E5E5E5] flex-1 rounded-[12px] bg-[#fdfdfd]">
+    <div className="border border-[#E5E5E5] flex-1 rounded-[12px] bg-white">
       <div className="flex flex-row justify-between items-center py-[18px] pl-[20px] pr-[25px]">
         <h2 className="font-special-gothic-condensed-one text-[17px] text-[rgba(15,23,31,0.7)]">
           {title}
