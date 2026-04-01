@@ -97,14 +97,14 @@ export default async function DetalleJugadorPage({
                       />
                     </figure>
                     <figure
-                      className="w-[75px] h-[75px] rounded-full border border-2 overflow-hidden md:hidden"
+                      className="w-[125px] h-[125px] rounded-full border border-2 overflow-hidden md:hidden"
                       style={{
                         borderColor: data.player.seasonRoster?.team?.colorPrimary || '#ccc',
                       }}
                     >
                       <PlayerPhotoAvatar
                         photoUrl={avatarUrl}
-                        size={75}
+                        size={125}
                         name={data.player.name}
                       />
                     </figure>
@@ -146,7 +146,7 @@ export default async function DetalleJugadorPage({
               </div>
               <div className="col-span-1 md:col-span-12 lg:col-span-7">
                 <div className="mb-3">
-                  <h4 className="text-xs md:text-[13px] text-[rgba(255,255,255,0.5)] uppercase">{currentSeason?.name}</h4>
+                  <h4 className="text-[16px] tracking-[1px] text-[rgba(255,255,255,0.5)] uppercase">{currentSeason?.name}</h4>
                 </div>
                 <div className="grid grid-cols-2 gap-[10px] sm:grid-cols-2 md:grid-cols-4">
                   <div className="border border-[rgba(255,255,255,0.2)] rounded-[12px] px-[14px] py-[12px]">
@@ -190,7 +190,7 @@ export default async function DetalleJugadorPage({
                 </div>
               </div>
             </div>
-            <div className="mt-[12px] md:mt-[40px]">
+            <div className="md:mt-[40px]">
               <div className="border-b border-transparent md:border-[rgba(255,255,255,0.07)]"></div>
             </div>
             <div className="py-[24px] md:py-[40px] lg:w-7/12">
