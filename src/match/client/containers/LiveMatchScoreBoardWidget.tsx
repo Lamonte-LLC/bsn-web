@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import Lottie from 'lottie-react';
 import Link from 'next/link';
-import { MATCH_DATE_FORMAT, MATCH_STATUS } from '@/constants';
+import { MATCH_DATE_FORMAT } from '@/constants';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import animationLiveStreamData from './live-stream.json';
 import { formatDate } from '@/utils/date-formatter';
@@ -14,9 +14,7 @@ import { getLiveScoreboardCenterLine } from '@/match/client/utils/calendarView';
 import {
   isCompletedMatchForUi,
   isDevForcedLiveMatchPage,
-  normalizeMatchStatus,
 } from '@/match/utils/matchStatus';
-import { useTickingGameClock } from '../hooks/useTickingGameClock';
 
 type Props = {
   matchProviderId: string;
@@ -32,33 +30,8 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
     [matchProviderId, data?.status, data?.providerFixtureStatus],
   );
 
-  const statusU = normalizeMatchStatus(data?.status);
-  const inPlayClockTick =
-    !completedForScore && statusU === MATCH_STATUS.IN_PROGRESS;
-
-  const tickingClock = useTickingGameClock(
-    data?.currentTime,
-    inPlayClockTick,
-  );
-
-  const periodLabel = useMemo(() => {
-    if (!data) {
-      return '';
-    }
-
-    let label =
-      (data?.overtimePeriods ?? 0) > 0 ? 'OT' : `Q${data?.currentPeriod ?? 1}`;
-    if ((data?.overtimePeriods ?? 0) > 1) {
-      label += `${data?.overtimePeriods ?? 0}`;
-    }
-    return label;
-  }, [data]);
-
   const centerLine = useMemo(() => {
     if (!data) return '';
-    if (inPlayClockTick) {
-      return `${periodLabel} – ${tickingClock}`;
-    }
     return getLiveScoreboardCenterLine(
       data.status,
       data.providerFixtureStatus,
@@ -66,12 +39,7 @@ export default function LiveMatchScoreBoardWidget({ matchProviderId }: Props) {
       data.currentTime,
       data.overtimePeriods,
     );
-  }, [
-    data,
-    inPlayClockTick,
-    periodLabel,
-    tickingClock,
-  ]);
+  }, [data]);
 
   const badgeLabel = completedForScore ? 'POSTPARTIDO' : 'EN VIVO';
 
