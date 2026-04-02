@@ -300,29 +300,29 @@ export default function FooterBoxLayout() {
               reservados.
             </p>
             <p className="font-barlow text-xs text-neutral-500">
-              <a href="#" className="underline">
+              <a href="https://wp.bsnpr.com/terminos-y-condiciones/" target="_blank" rel="noopener noreferrer" className="underline">
                 Términos y condiciones
               </a>{' '}
               |{' '}
-              <a href="#" className="underline">
+              <a href="https://wp.bsnpr.com/politica-de-privacidad/" target="_blank" rel="noopener noreferrer" className="underline">
                 Política de privacidad
               </a>
               . Diseñado en Puerto Rico por{' '}
-              <a href="#" className="underline">
+              <a href="https://lamonte.studio/" target="_blank" rel="noopener noreferrer" className="underline">
                 Lamonte
               </a>
               .
             </p>
           </div>
           <div className="flex flex-row gap-[10px] items-center">
-            <a href="#">
+            <a href="https://apps.apple.com/us/app/baloncesto-superior-nacional/id6479825880" target="_blank" rel="noopener noreferrer">
               <img
                 src="/assets/images/downlad-appstore.png"
                 alt=""
                 srcSet="/assets/images/downlad-appstore.png, /assets/images/downlad-appstore@2x.png 2x"
               />
             </a>
-            <a href="#">
+            <a href="https://play.google.com/store/apps/details?id=io.genius.bsnpr&hl=en" target="_blank" rel="noopener noreferrer">
               <img
                 src="/assets/images/download-playstore.png"
                 alt=""
