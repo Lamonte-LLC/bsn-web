@@ -311,6 +311,7 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
   const statusNorm = normalizeMatchStatus(match.status);
   const needsMatchTeamsBoxscore =
     devForceLive ||
+    completedUi ||
     (statusesNeedingMatchTeamsBoxscore as readonly string[]).includes(statusNorm);
 
   const response: MatchResponse = {
