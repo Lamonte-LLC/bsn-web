@@ -22,14 +22,14 @@ type Props = {
 
 export default function SeasonPlayerLeadersCard({ title, subtitle, data }: Props) {
   return (
-    <div className="border border-[#E5E5E5] flex-1 rounded-[12px] bg-[#fdfdfd]">
+    <div className="border border-[#E5E5E5] flex-1 rounded-[12px] bg-white">
       <div className="flex flex-row justify-between items-center py-[18px] pl-[20px] pr-[25px]">
         <h2 className="font-special-gothic-condensed-one text-[17px] text-[rgba(15,23,31,0.7)]">
           {title}
         </h2>
         <h4 className="font-barlow text-xs text-[rgba(0,0,0,0.6)]">{subtitle}</h4>
       </div>
-      <div className="pl-[20px] pr-[25px]">
+      <div className="pl-[20px] pr-[25px] pb-[14px]">
         <ul>
           {data.map((row, index) => (
             <li key={index} className={index < data.length - 1 ? 'border-b-[0.5px] border-[rgba(0,0,0,0.05)]' : ''}>

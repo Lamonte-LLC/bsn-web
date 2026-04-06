@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 type Props = {
   teamCode: string;
   size?: number;
@@ -31,13 +29,9 @@ export default function TeamLogoAvatar({
   size = 50,
   defaultLogo = 'default-dark.png',
 }: Props) {
-  const imageSource = useMemo(() => {
-    if (teamCode in TEAM_LOGOS) {
-      return TEAM_LOGOS[teamCode];
-    }
-
-    return `/assets/images/teams/${defaultLogo}`;
-  }, [teamCode, defaultLogo]);
+  const imageSource = teamCode in TEAM_LOGOS
+    ? TEAM_LOGOS[teamCode]
+    : `/assets/images/teams/${defaultLogo}`;
 
   return (
     <div className="flex shrink-0 items-center justify-center">
