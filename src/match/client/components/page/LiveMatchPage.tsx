@@ -22,25 +22,12 @@ import MatchGameLeadersSection, {
   type MatchGameLeaderPlayerBoxScore,
 } from '@/match/components/stats/MatchGameLeadersSection';
 import LiveMatchSectionErrorBoundary from '../LiveMatchSectionErrorBoundary';
+import type { MatchTeamComparisonBoxScore } from '@/match/components/stats/MatchTeamStatsComparison';
 
 type Props = {
   match: MatchType;
-  homeTeamBoxScore?: {
-    points: number;
-    rebounds: number;
-    assists: number;
-    steals: number;
-    blocks: number;
-    turnovers: number;
-  };
-  visitorTeamBoxScore?: {
-    points: number;
-    rebounds: number;
-    assists: number;
-    steals: number;
-    blocks: number;
-    turnovers: number;
-  };
+  homeTeamBoxScore: MatchTeamComparisonBoxScore;
+  visitorTeamBoxScore: MatchTeamComparisonBoxScore;
   /** Líderes del encuentro en curso (`matchLeadersConnection`); vacíos hasta que haya box por jugador. */
   pointsLeaders?: MatchGameLeaderPlayerBoxScore[];
   reboundsLeaders?: MatchGameLeaderPlayerBoxScore[];
@@ -141,22 +128,8 @@ export default function LiveMatchPage({
                       <MatchTeamStatsComparison
                         homeTeam={{ code: match.homeTeam.code }}
                         visitorTeam={{ code: match.visitorTeam.code }}
-                        homeTeamBoxScore={{
-                          points: homeTeamBoxScore?.points ?? 0,
-                          rebounds: homeTeamBoxScore?.rebounds ?? 0,
-                          assists: homeTeamBoxScore?.assists ?? 0,
-                          steals: homeTeamBoxScore?.steals ?? 0,
-                          blocks: homeTeamBoxScore?.blocks ?? 0,
-                          turnovers: homeTeamBoxScore?.turnovers ?? 0,
-                        }}
-                        visitorTeamBoxScore={{
-                          points: visitorTeamBoxScore?.points ?? 0,
-                          rebounds: visitorTeamBoxScore?.rebounds ?? 0,
-                          assists: visitorTeamBoxScore?.assists ?? 0,
-                          steals: visitorTeamBoxScore?.steals ?? 0,
-                          blocks: visitorTeamBoxScore?.blocks ?? 0,
-                          turnovers: visitorTeamBoxScore?.turnovers ?? 0,
-                        }}
+                        homeTeamBoxScore={homeTeamBoxScore}
+                        visitorTeamBoxScore={visitorTeamBoxScore}
                       />
                     </div>
                     {/* Misma sección que en partido finalizado: estadísticas acumuladas en este juego. */}

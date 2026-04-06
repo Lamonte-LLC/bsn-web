@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@utility container {
+  margin: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @variant lg {
+    max-width: 68rem;
+  }
+
+  @variant xl {
+    max-width: 79rem;
+  }
+
+  @variant 2xl {
+    max-width: 79rem;
+  }
+}
+
+:root {
+  --background: #fdfdfd;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-barlow: var(--font-barlow);
+  --font-barlow-condensed: var(--font-barlow-condensed);
+  --font-special-gothic-condensed-one: var(--font-special-gothic-condensed-one);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  /* background: var(--background); */
+  background: #0F171F;
+  color: var(--foreground);
+  font-family: var(--font-special-gothic-condensed-one), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/*
+ * WebKit (Safari iOS): backdrop-filter + transformed ancestors (e.g. slick carousel)
+ * can composite the whole page to black. Chrome responsive mode uses Blink — won't repro.
+ * Only enable glass blur on fine pointer + hover-capable devices (typical desktop).
+ */
+.glass-match-card {
+  background-color: rgba(54, 54, 54, 0.42);
+}
+
+.glass-match-card-pill {
+  background-color: rgba(15, 15, 15, 0.28);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glass-match-card {
+    background-color: rgba(54, 54, 54, 0.3);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+
+  .glass-match-card-pill {
+    background-color: rgba(15, 15, 15, 0.19);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+}
+
+.bg-bsn {
+  background: radial-gradient(37% 80% at 45% 49%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(90deg, rgba(17, 22, 29, 0.2) 0%, rgba(10, 14, 20, 0) 100%),#0F171F;
+}
+
+/* Recent Calendar Slider */
+.recent-calendar-slider .slick-arrow {
+  cursor: pointer;
+  color: #0000;
+  background-color: rgba(38, 38, 38, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 100px;
+  outline: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 10;
+}
+
+.recent-calendar-slider .slick-prev {
+  background-image: url('/assets/images/icons/icon-slider-prev.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  left: -12px;
+}
+
+.recent-calendar-slider .slick-next {
+  background-image: url('/assets/images/icons/icon-slider-next.png');
+  background-position: center;
+  background-repeat: no-repeat;  
+  right: -12px;
+}
+
+@media (max-width: 767px) {
+  .recent-calendar-slider .slick-prev,
+  .recent-calendar-slider .slick-next {
+    display: none !important;
+  }
+}
+
+/* Home calendar: native horizontal scroll (no react-slick / translate3d on iOS WebKit) */
+.home-calendar-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.home-calendar-strip::-webkit-scrollbar {
+  display: none;
+}

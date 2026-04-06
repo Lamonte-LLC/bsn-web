@@ -1,3 +1,5 @@
+'use client';
+
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 
 import MatchInfoCard from '@/match/components/MatchInfoCard';
@@ -8,6 +10,8 @@ import MatchGameLeadersSection, {
   type MatchGameLeaderPlayerBoxScore,
 } from '@/match/components/stats/MatchGameLeadersSection';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
+import MatchTeamStatsComparison from '@/match/components/stats/MatchTeamStatsComparison';
+import type { MatchTeamComparisonBoxScore } from '@/match/components/stats/MatchTeamStatsComparison';
 
 import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import { MatchType } from '@/match/types';
@@ -22,6 +26,8 @@ import MatchWscStoriesWidget from '../MatchWscStoriesWidget';
  */
 type Props = {
   match: MatchType;
+  homeTeamBoxScore: MatchTeamComparisonBoxScore;
+  visitorTeamBoxScore: MatchTeamComparisonBoxScore;
   /** Todas las listas: líderes de este partido (`matchLeadersConnection`), no de liga ni un solo equipo. */
   pointsLeaders?: MatchGameLeaderPlayerBoxScore[];
   reboundsLeaders?: MatchGameLeaderPlayerBoxScore[];
@@ -33,6 +39,8 @@ type Props = {
 
 export default function CompletedMatchPage({
   match,
+  homeTeamBoxScore,
+  visitorTeamBoxScore,
   pointsLeaders = [],
   reboundsLeaders = [],
   assistsLeaders = [],
@@ -172,6 +180,14 @@ export default function CompletedMatchPage({
                       venue={{ name: match.venue?.name ?? '' }}
                       channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
                       ticketUrl={match.homeTeam.ticketUrl}
+                    />
+                  </div>
+                  <div className="mb-6 md:mb-10 lg:mb-15">
+                    <MatchTeamStatsComparison
+                      homeTeam={{ code: match.homeTeam.code }}
+                      visitorTeam={{ code: match.visitorTeam.code }}
+                      homeTeamBoxScore={homeTeamBoxScore}
+                      visitorTeamBoxScore={visitorTeamBoxScore}
                     />
                   </div>
                   <div className="mb-10 md:mb-4">
