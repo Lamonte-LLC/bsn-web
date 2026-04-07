@@ -87,3 +87,42 @@ export type MatchType = {
   homeTeamBoxscore?: MatchTeamBoxScoreType;
   visitorTeamBoxscore?: MatchTeamBoxScoreType;
 };
+
+export type MatchPlayByPlayTeamType = {
+  id: string;
+  providerId: string;
+  name: string;
+  nickname: string;
+  code: string;
+  colorPrimary: string;
+}
+
+export type MatchPlayByPlayPersonType = {
+  id: string;
+  providerId: string;
+  name: string;
+  nickname: string;
+}
+
+export type MatchPlayByPlayEventType = {
+  eventId: string;
+  team: MatchPlayByPlayTeamType | null;
+  person: MatchPlayByPlayPersonType | null;
+  eventClass: string;
+  eventType: string;
+  subType: string;
+  eventTime: string;
+  clock: string;
+  periodId: number;
+  period: number;
+  periodType: string;
+  success: boolean;
+  x: number;
+  y: number;
+  playId: string;
+  sequence: number;
+  status: string;
+  timestamp: string;
+  scores: Record<string, string | number>;
+  options: Record<string, string | number>;
+}

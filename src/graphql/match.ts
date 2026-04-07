@@ -727,3 +727,46 @@ export const HEAD_TO_HEAD_MATCHES = gql`
     }
   }
 `;
+
+export const MATCH_LIVE_PLAY_BY_PLAY = gql`
+  query findMatchLivePlayByPlay($matchProviderId: String!) {
+    matchPlayByPlayConnection(matchProviderId: $matchProviderId) {
+      edges {
+        node {
+          eventId
+          team {
+            id
+            providerId
+            name
+            nickname
+            code
+            colorPrimary
+          }
+          person {
+            id
+            providerId
+            name
+            nickname
+          }
+          eventClass
+          eventType
+          subType
+          eventTime
+          clock
+          periodId
+          period
+          periodType
+          success
+          x
+          y
+          playId
+          sequence
+          status
+          timestamp
+          scores
+          options
+        }
+      }
+    }
+  }
+`;

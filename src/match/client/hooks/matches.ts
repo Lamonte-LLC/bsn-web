@@ -7,8 +7,9 @@ import {
   MATCH,
   MATCH_LIVE_SCOREBOARD,
   MATCH_LIVE_TEAMS_BOXSCORE,
+  MATCH_LIVE_PLAY_BY_PLAY,
 } from '@/graphql/match';
-import { MatchType } from '@/match/types';
+import { MatchPlayByPlayEventType, MatchType } from '@/match/types';
 import { useQuery } from '@apollo/client/react';
 import moment from 'moment';
 import { useCallback, useMemo, useState } from 'react';
@@ -22,7 +23,9 @@ const LIVE_MATCH_POLL_MS = 5_000;
  * Con `nextFetchPolicy: 'cache-first'`, los `pollInterval` de Apollo suelen leer solo caché y no
  * refrescar marcador/box score. En vivo forzamos revalidación en red en cada ciclo.
  */
-function liveNextFetchPolicy(polling: boolean): 'cache-and-network' | 'cache-first' {
+function liveNextFetchPolicy(
+  polling: boolean,
+): 'cache-and-network' | 'cache-first' {
   return polling ? 'cache-and-network' : 'cache-first';
 }
 
@@ -490,7 +493,10 @@ type MatchTeamsBoxscoreResponse = {
   matchTeamsBoxscore: MatchType;
 };
 
-export function useMatchTeamsBoxscore(matchProviderId: string, usePoll = false) {
+export function useMatchTeamsBoxscore(
+  matchProviderId: string,
+  usePoll = false,
+) {
   const { data, loading, error, startPolling, stopPolling } =
     useQuery<MatchTeamsBoxscoreResponse>(MATCH_LIVE_TEAMS_BOXSCORE, {
       variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
@@ -505,6 +511,39 @@ export function useMatchTeamsBoxscore(matchProviderId: string, usePoll = false) 
 
   return {
     data: data?.matchTeamsBoxscore,
+    loading,
+    error,
+    startPolling,
+    stopPolling,
+  };
+}
+
+type MatchLivePlayByPlayResponse = {
+  matchPlayByPlayConnection: {
+    edges: {
+      node: MatchPlayByPlayEventType;
+    }[];
+  };
+};
+
+export function useMatchLivePlayByPlay(
+  matchProviderId: string,
+  usePoll = false,
+) {
+  const { data, loading, error, startPolling, stopPolling } =
+    useQuery<MatchLivePlayByPlayResponse>(MATCH_LIVE_PLAY_BY_PLAY, {
+      variables: { matchProviderId },
+      fetchPolicy: 'network-only',
+      pollInterval: usePoll ? 15 * 1000 : 0,
+      notifyOnNetworkStatusChange: false,
+    });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.matchPlayByPlayConnection.edges.map((edge) => edge.node) ?? [],
     loading,
     error,
     startPolling,

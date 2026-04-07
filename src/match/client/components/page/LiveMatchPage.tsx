@@ -24,6 +24,7 @@ import MatchGameLeadersSection, {
 import LiveMatchSectionErrorBoundary from '../LiveMatchSectionErrorBoundary';
 import type { MatchTeamComparisonBoxScore } from '@/match/components/stats/MatchTeamStatsComparison';
 import MatchTeamStatsComparisonWidget from '../../widgets/MatchTeamStatsComparisonWidget';
+import LiveMatchPlayByPlayWidget from '../../widgets/LiveMatchPlayByPlayWidget';
 
 type Props = {
   match: MatchType;
@@ -114,9 +115,9 @@ export default function LiveMatchPage({
                     </div>
                   </div>
                   {/* Bloque antiguo de box score básico comentado (ver import arriba). */}
-                  {/* <div className="mb-6 md:mb-10 lg:mb-15">
-                    <LiveMatchBasicBoxScoreBasicWidget />
-                  </div> */}
+                  <div className="mb-6 md:mb-10 lg:mb-15">
+                    <LiveMatchPlayByPlayWidget matchProviderId={match.providerId} />
+                  </div>
                 </div>
                 <div className="lg:col-span-4">
                   <div className="flex flex-col">
