@@ -731,17 +731,6 @@ export default async function PartidoPage({
 
   return (
     <>
-      <LiveMatchPage
-        match={data.match}
-        homeTeamBoxScore={data.homeTeamBoxScore as MatchTeamComparisonBoxScore}
-        visitorTeamBoxScore={data.visitorTeamBoxScore as MatchTeamComparisonBoxScore}
-        pointsLeaders={data.pointsLeaders}
-        reboundsLeaders={data.reboundsLeaders}
-        assistsLeaders={data.assistsLeaders}
-        stealsLeaders={data.stealsLeaders}
-        blocksLeaders={data.blocksLeaders}
-        threePointersMadeLeaders={data.threePointersMadeLeaders}
-      />
       {/* Layout “En vivo” solo según estado del partido (no según streamUrl). */}
       {shouldUseLiveMatchPageLayout(data.match) && (
         <LiveMatchPage
