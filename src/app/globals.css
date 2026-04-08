@@ -160,6 +160,7 @@ body {
 
 #synergy-widget-fixture_detail .sw-fixture-banner {
   background: radial-gradient(37% 80% at 45% 49%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(90deg, rgba(17, 22, 29, 0.2) 0%, rgba(10, 14, 20, 0) 100%),#0F171F;  
+  padding-top: 1rem;
 }
 
 #synergy-widget-fixture_detail .sw-fixture-banner-season,
@@ -173,7 +174,8 @@ body {
   color: #fff;
 }
 
-#synergy-widget-fixture_detail .sw-fixture-banner-container-expand-area-button {
+#synergy-widget-fixture_detail .sw-fixture-banner-container-expand-area-button,
+#synergy-widget-fixture_detail .sw-fixture-banner-season {
   display: none;
 }
 
