@@ -142,12 +142,23 @@ body {
 #synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-value,
 #synergy-widget-fixture_detail .sw-fixture-banner-main-score-competitor-name,
 #synergy-widget-fixture_detail .sw-fixture-banner-status-state-label,
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-label,
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-value,
 #synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table th,
 #synergy-widget-fixture_detail .sw-sub-tabs-tab,
+#synergy-widget-fixture_detail .box-score-sorting,
+#synergy-widget-fixture_detail .sw-glossary-item dt,
+#synergy-widget-fixture_detail .sw-glossary-item dd,
 #synergy-widget-fixture_detail .box-score .sw-grid th,
 #synergy-widget-fixture_detail .sw-grid table tbody td,
 #synergy-widget-fixture_detail .sw-grid table tbody th {
   font-family: var(--font-special-gothic-condensed-one), Arial, Helvetica, sans-serif !important;
+}
+
+#synergy-widget-fixture_detail .box-score-person-cell,
+#synergy-widget-fixture_detail .grid-data-cell-bib,
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-label {
+  font-weight: normal;
 }
 
 #synergy-widget-fixture_detail .sw-navbar {
