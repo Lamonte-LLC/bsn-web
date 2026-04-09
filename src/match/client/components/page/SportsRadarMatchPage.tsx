@@ -32,13 +32,15 @@ export default function SportsRadarMatchPage({ matchProviderId, matchStreamUrl }
 
   return (
     <FullWidthLayout>
-      <div className="bg-bsn">
-        <div className="container">
-          <div className="py-[26px] mx-auto md:py-[40px] md:w-[688px]">
-            <LiveMatchStream streamUrl={matchStreamUrl} />
+      {matchStreamUrl && (
+        <div className="bg-bsn">
+          <div className="container">
+            <div className="py-[26px] mx-auto md:py-[40px] md:w-[688px]">
+              <LiveMatchStream streamUrl={matchStreamUrl} />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div ref={widgetRef} className="widget" />
     </FullWidthLayout>
   );
