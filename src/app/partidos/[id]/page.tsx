@@ -11,8 +11,8 @@ import {
   SEASON_TEAM_LEADER_PLAYER_STATS,
 } from '@/graphql/stats';
 import { TEAM_DETAIL, TEAM_STATS } from '@/graphql/team';
-import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPage';
-import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
+// import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPage';
+// import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
 import ScheduledMatchPage from '@/match/client/components/page/ScheduledMatchPage';
 import type { MatchTeamComparisonBoxScore } from '@/match/components/stats/MatchTeamStatsComparison';
 import { MatchType } from '@/match/types';
@@ -29,6 +29,7 @@ import {
   SEASON_TEAM_LEADERS_CONNECTION_FIRST,
   SEASON_TEAM_LEADERS_DISPLAY_TOP,
 } from '@/constants';
+import SportsRadarMatchPage from '@/match/client/components/page/SportsRadarMatchPage';
 
 /*
  * Página de detalle de partido: el layout (live / finalizado / programado) y los datos extra
@@ -733,16 +734,13 @@ export default async function PartidoPage({
     <>
       {/* Layout “En vivo” solo según estado del partido (no según streamUrl). */}
       {shouldUseLiveMatchPageLayout(data.match) && (
-        <LiveMatchPage
-          match={data.match}
-          homeTeamBoxScore={data.homeTeamBoxScore as MatchTeamComparisonBoxScore}
-          visitorTeamBoxScore={data.visitorTeamBoxScore as MatchTeamComparisonBoxScore}
-          pointsLeaders={data.pointsLeaders}
-          reboundsLeaders={data.reboundsLeaders}
-          assistsLeaders={data.assistsLeaders}
-          stealsLeaders={data.stealsLeaders}
-          blocksLeaders={data.blocksLeaders}
-          threePointersMadeLeaders={data.threePointersMadeLeaders}
+        <SportsRadarMatchPage
+          matchProviderId={id}
+          matchStreamUrl={
+            data.match.streamUrl ??
+            data.match.homeTeam.streamUrl ??
+            data.match.visitorTeam.streamUrl
+          }
         />
       )}
       {/* Partido cerrado: mismo criterio que `!shouldUseLiveMatchPageLayout` cuando no es programado. */}
@@ -751,17 +749,7 @@ export default async function PartidoPage({
           data.match.status,
           data.match.providerFixtureStatus,
         ) && (
-        <CompletedMatchPage
-          match={data.match}
-          homeTeamBoxScore={data.homeTeamBoxScore as MatchTeamComparisonBoxScore}
-          visitorTeamBoxScore={data.visitorTeamBoxScore as MatchTeamComparisonBoxScore}
-          pointsLeaders={data.pointsLeaders}
-          reboundsLeaders={data.reboundsLeaders}
-          assistsLeaders={data.assistsLeaders}
-          stealsLeaders={data.stealsLeaders}
-          blocksLeaders={data.blocksLeaders}
-          threePointersMadeLeaders={data.threePointersMadeLeaders}
-        />
+        <SportsRadarMatchPage matchProviderId={id} />
       )}
       {/* SCHEDULED / RESCHEDULED y no cerrado: antes solo se cargaba preview si `status === SCHEDULED`. */}
       {!isDevForcedLiveMatchPage(data.match.providerId) &&
