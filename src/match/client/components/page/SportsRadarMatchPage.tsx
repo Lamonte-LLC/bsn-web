@@ -34,15 +34,15 @@ export default function SportsRadarMatchPage({ matchProviderId, matchStreamUrl }
 
         const divContainer = document.createElement('div');
         divContainer.className = 'bsn-stream-container container pb-[26px] mx-auto md:pb-[40px] md:w-[688px]';
-        const iframeWrapper = document.createElement('div');
-        iframeWrapper.className = 'relative w-full aspect-video bg-black rounded-[8px] overflow-hidden';
-        const iframe = document.createElement('iframe');
-        iframe.src = matchStreamUrl;
-        iframe.className = 'absolute inset-0 h-full w-full border-0';
-        iframe.allow = 'autoplay; fullscreen; encrypted-media; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframeWrapper.appendChild(iframe);
-        divContainer.appendChild(iframeWrapper);
+        const videoWrapper = document.createElement('div');
+        videoWrapper.className = 'relative w-full aspect-video bg-black rounded-[8px] overflow-hidden';
+        const video = document.createElement('video');
+        video.src = matchStreamUrl;
+        video.className = 'w-full h-full';
+        video.controls = true;
+        video.playsInline = true;
+        videoWrapper.appendChild(video);
+        divContainer.appendChild(videoWrapper);
         banner.appendChild(divContainer);
       };
 
