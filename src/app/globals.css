@@ -151,13 +151,22 @@ body {
 #synergy-widget-fixture_detail .sw-glossary-item dd,
 #synergy-widget-fixture_detail .box-score .sw-grid th,
 #synergy-widget-fixture_detail .sw-grid table tbody td,
-#synergy-widget-fixture_detail .sw-grid table tbody th {
+#synergy-widget-fixture_detail .sw-grid table tbody th,
+#synergy-widget-fixture_detail .sw-leaders-card-category,
+#synergy-widget-fixture_detail .sw-leaders-top-person-name,
+#synergy-widget-fixture_detail .sw-leaders-non-leader-person-name,
+#synergy-widget-fixture_detail .sw-leaders-non-leader-result,
+#synergy-widget-fixture_detail .sw-multi-switch-item,
+#synergy-widget-fixture_detail .sw-shot-chart-roster,
+#synergy-widget-fixture_detail .sw-shot-chart-roster:before {
   font-family: var(--font-special-gothic-condensed-one), Arial, Helvetica, sans-serif !important;
 }
 
 #synergy-widget-fixture_detail .box-score-person-cell,
 #synergy-widget-fixture_detail .grid-data-cell-bib,
-#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-label {
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-label,
+#synergy-widget-fixture_detail .sw-fixture-pbp li.is-success,
+#synergy-widget-fixture_detail .sw-multi-switch-item {
   font-weight: normal;
 }
 
