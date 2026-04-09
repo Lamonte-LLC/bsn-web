@@ -189,7 +189,10 @@ body {
   color: rgba(255, 255, 255, 0.72);
 }
 
-.sw-widget-fixture-box-score {
+.sw-widget-fixture-box-score,
+.sw-fixture-pbp,
+.sw-shot-chart-base,
+.sw-season-leaders {
   margin: auto;
   padding-left: 1rem;
   padding-right: 1rem;
