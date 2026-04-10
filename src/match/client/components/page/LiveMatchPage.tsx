@@ -22,8 +22,6 @@ import MatchGameLeadersSection, {
   type MatchGameLeaderPlayerBoxScore,
 } from '@/match/components/stats/MatchGameLeadersSection';
 import LiveMatchSectionErrorBoundary from '../LiveMatchSectionErrorBoundary';
-// DEV/TESTING ONLY — remove before merging (see component file for instructions)
-import SporTradarFixtureWidget from '../SporTradarFixtureWidget';
 
 type Props = {
   match: MatchType;
@@ -104,10 +102,6 @@ export default function LiveMatchPage({
             </Tab>
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
               Box Score
-            </Tab>
-            {/* DEV/TESTING ONLY — remove before merging */}
-            <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
-              Stats Widget
             </Tab>
           </div>
         </TabList>
@@ -203,12 +197,6 @@ export default function LiveMatchPage({
               >
                 <MatchBoxScoreWidget match={match} usePolling />
               </LiveMatchSectionErrorBoundary>
-            </div>
-          </TabPanel>
-          {/* DEV/TESTING ONLY — remove before merging */}
-          <TabPanel>
-            <div className="container py-[20px] md:py-[30px] lg:py-[50px]">
-              <SporTradarFixtureWidget fixtureId={match.providerId} />
             </div>
           </TabPanel>
         </TabPanels>

@@ -15,8 +15,6 @@ import MatchYoutubeVideoCard from '../card/MatchYoutubeVideoCard';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import WSCBlazeSDK from '@/shared/client/components/wsc/WSCBlazeSDK';
 import MatchWscStoriesWidget from '../MatchWscStoriesWidget';
-// DEV/TESTING ONLY — remove before merging (see component file for instructions)
-import SporTradarFixtureWidget from '../SporTradarFixtureWidget';
 
 /**
  * Partido finalizado: parciales Q1–Q4 / OT desde `match.periods` (cargados en el servidor
@@ -90,10 +88,6 @@ export default function CompletedMatchPage({
             </Tab>
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-base data-selected:text-white data-selected:border-b data-selected:border-b-white md:text-[22px]">
               Box Score
-            </Tab>
-            {/* DEV/TESTING ONLY — remove before merging */}
-            <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-base data-selected:text-white data-selected:border-b data-selected:border-b-white md:text-[22px]">
-              Stats Widget
             </Tab>
           </div>
         </TabList>
@@ -196,12 +190,6 @@ export default function CompletedMatchPage({
           <TabPanel>
             <div className="container">
               <MatchBoxScoreWidget match={match} />
-            </div>
-          </TabPanel>
-          {/* DEV/TESTING ONLY — remove before merging */}
-          <TabPanel>
-            <div className="container py-[20px] md:py-[30px] lg:py-[50px]">
-              <SporTradarFixtureWidget fixtureId={match.providerId} />
             </div>
           </TabPanel>
         </TabPanels>
