@@ -97,7 +97,7 @@ body {
   line-height: 0;
   display: block;
   position: absolute;
-  top: calc(50% - 10px);
+  top: 50%;
   transform: translate(0, -50%);
   z-index: 10;
 }
@@ -897,13 +897,6 @@ button:not([disabled]):active {
   opacity: 0.8;
 }
 
-/* Slider arrows: no hover/active effects — preserve Slick's transform for positioning */
-.recent-calendar-slider .slick-arrow {
-  transition: none !important;
-}
-.recent-calendar-slider .slick-arrow:active {
-  opacity: 1 !important;
-}
 
 /* News hero: image zoom on hover, no opacity fade on the link */
 a:has(.news-hero-img):hover {
