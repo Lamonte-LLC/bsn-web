@@ -248,6 +248,7 @@ span.sw-fixture-banner-status-time-value {
   padding-left: 1rem !important;
   padding-right: 1rem !important;
   max-width: 79rem !important;
+  margin-bottom: 60px !important;
 }
 
 .sw-fixture-pbp {
@@ -529,7 +530,7 @@ span.sw-box-score-additional-persons-role {
 .sw-leaders-card-category {
   color: #0f171fb3 !important;
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
   text-transform: capitalize !important;
   grid-area: 1 / span 1 !important;
   padding: 5px 10px !important;
