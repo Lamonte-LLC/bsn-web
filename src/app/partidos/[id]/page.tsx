@@ -11,9 +11,10 @@ import {
   SEASON_TEAM_LEADER_PLAYER_STATS,
 } from '@/graphql/stats';
 import { TEAM_DETAIL, TEAM_STATS } from '@/graphql/team';
-import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPage';
-import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
+// import CompletedMatchPage from '@/match/client/components/page/CompletedMatchPage';
+// import LiveMatchPage from '@/match/client/components/page/LiveMatchPage';
 import ScheduledMatchPage from '@/match/client/components/page/ScheduledMatchPage';
+import type { MatchTeamComparisonBoxScore } from '@/match/components/stats/MatchTeamStatsComparison';
 import { MatchType } from '@/match/types';
 import {
   isCompletedMatchForUi,
@@ -28,6 +29,7 @@ import {
   SEASON_TEAM_LEADERS_CONNECTION_FIRST,
   SEASON_TEAM_LEADERS_DISPLAY_TOP,
 } from '@/constants';
+import SportsRadarMatchPage from '@/match/client/components/page/SportsRadarMatchPage';
 
 /*
  * Página de detalle de partido: el layout (live / finalizado / programado) y los datos extra
@@ -76,8 +78,8 @@ type MatchTeamComparisonBox = {
 
 type MatchResponse = {
   match: MatchType;
-  homeTeamBoxScore: MatchTeamComparisonBox;
-  visitorTeamBoxScore: MatchTeamComparisonBox;
+  homeTeamBoxScore: MatchTeamComparisonBoxScore | MatchTeamComparisonBox;
+  visitorTeamBoxScore: MatchTeamComparisonBoxScore | MatchTeamComparisonBox;
   homeTeamPointsLeaders: LeadersCategoryStatsType[];
   homeTeamAssistsLeaders: LeadersCategoryStatsType[];
   homeTeamReboundsLeaders: LeadersCategoryStatsType[];
@@ -95,9 +97,67 @@ type MatchResponse = {
   threePointersMadeLeaders: MatchPlayerBoxScore[];
 };
 
-type MatchTeamsBoxScoreResponse = {
-  matchTeamsBoxscore: MatchType;
+/** Fragment returned by `MATCH_TEAMS_BOXSCORE` (typed loosely; aligns with team comparison mapping). */
+type GraphqlTeamBoxscore = {
+  fieldGoalsMade?: number | null;
+  fieldGoalsAttempted?: number | null;
+  fieldGoalsPercentage?: number | null;
+  threePointersMade?: number | null;
+  threePointersAttempted?: number | null;
+  threePointersPercentage?: number | null;
+  freeThrowsMade?: number | null;
+  freeThrowsAttempted?: number | null;
+  freeThrowsPercentage?: number | null;
+  offensiveRebounds?: number | null;
+  reboundsTotal?: number | null;
+  assists?: number | null;
+  turnovers?: number | null;
+  steals?: number | null;
+  blocks?: number | null;
+  foulsPersonal?: number | null;
 };
+
+type MatchTeamsBoxScoreResponse = {
+  matchTeamsBoxscore: {
+    homeTeamBoxscore?: GraphqlTeamBoxscore | null;
+    visitorTeamBoxscore?: GraphqlTeamBoxscore | null;
+  } | null;
+};
+
+function teamComparisonBoxScoreFromGraphql(
+  team: GraphqlTeamBoxscore | null | undefined,
+): MatchTeamComparisonBoxScore {
+  return {
+    fieldGoalsMade: team?.fieldGoalsMade ?? 0,
+    fieldGoalsAttempted: team?.fieldGoalsAttempted ?? 0,
+    fieldGoalsPercentage: team?.fieldGoalsPercentage ?? 0,
+    threePointersMade: team?.threePointersMade ?? 0,
+    threePointersAttempted: team?.threePointersAttempted ?? 0,
+    threePointersPercentage: team?.threePointersPercentage ?? 0,
+    freeThrowsMade: team?.freeThrowsMade ?? 0,
+    freeThrowsAttempted: team?.freeThrowsAttempted ?? 0,
+    freeThrowsPercentage: team?.freeThrowsPercentage ?? 0,
+    offensiveRebounds: team?.offensiveRebounds ?? 0,
+    reboundsTotal: team?.reboundsTotal ?? 0,
+    assists: team?.assists ?? 0,
+    turnovers: team?.turnovers ?? 0,
+    steals: team?.steals ?? 0,
+    blocks: team?.blocks ?? 0,
+    foulsPersonal: team?.foulsPersonal ?? 0,
+  };
+}
+
+function applyMatchTeamsBoxscoreToResponse(
+  response: MatchResponse,
+  matchTeamsBoxScore: NonNullable<MatchTeamsBoxScoreResponse['matchTeamsBoxscore']>,
+): void {
+  response.homeTeamBoxScore = teamComparisonBoxScoreFromGraphql(
+    matchTeamsBoxScore.homeTeamBoxscore,
+  );
+  response.visitorTeamBoxScore = teamComparisonBoxScoreFromGraphql(
+    matchTeamsBoxScore.visitorTeamBoxscore,
+  );
+}
 
 type MatchPeriodsBoxScoreResponse = {
   matchPeriods: MatchType;
@@ -252,25 +312,46 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
   const statusNorm = normalizeMatchStatus(match.status);
   const needsMatchTeamsBoxscore =
     devForceLive ||
+    completedUi ||
     (statusesNeedingMatchTeamsBoxscore as readonly string[]).includes(statusNorm);
 
   const response: MatchResponse = {
     match,
     homeTeamBoxScore: {
-      points: 0,
-      rebounds: 0,
+      fieldGoalsMade: 0,
+      fieldGoalsAttempted: 0,
+      fieldGoalsPercentage: 0,
+      threePointersMade: 0,
+      threePointersAttempted: 0,
+      threePointersPercentage: 0,
+      freeThrowsMade: 0,
+      freeThrowsAttempted: 0,
+      freeThrowsPercentage: 0,
+      offensiveRebounds: 0,
+      reboundsTotal: 0,
       assists: 0,
+      turnovers: 0,
       steals: 0,
       blocks: 0,
-      turnovers: 0,
+      foulsPersonal: 0,
     },
     visitorTeamBoxScore: {
-      points: 0,
-      rebounds: 0,
+      fieldGoalsMade: 0,
+      fieldGoalsAttempted: 0,
+      fieldGoalsPercentage: 0,
+      threePointersMade: 0,
+      threePointersAttempted: 0,
+      threePointersPercentage: 0,
+      freeThrowsMade: 0,
+      freeThrowsAttempted: 0,
+      freeThrowsPercentage: 0,
+      offensiveRebounds: 0,
+      reboundsTotal: 0,
       assists: 0,
+      turnovers: 0,
       steals: 0,
       blocks: 0,
-      turnovers: 0,
+      foulsPersonal: 0,
     },
     headToHeadMatches: [],
     homeTeamPointsLeaders: [],
@@ -457,22 +538,7 @@ const fetchMatch = async (matchProviderId: string): Promise<MatchResponse> => {
     }
     const matchTeamsBoxScore = teamsBoxPiece.data?.matchTeamsBoxscore;
     if (matchTeamsBoxScore != null) {
-      response.homeTeamBoxScore = {
-        points: matchTeamsBoxScore.homeTeamBoxscore?.points ?? 0,
-        rebounds: matchTeamsBoxScore.homeTeamBoxscore?.reboundsTotal ?? 0,
-        assists: matchTeamsBoxScore.homeTeamBoxscore?.assists ?? 0,
-        steals: matchTeamsBoxScore.homeTeamBoxscore?.steals ?? 0,
-        blocks: matchTeamsBoxScore.homeTeamBoxscore?.blocks ?? 0,
-        turnovers: matchTeamsBoxScore.homeTeamBoxscore?.turnovers ?? 0,
-      };
-      response.visitorTeamBoxScore = {
-        points: matchTeamsBoxScore.visitorTeamBoxscore?.points ?? 0,
-        rebounds: matchTeamsBoxScore.visitorTeamBoxscore?.reboundsTotal ?? 0,
-        assists: matchTeamsBoxScore.visitorTeamBoxscore?.assists ?? 0,
-        steals: matchTeamsBoxScore.visitorTeamBoxscore?.steals ?? 0,
-        blocks: matchTeamsBoxScore.visitorTeamBoxscore?.blocks ?? 0,
-        turnovers: matchTeamsBoxScore.visitorTeamBoxscore?.turnovers ?? 0,
-      };
+      applyMatchTeamsBoxscoreToResponse(response, matchTeamsBoxScore);
     } else {
       console.warn(
         '[fetchMatch] matchTeamsBoxscore null or missing; keeping zero totals',
@@ -668,16 +734,13 @@ export default async function PartidoPage({
     <>
       {/* Layout “En vivo” solo según estado del partido (no según streamUrl). */}
       {shouldUseLiveMatchPageLayout(data.match) && (
-        <LiveMatchPage
-          match={data.match}
-          homeTeamBoxScore={data.homeTeamBoxScore}
-          visitorTeamBoxScore={data.visitorTeamBoxScore}
-          pointsLeaders={data.pointsLeaders}
-          reboundsLeaders={data.reboundsLeaders}
-          assistsLeaders={data.assistsLeaders}
-          stealsLeaders={data.stealsLeaders}
-          blocksLeaders={data.blocksLeaders}
-          threePointersMadeLeaders={data.threePointersMadeLeaders}
+        <SportsRadarMatchPage
+          matchProviderId={id}
+          matchStreamUrl={
+            data.match.streamUrl ??
+            data.match.homeTeam.streamUrl ??
+            data.match.visitorTeam.streamUrl
+          }
         />
       )}
       {/* Partido cerrado: mismo criterio que `!shouldUseLiveMatchPageLayout` cuando no es programado. */}
@@ -686,15 +749,7 @@ export default async function PartidoPage({
           data.match.status,
           data.match.providerFixtureStatus,
         ) && (
-        <CompletedMatchPage
-          match={data.match}
-          pointsLeaders={data.pointsLeaders}
-          reboundsLeaders={data.reboundsLeaders}
-          assistsLeaders={data.assistsLeaders}
-          stealsLeaders={data.stealsLeaders}
-          blocksLeaders={data.blocksLeaders}
-          threePointersMadeLeaders={data.threePointersMadeLeaders}
-        />
+        <SportsRadarMatchPage matchProviderId={id} />
       )}
       {/* SCHEDULED / RESCHEDULED y no cerrado: antes solo se cargaba preview si `status === SCHEDULED`. */}
       {!isDevForcedLiveMatchPage(data.match.providerId) &&
@@ -704,8 +759,8 @@ export default async function PartidoPage({
         ) && (
         <ScheduledMatchPage
           match={data.match}
-          homeTeamBoxScore={data.homeTeamBoxScore}
-          visitorTeamBoxScore={data.visitorTeamBoxScore}
+          homeTeamBoxScore={data.homeTeamBoxScore as { points: number; rebounds: number; assists: number; steals: number; blocks: number; turnovers: number }}
+          visitorTeamBoxScore={data.visitorTeamBoxScore as { points: number; rebounds: number; assists: number; steals: number; blocks: number; turnovers: number }}
           headToHeadMatches={data.headToHeadMatches}
           homeTeamPointsLeaders={data.homeTeamPointsLeaders}
           homeTeamAssistsLeaders={data.homeTeamAssistsLeaders}
@@ -718,8 +773,6 @@ export default async function PartidoPage({
       {shouldRenderScheduledMatchPageFallback(data.match) && (
         <ScheduledMatchPage
           match={data.match}
-          homeTeamBoxScore={data.homeTeamBoxScore}
-          visitorTeamBoxScore={data.visitorTeamBoxScore}
           headToHeadMatches={data.headToHeadMatches}
           homeTeamPointsLeaders={data.homeTeamPointsLeaders}
           homeTeamAssistsLeaders={data.homeTeamAssistsLeaders}

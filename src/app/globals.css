@@ -129,12 +129,9 @@ body {
  * ─────────────────────────────────────────────────────────────────────────────────── */
 
 /* Base background */
-.sw-bg {
-  background-color: #fdfdfd !important;
-}
-
+.sw-bg,
 #synergy-widget-fixture_detail .sw-widget-fixture {
-  background-color: #fff !important;
+  background-color: #fdfdfd !important;
 }
 
 /* Font-weight resets */
@@ -208,8 +205,6 @@ body {
 span.sw-fixture-banner-status-active-period,
 span.sw-fixture-banner-status-time-value {
   font-size: 23px !important;
-  /* line-height: 122% !important; */
-  /* padding-top: 2px !important; */
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
 }
 
@@ -667,6 +662,7 @@ a.sw-link.sw-leaders-non-leader-person-name {
   }
 }
 
+
 /* ── Mobile overrides (max-width: 767px) ──
  * Kept at the end of the Sportradar section so they appear AFTER all global rules
  * and win the !important tie-breaker via source order.
@@ -826,4 +822,102 @@ a.sw-link.sw-leaders-non-leader-person-name {
 }
 .home-calendar-strip::-webkit-scrollbar {
   display: none;
+}
+
+/* Sportsradar widget */
+#synergy-widget-fixture_detail .sw-bg,
+#synergy-widget-fixture_detail .sw-widget-fixture {
+  background-color: #fdfdfd;
+}
+#synergy-widget-fixture_detail .sw-font,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-team-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-value,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-competitor-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-status-state-label,
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-label,
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-value,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table th,
+#synergy-widget-fixture_detail .sw-sub-tabs-tab,
+#synergy-widget-fixture_detail .box-score-sorting,
+#synergy-widget-fixture_detail .sw-glossary-item dt,
+#synergy-widget-fixture_detail .sw-glossary-item dd,
+#synergy-widget-fixture_detail .box-score .sw-grid th,
+#synergy-widget-fixture_detail .sw-grid table tbody td,
+#synergy-widget-fixture_detail .sw-grid table tbody th,
+#synergy-widget-fixture_detail .sw-leaders-card-category,
+#synergy-widget-fixture_detail .sw-leaders-top-person-name,
+#synergy-widget-fixture_detail .sw-leaders-non-leader-person-name,
+#synergy-widget-fixture_detail .sw-leaders-non-leader-result,
+#synergy-widget-fixture_detail .sw-multi-switch-item,
+#synergy-widget-fixture_detail .sw-shot-chart-roster,
+#synergy-widget-fixture_detail .sw-shot-chart-roster:before {
+  font-family: var(--font-special-gothic-condensed-one), Arial, Helvetica, sans-serif !important;
+}
+
+#synergy-widget-fixture_detail .box-score-person-cell,
+#synergy-widget-fixture_detail .grid-data-cell-bib,
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-label,
+#synergy-widget-fixture_detail .sw-fixture-pbp li.is-success,
+#synergy-widget-fixture_detail .sw-multi-switch-item {
+  font-weight: normal;
+}
+
+#synergy-widget-fixture_detail .sw-navbar {
+  display: none;
+}
+
+#synergy-widget-fixture_detail .sw-widget-fixture {
+  padding: 0;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner {
+  background: radial-gradient(37% 80% at 45% 49%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(90deg, rgba(17, 22, 29, 0.2) 0%, rgba(10, 14, 20, 0) 100%),#0F171F;  
+  padding-top: 1rem;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-season,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-value,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-team-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table th,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table td,
+#synergy-widget-fixture_detail .sw-fixture-banner-match-venue,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-date,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-competitor-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-status-active-period,
+#synergy-widget-fixture_detail .sw-fixture-banner-status-time-value {
+  color: #fff;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-status-live-indicator {
+  line-height: 5px;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-container-expand-area-button,
+#synergy-widget-fixture_detail .sw-fixture-banner-season {
+  display: none;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-status-state-label {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.sw-widget-fixture-box-score,
+.sw-fixture-pbp,
+.sw-shot-chart-base,
+.sw-season-leaders {
+  margin: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (width >= theme(--breakpoint-lg)) {
+    max-width: 68rem;
+  }
+
+  @media (width >= theme(--breakpoint-xl)) {
+    max-width: 79rem;
+  }
+
+  @media (width >= theme(--breakpoint-2xl)) {
+    max-width: 79rem;
+  }
 }

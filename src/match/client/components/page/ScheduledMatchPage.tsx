@@ -35,8 +35,8 @@ type ScheduledMatchTeamBoxProps = {
 
 type Props = {
   match: MatchType;
-  homeTeamBoxScore: ScheduledMatchTeamBoxProps;
-  visitorTeamBoxScore: ScheduledMatchTeamBoxProps;
+  homeTeamBoxScore?: ScheduledMatchTeamBoxProps;
+  visitorTeamBoxScore?: ScheduledMatchTeamBoxProps;
   headToHeadMatches: MatchType[];
   homeTeamPointsLeaders: LeadersCategoryStatsType[];
   homeTeamAssistsLeaders: LeadersCategoryStatsType[];
@@ -227,16 +227,18 @@ export default function ScheduledMatchPage({
                   ticketUrl={match.homeTeam.ticketUrl}
                 />
               </div>
-              <div className="mb-6 md:mb-10 lg:mb-15">
-                <MatchTeamStatsComparison
-                  subtitle="Promedios por juego (temporada)"
-                  rows={MATCH_TEAM_COMPARISON_SEASON_PER_GAME_ROWS}
-                  homeTeam={{ code: match.homeTeam.code }}
-                  visitorTeam={{ code: match.visitorTeam.code }}
-                  homeTeamBoxScore={{ ...homeTeamBoxScore }}
-                  visitorTeamBoxScore={{ ...visitorTeamBoxScore }}
-                />
-              </div>
+              {homeTeamBoxScore && visitorTeamBoxScore && (
+                <div className="mb-6 md:mb-10 lg:mb-15">
+                  <MatchTeamStatsComparison
+                    subtitle="Promedios por juego (temporada)"
+                    rows={MATCH_TEAM_COMPARISON_SEASON_PER_GAME_ROWS}
+                    homeTeam={{ code: match.homeTeam.code }}
+                    visitorTeam={{ code: match.visitorTeam.code }}
+                    homeTeamBoxScore={{ ...homeTeamBoxScore }}
+                    visitorTeamBoxScore={{ ...visitorTeamBoxScore }}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
