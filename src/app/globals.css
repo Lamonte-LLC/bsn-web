@@ -860,54 +860,75 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
  * Only covers gaps not already handled by Tailwind hover: utilities in components.
  * ─────────────────────────────────────────────────────────────────────────────────── */
 
-/* Footer links: opacity fade on dark background */
-footer a {
-  transition: opacity 0.15s ease;
+/* General links: visible opacity fade — covers nav, article titles, text links.
+ * Excludes glass-match-card wrappers so those cards keep their border-only hover. */
+a:not(:has(.glass-match-card)) {
+  transition: opacity 0.12s ease;
 }
-footer a:hover {
-  opacity: 0.65;
+a:not(:has(.glass-match-card)):hover {
+  opacity: 0.7;
 }
-footer a:active {
+a:not(:has(.glass-match-card)):active {
   opacity: 0.45;
 }
 
-/* Photo / image links: subtle fade regardless of context */
-a:has(img) {
-  transition: opacity 0.15s ease;
-}
-a:has(img):hover {
-  opacity: 0.85;
-}
-a:has(img):active {
-  opacity: 0.7;
+/* Image links: slightly lighter fade so photos don't go too dark */
+a:has(img):not(:has(.glass-match-card)):hover {
+  opacity: 0.8;
 }
 
-/* Glass match cards: ensure smooth transition for the existing bg hover */
+/* Glass match cards: border brightens on hover, no transform */
 .glass-match-card {
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: border-color 0.12s ease;
+}
+.glass-match-card:hover {
+  border-color: rgba(255, 255, 255, 0.45) !important;
+}
+.glass-match-card:active {
+  opacity: 0.8;
 }
 
-/* Sportradar primary tabs: smooth transition + hover on inactive tab */
+/* All buttons: pressed feel on active */
+button {
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+button:not([disabled]):active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+/* Slider arrows: bg change on hover, opacity dip on click — no transform */
+.recent-calendar-slider .slick-arrow {
+  transition: background-color 0.1s ease, opacity 0.1s ease;
+}
+.recent-calendar-slider .slick-arrow:hover {
+  background-color: rgba(70, 70, 70, 0.98) !important;
+}
+.recent-calendar-slider .slick-arrow:active {
+  opacity: 0.5;
+}
+
+/* Sportradar primary tabs */
 button.sw-sub-tabs-tab {
-  transition: opacity 0.15s ease, color 0.15s ease !important;
+  transition: opacity 0.12s ease !important;
 }
 button.sw-sub-tabs-tab:not(.is-active):hover {
-  opacity: 0.72 !important;
+  opacity: 0.6 !important;
 }
 button.sw-sub-tabs-tab:not(.is-active):active {
-  opacity: 0.5 !important;
+  opacity: 0.4 !important;
 }
 
-/* Sportradar period/category pills: hover on inactive pill */
+/* Sportradar period/category pills */
 .sw-multi-switch-item {
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+  transition: background-color 0.12s ease, border-color 0.12s ease !important;
 }
 .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
-  background-color: rgba(0, 0, 0, 0.04) !important;
-  border-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.35) !important;
 }
 .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
-  background-color: rgba(0, 0, 0, 0.08) !important;
+  background-color: rgba(0, 0, 0, 0.12) !important;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */

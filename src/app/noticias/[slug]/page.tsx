@@ -75,17 +75,6 @@ export default async function DetalleNoticiaPage({
     <FullWidthLayout>
       <div className="pb-16 pt-8 md:pb-24 md:pt-12">
         <div className="container">
-          <div className="mb-4">
-            <ul className="flex flex-wrap gap-2">
-              {data[0]?.tags?.map((tag) => (
-                <li key={`tag-${tag.slug}`}>
-                  <span className="text-[13px] text-[rgba(49,49,50,0.8)] uppercase md:text-[15px]">
-                    {tag.name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="mb-4 md:mb-10">
             <h1 className="font-barlow font-bold text-[23px]/7 text-[#0F171F] md:text-[36px]/11">
               {data[0]?.title}
@@ -113,6 +102,17 @@ export default async function DetalleNoticiaPage({
                   dangerouslySetInnerHTML={{ __html: data[0]?.content ?? '' }}
                 />
               </div>
+              {data[0]?.tags && data[0].tags.length > 0 && (
+                <ul className="flex flex-wrap gap-[4px] mb-8">
+                  {data[0].tags.map((tag) => (
+                    <li key={`tag-${tag.slug}`}>
+                      <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.55)] bg-[#f0f0f0] rounded-[100px] px-[12px] py-[5px] inline-block">
+                        {tag.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <div>
                 <Link
                   href="/noticias"
