@@ -2,6 +2,7 @@ import { getClient } from '@/apollo-client';
 import { DOMAIN_URL, SITE_NAME } from '@/constants';
 import { SINGLE_NEWS } from '@/graphql/news';
 import { NewsType } from '@/news/types';
+import ShareButton from '@/news/client/components/ShareButton';
 import LatestNewsWidget from '@/news/widgets/LatestNewsWidget';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
@@ -113,7 +114,10 @@ export default async function DetalleNoticiaPage({
                   ))}
                 </ul>
               )}
-              <div>
+              <div className="md:hidden">
+                <ShareButton title={data[0]?.title ?? ''} />
+              </div>
+              <div className="hidden md:block">
                 <Link
                   href="/noticias"
                   className="border border-[#D9D3D3] rounded-[12px] px-[30px] py-[12px] inline-flex items-center"
