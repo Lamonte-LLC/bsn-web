@@ -590,7 +590,7 @@ span.sw-box-score-additional-persons-role {
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
   grid-column: 4 !important;
   grid-row: span 2 !important;
-  margin-right: 36px !important;
+  margin-right: 5px !important;
   text-align: right !important;
   letter-spacing: 0.5px !important;
 }
@@ -610,6 +610,7 @@ span.sw-box-score-additional-persons-role {
 .sw-leaders-non-leader-person {
   grid-column: 3 !important;
   align-self: center !important;
+  border-bottom: 1px solid #F6F6F6 !important;
   padding: 5px 20px !important;
 }
 
