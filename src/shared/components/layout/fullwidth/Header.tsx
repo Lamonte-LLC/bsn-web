@@ -294,7 +294,7 @@ export default function HeaderBoxLayout() {
                     </li>
                   </ul> */}
                 </li>
-                <li className="hidden">
+                <li>
                   <Link href="/jugadores" className="text-[20px] text-white">
                     Jugadores
                   </Link>
@@ -408,7 +408,7 @@ export default function HeaderBoxLayout() {
                   <span className="text-[36px] text-white">Noticias</span>
                 </Link>
               </li>
-              <li className="px-[30px] hidden">
+              <li className="px-[30px]">
                 <Link href="/jugadores" className="block py-[8px]">
                   <span className="text-[36px] text-white">Jugadores</span>
                 </Link>
