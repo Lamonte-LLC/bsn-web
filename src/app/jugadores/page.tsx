@@ -4,7 +4,7 @@ import Header from '@/shared/components/layout/fullwidth/Header';
 import Footer from '@/shared/components/layout/fullwidth/Footer';
 import JugadoresPageClient, { JugadorItem } from './JugadoresPageClient';
 
-const TEAM_CODES = ['AGU', 'ARE', 'BAY', 'CAG', 'CAR', 'GUA', 'MAN', 'MAY', 'PON', 'QUE', 'SGE', 'SCE'];
+const TEAM_CODES = ['AGU', 'ARE', 'BAY', 'CAG', 'CAR', 'GBO', 'MAN', 'MAY', 'PON', 'QUE', 'SGE', 'SCE'];
 
 type RosterResponse = {
   teamRostersConnection: {
