@@ -154,7 +154,7 @@ export default async function BsnTvWidget() {
           </div>
           <div className="hidden md:block">
             <a
-              href={`https://www.youtube.com/watch?v=fvcPG7aKc9A&list=${BSN_TV_PLAYLIST_ID}`}
+              href="https://www.youtube.com/@BaloncestoSuperiorNacionalPR"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#FCFCFC] inline-block shadow-[0px_1px_2px_0px_#14181F0D] py-[12px] px-[20px] rounded-[12px] min-w-[212px] text-center"
@@ -164,6 +164,16 @@ export default async function BsnTvWidget() {
           </div>
         </div>
         <BsnTvPlayer items={items} />
+        <div className="mt-[20px] md:hidden">
+          <a
+            href="https://www.youtube.com/@BaloncestoSuperiorNacionalPR"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white block text-center py-[16px] rounded-[12px] w-full"
+          >
+            <span className="text-base text-black font-medium">Ver canal en YouTube</span>
+          </a>
+        </div>
       </div>
     </div>
   );

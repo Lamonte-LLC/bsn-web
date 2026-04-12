@@ -76,18 +76,20 @@ export default function RootLayout({
         Chunk 404 after deploy → ChunkLoadError before/during hydration; body bg shows as “black screen”.
         Runs in initial HTML (beforeInteractive), no React chunk required.
       */}
-      <Script
-        id="bsn-chunk-load-recovery"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `(function(){var k='bsn-chunk-load-reload-used';function hit(m){m=String(m||'').toLowerCase();return m.indexOf('chunkloaderror')>=0||m.indexOf('failed to load chunk')>=0||m.indexOf('loading chunk')>=0||m.indexOf('failed to fetch dynamically imported module')>=0||m.indexOf('importing a module script failed')>=0;}function go(m){if(!hit(m)||sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1');location.reload();}window.addEventListener('error',function(e){go((e&&e.message||'')+' '+(e.filename||''));});window.addEventListener('unhandledrejection',function(e){var r=e.reason;go(r&&r.message||String(r));});})();`,
-        }}
-      />
-      <Script
-        async
-        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-        strategy="afterInteractive"
-      />
+      <head>
+        <Script
+          id="bsn-chunk-load-recovery"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var k='bsn-chunk-load-reload-used';function hit(m){m=String(m||'').toLowerCase();return m.indexOf('chunkloaderror')>=0||m.indexOf('failed to load chunk')>=0||m.indexOf('loading chunk')>=0||m.indexOf('failed to fetch dynamically imported module')>=0||m.indexOf('importing a module script failed')>=0;}function go(m){if(!hit(m)||sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1');location.reload();}window.addEventListener('error',function(e){go((e&&e.message||'')+' '+(e.filename||''));});window.addEventListener('unhandledrejection',function(e){var r=e.reason;go(r&&r.message||String(r));});})();`,
+          }}
+        />
+        <Script
+          async
+          src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body
         className={`${barlow.variable} ${barlowCondensed.variable} ${specialGothicCondensedOne.variable}  antialiased`}
       >

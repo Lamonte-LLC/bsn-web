@@ -4,9 +4,12 @@ const isProduction = process.env.ENV === 'production'
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      ...(isProduction ? { allow: '/' } : { disallow: '/' }),
-    },
+    rules: [
+      {
+        userAgent: '*',
+        ...(isProduction ? { allow: '/' } : { disallow: '/' }),
+        disallow: '/mobile/',
+      },
+    ],
   }
 }

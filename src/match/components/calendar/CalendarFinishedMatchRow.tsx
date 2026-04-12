@@ -68,11 +68,11 @@ export default function CalendarFinishedMatchRow({
   return (
     <Link
       href={href}
-      className="block rounded-[12px] border border-[rgba(125,125,125,0.15)] bg-white shadow-[0px_1px_3px_0px_rgba(20,24,31,0.04)] transition hover:bg-[#fafafa]"
+      className="block rounded-[12px] border border-[rgba(125,125,125,0.15)] bg-white transition hover:bg-[#fafafa]"
     >
       {/* Mobile — Figma 553:35717 / 553:35720 */}
       <div className="sm:hidden">
-        <div className="flex flex-row items-center justify-between border-b border-b-[rgba(125,125,125,0.1)] mx-[20px] py-[12px]">
+        <div className="flex flex-row items-center justify-between border-b border-b-[rgba(125,125,125,0.1)] mx-[20px] py-[8px]">
           <p className="font-special-gothic-condensed-one text-[18px] font-normal leading-normal tracking-[0.18px] text-black">
             {finalLabel}
           </p>
@@ -136,7 +136,7 @@ export default function CalendarFinishedMatchRow({
         </div>
 
         <div className="flex shrink-0 justify-end sm:pl-3">
-          <span className="inline-flex min-w-[110px] items-center justify-center rounded-[100px] border border-[rgba(168,168,168,0.5)] bg-[#fdfdfd] px-5 py-2 font-special-gothic-condensed-one text-[15px] leading-[1.4] tracking-[0.3px] text-black pointer-events-none">
+          <span className="bg-[#FAFAFA] border border-[rgba(168,168,168,0.5)] inline-block text-center text-[15px] px-[6px] py-[5px] rounded-[100px] min-w-[110px] text-black pointer-events-none">
             Ver resultado
           </span>
         </div>
@@ -172,19 +172,21 @@ function MobileTeamRowFinished({
           <p className="font-barlow text-xs text-[#717171]">{team.city}</p>
         </div>
       </div>
-      <div className="flex min-w-[52px] shrink-0 items-center justify-end gap-1">
-        <span className={`text-[27px] leading-[36px] tabular-nums ${scoreColor}`}>
+      <div className="flex shrink-0 items-center">
+        <span className={`w-[56px] text-right text-[27px] leading-[36px] ${scoreColor}`}>
           {score}
         </span>
-        {isWinner && (
-          <img
-            src="/assets/images/icons/icon-caret-winner.png"
-            alt=""
-            width={7}
-            height={9}
-            className="mt-[2px] shrink-0"
-          />
-        )}
+        <div className="w-[11px] ml-[4px] flex items-center">
+          {isWinner && (
+            <img
+              src="/assets/images/icons/icon-caret-winner.png"
+              alt=""
+              width={7}
+              height={9}
+              className="mt-[2px] shrink-0"
+            />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,7 @@
 import { getClient } from '@/apollo-client';
 import { CURRENT_SEASON } from '@/graphql/season';
 import { SeasonType } from '@/season/types';
-import APGPlayerLeadersCard from '@/stats/widgets/season/player/APGPlayerLeadersCard';
-import BPGPlayerLeadersCard from '@/stats/widgets/season/player/BPGPlayerLeadersCard';
-import FGMPlayerLeadersCard from '@/stats/widgets/season/player/FGMPlayerLeadersCard';
-import PPGPlayerLeadersCard from '@/stats/widgets/season/player/PPGPlayerLeadersCard';
-import RPGPlayerLeadersCard from '@/stats/widgets/season/player/RPGPlayerLeadersCard';
-import SPGPlayerLeadersCardNew from '@/stats/widgets/season/player/SPGPlayerLeadersCardNew';
+import SportRadarLeadersWidget from '@/match/client/widgets/SportRadarLeadersWidget';
 
 type CurrentSeasonResponse = {
   currentSeason?: SeasonType;
@@ -33,22 +28,13 @@ export default async function SeasonLeadersSection() {
   const currentSeason: SeasonType | null = await fetchCurrentSeason();
 
   return (
-    <section className="container mb-8 lg:mb-16">
-      <div className="lg:w-11/12 mx-auto">
-        <div className="flex flex-row justify-between items-center mb-[20px] md:mb-[32px]">
-          <h2 className="text-[22px] text-[#0F171F] md:text-[32px]">
-            Líderes {currentSeason ? `de ${currentSeason.name}` : ''}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[24px] gap-y-[23px]">
-          <PPGPlayerLeadersCard />
-          <RPGPlayerLeadersCard />
-          <APGPlayerLeadersCard />
-          <BPGPlayerLeadersCard />
-          <SPGPlayerLeadersCardNew />
-          <FGMPlayerLeadersCard />
-        </div>
+    <section className="container">
+      <div className="flex flex-row justify-between items-center mb-[20px] md:mb-[32px]">
+        <h2 className="text-[22px] text-[#0F171F] md:text-[32px]">
+          Líderes {currentSeason ? `de ${currentSeason.name}` : ''}
+        </h2>
       </div>
+      <SportRadarLeadersWidget />
     </section>
   );
 }

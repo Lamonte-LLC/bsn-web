@@ -13,9 +13,9 @@ export default function TopNewsHero({ article }: Props) {
       href={`/noticias/${article?.slug || ''}`}
       className="block cursor-pointer"
     >
-      <div className="relative">
+      <div className="relative overflow-hidden rounded-[12px]">
         <div
-          className="border border-[rgba(125,125,125,0.4)] pt-[53.20%] bg-cover bg-no-repeat bg-center rounded-[12px]"
+          className="news-hero-img border border-[rgba(125,125,125,0.4)] pt-[53.20%] bg-cover bg-no-repeat bg-center rounded-[12px]"
           style={{
             backgroundImage: `url(${article?.imageUrl || 'https://dummyimage.com/600x400/cccccc/ffffff'})`,
           }}

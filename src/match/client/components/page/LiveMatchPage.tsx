@@ -22,25 +22,13 @@ import MatchGameLeadersSection, {
   type MatchGameLeaderPlayerBoxScore,
 } from '@/match/components/stats/MatchGameLeadersSection';
 import LiveMatchSectionErrorBoundary from '../LiveMatchSectionErrorBoundary';
+import type { MatchTeamComparisonBoxScore } from '@/match/components/stats/MatchTeamStatsComparison';
+import MatchTeamStatsComparisonWidget from '../../widgets/MatchTeamStatsComparisonWidget';
 
 type Props = {
   match: MatchType;
-  homeTeamBoxScore?: {
-    points: number;
-    rebounds: number;
-    assists: number;
-    steals: number;
-    blocks: number;
-    turnovers: number;
-  };
-  visitorTeamBoxScore?: {
-    points: number;
-    rebounds: number;
-    assists: number;
-    steals: number;
-    blocks: number;
-    turnovers: number;
-  };
+  homeTeamBoxScore: MatchTeamComparisonBoxScore;
+  visitorTeamBoxScore: MatchTeamComparisonBoxScore;
   /** Líderes del encuentro en curso (`matchLeadersConnection`); vacíos hasta que haya box por jugador. */
   pointsLeaders?: MatchGameLeaderPlayerBoxScore[];
   reboundsLeaders?: MatchGameLeaderPlayerBoxScore[];
@@ -103,6 +91,9 @@ export default function LiveMatchPage({
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
               Box Score
             </Tab>
+            <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(0,0,0,0.5)] text-base md:text-[22px] data-selected:text-black data-selected:border-b-2 data-selected:border-b-black">
+              Equipos
+            </Tab>
           </div>
         </TabList>
         <TabPanels>
@@ -141,22 +132,8 @@ export default function LiveMatchPage({
                       <MatchTeamStatsComparison
                         homeTeam={{ code: match.homeTeam.code }}
                         visitorTeam={{ code: match.visitorTeam.code }}
-                        homeTeamBoxScore={{
-                          points: homeTeamBoxScore?.points ?? 0,
-                          rebounds: homeTeamBoxScore?.rebounds ?? 0,
-                          assists: homeTeamBoxScore?.assists ?? 0,
-                          steals: homeTeamBoxScore?.steals ?? 0,
-                          blocks: homeTeamBoxScore?.blocks ?? 0,
-                          turnovers: homeTeamBoxScore?.turnovers ?? 0,
-                        }}
-                        visitorTeamBoxScore={{
-                          points: visitorTeamBoxScore?.points ?? 0,
-                          rebounds: visitorTeamBoxScore?.rebounds ?? 0,
-                          assists: visitorTeamBoxScore?.assists ?? 0,
-                          steals: visitorTeamBoxScore?.steals ?? 0,
-                          blocks: visitorTeamBoxScore?.blocks ?? 0,
-                          turnovers: visitorTeamBoxScore?.turnovers ?? 0,
-                        }}
+                        homeTeamBoxScore={homeTeamBoxScore}
+                        visitorTeamBoxScore={visitorTeamBoxScore}
                       />
                     </div>
                     {/* Misma sección que en partido finalizado: estadísticas acumuladas en este juego. */}
@@ -197,6 +174,13 @@ export default function LiveMatchPage({
               >
                 <MatchBoxScoreWidget match={match} usePolling />
               </LiveMatchSectionErrorBoundary>
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="container">
+              <div className="my-[40px] md:my-[50px] md:w-8/12 lg:w-6/12 mx-auto">
+                <MatchTeamStatsComparisonWidget matchProviderId={match.providerId} />
+              </div>
             </div>
           </TabPanel>
         </TabPanels>

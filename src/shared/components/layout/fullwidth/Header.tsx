@@ -97,7 +97,7 @@ export default function HeaderBoxLayout() {
                     <PopoverPanel
                       transition
                       anchor="bottom"
-                      className="bg-white border border-[#E2E2E2] mt-4 rounded-[12px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0"
+                      className="bg-white border border-[#E2E2E2] mt-4 rounded-[12px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 z-[999]"
                     >
                       <div className="grid grid-cols-3 gap-[10px] p-[20px] min-w-[348px]">
                         <Link href="/equipos/AGU">
