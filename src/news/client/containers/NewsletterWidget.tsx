@@ -15,10 +15,9 @@ const FILTER_PILLS = [
 
 type Props = {
   featuredNewsSlug?: string;
-  queryParams?: Record<string, string | undefined>;
 };
 
-export default function NewsletterWidget({ featuredNewsSlug, queryParams }: Props) {
+export default function NewsletterWidget({ featuredNewsSlug }: Props) {
   const { data, loading, hasMore, loadMore } = useNewsletter();
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -81,9 +80,6 @@ export default function NewsletterWidget({ featuredNewsSlug, queryParams }: Prop
                 excerpt={newsItem.excerpt}
                 publishedAt={newsItem.publishedAt}
                 tags={newsItem.tags ?? []}
-                queryParams={{
-                  ...(queryParams?.hideStoreAppLinks && { hideStoreAppLinks: queryParams.hideStoreAppLinks }),
-                }}
               />
             </div>
           ))}

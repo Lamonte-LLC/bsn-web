@@ -39,20 +39,12 @@ async function fetchHeroNews(): Promise<NewsType | null> {
   )[0];
 }
 
-export default async function NoticiasPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | undefined }>;
-}) {
+export default async function NoticiasPage() {
   const hero = await fetchHeroNews();
-  const query = await searchParams;
 
   return (
     <FullWidthLayout
       divider
-      hideStoreAppLinks={['1', 'true', 'yes'].includes(
-        query?.hideStoreAppLinks ?? '',
-      )}
       subheader={
         <section className="pt-[23px] pb-[116px] lg:pt-[56px] lg:pb-[138px]">
           <div className="container">
@@ -80,9 +72,6 @@ export default async function NoticiasPage({
                   <Link
                     href={{
                       pathname: `/noticias/${hero?.slug || ''}`,
-                      query: {
-                        ...(query?.hideStoreAppLinks && { hideStoreAppLinks: query.hideStoreAppLinks })
-                      },
                     }}
                   >
                     <h1 className="font-barlow font-bold text-[rgba(15,23,31,0.9)] md:text-[32px]/9">
@@ -108,9 +97,6 @@ export default async function NoticiasPage({
                   <Link
                     href={{
                       pathname: `/noticias/${hero?.slug || ''}`,
-                      query: {
-                        ...(query?.hideStoreAppLinks && { hideStoreAppLinks: query.hideStoreAppLinks })
-                      },
                     }}
                     className="border border-[#D9D3D3] inline-block shadow-[0px_1px_2px_0px_#14181F0D] text-center p-[9px] rounded-[12px] w-full md:w-[130px]"
                   >
@@ -120,12 +106,7 @@ export default async function NoticiasPage({
               </div>
             </div>
           </div>
-          <NewsletterWidget
-            featuredNewsSlug={hero?.slug}
-            queryParams={{
-              ...(query?.hideStoreAppLinks && { hideStoreAppLinks: query.hideStoreAppLinks }),
-            }}
-          />
+          <NewsletterWidget featuredNewsSlug={hero?.slug} />
         </div>
       </section>
     </FullWidthLayout>

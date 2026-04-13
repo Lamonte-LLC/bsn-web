@@ -8,7 +8,6 @@ type Props = {
   thumbnailUrl?: string;
   excerpt?: string;
   publishedAt: string;
-  queryParams?: Record<string, string | undefined>;
   tags?: {
     name: string;
     slug: string;
@@ -22,7 +21,6 @@ export default function NewsItem({
   excerpt = '',
   publishedAt,
   tags = [],
-  queryParams = {},
 }: Props) {
   return (
     <div className="flex flex-row gap-[15px] items-start justify-start md:gap-[25px]">
@@ -30,9 +28,6 @@ export default function NewsItem({
         <Link
           href={{
             pathname: `/noticias/${slug}`,
-            query: {
-              ...(queryParams?.hideStoreAppLinks && { hideStoreAppLinks: queryParams.hideStoreAppLinks }),
-            },
           }}
         >
           <img
@@ -47,9 +42,6 @@ export default function NewsItem({
           <Link
             href={{
               pathname: `/noticias/${slug}`,
-              query: {
-                ...(queryParams?.hideStoreAppLinks && { hideStoreAppLinks: queryParams.hideStoreAppLinks }),
-              },
             }}
             className="flex-1"
           >
