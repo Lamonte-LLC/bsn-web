@@ -43,7 +43,7 @@ const TEAM_LOGO_MAP: Record<string, string> = {
   BAY: 'Bayamon',
   CAG: 'Caguas',
   CAR: 'Carolina',
-  GUA: 'Guaynabo',
+  GBO: 'Guaynabo',
   MAN: 'Manati',
   MAY: 'Mayaguez',
   PON: 'Ponce',
@@ -100,6 +100,7 @@ export default function EstadisticasPageClient() {
   const [activeTab, setActiveTab] = useState<PageTab>('jugadores');
   const [activeStatCode, setActiveStatCode] = useState('POINTS_AVG');
   const [filters, setFilters] = useState<StatsFilters>(DEFAULT_FILTERS);
+
   const players: PlayerItem[] = [
     { player: { providerId: 'p1', name: 'Carlos Velázquez', teamCode: 'BAY' }, gamesPlayed: 18, value: 24.3 },
     { player: { providerId: 'p2', name: 'Javier Morales',   teamCode: 'QUE' }, gamesPlayed: 16, value: 22.1 },
@@ -110,11 +111,11 @@ export default function EstadisticasPageClient() {
   const playerLoading = false;
 
   const teams: TeamItem[] = [
-    { name: 'Vaqueros', nickname: 'Vaqueros de Bayamón',   code: 'BAY', competitionStandings: { won: 14, lost: 4,  pointsAverage: 98.2, reboundsTotalAverage: 41.3, assistsAverage: 22.1, fieldGoalsPercentage: 0.487 } },
-    { name: 'Piratas',  nickname: 'Piratas de Quebradillas', code: 'QUE', competitionStandings: { won: 12, lost: 6,  pointsAverage: 94.7, reboundsTotalAverage: 39.8, assistsAverage: 20.4, fieldGoalsPercentage: 0.462 } },
-    { name: 'Leones',   nickname: 'Leones de Ponce',       code: 'PON', competitionStandings: { won: 11, lost: 7,  pointsAverage: 91.5, reboundsTotalAverage: 38.6, assistsAverage: 19.7, fieldGoalsPercentage: 0.451 } },
-    { name: 'Santeros', nickname: 'Santeros de Aguada',    code: 'AGU', competitionStandings: { won: 9,  lost: 9,  pointsAverage: 88.3, reboundsTotalAverage: 37.2, assistsAverage: 18.9, fieldGoalsPercentage: 0.438 } },
-    { name: 'Cangrejeros', nickname: 'Cangrejeros de Santurce', code: 'SCE', competitionStandings: { won: 7,  lost: 11, pointsAverage: 85.1, reboundsTotalAverage: 35.9, assistsAverage: 17.6, fieldGoalsPercentage: 0.421 } },
+    { name: 'Vaqueros',    nickname: 'Vaqueros de Bayamón',      code: 'BAY', competitionStandings: { won: 14, lost: 4,  pointsAverage: 98.2, reboundsTotalAverage: 41.3, assistsAverage: 22.1, fieldGoalsPercentage: 0.487 } },
+    { name: 'Piratas',     nickname: 'Piratas de Quebradillas',  code: 'QUE', competitionStandings: { won: 12, lost: 6,  pointsAverage: 94.7, reboundsTotalAverage: 39.8, assistsAverage: 20.4, fieldGoalsPercentage: 0.462 } },
+    { name: 'Leones',      nickname: 'Leones de Ponce',          code: 'PON', competitionStandings: { won: 11, lost: 7,  pointsAverage: 91.5, reboundsTotalAverage: 38.6, assistsAverage: 19.7, fieldGoalsPercentage: 0.451 } },
+    { name: 'Santeros',    nickname: 'Santeros de Aguada',       code: 'AGU', competitionStandings: { won: 9,  lost: 9,  pointsAverage: 88.3, reboundsTotalAverage: 37.2, assistsAverage: 18.9, fieldGoalsPercentage: 0.438 } },
+    { name: 'Cangrejeros', nickname: 'Cangrejeros de Santurce',  code: 'SCE', competitionStandings: { won: 7,  lost: 11, pointsAverage: 85.1, reboundsTotalAverage: 35.9, assistsAverage: 17.6, fieldGoalsPercentage: 0.421 } },
   ];
   const teamLoading = false;
 
@@ -193,7 +194,7 @@ export default function EstadisticasPageClient() {
             <StatsFiltersBox onApply={setFilters} />
           </div>
 
-          {/* Category pills – full width above two-column layout */}
+          {/* Category pills */}
           <div className="flex gap-2 overflow-x-auto pb-2 mb-[47px] no-scrollbar lg:justify-center lg:flex-wrap lg:overflow-visible">
             {STAT_CATEGORIES.map((cat) => (
               <button

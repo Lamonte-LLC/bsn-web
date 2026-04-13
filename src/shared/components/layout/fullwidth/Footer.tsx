@@ -89,6 +89,14 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
             <ul className="mb-6 space-y-1">
               <li className="text-center md:text-right lg:text-left">
                 <Link
+                  href="/"
+                  className="font-special-gothic-condensed-one text-white text-[26px]"
+                >
+                  Inicio
+                </Link>
+              </li>
+              <li className="text-center md:text-right lg:text-left">
+                <Link
                   href="/calendario"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
@@ -103,13 +111,13 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
                   Noticias
                 </Link>
               </li>
-              <li className="text-center md:text-right lg:text-left hidden">
-                <a
-                  href="#"
+              <li className="text-center md:text-right lg:text-left">
+                <Link
+                  href="/jugadores"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Jugadores
-                </a>
+                </Link>
               </li>
               <li className="text-center md:text-right lg:text-left hidden">
                 <a
