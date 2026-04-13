@@ -71,7 +71,7 @@ export default async function DetalleNoticiaPage({ params }: {
   const { slug } = await params;
   const data: NewsType[] = await fetchSingleNews(slug);
   return (
-    <FullWidthLayout>
+    <FullWidthLayout hideStoreAppLinks>
       <div className="pb-16 pt-8 md:pb-24 md:pt-12">
         <div className="container">
           <div className="mb-4 md:mb-10">
