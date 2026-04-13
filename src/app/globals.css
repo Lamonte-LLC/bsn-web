@@ -204,7 +204,7 @@ body {
 
 span.sw-fixture-banner-status-active-period,
 span.sw-fixture-banner-status-time-value {
-  font-size: 23px !important;
+  font-size: 21px !important;
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
 }
 
@@ -213,10 +213,20 @@ span.sw-fixture-banner-status-time-value {
   color: #999;
 }
 
+/* Live status row container */
+.sw-fixture-banner-status {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin-bottom: 20px !important;
+}
+
 .sw-fixture-banner-status-live-indicator {
   background: #ff0000 !important;
   border-radius: 7px !important;
   color: #fff !important;
+  flex-shrink: 0 !important;
   font-family: var(--font-barlow), Barlow, sans-serif !important;
   font-weight: bold !important;
   font-size: 15px !important;
@@ -227,6 +237,7 @@ span.sw-fixture-banner-status-time-value {
   padding: 13px 11px !important;
   text-align: center !important;
   text-transform: uppercase !important;
+  white-space: nowrap !important;
 }
 
 /* Hide season label and expand button */
@@ -590,7 +601,7 @@ span.sw-box-score-additional-persons-role {
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
   grid-column: 4 !important;
   grid-row: span 2 !important;
-  margin-right: 36px !important;
+  margin-right: 5px !important;
   text-align: right !important;
   letter-spacing: 0.5px !important;
 }
@@ -610,11 +621,12 @@ span.sw-box-score-additional-persons-role {
 .sw-leaders-non-leader-person {
   grid-column: 3 !important;
   align-self: center !important;
+  border-bottom: 1px solid #F6F6F6 !important;
   padding: 5px 20px !important;
 }
 
 .sw-leaders-non-leader-person-name {
-  top: 10px !important;
+  top: 10px;
   font-size: 14px !important;
   position: relative !important;
 }
@@ -625,6 +637,10 @@ a.sw-link.sw-leaders-non-leader-person-name {
 
 .sw-season-leaders .sw-leaders-non-leader-person-name {
   top: 4px;
+}
+
+#synergy-widget-fixture_detail .sw-leaders-non-leader-person-name {
+  top: 12px !important;
 }
 
 a.sw-link.sw-leaders-non-leader-entity-name.sw-link-active {
@@ -649,7 +665,7 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
 
   #synergy-widget-fixture_detail .sw-fixture-banner-status-state-label {
     color: #fff !important;
-    font-size: 21px !important;
+    font-size: 19px !important;
     text-transform: capitalize !important;
     font-weight: 800 !important;
   }
@@ -705,7 +721,7 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
     font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
     text-transform: capitalize !important;
     color: #fff !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
     font-weight: 800 !important;
     margin-bottom: 18px !important;
   }
@@ -815,10 +831,15 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
     gap: 10px 8px !important;
   }
 
-  /* Leaders: padding on mobile */
+  /* Leaders: no horizontal padding on mobile (home component only) */
   .sw-season-leaders {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #synergy-widget-fixture_detail .sw-season-leaders {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 
   .sw-fixture-leaders {
@@ -847,6 +868,14 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
   .sw-sub-tabs {
     justify-content: center !important;
   }
+
+  .sw-grid table thead th {
+    border-bottom-width: 1px !important;
+  }
+
+  .sw-grid table tbody tr {
+    border-bottom-width: 1px !important;
+  }
 }
 
 @container (max-width: 480px) {
@@ -857,88 +886,91 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 /* Site-wide hover & active states
- * Only covers gaps not already handled by Tailwind hover: utilities in components.
+ * Scoped to hover-capable devices (desktop) only — preserves touch/swipe behaviour
+ * on mobile. CSS transitions on touch targets break react-slick's gesture detection.
  * ─────────────────────────────────────────────────────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  /* General links: visible opacity fade */
+  a:not(:has(.glass-match-card)) {
+    transition: opacity 0.12s ease;
+  }
+  a:not(:has(.glass-match-card)):hover {
+    opacity: 0.7;
+  }
+  a:not(:has(.glass-match-card)):active {
+    opacity: 0.45;
+  }
 
-/* General links: visible opacity fade — covers nav, article titles, text links.
- * Excludes glass-match-card wrappers so those cards keep their border-only hover. */
-a:not(:has(.glass-match-card)) {
-  transition: opacity 0.12s ease;
-}
-a:not(:has(.glass-match-card)):hover {
-  opacity: 0.7;
-}
-a:not(:has(.glass-match-card)):active {
-  opacity: 0.45;
-}
+  /* Image links: slightly lighter fade */
+  a:has(img):not(:has(.glass-match-card)):hover {
+    opacity: 0.8;
+  }
 
-/* Image links: slightly lighter fade so photos don't go too dark */
-a:has(img):not(:has(.glass-match-card)):hover {
-  opacity: 0.8;
-}
+  /* Glass match cards: border brightens on hover */
+  .glass-match-card {
+    transition: border-color 0.12s ease;
+  }
+  .glass-match-card:hover {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+  }
+  .glass-match-card:active {
+    opacity: 0.8;
+  }
 
-/* Glass match cards: border brightens on hover, no transform */
-.glass-match-card {
-  transition: border-color 0.12s ease;
-}
-.glass-match-card:hover {
-  border-color: rgba(255, 255, 255, 0.45) !important;
-}
-.glass-match-card:active {
-  opacity: 0.8;
-}
+  /* Buttons: hover lift + pressed feel on active */
+  button {
+    transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+  }
+  button:not([disabled]):hover {
+    opacity: 0.82;
+  }
+  button:not([disabled]):active {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
 
-/* All buttons: pressed feel on active */
-button {
-  transition: transform 0.1s ease, opacity 0.1s ease;
-}
-button:not([disabled]):active {
-  transform: scale(0.95);
-  opacity: 0.8;
-}
+  /* Slider arrows: preserve fixed position, exempt from button scale */
+  .recent-calendar-slider .slick-arrow,
+  .recent-calendar-slider .slick-arrow:active {
+    transform: translate(0, -50%) !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
 
-/* Slider arrows: exempt from button press effect */
-.recent-calendar-slider .slick-arrow,
-.recent-calendar-slider .slick-arrow:active {
-  transform: translate(0, -50%) !important;
-  opacity: 1 !important;
-  transition: none !important;
-}
+  /* News hero: image zoom on hover */
+  a:has(.news-hero-img):hover {
+    opacity: 1 !important;
+  }
+  .news-hero-img {
+    transition: transform 0.4s ease;
+  }
+  a:hover .news-hero-img {
+    transform: scale(1.06);
+  }
 
+  /* Sportradar primary tabs */
+  button.sw-sub-tabs-tab {
+    transition: opacity 0.15s ease !important;
+  }
+  button.sw-sub-tabs-tab:not(.is-active):hover {
+    opacity: 0.75 !important;
+  }
+  button.sw-sub-tabs-tab:not(.is-active):active {
+    opacity: 0.5 !important;
+  }
 
-/* News hero: image zoom on hover, no opacity fade on the link */
-a:has(.news-hero-img):hover {
-  opacity: 1 !important;
-}
-.news-hero-img {
-  transition: transform 0.4s ease;
-}
-a:hover .news-hero-img {
-  transform: scale(1.06);
-}
-
-
-/* Sportradar primary tabs */
-button.sw-sub-tabs-tab {
-  transition: opacity 0.12s ease !important;
-}
-button.sw-sub-tabs-tab:not(.is-active):hover {
-  opacity: 0.6 !important;
-}
-button.sw-sub-tabs-tab:not(.is-active):active {
-  opacity: 0.4 !important;
-}
-
-/* Sportradar period/category pills */
-.sw-multi-switch-item {
-  transition: background-color 0.12s ease, border-color 0.12s ease !important;
-}
-.sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
-  background-color: rgba(0, 0, 0, 0.06) !important;
-  border-color: rgba(0, 0, 0, 0.35) !important;
-}
-.sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
-  background-color: rgba(0, 0, 0, 0.12) !important;
+  /* Sportradar period/category pills */
+  .sw-multi-switch-item {
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+  }
+  .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(0, 0, 0, 0.5) !important;
+    color: #111 !important;
+  }
+  .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
+    background-color: rgba(0, 0, 0, 0.18) !important;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -955,7 +987,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 /* Sportsradar widget */
 #synergy-widget-fixture_detail .sw-bg,
 #synergy-widget-fixture_detail .sw-widget-fixture {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 
 #synergy-widget-fixture_detail .box-score-person-cell,
