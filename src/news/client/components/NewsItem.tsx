@@ -8,6 +8,7 @@ type Props = {
   thumbnailUrl?: string;
   excerpt?: string;
   publishedAt: string;
+  queryParams?: Record<string, string | undefined>;
   tags?: {
     name: string;
     slug: string;
@@ -21,11 +22,19 @@ export default function NewsItem({
   excerpt = '',
   publishedAt,
   tags = [],
+  queryParams = {},
 }: Props) {
   return (
     <div className="flex flex-row gap-[15px] items-start justify-start md:gap-[25px]">
       <figure>
-        <Link href={`/noticias/${slug}`}>
+        <Link
+          href={{
+            pathname: `/noticias/${slug}`,
+            query: {
+              ...(queryParams?.hideStoreAppLinks && { hideStoreAppLinks: queryParams.hideStoreAppLinks }),
+            },
+          }}
+        >
           <img
             src={thumbnailUrl || 'https://dummyimage.com/600x400/cccccc/ffffff'}
             alt=""
@@ -35,7 +44,15 @@ export default function NewsItem({
       </figure>
       <div className="flex flex-col gap-0 flex-1 md:gap-2">
         <div className="mb-1">
-          <Link href={`/noticias/${slug}`} className="flex-1">
+          <Link
+            href={{
+              pathname: `/noticias/${slug}`,
+              query: {
+                ...(queryParams?.hideStoreAppLinks && { hideStoreAppLinks: queryParams.hideStoreAppLinks }),
+              },
+            }}
+            className="flex-1"
+          >
             <h4 className="font-barlow font-semibold text-sm text-[rgba(15,23,31,0.9)] md:font-bold md:text-[20px]">
               {title}
             </h4>
