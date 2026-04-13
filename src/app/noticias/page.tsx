@@ -56,6 +56,7 @@ export default async function NoticiasPage() {
           </div>
         </section>
       }
+      hideStoreAppLinks
     >
       <section>
         <div className="container">
