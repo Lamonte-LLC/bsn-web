@@ -37,8 +37,7 @@ export default function MatchCompetitor({
         >
           {name}{' '}
           {ranking && (
-            <span className="font-barlow text-xs text-[rgba(255,255,255,0.6)] hidden md:inline">
-              {' '}
+            <span className="font-barlow text-xs text-[rgba(255,255,255,0.6)] hidden md:inline ml-[2px]">
               {ranking}
             </span>
           )}

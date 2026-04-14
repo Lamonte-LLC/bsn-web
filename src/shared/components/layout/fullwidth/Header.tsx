@@ -97,7 +97,7 @@ export default function HeaderBoxLayout() {
                     <PopoverPanel
                       transition
                       anchor="bottom"
-                      className="bg-white border border-[#E2E2E2] mt-4 rounded-[12px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0"
+                      className="bg-white border border-[#E2E2E2] mt-4 rounded-[12px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 z-[999]"
                     >
                       <div className="grid grid-cols-3 gap-[10px] p-[20px] min-w-[348px]">
                         <Link href="/equipos/AGU">
@@ -294,7 +294,7 @@ export default function HeaderBoxLayout() {
                     </li>
                   </ul> */}
                 </li>
-                <li className="hidden">
+                <li>
                   <Link href="/jugadores" className="text-[20px] text-white">
                     Jugadores
                   </Link>
@@ -408,7 +408,7 @@ export default function HeaderBoxLayout() {
                   <span className="text-[36px] text-white">Noticias</span>
                 </Link>
               </li>
-              <li className="px-[30px] hidden">
+              <li className="px-[30px]">
                 <Link href="/jugadores" className="block py-[8px]">
                   <span className="text-[36px] text-white">Jugadores</span>
                 </Link>

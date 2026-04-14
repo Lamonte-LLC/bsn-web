@@ -1,3 +1,5 @@
+'use client';
+
 import SeasonTeamPlayerLeadersCard from '@/stats/components/season/leader/team/SeasonTeamPlayerLeadersCard';
 import numeral from 'numeral';
 import { useState } from 'react';

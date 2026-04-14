@@ -10,6 +10,7 @@ import WSCHomeStories from '@/highlights/client/components/WSCHomeStories';
 import WSCMoments from '@/highlights/client/components/WSCMoments';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import BsnTvWidget from '@/highlights/widgets/BsnTvWidget';
+import SponsorsSection from '@/shared/components/sponsors/SponsorsSection';
 
 export default async function Home() {
   const homeNews = await loadLatestNewsForHome();
@@ -115,6 +116,7 @@ export default async function Home() {
         </div>
         <BsnTvWidget />
       </section>
+      <SponsorsSection />
     </FullWidthLayout>
   );
 }

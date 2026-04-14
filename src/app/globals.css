@@ -123,6 +123,858 @@ body {
   }
 }
 
+/* Sportradar widget overrides
+ * Targets sw- classes injected by widget.eui.connect.sportradar.com/widget.js via GTM.
+ * Only values that differ from the widget's defaults are listed here.
+ * ─────────────────────────────────────────────────────────────────────────────────── */
+
+/* Base background */
+.sw-bg,
+#synergy-widget-fixture_detail .sw-widget-fixture {
+  background-color: #fdfdfd !important;
+}
+
+/* Font-weight resets */
+.sw-box-score-total-team-stats-entry-label,
+#synergy-widget-fixture_detail .sw-fixture-pbp li.is-success,
+#synergy-widget-fixture_detail .sw-multi-switch-item {
+  font-weight: 400 !important;
+}
+
+/* Hide default navbar */
+.sw-navbar {
+  display: none !important;
+}
+
+/* Fixture widget padding reset */
+.sw-widget-fixture {
+  padding: 0 !important;
+}
+
+/* Banner */
+.sw-fixture-banner {
+  background: radial-gradient(37% 80% at 45% 49%, #ffffff14 0%, #fff0 100%),
+              linear-gradient(90deg, #11161d33 0%, #0a0e1400 100%),
+              #0f171f !important;
+  padding-top: 1rem !important;
+}
+
+.sw-fixture-banner-main-team-name {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  letter-spacing: 0.1px !important;
+}
+
+.sw-fixture-banner-main-score-box-value {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+}
+
+.sw-fixture-banner-match-venue {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 14px !important;
+}
+
+.sw-fixture-banner-main-score-box-date {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: #fff !important;
+}
+
+.sw-fixture-banner-main-score-logo-container {
+  height: 90px !important;
+  width: 90px !important;
+}
+
+.sw-fixture-banner-main-score-logo {
+  height: 90px !important;
+  width: 90px !important;
+}
+
+/* White text on dark banner */
+.sw-fixture-banner-season,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-value,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-team-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table th,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-competitor-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-status-active-period,
+#synergy-widget-fixture_detail .sw-fixture-banner-status-time-value {
+  color: #fff !important;
+}
+
+span.sw-fixture-banner-status-active-period,
+span.sw-fixture-banner-status-time-value {
+  font-size: 21px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table td {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif;
+  color: #999;
+}
+
+/* Live status row container */
+.sw-fixture-banner-status {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin-bottom: 20px !important;
+}
+
+.sw-fixture-banner-status-live-indicator {
+  background: #ff0000 !important;
+  border-radius: 7px !important;
+  color: #fff !important;
+  flex-shrink: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-weight: bold !important;
+  font-size: 15px !important;
+  height: 11px !important;
+  letter-spacing: .5px !important;
+  line-height: 0px !important;
+  margin-top: 0px !important;
+  padding: 13px 11px !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+/* Hide season label and expand button */
+.sw-fixture-banner-container-expand-area-button,
+#synergy-widget-fixture_detail .sw-fixture-banner-season {
+  display: none !important;
+}
+
+/* Status label */
+.sw-fixture-banner-status-state-label {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* Content sections: container width matching site layout */
+.sw-widget-fixture-box-score,
+.sw-shot-chart-base {
+  margin: auto !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  max-width: 79rem !important;
+}
+
+.sw-season-leaders {
+  margin: auto !important;
+  max-width: 79rem !important;
+}
+
+.sw-fixture-pbp {
+  margin: auto !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Competitor name */
+.sw-fixture-banner-main-score-competitor-name {
+  letter-spacing: 0.1px !important;
+}
+
+/* ── Sub-tabs: centered in all 4 tabs ──
+ * The widget default sets overflow-x:auto on .sw-sub-tabs which prevents
+ * justify-content:center from working. We override both.
+ * We also reset the margin-left/right:auto the widget sets on first/last tab
+ * (those push tabs off-center differently per tab panel width).
+ */
+.sw-sub-tabs {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  overflow-x: auto !important;
+  gap: 0 !important;
+}
+
+button.sw-sub-tabs-tab {
+  background-color: transparent !important;
+  text-transform: capitalize !important;
+  font-size: 22px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+  padding: 10px 0 !important;
+  margin: 0 10px !important;
+  min-width: unset !important;
+  width: auto !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.01em !important;
+}
+
+button.sw-sub-tabs-tab:first-of-type {
+  margin-left: 10px !important;
+}
+
+button.sw-sub-tabs-tab:last-of-type {
+  margin-right: 10px !important;
+}
+
+button.sw-sub-tabs-tab.is-active {
+  background-color: transparent !important;
+  text-transform: capitalize !important;
+  font-size: 22px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  padding: 10px 0 !important;
+  margin: 0 10px !important;
+  min-width: unset !important;
+  width: auto !important;
+  white-space: nowrap !important;
+  color: #000000 !important;
+  border-bottom: 1.5px solid #000 !important;
+}
+
+
+/* Box score table — all cells Barlow except player name column */
+#synergy-widget-fixture_detail .sw-grid table tbody td,
+#synergy-widget-fixture_detail .sw-grid table tbody th {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+}
+
+th.grid-fixed-body-cell.grid-data-cell-name {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, Helvetica, sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+}
+
+th.grid-fixed-body-cell.grid-data-cell-bib {
+  padding-right: 15px !important;
+  font-weight: 400 !important;
+}
+
+span.box-score-person-cell {
+  margin-top: 5px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, Helvetica, sans-serif !important;
+  font-size: 17px !important;
+}
+
+/* Team title row */
+.sw-box-score-team-title {
+  margin-bottom: 10px !important;
+}
+
+.box-score-title img {
+  height: 50px !important;
+  width: 50px !important;
+}
+
+.box-score-team-name {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, Helvetica, sans-serif !important;
+  font-size: 24px !important;
+}
+
+.sw-grid.sw-grid-overflow-y {
+  border: 0px !important;
+}
+
+.sw-grid table thead th {
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.sw-grid table tbody tr {
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.box-score-sorting select {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  background-color: rgb(229, 229, 229) !important;
+  border: none !important;
+  border-radius: 4px !important;
+  margin-left: 5px !important;
+  padding: 2px 1.8rem 2px 9px !important;
+}
+
+select {
+  padding-right: 2.5rem !important;
+}
+
+.sw-box-score-total-team-stats {
+  border-radius: 8px !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  padding: 20px 15px !important;
+  margin-top: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.sw-box-score-total-team-stats-entry-label {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  color: #444 !important;
+}
+
+.sw-box-score-total-team-stats-entry-value {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+span.sw-box-score-additional-persons-role {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+}
+
+.sw-glossary {
+  background-color: #f6f6f6 !important;
+  border-radius: 8px !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  margin-top: 20px !important;
+  padding: 20px 15px !important;
+}
+
+
+/* Multi-switch wrapper */
+.sw-multi-switch {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin-top: 30px !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Buttons row */
+.sw-multi-switch-buttons {
+  background-color: transparent !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+/* PBP period pills: centered */
+.sw-fixture-pbp .sw-multi-switch {
+  text-align: center !important;
+}
+
+.sw-fixture-pbp .sw-multi-switch-buttons {
+  justify-content: center !important;
+}
+
+/* Shot chart: period pills LEFT, team selector RIGHT */
+.sw-shot-chart-period-selector .sw-multi-switch {
+  text-align: left !important;
+}
+
+.sw-shot-chart-competitor-selector .sw-multi-switch,
+.sw-multi-switch.sw-shot-chart-competitor-selector {
+  text-align: right !important;
+}
+
+.sw-multi-switch-item {
+  background-color: transparent !important;
+  border: 1px solid #D5D5D5 !important;
+  border-radius: 100px !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+  cursor: pointer !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 16px !important;
+  padding: 6px 16px !important;
+  min-width: max-content !important;
+  text-transform: none !important;
+}
+
+.sw-multi-switch [data-sw-multiswitch-item-active=true] {
+  background-color: #0F171F !important;
+  border-color: #0F171F !important;
+  color: #fff !important;
+}
+
+/* Box score controls: Ordenado Por stays right */
+.sw-widget-fixture-box-score-controls {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* PBP */
+.sw-fixture-pbp-period-boundary {
+  border-left-width: 1px !important;
+}
+
+.sw-fixture-pbp-event-description {
+  font-weight: 600 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+}
+
+.sw-fixture-pbp-event-player-name {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 14px !important;
+}
+
+.sw-fixture-pbp-event-time {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+.sw-fixture-pbp-period {
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.sw-fixture-pbp-event-score {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, Helvetica, sans-serif !important;
+  font-size: 18px !important;
+  text-align: center !important;
+}
+
+/* Shot chart */
+.sw-shot-chart-roster {
+  margin: 30px 0 1px !important;
+  padding: 30px 20px 20px 20px !important;
+}
+
+/* Disable all links in the leaders widget */
+.sw-season-leaders a {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* ── Líderes tab: card styling matches SeasonTeamPlayerLeadersCard ── */
+.sw-leaders-card {
+  background-color: #fff !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px #14181f0a !important;
+}
+
+.sw-leaders-grid {
+  display: grid !important;
+  gap: 20px !important;
+}
+
+.sw-leaders-card-category {
+  color: #0f171fb3 !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 18px !important;
+  text-transform: capitalize !important;
+  grid-area: 1 / span 1 !important;
+  padding: 5px 10px !important;
+  text-align: left !important;
+  letter-spacing: 0.2px;
+}
+
+.sw-leaders-top-person-name {
+  font-size: 24px !important;
+  max-width: 250px !important;
+  padding: 0px 10px !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.sw-leaders-card-top-person .sw-person-photo-with-entity-logo .sw-ppwel-person {
+  border-radius: 50% !important;
+  height: 5rem !important;
+  width: 5rem !important;
+  border: 1px solid #ddd !important;
+}
+
+.sw-leaders-card-top-person .sw-person-photo-with-entity-logo .sw-ppwel-entity {
+  display: none !important;
+}
+
+.sw-leaders-person-photo-link {
+  padding: 0 15px 0 0 !important;
+}
+
+.sw-leaders-top-person-result {
+  z-index: 1 !important;
+  margin-top: -20px !important;
+  margin-right: 13px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 20px !important;
+}
+
+.sw-leaders-non-leader-photos .sw-person-photo-with-entity-logo .sw-ppwel-person {
+  border: 1px solid #ddd !important;
+}
+
+.sw-leaders-non-leader-result {
+  align-self: center !important;
+  font-size: 20px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  grid-column: 4 !important;
+  grid-row: span 2 !important;
+  margin-right: 5px !important;
+  text-align: right !important;
+  letter-spacing: 0.5px !important;
+}
+
+.sw-leaders-non-leader-position {
+  align-self: center !important;
+  grid-column: 1 !important;
+  grid-row: span 2 !important;
+  margin-right: 5px !important;
+}
+
+.sw-leaders-non-leader-photos {
+  grid-column: 2 !important;
+  align-self: center !important;
+}
+
+.sw-leaders-non-leader-person {
+  grid-column: 3 !important;
+  align-self: center !important;
+  border-bottom: 1px solid #F6F6F6 !important;
+  padding: 5px 20px !important;
+}
+
+.sw-leaders-non-leader-person-name {
+  top: 10px;
+  font-size: 14px !important;
+  position: relative !important;
+}
+
+a.sw-link.sw-leaders-non-leader-person-name {
+  font-size: 16px !important;
+}
+
+.sw-season-leaders .sw-leaders-non-leader-person-name {
+  top: 4px;
+}
+
+#synergy-widget-fixture_detail .sw-leaders-non-leader-person-name {
+  top: 12px !important;
+}
+
+a.sw-link.sw-leaders-non-leader-entity-name.sw-link-active {
+  margin-top: 2px;
+  color: #555;
+}
+
+a.sw-link.sw-leaders-top-person-entity.sw-link-active {
+  margin-left: 10px;
+  color: #555;
+}
+
+
+
+/* ── Desktop overrides (min-width: 768px) ──
+ * Placed after all base Sportradar rules so source order breaks !important ties correctly.
+ */
+@media (min-width: 768px) {
+  .sw-fixture-banner-main-score-logo-container {
+    padding-top: 9px !important;
+  }
+
+  #synergy-widget-fixture_detail .sw-fixture-banner-status-state-label {
+    color: #fff !important;
+    font-size: 19px !important;
+    text-transform: capitalize !important;
+    font-weight: 800 !important;
+  }
+
+  .sw-fixture-banner-main-score-box-secondary {
+    color: #0009 !important;
+    font-size: 11px !important;
+    letter-spacing: 0px !important;
+    opacity: 1 !important;
+    text-align: center !important;
+    margin-top: 16px !important;
+  }
+
+  #synergy-widget-fixture_detail .box-score .sw-grid th {
+    font-family: var(--font-barlow), Barlow, sans-serif !important;
+    font-size: 13px !important;
+  }
+
+  #synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table td {
+    font-size: 14px;
+    line-height: 110%;
+  }
+
+  .sw-fixture-banner-main-score-box-secondary table th {
+    font-size: 14px;
+    line-height: 125%;
+    letter-spacing: 0.5px !important;
+  }
+
+  ul.sw-shot-chart-roster {
+    margin-top: 55px !important;
+  }
+
+  .sw-season-leaders {
+    padding: 0 !important;
+  }
+}
+
+
+/* ── Mobile overrides (max-width: 767px) ──
+ * Kept at the end of the Sportradar section so they appear AFTER all global rules
+ * and win the !important tie-breaker via source order.
+ */
+@media (max-width: 767px) {
+  /* Banner */
+  .sw-fixture-banner-main-score-competitor-name {
+    font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 110% !important;
+  }
+
+  span.sw-fixture-banner-status-state-label {
+    font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+    text-transform: capitalize !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .sw-fixture-banner-match-venue {
+    font-size: 12px !important;
+    font-family: var(--font-barlow), Barlow, sans-serif !important;
+  }
+
+
+  /* Header logos: 60px on mobile */
+  .sw-fixture-banner-main-score-logo-container {
+    height: 60px !important;
+    width: 60px !important;
+  }
+
+  .sw-fixture-banner-main-score-logo {
+    height: 60px !important;
+    width: 60px !important;
+  }
+
+  /* Sub-tabs: 18px on mobile, single line with horizontal scroll */
+  button.sw-sub-tabs-tab,
+  button.sw-sub-tabs-tab.is-active {
+    font-size: 18px !important;
+    margin: 0 8px !important;
+  }
+
+  button.sw-sub-tabs-tab:first-of-type {
+    margin-left: 8px !important;
+  }
+
+  button.sw-sub-tabs-tab:last-of-type {
+    margin-right: 8px !important;
+  }
+
+  /* Box score: horizontal padding on mobile */
+  .sw-widget-fixture-box-score {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Box score team title row */
+  .box-score-title img {
+    height: 40px !important;
+    width: 40px !important;
+  }
+
+  .box-score-team-name {
+    font-size: 18px !important;
+  }
+
+  /* Box score header cells */
+  .box-score .sw-grid th {
+    padding: 4px 15px 4px 0px !important;
+  }
+
+  /* Ordenado Por row */
+  .sw-widget-fixture-box-score-controls {
+    font-size: 12px !important;
+  }
+
+  .box-score-sorting {
+    font-size: 12px !important;
+  }
+
+  .box-score-sorting select {
+    background-color: #e5e5e5 !important;
+    border: none !important;
+    border-radius: 4px !important;
+    margin-left: 5px !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    font-family: var(--font-barlow), Barlow, sans-serif !important;
+  }
+
+  /* Player name cell */
+  span.box-score-person-cell {
+    margin-top: 8px !important;
+    font-size: 15px !important;
+  }
+
+  /* Banner match info: no top padding on mobile */
+  .sw-fixture-banner-main-score-box-match-info {
+    padding-top: 0 !important;
+  }
+
+  /* Banner mobile main grid: remove top/side padding */
+  .sw-fixture-banner-mobile-main {
+    padding: 0px 0px 10px 0px !important;
+  }
+
+  /* Shot chart period pills: centered on mobile */
+  .sw-shot-chart-period-selector .sw-multi-switch-buttons {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* Shot chart */
+  .sw-multi-switch.sw-shot-chart-competitor-selector {
+    margin-bottom: 15px !important;
+  }
+
+  /* Glossary: 2 columns on mobile */
+  .sw-glossary {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px 8px !important;
+  }
+
+  /* Leaders: no horizontal padding on mobile (home component only) */
+  .sw-season-leaders {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #synergy-widget-fixture_detail .sw-season-leaders {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .sw-fixture-leaders {
+    padding: 0 !important;
+  }
+
+  /* Banner collapsed bottom padding */
+  .sw-fixture-banner-container-collapsed {
+    padding-bottom: 10px !important;
+  }
+
+  /* Hide quarter/period score table on mobile */
+  .sw-fixture-banner-main-score-box-secondary {
+    display: none !important;
+  }
+
+  /* PBP period pills + sub-tabs: centered on mobile */
+  .sw-fixture-pbp .sw-multi-switch {
+    text-align: center !important;
+  }
+
+  .sw-fixture-pbp .sw-multi-switch-buttons {
+    justify-content: center !important;
+  }
+
+  .sw-sub-tabs {
+    justify-content: center !important;
+  }
+
+  .sw-grid table thead th {
+    border-bottom-width: 1px !important;
+  }
+
+  .sw-grid table tbody tr {
+    border-bottom-width: 1px !important;
+  }
+}
+
+@container (max-width: 480px) {
+  .box-score-person-cell {
+    width: 130px !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────────── */
+/* Site-wide hover & active states
+ * Scoped to hover-capable devices (desktop) only — preserves touch/swipe behaviour
+ * on mobile. CSS transitions on touch targets break react-slick's gesture detection.
+ * ─────────────────────────────────────────────────────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  /* General links: visible opacity fade */
+  a:not(:has(.glass-match-card)) {
+    transition: opacity 0.12s ease;
+  }
+  a:not(:has(.glass-match-card)):hover {
+    opacity: 0.7;
+  }
+  a:not(:has(.glass-match-card)):active {
+    opacity: 0.45;
+  }
+
+  /* Image links: slightly lighter fade */
+  a:has(img):not(:has(.glass-match-card)):hover {
+    opacity: 0.8;
+  }
+
+  /* Glass match cards: border brightens on hover */
+  .glass-match-card {
+    transition: border-color 0.12s ease;
+  }
+  .glass-match-card:hover {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+  }
+  .glass-match-card:active {
+    opacity: 0.8;
+  }
+
+  /* Buttons: hover lift + pressed feel on active */
+  button {
+    transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+  }
+  button:not([disabled]):hover {
+    opacity: 0.82;
+  }
+  button:not([disabled]):active {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+
+  /* Slider arrows: preserve fixed position, exempt from button scale */
+  .recent-calendar-slider .slick-arrow,
+  .recent-calendar-slider .slick-arrow:active {
+    transform: translate(0, -50%) !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  /* News hero: image zoom on hover */
+  a:has(.news-hero-img):hover {
+    opacity: 1 !important;
+  }
+  .news-hero-img {
+    transition: transform 0.4s ease;
+  }
+  a:hover .news-hero-img {
+    transform: scale(1.06);
+  }
+
+  /* Sportradar primary tabs */
+  button.sw-sub-tabs-tab {
+    transition: opacity 0.15s ease !important;
+  }
+  button.sw-sub-tabs-tab:not(.is-active):hover {
+    opacity: 0.75 !important;
+  }
+  button.sw-sub-tabs-tab:not(.is-active):active {
+    opacity: 0.5 !important;
+  }
+
+  /* Sportradar period/category pills */
+  .sw-multi-switch-item {
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+  }
+  .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(0, 0, 0, 0.5) !important;
+    color: #111 !important;
+  }
+  .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
+    background-color: rgba(0, 0, 0, 0.18) !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────────── */
+
 /* Home calendar: native horizontal scroll (no react-slick / translate3d on iOS WebKit) */
 .home-calendar-strip {
   scrollbar-width: none;
@@ -130,4 +982,87 @@ body {
 }
 .home-calendar-strip::-webkit-scrollbar {
   display: none;
+}
+
+/* Sportsradar widget */
+#synergy-widget-fixture_detail .sw-bg,
+#synergy-widget-fixture_detail .sw-widget-fixture {
+  background-color: #ffffff !important;
+}
+
+#synergy-widget-fixture_detail .box-score-person-cell,
+#synergy-widget-fixture_detail .grid-data-cell-bib,
+#synergy-widget-fixture_detail .sw-box-score-total-team-stats-entry-label,
+#synergy-widget-fixture_detail .sw-fixture-pbp li.is-success,
+#synergy-widget-fixture_detail .sw-multi-switch-item {
+  font-weight: normal;
+}
+
+#synergy-widget-fixture_detail .sw-navbar {
+  display: none;
+}
+
+#synergy-widget-fixture_detail .sw-widget-fixture {
+  padding: 0;
+  margin-bottom: 60px;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-leaders {
+  margin-top: 30px !important;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner {
+  background: radial-gradient(37% 80% at 45% 49%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(90deg, rgba(17, 22, 29, 0.2) 0%, rgba(10, 14, 20, 0) 100%),#0F171F;  
+  padding-top: 1rem;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-season,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-value,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-team-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table th,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table td,
+#synergy-widget-fixture_detail .sw-fixture-banner-match-venue,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-date,
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-competitor-name,
+#synergy-widget-fixture_detail .sw-fixture-banner-status-active-period,
+#synergy-widget-fixture_detail .sw-fixture-banner-status-time-value {
+  color: #fff;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table th {
+  color: #ddd !important;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-status-live-indicator {
+  line-height: 5px;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-container-expand-area-button,
+#synergy-widget-fixture_detail .sw-fixture-banner-season {
+  display: none;
+}
+
+#synergy-widget-fixture_detail .sw-fixture-banner-status-state-label {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.sw-widget-fixture-box-score,
+.sw-fixture-pbp,
+.sw-shot-chart-base,
+.sw-season-leaders {
+  margin: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (width >= theme(--breakpoint-lg)) {
+    max-width: 68rem;
+  }
+
+  @media (width >= theme(--breakpoint-xl)) {
+    max-width: 79rem;
+  }
+
+  @media (width >= theme(--breakpoint-2xl)) {
+    max-width: 79rem;
+  }
 }

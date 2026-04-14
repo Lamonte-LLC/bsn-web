@@ -1,7 +1,11 @@
 import TeamLinkCard from '@/team/components/card/TeamLinkCard';
 import Link from 'next/link';
 
-export default function FooterBoxLayout() {
+type Props = {
+  hideStoreAppLinks?: boolean;
+};
+
+export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
   return (
     <footer className="bg-[#0F171F] pt-[50px] pb-[34px]">
       <div className="container">
@@ -85,6 +89,14 @@ export default function FooterBoxLayout() {
             <ul className="mb-6 space-y-1">
               <li className="text-center md:text-right lg:text-left">
                 <Link
+                  href="/"
+                  className="font-special-gothic-condensed-one text-white text-[26px]"
+                >
+                  Inicio
+                </Link>
+              </li>
+              <li className="text-center md:text-right lg:text-left">
+                <Link
                   href="/calendario"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
@@ -99,13 +111,13 @@ export default function FooterBoxLayout() {
                   Noticias
                 </Link>
               </li>
-              <li className="text-center md:text-right lg:text-left hidden">
-                <a
-                  href="#"
+              <li className="text-center md:text-right lg:text-left">
+                <Link
+                  href="/jugadores"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Jugadores
-                </a>
+                </Link>
               </li>
               <li className="text-center md:text-right lg:text-left hidden">
                 <a
@@ -147,38 +159,40 @@ export default function FooterBoxLayout() {
               reservados.
             </p>
             <p className="font-barlow text-xs text-neutral-500">
-              <a href="#" className="underline">
+              <a href="https://wp.bsnpr.com/terminos-y-condiciones/" target="_blank" rel="noopener noreferrer" className="underline">
                 Términos y condiciones
               </a>{' '}
               |{' '}
-              <a href="#" className="underline">
+              <a href="https://wp.bsnpr.com/politica-de-privacidad/" target="_blank" rel="noopener noreferrer" className="underline">
                 Política de privacidad
               </a>
               . Diseñado en Puerto Rico por{' '}
-              <a href="#" className="underline">
+              <a href="https://lamonte.studio/" target="_blank" rel="noopener noreferrer" className="underline">
                 Lamonte
               </a>
               .
             </p>
           </div>
-          <div className="flex flex-row gap-[10px] items-center">
-            <a href="#">
-              <img
-                src="/assets/images/downlad-appstore.png"
-                alt=""
-                srcSet="/assets/images/downlad-appstore.png, /assets/images/downlad-appstore@2x.png 2x"
-                width={120}
-              />
-            </a>
-            <a href="#">
-              <img
-                src="/assets/images/download-playstore.png"
-                alt=""
-                srcSet="/assets/images/download-playstore.png, /assets/images/download-playstore@2x.png 2x"
-                width={120}
-              />
-            </a>
-          </div>
+          {!hideStoreAppLinks && (
+            <div className="flex flex-row gap-[10px] items-center">
+              <a href="https://apps.apple.com/us/app/baloncesto-superior-nacional/id6479825880" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/downlad-appstore.png"
+                  alt=""
+                  srcSet="/assets/images/downlad-appstore.png, /assets/images/downlad-appstore@2x.png 2x"
+                  width={120}
+                />
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=io.genius.bsnpr&hl=en" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/download-playstore.png"
+                  alt=""
+                  srcSet="/assets/images/download-playstore.png, /assets/images/download-playstore@2x.png 2x"
+                  width={120}
+                />
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </footer>

@@ -2,6 +2,7 @@ import { getClient } from '@/apollo-client';
 import { DOMAIN_URL, SITE_NAME } from '@/constants';
 import { SINGLE_NEWS } from '@/graphql/news';
 import { NewsType } from '@/news/types';
+import ShareButton from '@/news/client/components/ShareButton';
 import LatestNewsWidget from '@/news/widgets/LatestNewsWidget';
 import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
@@ -64,28 +65,15 @@ export async function generateMetadata({
   };
 }
 
-export default async function DetalleNoticiaPage({
-  params,
-}: {
+export default async function DetalleNoticiaPage({ params }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const data: NewsType[] = await fetchSingleNews(slug);
   return (
-    <FullWidthLayout>
+    <FullWidthLayout hideStoreAppLinks>
       <div className="pb-16 pt-8 md:pb-24 md:pt-12">
         <div className="container">
-          <div className="mb-4">
-            <ul className="flex flex-wrap gap-2">
-              {data[0]?.tags?.map((tag) => (
-                <li key={`tag-${tag.slug}`}>
-                  <span className="text-[13px] text-[rgba(49,49,50,0.8)] uppercase md:text-[15px]">
-                    {tag.name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="mb-4 md:mb-10">
             <h1 className="font-barlow font-bold text-[23px]/7 text-[#0F171F] md:text-[36px]/11">
               {data[0]?.title}
@@ -113,7 +101,21 @@ export default async function DetalleNoticiaPage({
                   dangerouslySetInnerHTML={{ __html: data[0]?.content ?? '' }}
                 />
               </div>
-              <div>
+              {data[0]?.tags && data[0].tags.length > 0 && (
+                <ul className="flex flex-wrap gap-[4px] mb-8">
+                  {data[0].tags.map((tag) => (
+                    <li key={`tag-${tag.slug}`}>
+                      <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.55)] bg-[#f0f0f0] rounded-[100px] px-[12px] py-[5px] inline-block">
+                        {tag.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className="md:hidden">
+                <ShareButton title={data[0]?.title ?? ''} />
+              </div>
+              <div className="hidden md:block">
                 <Link
                   href="/noticias"
                   className="border border-[#D9D3D3] rounded-[12px] px-[30px] py-[12px] inline-flex items-center"

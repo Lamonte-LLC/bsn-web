@@ -56,6 +56,7 @@ export default async function NoticiasPage() {
           </div>
         </section>
       }
+      hideStoreAppLinks
     >
       <section>
         <div className="container">
@@ -69,7 +70,11 @@ export default async function NoticiasPage() {
               ></figure>
               <div className="flex-1 bg-white lg:p-[40px] lg:border lg:border-[#EAEAEA] lg:rounded-r-[12px]">
                 <div className="mb-3 md:mb-5">
-                  <Link href={`/noticias/${hero?.slug || ''}`}>
+                  <Link
+                    href={{
+                      pathname: `/noticias/${hero?.slug || ''}`,
+                    }}
+                  >
                     <h1 className="font-barlow font-bold text-[rgba(15,23,31,0.9)] md:text-[32px]/9">
                       {hero?.title}
                     </h1>
@@ -91,7 +96,9 @@ export default async function NoticiasPage() {
                 </div>
                 <div>
                   <Link
-                    href={`/noticias/${hero?.slug || ''}`}
+                    href={{
+                      pathname: `/noticias/${hero?.slug || ''}`,
+                    }}
                     className="border border-[#D9D3D3] inline-block shadow-[0px_1px_2px_0px_#14181F0D] text-center p-[9px] rounded-[12px] w-full md:w-[130px]"
                   >
                     <span className="text-[17px] text-black">Leer más</span>

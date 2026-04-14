@@ -319,6 +319,79 @@ export const MATCH_PLAYER_BOXSCORE_ROW_FIELDS = gql`
   }
 `;
 
+export const MATCH_LIVE_TEAMS_BOXSCORE = gql`
+  query findMatchLiveTeamsBoxscore(
+    $geniusMatchId: Int!
+    $providerMatchId: String
+  ) {
+    matchTeamsBoxscore(
+      geniusMatchId: $geniusMatchId
+      providerMatchId: $providerMatchId
+    ) {
+      id
+      providerId
+      homeTeam {
+        providerId
+        name
+        nickname
+        code
+        color
+      }
+      visitorTeam {
+        providerId
+        name
+        nickname
+        code
+        color
+      }
+      homeTeamBoxscore {
+        fieldGoalsMade
+        fieldGoalsAttempted
+        fieldGoalsPercentage
+        threePointersMade
+        threePointersAttempted
+        threePointersPercentage
+        freeThrowsMade
+        freeThrowsAttempted
+        freeThrowsPercentage
+        offensiveRebounds
+        reboundsTotal
+        assists
+        turnovers
+        steals
+        blocks
+        foulsPersonal
+        points
+        twoPointersMade
+        twoPointersAttempted
+        twoPointersPercentage
+      }
+      visitorTeamBoxscore {
+        fieldGoalsMade
+        fieldGoalsAttempted
+        fieldGoalsPercentage
+        threePointersMade
+        threePointersAttempted
+        threePointersPercentage
+        freeThrowsMade
+        freeThrowsAttempted
+        freeThrowsPercentage
+        offensiveRebounds
+        reboundsTotal
+        assists
+        turnovers
+        steals
+        blocks
+        foulsPersonal
+        points
+        twoPointersMade
+        twoPointersAttempted
+        twoPointersPercentage
+      }
+    }
+  }
+`;
+
 export const MATCH_TEAMS_BOXSCORE = gql`
   ${MATCH_TEAM_AGGREGATE_BOXSCORE_FIELDS}
   query findMatchTeamBoxscore($geniusMatchId: Int!, $providerMatchId: String) {

@@ -6,6 +6,7 @@ import {
   MATCH_TABBED_BOXSCORE_PANEL,
   MATCH,
   MATCH_LIVE_SCOREBOARD,
+  MATCH_LIVE_TEAMS_BOXSCORE,
 } from '@/graphql/match';
 import { MatchType } from '@/match/types';
 import { useQuery } from '@apollo/client/react';
@@ -482,5 +483,31 @@ export function useMatch(matchProviderId: string, usePoll = false) {
     data: match,
     loading: showInitialLoading,
     error,
+  };
+}
+
+type MatchTeamsBoxscoreResponse = {
+  matchTeamsBoxscore: MatchType;
+};
+
+export function useMatchTeamsBoxscore(matchProviderId: string, usePoll = false) {
+  const { data, loading, error, startPolling, stopPolling } =
+    useQuery<MatchTeamsBoxscoreResponse>(MATCH_LIVE_TEAMS_BOXSCORE, {
+      variables: { geniusMatchId: 0, providerMatchId: matchProviderId },
+      fetchPolicy: 'network-only',
+      pollInterval: usePoll ? 15 * 1000 : 0, // 15 seconds in milliseconds
+      notifyOnNetworkStatusChange: false,
+    });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.matchTeamsBoxscore,
+    loading,
+    error,
+    startPolling,
+    stopPolling,
   };
 }

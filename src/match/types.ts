@@ -49,6 +49,16 @@ export type MatchTeamBoxScoreType = {
   blocks: number;
   foulsPersonal: number;
   points: number;
+  twoPointersMade: number;
+  twoPointersAttempted: number;
+  twoPointersPercentage: number;
+  pointsFromTurnover: number;
+  pointsInThePaint: number;
+  pointsSecondChance: number;
+  pointsFastBreak: number;
+  pointsFromBench: number;
+  biggestLead: number;
+  biggestScoringRun: number;
 };
 
 export type MatchType = {
