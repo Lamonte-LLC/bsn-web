@@ -83,15 +83,33 @@ body {
 }
 
 /* Recent Calendar Slider */
-/* adaptiveHeight:true sets an inline height on .slick-list after every slide
- * change. On iOS/Android that height delta shifts the browser address bar,
- * firing window.resize. React-slick's resize handler calls setDimensions()
- * which remeasures variableWidth slides mid-swipe, gets stale widths, and
- * corrupts the track translateX — causing slides to vanish after 2 swipes.
- * !important on a CSS rule beats a normal inline style, so this neutralises
- * adaptiveHeight's output without touching JS. Height stays content-driven. */
-.recent-calendar-slider .slick-list {
-  height: auto !important;
+
+/* ── Mobile: bypass react-slick entirely, use native browser scroll ──
+ * react-slick's JS touch handling + variableWidth is fundamentally broken on
+ * real iOS/Android devices (width miscalculations, resize cascades, corrupt
+ * translateX). On mobile we disable slick's transform-based sliding via CSS
+ * and let the browser handle touch-scrolling natively via overflow-x. */
+@media (max-width: 639px) {
+  .recent-calendar-slider .slick-list {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .recent-calendar-slider .slick-list::-webkit-scrollbar {
+    display: none;
+  }
+  .recent-calendar-slider .slick-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  .recent-calendar-slider .slick-slide {
+    flex-shrink: 0;
+    float: none !important;
+    width: auto !important;
+  }
 }
 
 .recent-calendar-slider .slick-arrow {
