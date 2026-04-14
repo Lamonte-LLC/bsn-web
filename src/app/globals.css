@@ -701,6 +701,14 @@ a.sw-link.sw-leaders-non-leader-person-name {
   top: 12px !important;
 }
 
+a.sw-link.sw-leaders-top-person-name {
+  font-family: 'Special Gothic Condensed One' !important;
+}
+
+a.sw-link.sw-leaders-non-leader-person-name {
+  font-family: 'Special Gothic Condensed One' !important;
+}
+
 a.sw-link.sw-leaders-non-leader-entity-name.sw-link-active {
   margin-top: 2px;
   color: #555;
