@@ -83,6 +83,16 @@ body {
 }
 
 /* Recent Calendar Slider */
+/* adaptiveHeight:true sets an inline height on .slick-list after every slide
+ * change. On iOS/Android that height delta shifts the browser address bar,
+ * firing window.resize. React-slick's resize handler calls setDimensions()
+ * which remeasures variableWidth slides mid-swipe, gets stale widths, and
+ * corrupts the track translateX — causing slides to vanish after 2 swipes.
+ * !important on a CSS rule beats a normal inline style, so this neutralises
+ * adaptiveHeight's output without touching JS. Height stays content-driven. */
+.recent-calendar-slider .slick-list {
+  height: auto !important;
+}
 
 .recent-calendar-slider .slick-arrow {
   cursor: pointer;
