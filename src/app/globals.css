@@ -1322,3 +1322,8 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   border-radius: 8px !important;
   padding: 0px 8px !important;
 }
+
+.sport-radar-fixture-mobile-widget input:where([type="checkbox"]):checked,
+.sport-radar-fixture-mobile-widget input:where([type="checkbox"]):checked:hover {
+  filter: invert(1) !important;
+}
