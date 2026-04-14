@@ -1175,6 +1175,8 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
 .sport-radar-fixture-mobile-widget a.sw-link.box-score-person-cell {
   color: #fff !important;
+  pointer-events: none !important;
+  cursor: default !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-grid table tbody td,
