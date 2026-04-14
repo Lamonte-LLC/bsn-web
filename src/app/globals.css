@@ -1048,15 +1048,6 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   display: none;
 }
 
-/* Disable all links inside the box score widget — player names and other
- * anchors are clickable by default but should not navigate anywhere. */
-#synergy-widget-fixture_detail .sw-grid a,
-#synergy-widget-fixture_detail .sw-grid table a {
-  pointer-events: none !important;
-  cursor: default !important;
-  text-decoration: none !important;
-}
-
 #synergy-widget-fixture_detail .sw-widget-fixture {
   padding: 0;
   margin-bottom: 60px;
