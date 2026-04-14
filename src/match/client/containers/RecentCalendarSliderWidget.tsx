@@ -158,7 +158,7 @@ export default function RecentCalendarSliderWidget() {
               {isScheduledMatchPageStatus(
                 match.status,
                 match.providerFixtureStatus,
-              ) ? (
+              ) && (
                 <ScheduledMatchCard
                   matchProviderId={match.providerId}
                   startAt={match.startAt}
@@ -169,7 +169,8 @@ export default function RecentCalendarSliderWidget() {
                   isFinals={match.isFinals}
                   finalsDescription={match.finalsDescription}
                 />
-              ) : (
+              )}
+              {['POSTPONED'].includes(match.status) && (
                 <DefaultMatchCard
                   matchProviderId={match.providerId}
                   startAt={match.startAt}
