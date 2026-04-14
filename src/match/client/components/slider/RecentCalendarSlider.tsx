@@ -25,7 +25,23 @@ function RecentCalendarSliderInner<T>({
   const sliderRef = useRef<Slider>(null);
 
   useEffect(() => {
-    if (data.length > 0) {
+    if (data.length === 0) return;
+
+    // On mobile, CSS takes over scrolling (overflow-x: auto) so slickGoTo
+    // won't work. Scroll the .slick-list container to the correct slide.
+    const isMobile =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 639px)').matches;
+
+    if (isMobile) {
+      const list = document.querySelector(
+        '.recent-calendar-slider .slick-list',
+      ) as HTMLElement | null;
+      const slides = list?.querySelectorAll('.slick-slide');
+      if (list && slides && slides[initialSlide]) {
+        list.scrollLeft = (slides[initialSlide] as HTMLElement).offsetLeft;
+      }
+    } else {
       sliderRef.current?.slickGoTo(initialSlide, true);
     }
   }, [initialSlide, data.length]);
@@ -38,7 +54,7 @@ function RecentCalendarSliderInner<T>({
     slidesToScroll: 2,
     initialSlide,
     variableWidth: true,
-    adaptiveHeight: true,
+    swipeToSlide: true,
     responsive: [
       {
         breakpoint: 640,
@@ -46,6 +62,9 @@ function RecentCalendarSliderInner<T>({
           slidesToShow: 2,
           slidesToScroll: 1,
           variableWidth: true,
+          swipe: false,
+          touchMove: false,
+          draggable: false,
         },
       },
     ],

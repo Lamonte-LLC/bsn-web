@@ -83,6 +83,35 @@ body {
 }
 
 /* Recent Calendar Slider */
+
+/* ── Mobile: bypass react-slick entirely, use native browser scroll ──
+ * react-slick's JS touch handling + variableWidth is fundamentally broken on
+ * real iOS/Android devices (width miscalculations, resize cascades, corrupt
+ * translateX). On mobile we disable slick's transform-based sliding via CSS
+ * and let the browser handle touch-scrolling natively via overflow-x. */
+@media (max-width: 639px) {
+  .recent-calendar-slider .slick-list {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .recent-calendar-slider .slick-list::-webkit-scrollbar {
+    display: none;
+  }
+  .recent-calendar-slider .slick-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  .recent-calendar-slider .slick-slide {
+    flex-shrink: 0;
+    float: none !important;
+    width: auto !important;
+  }
+}
+
 .recent-calendar-slider .slick-arrow {
   cursor: pointer;
   color: #0000;
@@ -206,6 +235,10 @@ span.sw-fixture-banner-status-active-period,
 span.sw-fixture-banner-status-time-value {
   font-size: 21px !important;
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+}
+
+span.sw-fixture-banner-status-active-period {
+  margin-left: 5px;
 }
 
 #synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table td {
@@ -344,10 +377,18 @@ th.grid-fixed-body-cell.grid-data-cell-bib {
   font-weight: 400 !important;
 }
 
-span.box-score-person-cell {
-  margin-top: 5px !important;
+span.box-score-person-cell,
+.box-score-person-cell {
+  margin-top: 3px !important;
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, Helvetica, sans-serif !important;
   font-size: 17px !important;
+}
+
+@media (max-width: 767px) {
+  .box-score-person-cell {
+    font-size: 15px !important;
+    margin-top: 7px !important;
+  }
 }
 
 /* Team title row */
@@ -369,12 +410,29 @@ span.box-score-person-cell {
   border: 0px !important;
 }
 
-.sw-grid table thead th {
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5) !important;
+/* Reset every border and shadow on the entire table, then apply only what we want.
+ * The sticky column (grid-fixed-body-cell) carries a box-shadow from the widget
+ * that creates a double-line artifact — wiping it here prevents that. */
+.sw-grid table,
+.sw-grid table tr,
+.sw-grid table td,
+.sw-grid table th {
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.sw-grid table tbody tr {
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2) !important;
+.sw-grid table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.sw-grid table thead th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.sw-grid table tbody td,
+.sw-grid table tbody th {
+  border-bottom: 1px solid #e1e1e1 !important;
 }
 
 .box-score-sorting select {
@@ -643,6 +701,14 @@ a.sw-link.sw-leaders-non-leader-person-name {
   top: 12px !important;
 }
 
+a.sw-link.sw-leaders-top-person-name {
+  font-family: 'Special Gothic Condensed One' !important;
+}
+
+a.sw-link.sw-leaders-non-leader-person-name {
+  font-family: 'Special Gothic Condensed One' !important;
+}
+
 a.sw-link.sw-leaders-non-leader-entity-name.sw-link-active {
   margin-top: 2px;
   color: #555;
@@ -851,6 +917,10 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
     padding-bottom: 10px !important;
   }
 
+  .sw-fixture-banner-container.sw-fixture-banner-container-collapsed {
+    max-height: 320px !important;
+  }
+
   /* Hide quarter/period score table on mobile */
   .sw-fixture-banner-main-score-box-secondary {
     display: none !important;
@@ -867,15 +937,9 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
 
   .sw-sub-tabs {
     justify-content: center !important;
+    margin-top: 10px !important;
   }
 
-  .sw-grid table thead th {
-    border-bottom-width: 1px !important;
-  }
-
-  .sw-grid table tbody tr {
-    border-bottom-width: 1px !important;
-  }
 }
 
 @container (max-width: 480px) {
@@ -885,12 +949,12 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
-/* Site-wide hover & active states
- * Scoped to hover-capable devices (desktop) only — preserves touch/swipe behaviour
- * on mobile. CSS transitions on touch targets break react-slick's gesture detection.
+/* Site-wide hover & active states — desktop only.
+ * Scoped to (hover: hover) and (pointer: fine) so touch devices never trigger
+ * transitions during swipe, which conflict with slick's translate3d animation.
  * ─────────────────────────────────────────────────────────────────────────────────── */
 @media (hover: hover) and (pointer: fine) {
-  /* General links: visible opacity fade */
+  /* General links: opacity fade */
   a:not(:has(.glass-match-card)) {
     transition: opacity 0.12s ease;
   }
@@ -917,24 +981,15 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
     opacity: 0.8;
   }
 
-  /* Buttons: hover lift + pressed feel on active */
+  /* Buttons: hover fade only — no transform to avoid conflicting with slick */
   button {
-    transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
   }
   button:not([disabled]):hover {
     opacity: 0.82;
   }
   button:not([disabled]):active {
-    transform: scale(0.95);
     opacity: 0.7;
-  }
-
-  /* Slider arrows: preserve fixed position, exempt from button scale */
-  .recent-calendar-slider .slick-arrow,
-  .recent-calendar-slider .slick-arrow:active {
-    transform: translate(0, -50%) !important;
-    opacity: 1 !important;
-    transition: none !important;
   }
 
   /* News hero: image zoom on hover */
@@ -947,30 +1002,30 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
   a:hover .news-hero-img {
     transform: scale(1.06);
   }
+}
 
-  /* Sportradar primary tabs */
-  button.sw-sub-tabs-tab {
-    transition: opacity 0.15s ease !important;
-  }
-  button.sw-sub-tabs-tab:not(.is-active):hover {
-    opacity: 0.75 !important;
-  }
-  button.sw-sub-tabs-tab:not(.is-active):active {
-    opacity: 0.5 !important;
-  }
+/* Sportradar primary tabs */
+button.sw-sub-tabs-tab {
+  transition: opacity 0.15s ease !important;
+}
+button.sw-sub-tabs-tab:not(.is-active):hover {
+  opacity: 0.75 !important;
+}
+button.sw-sub-tabs-tab:not(.is-active):active {
+  opacity: 0.5 !important;
+}
 
-  /* Sportradar period/category pills */
-  .sw-multi-switch-item {
-    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
-  }
-  .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
-    background-color: rgba(0, 0, 0, 0.1) !important;
-    border-color: rgba(0, 0, 0, 0.5) !important;
-    color: #111 !important;
-  }
-  .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
-    background-color: rgba(0, 0, 0, 0.18) !important;
-  }
+/* Sportradar period/category pills */
+.sw-multi-switch-item {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+}
+.sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(0, 0, 0, 0.5) !important;
+  color: #111 !important;
+}
+.sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
+  background-color: rgba(0, 0, 0, 0.18) !important;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -1065,4 +1120,8 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
   @media (width >= theme(--breakpoint-2xl)) {
     max-width: 79rem;
   }
+}
+
+.sw-fixture-banner-container.sw-fixture-banner-container-collapsed {
+  max-height: 320px !important;
 }
