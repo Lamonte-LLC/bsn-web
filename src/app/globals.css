@@ -929,6 +929,7 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
 
   .sw-sub-tabs {
     justify-content: center !important;
+    margin-top: 10px !important;
   }
 
 }
