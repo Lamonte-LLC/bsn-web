@@ -208,6 +208,10 @@ span.sw-fixture-banner-status-time-value {
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
 }
 
+span.sw-fixture-banner-status-active-period {
+  margin-left: 5px;
+}
+
 #synergy-widget-fixture_detail .sw-fixture-banner-main-score-box-secondary table td {
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif;
   color: #999;
@@ -363,7 +367,7 @@ span.box-score-person-cell {
 }
 
 .sw-grid table tbody tr {
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2) !important;
+  border-bottom: 1px solid #e1e1e1 !important;
 }
 
 .box-score-sorting select {
@@ -840,6 +844,10 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
     padding-bottom: 10px !important;
   }
 
+  .sw-fixture-banner-container.sw-fixture-banner-container-collapsed {
+    max-height: 320px !important;
+  }
+
   /* Hide quarter/period score table on mobile */
   .sw-fixture-banner-main-score-box-secondary {
     display: none !important;
@@ -858,13 +866,6 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
     justify-content: center !important;
   }
 
-  .sw-grid table thead th {
-    border-bottom-width: 1px !important;
-  }
-
-  .sw-grid table tbody tr {
-    border-bottom-width: 1px !important;
-  }
 }
 
 @container (max-width: 480px) {
@@ -878,64 +879,58 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
  * Only covers gaps not already handled by Tailwind hover: utilities in components.
  * ─────────────────────────────────────────────────────────────────────────────────── */
 
-/* General links: visible opacity fade — covers nav, article titles, text links.
- * Excludes glass-match-card wrappers so those cards keep their border-only hover. */
-a:not(:has(.glass-match-card)) {
-  transition: opacity 0.12s ease;
-}
-a:not(:has(.glass-match-card)):hover {
-  opacity: 0.7;
-}
-a:not(:has(.glass-match-card)):active {
-  opacity: 0.45;
-}
+/* Hover & active states — desktop only.
+ * Scoped to (hover: hover) so touch devices never trigger :active transforms
+ * during swipe, which conflict with slick's translate3d slider animation. */
+@media (hover: hover) and (pointer: fine) {
+  /* General links: opacity fade */
+  a:not(:has(.glass-match-card)) {
+    transition: opacity 0.12s ease;
+  }
+  a:not(:has(.glass-match-card)):hover {
+    opacity: 0.7;
+  }
+  a:not(:has(.glass-match-card)):active {
+    opacity: 0.45;
+  }
 
-/* Image links: slightly lighter fade so photos don't go too dark */
-a:has(img):not(:has(.glass-match-card)):hover {
-  opacity: 0.8;
-}
+  /* Image links: slightly lighter fade */
+  a:has(img):not(:has(.glass-match-card)):hover {
+    opacity: 0.8;
+  }
 
-/* Glass match cards: border brightens on hover, no transform */
-.glass-match-card {
-  transition: border-color 0.12s ease;
-}
-.glass-match-card:hover {
-  border-color: rgba(255, 255, 255, 0.45) !important;
-}
-.glass-match-card:active {
-  opacity: 0.8;
-}
+  /* Glass match cards: border brightens on hover */
+  .glass-match-card {
+    transition: border-color 0.12s ease;
+  }
+  .glass-match-card:hover {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+  }
+  .glass-match-card:active {
+    opacity: 0.8;
+  }
 
-/* All buttons: hover lift + pressed feel on active */
-button {
-  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
-}
-button:not([disabled]):hover {
-  opacity: 0.82;
-}
-button:not([disabled]):active {
-  transform: scale(0.95);
-  opacity: 0.7;
-}
+  /* Buttons: hover fade + press scale */
+  button {
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+  }
+  button:not([disabled]):hover {
+    opacity: 0.82;
+  }
+  button:not([disabled]):active {
+    opacity: 0.7;
+  }
 
-/* Slider arrows: exempt from button press effect */
-.recent-calendar-slider .slick-arrow,
-.recent-calendar-slider .slick-arrow:active {
-  transform: translate(0, -50%) !important;
-  opacity: 1 !important;
-  transition: none !important;
-}
-
-
-/* News hero: image zoom on hover, no opacity fade on the link */
-a:has(.news-hero-img):hover {
-  opacity: 1 !important;
-}
-.news-hero-img {
-  transition: transform 0.4s ease;
-}
-a:hover .news-hero-img {
-  transform: scale(1.06);
+  /* News hero: image zoom on hover */
+  a:has(.news-hero-img):hover {
+    opacity: 1 !important;
+  }
+  .news-hero-img {
+    transition: transform 0.4s ease;
+  }
+  a:hover .news-hero-img {
+    transform: scale(1.06);
+  }
 }
 
 
