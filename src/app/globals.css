@@ -1297,7 +1297,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 }
 
 .sport-radar-fixture-mobile-widget .sw-shot-chart-court-background {
-  background: rgba(54, 54, 54, 0.41) !important;
+  background: rgba(54, 54, 54, 0.3) !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-card-top-person .sw-person-photo-with-entity-logo .sw-ppwel-person {
