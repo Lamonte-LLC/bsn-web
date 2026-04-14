@@ -83,13 +83,37 @@ body {
 }
 
 /* Recent Calendar Slider */
-/* On touch devices: strip all transitions from slide contents so nothing
- * competes with slick's translate3d during swipe (Tailwind's `transition`
- * shorthand includes `transform`, which conflicts with slick animation). */
-@media (hover: none) {
-  .recent-calendar-slider .slick-slide * {
-    transition: none !important;
+/* Strip all transitions from slide contents unconditionally — some Android
+ * browsers report (hover: hover) even on touch, so the media-query guard
+ * was unreliable. Re-enable only border-color on desktop for hover effects. */
+.recent-calendar-slider .slick-slide * {
+  transition: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .recent-calendar-slider .slick-slide .glass-match-card {
+    transition: border-color 0.12s ease !important;
   }
+}
+
+/* Real-device touch fix:
+ * React-slick calls preventDefault() on touchmove to block page scroll during
+ * horizontal swipes — but iOS Safari and modern Android Chrome mark touch
+ * events as passive, silently ignoring preventDefault(). The result is that
+ * page scroll and slider track translation fight each other, corrupting the
+ * track position after a few swipes.
+ * touch-action: pan-y tells the browser to own vertical panning natively and
+ * hand horizontal movement to JS — no preventDefault() needed at all. */
+.recent-calendar-slider .slick-list {
+  touch-action: pan-y !important;
+}
+
+/* Promote the track to its own GPU layer so iOS compositing doesn't drop
+ * or corrupt the translated layer mid-swipe. */
+.recent-calendar-slider .slick-track {
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .recent-calendar-slider .slick-arrow {
@@ -357,10 +381,18 @@ th.grid-fixed-body-cell.grid-data-cell-bib {
   font-weight: 400 !important;
 }
 
-span.box-score-person-cell {
-  margin-top: 5px !important;
+span.box-score-person-cell,
+.box-score-person-cell {
+  margin-top: 3px !important;
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, Helvetica, sans-serif !important;
   font-size: 17px !important;
+}
+
+@media (max-width: 767px) {
+  .box-score-person-cell {
+    font-size: 15px !important;
+    margin-top: 7px !important;
+  }
 }
 
 /* Team title row */
@@ -382,11 +414,28 @@ span.box-score-person-cell {
   border: 0px !important;
 }
 
-.sw-grid table thead th {
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5) !important;
+/* Reset every border and shadow on the entire table, then apply only what we want.
+ * The sticky column (grid-fixed-body-cell) carries a box-shadow from the widget
+ * that creates a double-line artifact — wiping it here prevents that. */
+.sw-grid table,
+.sw-grid table tr,
+.sw-grid table td,
+.sw-grid table th {
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.sw-grid table tbody tr {
+.sw-grid table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.sw-grid table thead th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.sw-grid table tbody td,
+.sw-grid table tbody th {
   border-bottom: 1px solid #e1e1e1 !important;
 }
 
@@ -1003,6 +1052,15 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   display: none;
 }
 
+/* Disable all links inside the box score widget — player names and other
+ * anchors are clickable by default but should not navigate anywhere. */
+#synergy-widget-fixture_detail .sw-grid a,
+#synergy-widget-fixture_detail .sw-grid table a {
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+}
+
 #synergy-widget-fixture_detail .sw-widget-fixture {
   padding: 0;
   margin-bottom: 60px;
@@ -1066,4 +1124,8 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   @media (width >= theme(--breakpoint-2xl)) {
     max-width: 79rem;
   }
+}
+
+.sw-fixture-banner-container.sw-fixture-banner-container-collapsed {
+  max-height: 320px !important;
 }
