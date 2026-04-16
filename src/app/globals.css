@@ -427,7 +427,7 @@ span.box-score-person-cell,
 }
 
 .sw-grid table thead th {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
+  border-bottom: 0px !important;
 }
 
 .sw-grid table tbody td,
@@ -444,6 +444,15 @@ span.box-score-person-cell,
   border-radius: 4px !important;
   margin-left: 5px !important;
   padding: 2px 1.8rem 2px 9px !important;
+}
+
+.box-score .sw-grid th:nth-child(2) {
+  left: 0 !important;
+}
+
+.box-score .sw-grid tbody td {
+  padding: 10px !important;
+  text-align: center !important;
 }
 
 select {
@@ -843,7 +852,7 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
 
   /* Box score header cells */
   .box-score .sw-grid th {
-    padding: 4px 15px 4px 0px !important;
+    padding: 5px !important;
   }
 
   /* Ordenado Por row */
@@ -1125,4 +1134,205 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
 .sw-fixture-banner-container.sw-fixture-banner-container-collapsed {
   max-height: 320px !important;
+}
+
+/* ── App widget color scheme overrides ──
+ * Targets .sport-radar-fixture-mobile-widget which is only applied
+ * on /mobile/match/[id] route in the native iOS app.
+ * These overrides take precedence over website defaults.
+ * ─────────────────────────────────────────────────────────────────────────────────── */
+
+.sport-radar-fixture-mobile-widget {
+  background: #191919 !important;
+}
+
+.sport-radar-fixture-mobile-widget * {
+  background: #191919 !important;
+  background-color: #191919 !important;
+}
+
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab {
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab.is-active {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border-bottom: 1.5px solid #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score-sorting {
+  display: none !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score {
+  margin-top: 25px !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score-title {
+  color: #ffffff !important;
+}
+
+.sport-radar-fixture-mobile-widget .grid-header-cell-text {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.sport-radar-fixture-mobile-widget #synergy-widget-fixture_detail .sw-grid table tbody th {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.sport-radar-fixture-mobile-widget a.sw-link.box-score-person-cell {
+  color: #fff !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-grid table tbody td,
+.sport-radar-fixture-mobile-widget .sw-grid table tbody th {
+  border-bottom: 1px solid rgba(45, 46, 50, 0.5) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-grid table thead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-grid table thead th {
+  border-bottom: 0px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-grid table tbody td {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry-label {
+  color: #ccc !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry-value {
+  color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-box-score-additional-persons {
+  font-size: 13px !important;
+  color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-multi-switch-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+  background-color: #0000 !important;
+  border: 1px solid rgba(181, 181, 181, 0.3) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-multi-switch [data-sw-multiswitch-item-active="true"] {
+  color: #000 !important;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp-period-boundary {
+  background-color: rgba(79, 79, 79, 0.19) !important;
+  border: 1px solid rgba(147, 147, 147, 0.35) !important;
+  color: #fff !important;
+  margin-top: 10px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp-event,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp-shootout-event {
+  border: 1px solid rgba(125, 125, 125, 0.2) !important;
+  margin-top: 4px !important;
+  color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-shot-chart-person {
+  color: #fff !important;
+  background: transparent !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-shot-chart-roster {
+  border: 1px solid rgba(125, 125, 125, 0.2) !important;
+  background: rgba(54, 54, 54, 0.1) !important;
+}
+
+.sport-radar-fixture-mobile-widget th.grid-fixed-body-cell.grid-data-cell-bib {
+  padding-right: 0px !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid th:nth-child(2) {
+  left: 0 !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid tbody td {
+  padding: 10px !important;
+  text-align: center !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats {
+  border: 1px solid rgba(125, 125, 125, 0.2) !important;
+  background: rgba(54, 54, 54, 0.1) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-card {
+  box-shadow: none !important;
+  background-color: rgba(54, 54, 54, 0.1) !important;
+  border: 1px solid rgba(125, 125, 125, 0.2) !important;
+  border-radius: 18px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-card-category {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-non-leader-players-list {
+  border-top: 1px solid rgba(125, 125, 125, 0.2) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-non-leader-person {
+  border-bottom: 1px solid rgba(125, 125, 125, 0.1) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-link {
+  color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-non-leader-position {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-non-leader-result {
+  font-size: 22px !important;
+  font-family: var(--font-special-gothic-condensed-one), "Special Gothic Condensed One", Arial, sans-serif !important;
+  color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-shot-chart-court-background {
+  background: rgba(54, 54, 54, 0.3) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-card-top-person .sw-person-photo-with-entity-logo .sw-ppwel-person {
+  border: 1px solid rgba(147, 147, 147, 0.35) !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-non-leader-photos .sw-person-photo-with-entity-logo .sw-ppwel-person {
+  border: 1px solid rgba(147, 147, 147, 0.35) !important;
+}
+
+.sport-radar-fixture-mobile-widget img.sw-ppwel-entity {
+  background: transparent !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-top-person-result {
+  margin-top: -26px !important;
+  font-size: 24px !important;
+  align-items: center !important;
+  background-color: rgba(3, 3, 3, 0.95) !important;
+  color: #fff !important;
+  border: 1px solid rgba(125, 125, 125, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 0px 8px !important;
+}
+
+.sport-radar-fixture-mobile-widget input:where([type="checkbox"]):checked,
+.sport-radar-fixture-mobile-widget input:where([type="checkbox"]):checked:hover {
+  filter: invert(1) !important;
 }
