@@ -1072,6 +1072,11 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   font-weight: normal;
 }
 
+#synergy-widget-fixture_detail .box-score-person-cell {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
 #synergy-widget-fixture_detail .sw-navbar {
   display: none;
 }
