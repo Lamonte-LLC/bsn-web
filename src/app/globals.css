@@ -1219,13 +1219,6 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   width: 32px !important;
 }
 
-@media (max-width: 767px) {
-  .sport-radar-fixture-mobile-widget .box-score-title img {
-    width: 35px !important;
-    height: 35px !important;
-  }
-}
-
 .sport-radar-fixture-mobile-widget .grid-header-cell-text {
   color: rgba(255, 255, 255, 0.9) !important;
 }
