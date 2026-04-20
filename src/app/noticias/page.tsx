@@ -75,10 +75,14 @@ export default async function NoticiasPage() {
                       pathname: `/noticias/${hero?.slug || ''}`,
                     }}
                   >
-                    <h1 className="font-barlow font-bold text-[rgba(15,23,31,0.9)] md:text-[32px]/9">
+                    <h1 className="font-barlow font-bold text-[19px] leading-[120%] tracking-[-0.02em] text-[rgba(15,23,31,0.9)] md:text-[32px]/9 md:tracking-normal">
                       {hero?.title}
                     </h1>
                   </Link>
+                  <p className="font-barlow font-medium text-sm text-[rgba(15,23,31,0.6)] mt-[13px] md:hidden">
+                    {formatDate(hero?.publishedAt, 'D')} de{' '}
+                    {formatDate(hero?.publishedAt, 'MMMM')}
+                  </p>
                 </div>
                 <div className="mb-5 md:mb-7">
                   <div
@@ -88,7 +92,7 @@ export default async function NoticiasPage() {
                     }}
                   />
                 </div>
-                <div className="mb-5 md:mb-7">
+                <div className="hidden md:block mb-7">
                   <p className="font-barlow font-medium text-sm text-[rgba(15,23,31,0.6)]">
                     {formatDate(hero?.publishedAt, 'D')} de{' '}
                     {formatDate(hero?.publishedAt, 'MMMM')}
