@@ -795,6 +795,10 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
     overflow-y: clip !important;
     padding-bottom: 40px !important;
   }
+
+  .sw-sub-tabs {
+    margin-top: 20px !important;
+  }
 }
 
 
