@@ -789,6 +789,12 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
   .sw-season-leaders {
     padding: 0 !important;
   }
+
+  /* Banner collapsed bottom padding — desktop only */
+  .sw-fixture-banner-container-collapsed {
+    overflow-y: clip !important;
+    padding-bottom: 40px !important;
+  }
 }
 
 
