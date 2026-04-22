@@ -41,6 +41,7 @@
 
 html {
   overflow-x: hidden;
+  background: #191919;
 }
 
 body {
@@ -267,7 +268,7 @@ span.sw-fixture-banner-status-active-period {
   letter-spacing: .5px !important;
   line-height: 0px !important;
   margin-top: 0px !important;
-  padding: 13px 11px !important;
+  padding: 13px 9px !important;
   text-align: center !important;
   text-transform: uppercase !important;
   white-space: nowrap !important;
@@ -320,6 +321,7 @@ span.sw-fixture-banner-status-active-period {
   flex-wrap: nowrap !important;
   justify-content: center !important;
   overflow-x: auto !important;
+  margin-top: 10px !important;
   gap: 0 !important;
 }
 
@@ -406,8 +408,9 @@ span.box-score-person-cell,
   font-size: 24px !important;
 }
 
+.sw-grid,
 .sw-grid.sw-grid-overflow-y {
-  border: 0px !important;
+  border: none !important;
 }
 
 /* Reset every border and shadow on the entire table, then apply only what we want.
@@ -433,6 +436,14 @@ span.box-score-person-cell,
 .sw-grid table tbody td,
 .sw-grid table tbody th {
   border-bottom: 1px solid #e1e1e1 !important;
+}
+
+.box-score {
+  margin-top: 20px;
+}
+
+.box-score-sorting {
+  display: none !important;
 }
 
 .box-score-sorting select {
@@ -778,6 +789,16 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
   .sw-season-leaders {
     padding: 0 !important;
   }
+
+  /* Banner collapsed bottom padding — desktop only */
+  .sw-fixture-banner-container-collapsed {
+    overflow-y: clip !important;
+    padding-bottom: 40px !important;
+  }
+
+  .sw-sub-tabs {
+    margin-top: 20px !important;
+  }
 }
 
 
@@ -947,7 +968,6 @@ a.sw-link.sw-leaders-top-person-entity.sw-link-active {
 
   .sw-sub-tabs {
     justify-content: center !important;
-    margin-top: 10px !important;
   }
 
 }
@@ -1063,6 +1083,11 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   font-weight: normal;
 }
 
+#synergy-widget-fixture_detail .box-score-person-cell {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
 #synergy-widget-fixture_detail .sw-navbar {
   display: none;
 }
@@ -1151,6 +1176,36 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   background-color: #191919 !important;
 }
 
+.sport-radar-fixture-mobile-widget .sw-fixture-banner-status-live-indicator {
+  background: #ff0000 !important;
+  background-color: #ff0000 !important;
+}
+
+.sport-radar-fixture-mobile-widget body {
+  background: #191919 !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-fixture-banner-main-score-box-value {
+  font-size: 50px !important;
+}
+
+.sport-radar-fixture-mobile-widget span.sw-fixture-banner-status-state-label {
+  letter-spacing: 0.5px !important;
+}
+
+.sport-radar-fixture-mobile-widget span.sw-fixture-banner-status-active-period,
+.sport-radar-fixture-mobile-widget span.sw-fixture-banner-status-time-value {
+  font-size: 19px !important;
+  vertical-align: middle !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-sub-tabs {
+  border-bottom: 1px solid rgba(78, 78, 78, 0.6) !important;
+  margin-top: 0 !important;
+}
+
 .sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab {
   background-color: transparent !important;
   color: rgba(255, 255, 255, 0.5) !important;
@@ -1174,6 +1229,17 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   color: #ffffff !important;
 }
 
+.sport-radar-fixture-mobile-widget .box-score-title img {
+  height: 32px !important;
+  margin-right: 5px !important;
+  width: 32px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-bg,
+.sport-radar-fixture-mobile-widget #synergy-widget-fixture_detail .sw-widget-fixture {
+  background-color: #191919 !important;
+}
+
 .sport-radar-fixture-mobile-widget .grid-header-cell-text {
   color: rgba(255, 255, 255, 0.9) !important;
 }
@@ -1186,6 +1252,11 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   color: #fff !important;
   pointer-events: none !important;
   cursor: default !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-grid,
+.sport-radar-fixture-mobile-widget .sw-grid.sw-grid-overflow-y {
+  border: none !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-grid table tbody td,
