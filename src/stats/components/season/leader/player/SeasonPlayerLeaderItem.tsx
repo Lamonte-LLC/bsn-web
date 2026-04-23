@@ -54,14 +54,16 @@ export default function SeasonPlayerLeaderItem({
           >
             {player.name}
           </p>
-          <div className="flex items-center gap-1">
-            {player.team?.code && (
-              <TeamLogoAvatar teamCode={player.team.code} size={12} />
-            )}
-            <p className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.5)]">
-              {player.team?.name}
-            </p>
-          </div>
+          {player.team && (
+            <div className="flex items-center gap-1">
+              {player.team.code && (
+                <TeamLogoAvatar teamCode={player.team.code} size={12} />
+              )}
+              <p className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.5)]">
+                {player.team.name}
+              </p>
+            </div>
+          )}
         </div>
       </div>
       <p

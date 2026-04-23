@@ -11,7 +11,7 @@ type Row = {
       name: string;
     };
   };
-  statValue: number;
+  statValue: string | number;
 };
 
 type Props = {

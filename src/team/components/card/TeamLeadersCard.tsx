@@ -5,6 +5,7 @@ import MatchPlayerLeadersCard from '@/stats/components/season/leader/player/Matc
 import { TopPlayerLeaderStatsType } from '@/stats/types';
 import { CURRENT_SEASON } from '@/graphql/season';
 import { SeasonType } from '@/season/types';
+import { roundUp1 } from '@/utils/number-formater';
 
 type Props = {
   teamCode: string;
@@ -120,7 +121,7 @@ export default async function TeamLeadersCard({ teamCode }: Props) {
                     avatarUrl: leader.player.avatarUrl ?? '',
                     name: leader.player.name,
                   },
-                  statValue: leader.value,
+                  statValue: roundUp1(leader.value),
                 }))}
               />
             </TabPanel>
@@ -134,7 +135,7 @@ export default async function TeamLeadersCard({ teamCode }: Props) {
                     avatarUrl: leader.player.avatarUrl ?? '',
                     name: leader.player.name,
                   },
-                  statValue: leader.value,
+                  statValue: roundUp1(leader.value),
                 }))}
               />
             </TabPanel>
@@ -148,7 +149,7 @@ export default async function TeamLeadersCard({ teamCode }: Props) {
                     avatarUrl: leader.player.avatarUrl ?? '',
                     name: leader.player.name,
                   },
-                  statValue: leader.value,
+                  statValue: roundUp1(leader.value),
                 }))}
               />
             </TabPanel>
