@@ -136,18 +136,18 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
               </h4>
             </div>
             <div className="grid grid-cols-3 gap-[6px] mb-6 md:grid-cols-4 lg:grid-cols-6">
-              <TeamLinkCard teamCode="AGU" teamName="Santeros" avatarSize={45} />
-              <TeamLinkCard teamCode="ARE" teamName="Capitanes" avatarSize={45} />
-              <TeamLinkCard teamCode="BAY" teamName="Vaqueros" avatarSize={45} />
-              <TeamLinkCard teamCode="CAG" teamName="Criollos" avatarSize={45} />
-              <TeamLinkCard teamCode="CAR" teamName="Gigantes" avatarSize={45} />
-              <TeamLinkCard teamCode="GBO" teamName="Mets" avatarSize={45} />
-              <TeamLinkCard teamCode="MAN" teamName="Osos" avatarSize={45} />
-              <TeamLinkCard teamCode="MAY" teamName="Indios" avatarSize={45} />
-              <TeamLinkCard teamCode="PON" teamName="Leones" avatarSize={45} />
-              <TeamLinkCard teamCode="QUE" teamName="Piratas" avatarSize={45} />
               <TeamLinkCard teamCode="SGE" teamName="Atléticos" avatarSize={45} />
               <TeamLinkCard teamCode="SCE" teamName="Cangrejeros" avatarSize={45} />
+              <TeamLinkCard teamCode="ARE" teamName="Capitanes" avatarSize={45} />
+              <TeamLinkCard teamCode="CAG" teamName="Criollos" avatarSize={45} />
+              <TeamLinkCard teamCode="CAR" teamName="Gigantes" avatarSize={45} />
+              <TeamLinkCard teamCode="MAY" teamName="Indios" avatarSize={45} />
+              <TeamLinkCard teamCode="PON" teamName="Leones" avatarSize={45} />
+              <TeamLinkCard teamCode="GBO" teamName="Mets" avatarSize={45} />
+              <TeamLinkCard teamCode="MAN" teamName="Osos" avatarSize={45} />
+              <TeamLinkCard teamCode="QUE" teamName="Piratas" avatarSize={45} />
+              <TeamLinkCard teamCode="AGU" teamName="Santeros" avatarSize={45} />
+              <TeamLinkCard teamCode="BAY" teamName="Vaqueros" avatarSize={45} />
             </div>
           </div>
         </div>

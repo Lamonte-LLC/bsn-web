@@ -86,7 +86,7 @@ export default function HeaderBoxLayout() {
                       onMouseEnter={() => { if (!open) equiposButtonRef.current?.click(); }}
                       onMouseLeave={() => close()}
                     >
-                    <PopoverButton ref={equiposButtonRef} className="flex items-center gap-1.5 cursor-pointer text-[20px] text-white focus-visible:outline-none data-open:border-b-1 data-open:border-white data-open:text-[rgba(255,255,255,0.7)]">
+                    <PopoverButton ref={equiposButtonRef} className="flex items-center gap-1.5 cursor-pointer text-[20px] text-white focus-visible:outline-none data-open:text-[rgba(255,255,255,0.7)]">
                       Equipos
                       <img
                         src="/assets/images/icons/chevron-mobile-menu.svg"
@@ -100,16 +100,33 @@ export default function HeaderBoxLayout() {
                       className="bg-white border border-[#E2E2E2] mt-4 rounded-[12px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 z-[999]"
                     >
                       <div className="grid grid-cols-3 gap-[10px] p-[20px] min-w-[348px]">
-                        <Link href="/equipos/AGU">
+                        <Link href="/equipos/SGE">
                           <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
-                                src="/assets/images/teams/Aguada.png"
+                                src="/assets/images/teams/San-German.png"
                                 alt=""
                                 height="46"
                                 width="46"
                               />
-                              <p className="text-sm text-[#0F171F]">Santeros</p>
+                              <p className="text-sm text-[#0F171F]">
+                                Atléticos
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
+                        <Link href="/equipos/SCE">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                            <div className="flex flex-col justify-center items-center gap-0.5">
+                              <img
+                                src="/assets/images/teams/Santurce.png"
+                                alt=""
+                                height="46"
+                                width="46"
+                              />
+                              <p className="text-sm text-[#0F171F]">
+                                Cangrejeros
+                              </p>
                             </div>
                           </div>
                         </Link>
@@ -125,19 +142,6 @@ export default function HeaderBoxLayout() {
                               <p className="text-sm text-[#0F171F]">
                                 Capitanes
                               </p>
-                            </div>
-                          </div>
-                        </Link>
-                        <Link href="/equipos/BAY">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
-                            <div className="flex flex-col justify-center items-center gap-0.5">
-                              <img
-                                src="/assets/images/teams/Bayamon.png"
-                                alt=""
-                                height="46"
-                                width="46"
-                              />
-                              <p className="text-sm text-[#0F171F]">Vaqueros</p>
                             </div>
                           </div>
                         </Link>
@@ -167,32 +171,6 @@ export default function HeaderBoxLayout() {
                             </div>
                           </div>
                         </Link>
-                        <Link href="/equipos/GBO">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
-                            <div className="flex flex-col justify-center items-center gap-0.5">
-                              <img
-                                src="/assets/images/teams/Guaynabo.png"
-                                alt=""
-                                height="46"
-                                width="46"
-                              />
-                              <p className="text-sm text-[#0F171F]">Mets</p>
-                            </div>
-                          </div>
-                        </Link>
-                        <Link href="/equipos/MAN">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
-                            <div className="flex flex-col justify-center items-center gap-0.5">
-                              <img
-                                src="/assets/images/teams/Manati.png"
-                                alt=""
-                                height="46"
-                                width="46"
-                              />
-                              <p className="text-sm text-[#0F171F]">Osos</p>
-                            </div>
-                          </div>
-                        </Link>
                         <Link href="/equipos/MAY">
                           <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
@@ -219,6 +197,32 @@ export default function HeaderBoxLayout() {
                             </div>
                           </div>
                         </Link>
+                        <Link href="/equipos/GBO">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                            <div className="flex flex-col justify-center items-center gap-0.5">
+                              <img
+                                src="/assets/images/teams/Guaynabo.png"
+                                alt=""
+                                height="46"
+                                width="46"
+                              />
+                              <p className="text-sm text-[#0F171F]">Mets</p>
+                            </div>
+                          </div>
+                        </Link>
+                        <Link href="/equipos/MAN">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                            <div className="flex flex-col justify-center items-center gap-0.5">
+                              <img
+                                src="/assets/images/teams/Manati.png"
+                                alt=""
+                                height="46"
+                                width="46"
+                              />
+                              <p className="text-sm text-[#0F171F]">Osos</p>
+                            </div>
+                          </div>
+                        </Link>
                         <Link href="/equipos/QUE">
                           <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
@@ -232,33 +236,29 @@ export default function HeaderBoxLayout() {
                             </div>
                           </div>
                         </Link>
-                        <Link href="/equipos/SGE">
+                        <Link href="/equipos/AGU">
                           <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
-                                src="/assets/images/teams/San-German.png"
+                                src="/assets/images/teams/Aguada.png"
                                 alt=""
                                 height="46"
                                 width="46"
                               />
-                              <p className="text-sm text-[#0F171F]">
-                                Atléticos
-                              </p>
+                              <p className="text-sm text-[#0F171F]">Santeros</p>
                             </div>
                           </div>
                         </Link>
-                        <Link href="/equipos/SCE">
+                        <Link href="/equipos/BAY">
                           <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
-                                src="/assets/images/teams/Santurce.png"
+                                src="/assets/images/teams/Bayamon.png"
                                 alt=""
                                 height="46"
                                 width="46"
                               />
-                              <p className="text-sm text-[#0F171F]">
-                                Cangrejeros
-                              </p>
+                              <p className="text-sm text-[#0F171F]">Vaqueros</p>
                             </div>
                           </div>
                         </Link>
@@ -430,11 +430,23 @@ export default function HeaderBoxLayout() {
                         </DisclosureButton>
                         <DisclosurePanel>
                     <div className="grid grid-cols-4 gap-[12px] pb-[24px] pt-[12px]">
-                      <Link href="/equipos/AGU">
+                      <Link href="/equipos/SGE">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
                           <div className="flex flex-col justify-center items-center gap-0.5">
                             <img
-                              src="/assets/images/teams/Aguada.png"
+                              src="/assets/images/teams/San-German.png"
+                              alt=""
+                              height="48"
+                              width="48"
+                            />
+                          </div>
+                        </div>
+                      </Link>
+                      <Link href="/equipos/SCE">
+                        <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
+                          <div className="flex flex-col justify-center items-center gap-0.5">
+                            <img
+                              src="/assets/images/teams/Santurce.png"
                               alt=""
                               height="48"
                               width="48"
@@ -447,18 +459,6 @@ export default function HeaderBoxLayout() {
                           <div className="flex flex-col justify-center items-center gap-0.5">
                             <img
                               src="/assets/images/teams/Arecibo.png"
-                              alt=""
-                              height="48"
-                              width="48"
-                            />
-                          </div>
-                        </div>
-                      </Link>
-                      <Link href="/equipos/BAY">
-                        <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
-                          <div className="flex flex-col justify-center items-center gap-0.5">
-                            <img
-                              src="/assets/images/teams/Bayamon.png"
                               alt=""
                               height="48"
                               width="48"
@@ -490,30 +490,6 @@ export default function HeaderBoxLayout() {
                           </div>
                         </div>
                       </Link>
-                      <Link href="/equipos/GBO">
-                        <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
-                          <div className="flex flex-col justify-center items-center gap-0.5">
-                            <img
-                              src="/assets/images/teams/Guaynabo.png"
-                              alt=""
-                              height="48"
-                              width="48"
-                            />
-                          </div>
-                        </div>
-                      </Link>
-                      <Link href="/equipos/MAN">
-                        <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
-                          <div className="flex flex-col justify-center items-center gap-0.5">
-                            <img
-                              src="/assets/images/teams/Manati.png"
-                              alt=""
-                              height="48"
-                              width="48"
-                            />
-                          </div>
-                        </div>
-                      </Link>
                       <Link href="/equipos/MAY">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
                           <div className="flex flex-col justify-center items-center gap-0.5">
@@ -538,6 +514,30 @@ export default function HeaderBoxLayout() {
                           </div>
                         </div>
                       </Link>
+                      <Link href="/equipos/GBO">
+                        <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
+                          <div className="flex flex-col justify-center items-center gap-0.5">
+                            <img
+                              src="/assets/images/teams/Guaynabo.png"
+                              alt=""
+                              height="48"
+                              width="48"
+                            />
+                          </div>
+                        </div>
+                      </Link>
+                      <Link href="/equipos/MAN">
+                        <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
+                          <div className="flex flex-col justify-center items-center gap-0.5">
+                            <img
+                              src="/assets/images/teams/Manati.png"
+                              alt=""
+                              height="48"
+                              width="48"
+                            />
+                          </div>
+                        </div>
+                      </Link>
                       <Link href="/equipos/QUE">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
                           <div className="flex flex-col justify-center items-center gap-0.5">
@@ -550,11 +550,11 @@ export default function HeaderBoxLayout() {
                           </div>
                         </div>
                       </Link>
-                      <Link href="/equipos/SGE">
+                      <Link href="/equipos/AGU">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
                           <div className="flex flex-col justify-center items-center gap-0.5">
                             <img
-                              src="/assets/images/teams/San-German.png"
+                              src="/assets/images/teams/Aguada.png"
                               alt=""
                               height="48"
                               width="48"
@@ -562,11 +562,11 @@ export default function HeaderBoxLayout() {
                           </div>
                         </div>
                       </Link>
-                      <Link href="/equipos/SCE">
+                      <Link href="/equipos/BAY">
                         <div className="bg-[rgba(54,54,54,0.1)] border border-[rgba(174,174,174,0.21)] flex flex-col rounded-[10px] justify-center items-center p-[10px]">
                           <div className="flex flex-col justify-center items-center gap-0.5">
                             <img
-                              src="/assets/images/teams/Santurce.png"
+                              src="/assets/images/teams/Bayamon.png"
                               alt=""
                               height="48"
                               width="48"
