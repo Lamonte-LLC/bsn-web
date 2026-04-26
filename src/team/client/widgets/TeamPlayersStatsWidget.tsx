@@ -89,10 +89,10 @@ export default function TeamPlayersStatsWidget({ teamCode }: Props) {
             >
               <td className="px-4 py-3">
                 <Link href={`/jugadores/${node.providerId}`}>
-                  <div className="flex flex-row items-center gap-2 w-[120px] md:w-[140px]">
-                    <span className="hidden text-base md:inline">{node.name}</span>
-                    <span className="text-base md:hidden">{getInitials(node.name)}</span>
-                    <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.7)]">
+                  <div className="flex flex-row items-center gap-2 w-[140px] md:w-[180px]">
+                    <span className="hidden text-base md:inline truncate min-w-0">{node.name}</span>
+                    <span className="text-base md:hidden truncate min-w-0">{getInitials(node.name)}</span>
+                    <span className="font-barlow text-[13px] text-[rgba(0,0,0,0.7)] shrink-0">
                       {node.seasonRoster?.playingPosition}
                     </span>
                   </div>

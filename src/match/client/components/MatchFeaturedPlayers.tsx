@@ -1,7 +1,7 @@
 'use client';
 
 import SeasonTeamPlayerLeadersCard from '@/stats/components/season/leader/team/SeasonTeamPlayerLeadersCard';
-import numeral from 'numeral';
+import { roundUp1 } from '@/utils/number-formater';
 import { useState } from 'react';
 
 type LeadersCategoryStatsType = {
@@ -38,7 +38,7 @@ function mapLeadersToCardRows(leaders: LeadersCategoryStatsType[]) {
       avatarUrl: leader.player.avatarUrl ?? '',
       name: leader.player.name,
     },
-    statValue: numeral(leader.value).format('0.0'),
+    statValue: roundUp1(leader.value),
   }));
 }
 

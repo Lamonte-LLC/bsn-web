@@ -4,6 +4,7 @@ import { SEASON_TEAM_LEADERS_DISPLAY_TOP } from '@/constants';
 import MatchPlayerLeadersCard from '@/stats/components/season/leader/player/MatchPlayerLeadersCard';
 import { useTeamLeadersConnection } from '../hooks/teams';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
+import { roundUp1, formatPctRoundUp1 } from '@/utils/number-formater';
 
 type Props = {
   teamCode: string;
@@ -37,12 +38,8 @@ export default function TeamLeadersWidget({ teamCode }: Props) {
             id: node.player.providerId,
             avatarUrl: node.player.avatarUrl || '',
             name: node.player.name,
-            team: {
-              code: teamCode,
-              name: '',
-            },
           },
-          statValue: node.value,
+          statValue: roundUp1(node.value),
         }))}
       />
       <MatchPlayerLeadersCard
@@ -54,12 +51,8 @@ export default function TeamLeadersWidget({ teamCode }: Props) {
             id: node.player.providerId,
             avatarUrl: node.player.avatarUrl || '',
             name: node.player.name,
-            team: {
-              code: teamCode,
-              name: '',
-            },
           },
-          statValue: node.value,
+          statValue: roundUp1(node.value),
         }))}
       />
       <MatchPlayerLeadersCard
@@ -71,12 +64,8 @@ export default function TeamLeadersWidget({ teamCode }: Props) {
             id: node.player.providerId,
             avatarUrl: node.player.avatarUrl || '',
             name: node.player.name,
-            team: {
-              code: teamCode,
-              name: '',
-            },
           },
-          statValue: node.value,
+          statValue: roundUp1(node.value),
         }))}
       />
       <MatchPlayerLeadersCard
@@ -88,12 +77,8 @@ export default function TeamLeadersWidget({ teamCode }: Props) {
             id: node.player.providerId,
             avatarUrl: node.player.avatarUrl || '',
             name: node.player.name,
-            team: {
-              code: teamCode,
-              name: '',
-            },
           },
-          statValue: node.value,
+          statValue: roundUp1(node.value),
         }))}
       />
       <MatchPlayerLeadersCard
@@ -105,12 +90,8 @@ export default function TeamLeadersWidget({ teamCode }: Props) {
             id: node.player.providerId,
             avatarUrl: node.player.avatarUrl || '',
             name: node.player.name,
-            team: {
-              code: teamCode,
-              name: '',
-            },
           },
-          statValue: node.value,
+          statValue: roundUp1(node.value),
         }))}
       />
       <MatchPlayerLeadersCard
@@ -122,12 +103,8 @@ export default function TeamLeadersWidget({ teamCode }: Props) {
             id: node.player.providerId,
             avatarUrl: node.player.avatarUrl || '',
             name: node.player.name,
-            team: {
-              code: teamCode,
-              name: '',
-            },
           },
-          statValue: node.value,
+          statValue: formatPctRoundUp1(node.value),
         }))}
       />
     </div>

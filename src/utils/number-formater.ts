@@ -26,6 +26,22 @@ export function formatStandingsWinPct(pct: number): string {
   return s.startsWith('0.') ? s.slice(1) : s;
 }
 
+/**
+ * Redondea hacia arriba a 1 decimal (e.g. 14.51 → "14.6", 14.5 → "14.5").
+ */
+export const roundUp1 = (v: number): string => {
+  if (!Number.isFinite(v)) return '0.0';
+  return (Math.ceil(v * 10) / 10).toFixed(1);
+};
+
+/**
+ * Porcentaje (entrada 0–1) redondeado hacia arriba a 1 decimal (e.g. 0.4567 → "45.7%").
+ */
+export const formatPctRoundUp1 = (v: number): string => {
+  if (!Number.isFinite(v)) return '0.0%';
+  return `${(Math.ceil(v * 1000) / 10).toFixed(1)}%`;
+};
+
 export const ordinalNumber = (num: number): string => {
   if (num == null) {
     return '';

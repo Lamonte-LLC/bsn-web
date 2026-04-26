@@ -39,31 +39,31 @@ export default function TeamPlayersWidget({ teamCode, seasonProviderId }: Props)
         <thead>
           <tr>
             <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 whitespace-nowrap w-[1%] min-w-[48px]">
-              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">#</span>
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">#</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 min-w-[180px]">
-              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 whitespace-nowrap w-[1%] min-w-[200px]">
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 JUGADOR
               </span>
             </th>
             <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[80px]">
-              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 POSICIÓN
               </span>
             </th>
             <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[80px]">
-              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 ESTATURA
               </span>
             </th>
             <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[72px]">
-              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">PESO</span>
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">PESO</span>
             </th>
             <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[88px]">
-              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">DOB</span>
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">DOB</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap w-[1%] min-w-[100px]">
-              <span className="font-semibold text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">&nbsp;</span>
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] pl-4 pr-8 py-3 text-center whitespace-nowrap w-[1%] min-w-[100px]">
+              <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">&nbsp;</span>
             </th>
           </tr>
         </thead>
@@ -153,7 +153,7 @@ export default function TeamPlayersWidget({ teamCode, seasonProviderId }: Props)
                 </span>
               </td>
               <td
-                className="px-4 py-3 text-center whitespace-nowrap w-[1%]"
+                className="pl-4 pr-8 py-3 text-center whitespace-nowrap w-[1%]"
                 style={{
                   backgroundColor:
                     index % 2 === 0 ? 'transparent' : '#F9F9F9',
