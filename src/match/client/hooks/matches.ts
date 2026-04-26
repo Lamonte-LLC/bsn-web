@@ -1,5 +1,6 @@
 import {
   RECENT_CALENDAR,
+  TEAM_CALENDAR,
   MATCH_TEAM_PLAYERS_BOXSCORE,
   MATCH_BOTH_TEAMS_PLAYERS_BOXSCORE,
   MATCH_TEAMS_BOXSCORE,
@@ -179,6 +180,33 @@ export function useRecentCalendar(
     isFetchingMore,
     loadedRange,
     ensureDateRangeLoaded,
+  };
+}
+
+type TeamCalendarResponse = { matches: MatchType[] };
+
+export function useTeamCalendar(teamCode: string) {
+  const fromDate = moment().startOf('year').format('YYYY-MM-DD');
+  const toDate = moment().endOf('year').format('YYYY-MM-DD');
+
+  const { data, loading, error } = useQuery<TeamCalendarResponse>(TEAM_CALENDAR, {
+    variables: { teamCode, fromDate, toDate },
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
+    skip: !teamCode,
+  });
+
+  if (error) {
+    console.error(error);
+  }
+
+  const matches = [...(data?.matches ?? [])].sort(
+    (a, b) => new Date(a.startAt).getTime() - new Date(b.startAt).getTime(),
+  );
+
+  return {
+    data: matches,
+    loading,
   };
 }
 

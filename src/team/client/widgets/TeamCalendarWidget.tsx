@@ -7,9 +7,8 @@ import CalendarSidebar from '@/match/client/components/calendar/CalendarSidebar'
 import CalendarFinishedMatchRow from '@/match/components/calendar/CalendarFinishedMatchRow';
 import CalendarLiveMatchRow from '@/match/components/calendar/CalendarLiveMatchRow';
 import ScheduledMatchCardInline from '@/match/components/calendar/ScheduledMatchCardInline';
-import { useRecentCalendar } from '@/match/client/hooks/matches';
+import { useTeamCalendar } from '@/match/client/hooks/matches';
 import {
-  filterTeamCalendarMatches,
   isCalendarFinishedMatch,
   isCalendarLiveMatch,
 } from '@/match/client/utils/calendarView';
@@ -22,15 +21,7 @@ type Props = {
 };
 
 export default function TeamCalendarWidget({ teamCode }: Props) {
-  const { data, loading, ensureDateRangeLoaded } = useRecentCalendar({
-    daysBefore: 21,
-    daysAfter: 45,
-  });
-
-  const calendarMatches = useMemo(
-    () => filterTeamCalendarMatches(data, teamCode),
-    [data, teamCode],
-  );
+  const { data: calendarMatches, loading } = useTeamCalendar(teamCode);
 
   const initialStart = useMemo(() => {
     const today = moment().startOf('day');
@@ -62,34 +53,20 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
     return day.isSameOrAfter(startDate) && day.isSameOrBefore(endDate);
   });
 
-  const loadRangeForStart = async (newStart: moment.Moment) => {
-    const rangeEnd = newStart.clone().add(weeksShown * 7 - 1, 'days');
-    await ensureDateRangeLoaded(
-      newStart.format('YYYY-MM-DD'),
-      rangeEnd.format('YYYY-MM-DD'),
-    );
+  const handlePrevWeek = () => {
+    setStartDate(startDate.clone().subtract(7, 'days'));
   };
 
-  const handlePrevWeek = async () => {
-    const newStart = startDate.clone().subtract(7, 'days');
-    await loadRangeForStart(newStart);
-    setStartDate(newStart);
-  };
-
-  const handleNextWeek = async () => {
-    const newStart = startDate.clone().add(7, 'days');
-    await loadRangeForStart(newStart);
-    setStartDate(newStart);
+  const handleNextWeek = () => {
+    setStartDate(startDate.clone().add(7, 'days'));
   };
 
   const handleLoadMore = () => {
     setWeeksShown((w) => w + 1);
   };
 
-  const handleSelectDate = async (date: moment.Moment) => {
-    const d = date.clone().startOf('day');
-    await loadRangeForStart(d);
-    setStartDate(d);
+  const handleSelectDate = (date: moment.Moment) => {
+    setStartDate(date.clone().startOf('day'));
     setWeeksShown(1);
   };
 
@@ -105,7 +82,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
           <div className="flex items-center gap-6 self-center md:self-auto">
             <button
               type="button"
-              onClick={() => void handlePrevWeek()}
+              onClick={handlePrevWeek}
               className="font-barlow flex items-center gap-1.5 text-[14px] font-normal leading-normal tracking-[-0.14px] text-[rgba(15,23,31,0.9)]"
             >
               <img
@@ -117,7 +94,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
             </button>
             <button
               type="button"
-              onClick={() => void handleNextWeek()}
+              onClick={handleNextWeek}
               className="font-barlow flex items-center gap-1.5 text-[14px] font-normal leading-normal tracking-[-0.14px] text-[rgba(15,23,31,0.9)]"
             >
               <span>Próxima semana</span>
@@ -270,7 +247,7 @@ export default function TeamCalendarWidget({ teamCode }: Props) {
         <div className="lg:sticky lg:top-4">
           <CalendarSidebar
             selectedDate={startDate}
-            onSelectDate={(d) => void handleSelectDate(d)}
+            onSelectDate={handleSelectDate}
             showFullCalendarLink
           />
         </div>

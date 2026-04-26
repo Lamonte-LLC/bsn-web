@@ -623,30 +623,50 @@ export const NEXT_SCHEDULED_MATCH_FOR_TEAM = gql`
 `;
 
 export const TEAM_CALENDAR = gql`
-  query getTeamCalendar($code: String!, $first: Int!) {
-    teamCalendarConnection(code: $code, first: $first) {
-      edges {
-        node {
-          providerId
-          startAt
-          homeTeam {
-            name
-            nickname
-            code
-            score
-          }
-          visitorTeam {
-            name
-            nickname
-            code
-            score
-          }
-          status
-          providerFixtureStatus
-          overtimePeriods
-          youtube
+  query getTeamCalendar($teamCode: String!, $fromDate: String!, $toDate: String!) {
+    matches(teamCode: $teamCode, fromDate: $fromDate, toDate: $toDate) {
+      providerId
+      startAt
+      status
+      providerFixtureStatus
+      currentPeriod
+      currentTime
+      homeTeam {
+        code
+        name
+        nickname
+        city
+        score
+        competitionStandings {
+          won
+          lost
         }
+        streamUrl
+        ticketUrl
       }
+      visitorTeam {
+        code
+        name
+        nickname
+        city
+        score
+        competitionStandings {
+          won
+          lost
+        }
+        streamUrl
+        ticketUrl
+      }
+      venue {
+        name
+      }
+      channel
+      overtimePeriods
+      youtube
+      isFinals
+      phaseName
+      gameNumber
+      finalsDescription
     }
   }
 `;
