@@ -200,12 +200,17 @@ body {
   padding: 0 !important;
 }
 
-/* Banner — flat ink so it visually continues the page-level bg-bsn gradient
- * (whose bottom edge is already solid #0F171F) without spawning a second
- * radial gradient origin. */
+/* Banner padding — applies to both the public-site widget and the app
+ * webview widget (matches the existing widget convention). */
 .sw-fixture-banner {
-  background: #0F171F !important;
   padding-top: 1rem !important;
+}
+
+/* Banner background — flat ink so it visually continues the page-level
+ * bg-bsn gradient. SCOPED to .widget (the public site host) so the app
+ * webview keeps its own banner background. */
+.widget .sw-fixture-banner {
+  background: #0F171F !important;
 }
 
 .sw-fixture-banner-main-team-name {

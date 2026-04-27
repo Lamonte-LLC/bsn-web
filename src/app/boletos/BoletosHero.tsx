@@ -7,13 +7,11 @@ const TicketGlyph = ({ size = 28 }: { size?: number }) => (
 
 export default function BoletosHero() {
   return (
-    <section className="relative text-white text-center px-6 pt-[18px] pb-[30px] md:pt-[48px] md:pb-[60px]">
+    <section className="relative text-white text-center px-6 pt-[28px] pb-[56px] md:pt-[48px] md:pb-[60px]">
       <div className="relative mx-auto" style={{ maxWidth: 720 }}>
         <div
-          className="mx-auto flex items-center justify-center"
+          className="mx-auto flex items-center justify-center w-[56px] h-[56px] md:w-[64px] md:h-[64px]"
           style={{
-            width: 64,
-            height: 64,
             borderRadius: 99,
             background: 'rgba(255,255,255,0.06)',
             border: '1px solid rgba(255,255,255,0.18)',
@@ -21,27 +19,25 @@ export default function BoletosHero() {
             WebkitBackdropFilter: 'blur(20px)',
           }}
         >
-          <TicketGlyph size={28} />
+          <TicketGlyph size={24} />
         </div>
         <h1
-          className="font-special-gothic-condensed-one text-white text-[44px] md:text-[64px]"
+          className="font-special-gothic-condensed-one text-white text-[34px] md:text-[64px] mt-[20px] md:mt-[24px]"
           style={{
             fontWeight: 400,
-            lineHeight: 1,
+            lineHeight: 1.05,
             letterSpacing: '-0.5px',
-            margin: '24px 0 0',
           }}
         >
           Vive la acción en vivo
         </h1>
         <p
-          className="font-barlow text-[15px] md:text-[17px]"
+          className="font-barlow text-[14px] md:text-[17px] mt-[12px] md:mt-[14px]"
           style={{
             fontWeight: 500,
             lineHeight: 1.5,
             letterSpacing: '-0.010em',
             color: 'rgba(255,255,255,0.65)',
-            margin: '14px 0 0',
           }}
         >
           Accede a la boletería oficial de cada equipo

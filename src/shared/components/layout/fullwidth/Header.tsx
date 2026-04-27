@@ -419,6 +419,11 @@ export default function HeaderBoxLayout() {
                 </Link>
               </li>
               <li className="px-[30px]">
+                <Link href="/boletos" className="block py-[8px]">
+                  <span className="text-[36px] text-white">Boletos</span>
+                </Link>
+              </li>
+              <li className="px-[30px]">
                 <div className="py-[8px]">
                   <Disclosure>
                     {({ open }) => (
