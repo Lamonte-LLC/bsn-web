@@ -31,7 +31,7 @@ export default function HeaderBoxLayout() {
       >
         <div className="container">
           <div className="flex flex-row justify-between items-center">
-            <div>
+            <div className="md:flex-1">
               <Link href="/">
                 <img
                   src="/assets/images/bsn-logo.svg"
@@ -62,7 +62,7 @@ export default function HeaderBoxLayout() {
                 />
               </button>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:flex md:flex-1 md:justify-center">
               <ul className="flex flex-row gap-[20px] lg:gap-[30px]">
                 <li>
                   <Link href="/calendario" className="text-[20px] text-white">
@@ -304,9 +304,14 @@ export default function HeaderBoxLayout() {
                     Estadísticas
                   </Link>
                 </li>
+                <li>
+                  <Link href="/boletos" className="text-[20px] text-white">
+                    Boletos
+                  </Link>
+                </li>
               </ul>
             </div>
-            <div className="hidden lg:block">
+            <div className="hidden md:flex md:flex-1 md:justify-end">
               <ul className="flex flex-row">
                 <li className="flex items-center justify-center h-[40px] w-[40px]">
                   <a
