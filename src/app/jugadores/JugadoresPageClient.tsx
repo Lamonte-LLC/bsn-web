@@ -155,18 +155,12 @@ export default function JugadoresPageClient({ players }: Props) {
 
   return (
     <>
-      {/* Hero — title + mobile filters */}
-      <div className="bg-bsn border-b border-white/10">
-        <div className="container">
-          <div className="hidden lg:block border-b border-white/10" />
-          <div className="pt-8 pb-6 lg:pt-[50px] lg:pb-11">
-            <h1 className="font-special-gothic-condensed-one text-white text-center text-[38px] lg:text-[42px] tracking-[0.4px] mb-6 lg:mb-0">
-              Jugadores
-            </h1>
-            <div className="flex flex-col gap-3 lg:hidden">
-              {searchInput(true)}
-              {teamDropdown(true)}
-            </div>
+      {/* Mobile filters — sit at the top of the white content area on small screens */}
+      <div className="bg-[#fdfdfd] lg:hidden">
+        <div className="container pt-6">
+          <div className="flex flex-col gap-3">
+            {searchInput(false)}
+            {teamDropdown(false)}
           </div>
         </div>
       </div>

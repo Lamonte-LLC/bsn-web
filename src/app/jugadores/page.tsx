@@ -1,7 +1,6 @@
 import { getClient } from '@/apollo-client';
 import { TEAM_PLAYERS_CONNECTION } from '@/graphql/team';
-import Header from '@/shared/components/layout/fullwidth/Header';
-import Footer from '@/shared/components/layout/fullwidth/Footer';
+import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import JugadoresPageClient, { JugadorItem } from './JugadoresPageClient';
 
 const TEAM_CODES = ['AGU', 'ARE', 'BAY', 'CAG', 'CAR', 'GBO', 'MAN', 'MAY', 'PON', 'QUE', 'SGE', 'SCE'];
@@ -86,12 +85,19 @@ export default async function JugadoresPage() {
   const players = await fetchPlayers();
 
   return (
-    <div className="min-h-screen bg-[#fdfdfd]">
-      <header className="bg-bsn">
-        <Header />
-      </header>
+    <FullWidthLayout
+      divider
+      subheader={
+        <section className="pt-8 pb-6 lg:pt-[50px] lg:pb-11">
+          <div className="container">
+            <h1 className="font-special-gothic-condensed-one text-white text-center text-[38px] lg:text-[42px] tracking-[0.4px] mb-0">
+              Jugadores
+            </h1>
+          </div>
+        </section>
+      }
+    >
       <JugadoresPageClient players={players} />
-      <Footer />
-    </div>
+    </FullWidthLayout>
   );
 }

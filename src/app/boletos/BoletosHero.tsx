@@ -7,7 +7,7 @@ const TicketGlyph = ({ size = 28 }: { size?: number }) => (
 
 export default function BoletosHero() {
   return (
-    <section className="relative text-white text-center px-6 py-[30px] md:py-[60px]">
+    <section className="relative text-white text-center px-6 pt-[18px] pb-[30px] md:pt-[48px] md:pb-[60px]">
       <div className="relative mx-auto" style={{ maxWidth: 720 }}>
         <div
           className="mx-auto flex items-center justify-center"
