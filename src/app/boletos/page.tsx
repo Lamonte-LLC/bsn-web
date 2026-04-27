@@ -43,22 +43,11 @@ async function fetchBoletosTeams(): Promise<BoletosTeam[]> {
   return teams.sort((a, b) => a.fullName.localeCompare(b.fullName, 'es'));
 }
 
-const HEADER_BACKGROUND = [
-  'radial-gradient(50% 80% at 50% 0%, rgba(96,176,245,0.10) 0%, rgba(96,176,245,0) 70%)',
-  'radial-gradient(60% 90% at 50% 0%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%)',
-  'linear-gradient(180deg, rgba(17,22,29,0.20) 0%, rgba(10,14,20,0) 100%)',
-  '#0F171F',
-].join(', ');
-
 export default async function BoletosPage() {
   const teams = await fetchBoletosTeams();
 
   return (
-    <FullWidthLayout
-      divider
-      headerBackground={HEADER_BACKGROUND}
-      subheader={<BoletosHero />}
-    >
+    <FullWidthLayout divider subheader={<BoletosHero />}>
       <BoletosPageClient teams={teams} />
     </FullWidthLayout>
   );
