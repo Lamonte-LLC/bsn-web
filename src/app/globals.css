@@ -89,6 +89,21 @@ body {
 
 /* Recent Calendar Slider */
 
+/* Edge fade on the cards only — the mask is scoped to .slick-list (the
+ * track) so prev/next arrows, which are siblings of .slick-list, stay
+ * unaffected. Pixels of the cards become literally transparent toward the
+ * right edge, so the page gradient shows through with no color matching. */
+.recent-calendar-slider .slick-list {
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 75%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 75%, transparent 100%);
+}
+@media (min-width: 768px) {
+  .recent-calendar-slider .slick-list {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 0%, #000 70%, transparent 100%);
+  }
+}
+
 /* ── Mobile: bypass react-slick entirely, use native browser scroll ──
  * react-slick's JS touch handling + variableWidth is fundamentally broken on
  * real iOS/Android devices (width miscalculations, resize cascades, corrupt
@@ -185,11 +200,11 @@ body {
   padding: 0 !important;
 }
 
-/* Banner */
+/* Banner — flat ink so it visually continues the page-level bg-bsn gradient
+ * (whose bottom edge is already solid #0F171F) without spawning a second
+ * radial gradient origin. */
 .sw-fixture-banner {
-  background: radial-gradient(37% 80% at 45% 49%, #ffffff14 0%, #fff0 100%),
-              linear-gradient(90deg, #11161d33 0%, #0a0e1400 100%),
-              #0f171f !important;
+  background: #0F171F !important;
   padding-top: 1rem !important;
 }
 

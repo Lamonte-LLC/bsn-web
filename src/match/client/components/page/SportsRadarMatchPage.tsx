@@ -32,7 +32,7 @@ export default function SportsRadarMatchPage({ matchProviderId, matchStreamUrl }
   return (
     <>
       {matchStreamUrl && (
-        <div className="bg-bsn">
+        <div className="bg-[#0F171F]">
           <div className="container">
             <div className="py-[26px] mx-auto md:py-[40px] md:w-[688px]">
               <LiveMatchStream streamUrl={matchStreamUrl} />

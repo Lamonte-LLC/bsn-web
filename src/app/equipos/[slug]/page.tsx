@@ -189,7 +189,7 @@ export default async function DetalleEquipoPage({
     >
       <WSCBlazeSDK apiKey={process.env.NEXT_PUBLIC_WSC_API_KEY || ''} />
       <TabGroup>
-        <TabList className="bg-[#0F171F] pb-[28px]">
+        <TabList className="bg-[#0F171F] pb-[17px] md:pb-[28px]">
           <div className="container text-center space-x-[20px] md:space-x-[30px]">
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-base tracking-[1%] md:text-[22px] data-selected:text-white data-selected:border-b data-selected:border-b-white">
               Resumen
@@ -214,7 +214,7 @@ export default async function DetalleEquipoPage({
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6 md:mt-[30px] lg:mt-[60px]">
                 <div className="lg:col-span-8 lg:pr-13">
                   <div className="mb-6 md:mb-10 lg:mb-15">
-                    <div className="flex flex-row justify-between items-center mb-[30px]">
+                    <div className="flex flex-row justify-between items-center mb-[20px] md:mb-[30px]">
                       <div>
                         <h3 className="text-[22px] text-black md:text-[24px]">
                           Próximo juego

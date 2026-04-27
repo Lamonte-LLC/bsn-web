@@ -124,7 +124,7 @@ export default function CalendarLiveMatchRow({
           </div>
 
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(125,125,125,0.35)] bg-white">
-            <span className="font-barlow-condensed text-[16px] leading-[normal] tracking-[0.16px] text-[rgba(15,23,31,0.8)]">
+            <span className="font-barlow-condensed text-[16px] leading-[normal] tracking-[0.16px] text-[rgba(15,23,31,0.8)] -mt-[2px]">
               {centerLabel}
             </span>
           </div>
@@ -141,7 +141,7 @@ export default function CalendarLiveMatchRow({
         </div>
 
         <div className="flex shrink-0 justify-end sm:pl-3">
-          <span className="inline-flex items-center gap-2 rounded-[100px] border border-[#E51F1F] bg-white px-5 py-2.5 font-special-gothic-condensed-one text-[15px] leading-[1.4] tracking-[0.3px] text-[#E51F1F] pointer-events-none">
+          <span className="inline-flex items-center gap-2 rounded-[100px] border border-[#E51F1F] bg-white px-[14px] py-[5px] font-special-gothic-condensed-one text-[15px] leading-[1.4] tracking-[0.3px] text-[#E51F1F] pointer-events-none">
             <svg
               width="10"
               height="12"
