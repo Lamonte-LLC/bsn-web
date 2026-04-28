@@ -40,6 +40,10 @@ type Props = {
   overtimePeriods?: number;
   isFinals?: boolean;
   finalsDescription?: string;
+  /** Playoffs decorations — when set, render a structured footer + JN pill */
+  gameNumber?: number;
+  roundLabel?: string;
+  seriesStatus?: string;
 };
 
 export default function CompletedMatchCard({
@@ -50,7 +54,12 @@ export default function CompletedMatchCard({
   overtimePeriods = 0,
   isFinals = false,
   finalsDescription = "",
+  gameNumber,
+  roundLabel,
+  seriesStatus,
 }: Props) {
+  const hasSeriesFooter = roundLabel != null && seriesStatus != null;
+  const showFooter = isFinals || hasSeriesFooter;
   const isHomeTeamWinner = useMemo(
     () => parseInt(homeTeam.score) > parseInt(visitorTeam.score),
     [homeTeam, visitorTeam],
@@ -66,9 +75,16 @@ export default function CompletedMatchCard({
       <Card className="w-full h-full">
         <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-[15px] py-[8px] md:mx-[20px]">
           <div className="flex flex-row justify-between items-center">
-            <p className="font-barlow-condensed font-semibold text-sm leading-[22px] text-[rgba(255,255,255,0.9)] md:text-[15px] md:leading-[24px]">
-              Final {overtimePeriods > 0 ? `${overtimePeriods}OT` : ""}
-            </p>
+            <div className="flex flex-row items-center gap-[7px]">
+              {gameNumber != null && (
+                <span className="inline-flex items-center px-[6px] h-[17px] rounded-[5px] bg-white/10 border border-white/15 font-barlow font-semibold text-[10px] text-white/85 tracking-[0.04em] lg:hidden">
+                  J{gameNumber}
+                </span>
+              )}
+              <p className="font-barlow-condensed font-semibold text-sm leading-[22px] text-[rgba(255,255,255,0.9)] md:text-[15px] md:leading-[24px]">
+                Final {overtimePeriods > 0 ? `${overtimePeriods}OT` : ""}
+              </p>
+            </div>
             <p className="font-barlow font-medium text-[13px] text-[rgba(255,255,255,0.8)] md:text-sm">
               {formatDate(startAt, MATCH_DATE_FORMAT)}
             </p>
@@ -145,21 +161,41 @@ export default function CompletedMatchCard({
               </div>
             </div>
           </div>
-          <div className="pb-[12px] md:pb-[17px]">
-            <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
-              <span className="text-sm text-white md:text-[15px]">
-                Ver resultados
-              </span>
+          {!hasSeriesFooter && (
+            <div className="pb-[12px] md:pb-[17px]">
+              <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
+                <span className="text-sm text-white md:text-[15px]">
+                  Ver resultados
+                </span>
+              </div>
             </div>
-          </div>
+          )}
         </CardBody>
-        {isFinals && (
+        {showFooter && (
           <CardFooter>
-            <div className="flex flex-row justify-center items-center">
-              <p className="font-barlow text-sm text-neutral-90">
-                {finalsDescription}
-              </p>
-            </div>
+            {hasSeriesFooter ? (
+              <div className="flex flex-row justify-between items-center gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  {gameNumber != null && (
+                    <span className="hidden lg:inline-flex items-center px-[6px] h-[17px] rounded-[5px] bg-white/10 border border-white/15 font-barlow font-semibold text-[10px] text-white/85 tracking-[0.04em] shrink-0">
+                      J{gameNumber}
+                    </span>
+                  )}
+                  <p className="font-barlow text-[12px] text-white/55 truncate">
+                    {roundLabel}
+                  </p>
+                </div>
+                <p className="font-barlow font-semibold text-[12px] text-white shrink-0 truncate">
+                  {seriesStatus}
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-row justify-center items-center">
+                <p className="font-barlow text-sm text-neutral-90">
+                  {finalsDescription}
+                </p>
+              </div>
+            )}
           </CardFooter>
         )}
       </Card>
