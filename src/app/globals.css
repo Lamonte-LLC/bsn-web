@@ -1209,6 +1209,10 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   background: #191919 !important;
 }
 
+.sport-radar-fixture-mobile-widget .sw-glossary-item {
+  color: #fff !important;
+}
+
 .sport-radar-fixture-mobile-widget .sw-fixture-banner-main-score-box-value {
   font-size: 50px !important;
 }
