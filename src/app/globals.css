@@ -82,6 +82,30 @@ body {
   background: radial-gradient(37% 80% at 45% 49%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(90deg, rgba(17, 22, 29, 0.2) 0%, rgba(10, 14, 20, 0) 100%),#0F171F;
 }
 
+/* Playoffs hero slider — fade the right-edge cards into the bg cleanly. */
+.playoffs-hero-slider .slick-list {
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
+}
+@media (min-width: 768px) {
+  .playoffs-hero-slider .slick-list {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 100%);
+  }
+}
+
+/* Playoff date column — match the playoff card height exactly. The cards
+ * have no action button (removed in playoff mode) so they're shorter than
+ * the home variants. Scoped so it doesn't affect the home page. */
+.playoffs-hero-slider .playoffs-date-item > div {
+  height: 152px !important;
+}
+@media (min-width: 768px) {
+  .playoffs-hero-slider .playoffs-date-item > div {
+    height: 200px !important;
+  }
+}
+
 /* Recent Calendar Slider */
 .recent-calendar-slider .slick-arrow {
   cursor: pointer;
