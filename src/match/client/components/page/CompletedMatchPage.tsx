@@ -89,7 +89,7 @@ export default function CompletedMatchPage({
     >
       <WSCBlazeSDK apiKey={process.env.NEXT_PUBLIC_WSC_API_KEY || ''} />
       <TabGroup>
-        <TabList className="bg-bsn pb-[20px] md:pb-[28px]">
+        <TabList className="bg-[#0F171F] pb-[20px] md:pb-[28px]">
           <div className="container text-center space-x-[30px]">
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-base data-selected:text-white data-selected:border-b data-selected:border-b-white md:text-[22px]">
               Resumen

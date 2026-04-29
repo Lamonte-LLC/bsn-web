@@ -197,6 +197,16 @@ export default function LiveMatchCard({
           <div className="pb-[12px] md:pb-[17px]">
             <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
               <span className="text-sm text-white md:text-[15px]">
+                <svg
+                  width="6"
+                  height="8"
+                  viewBox="0 0 10 12"
+                  fill="none"
+                  aria-hidden
+                  className="inline-block align-middle mr-1.5 md:w-[7px] md:h-[9px]"
+                >
+                  <path d="M0 0L10 6L0 12V0Z" fill="#E51F1F" />
+                </svg>
                 Ver en vivo
               </span>
             </div>

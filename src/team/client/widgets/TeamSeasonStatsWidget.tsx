@@ -56,10 +56,10 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
 
   return (
     <div>
-      <div className="mb-6 md:mb-8">
-        <h2 className="font-special-gothic-condensed-one text-[24px] leading-none text-black tracking-[0.24px]">
+      <div className="mb-[14px] md:mb-8">
+        <h3 className="text-[22px] text-black md:text-[24px]">
           Promedios{currentSeason ? ` - ${currentSeason.name}` : ''}
-        </h2>
+        </h3>
       </div>
       <div className="mb-6 md:mb-10 lg:mb-15">
         {loading ? (
@@ -125,10 +125,10 @@ export default function TeamSeasonStatsWidget({ teamCode }: Props) {
           </div>
         )}
       </div>
-      <div className="mb-6 md:mb-8">
-        <h2 className="font-special-gothic-condensed-one text-[24px] leading-none text-black tracking-[0.24px]">
+      <div className="mb-[14px] md:mb-8">
+        <h3 className="text-[22px] text-black md:text-[24px]">
           Totales{currentSeason ? ` - ${currentSeason.name}` : ''}
-        </h2>
+        </h3>
       </div>
       <div className="mb-6 md:mb-10 lg:mb-15">
         {loading ? (

@@ -16,7 +16,7 @@ export default function LatestNewsItem({
   thumbnailUrl = '',
 }: LatestNewsItemProps) {
   return (
-    <div className="flex flex-row gap-4 items-center justify-start">
+    <div className="flex flex-row-reverse sm:flex-row gap-4 items-center justify-start">
       <div className="flex flex-col gap-2 flex-1">
         <Link href={`/noticias/${slug}`} className="flex-1">
           <h4 className="font-barlow font-medium text-sm/5 text-[rgba(15,23,31,0.7)]">

@@ -21,9 +21,8 @@ export default async function Home() {
     <FullWidthLayout
       subheader={
         <section className="pb-[116px] lg:pt-[8px] lg:pb-[88px]">
-          <div className="container relative">
+          <div className="container">
             <RecentCalendarSliderWidget />
-            <div className="absolute bg-[linear-gradient(-90deg,rgba(15,23,31,0.9)_21.8%,rgba(0,0,0,0)_96.31%)] top-0 bottom-0 right-0 w-[48px] md:w-[232px]"></div>
           </div>
         </section>
       }

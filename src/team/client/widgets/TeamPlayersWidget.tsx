@@ -38,10 +38,10 @@ export default function TeamPlayersWidget({ teamCode, seasonProviderId }: Props)
       <table className="w-full text-left">
         <thead>
           <tr>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 whitespace-nowrap w-[1%] min-w-[48px]">
+            <th className="sticky left-0 z-10 bg-[#FDFDFD] md:static border-b border-b-[rgba(0,0,0,0.07)] pl-4 pr-1 md:px-4 py-3 whitespace-nowrap w-[1%] min-w-[40px] md:min-w-[48px]">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">#</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 whitespace-nowrap w-[1%] min-w-[200px]">
+            <th className="sticky left-[40px] z-10 bg-[#FDFDFD] md:static md:left-auto border-b border-b-[rgba(0,0,0,0.07)] pl-1 pr-4 md:px-4 py-3 whitespace-nowrap w-[1%] min-w-[180px] md:min-w-[200px]">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 JUGADOR
               </span>
@@ -71,10 +71,10 @@ export default function TeamPlayersWidget({ teamCode, seasonProviderId }: Props)
           {data.map((node, index) => (
             <tr key={`player-${node.player.providerId}`}>
               <td
-                className="px-4 py-3"
+                className="sticky left-0 z-10 md:static pl-4 pr-1 md:px-4 py-3"
                 style={{
                   backgroundColor:
-                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
+                    index % 2 === 0 ? '#FDFDFD' : '#F9F9F9',
                   borderTopLeftRadius: '8px',
                   borderBottomLeftRadius: '8px',
                 }}
@@ -84,10 +84,10 @@ export default function TeamPlayersWidget({ teamCode, seasonProviderId }: Props)
                 </span>
               </td>
               <td
-                className="px-4 py-3"
+                className="sticky left-[40px] z-10 md:static md:left-auto pl-1 pr-4 md:px-4 py-3"
                 style={{
                   backgroundColor:
-                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
+                    index % 2 === 0 ? '#FDFDFD' : '#F9F9F9',
                 }}
               >
                 <Link
