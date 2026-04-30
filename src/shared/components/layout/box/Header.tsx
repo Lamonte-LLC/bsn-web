@@ -18,11 +18,6 @@ export default function HeaderBoxLayout() {
                 </Link>
               </li>
               <li>
-                <Link href="/playoffs" className="text-[20px] text-white">
-                  Playoffs
-                </Link>
-              </li>
-              <li>
                 <Link href="/noticias" className="text-[20px] text-white">
                   Noticias
                 </Link>

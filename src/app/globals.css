@@ -1083,6 +1083,432 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   background-color: rgba(0, 0, 0, 0.18) !important;
 }
 
+/* ── /estadisticas: Sportradar `statistics_persons` widget overrides ──
+ * The widget is hosted in <div className="widget"> on /estadisticas. We
+ * want its visual language (typography, color, spacing) to match the
+ * site's existing stats design. Most of the non-scoped sw-* rules above
+ * already apply (sub-tabs, multi-switch pills, grid). The rules below
+ * are specific to the persons-statistics widget.
+ */
+
+/* Widget root: site bg, no extra padding (the page container already sets it). */
+#synergy-widget-statistics_persons {
+  background-color: #fdfdfd !important;
+}
+
+/* Section titles inside the widget (e.g. "Líderes de la temporada"). */
+#synergy-widget-statistics_persons .sw-statistics-persons-title,
+#synergy-widget-statistics_persons h1,
+#synergy-widget-statistics_persons h2,
+#synergy-widget-statistics_persons h3 {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  color: rgba(15, 23, 31, 0.9) !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Body text inside the widget — Barlow.
+ * Excludes spans inside `.sw-name-tag` (player name) and `.sw-season-statistics-team-name`
+ * which need the display font. */
+#synergy-widget-statistics_persons,
+#synergy-widget-statistics_persons p,
+#synergy-widget-statistics_persons td,
+#synergy-widget-statistics_persons label {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  color: #0F171F;
+}
+
+/* Player/team names: condensed display font like the site tables. */
+#synergy-widget-statistics_persons .sw-person-name,
+#synergy-widget-statistics_persons .sw-team-name,
+#synergy-widget-statistics_persons a[href*="/jugadores/"],
+#synergy-widget-statistics_persons a[href*="/equipos/"] {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  letter-spacing: 0.15px !important;
+  color: rgba(15, 23, 31, 0.9) !important;
+}
+
+/* Numeric / stat values: bigger, condensed, ink. */
+#synergy-widget-statistics_persons .sw-stat-value,
+#synergy-widget-statistics_persons .sw-leaders-value {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  color: #0F171F !important;
+}
+
+/* Table header labels: small caps, muted. */
+#synergy-widget-statistics_persons table thead th,
+.widget .sw-season-statistics table thead th {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.1px !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+/* Hover affordance on sortable column headers — the widget exposes
+ * `.grid-column-sortable` on each clickable <th>. */
+.widget .sw-season-statistics table thead th.grid-column-sortable {
+  cursor: pointer !important;
+}
+
+.widget .sw-season-statistics table thead th.grid-column-sortable:hover {
+  background-color: #f3f3f3 !important;
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Larger scrollable area for the season-statistics grid — the widget's
+ * default max-height is too short. Bump to give users more rows visible
+ * before they need to scroll. */
+.widget .sw-season-statistics .sw-grid.sw-grid-overflow-y,
+.widget .sw-season-statistics .sw-grid-wrapper {
+  max-height: 800px !important;
+}
+
+@media (max-width: 767px) {
+  .widget .sw-season-statistics .sw-grid.sw-grid-overflow-y,
+  .widget .sw-season-statistics .sw-grid-wrapper {
+    max-height: 600px !important;
+  }
+}
+
+/* Zebra rows on the table body — covers both stat <td> cells AND the
+ * sticky player-name <th> at the start of each row. */
+#synergy-widget-statistics_persons table tbody tr:nth-child(even) td,
+#synergy-widget-statistics_persons table tbody tr:nth-child(even) th,
+.widget .sw-season-statistics table tbody tr:nth-child(even) td,
+.widget .sw-season-statistics table tbody tr:nth-child(even) th {
+  background-color: #f9f9f9 !important;
+}
+
+/* Remove vertical borders, keep only the bottom hairline. */
+#synergy-widget-statistics_persons table,
+#synergy-widget-statistics_persons table tr,
+#synergy-widget-statistics_persons table td,
+#synergy-widget-statistics_persons table th {
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+}
+#synergy-widget-statistics_persons table tbody td {
+  border-bottom: 1px solid #f3f3f3 !important;
+}
+
+/* Buttons inside the widget: pill style consistent with the site. */
+#synergy-widget-statistics_persons button {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* The actual root the widget renders is `.sw-season-statistics`. Match
+ * the widget surface to the page background (#fdfdfd) and strip borders.
+ * Includes table rows + header/odd-row cells so no white band leaks
+ * through; even rows get the zebra override below. */
+.widget,
+.widget .sw-season-statistics,
+.widget .sw-season-statistics > div,
+.widget .sw-grid-wrapper,
+.widget .sw-grid,
+.widget .sw-grid table,
+.widget .sw-grid table thead,
+.widget .sw-grid table tbody,
+.widget .sw-grid table thead tr,
+.widget .sw-grid table thead th,
+.widget .sw-grid table tbody tr,
+.widget .sw-grid table tbody tr:nth-child(odd) td,
+.widget .sw-grid table tbody tr:nth-child(odd) th {
+  background-color: #fdfdfd !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Primary tabs (Promedio / Estadísticas de tiros / Totales / Resumen) ──
+ * The widget puts these under `.sw-season-statistics > div > .sw-multi-switch`.
+ * We override just this scope so the match-detail widget's existing
+ * `.sw-multi-switch` styles (PBP period pills) stay untouched. */
+.widget .sw-season-statistics > div > .sw-multi-switch {
+  display: flex !important;
+  justify-content: center !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 0 24px 0 !important;
+  border-bottom: none !important;
+}
+
+.widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-buttons {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  background-color: transparent !important;
+  gap: 0 !important;
+  padding: 0 !important;
+}
+
+.widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  text-transform: capitalize !important;
+  font-size: 22px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-weight: 400 !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+  padding: 10px 0 !important;
+  margin: 0 10px !important;
+  min-width: unset !important;
+  width: auto !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.01em !important;
+  transition: color 0.15s ease, border-color 0.15s ease !important;
+}
+
+.widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item[data-sw-multiswitch-item-active="true"] {
+  background-color: transparent !important;
+  color: #000 !important;
+  border-bottom: 1.5px solid #000 !important;
+}
+
+.widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
+  color: rgba(0, 0, 0, 0.75) !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+/* Mobile: smaller tabs to match the match-widget sub-tabs treatment. */
+@media (max-width: 767px) {
+  .widget .sw-season-statistics > div > .sw-multi-switch {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+  }
+
+  .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-buttons {
+    overflow: visible !important;
+    flex-wrap: nowrap !important;
+    min-width: max-content !important;
+  }
+
+  .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item {
+    font-size: 18px !important;
+    margin: 0 8px !important;
+    overflow: visible !important;
+  }
+}
+
+/* ── Filter row: phase dropdown + search anchored to the right ──
+ * The widget exposes `.sw-season-statistics-filters` as the row wrapper,
+ * with `.sw-spa-selector` (phase dropdown) and `.sw-search-container`
+ * (search input) as siblings. On desktop they sit on the right edge;
+ * on mobile they stack full-width. */
+.widget .sw-season-statistics-filters {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 10px !important;
+  margin: 0 0 16px 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+@media (min-width: 768px) {
+  .widget .sw-season-statistics-filters {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+}
+
+.widget .sw-season-statistics-filters > div {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  width: 100% !important;
+}
+
+@media (min-width: 768px) {
+  .widget .sw-season-statistics-filters > div {
+    width: auto !important;
+  }
+}
+
+.widget .sw-spa-selector {
+  position: relative !important;
+}
+
+.widget .sw-spa-selector select {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 14px !important;
+  background-color: #fafafa !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'><path d='M4 6l4 4 4-4' stroke='rgba(15,23,31,0.5)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important;
+  border: 1px solid #D4D4D4 !important;
+  border-radius: 6px !important;
+  color: rgba(15, 23, 31, 0.9) !important;
+  padding: 8px 32px 8px 12px !important;
+  height: 40px !important;
+  width: 100% !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+@media (min-width: 768px) {
+  .widget .sw-spa-selector select {
+    width: auto !important;
+    max-width: 240px !important;
+  }
+}
+
+.widget .sw-search-container {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  background-color: #fafafa !important;
+  border: 1px solid #D4D4D4 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 6px !important;
+  padding: 0 !important;
+  height: 40px !important;
+  width: 100% !important;
+}
+
+@media (min-width: 768px) {
+  .widget .sw-search-container {
+    display: inline-flex !important;
+    max-width: 260px !important;
+  }
+}
+
+/* Replace the widget's broken decorative search "icon" with a clean SVG
+ * via background-image on the wrapper (left side). The default span has
+ * no glyph, so we paint our own and hide the original. */
+.widget .sw-search-container::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 10px !important;
+  top: 50% !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin-top: -8px !important;
+  pointer-events: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'><circle cx='7' cy='7' r='5' stroke='rgba(15,23,31,0.5)' stroke-width='1.5'/><path d='m11 11 3 3' stroke='rgba(15,23,31,0.5)' stroke-width='1.5' stroke-linecap='round'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.widget .sw-search-container .sw-search-icon {
+  display: none !important;
+}
+
+.widget .sw-search-container input.sw-search,
+.widget .sw-search-container input[type="search"],
+.widget input.sw-search {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 14px !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: 0 !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  color: rgba(15, 23, 31, 0.9) !important;
+  padding: 0 12px 0 32px !important;
+  text-indent: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  line-height: normal !important;
+}
+
+.widget .sw-search-container input.sw-search:focus,
+.widget .sw-search-container input[type="search"]:focus,
+.widget input.sw-search:focus {
+  outline: 0 !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-width: 0 !important;
+}
+
+/* Hide the native clear (X) button so it doesn't add visual noise. */
+.widget .sw-search-container input::-webkit-search-cancel-button,
+.widget .sw-search-container input::-webkit-search-decoration {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Row spacing — generous top/bottom padding so rows breathe and all
+ * columns share the same vertical rhythm. */
+.widget .sw-season-statistics table tbody td,
+.widget .sw-season-statistics table tbody th {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  vertical-align: middle !important;
+}
+
+/* ── Player cell: circle avatar + Special Gothic name ──
+ * `.sw-person-tag > a.sw-name-tag > img.sw-image + span`. The image is
+ * the avatar (square by default); the span is the player name. */
+.widget .sw-season-statistics .sw-person-tag {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.widget .sw-season-statistics .sw-person-tag a.sw-name-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
+  line-height: 1 !important;
+}
+
+.widget .sw-season-statistics .sw-person-tag a.sw-name-tag span {
+  line-height: 1 !important;
+}
+
+.widget .sw-season-statistics .sw-person-tag a.sw-name-tag img.sw-image {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  outline: 0.5px solid rgba(81, 81, 81, 0.25) !important;
+  outline-offset: 0 !important;
+  object-fit: cover !important;
+  background-color: #f3f3f3 !important;
+  flex-shrink: 0 !important;
+}
+
+.widget .sw-season-statistics .sw-person-tag a.sw-name-tag span {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 15px !important;
+  letter-spacing: 0.15px !important;
+  color: rgba(15, 23, 31, 0.9) !important;
+}
+
+/* ── Team name cell: align left ── */
+.widget .sw-season-statistics .sw-season-statistics-team-name {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  display: flex !important;
+}
+
+.widget .sw-season-statistics .sw-season-statistics-team-name span {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 13px !important;
+  color: rgba(15, 23, 31, 0.7) !important;
+  text-align: left !important;
+}
+
+/* The team-name <td> by default is centered (matches all stat columns).
+ * Force left alignment on that single cell. */
+.widget .sw-season-statistics table tbody td:first-of-type {
+  text-align: left !important;
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 
 /* Home calendar: native horizontal scroll (no react-slick / translate3d on iOS WebKit) */

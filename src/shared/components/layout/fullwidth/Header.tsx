@@ -69,11 +69,6 @@ export default function HeaderBoxLayout() {
                     Calendario
                   </Link>
                 </li>
-                <li className="hidden">
-                  <Link href="/playoffs" className="text-[20px] text-white">
-                    Playoffs
-                  </Link>
-                </li>
                 <li>
                   <Link href="/noticias" className="text-[20px] text-white">
                     Noticias
