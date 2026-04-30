@@ -505,33 +505,64 @@ span.box-score-person-cell,
   background-color: #fdfdfd !important;
 }
 
-/* App webview: subtle dark zebra so the alternating-row treatment carries
- * over to the dark surface. Odd rows on the base #191919; even rows get
- * a small white wash (~3%) to nudge them slightly lighter.
- * The table/tbody/tr background must also follow the row color so the
- * gaps between cells (cell padding + any spacing) blend cleanly — the
- * widget's default puts a darker bg there which shows as a black band. */
+/* App webview: the bottom sheet behind the embed is #191919, so the
+ * banner + sub-tabs blend naturally with it. Everything below the tabs
+ * (the box-score panel, the glossary, and any trailing whitespace at
+ * the bottom of the widget) gets the #222 panel tint so there's no
+ * dark gap where the zebra/cards end. */
+.sport-radar-fixture-mobile-widget .sw-widget-fixture,
+.sport-radar-fixture-mobile-widget .sw-widget-fixture *,
+.sport-radar-fixture-mobile-widget .box-score,
+.sport-radar-fixture-mobile-widget .box-score *,
+.sport-radar-fixture-mobile-widget .sw-widget-fixture-box-score,
+.sport-radar-fixture-mobile-widget .sw-widget-fixture-box-score *,
+.sport-radar-fixture-mobile-widget .sw-glossary,
+.sport-radar-fixture-mobile-widget .sw-glossary * {
+  background-color: #222222 !important;
+  background: #222222 !important;
+}
+
+/* Banner + sub-tabs back to #191919 so they blend with the bottom
+ * sheet behind the embed. */
+.sport-radar-fixture-mobile-widget .sw-fixture-banner,
+.sport-radar-fixture-mobile-widget .sw-fixture-banner *,
+.sport-radar-fixture-mobile-widget .sw-fixture-banner-container,
+.sport-radar-fixture-mobile-widget .sw-fixture-banner-container *,
+.sport-radar-fixture-mobile-widget .sw-sub-tabs,
+.sport-radar-fixture-mobile-widget .sw-sub-tabs *,
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab,
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab.is-active {
+  background-color: #191919 !important;
+  background: #191919 !important;
+}
+
+/* Live indicator stays red. */
+.sport-radar-fixture-mobile-widget .sw-fixture-banner-status-live-indicator {
+  background-color: #ff0000 !important;
+  background: #ff0000 !important;
+}
+
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd),
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) td,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) th {
-  background-color: #191919 !important;
-  background: #191919 !important;
+  background-color: #222222 !important;
+  background: #222222 !important;
 }
 
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even),
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) td,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) th {
-  background-color: #1f1f1f !important;
-  background: #1f1f1f !important;
+  background-color: #2a2a2a !important;
+  background: #2a2a2a !important;
 }
 
 /* Section-label rows ("Iniciales", "Banca") and table chrome — keep them
- * on the base bg so they don't accidentally show the lighter zebra wash. */
+ * on the panel base bg. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead tr,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th {
-  background-color: #191919 !important;
-  background: #191919 !important;
+  background-color: #222222 !important;
+  background: #222222 !important;
 }
 
 /* Inline elements inside zebra cells: the widget's `*` rule paints them
@@ -578,7 +609,7 @@ select {
  * app webview restores its native styling further down. */
 .sw-box-score-total-team-stats {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-columns: repeat(3, 1fr) !important;
   gap: 8px !important;
   background-color: transparent !important;
   border: none !important;
@@ -594,12 +625,6 @@ select {
     gap: 10px !important;
     margin-top: 25px !important;
     margin-bottom: 30px !important;
-  }
-}
-
-@media (min-width: 640px) {
-  .sw-box-score-total-team-stats {
-    grid-template-columns: repeat(3, 1fr) !important;
   }
 }
 
@@ -642,6 +667,10 @@ select {
   line-height: 1.2 !important;
   color: rgba(15, 23, 31, 0.8) !important;
   margin-bottom: 6px !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+  letter-spacing: 0 !important;
 }
 
 @media (min-width: 640px) {
@@ -655,11 +684,14 @@ select {
 .sw-box-score-total-team-stats-entry-value {
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
   font-weight: 400 !important;
-  font-size: 22px !important;
+  font-size: 20px !important;
   line-height: 1 !important;
-  letter-spacing: 0.2px !important;
+  letter-spacing: 0 !important;
   color: #0F171F !important;
   margin-top: auto !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
 }
 
 @media (min-width: 640px) {
@@ -693,8 +725,8 @@ select {
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  background-color: rgba(255, 255, 255, 0.04) !important;
-  background: rgba(255, 255, 255, 0.04) !important;
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 10px !important;
   padding: 10px 12px !important;
@@ -716,6 +748,10 @@ select {
   line-height: 1.2 !important;
   color: rgba(255, 255, 255, 0.7) !important;
   margin-bottom: 6px !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+  letter-spacing: 0 !important;
   background: transparent !important;
   background-color: transparent !important;
 }
@@ -731,11 +767,14 @@ select {
 .sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry-value {
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
   font-weight: 400 !important;
-  font-size: 22px !important;
+  font-size: 19px !important;
   line-height: 1 !important;
-  letter-spacing: 0.2px !important;
+  letter-spacing: 0 !important;
   color: #fff !important;
   margin-top: auto !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
   background: transparent !important;
   background-color: transparent !important;
 }
@@ -757,6 +796,15 @@ span.sw-box-score-additional-persons-role {
   grid-template-columns: repeat(4, 1fr) !important;
   margin-top: 20px !important;
   padding: 20px 15px !important;
+}
+
+/* /estadisticas desktop (Jugadores widget only): more breathing room
+ * above the stat-abbreviation legend so it sits visibly apart from the
+ * main grid. */
+@media (min-width: 768px) {
+  .widget:not(.widget-entities) .sw-season-statistics .sw-glossary {
+    margin-top: 40px !important;
+  }
 }
 
 
@@ -1610,12 +1658,12 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 }
 
 /* Mobile: pills can scroll horizontally in one line if they don't fit.
- * Wrap in a scrollable row, hide scrollbar visually. */
+ * Centered when the row fits the viewport; otherwise scroll naturally. */
 @media (max-width: 767px) {
   .widget .sw-season-statistics > div > .sw-multi-switch {
     overflow-x: auto !important;
     overflow-y: visible !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
   }
@@ -1625,8 +1673,9 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
   .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-buttons {
     flex-wrap: nowrap !important;
-    justify-content: flex-start !important;
-    min-width: max-content !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     overflow: visible !important;
   }
 
@@ -1975,6 +2024,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   background: #ff0000 !important;
   background-color: #ff0000 !important;
 }
+
 
 .sport-radar-fixture-mobile-widget body {
   background: #191919 !important;
