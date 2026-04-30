@@ -49,25 +49,25 @@ export default function BoletosPageClient({ teams }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={[
-                    'group flex items-center gap-5 no-underline text-inherit',
+                    'group flex items-center gap-3 md:gap-5 no-underline text-inherit',
+                    'p-[14px_16px] md:p-[18px_22px]',
                     'transition-colors duration-150 ease-out',
                     'hover:bg-[#FAFAFA]',
                     isLastMobile ? 'border-b-0' : 'border-b border-b-[#EAEAEA]',
                     isLastDesktopRow ? 'md:border-b-0' : 'md:border-b md:border-b-[#EAEAEA]',
                     isLeftCol ? 'md:border-r md:border-r-[#EAEAEA]' : '',
                   ].join(' ')}
-                  style={{ padding: '18px 22px' }}
                   aria-label={`${team.fullName} — Comprar boletos`}
                 >
                   <div
-                    className="flex shrink-0 items-center justify-center bg-white w-[52px] h-[52px] md:w-[58px] md:h-[58px]"
+                    className="flex shrink-0 items-center justify-center bg-white w-[44px] h-[44px] md:w-[58px] md:h-[58px]"
                     style={{
                       borderRadius: '50%',
                       border: `1.5px solid ${team.borderColor}`,
                     }}
                   >
                     <div className="md:hidden">
-                      <TeamLogoAvatar teamCode={team.code} size={34} />
+                      <TeamLogoAvatar teamCode={team.code} size={28} />
                     </div>
                     <div className="hidden md:block">
                       <TeamLogoAvatar teamCode={team.code} size={38} />
@@ -76,7 +76,7 @@ export default function BoletosPageClient({ teams }: Props) {
 
                   <div className="flex-1 min-w-0">
                     <div
-                      className="font-special-gothic-condensed-one text-[18px] md:text-[19px]"
+                      className="font-special-gothic-condensed-one text-[16px] md:text-[19px]"
                       style={{
                         lineHeight: 1.05,
                         letterSpacing: '0.020em',
@@ -90,6 +90,7 @@ export default function BoletosPageClient({ teams }: Props) {
                       style={{
                         fontWeight: 400,
                         letterSpacing: '-0.010em',
+                        lineHeight: 1.15,
                         color: '#717171',
                         marginTop: 4,
                       }}
@@ -100,20 +101,20 @@ export default function BoletosPageClient({ teams }: Props) {
 
                   <div
                     className={[
-                      'shrink-0 inline-flex items-center font-special-gothic-condensed-one',
+                      'shrink-0 inline-flex items-center gap-1.5 md:gap-2 font-special-gothic-condensed-one',
+                      'px-3 py-1.5 md:px-4 md:py-2',
+                      'text-[13px] md:text-[14px]',
                       'transition-colors duration-150 ease-out',
                       'bg-[#FAFAFA] text-[#171717] border border-[rgba(168,168,168,0.5)]',
                       'group-hover:bg-[#0F171F] group-hover:text-white group-hover:border-[#0F171F]',
                     ].join(' ')}
                     style={{
-                      gap: 8,
-                      padding: '8px 16px',
                       borderRadius: 100,
-                      fontSize: 14,
                       letterSpacing: '0.020em',
                     }}
                   >
-                    Comprar boletos
+                    <span className="md:hidden">Boletos</span>
+                    <span className="hidden md:inline">Comprar boletos</span>
                     <ExternalGlyph size={12} />
                   </div>
                 </a>
