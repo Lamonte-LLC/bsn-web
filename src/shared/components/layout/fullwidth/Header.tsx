@@ -294,21 +294,22 @@ export default function HeaderBoxLayout() {
                     Jugadores
                   </Link>
                 </li>
-                <li className="hidden">
+                <li>
                   <Link href="/estadisticas" className="text-[20px] text-white">
                     Estadísticas
                   </Link>
                 </li>
-                <li>
-                  <Link href="/boletos" className="text-[20px] text-white">
-                    Boletos
-                  </Link>
-                </li>
               </ul>
             </div>
-            <div className="hidden md:flex md:flex-1 md:justify-end">
+            <div className="hidden md:flex md:flex-1 md:justify-end md:items-center md:gap-[14px]">
+              <Link
+                href="/boletos"
+                className="ml-[3px] font-barlow text-[14px] text-white/85 hover:text-white border border-white/20 hover:border-white/40 rounded-full px-3.5 py-1.5 transition-colors whitespace-nowrap"
+              >
+                Boletos
+              </Link>
               <ul className="flex flex-row">
-                <li className="flex items-center justify-center h-[40px] w-[40px]">
+                <li className="flex items-center justify-center h-[40px] w-[32px]">
                   <a
                     href="https://www.instagram.com/bsnpr/"
                     target="_blank"
@@ -320,7 +321,7 @@ export default function HeaderBoxLayout() {
                     />
                   </a>
                 </li>
-                <li className="flex items-center justify-center h-[40px] w-[40px]">
+                <li className="flex items-center justify-center h-[40px] w-[32px]">
                   <a
                     href="https://www.facebook.com/bsnpr/"
                     target="_blank"
@@ -332,7 +333,7 @@ export default function HeaderBoxLayout() {
                     />
                   </a>
                 </li>
-                <li className="flex items-center justify-center h-[40px] w-[40px]">
+                <li className="flex items-center justify-center h-[40px] w-[32px]">
                   <a
                     href="https://x.com/bsnpr"
                     target="_blank"
@@ -341,7 +342,7 @@ export default function HeaderBoxLayout() {
                     <img src="/assets/images/icons/social/icon-x.svg" alt="" />
                   </a>
                 </li>
-                <li className="flex items-center justify-center h-[40px] w-[40px]">
+                <li className="flex items-center justify-center h-[40px] w-[32px]">
                   <a
                     href="https://www.tiktok.com/@bsnpr?lang=en"
                     target="_blank"
@@ -353,7 +354,7 @@ export default function HeaderBoxLayout() {
                     />
                   </a>
                 </li>
-                <li className="flex items-center justify-center h-[40px] w-[40px]">
+                <li className="flex items-center justify-center h-[40px] w-[32px]">
                   <a
                     href="https://www.youtube.com/@BaloncestoSuperiorNacionalPR"
                     target="_blank"
@@ -411,6 +412,11 @@ export default function HeaderBoxLayout() {
               <li className="px-[30px]">
                 <Link href="/jugadores" className="block py-[8px]">
                   <span className="text-[36px] text-white">Jugadores</span>
+                </Link>
+              </li>
+              <li className="px-[30px]">
+                <Link href="/estadisticas" className="block py-[8px]">
+                  <span className="text-[36px] text-white">Estadísticas</span>
                 </Link>
               </li>
               <li className="px-[30px]">
@@ -585,11 +591,6 @@ export default function HeaderBoxLayout() {
                     )}
                   </Disclosure>
                 </div>
-              </li>
-              <li className="px-[30px] hidden">
-                <Link href="/estadisticas" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Estadísticas</span>
-                </Link>
               </li>
             </ul>
           </DialogPanel>

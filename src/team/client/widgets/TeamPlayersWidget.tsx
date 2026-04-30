@@ -34,131 +34,96 @@ export default function TeamPlayersWidget({ teamCode, seasonProviderId }: Props)
   }
 
   return (
-    <div className="overflow-x-auto -mx-4">
-      <table className="w-full text-left">
+    <div className="overflow-x-auto -mx-4 player-stats-table team-players-table">
+      <table className="w-full text-left table-fixed min-w-[820px]">
+        <colgroup>
+          <col style={{ width: '40px' }} />
+          <col />
+          <col style={{ width: '110px' }} />
+          <col style={{ width: '100px' }} />
+          <col style={{ width: '90px' }} />
+          <col style={{ width: '120px' }} />
+          <col style={{ width: '120px' }} />
+        </colgroup>
         <thead>
           <tr>
-            <th className="sticky left-0 z-10 bg-[#FDFDFD] md:static border-b border-b-[rgba(0,0,0,0.07)] pl-4 pr-1 md:px-4 py-3 whitespace-nowrap w-[1%] min-w-[40px] md:min-w-[48px]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] pl-4 pr-1 md:px-4 py-3 text-center whitespace-nowrap">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">#</span>
             </th>
-            <th className="sticky left-[40px] z-10 bg-[#FDFDFD] md:static md:left-auto border-b border-b-[rgba(0,0,0,0.07)] pl-1 pr-4 md:px-4 py-3 whitespace-nowrap w-[1%] min-w-[180px] md:min-w-[200px]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] pl-1 pr-4 md:px-4 py-3 text-left whitespace-nowrap">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 JUGADOR
               </span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[80px]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 POSICIÓN
               </span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[80px]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">
                 ESTATURA
               </span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[72px]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">PESO</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap min-w-[88px]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] px-4 py-3 text-center whitespace-nowrap">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">DOB</span>
             </th>
-            <th className="border-b border-b-[rgba(0,0,0,0.07)] pl-4 pr-8 py-3 text-center whitespace-nowrap w-[1%] min-w-[100px]">
+            <th className="border-b border-b-[rgba(0,0,0,0.07)] pl-4 pr-8 py-3 text-center whitespace-nowrap">
               <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)] tracking-[0.05em]">&nbsp;</span>
             </th>
           </tr>
         </thead>
         <tbody>
-          {data.map((node, index) => (
+          {data.map((node) => (
             <tr key={`player-${node.player.providerId}`}>
-              <td
-                className="sticky left-0 z-10 md:static pl-4 pr-1 md:px-4 py-3"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? '#FDFDFD' : '#F9F9F9',
-                  borderTopLeftRadius: '8px',
-                  borderBottomLeftRadius: '8px',
-                }}
-              >
+              <td className="pl-4 pr-1 md:px-4 text-center">
                 <span className="font-barlow text-[13px]">
                   {node.jerseyNumber ?? '—'}
                 </span>
               </td>
-              <td
-                className="sticky left-[40px] z-10 md:static md:left-auto pl-1 pr-4 md:px-4 py-3"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? '#FDFDFD' : '#F9F9F9',
-                }}
-              >
+              <td className="pl-1 pr-4 md:px-4">
                 <Link
                   href={`/jugadores/${node.player.providerId}`}
-                  className="flex flex-row items-center gap-3"
+                  className="flex flex-row items-center gap-3 min-w-0"
                 >
                   <PlayerPhotoAvatar
                     photoUrl={node.player.avatarUrl || ''}
                     name={node.player.name}
                     size={30}
                   />
-                  <span className="text-[15px]">{node.player.name}</span>
+                  <span className="text-[15px] whitespace-nowrap truncate">{node.player.name}</span>
                 </Link>
               </td>
-              <td
-                className="px-4 py-3 text-center"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
-                }}
-              >
+              <td className="px-4 text-center">
                 <span className="font-barlow text-[13px]">
                   {node.playingPosition || 'N/A'}
                 </span>
               </td>
-              <td
-                className="px-4 py-3 text-center"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
-                }}
-              >
+              <td className="px-4 text-center">
                 <span className="font-barlow text-[13px]">
                   {centimeterToInches(node.player.height) > 0
                     ? formatInches(centimeterToInches(node.player.height))
                     : 'N/A'}
                 </span>
               </td>
-              <td
-                className="px-4 py-3 text-center"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
-                }}
-              >
+              <td className="px-4 text-center">
                 <span className="font-barlow text-[13px]">
                   {kilogramToPounds(node.player.weight) > 0
                     ? `${numeral(kilogramToPounds(node.player.weight)).format('0')} lbs`
                     : 'N/A'}
                 </span>
               </td>
-              <td
-                className="px-4 py-3 text-center"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
-                }}
-              >
-                <span className="font-barlow text-[13px]">
+              <td className="px-4 text-center">
+                <span className="font-barlow text-[13px] whitespace-nowrap">
                   {node.player.dob
                     ? formatDate(node.player.dob, PLAYER_BIRTHDAY_FORMAT)
                     : 'N/A'}
                 </span>
               </td>
-              <td
-                className="pl-4 pr-8 py-3 text-center whitespace-nowrap w-[1%]"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? 'transparent' : '#F9F9F9',
-                }}
-              >
+              <td className="pl-4 pr-8 text-center whitespace-nowrap">
                 <Link
                   href={`/jugadores/${node.player.providerId}`}
                 >

@@ -807,6 +807,29 @@ span.sw-box-score-additional-persons-role {
   }
 }
 
+/* ── Player profile stats tables (Promedios / Totales / Juego por juego)
+ * Match the /estadisticas widget treatment: alternating row backgrounds
+ * + 19px vertical padding per cell, so the player profile reads as part
+ * of the same design system. Header row keeps its own styling. */
+.player-stats-table table tbody tr:nth-child(odd) > td {
+  background-color: #fdfdfd !important;
+}
+.player-stats-table table tbody tr:nth-child(even) > td {
+  background-color: #f9f9f9 !important;
+}
+
+.player-stats-table table tbody tr > td {
+  padding-top: 19px !important;
+  padding-bottom: 19px !important;
+  vertical-align: middle !important;
+}
+
+/* Team page Jugadores tab: tighter rows. */
+.team-players-table table tbody tr > td {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+
 
 /* Multi-switch wrapper */
 .sw-multi-switch {

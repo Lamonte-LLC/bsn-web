@@ -18,7 +18,7 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
 
   return (
     <div>
-      <div className="overflow-x-auto -mx-4 sm:-mx-3">
+      <div className="overflow-x-auto -mx-4 sm:-mx-3 player-stats-table">
         <table className="w-full text-left">
           <thead>
             <tr>
