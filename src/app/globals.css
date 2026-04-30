@@ -939,13 +939,18 @@ span.sw-box-score-additional-persons-role {
   cursor: default !important;
 }
 
-/* ── Líderes tab: card styling matches SeasonTeamPlayerLeadersCard ── */
+/* ── Líderes tab: card styling matches SeasonTeamPlayerLeadersCard.
+ * Soft, layered shadow — a tight close shadow for the surface contact
+ * plus a wider diffused one for ambient depth. Combined with a hairline
+ * border (lighter than before) the card sits gently above the page. */
 .sw-leaders-card {
   background-color: #fff !important;
-  border: 1px solid #e5e5e5 !important;
+  border: 1px solid rgba(20, 24, 31, 0.06) !important;
   border-radius: 12px !important;
   overflow: hidden !important;
-  box-shadow: 0 1px 3px #14181f0a !important;
+  box-shadow:
+    0 1px 1px rgba(20, 24, 31, 0.02),
+    0 4px 12px rgba(20, 24, 31, 0.04) !important;
 }
 
 .sw-leaders-grid {
@@ -2325,6 +2330,77 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
 .sport-radar-fixture-mobile-widget .sw-link {
   color: #fff !important;
+}
+
+/* ── Homepage leaders widget: same layout/positioning treatment as the
+ * app webview top-spot row (photo on the left, name flexible, stat
+ * pinned to the right edge with the same rhythm as positions 2–5).
+ * No color overrides here — the homepage already runs on its own
+ * light surface; we only normalize layout. */
+.sport-radar-leaders-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  grid-template-areas:
+    "category category category"
+    "photo    name     result"
+   !important;
+  align-items: center !important;
+  column-gap: 12px !important;
+  row-gap: 8px !important;
+  padding: 12px 20px !important;
+}
+
+.sport-radar-leaders-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-card-category {
+  grid-area: category !important;
+  margin: 0 0 5px 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+}
+
+/* WSC Blaze widget rows on mobile: fade the right edge so users have a
+ * visual cue that the row scrolls horizontally past the viewport. The
+ * widget renders the strip inside `#<id> .blaze-widget-row`-style
+ * container; we mask the outer #id wrapper so the fade applies cleanly
+ * regardless of inner DOM details. Desktop is wide enough that the row
+ * fits without scroll, so we scope this to <768px. */
+@media (max-width: 767px) {
+  #home-stories-container-row-rectangle,
+  #home-moments-container-row-rectangle {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 0%, #000 88%, transparent 100%);
+  }
+}
+
+.sport-radar-leaders-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-person-photo-link {
+  grid-area: photo !important;
+  margin-left: 4px !important;
+}
+
+.sport-radar-leaders-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-top-person-text {
+  grid-area: name !important;
+  min-width: 0 !important;
+  margin-left: -19px !important;
+}
+
+.sport-radar-leaders-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-top-person-name {
+  font-size: 22px !important;
+}
+
+.sport-radar-leaders-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-top-person-result {
+  grid-area: result !important;
+  position: static !important;
+  justify-self: end !important;
+  align-self: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 32px !important;
+  line-height: 1 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-non-leader-position {

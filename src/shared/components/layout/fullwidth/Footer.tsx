@@ -115,18 +115,18 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
               </li>
               <li className="text-center md:text-right lg:text-left">
                 <Link
-                  href="/boletos"
-                  className="font-special-gothic-condensed-one text-white text-[26px]"
-                >
-                  Boletos
-                </Link>
-              </li>
-              <li className="text-center md:text-right lg:text-left">
-                <Link
                   href="/estadisticas"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Estadísticas
+                </Link>
+              </li>
+              <li className="text-center md:text-right lg:text-left">
+                <Link
+                  href="/boletos"
+                  className="font-special-gothic-condensed-one text-white text-[26px]"
+                >
+                  Boletos
                 </Link>
               </li>
             </ul>
