@@ -1950,9 +1950,15 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   font-weight: normal;
 }
 
-#synergy-widget-fixture_detail .box-score-person-cell {
-  pointer-events: none !important;
-  cursor: default !important;
+#synergy-widget-fixture_detail a.box-score-person-cell {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+#synergy-widget-fixture_detail a.box-score-person-cell:hover {
+  text-decoration: underline !important;
 }
 
 #synergy-widget-fixture_detail .sw-navbar {
@@ -2180,9 +2186,14 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   margin-top: 10px !important;
 }
 
+/* PBP event rows: keep our subtle dark borders on top/right/bottom but
+ * leave border-left untouched so the widget's `var(--sw-fixture-competitor-*-color)`
+ * stripe (set by .is-home / .is-away) can render the team color. */
 .sport-radar-fixture-mobile-widget .sw-fixture-pbp-event,
 .sport-radar-fixture-mobile-widget .sw-fixture-pbp-shootout-event {
-  border: 1px solid rgba(125, 125, 125, 0.2) !important;
+  border-top: 1px solid rgba(125, 125, 125, 0.2) !important;
+  border-right: 1px solid rgba(125, 125, 125, 0.2) !important;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.2) !important;
   margin-top: 4px !important;
   color: #fff !important;
 }
@@ -2218,11 +2229,86 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   background-color: transparent !important;
 }
 
-.sport-radar-fixture-mobile-widget .sw-leaders-card {
-  box-shadow: none !important;
-  background-color: rgba(54, 54, 54, 0.1) !important;
-  border: 1px solid rgba(125, 125, 125, 0.2) !important;
+/* Slick translucent leader card: a soft white wash on top of the panel
+ * surface gives subtle lift without flattening into a solid block. The
+ * outer border picks up just enough light to outline the card edge. */
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 6px 18px rgba(0, 0, 0, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 18px !important;
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)) !important;
+}
+
+/* Top-player row: photo first, then name, stat pinned to the right.
+ * The "1." stays inside the name text (no JS extraction). The category
+ * title ("Asistencias") sits above on its own row. */
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  grid-template-areas:
+    "category category category"
+    "photo    name     result"
+   !important;
+  align-items: center !important;
+  column-gap: 12px !important;
+  row-gap: 8px !important;
+  padding: 12px 20px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-card-category {
+  grid-area: category !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-person-photo-link {
+  grid-area: photo !important;
+  margin-left: 4px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-top-person-text {
+  grid-area: name !important;
+  min-width: 0 !important;
+  margin-left: -16px !important;
+}
+
+/* Stat value: align with the right edge like the rows below, but render
+ * larger to keep visual weight as the top-spot result. No badge/pill
+ * background — just the number. */
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-top-person-result {
+  grid-area: result !important;
+  position: static !important;
+  justify-self: end !important;
+  align-self: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 32px !important;
+  line-height: 1 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Inner blocks: transparent so the card's wash shows through them as one
+ * continuous surface (instead of nested solid blocks). The wildcard
+ * descendant rule covers any inner span/div that the widget paints with
+ * its dark default — including the score badge over the top photo. */
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] *,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-non-leader-players-list,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-non-leader-person,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-category,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-non-leader-position,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-non-leader-result,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-top-person-text,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-top-person-result,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-person-photo-link,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-person-photo-with-entity-logo,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-non-leader-photos,
+.sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] a {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-card-category {
@@ -2268,14 +2354,13 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-top-person-result {
-  margin-top: -26px !important;
-  font-size: 24px !important;
-  align-items: center !important;
-  background-color: rgba(3, 3, 3, 0.95) !important;
   color: #fff !important;
-  border: 1px solid rgba(125, 125, 125, 0.2) !important;
-  border-radius: 8px !important;
-  padding: 0px 8px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .sport-radar-fixture-mobile-widget input:where([type="checkbox"]):checked,

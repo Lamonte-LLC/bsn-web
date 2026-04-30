@@ -109,12 +109,17 @@ function rewriteTeamLink(anchor: HTMLAnchorElement): void {
   }
 }
 
-function rewriteAllLinks(root: HTMLElement) {
+function rewriteAllLinks(root: HTMLElement, openInNewTab: boolean) {
   const playerAnchors = root.querySelectorAll<HTMLAnchorElement>(
-    `a[data-sw-person-link="true"]:not([${REWRITTEN_ATTR}="true"])`,
+    `a[data-sw-person-link="true"]:not([${REWRITTEN_ATTR}="true"]), a.box-score-person-cell:not([${REWRITTEN_ATTR}="true"])`,
   );
   playerAnchors.forEach((a) => {
-    void rewritePlayerLink(a);
+    void rewritePlayerLink(a).then(() => {
+      if (openInNewTab && a.getAttribute(REWRITTEN_ATTR) === 'true') {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
   });
 
   const teamAnchors = root.querySelectorAll<HTMLAnchorElement>(
@@ -122,20 +127,31 @@ function rewriteAllLinks(root: HTMLElement) {
   );
   teamAnchors.forEach((a) => {
     rewriteTeamLink(a);
+    if (openInNewTab && a.getAttribute(REWRITTEN_ATTR) === 'true') {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    }
   });
 }
 
+type Options = {
+  /** When true, navigate in a new tab and add target/rel attributes. */
+  openInNewTab?: boolean;
+};
+
 export function useSportRadarPlayerLinks(
   ref: RefObject<HTMLElement | null>,
+  options: Options = {},
 ): void {
+  const openInNewTab = options.openInNewTab === true;
   useEffect(() => {
     const container = ref.current;
     if (!container) return;
 
-    rewriteAllLinks(container);
+    rewriteAllLinks(container, openInNewTab);
 
     const observer = new MutationObserver(() => {
-      rewriteAllLinks(container);
+      rewriteAllLinks(container, openInNewTab);
     });
     observer.observe(container, {
       childList: true,
@@ -153,7 +169,7 @@ export function useSportRadarPlayerLinks(
       const target = e.target as HTMLElement | null;
       if (!target) return;
       const anchor = target.closest<HTMLAnchorElement>(
-        'a[data-sw-person-link="true"], a[data-sw-team-link="true"]',
+        'a[data-sw-person-link="true"], a[data-sw-team-link="true"], a.box-score-person-cell',
       );
       if (!anchor) return;
       if (!container.contains(anchor)) return;
@@ -168,10 +184,14 @@ export function useSportRadarPlayerLinks(
 
       e.preventDefault();
       e.stopPropagation();
-      // Use full navigation rather than Next router so the widget tear-
-      // down on the new page is clean (the widget mutates global state
-      // and behaves better with a fresh document).
-      window.location.assign(href);
+      if (openInNewTab) {
+        window.open(href, '_blank', 'noopener,noreferrer');
+      } else {
+        // Use full navigation rather than Next router so the widget tear-
+        // down on the new page is clean (the widget mutates global state
+        // and behaves better with a fresh document).
+        window.location.assign(href);
+      }
     };
 
     container.addEventListener('click', onClickCapture, true);
@@ -180,5 +200,5 @@ export function useSportRadarPlayerLinks(
       observer.disconnect();
       container.removeEventListener('click', onClickCapture, true);
     };
-  }, [ref]);
+  }, [ref, openInNewTab]);
 }
