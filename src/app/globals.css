@@ -493,7 +493,8 @@ span.box-score-person-cell,
 
 /* Alternating row backgrounds — match the /estadisticas widget treatment.
  * Even rows get a subtle grey wash; odd rows stay on the surface bg.
- * Covers both <td> and the sticky <th> so no white band leaks through. */
+ * Covers both <td> and the sticky <th> so no white band leaks through.
+ * App webview restores its dark surface further down. */
 .box-score .sw-grid table tbody tr:nth-child(even) td,
 .box-score .sw-grid table tbody tr:nth-child(even) th {
   background-color: #f9f9f9 !important;
@@ -502,6 +503,45 @@ span.box-score-person-cell,
 .box-score .sw-grid table tbody tr:nth-child(odd) td,
 .box-score .sw-grid table tbody tr:nth-child(odd) th {
   background-color: #fdfdfd !important;
+}
+
+/* App webview: subtle dark zebra so the alternating-row treatment carries
+ * over to the dark surface. Odd rows on the base #191919; even rows get
+ * a small white wash (~3%) to nudge them slightly lighter.
+ * The table/tbody/tr background must also follow the row color so the
+ * gaps between cells (cell padding + any spacing) blend cleanly — the
+ * widget's default puts a darker bg there which shows as a black band. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd),
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) th {
+  background-color: #191919 !important;
+  background: #191919 !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even),
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) th {
+  background-color: #1f1f1f !important;
+  background: #1f1f1f !important;
+}
+
+/* Section-label rows ("Iniciales", "Banca") and table chrome — keep them
+ * on the base bg so they don't accidentally show the lighter zebra wash. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead tr,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th {
+  background-color: #191919 !important;
+  background: #191919 !important;
+}
+
+/* Inline elements inside zebra cells: the widget's `*` rule paints them
+ * with #191919 and that shows through as a darker block on top of the
+ * lighter even-row wash. Force them transparent so they inherit the cell
+ * background. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody td *,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th * {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
 /* Total row: a slightly darker wash so it reads as a summary line.
@@ -521,35 +561,189 @@ span.box-score-person-cell,
   font-weight: 600 !important;
 }
 
-/* Restore native styling inside the iOS app webview. */
+/* App webview: total row gets a slightly lighter dark wash so it reads
+ * as a summary line on the dark surface. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total td,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total th {
-  background-color: revert !important;
-  font-weight: revert !important;
+  background-color: #2a2a2a !important;
+  font-weight: 600 !important;
 }
 
 select {
   padding-right: 2.5rem !important;
 }
 
+/* Team extended stats: convert the widget's flat list into a card grid
+ * matching the MetSummaryStatsBoxes design system. Web-only — the iOS
+ * app webview restores its native styling further down. */
 .sw-box-score-total-team-stats {
-  border-radius: 8px !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 8px !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin-top: 20px !important;
+  margin-bottom: 24px !important;
   font-family: var(--font-barlow), Barlow, sans-serif !important;
-  padding: 20px 15px !important;
-  margin-top: 25px !important;
-  margin-bottom: 30px !important;
+}
+
+@media (min-width: 640px) {
+  .sw-box-score-total-team-stats {
+    gap: 10px !important;
+    margin-top: 25px !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .sw-box-score-total-team-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sw-box-score-total-team-stats {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sw-box-score-total-team-stats {
+    grid-template-columns: repeat(7, 1fr) !important;
+  }
+}
+
+.sw-box-score-total-team-stats-entry {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  background-color: #fff !important;
+  border: 1px solid #EAEAEA !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  min-height: 72px !important;
+}
+
+@media (min-width: 640px) {
+  .sw-box-score-total-team-stats-entry {
+    border-radius: 12px !important;
+    padding: 14px 16px !important;
+    min-height: 92px !important;
+  }
 }
 
 .sw-box-score-total-team-stats-entry-label {
   font-family: var(--font-barlow), Barlow, sans-serif !important;
   font-weight: 500 !important;
-  font-size: 14px !important;
-  color: #444 !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  color: rgba(15, 23, 31, 0.8) !important;
+  margin-bottom: 6px !important;
+}
+
+@media (min-width: 640px) {
+  .sw-box-score-total-team-stats-entry-label {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+  }
 }
 
 .sw-box-score-total-team-stats-entry-value {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.2px !important;
+  color: #0F171F !important;
+  margin-top: auto !important;
+}
+
+@media (min-width: 640px) {
+  .sw-box-score-total-team-stats-entry-value {
+    font-size: 28px !important;
+  }
+}
+
+/* App webview: same card-grid layout as web, with inverted colors so it
+ * sits on the dark #191919 surface used elsewhere in the iOS webview. */
+.sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin-top: 20px !important;
+  margin-bottom: 24px !important;
+}
+
+@media (min-width: 640px) {
+  .sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats {
+    gap: 10px !important;
+  }
+}
+
+.sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  min-height: 72px !important;
+}
+
+@media (min-width: 640px) {
+  .sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry {
+    border-radius: 12px !important;
+    padding: 14px 16px !important;
+    min-height: 92px !important;
+  }
+}
+
+.sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry-label {
   font-family: var(--font-barlow), Barlow, sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-bottom: 6px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+@media (min-width: 640px) {
+  .sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry-label {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+.sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry-value {
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.2px !important;
+  color: #fff !important;
+  margin-top: auto !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+@media (min-width: 640px) {
+  .sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats-entry-value {
+    font-size: 28px !important;
+  }
 }
 
 span.sw-box-score-additional-persons-role {
@@ -1943,9 +2137,12 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   text-align: center !important;
 }
 
+/* Wrapper for the team-stats cards: no border/background — each entry
+ * carries its own card styling (defined earlier in the file). */
 .sport-radar-fixture-mobile-widget .sw-box-score-total-team-stats {
-  border: 1px solid rgba(125, 125, 125, 0.2) !important;
-  background: rgba(54, 54, 54, 0.1) !important;
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-card {
