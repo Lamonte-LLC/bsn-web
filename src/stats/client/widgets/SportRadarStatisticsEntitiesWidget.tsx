@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useSportRadarPlayerLinks } from './useSportRadarPlayerLinks';
 
-export default function SportRadarStatisticsPersonsWidget() {
+export default function SportRadarStatisticsEntitiesWidget() {
   const widgetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function SportRadarStatisticsPersonsWidget() {
 
     const script = document.createElement('script');
     script.src = 'https://widget.eui.connect.sportradar.com/widget.js';
-    script.dataset.type = 'statistics_persons';
+    script.dataset.type = 'statistics_entities';
     script.dataset.websiteId = '312';
     script.dataset.useNativeStyles = 'false';
     container.appendChild(script);
@@ -24,5 +24,5 @@ export default function SportRadarStatisticsPersonsWidget() {
 
   useSportRadarPlayerLinks(widgetRef);
 
-  return <div className="widget" ref={widgetRef} />;
+  return <div className="widget widget-entities" ref={widgetRef} />;
 }

@@ -491,6 +491,43 @@ span.box-score-person-cell,
   text-align: center !important;
 }
 
+/* Alternating row backgrounds — match the /estadisticas widget treatment.
+ * Even rows get a subtle grey wash; odd rows stay on the surface bg.
+ * Covers both <td> and the sticky <th> so no white band leaks through. */
+.box-score .sw-grid table tbody tr:nth-child(even) td,
+.box-score .sw-grid table tbody tr:nth-child(even) th {
+  background-color: #f9f9f9 !important;
+}
+
+.box-score .sw-grid table tbody tr:nth-child(odd) td,
+.box-score .sw-grid table tbody tr:nth-child(odd) th {
+  background-color: #fdfdfd !important;
+}
+
+/* Total row: a slightly darker wash so it reads as a summary line.
+ * Web-only — the in-app webview widget keeps its native styling.
+ * Higher specificity (covers both nth-child(odd) and nth-child(even)
+ * since either may match the totals row) and direct selectors on the
+ * <th>/<td> so the zebra rules above don't win. */
+.box-score .sw-grid table tbody tr.grid-custom-row-total > td,
+.box-score .sw-grid table tbody tr.grid-custom-row-total > th,
+.box-score .sw-grid table tbody tr.grid-custom-row-total:nth-child(odd) > td,
+.box-score .sw-grid table tbody tr.grid-custom-row-total:nth-child(odd) > th,
+.box-score .sw-grid table tbody tr.grid-custom-row-total:nth-child(even) > td,
+.box-score .sw-grid table tbody tr.grid-custom-row-total:nth-child(even) > th,
+.box-score .sw-grid table tbody tr.grid-custom-row-total th.grid-fixed-body-cell,
+.box-score .sw-grid table tbody tr.grid-custom-row-total th.grid-custom-row-fixed {
+  background-color: #ececec !important;
+  font-weight: 600 !important;
+}
+
+/* Restore native styling inside the iOS app webview. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total th {
+  background-color: revert !important;
+  font-weight: revert !important;
+}
+
 select {
   padding-right: 2.5rem !important;
 }
@@ -1173,6 +1210,103 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   }
 }
 
+/* ── Equipos (statistics_entities) widget tweaks ──
+ * Scoped to `.widget-entities` so the players widget keeps its layout.
+ * Equipos: generous vertical breathing room, every column centered. */
+.widget-entities .sw-season-statistics table tbody td,
+.widget-entities .sw-season-statistics table tbody th {
+  padding-top: 19px !important;
+  padding-bottom: 19px !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+}
+
+/* Numeric stat cells: shrink by 1px so they read more in line with the
+ * team name on the left. */
+.widget-entities .sw-season-statistics table tbody td {
+  font-size: 13px !important;
+}
+
+/* Center stat cells in the entities widget. The first/sticky column
+ * (the team-name column) keeps its native left alignment so it reads as
+ * a clean stack matching the design system. */
+.widget-entities .sw-season-statistics table tbody tr td,
+.widget-entities .sw-season-statistics table thead tr th:not(.grid-fixed-header-cell),
+.widget-entities .sw-grid table tbody tr td,
+.widget-entities .sw-grid table thead tr th:not(.grid-fixed-header-cell) {
+  text-align: center !important;
+}
+
+/* First/sticky column ("Nombre"): align left for both header and rows. */
+.widget-entities .sw-season-statistics table thead tr th.grid-fixed-header-cell,
+.widget-entities .sw-season-statistics table tbody tr th.grid-fixed-body-cell,
+.widget-entities .sw-season-statistics table tbody tr th.grid-data-cell-name {
+  text-align: left !important;
+}
+
+/* Team-name link inside the sticky <th>. Left-aligned to match the
+ * "Nombre" column header; logo + name sit on the same baseline. */
+.widget-entities .sw-season-statistics a.sw-team-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  color: rgba(15, 23, 31, 0.9) !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  letter-spacing: 0.15px !important;
+}
+
+/* Team logo: 15% smaller (~27px from default ~32px). The <img> sits
+ * directly inside `a.sw-team-link` with no helper class. */
+.widget-entities .sw-season-statistics a.sw-team-link img {
+  width: 27px !important;
+  height: 27px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+}
+
+/* Default gap between logo and name; desktop bumps to 13px (3px more). */
+.widget-entities .sw-season-statistics a.sw-team-link {
+  gap: 10px !important;
+  font-size: 15px !important;
+}
+
+@media (min-width: 768px) {
+  .widget-entities .sw-season-statistics a.sw-team-link {
+    gap: 13px !important;
+    font-size: 15px !important;
+  }
+}
+
+/* Mobile: tighter team-name cell — smaller logo flush against the column's
+ * left padding, +1px on the name, 2px between logo and name. */
+@media (max-width: 767px) {
+  .widget-entities .sw-season-statistics a.sw-team-link {
+    gap: 2px !important;
+    font-size: 13px !important;
+  }
+
+  /* Force the gap with margin too in case the widget's flex shorthand
+   * elsewhere overrides `gap` at this breakpoint. */
+  .widget-entities .sw-season-statistics a.sw-team-link img {
+    margin-right: 2px !important;
+  }
+
+  .widget-entities .sw-season-statistics a.sw-team-link img {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .widget-entities .sw-season-statistics table tbody th.grid-fixed-body-cell,
+  .widget-entities .sw-season-statistics table tbody th.grid-data-cell-name,
+  .widget-entities .sw-season-statistics table thead th.grid-fixed-header-cell {
+    padding-left: 0 !important;
+    padding-right: 4px !important;
+  }
+}
+
+
 /* Zebra rows on the table body — covers both stat <td> cells AND the
  * sticky player-name <th> at the start of each row. */
 #synergy-widget-statistics_persons table tbody tr:nth-child(even) td,
@@ -1225,73 +1359,86 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
 /* ── Primary tabs (Promedio / Estadísticas de tiros / Totales / Resumen) ──
  * The widget puts these under `.sw-season-statistics > div > .sw-multi-switch`.
- * We override just this scope so the match-detail widget's existing
- * `.sw-multi-switch` styles (PBP period pills) stay untouched. */
+ * Restyled as category pills (matches the dummy /estadisticas design) so
+ * they stay one level below the dark Jugadores/Equipos tabs in the hero.
+ * Scoped tightly so the match-widget PBP `.sw-multi-switch` is untouched. */
 .widget .sw-season-statistics > div > .sw-multi-switch {
   display: flex !important;
   justify-content: center !important;
   background-color: transparent !important;
   padding: 0 !important;
-  margin: 0 0 24px 0 !important;
+  margin: 0 0 32px 0 !important;
   border-bottom: none !important;
 }
 
 .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-buttons {
   display: flex !important;
-  flex-wrap: nowrap !important;
+  flex-wrap: wrap !important;
   justify-content: center !important;
   background-color: transparent !important;
-  gap: 0 !important;
+  gap: 8px !important;
   padding: 0 !important;
 }
 
 .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item {
-  background-color: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  text-transform: capitalize !important;
-  font-size: 22px !important;
+  flex: 0 0 auto !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(213, 213, 213, 1) !important;
+  border-radius: 100px !important;
+  text-transform: none !important;
+  font-size: 15px !important;
   font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
   font-weight: 400 !important;
-  color: rgba(0, 0, 0, 0.5) !important;
-  padding: 10px 0 !important;
-  margin: 0 10px !important;
+  color: rgba(0, 0, 0, 0.65) !important;
+  padding: 5px 20px !important;
+  margin: 0 !important;
   min-width: unset !important;
   width: auto !important;
   white-space: nowrap !important;
-  letter-spacing: 0.01em !important;
-  transition: color 0.15s ease, border-color 0.15s ease !important;
+  letter-spacing: 0.3px !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
 }
 
 .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item[data-sw-multiswitch-item-active="true"] {
-  background-color: transparent !important;
-  color: #000 !important;
-  border-bottom: 1.5px solid #000 !important;
+  background-color: #0F171F !important;
+  border-color: #0F171F !important;
+  color: #ffffff !important;
 }
 
 .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
-  color: rgba(0, 0, 0, 0.75) !important;
-  background-color: transparent !important;
-  border-color: transparent !important;
+  border-color: rgba(15, 23, 31, 0.4) !important;
+  background-color: #F8F8F8 !important;
+  color: rgba(0, 0, 0, 0.85) !important;
 }
 
-/* Mobile: smaller tabs to match the match-widget sub-tabs treatment. */
+.widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
+  transform: scale(0.97) !important;
+}
+
+/* Mobile: pills can scroll horizontally in one line if they don't fit.
+ * Wrap in a scrollable row, hide scrollbar visually. */
 @media (max-width: 767px) {
   .widget .sw-season-statistics > div > .sw-multi-switch {
     overflow-x: auto !important;
     overflow-y: visible !important;
+    justify-content: flex-start !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+  .widget .sw-season-statistics > div > .sw-multi-switch::-webkit-scrollbar {
+    display: none !important;
   }
 
   .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-buttons {
-    overflow: visible !important;
     flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
     min-width: max-content !important;
+    overflow: visible !important;
   }
 
   .widget .sw-season-statistics > div > .sw-multi-switch .sw-multi-switch-item {
-    font-size: 18px !important;
-    margin: 0 8px !important;
-    overflow: visible !important;
+    font-size: 14px !important;
+    padding: 6px 14px !important;
   }
 }
 
@@ -1489,14 +1636,17 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   color: rgba(15, 23, 31, 0.9) !important;
 }
 
-/* ── Team name cell: align left ── */
-.widget .sw-season-statistics .sw-season-statistics-team-name {
+/* ── Team-name cell (Jugadores widget only): align left ──
+ * In the Jugadores widget, the team-name lives in a <td> AFTER the sticky
+ * player-name <th>, so we left-align that cell + its inner text.
+ * Excluded from `.widget-entities` (entities widget centers everything). */
+.widget:not(.widget-entities) .sw-season-statistics .sw-season-statistics-team-name {
   text-align: left !important;
   justify-content: flex-start !important;
   display: flex !important;
 }
 
-.widget .sw-season-statistics .sw-season-statistics-team-name span {
+.widget:not(.widget-entities) .sw-season-statistics .sw-season-statistics-team-name span {
   font-family: var(--font-barlow), Barlow, sans-serif !important;
   font-size: 13px !important;
   color: rgba(15, 23, 31, 0.7) !important;
@@ -1504,8 +1654,8 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 }
 
 /* The team-name <td> by default is centered (matches all stat columns).
- * Force left alignment on that single cell. */
-.widget .sw-season-statistics table tbody td:first-of-type {
+ * Force left alignment on that single cell — Jugadores widget only. */
+.widget:not(.widget-entities) .sw-season-statistics table tbody td:first-of-type {
   text-align: left !important;
 }
 
