@@ -160,45 +160,83 @@ export function useSportRadarPlayerLinks(
       attributeFilter: ['href'],
     });
 
-    // Sportradar attaches a bubbling-phase click handler that calls
-    // preventDefault() and routes navigation through its own internal
-    // SPA. Listening in CAPTURE phase lets us run before that handler,
-    // so we can read our rewritten href (or compute it on the fly) and
-    // navigate to our internal route.
-    const onClickCapture = (e: Event) => {
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-      const anchor = target.closest<HTMLAnchorElement>(
-        'a[data-sw-person-link="true"], a[data-sw-team-link="true"], a.box-score-person-cell',
-      );
-      if (!anchor) return;
-      if (!container.contains(anchor)) return;
+    // Sportradar attaches click/mousedown handlers in bubbling phase
+    // that open an internal player modal. Listening in CAPTURE phase
+    // lets us intercept before that handler — and listening on
+    // `mousedown` too catches widget code that uses pointer events
+    // instead of click. We also accept any anchor whose href contains
+    // the Sportradar token, even if it wasn't tagged with
+    // `data-sw-person-link` (e.g. the box-score person cell), and
+    // attempt an on-demand decode if rewrite hasn't run yet.
+    const tryNavigateFromAnchor = (anchor: HTMLAnchorElement, e: Event) => {
+      let href = anchor.getAttribute('href') ?? '';
 
-      const href = anchor.getAttribute('href') ?? '';
-      // Rewritten anchors point to /jugadores/<uuid> or /equipos/<code>.
-      // Anything else (e.g. the original Sportradar token href) means we
-      // failed to rewrite — fall back to letting the widget handle it.
-      if (!href.startsWith('/jugadores/') && !href.startsWith('/equipos/')) {
+      // Already rewritten — go.
+      if (href.startsWith('/jugadores/') || href.startsWith('/equipos/')) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (openInNewTab) {
+          window.open(href, '_blank', 'noopener,noreferrer');
+        } else {
+          window.location.assign(href);
+        }
         return;
       }
 
-      e.preventDefault();
-      e.stopPropagation();
-      if (openInNewTab) {
-        window.open(href, '_blank', 'noopener,noreferrer');
-      } else {
-        // Use full navigation rather than Next router so the widget tear-
-        // down on the new page is clean (the widget mutates global state
-        // and behaves better with a fresh document).
-        window.location.assign(href);
+      // Has the Sportradar token but rewrite hasn't completed yet —
+      // try to extract the player UUID synchronously is impossible
+      // (DecompressionStream is async), but we can kick off the rewrite
+      // and abort the widget's modal so the user can click again once
+      // rewritten. The MutationObserver below also handles this for
+      // future renders.
+      const decoded = decodeURIComponent(href);
+      if (decoded.includes('~w=p~') || decoded.includes('~w=e~')) {
+        // Block the widget modal; rewrite will catch up.
+        e.preventDefault();
+        e.stopPropagation();
+        if (anchor.matches('a[data-sw-person-link="true"], a.box-score-person-cell')) {
+          void rewritePlayerLink(anchor).then(() => {
+            const next = anchor.getAttribute('href') ?? '';
+            if (next.startsWith('/jugadores/')) {
+              if (openInNewTab) {
+                window.open(next, '_blank', 'noopener,noreferrer');
+              } else {
+                window.location.assign(next);
+              }
+            }
+          });
+        } else if (anchor.matches('a[data-sw-team-link="true"]')) {
+          rewriteTeamLink(anchor);
+          const next = anchor.getAttribute('href') ?? '';
+          if (next.startsWith('/equipos/')) {
+            if (openInNewTab) {
+              window.open(next, '_blank', 'noopener,noreferrer');
+            } else {
+              window.location.assign(next);
+            }
+          }
+        }
       }
     };
 
-    container.addEventListener('click', onClickCapture, true);
+    const onPointerCapture = (e: Event) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const anchor = target.closest<HTMLAnchorElement>(
+        'a[data-sw-person-link="true"], a[data-sw-team-link="true"], a.box-score-person-cell, a.sw-link',
+      );
+      if (!anchor) return;
+      if (!container.contains(anchor)) return;
+      tryNavigateFromAnchor(anchor, e);
+    };
+
+    container.addEventListener('mousedown', onPointerCapture, true);
+    container.addEventListener('click', onPointerCapture, true);
 
     return () => {
       observer.disconnect();
-      container.removeEventListener('click', onClickCapture, true);
+      container.removeEventListener('mousedown', onPointerCapture, true);
+      container.removeEventListener('click', onPointerCapture, true);
     };
   }, [ref, openInNewTab]);
 }

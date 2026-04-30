@@ -1955,15 +1955,17 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   font-weight: normal;
 }
 
-#synergy-widget-fixture_detail a.box-score-person-cell {
-  pointer-events: auto !important;
-  cursor: pointer !important;
+/* Web boxscore: the widget exposes player names as a clickable <span>
+ * that opens its own internal modal — but the modal doesn't link to our
+ * player profile and the DOM doesn't expose the player UUID, so we
+ * disable the click + cursor entirely. The name reads as plain text. */
+#synergy-widget-fixture_detail .box-score-person-cell,
+#synergy-widget-fixture_detail .box-score-person-cell-clickable,
+#synergy-widget-fixture_detail th.grid-data-cell-name,
+#synergy-widget-fixture_detail th.grid-data-cell-name * {
+  pointer-events: none !important;
+  cursor: default !important;
   text-decoration: none !important;
-  color: inherit !important;
-}
-
-#synergy-widget-fixture_detail a.box-score-person-cell:hover {
-  text-decoration: underline !important;
 }
 
 #synergy-widget-fixture_detail .sw-navbar {
@@ -2131,10 +2133,28 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.sport-radar-fixture-mobile-widget a.sw-link.box-score-person-cell {
+/* Jersey # column: muted color so it reads as a secondary identifier
+ * vs. the white stat numbers next to it. */
+.sport-radar-fixture-mobile-widget th.grid-data-cell-bib {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* App webview: player names in the boxscore are not linked to internal
+ * profiles (the widget exposes them as a clickable <span> that opens
+ * its own modal — we don't want either behavior in the app). Disable
+ * the click + cursor entirely for the app webview only.
+ * The widget attaches its modal handler to the parent <th>, so we
+ * also kill pointer-events on the cell itself, not just the span. */
+.sport-radar-fixture-mobile-widget a.sw-link.box-score-person-cell,
+.sport-radar-fixture-mobile-widget span.box-score-person-cell,
+.sport-radar-fixture-mobile-widget .box-score-person-cell,
+.sport-radar-fixture-mobile-widget .box-score-person-cell-clickable,
+.sport-radar-fixture-mobile-widget th.grid-data-cell-name,
+.sport-radar-fixture-mobile-widget th.grid-data-cell-name * {
   color: #fff !important;
   pointer-events: none !important;
   cursor: default !important;
+  text-decoration: none !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-grid,

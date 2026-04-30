@@ -304,7 +304,7 @@ export default function HeaderBoxLayout() {
             <div className="hidden md:flex md:flex-1 md:justify-end md:items-center md:gap-[14px]">
               <Link
                 href="/boletos"
-                className="ml-[3px] font-barlow text-[14px] text-white/85 hover:text-white border border-white/20 hover:border-white/40 rounded-full px-3.5 py-1.5 transition-colors whitespace-nowrap"
+                className="ml-[3px] font-special-gothic-condensed-one text-[17px] text-white/85 hover:text-white border border-white/20 hover:border-white/40 rounded-full px-3.5 py-1.5 transition-colors whitespace-nowrap"
               >
                 Boletos
               </Link>
