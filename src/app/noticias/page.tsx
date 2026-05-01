@@ -63,7 +63,7 @@ export default async function NoticiasPage() {
           <div className="mb-11 -mt-[94px] lg:mb-18 lg:-mt-[84px]">
             <div className="flex flex-col lg:flex-row">
               <figure
-                className="flex-shrink-0 bg-center bg-no-repeat bg-cover h-[214px] mb-[18px] rounded-[12px] md:h-[404px] lg:mb-0 lg:h-auto lg:w-[52%] lg:border lg:border-[rgba(159,159,159,0.4)] lg:rounded-r-[0px]"
+                className="flex-shrink-0 bg-center bg-no-repeat bg-cover aspect-[1.88/1] mb-[18px] rounded-[12px] md:aspect-auto md:h-[404px] lg:mb-0 lg:h-auto lg:w-[52%] lg:border lg:border-[rgba(159,159,159,0.4)] lg:rounded-r-[0px]"
                 style={{
                   backgroundImage: `url(${hero?.imageUrl || 'https://dummyimage.com/600x400/cccccc/ffffff'})`,
                 }}
