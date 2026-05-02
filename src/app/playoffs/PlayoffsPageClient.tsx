@@ -39,180 +39,411 @@ const LEADER_DATA = {
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-function seriesLeaderText(s: Series): { text: string; tone: 'final' | 'progress' | 'tied' | 'upcoming' } {
+type StatusTone = 'final' | 'progress' | 'tied' | 'upcoming';
+function seriesLeaderText(s: Series): { text: string; tone: StatusTone; accentCode?: string } {
   if (s.status === 'UPCOMING') return { text: 'Por jugar', tone: 'upcoming' };
   const w1 = s.team1.wins;
   const w2 = s.team2.wins;
   if (s.status === 'COMPLETED') {
     const winner = w1 > w2 ? s.team1 : s.team2;
     const loserWins = Math.min(w1, w2);
-    return { text: `${winner.name} gana ${winner.wins}-${loserWins}`, tone: 'final' };
+    return { text: `${winner.code} avanza ${winner.wins}–${loserWins}`, tone: 'final', accentCode: winner.code };
   }
-  if (w1 === w2) return { text: `Serie empatada ${w1}-${w2}`, tone: 'tied' };
+  if (w1 === w2) return { text: `Serie empatada ${w1}–${w2}`, tone: 'tied' };
   const leader = w1 > w2 ? s.team1 : s.team2;
   const trailer = w1 > w2 ? s.team2 : s.team1;
-  return { text: `${leader.name} lidera ${leader.wins}-${trailer.wins}`, tone: 'progress' };
+  return { text: `${leader.code} lidera ${leader.wins}–${trailer.wins}`, tone: 'progress', accentCode: leader.code };
 }
 
-// ─── Estado de las series — card with concentric logos + J# game pips ──────────
+// ─── Estado de las series — TopLabel + CardHeader + Game rows ─────────────────
 function SeriesCard({ series, fullWidth = false }: { series: Series; fullWidth?: boolean }) {
   const status = seriesLeaderText(series);
   const isFinal = series.round === 'FINAL';
   const isFinalPending = isFinal && series.status === 'UPCOMING';
   const isCompleted = series.status === 'COMPLETED';
-  // Only show empty future J# slots while series is still in progress.
-  const totalSlots = isCompleted ? series.games.length : 7;
+
+  const w1 = series.team1.wins;
+  const w2 = series.team2.wins;
+  const team1Loser = isCompleted && w1 < w2;
+  const team2Loser = isCompleted && w2 < w1;
+
+  // Final card uses ivory + gold trim, no longer pitch-black
+  const cardBg = isFinal ? '#FFF8E1' : '#FFFFFF';
+  const headerBg = isFinal ? '#FFF8E1' : '#FFFFFF';
+
+  // Round-coded top label bar — subtle tint + matching label text
+  const roundTheme: { bg: string; text: string } = isFinal
+    ? { bg: '#FEC200', text: '#0F171F' }
+    : series.round === 'GRUPO_FINAL'
+      ? { bg: 'rgba(110,63,163,0.10)', text: '#6E3FA3' }
+      : { bg: 'rgba(21,101,192,0.10)', text: '#1565C0' };
+
+  // Status pill tone — completed series read as "done" via green
+  const pillTheme: { bg: string; text: string; muted: string } = isCompleted
+    ? { bg: 'rgba(16,128,61,0.10)', text: '#10803D', muted: 'rgba(16,128,61,0.65)' }
+    : { bg: 'rgba(15,23,31,0.06)', text: '#0F171F', muted: 'rgba(15,23,31,0.55)' };
+
+  // Build out future game rows — only for in-progress series.
+  // Best-of-7: continue until one team has 4 wins. Skip empty entries when complete.
+  const futureGames: { gameNumber: number; date?: string; time?: string }[] = [];
+  if (!isCompleted && !isFinalPending) {
+    const remaining = (4 - w1) + (4 - w2); // worst-case games left
+    const minRemaining = Math.max(4 - w1, 4 - w2); // best-case (clinch sweep)
+    const slotsToShow = Math.min(remaining, Math.max(minRemaining, 1));
+    for (let i = 0; i < slotsToShow; i += 1) {
+      const gameNumber = series.games.length + i + 1;
+      if (i === 0 && series.nextGame) {
+        futureGames.push({ gameNumber, date: series.nextGame.date, time: series.nextGame.time });
+      } else {
+        futureGames.push({ gameNumber });
+      }
+    }
+  }
 
   return (
     <div
-      className={`border border-[rgba(14,20,32,0.06)] rounded-[16px] shadow-[0px_2px_10px_rgba(14,20,32,0.04)] overflow-hidden ${
-        isCompleted ? 'bg-[#fafbfc]' : 'bg-white'
-      } ${fullWidth ? 'text-center' : ''}`}
+      className={`rounded-[12px] overflow-hidden ${fullWidth ? 'lg:col-span-3' : ''}`}
+      style={{
+        backgroundColor: cardBg,
+        // Stripe/Linear-style stack: hairline ring, tight ambient, soft long cast
+        boxShadow: isFinal
+          ? [
+              '0 0 0 0.5px rgba(15,23,31,0.06)',
+              '0 1px 1px rgba(15,23,31,0.04)',
+              '0 4px 8px -2px rgba(15,23,31,0.04)',
+              '0 18px 32px -12px rgba(254,194,0,0.18)',
+            ].join(', ')
+          : [
+              '0 0 0 0.5px rgba(15,23,31,0.06)',
+              '0 1px 1px rgba(15,23,31,0.03)',
+              '0 4px 8px -2px rgba(15,23,31,0.03)',
+              '0 12px 24px -10px rgba(15,23,31,0.06)',
+            ].join(', '),
+        ...(isFinal ? { borderTop: '2px solid #FEC200' } : null),
+      }}
     >
-      <div className={`px-5 pt-4 pb-4 lg:px-6 lg:pt-5 lg:pb-5 ${fullWidth ? 'lg:px-10 lg:pt-9 lg:pb-8' : ''}`}>
-        {/* Row 1: conference eyebrow on left, status on right — gives team
-         * names the entire next row to breathe (no truncation). */}
-        {!fullWidth && !isFinalPending && (
-          <div className="flex items-center justify-between gap-3 mb-3">
-            <p className="font-barlow font-semibold text-[10px] text-[rgba(15,23,31,0.5)] uppercase tracking-[0.10em] truncate">
-              {series.conferenceLabel}
+      {/* TopLabel bar */}
+      <div
+        className="flex items-center justify-between gap-3 px-5 py-[10px]"
+        style={{ backgroundColor: roundTheme.bg }}
+      >
+        <span
+          className="font-barlow font-semibold text-[11px] uppercase truncate"
+          style={{ letterSpacing: '0.14em', color: roundTheme.text }}
+        >
+          {series.conferenceLabel}
+        </span>
+        {isFinal ? (
+          <span
+            className="inline-flex items-center gap-[4px] font-barlow font-bold text-[10px] text-[#FEC200] px-[8px] py-[4px] tabular-nums shrink-0"
+            style={{ backgroundColor: '#0F171F', borderRadius: 3, letterSpacing: '0.06em' }}
+          >
+            <span aria-hidden>★</span>
+            FINAL BSN
+          </span>
+        ) : isCompleted ? (
+          <span
+            className="font-barlow font-semibold text-[10px] uppercase text-[rgba(15,23,31,0.65)] px-[8px] py-[3px] shrink-0"
+            style={{
+              letterSpacing: '0.10em',
+              backgroundColor: 'rgba(15,23,31,0.07)',
+              borderRadius: 3,
+            }}
+          >
+            Concluida
+          </span>
+        ) : null}
+      </div>
+
+      {/* CardHeader */}
+      <div
+        className="px-5 py-5"
+        style={{ backgroundColor: headerBg }}
+      >
+        {isFinalPending ? (
+          <div className="flex flex-col items-center gap-2 py-2">
+            <span aria-hidden className="text-[#FEC200] text-[24px] leading-none">★</span>
+            <p
+              className="font-special-gothic-condensed-one text-[32px] text-center text-[#0F171F]"
+              style={{ fontWeight: 400, letterSpacing: '0.3px' }}
+            >
+              Por definir
             </p>
-            <p className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.7)] shrink-0">
-              <span className="text-[rgba(15,23,31,0.4)] uppercase tracking-[0.08em] mr-1.5">
-                {status.tone === 'final' ? 'Resultado' : 'Estado'}
-              </span>
-              <span className="text-[#0F171F] font-semibold">{status.text}</span>
+            <p className="font-barlow text-[13px] text-center text-[rgba(15,23,31,0.55)]">
+              {series.nextGame
+                ? `Comienza ${series.nextGame.date} · ${series.nextGame.venue}`
+                : 'A la espera de los finalistas'}
             </p>
           </div>
-        )}
-
-        {/* Row 2: logos on left, team names on right (full width, no truncation) */}
-        {!fullWidth && (
-          <div className="flex items-center gap-3">
-            {!isFinalPending && (
-              <div className="relative shrink-0" style={{ width: 70, height: 40 }}>
-                <div
-                  className="absolute left-0 top-0 flex items-center justify-center bg-white rounded-full"
-                  style={{
-                    width: 40, height: 40,
-                    border: '1.5px solid rgba(15,23,31,0.15)',
-                  }}
-                >
-                  <TeamLogoAvatar teamCode={series.team1.code} size={28} />
-                </div>
-                <div
-                  className="absolute top-0 flex items-center justify-center bg-white rounded-full"
-                  style={{
-                    left: 30,
-                    width: 40, height: 40,
-                    border: '1.5px solid rgba(15,23,31,0.15)',
-                  }}
-                >
-                  <TeamLogoAvatar teamCode={series.team2.code} size={28} />
-                </div>
-              </div>
-            )}
-
-            <p className="font-special-gothic-condensed-one text-[20px] sm:text-[22px] text-[#0F171F] leading-tight tracking-[0.02em] flex-1 min-w-0">
-              {series.team1.name}{' '}
-              <span className="text-[rgba(15,23,31,0.4)] text-[15px] sm:text-[16px]">vs</span>{' '}
-              {series.team2.name}
-            </p>
-          </div>
-        )}
-
-        {/* Final BSN — fully centered layout */}
-        {fullWidth && !isFinalPending && (
+        ) : (
           <>
-            <p className="font-barlow font-semibold text-[10px] text-[rgba(15,23,31,0.5)] uppercase tracking-[0.10em] text-center mb-3">
-              {series.conferenceLabel}
-            </p>
-            <div className="flex justify-center mb-3">
-              <div className="relative" style={{ width: 96, height: 52 }}>
+            <div className="flex items-center gap-3">
+              {/* Team 1 — code + city */}
+              <div className="flex items-center gap-3 flex-1 min-w-0">
                 <div
-                  className="absolute left-0 top-0 flex items-center justify-center bg-white rounded-full"
-                  style={{ width: 52, height: 52, border: '1.5px solid rgba(15,23,31,0.15)' }}
+                  className="shrink-0 flex items-center justify-center bg-white rounded-full overflow-hidden"
+                  style={{
+                    width: isFinal ? 52 : 44,
+                    height: isFinal ? 52 : 44,
+                    border: `2px solid ${TEAM_COLOR[series.team1.code] || '#0F171F'}`,
+                  }}
                 >
-                  <TeamLogoAvatar teamCode={series.team1.code} size={36} />
+                  <TeamLogoAvatar teamCode={series.team1.code} size={isFinal ? 36 : 30} />
                 </div>
-                <div
-                  className="absolute top-0 flex items-center justify-center bg-white rounded-full"
-                  style={{ left: 44, width: 52, height: 52, border: '1.5px solid rgba(15,23,31,0.15)' }}
+                <p
+                  className={`font-special-gothic-condensed-one leading-none ${
+                    team1Loser ? 'text-[rgba(15,23,31,0.30)]' : 'text-[#0F171F]'
+                  }`}
+                  style={{
+                    fontWeight: 400,
+                    fontSize: isFinal ? 32 : 28,
+                    letterSpacing: '0.5px',
+                  }}
                 >
-                  <TeamLogoAvatar teamCode={series.team2.code} size={36} />
+                  {series.team1.code}
+                </p>
+              </div>
+
+              {/* Center score */}
+              <div className="flex items-center gap-2 shrink-0 tabular-nums">
+                <span
+                  className={`font-special-gothic-condensed-one ${
+                    team1Loser ? 'text-[rgba(15,23,31,0.30)]' : 'text-[#0F171F]'
+                  }`}
+                  style={{ fontWeight: 400, fontSize: isFinal ? 56 : 48, lineHeight: 1 }}
+                >
+                  {w1}
+                </span>
+                <span
+                  className="font-barlow text-[rgba(15,23,31,0.18)]"
+                  style={{ fontSize: isFinal ? 36 : 30, lineHeight: 1 }}
+                >
+                  –
+                </span>
+                <span
+                  className={`font-special-gothic-condensed-one ${
+                    team2Loser ? 'text-[rgba(15,23,31,0.30)]' : 'text-[#0F171F]'
+                  }`}
+                  style={{ fontWeight: 400, fontSize: isFinal ? 56 : 48, lineHeight: 1 }}
+                >
+                  {w2}
+                </span>
+              </div>
+
+              {/* Team 2 — mirrored */}
+              <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
+                <p
+                  className={`font-special-gothic-condensed-one leading-none text-right ${
+                    team2Loser ? 'text-[rgba(15,23,31,0.30)]' : 'text-[#0F171F]'
+                  }`}
+                  style={{
+                    fontWeight: 400,
+                    fontSize: isFinal ? 32 : 28,
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  {series.team2.code}
+                </p>
+                <div
+                  className="shrink-0 flex items-center justify-center bg-white rounded-full overflow-hidden"
+                  style={{
+                    width: isFinal ? 52 : 44,
+                    height: isFinal ? 52 : 44,
+                    border: `2px solid ${TEAM_COLOR[series.team2.code] || '#0F171F'}`,
+                  }}
+                >
+                  <TeamLogoAvatar teamCode={series.team2.code} size={isFinal ? 36 : 30} />
                 </div>
               </div>
             </div>
-            <p className="font-special-gothic-condensed-one text-[26px] lg:text-[34px] text-[#0F171F] leading-tight tracking-[0.02em] text-center">
-              {series.team1.name}{' '}
-              <span className="text-[rgba(15,23,31,0.4)] text-[18px] lg:text-[24px]">vs</span>{' '}
-              {series.team2.name}
-            </p>
-            <p className="font-barlow font-medium text-[13px] text-[rgba(15,23,31,0.7)] text-center mt-3">
-              <span className="text-[rgba(15,23,31,0.4)] uppercase tracking-[0.08em] mr-1.5">
-                {status.tone === 'final' ? 'Resultado' : 'Estado'}
+
+            {/* Status pill */}
+            <div className="flex justify-center mt-4">
+              <span
+                className="inline-flex items-center font-barlow font-semibold text-[13px] px-[12px] py-[6px] tabular-nums"
+                style={{
+                  backgroundColor: pillTheme.bg,
+                  color: pillTheme.text,
+                  borderRadius: 999,
+                  letterSpacing: '0.01em',
+                }}
+              >
+                {status.text}
+                {(status.tone === 'progress' || status.tone === 'tied') && series.nextGame && (
+                  <span className="ml-2 font-medium" style={{ color: pillTheme.muted }}>
+                    · Próx. {series.nextGame.date}
+                  </span>
+                )}
               </span>
-              <span className="text-[#0F171F] font-semibold">{status.text}</span>
-            </p>
+            </div>
           </>
         )}
-
-        {/* Final BSN pending state — early return path */}
-        {isFinalPending && (
-          <p className={`font-barlow text-[13px] text-[rgba(15,23,31,0.55)] ${fullWidth ? 'mt-2 text-center' : 'mt-3'}`}>
-            {series.nextGame ? `Comienza ${series.nextGame.date} · ${series.nextGame.venue}` : 'Por definir'}
-          </p>
-        )}
-
-        {/* Game pips — bigger, divided from main content */}
-        {!isFinalPending && series.games.length > 0 && (
-          <div className={`mt-4 lg:mt-5 pt-3 border-t border-[rgba(15,23,31,0.07)] ${fullWidth ? 'flex flex-col items-center' : ''}`}>
-            <p className="font-barlow font-semibold text-[9px] text-[rgba(15,23,31,0.45)] uppercase tracking-[0.12em] mb-[8px]">
-              Resumen de los juegos
-            </p>
-            <div className={`flex flex-wrap items-center gap-[5px] ${fullWidth ? 'justify-center' : ''}`}>
-              {Array.from({ length: totalSlots }).map((_, i) => {
-                const g = series.games[i];
-                if (!g) {
-                  return (
-                    <span
-                      key={i}
-                      className="inline-flex h-[26px] min-w-[40px] px-[7px] items-center justify-center rounded-full border border-dashed border-[rgba(15,23,31,0.12)] font-barlow font-semibold text-[10px] text-[rgba(15,23,31,0.3)]"
-                    >
-                      J{i + 1}
-                    </span>
-                  );
-                }
-                const winnerCode =
-                  g.homeScore != null && g.visitorScore != null
-                    ? g.homeScore > g.visitorScore ? g.homeCode : g.visitorCode
-                    : null;
-                const winnerColor = winnerCode ? TEAM_COLOR[winnerCode] || '#0F171F' : '#cccccc';
-                const inner = (
-                  <span
-                    className="inline-flex h-[26px] items-center gap-[5px] pl-[3px] pr-[9px] rounded-full bg-white border border-[rgba(15,23,31,0.12)] font-barlow font-semibold text-[11px] text-[#0F171F] tabular-nums hover:border-[#0F171F]/55 transition-colors"
-                  >
-                    <span
-                      className="inline-flex w-[20px] h-[20px] items-center justify-center rounded-full text-white font-barlow font-bold text-[9px]"
-                      style={{ backgroundColor: winnerColor }}
-                    >
-                      J{g.gameNumber}
-                    </span>
-                    {g.homeScore}-{g.visitorScore}
-                  </span>
-                );
-                return g.matchId ? (
-                  <Link key={i} href={`/partidos/${g.matchId}`} className="inline-flex">
-                    {inner}
-                  </Link>
-                ) : (
-                  <span key={i} className="inline-flex">{inner}</span>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Game rows */}
+      {!isFinalPending && (series.games.length > 0 || futureGames.length > 0) && (
+        <div className="border-t border-[rgba(15,23,31,0.08)] bg-white">
+          {series.games.map((g, idx) => {
+            const winnerCode =
+              g.homeScore != null && g.visitorScore != null
+                ? g.homeScore > g.visitorScore
+                  ? g.homeCode
+                  : g.visitorCode
+                : null;
+            const t1Code = series.team1.code;
+            const t2Code = series.team2.code;
+            const t1Score = g.homeCode === t1Code ? g.homeScore : g.visitorScore;
+            const t2Score = g.homeCode === t2Code ? g.homeScore : g.visitorScore;
+            const t1Win = winnerCode === t1Code;
+            const t2Win = winnerCode === t2Code;
+
+            return (
+              <div
+                key={`${g.gameNumber}-${idx}`}
+                className="grid items-center px-5 py-[14px] transition-colors duration-100 hover:bg-[rgba(15,23,31,0.025)] border-b border-[rgba(15,23,31,0.05)] last:border-b-0"
+                style={{ gridTemplateColumns: '72px 1fr auto 1fr 28px', columnGap: 12 }}
+              >
+                {/* Col 1: Juego N + date — right aligned for visual balance */}
+                <div className="text-right">
+                  <p className="font-barlow font-semibold text-[12px] text-[#0F171F]">
+                    Juego {g.gameNumber}
+                  </p>
+                  <p className="font-barlow text-[11px] text-[rgba(15,23,31,0.55)]">
+                    {g.date}
+                  </p>
+                </div>
+
+                {/* Col 2: team1 code + score, right-aligned */}
+                <div className="flex items-center justify-end gap-3 min-w-0">
+                  <span
+                    className={`font-barlow font-bold ${
+                      t1Win ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.40)]'
+                    }`}
+                    style={{ fontSize: 13, letterSpacing: '0.05em' }}
+                  >
+                    {t1Code}
+                  </span>
+                  <span
+                    className={`font-special-gothic-condensed-one tabular-nums ${
+                      t1Win ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.40)]'
+                    }`}
+                    style={{ fontWeight: 400, fontSize: 24 }}
+                  >
+                    {t1Score ?? '–'}
+                  </span>
+                </div>
+
+                {/* Col 3: FINAL chip — the only pill in the row */}
+                <div className="text-center" style={{ minWidth: 64 }}>
+                  <span
+                    className="inline-flex font-barlow font-semibold text-[10px] uppercase text-[rgba(15,23,31,0.70)] px-[8px] py-[3px]"
+                    style={{
+                      letterSpacing: '0.12em',
+                      backgroundColor: 'rgba(15,23,31,0.06)',
+                      borderRadius: 3,
+                    }}
+                  >
+                    FINAL
+                  </span>
+                </div>
+
+                {/* Col 4: team2 score + code, left-aligned (mirror) */}
+                <div className="flex items-center justify-start gap-3 min-w-0">
+                  <span
+                    className={`font-special-gothic-condensed-one tabular-nums ${
+                      t2Win ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.40)]'
+                    }`}
+                    style={{ fontWeight: 400, fontSize: 24 }}
+                  >
+                    {t2Score ?? '–'}
+                  </span>
+                  <span
+                    className={`font-barlow font-bold ${
+                      t2Win ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.40)]'
+                    }`}
+                    style={{ fontSize: 13, letterSpacing: '0.05em' }}
+                  >
+                    {t2Code}
+                  </span>
+                </div>
+
+                {/* Col 5: chevron link — thin SVG */}
+                <div className="flex justify-end">
+                  {g.matchId ? (
+                    <Link
+                      href={`/partidos/${g.matchId}`}
+                      aria-label={`Ver resultados Juego ${g.gameNumber}`}
+                      className="inline-flex items-center justify-center text-[rgba(15,23,31,0.35)] hover:text-[#0F171F] transition-colors"
+                      style={{ width: 20, height: 20 }}
+                    >
+                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" aria-hidden>
+                        <path d="M1.5 1.5L8 7L1.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </Link>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Future game rows */}
+          {futureGames.map((fg) => (
+            <div
+              key={`future-${fg.gameNumber}`}
+              className="grid items-center px-5 py-[14px] border-b border-[rgba(15,23,31,0.05)] last:border-b-0 bg-[rgba(15,23,31,0.015)]"
+              style={{ gridTemplateColumns: '72px 1fr auto 1fr 28px', columnGap: 12 }}
+            >
+              <div className="text-right">
+                <p className="font-barlow font-semibold text-[12px] text-[rgba(15,23,31,0.55)]">
+                  Juego {fg.gameNumber}
+                </p>
+                <p className="font-barlow text-[11px] text-[rgba(15,23,31,0.40)]">
+                  {fg.date || 'Por confirmar'}
+                </p>
+              </div>
+              <div className="flex items-center justify-end min-w-0">
+                <span
+                  className="font-barlow font-bold text-[rgba(15,23,31,0.45)]"
+                  style={{ fontSize: 13, letterSpacing: '0.05em' }}
+                >
+                  {series.team1.code}
+                </span>
+              </div>
+              <div className="text-center" style={{ minWidth: 64 }}>
+                <span
+                  className="inline-flex font-barlow font-semibold text-[10px] uppercase text-[#1565C0] px-[8px] py-[3px]"
+                  style={{
+                    letterSpacing: '0.10em',
+                    backgroundColor: 'rgba(21,101,192,0.08)',
+                    borderRadius: 3,
+                  }}
+                >
+                  {fg.time || 'Por jugar'}
+                </span>
+              </div>
+              <div className="flex items-center justify-start min-w-0">
+                <span
+                  className="font-barlow font-bold text-[rgba(15,23,31,0.45)]"
+                  style={{ fontSize: 13, letterSpacing: '0.05em' }}
+                >
+                  {series.team2.code}
+                </span>
+              </div>
+              <div className="flex justify-end">
+                <span
+                  aria-label={`Ver previa Juego ${fg.gameNumber}`}
+                  className="inline-flex items-center justify-center text-[rgba(21,101,192,0.55)]"
+                  style={{ width: 20, height: 20 }}
+                >
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none" aria-hidden>
+                    <path d="M1.5 1.5L8 7L1.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -297,29 +528,28 @@ function StatLeaderCard({
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function PlayoffsPageClient() {
   const finalSeries = SERIES_DATA.find((s) => s.round === 'FINAL')!;
-  const allSeriesOrdered = [
-    ...SERIES_DATA.filter((s) => s.round === 'GRUPO_FINAL'),
-    ...SERIES_DATA.filter((s) => s.round === 'CUARTOS'),
-    finalSeries,
-  ];
 
   return (
     <>
-      {/* ── Estado de las series — white blade ───────────────────────────── */}
-      <section className="bg-white border-b border-[rgba(0,0,0,0.06)]">
-        <div className="container py-10 lg:py-14">
+      {/* ── Estado de las series — light blade ───────────────────────────── */}
+      <section className="bg-[#f4f5f7] border-b border-[rgba(0,0,0,0.06)]" style={{ paddingTop: 48, paddingBottom: 80 }}>
+        <div className="mx-auto px-4 lg:px-6" style={{ maxWidth: 1180 }}>
           <h2 className="font-special-gothic-condensed-one text-[28px] lg:text-[36px] text-[#0F171F] text-center tracking-[-0.3px]">
             Estado de las series
           </h2>
 
-          {/* 1 col mobile / 3 col desktop — 2 rows of 3 cards, then full-width Final BSN below */}
-          <div className="mt-7 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-4">
-            {allSeriesOrdered.filter((s) => s.round !== 'FINAL').map((s) => (
+          {/* Final first (full width via lg:col-span-3), then conference finals, then quarterfinals */}
+          <div
+            className="mt-7 lg:mt-10 grid grid-cols-1 lg:grid-cols-3"
+            style={{ columnGap: 20, rowGap: 24 }}
+          >
+            <SeriesCard series={finalSeries} fullWidth />
+            {SERIES_DATA.filter((s) => s.round === 'GRUPO_FINAL').map((s) => (
               <SeriesCard key={s.id} series={s} />
             ))}
-          </div>
-          <div className="mt-3 lg:mt-4">
-            <SeriesCard series={finalSeries} fullWidth />
+            {SERIES_DATA.filter((s) => s.round === 'CUARTOS').map((s) => (
+              <SeriesCard key={s.id} series={s} />
+            ))}
           </div>
         </div>
       </section>
