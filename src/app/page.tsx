@@ -23,7 +23,7 @@ export default async function Home() {
         <section className="pb-[109px] lg:pt-[8px] lg:pb-[84px]">
           <div className="container">
             <RecentCalendarSliderWidget />
-            <div className="mt-[12px] lg:mt-[22px]">
+            <a href="#" className="block mt-[12px] lg:mt-[22px]">
               <img
                 src="/assets/ads/home-top-mobile.png"
                 alt=""
@@ -38,7 +38,7 @@ export default async function Home() {
                 height={155}
                 className="hidden md:block w-full h-auto rounded-[8px]"
               />
-            </div>
+            </a>
           </div>
         </section>
       }
