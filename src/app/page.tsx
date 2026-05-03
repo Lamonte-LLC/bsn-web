@@ -20,9 +20,25 @@ export default async function Home() {
   return (
     <FullWidthLayout
       subheader={
-        <section className="pb-[116px] lg:pt-[8px] lg:pb-[88px]">
+        <section className="pb-[109px] lg:pt-[8px] lg:pb-[84px]">
           <div className="container">
             <RecentCalendarSliderWidget />
+            <div className="mt-[12px] lg:mt-[22px]">
+              <img
+                src="/assets/ads/home-top-mobile.png"
+                alt=""
+                width={1242}
+                height={212}
+                className="block md:hidden w-full h-auto max-w-full object-contain rounded-[8px]"
+              />
+              <img
+                src="/assets/ads/home-top-desktop.png"
+                alt=""
+                width={1920}
+                height={155}
+                className="hidden md:block w-full h-auto rounded-[8px]"
+              />
+            </div>
           </div>
         </section>
       }
