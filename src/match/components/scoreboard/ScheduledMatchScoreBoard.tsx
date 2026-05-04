@@ -4,6 +4,11 @@ import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import { formatDate } from '@/utils/date-formatter';
 import { getFirstWord } from '@/utils/text';
 
+const TEAM_BORDER_OVERRIDES: Record<string, string> = {
+  MAY: '#F5E0BF',
+  GBO: '#245AA3',
+};
+
 type Props = {
   startAt: string;
   homeTeam: {
@@ -55,9 +60,9 @@ export default function ScheduledMatchScoreBoard({
             className="flex flex-row items-center justify-center border-2 rounded-full  h-[60px] w-[60px] md:h-[100px] md:w-[100px]"
             style={{
               borderColor:
-                visitorTeam.color != null
-                  ? visitorTeam.color
-                  : 'rgba(255, 255, 255, 0.5)',
+                TEAM_BORDER_OVERRIDES[visitorTeam.code] ??
+                visitorTeam.color ??
+                'rgba(255, 255, 255, 0.5)',
             }}
           >
             <div className="scale-[0.6] md:scale-[1]">
@@ -97,9 +102,9 @@ export default function ScheduledMatchScoreBoard({
             className="flex flex-row items-center justify-center border-2 rounded-full  h-[60px] w-[60px] md:h-[100px] md:w-[100px]"
             style={{
               borderColor:
-                homeTeam.color != null
-                  ? homeTeam.color
-                  : 'rgba(255, 255, 255, 0.5)',
+                TEAM_BORDER_OVERRIDES[homeTeam.code] ??
+                homeTeam.color ??
+                'rgba(255, 255, 255, 0.5)',
             }}
           >
             <div className="scale-[0.6] md:scale-[1]">

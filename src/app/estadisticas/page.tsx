@@ -1,13 +1,11 @@
-import HeaderBoxLayout from '@/shared/components/layout/box/Header';
-import FooterBoxLayout from '@/shared/components/layout/box/Footer';
+import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
+import EstadisticasHero from './EstadisticasHero';
 import EstadisticasPageClient from './EstadisticasPageClient';
 
 export default function EstadisticasPage() {
   return (
-    <>
-      <HeaderBoxLayout />
+    <FullWidthLayout divider subheader={<EstadisticasHero />}>
       <EstadisticasPageClient />
-      <FooterBoxLayout />
-    </>
+    </FullWidthLayout>
   );
 }

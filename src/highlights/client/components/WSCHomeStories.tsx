@@ -26,7 +26,7 @@ export default function WSCHomeStories() {
   function updateWidgetSizes() {
     widgetRowRectangleRef.current?.setWidgetSize(
       widgetRowRectangleProps.width,
-      isMobile ? '175px' : isTablet ? '225px' : '250px',
+      isMobile ? '135px' : isTablet ? '225px' : '250px',
     );
   }
 

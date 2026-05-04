@@ -50,7 +50,7 @@ export default function PlayerAllSeasonsAvgStatsWidget({
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto player-stats-table">
       <table className="w-full text-left">
         <thead>
           <tr>

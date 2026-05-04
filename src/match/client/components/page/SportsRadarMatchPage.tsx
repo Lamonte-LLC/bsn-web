@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { LiveMatchStream } from '../media/LiveMatchStream';
+import { useSportRadarPlayerLinks } from '@/stats/client/widgets/useSportRadarPlayerLinks';
 
 type Props = {
   matchProviderId: string;
@@ -28,6 +29,8 @@ export default function SportsRadarMatchPage({ matchProviderId, matchStreamUrl }
       container.innerHTML = '';
     };
   }, [matchProviderId, matchStreamUrl]);
+
+  useSportRadarPlayerLinks(widgetRef, { openInNewTab: true });
 
   return (
     <>

@@ -10,7 +10,7 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
     <footer className="bg-[#0F171F] pt-[50px] pb-[34px]">
       <div className="container">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
-          <div className="md:col-span-6 lg:col-span-3">
+          <div className="md:col-span-6 lg:col-span-3 flex flex-col md:h-full">
             <p className="mb-4 text-center md:mb-[58px] md:text-left">
               <Link href="/" className="inline-block">
                 <img
@@ -20,15 +20,16 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
                 />
               </Link>
             </p>
-            <p className="hidden mb-4 md:block">
-              <a
-                href="#"
-                className="font-barlow font-medium text-[20px] text-neutral-500"
-              >
-                #LaMásDura
-              </a>
-            </p>
-            <div className="flex flex-row gap-[8px] justify-center items-center mb-4 md:justify-start xl:gap-[12px]">
+            <div className="md:mt-auto md:mb-[12px]">
+              <p className="hidden mb-4 md:block">
+                <a
+                  href="#"
+                  className="font-barlow font-medium text-[20px] text-neutral-500"
+                >
+                  #LaMásDura
+                </a>
+              </p>
+              <div className="flex flex-row gap-[8px] justify-center items-center mb-4 md:justify-start xl:gap-[12px]">
               <a
                 href="https://www.instagram.com/bsnpr/"
                 target="_blank"
@@ -78,6 +79,7 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
               >
                 <img src="/assets/images/icons/social/icon-tiktok.svg" alt="" />
               </a>
+              </div>
             </div>
           </div>
           <div className="md:col-span-6 lg:col-span-3">
@@ -113,19 +115,19 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
               </li>
               <li className="text-center md:text-right lg:text-left">
                 <Link
+                  href="/estadisticas"
+                  className="font-special-gothic-condensed-one text-white text-[26px]"
+                >
+                  Estadísticas
+                </Link>
+              </li>
+              <li className="text-center md:text-right lg:text-left">
+                <Link
                   href="/boletos"
                   className="font-special-gothic-condensed-one text-white text-[26px]"
                 >
                   Boletos
                 </Link>
-              </li>
-              <li className="text-center md:text-right lg:text-left hidden">
-                <a
-                  href="#"
-                  className="font-special-gothic-condensed-one text-white text-[26px]"
-                >
-                  Estadísticas
-                </a>
               </li>
             </ul>
           </div>
@@ -151,7 +153,7 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
             </div>
           </div>
         </div>
-        <div className="border-t border-t-[rgba(255,255,255,0.12)] my-[20px]" />
+        <div className="border-t border-t-[rgba(255,255,255,0.12)] mt-[10px] mb-[20px]" />
         <div className="flex flex-col gap-4 justify-between items-center md:flex-row">
           <div className="order-last text-center md:order-first md:text-left">
             <p className="font-barlow text-xs text-neutral-500">

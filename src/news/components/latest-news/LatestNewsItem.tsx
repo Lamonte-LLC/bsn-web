@@ -19,15 +19,15 @@ export default function LatestNewsItem({
     <div className="flex flex-row-reverse sm:flex-row gap-4 items-center justify-start">
       <div className="flex flex-col gap-2 flex-1">
         <Link href={`/noticias/${slug}`} className="flex-1">
-          <h4 className="font-barlow font-medium text-sm/5 text-[rgba(15,23,31,0.7)]">
+          <h4 className="font-barlow font-semibold text-sm/5 text-[rgba(15,23,31,0.9)] lg:font-medium lg:text-[rgba(15,23,31,0.7)]">
             {truncateText(title, 92)}
           </h4>
         </Link>
         <p
-          className="font-barlow text-xs text-color-[rgba(15,23,31,0.7)] hidden"
-          title={formatDate(publishedAt, 'LL')}
+          className="font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] lg:hidden"
+          title={formatDate(publishedAt, 'D [de] MMMM, YYYY')}
         >
-          {formatDate(publishedAt, 'D')} de {formatDate(publishedAt, 'MMMM')}
+          {formatDate(publishedAt, 'D [de] MMMM, YYYY')}
         </p>
       </div>
       <figure>
