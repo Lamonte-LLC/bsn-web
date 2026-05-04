@@ -23,20 +23,20 @@ export default async function Home() {
         <section className="pb-[109px] lg:pt-[8px] lg:pb-[84px]">
           <div className="container">
             <RecentCalendarSliderWidget />
-            <a href="#" className="block mt-[12px] lg:mt-[22px]">
+            <a href="https://allstar.bsnpr.com" className="block mt-[12px] lg:mt-[22px]">
               <img
                 src="/assets/ads/home-top-mobile.png"
                 alt=""
                 width={1242}
                 height={212}
-                className="block md:hidden w-full h-auto max-w-full object-contain rounded-[8px]"
+                className="block md:hidden w-full h-auto max-w-full object-contain rounded-[12px] border border-[rgba(125,125,125,0.4)]"
               />
               <img
-                src="/assets/ads/home-top-desktop.png"
+                src="/assets/ads/home-top-desktop.jpg"
                 alt=""
                 width={1920}
                 height={155}
-                className="hidden md:block w-full h-auto rounded-[8px]"
+                className="hidden md:block w-full h-auto rounded-[12px] border border-[rgba(125,125,125,0.4)]"
               />
             </a>
           </div>
