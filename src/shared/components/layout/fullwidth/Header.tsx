@@ -24,6 +24,19 @@ export default function HeaderBoxLayout() {
     setIsOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const { body } = document;
+    const prevOverflow = body.style.overflow;
+    const prevOverscroll = body.style.overscrollBehavior;
+    body.style.overflow = 'hidden';
+    body.style.overscrollBehavior = 'none';
+    return () => {
+      body.style.overflow = prevOverflow;
+      body.style.overscrollBehavior = prevOverscroll;
+    };
+  }, [isOpen]);
+
   return (
     <>
       <div
@@ -381,8 +394,8 @@ export default function HeaderBoxLayout() {
           onClose={() => setIsOpen(false)}
           className="relative z-50"
         >
-        <div className="fixed inset-0 flex h-screen w-screen">
-          <DialogPanel className="bg-[#171819] w-full py-[10px]">
+        <div className="fixed inset-0 flex w-screen h-[100dvh] overflow-hidden overscroll-none">
+          <DialogPanel className="bg-[#171819] w-full h-full overflow-y-auto overscroll-contain py-[10px]">
             <div className="container">
               <div className="flex justify-end">
                 <CloseButton
@@ -396,32 +409,32 @@ export default function HeaderBoxLayout() {
             <ul className="divide-y divide-[rgba(255,255,255,0.05)]">
               <li className="px-[30px]">
                 <Link href="/" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Inicio</span>
+                  <span className="text-[33px] text-white">Inicio</span>
                 </Link>
               </li>
               <li className="px-[30px]">
                 <Link href="/calendario" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Calendario</span>
+                  <span className="text-[33px] text-white">Calendario</span>
                 </Link>
               </li>
               <li className="px-[30px]">
                 <Link href="/noticias" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Noticias</span>
+                  <span className="text-[33px] text-white">Noticias</span>
                 </Link>
               </li>
               <li className="px-[30px]">
                 <Link href="/jugadores" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Jugadores</span>
+                  <span className="text-[33px] text-white">Jugadores</span>
                 </Link>
               </li>
               <li className="px-[30px]">
                 <Link href="/estadisticas" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Estadísticas</span>
+                  <span className="text-[33px] text-white">Estadísticas</span>
                 </Link>
               </li>
               <li className="px-[30px]">
                 <Link href="/boletos" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Boletos</span>
+                  <span className="text-[33px] text-white">Boletos</span>
                 </Link>
               </li>
               <li className="px-[30px]">
@@ -429,7 +442,7 @@ export default function HeaderBoxLayout() {
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <DisclosureButton className="cursor-pointer text-[36px] text-left text-white w-full flex items-center justify-between">
+                        <DisclosureButton className="cursor-pointer text-[33px] text-left text-white w-full flex items-center justify-between">
                           <span>Equipos</span>
                           <img
                             src="/assets/images/icons/chevron-mobile-menu.svg"
