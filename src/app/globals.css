@@ -2204,23 +2204,208 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   border-color: #fff !important;
 }
 
+/* ── App webview Play-by-play: flat rows on the dark surface with hairline
+ * dividers, time pinned left, player image, description + player name
+ * stacked in the middle, combined score pinned right. Matches the Figma
+ * "BSN PASADO – BOX SCORE" PBP design (node 4165:5219).
+ *
+ * Widget emits each event as:
+ *   <li.sw-fixture-pbp-event[.is-success][.is-home/away]>
+ *     <div.sw-fixture-pbp-event-player-name>#33 Maxwell Abmas</div>
+ *     <div.sw-fixture-pbp-event-time>P4 00:18</div>
+ *     <div.sw-fixture-pbp-event-description>3pt Tiro en suspensión...</div>
+ *     <div.sw-fixture-pbp-event-score>105 - 92</div>
+ *     <img.sw-fixture-pbp-event-image>
+ *   </li>
+ *
+ * Grid lets us reorder: time | image | (description + player) | score.
+ * Score column collapses (auto width = 0) on non-scoring rows. */
+
+/* Period boundary ("Period 4: Fin"): flat row, uppercase, hairline below. */
 .sport-radar-fixture-mobile-widget .sw-fixture-pbp-period-boundary {
-  background-color: rgba(79, 79, 79, 0.19) !important;
-  border: 1px solid rgba(147, 147, 147, 0.35) !important;
-  color: #fff !important;
-  margin-top: 10px !important;
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.2) !important;
+  border-radius: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin: 0 !important;
+  padding: 16px 4px 12px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 14px !important;
+  letter-spacing: 1.26px !important;
+  text-transform: uppercase !important;
+  text-align: left !important;
 }
 
-/* PBP event rows: keep our subtle dark borders on top/right/bottom but
- * leave border-left untouched so the widget's `var(--sw-fixture-competitor-*-color)`
- * stripe (set by .is-home / .is-away) can render the team color. */
-.sport-radar-fixture-mobile-widget .sw-fixture-pbp-event,
-.sport-radar-fixture-mobile-widget .sw-fixture-pbp-shootout-event {
-  border-top: 1px solid rgba(125, 125, 125, 0.2) !important;
-  border-right: 1px solid rgba(125, 125, 125, 0.2) !important;
+/* The widget paints PBP via its own grid:
+ *   .sw-fixture-pbp-event { grid-auto-flow: column; grid-template-columns:
+ *     repeat(2,auto); grid-template-rows: repeat(3,auto); min-height: 35px }
+ *   plus highly-specific .sw-fixture-pbp li.is-home/.is-away rules that
+ *   set grid-column / grid-row on each child (player-name, description,
+ *   image, time, score) and inject left/right border colors with the
+ *   team color. .sw-fixture-pbp-period uses display:flex; gap:1px so rows
+ *   are separated by a 1px gutter painted by the widget bg.
+ *
+ * To override cleanly we (a) match the widget's specificity by also
+ * scoping under `.sw-fixture-pbp`, and (b) reset every child's grid-column
+ * / grid-row so our grid-areas actually take effect. */
+
+/* Period list + period: no flex gap, no padding — rows sit flush. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-period,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-periods-list {
+  display: block !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Event row: 4 columns × 2 rows. Time pinned left, image, description +
+ * player name stacked in the middle, combined score pinned right. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-shootout-event,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.sw-fixture-pbp-event.is-home,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.sw-fixture-pbp-event.is-away,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away {
+  display: grid !important;
+  grid-auto-flow: row !important;
+  grid-template-columns: 56px 32px 1fr auto !important;
+  grid-template-rows: auto auto !important;
+  grid-template-areas:
+    "time image desc score"
+    "time image name score" !important;
+  align-items: center !important;
+  column-gap: 12px !important;
+  row-gap: 1px !important;
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
   border-bottom: 1px solid rgba(125, 125, 125, 0.2) !important;
-  margin-top: 4px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 6px 16px !important;
+  min-height: 0 !important;
+  height: auto !important;
   color: #fff !important;
+}
+
+/* Time: "P4 00:18" — pinned left, vertically centered across both rows. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-time,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-time,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-time {
+  grid-area: time !important;
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0.12px !important;
+  white-space: nowrap !important;
+}
+
+/* Player image: spans both rows in column 2. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-image,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-image,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-image {
+  grid-area: image !important;
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: center !important;
+  display: block !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Description: top of middle column. Bold for scoring events. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-description,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-description,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-description {
+  grid-area: desc !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  align-self: end !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  color: #fff !important;
+  letter-spacing: -0.13px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event.is-success .sw-fixture-pbp-event-description {
+  font-weight: 700 !important;
+}
+
+/* Player name: bottom of middle column, under description. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-player-name,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-player-name,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-player-name {
+  grid-area: name !important;
+  grid-column: 3 !important;
+  grid-row: 2 !important;
+  align-self: start !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Score: pinned right, vertically centered across both rows. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-score {
+  grid-area: score !important;
+  grid-column: 4 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: end !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0.28px !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Hide score on non-scoring rows. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event:not(.is-success) .sw-fixture-pbp-event-score {
+  display: none !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-shot-chart-person {
