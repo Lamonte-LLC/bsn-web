@@ -124,7 +124,7 @@ const FIXTURES: Item[] = [
     visitorCode: 'MAY', visitorNickname: 'Indios', visitorCity: 'Mayagüez',
     gameNumber: 4,
     roundLabel: 'Final Conf B',
-    seriesStatus: 'Serie empatada 2-2',
+    seriesStatus: 'Serie empate 2-2',
     channel: 'YouTube · BSN App',
   },
 ];
