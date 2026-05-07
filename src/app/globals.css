@@ -83,9 +83,14 @@ body {
 }
 
 /* Playoffs hero slider — fade the right-edge cards into the bg cleanly. */
+/* overflow-x hidden keeps the horizontal mask working; overflow-y visible
+ * lets the matchcards' drop shadows bleed past the slider's bottom edge so
+ * they fade into the hero bg instead of getting clipped. */
 .playoffs-hero-slider .slick-list {
   -webkit-mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
   mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 @media (min-width: 768px) {
   .playoffs-hero-slider .slick-list {
@@ -94,16 +99,33 @@ body {
   }
 }
 
-/* Playoff date column — match the playoff card height exactly. The cards
- * have no action button (removed in playoff mode) so they're shorter than
- * the home variants. Scoped so it doesn't affect the home page. */
-.playoffs-hero-slider .playoffs-date-item > div {
-  height: 152px !important;
+/* Equal-height slides: force slick's track + slides to flex-stretch so the
+ * date columns share the matchcards' natural row height. */
+.playoffs-hero-slider .slick-track {
+  display: flex !important;
+  align-items: stretch !important;
 }
-@media (min-width: 768px) {
-  .playoffs-hero-slider .playoffs-date-item > div {
-    height: 200px !important;
-  }
+.playoffs-hero-slider .slick-slide {
+  height: auto !important;
+}
+.playoffs-hero-slider .slick-slide > div {
+  height: 100% !important;
+  display: flex !important;
+}
+.playoffs-hero-slider .slick-slide > div > div {
+  height: 100% !important;
+  width: 100%;
+  display: flex !important;
+}
+
+/* Playoff date column — fill the row height set by the matchcards.
+ * Override the date component's hardcoded h-[165px]/h-[203px] inner div. */
+.playoffs-hero-slider .playoffs-date-item {
+  height: 100% !important;
+  display: flex !important;
+}
+.playoffs-hero-slider .playoffs-date-item > div {
+  height: calc(100% + 1px) !important;
 }
 
 /* Recent Calendar Slider */
