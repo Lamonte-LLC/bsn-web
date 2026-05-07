@@ -2076,6 +2076,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
 .sport-radar-fixture-mobile-widget span.sw-fixture-banner-status-state-label {
   letter-spacing: 0.5px !important;
+  font-weight: 400 !important;
 }
 
 .sport-radar-fixture-mobile-widget span.sw-fixture-banner-status-active-period,
@@ -2167,6 +2168,14 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   border-bottom: 1px solid rgba(45, 46, 50, 0.5) !important;
 }
 
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > th,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > th {
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+}
+
 .sport-radar-fixture-mobile-widget .sw-grid table thead {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
@@ -2202,6 +2211,29 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   color: #000 !important;
   background-color: #fff !important;
   border-color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  color: #fff !important;
+}
+.sport-radar-fixture-mobile-widget .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab,
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab.is-active {
+  font-size: 21px !important;
+}
+
+@media (max-width: 767px) {
+  .sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab,
+  .sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab.is-active {
+    font-size: 17px !important;
+  }
 }
 
 /* ── App webview Play-by-play: flat rows on the dark surface with hairline
@@ -2640,8 +2672,8 @@ button.sw-sub-tabs-tab:not(.is-active):active {
  * surface gives subtle lift without flattening into a solid block. The
  * outer border picks up just enough light to outline the card edge. */
 .sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 6px 18px rgba(0, 0, 0, 0.18) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 18px !important;
   background-color: rgba(255, 255, 255, 0.04) !important;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)) !important;
