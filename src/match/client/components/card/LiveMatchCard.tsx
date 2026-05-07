@@ -203,7 +203,7 @@ export default function LiveMatchCard({
                   viewBox="0 0 10 12"
                   fill="none"
                   aria-hidden
-                  className="inline-block align-middle mr-1.5 relative -top-[3px] md:-top-[1px] md:w-[7px] md:h-[9px]"
+                  className="inline-block align-middle mr-[5px] relative -top-[1px] md:mr-1.5 md:-top-[1px] md:w-[7px] md:h-[9px]"
                 >
                   <path d="M0 0L10 6L0 12V0Z" fill="#ff0000" />
                 </svg>
