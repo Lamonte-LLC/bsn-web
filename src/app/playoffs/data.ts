@@ -68,14 +68,15 @@ export const SERIES_DATA: Series[] = [
   {
     id: 'A-Q2', round: 'CUARTOS', group: 'A', conferenceLabel: 'Cuartos de Final',
     team1: { code: 'CAR', name: 'Gigantes', seed: 4, wins: 2 },
-    team2: { code: 'PON', name: 'Leones',   seed: 5, wins: 3 },
-    status: 'IN_PROGRESS',
+    team2: { code: 'PON', name: 'Leones',   seed: 5, wins: 4 },
+    status: 'COMPLETED',
     games: [
       { gameNumber: 1, homeCode: 'CAR', visitorCode: 'PON', homeScore: 90, visitorScore: 88, date: 'Abr 5',  status: 'COMPLETED', matchId: '10005' },
       { gameNumber: 2, homeCode: 'CAR', visitorCode: 'PON', homeScore: 78, visitorScore: 92, date: 'Abr 7',  status: 'COMPLETED', matchId: '10006' },
       { gameNumber: 3, homeCode: 'PON', visitorCode: 'CAR', homeScore: 95, visitorScore: 84, date: 'Abr 9',  status: 'COMPLETED', matchId: '10007' },
       { gameNumber: 4, homeCode: 'PON', visitorCode: 'CAR', homeScore: 88, visitorScore: 91, date: 'Abr 11', status: 'COMPLETED', matchId: '10008' },
       { gameNumber: 5, homeCode: 'CAR', visitorCode: 'PON', homeScore: 79, visitorScore: 93, date: 'Abr 13', status: 'COMPLETED', matchId: '10009' },
+      { gameNumber: 6, homeCode: 'PON', visitorCode: 'CAR', homeScore: 102, visitorScore: 88, date: 'Abr 15', status: 'COMPLETED', matchId: '10010' },
     ],
   },
   {
@@ -105,25 +106,20 @@ export const SERIES_DATA: Series[] = [
       { gameNumber: 4, homeCode: 'PON', visitorCode: 'BAY', homeScore: 77,  visitorScore: 88, date: 'Abr 27', status: 'COMPLETED', matchId: '10026' },
     ],
   },
+  // B-GF: Criollos advanced; opponent TBD until B-Q2 (SGE vs MAY) finishes.
   {
     id: 'B-GF', round: 'GRUPO_FINAL', group: 'B', conferenceLabel: 'Final de Conferencia',
-    team1: { code: 'CAG', name: 'Criollos',  seed: 2, wins: 2 },
-    team2: { code: 'SGE', name: 'Atléticos', seed: 3, wins: 2 },
-    status: 'IN_PROGRESS',
-    games: [
-      { gameNumber: 1, homeCode: 'CAG', visitorCode: 'SGE', homeScore: 92, visitorScore: 86, date: 'Abr 23', status: 'COMPLETED', matchId: '10027' },
-      { gameNumber: 2, homeCode: 'CAG', visitorCode: 'SGE', homeScore: 79, visitorScore: 88, date: 'Abr 25', status: 'COMPLETED', matchId: '10028' },
-      { gameNumber: 3, homeCode: 'SGE', visitorCode: 'CAG', homeScore: 84, visitorScore: 95, date: 'Abr 26', status: 'COMPLETED', matchId: '10029' },
-      { gameNumber: 4, homeCode: 'SGE', visitorCode: 'CAG', homeScore: 91, visitorScore: 80, date: 'Abr 27', status: 'COMPLETED', matchId: '10030' },
-    ],
+    team1: { code: 'CAG', name: 'Criollos',  seed: 2, wins: 0 },
+    team2: { code: '',    name: 'Por definir', seed: 0, wins: 0 },
+    status: 'UPCOMING',
+    games: [],
   },
-  // Final BSN — UPCOMING
+  // Final BSN — UPCOMING (waiting on both conference finals).
   {
     id: 'FINAL', round: 'FINAL', group: null, conferenceLabel: 'Final BSN',
     team1: { code: '', name: 'Ganador SF1', seed: 0, wins: 0 },
     team2: { code: '', name: 'Ganador SF2', seed: 0, wins: 0 },
     status: 'UPCOMING',
-    nextGame: { date: '5 may', time: '', venue: 'Mejor de 7' },
     games: [],
   },
 ];
