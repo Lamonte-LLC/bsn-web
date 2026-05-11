@@ -418,6 +418,24 @@ span.box-score-person-cell,
   }
 }
 
+/* Web widget at mobile breakpoint: match the app webview body row sizing
+ * (10px cell padding, 15px name font, 7px name margin-top) so the rows
+ * read identically on both surfaces. Scoped to .widget so the app webview
+ * (.sport-radar-fixture-mobile-widget) is unaffected. */
+@media (max-width: 767px) {
+  .widget .box-score-person-cell {
+    font-size: 15px !important;
+    margin-top: 7px !important;
+  }
+
+  .widget .box-score .sw-grid table tbody td,
+  .widget .box-score .sw-grid table tbody th,
+  .widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
 /* Team title row */
 .sw-box-score-team-title {
   margin-bottom: 10px !important;
@@ -491,19 +509,163 @@ span.box-score-person-cell,
   text-align: center !important;
 }
 
-/* Alternating row backgrounds — match the /estadisticas widget treatment.
- * Even rows get a subtle grey wash; odd rows stay on the surface bg.
- * Covers both <td> and the sticky <th> so no white band leaks through.
+/* Player rows: uniform surface (zebra removed). Mirrors the app webview
+ * treatment where only the header row and the totals row stand out.
  * App webview restores its dark surface further down. */
+.box-score .sw-grid table tbody tr:nth-child(odd) td,
+.box-score .sw-grid table tbody tr:nth-child(odd) th,
 .box-score .sw-grid table tbody tr:nth-child(even) td,
 .box-score .sw-grid table tbody tr:nth-child(even) th {
-  background-color: #f9f9f9 !important;
+  background-color: #ffffff !important;
 }
 
-.box-score .sw-grid table tbody tr:nth-child(odd) td,
-.box-score .sw-grid table tbody tr:nth-child(odd) th {
-  background-color: #fdfdfd !important;
+/* Header row gets a distinct lighter band so the column labels read as
+ * a separate strip. Light-mode equivalent of #181818 in the app webview. */
+.widget .box-score .sw-grid table thead,
+.widget .box-score .sw-grid table thead tr,
+.widget .box-score .sw-grid table thead th,
+.widget .box-score .sw-grid table thead th * {
+  background-color: #f3f3f3 !important;
+  background: #f3f3f3 !important;
 }
+
+/* Header cells: tighter vertical padding + Barlow font so the column
+ * labels match the body cells (default widget font leaks through
+ * otherwise). */
+.widget .box-score .sw-grid table thead th,
+.widget .box-score .sw-grid table thead th * {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+}
+
+/* Player rows extend edge-to-edge: pull the .sw-grid wrapper past the
+ * .sw-widget-fixture-box-score container's padding so row backgrounds
+ * and dividers reach the layout edges. The team title, coach/captain
+ * rows, and team-stats cards keep their original padding. */
+.widget .box-score .sw-grid {
+  margin-left: -1rem !important;
+  margin-right: -1rem !important;
+  width: calc(100% + 2rem) !important;
+  max-width: calc(100% + 2rem) !important;
+}
+
+/* Bib column gets 1rem left padding so the # sits at the original
+ * container edge after the negative margin. */
+.widget .box-score .sw-grid table thead th:first-child,
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+  padding-left: 1rem !important;
+}
+
+/* Tighten the gap between # and Name to 5px by removing the bib
+ * column's right padding and pulling the Name column left padding back
+ * to 5px (overriding the calc(1rem + 2px) rule below). */
+.widget .box-score .sw-grid table thead th:first-child,
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-bib {
+  padding-right: 0 !important;
+}
+
+/* Last column gets 1rem right padding so the rightmost stat doesn't
+ * kiss the layout edge. */
+.widget .box-score .sw-grid table thead th:last-child,
+.widget .box-score .sw-grid table tbody tr > *:last-child {
+  padding-right: 1rem !important;
+}
+
+/* Nombre header: 8px left padding so the column header sits 8px from
+ * the # column's content at natural scroll. Also uppercase + left. */
+.widget .box-score .sw-grid table thead th:nth-child(2) {
+  padding-left: 8px !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+/* Body name cell matches the header so * Player Name aligns with
+ * NOMBRE above it. */
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  padding-left: 8px !important;
+}
+
+/* When the name column pins on horizontal scroll, shift the sticky
+ * position 1rem in from the screen edge so the name text doesn't kiss
+ * the viewport border. This preserves the small 8px gap between # and
+ * Nombre at natural scroll. */
+.widget .box-score .sw-grid table thead th:nth-child(2),
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  left: 1rem !important;
+}
+
+/* Jersey # text 30% lighter so the bib reads as secondary metadata next
+ * to the player name. */
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-bib {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Body cell vertical padding. Applied to every cell type (td, th,
+ * sticky variants) so all rows are uniform. */
+.widget .box-score .sw-grid table tbody td,
+.widget .box-score .sw-grid table tbody th,
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+/* Uniform horizontal divider between body rows. Painted as a
+ * background gradient on each cell so it can't be overridden by the
+ * widget's inline `box-shadow` injection on odd rows. The gradient
+ * places a 1px line of rgba(0,0,0,0.088) at the bottom of each cell,
+ * with the rest of the cell painted white as before. */
+.widget .box-score .sw-grid table tbody tr > td,
+.widget .box-score .sw-grid table tbody tr > th,
+.widget .box-score .sw-grid table tbody tr > th.grid-fixed-body-cell,
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > td,
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > th {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  background-image: linear-gradient(to bottom, transparent 0, transparent calc(100% - 1px), rgba(0, 0, 0, 0.088) calc(100% - 1px), rgba(0, 0, 0, 0.088) 100%) !important;
+}
+
+/* Vertical divider where the sticky name column ends — visual cue that
+ * the columns to the right scroll horizontally. Same opacity as the
+ * horizontal dividers for consistency. */
+.widget .box-score .sw-grid table thead th:nth-child(2),
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  border-right: 1px solid rgba(0, 0, 0, 0.088) !important;
+}
+
+/* Desktop: cap the inner name text width so the column shrinks and the
+ * stat grid fits without a horizontal scrollbar. Applied to the inner
+ * .box-score-person-cell (the actual text span) so the cell can size to
+ * the truncated content. */
+@media (min-width: 768px) {
+  .widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name .box-score-person-cell {
+    display: inline-block !important;
+    max-width: 150px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+  }
+}
+
+/* Equipo/Entrenador row: 5px of breathing room above so it reads as a
+ * separate summary section from the player rows. The widget renders it
+ * as a tr with a "grid-custom-row"-family class but it's NOT the
+ * grid-custom-row-total row (which is the Total row below it). */
+.widget .box-score .sw-grid table tbody tr[class*="grid-custom-row"]:not(.grid-custom-row-total) > td,
+.widget .box-score .sw-grid table tbody tr[class*="grid-custom-row"]:not(.grid-custom-row-total) > th {
+  padding-top: 11px !important;
+}
+
+/* Total row: match the column-label header's vertical padding (6px
+ * top/bottom) so it reads as a symmetric summary band at the bottom. */
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > td,
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > th {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
 
 /* App webview: the bottom sheet behind the embed is #191919, so the
  * banner + sub-tabs blend naturally with it. Everything below the tabs
@@ -620,10 +782,18 @@ span.box-score-person-cell,
 }
 
 /* Header cells match the totals-row vertical padding (10px) for a
- * symmetric look top/bottom of the table. */
+ * symmetric look top/bottom of the table. The padding is applied only
+ * to the <th>; descendants just inherit Barlow. Previously this rule
+ * also stamped padding on `th *`, doubling the visual padding because
+ * the widget wraps each label in a span/div. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th * {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
 }
 
 /* Inline elements inside zebra cells: the widget's `*` rule paints them
