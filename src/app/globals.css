@@ -418,6 +418,15 @@ span.box-score-person-cell,
   }
 }
 
+/* Web widget desktop: player name 1px smaller than the global default so
+ * the boxscore reads tighter on wider screens. Scoped to .widget so the
+ * app webview (.sport-radar-fixture-mobile-widget) is unaffected. */
+@media (min-width: 768px) {
+  .widget .box-score-person-cell {
+    font-size: 16px !important;
+  }
+}
+
 /* Web widget at mobile breakpoint: match the app webview body row sizing
  * (10px cell padding, 15px name font, 7px name margin-top) so the rows
  * read identically on both surfaces. Scoped to .widget so the app webview
@@ -529,13 +538,17 @@ span.box-score-person-cell,
   background: #f3f3f3 !important;
 }
 
-/* Header cells: tighter vertical padding + Barlow font so the column
- * labels match the body cells (default widget font leaks through
- * otherwise). */
-.widget .box-score .sw-grid table thead th,
-.widget .box-score .sw-grid table thead th * {
+/* Header cells: match the totals-row vertical padding (6px top/bottom).
+ * Padding is applied only to the <th>; descendants just inherit Barlow.
+ * Previously this rule also stamped padding on `th *`, doubling the
+ * visual padding because the widget wraps each label in a span/div. */
+.widget .box-score .sw-grid table thead th {
   padding-top: 6px !important;
   padding-bottom: 6px !important;
+}
+
+.widget .box-score .sw-grid table thead th,
+.widget .box-score .sw-grid table thead th * {
   font-family: var(--font-barlow), Barlow, sans-serif !important;
 }
 
@@ -606,8 +619,8 @@ span.box-score-person-cell,
 .widget .box-score .sw-grid table tbody td,
 .widget .box-score .sw-grid table tbody th,
 .widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
 }
 
 /* Uniform horizontal divider between body rows. Painted as a

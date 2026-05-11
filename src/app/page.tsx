@@ -23,6 +23,27 @@ export default async function Home() {
         <section className="pb-[109px] lg:pt-[8px] lg:pb-[84px]">
           <div className="container">
             <RecentCalendarSliderWidget />
+            <a
+              href="https://www.atleticos2022.com/events/162734"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mt-[12px] lg:mt-[22px]"
+            >
+              <img
+                src="/assets/ads/home-top-mobile-allstar.png"
+                alt=""
+                width={1242}
+                height={212}
+                className="block md:hidden w-full h-auto max-w-full object-contain rounded-[12px] border border-[rgba(125,125,125,0.4)]"
+              />
+              <img
+                src="/assets/ads/home-top-desktop-allstar.jpg"
+                alt=""
+                width={1920}
+                height={155}
+                className="hidden md:block w-full h-auto rounded-[12px] border border-[rgba(125,125,125,0.4)]"
+              />
+            </a>
           </div>
         </section>
       }
