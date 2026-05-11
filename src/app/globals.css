@@ -518,8 +518,8 @@ span.box-score-person-cell,
 .sport-radar-fixture-mobile-widget .sw-widget-fixture-box-score *,
 .sport-radar-fixture-mobile-widget .sw-glossary,
 .sport-radar-fixture-mobile-widget .sw-glossary * {
-  background-color: #222222 !important;
-  background: #222222 !important;
+  background-color: #141414 !important;
+  background: #141414 !important;
 }
 
 /* Banner + sub-tabs back to #191919 so they blend with the bottom
@@ -544,25 +544,86 @@ span.box-score-person-cell,
 
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd),
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) td,
-.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) th {
-  background-color: #222222 !important;
-  background: #222222 !important;
-}
-
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) th,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even),
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) td,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) th {
-  background-color: #2a2a2a !important;
-  background: #2a2a2a !important;
+  background-color: #141414 !important;
+  background: #141414 !important;
 }
 
-/* Section-label rows ("Iniciales", "Banca") and table chrome — keep them
- * on the panel base bg. */
+/* Row dividers: subtle line between rows on the dark app surface. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.049) !important;
+}
+
+/* Player rows extend edge-to-edge: pull the table wrapper (.sw-grid)
+ * out past .box-score's natural bounds with negative margin AND expand
+ * its width so the scrolling container itself reaches the screen edges.
+ * Inner cells get 1rem padding on the first/last columns so text sits
+ * at the original container edge. Other .box-score children (team
+ * title, team-stats cards, coach/captain) are untouched. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid {
+  margin-left: -1rem !important;
+  margin-right: -1rem !important;
+  width: calc(100% + 2rem) !important;
+  max-width: calc(100% + 2rem) !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:first-child,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+  padding-left: 1rem !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:last-child,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr > *:last-child {
+  padding-right: 1rem !important;
+}
+
+/* Nombre header: nudge right to align with the player name text below,
+ * both at natural scroll position and when the sticky column pins on
+ * horizontal scroll. The widget renders the Nombre header as the 2nd
+ * thead <th>; target it directly. The extra 2px gives the name column
+ * a touch more breathing room from the bib column when sticky-pinned. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:nth-child(2) {
+  padding-left: calc(1rem + 2px) !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  padding-left: calc(1rem + 2px) !important;
+}
+
+/* Vertical divider where the sticky name column ends — gives a visual
+ * cue that the columns to the right scroll horizontally. Applied to
+ * both the Nombre header and the body name cells so the line runs the
+ * full height of the table. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:nth-child(2),
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  border-right: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+
+/* Column-label header row (#, Nombre, MIN, …): a continuous lighter
+ * band across the whole row. The `*` rule on .box-score earlier paints
+ * descendants `#141414`, so we explicitly repaint every descendant of
+ * the header cells too — otherwise inline label spans show through dark
+ * and the band reads as patchy. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead tr,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th * {
+  background-color: #181818 !important;
+  background: #181818 !important;
+}
+
+/* Header cells match the totals-row vertical padding (10px) for a
+ * symmetric look top/bottom of the table. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th {
-  background-color: #222222 !important;
-  background: #222222 !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
 }
 
 /* Inline elements inside zebra cells: the widget's `*` rule paints them
@@ -596,7 +657,7 @@ span.box-score-person-cell,
  * as a summary line on the dark surface. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total td,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total th {
-  background-color: #2a2a2a !important;
+  background-color: #1B1B1B !important;
   font-weight: 600 !important;
 }
 
@@ -727,7 +788,7 @@ select {
   justify-content: space-between !important;
   background-color: rgba(255, 255, 255, 0.02) !important;
   background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
   border-radius: 10px !important;
   padding: 10px 12px !important;
   min-height: 72px !important;
@@ -2440,6 +2501,13 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   display: none !important;
 }
 
+/* Made-basket score: pure white. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event.is-success .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-success.is-home .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-success.is-away .sw-fixture-pbp-event-score {
+  color: #ffffff !important;
+}
+
 /* ── Web Play-by-play (light surface) ──────────────────────────────────
  * Mirrors the app webview layout (4-col grid, time | image | desc/name |
  * score) but on white instead of dark. Scoped under `.widget` (the web
@@ -2677,6 +2745,9 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   border-radius: 18px !important;
   background-color: rgba(255, 255, 255, 0.04) !important;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)) !important;
+  width: calc(85% + 20px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* Top-player row: photo first, then name, stat pinned to the right.
@@ -2692,7 +2763,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   align-items: center !important;
   column-gap: 12px !important;
   row-gap: 8px !important;
-  padding: 12px 20px !important;
+  padding: 12px 17px !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-card-category {
