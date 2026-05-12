@@ -418,6 +418,33 @@ span.box-score-person-cell,
   }
 }
 
+/* Web widget desktop: player name 1px smaller than the global default so
+ * the boxscore reads tighter on wider screens. Scoped to .widget so the
+ * app webview (.sport-radar-fixture-mobile-widget) is unaffected. */
+@media (min-width: 768px) {
+  .widget .box-score-person-cell {
+    font-size: 16px !important;
+  }
+}
+
+/* Web widget at mobile breakpoint: match the app webview body row sizing
+ * (10px cell padding, 15px name font, 7px name margin-top) so the rows
+ * read identically on both surfaces. Scoped to .widget so the app webview
+ * (.sport-radar-fixture-mobile-widget) is unaffected. */
+@media (max-width: 767px) {
+  .widget .box-score-person-cell {
+    font-size: 15px !important;
+    margin-top: 7px !important;
+  }
+
+  .widget .box-score .sw-grid table tbody td,
+  .widget .box-score .sw-grid table tbody th,
+  .widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
 /* Team title row */
 .sw-box-score-team-title {
   margin-bottom: 10px !important;
@@ -491,19 +518,167 @@ span.box-score-person-cell,
   text-align: center !important;
 }
 
-/* Alternating row backgrounds — match the /estadisticas widget treatment.
- * Even rows get a subtle grey wash; odd rows stay on the surface bg.
- * Covers both <td> and the sticky <th> so no white band leaks through.
+/* Player rows: uniform surface (zebra removed). Mirrors the app webview
+ * treatment where only the header row and the totals row stand out.
  * App webview restores its dark surface further down. */
+.box-score .sw-grid table tbody tr:nth-child(odd) td,
+.box-score .sw-grid table tbody tr:nth-child(odd) th,
 .box-score .sw-grid table tbody tr:nth-child(even) td,
 .box-score .sw-grid table tbody tr:nth-child(even) th {
-  background-color: #f9f9f9 !important;
+  background-color: #ffffff !important;
 }
 
-.box-score .sw-grid table tbody tr:nth-child(odd) td,
-.box-score .sw-grid table tbody tr:nth-child(odd) th {
-  background-color: #fdfdfd !important;
+/* Header row gets a distinct lighter band so the column labels read as
+ * a separate strip. Light-mode equivalent of #181818 in the app webview. */
+.widget .box-score .sw-grid table thead,
+.widget .box-score .sw-grid table thead tr,
+.widget .box-score .sw-grid table thead th,
+.widget .box-score .sw-grid table thead th * {
+  background-color: #f3f3f3 !important;
+  background: #f3f3f3 !important;
 }
+
+/* Header cells: match the totals-row vertical padding (6px top/bottom).
+ * Padding is applied only to the <th>; descendants just inherit Barlow.
+ * Previously this rule also stamped padding on `th *`, doubling the
+ * visual padding because the widget wraps each label in a span/div. */
+.widget .box-score .sw-grid table thead th {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+.widget .box-score .sw-grid table thead th,
+.widget .box-score .sw-grid table thead th * {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+}
+
+/* Player rows extend edge-to-edge: pull the .sw-grid wrapper past the
+ * .sw-widget-fixture-box-score container's padding so row backgrounds
+ * and dividers reach the layout edges. The team title, coach/captain
+ * rows, and team-stats cards keep their original padding. */
+.widget .box-score .sw-grid {
+  margin-left: -1rem !important;
+  margin-right: -1rem !important;
+  width: calc(100% + 2rem) !important;
+  max-width: calc(100% + 2rem) !important;
+}
+
+/* Bib column gets 1rem left padding so the # sits at the original
+ * container edge after the negative margin. */
+.widget .box-score .sw-grid table thead th:first-child,
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+  padding-left: 1rem !important;
+}
+
+/* Tighten the gap between # and Name to 5px by removing the bib
+ * column's right padding and pulling the Name column left padding back
+ * to 5px (overriding the calc(1rem + 2px) rule below). */
+.widget .box-score .sw-grid table thead th:first-child,
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-bib {
+  padding-right: 0 !important;
+}
+
+/* Last column gets 1rem right padding so the rightmost stat doesn't
+ * kiss the layout edge. */
+.widget .box-score .sw-grid table thead th:last-child,
+.widget .box-score .sw-grid table tbody tr > *:last-child {
+  padding-right: 1rem !important;
+}
+
+/* Nombre header: 8px left padding so the column header sits 8px from
+ * the # column's content at natural scroll. Also uppercase + left. */
+.widget .box-score .sw-grid table thead th:nth-child(2) {
+  padding-left: 8px !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+/* Body name cell matches the header so * Player Name aligns with
+ * NOMBRE above it. */
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  padding-left: 8px !important;
+}
+
+/* When the name column pins on horizontal scroll, shift the sticky
+ * position 1rem in from the screen edge so the name text doesn't kiss
+ * the viewport border. This preserves the small 8px gap between # and
+ * Nombre at natural scroll. */
+.widget .box-score .sw-grid table thead th:nth-child(2),
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  left: 1rem !important;
+}
+
+/* Jersey # text 30% lighter so the bib reads as secondary metadata next
+ * to the player name. */
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-bib {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Body cell vertical padding. Applied to every cell type (td, th,
+ * sticky variants) so all rows are uniform. */
+.widget .box-score .sw-grid table tbody td,
+.widget .box-score .sw-grid table tbody th,
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+/* Uniform horizontal divider between body rows. Painted as a
+ * background gradient on each cell so it can't be overridden by the
+ * widget's inline `box-shadow` injection on odd rows. The gradient
+ * places a 1px line of rgba(0,0,0,0.088) at the bottom of each cell,
+ * with the rest of the cell painted white as before. */
+.widget .box-score .sw-grid table tbody tr > td,
+.widget .box-score .sw-grid table tbody tr > th,
+.widget .box-score .sw-grid table tbody tr > th.grid-fixed-body-cell,
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > td,
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > th {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  background-image: linear-gradient(to bottom, transparent 0, transparent calc(100% - 1px), rgba(0, 0, 0, 0.088) calc(100% - 1px), rgba(0, 0, 0, 0.088) 100%) !important;
+}
+
+/* Vertical divider where the sticky name column ends — visual cue that
+ * the columns to the right scroll horizontally. Same opacity as the
+ * horizontal dividers for consistency. */
+.widget .box-score .sw-grid table thead th:nth-child(2),
+.widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  border-right: 1px solid rgba(0, 0, 0, 0.088) !important;
+}
+
+/* Desktop: cap the inner name text width so the column shrinks and the
+ * stat grid fits without a horizontal scrollbar. Applied to the inner
+ * .box-score-person-cell (the actual text span) so the cell can size to
+ * the truncated content. */
+@media (min-width: 768px) {
+  .widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name .box-score-person-cell {
+    display: inline-block !important;
+    max-width: 150px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+  }
+}
+
+/* Equipo/Entrenador row: 5px of breathing room above so it reads as a
+ * separate summary section from the player rows. The widget renders it
+ * as a tr with a "grid-custom-row"-family class but it's NOT the
+ * grid-custom-row-total row (which is the Total row below it). */
+.widget .box-score .sw-grid table tbody tr[class*="grid-custom-row"]:not(.grid-custom-row-total) > td,
+.widget .box-score .sw-grid table tbody tr[class*="grid-custom-row"]:not(.grid-custom-row-total) > th {
+  padding-top: 11px !important;
+}
+
+/* Total row: match the column-label header's vertical padding (6px
+ * top/bottom) so it reads as a symmetric summary band at the bottom. */
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > td,
+.widget .box-score .sw-grid table tbody tr.grid-custom-row-total > th {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
 
 /* App webview: the bottom sheet behind the embed is #191919, so the
  * banner + sub-tabs blend naturally with it. Everything below the tabs
@@ -518,8 +693,8 @@ span.box-score-person-cell,
 .sport-radar-fixture-mobile-widget .sw-widget-fixture-box-score *,
 .sport-radar-fixture-mobile-widget .sw-glossary,
 .sport-radar-fixture-mobile-widget .sw-glossary * {
-  background-color: #222222 !important;
-  background: #222222 !important;
+  background-color: #141414 !important;
+  background: #141414 !important;
 }
 
 /* Banner + sub-tabs back to #191919 so they blend with the bottom
@@ -544,25 +719,94 @@ span.box-score-person-cell,
 
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd),
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) td,
-.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) th {
-  background-color: #222222 !important;
-  background: #222222 !important;
-}
-
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(odd) th,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even),
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) td,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:nth-child(even) th {
-  background-color: #2a2a2a !important;
-  background: #2a2a2a !important;
+  background-color: #141414 !important;
+  background: #141414 !important;
 }
 
-/* Section-label rows ("Iniciales", "Banca") and table chrome — keep them
- * on the panel base bg. */
+/* Row dividers: subtle line between rows on the dark app surface. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.049) !important;
+}
+
+/* Player rows extend edge-to-edge: pull the table wrapper (.sw-grid)
+ * out past .box-score's natural bounds with negative margin AND expand
+ * its width so the scrolling container itself reaches the screen edges.
+ * Inner cells get 1rem padding on the first/last columns so text sits
+ * at the original container edge. Other .box-score children (team
+ * title, team-stats cards, coach/captain) are untouched. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid {
+  margin-left: -1rem !important;
+  margin-right: -1rem !important;
+  width: calc(100% + 2rem) !important;
+  max-width: calc(100% + 2rem) !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:first-child,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th.grid-fixed-body-cell {
+  padding-left: 1rem !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:last-child,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr > *:last-child {
+  padding-right: 1rem !important;
+}
+
+/* Nombre header: nudge right to align with the player name text below,
+ * both at natural scroll position and when the sticky column pins on
+ * horizontal scroll. The widget renders the Nombre header as the 2nd
+ * thead <th>; target it directly. The extra 2px gives the name column
+ * a touch more breathing room from the bib column when sticky-pinned. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:nth-child(2) {
+  padding-left: calc(1rem + 2px) !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  padding-left: calc(1rem + 2px) !important;
+}
+
+/* Vertical divider where the sticky name column ends — gives a visual
+ * cue that the columns to the right scroll horizontally. Applied to
+ * both the Nombre header and the body name cells so the line runs the
+ * full height of the table. */
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th:nth-child(2),
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody th.grid-fixed-body-cell.grid-data-cell-name {
+  border-right: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+
+/* Column-label header row (#, Nombre, MIN, …): a continuous lighter
+ * band across the whole row. The `*` rule on .box-score earlier paints
+ * descendants `#141414`, so we explicitly repaint every descendant of
+ * the header cells too — otherwise inline label spans show through dark
+ * and the band reads as patchy. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead tr,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th * {
+  background-color: #181818 !important;
+  background: #181818 !important;
+}
+
+/* Header cells match the totals-row vertical padding (10px) for a
+ * symmetric look top/bottom of the table. The padding is applied only
+ * to the <th>; descendants just inherit Barlow. Previously this rule
+ * also stamped padding on `th *`, doubling the visual padding because
+ * the widget wraps each label in a span/div. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th {
-  background-color: #222222 !important;
-  background: #222222 !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table thead th * {
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
 }
 
 /* Inline elements inside zebra cells: the widget's `*` rule paints them
@@ -596,7 +840,7 @@ span.box-score-person-cell,
  * as a summary line on the dark surface. */
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total td,
 .sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr.grid-custom-row-total th {
-  background-color: #2a2a2a !important;
+  background-color: #1B1B1B !important;
   font-weight: 600 !important;
 }
 
@@ -727,7 +971,7 @@ select {
   justify-content: space-between !important;
   background-color: rgba(255, 255, 255, 0.02) !important;
   background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
   border-radius: 10px !important;
   padding: 10px 12px !important;
   min-height: 72px !important;
@@ -945,7 +1189,7 @@ span.sw-box-score-additional-persons-role {
  * border (lighter than before) the card sits gently above the page. */
 .sw-leaders-card {
   background-color: #fff !important;
-  border: 1px solid rgba(20, 24, 31, 0.06) !important;
+  border: 1px solid rgba(20, 24, 31, 0.094) !important;
   border-radius: 12px !important;
   overflow: hidden !important;
   box-shadow:
@@ -2076,6 +2320,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
 .sport-radar-fixture-mobile-widget span.sw-fixture-banner-status-state-label {
   letter-spacing: 0.5px !important;
+  font-weight: 400 !important;
 }
 
 .sport-radar-fixture-mobile-widget span.sw-fixture-banner-status-active-period,
@@ -2167,6 +2412,14 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   border-bottom: 1px solid rgba(45, 46, 50, 0.5) !important;
 }
 
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid table tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > th,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > td,
+.sport-radar-fixture-mobile-widget .box-score .sw-grid tbody tr:not(.grid-custom-row-total):not(.grid-custom-row-extra) > th {
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+}
+
 .sport-radar-fixture-mobile-widget .sw-grid table thead {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
@@ -2204,23 +2457,435 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   border-color: #fff !important;
 }
 
-.sport-radar-fixture-mobile-widget .sw-fixture-pbp-period-boundary {
-  background-color: rgba(79, 79, 79, 0.19) !important;
-  border: 1px solid rgba(147, 147, 147, 0.35) !important;
+.sport-radar-fixture-mobile-widget .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
   color: #fff !important;
-  margin-top: 10px !important;
+}
+.sport-radar-fixture-mobile-widget .sw-multi-switch-item:not([data-sw-multiswitch-item-active="true"]):active {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border-color: #fff !important;
+  color: #fff !important;
 }
 
-/* PBP event rows: keep our subtle dark borders on top/right/bottom but
- * leave border-left untouched so the widget's `var(--sw-fixture-competitor-*-color)`
- * stripe (set by .is-home / .is-away) can render the team color. */
-.sport-radar-fixture-mobile-widget .sw-fixture-pbp-event,
-.sport-radar-fixture-mobile-widget .sw-fixture-pbp-shootout-event {
-  border-top: 1px solid rgba(125, 125, 125, 0.2) !important;
-  border-right: 1px solid rgba(125, 125, 125, 0.2) !important;
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab,
+.sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab.is-active {
+  font-size: 21px !important;
+}
+
+@media (max-width: 767px) {
+  .sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab,
+  .sport-radar-fixture-mobile-widget button.sw-sub-tabs-tab.is-active {
+    font-size: 17px !important;
+  }
+}
+
+/* ── App webview Play-by-play: flat rows on the dark surface with hairline
+ * dividers, time pinned left, player image, description + player name
+ * stacked in the middle, combined score pinned right. Matches the Figma
+ * "BSN PASADO – BOX SCORE" PBP design (node 4165:5219).
+ *
+ * Widget emits each event as:
+ *   <li.sw-fixture-pbp-event[.is-success][.is-home/away]>
+ *     <div.sw-fixture-pbp-event-player-name>#33 Maxwell Abmas</div>
+ *     <div.sw-fixture-pbp-event-time>P4 00:18</div>
+ *     <div.sw-fixture-pbp-event-description>3pt Tiro en suspensión...</div>
+ *     <div.sw-fixture-pbp-event-score>105 - 92</div>
+ *     <img.sw-fixture-pbp-event-image>
+ *   </li>
+ *
+ * Grid lets us reorder: time | image | (description + player) | score.
+ * Score column collapses (auto width = 0) on non-scoring rows. */
+
+/* Period boundary ("Period 4: Fin"): flat row, uppercase, hairline below. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp-period-boundary {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
   border-bottom: 1px solid rgba(125, 125, 125, 0.2) !important;
-  margin-top: 4px !important;
+  border-radius: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin: 0 !important;
+  padding: 16px 4px 12px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 14px !important;
+  letter-spacing: 1.26px !important;
+  text-transform: uppercase !important;
+  text-align: left !important;
+}
+
+/* The widget paints PBP via its own grid:
+ *   .sw-fixture-pbp-event { grid-auto-flow: column; grid-template-columns:
+ *     repeat(2,auto); grid-template-rows: repeat(3,auto); min-height: 35px }
+ *   plus highly-specific .sw-fixture-pbp li.is-home/.is-away rules that
+ *   set grid-column / grid-row on each child (player-name, description,
+ *   image, time, score) and inject left/right border colors with the
+ *   team color. .sw-fixture-pbp-period uses display:flex; gap:1px so rows
+ *   are separated by a 1px gutter painted by the widget bg.
+ *
+ * To override cleanly we (a) match the widget's specificity by also
+ * scoping under `.sw-fixture-pbp`, and (b) reset every child's grid-column
+ * / grid-row so our grid-areas actually take effect. */
+
+/* Period list + period: no flex gap, no padding — rows sit flush. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-period,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-periods-list {
+  display: block !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Event row: 4 columns × 2 rows. Time pinned left, image, description +
+ * player name stacked in the middle, combined score pinned right. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-shootout-event,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.sw-fixture-pbp-event.is-home,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.sw-fixture-pbp-event.is-away,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away {
+  display: grid !important;
+  grid-auto-flow: row !important;
+  grid-template-columns: 56px 32px 1fr auto !important;
+  grid-template-rows: auto auto !important;
+  grid-template-areas:
+    "time image desc score"
+    "time image name score" !important;
+  align-items: center !important;
+  column-gap: 12px !important;
+  row-gap: 3px !important;
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.2) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 9px 16px !important;
+  min-height: 0 !important;
+  height: auto !important;
   color: #fff !important;
+}
+
+/* Time: "P4 00:18" — pinned left, vertically centered across both rows. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-time,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-time,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-time {
+  grid-area: time !important;
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0.12px !important;
+  white-space: nowrap !important;
+}
+
+/* Player image: spans both rows in column 2. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-image,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-image,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-image {
+  grid-area: image !important;
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: center !important;
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Description: top of middle column. Bold for scoring events. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-description,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-description,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-description {
+  grid-area: desc !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  align-self: end !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  color: #fff !important;
+  letter-spacing: -0.13px !important;
+}
+
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event.is-success .sw-fixture-pbp-event-description {
+  font-weight: 700 !important;
+}
+
+/* Player name: bottom of middle column, under description. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-player-name,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-player-name,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-player-name {
+  grid-area: name !important;
+  grid-column: 3 !important;
+  grid-row: 2 !important;
+  align-self: start !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Score: pinned right, vertically centered across both rows. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-score {
+  grid-area: score !important;
+  grid-column: 4 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: end !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0.28px !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Hide score on non-scoring rows. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event:not(.is-success) .sw-fixture-pbp-event-score {
+  display: none !important;
+}
+
+/* Made-basket score: pure white. */
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp .sw-fixture-pbp-event.is-success .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-success.is-home .sw-fixture-pbp-event-score,
+.sport-radar-fixture-mobile-widget .sw-fixture-pbp li.is-success.is-away .sw-fixture-pbp-event-score {
+  color: #ffffff !important;
+}
+
+/* ── Web Play-by-play (light surface) ──────────────────────────────────
+ * Mirrors the app webview layout (4-col grid, time | image | desc/name |
+ * score) but on white instead of dark. Scoped under `.widget` (the web
+ * container in SportsRadarMatchPage) so the app webview rules above are
+ * untouched. Used at /partidos/[id] across mobile and desktop.
+ *
+ * Layout: rows are centered in a narrow column (~640px) on desktop, full
+ * width on mobile. Period boundary uses a soft grey fill with dark
+ * uppercase label. */
+
+/* Center the PBP rail and tighten max-width on desktop. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp {
+  max-width: 720px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Period list + period: no gap, no padding so rows sit flush. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-period,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-periods-list {
+  display: block !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Period boundary ("Period 4: Fin"): soft grey banded header, dark
+ * uppercase label, hairline below. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-period-boundary {
+  background-color: rgba(15, 23, 31, 0.04) !important;
+  background: rgba(15, 23, 31, 0.04) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: #0F171F !important;
+  margin: 16px 0 0 !important;
+  padding: 12px 16px !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.26px !important;
+  text-transform: uppercase !important;
+  text-align: left !important;
+  display: block !important;
+  height: auto !important;
+  justify-content: flex-start !important;
+}
+
+/* Event row: 4-col grid identical to app version, hairline divider. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-shootout-event,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.sw-fixture-pbp-event.is-home,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.sw-fixture-pbp-event.is-away,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-home,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-away {
+  display: grid !important;
+  grid-auto-flow: row !important;
+  grid-template-columns: 56px 32px 1fr auto !important;
+  grid-template-rows: auto auto !important;
+  grid-template-areas:
+    "time image desc score"
+    "time image name score" !important;
+  align-items: center !important;
+  column-gap: 12px !important;
+  row-gap: 3px !important;
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: 1px solid rgba(15, 23, 31, 0.08) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 11px 16px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  color: #0F171F !important;
+}
+
+/* Time. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event-time,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-time,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-time {
+  grid-area: time !important;
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: rgba(15, 23, 31, 0.6) !important;
+  letter-spacing: 0.12px !important;
+  white-space: nowrap !important;
+}
+
+/* Player image. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event-image,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-image,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-image {
+  grid-area: image !important;
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: center !important;
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Description. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event-description,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-description,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-description {
+  grid-area: desc !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  align-self: end !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  color: #0F171F !important;
+  letter-spacing: -0.13px !important;
+}
+
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event.is-success .sw-fixture-pbp-event-description {
+  font-weight: 700 !important;
+}
+
+/* Player name. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event-player-name,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-player-name,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-player-name {
+  grid-area: name !important;
+  grid-column: 3 !important;
+  grid-row: 2 !important;
+  align-self: start !important;
+  justify-self: start !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-barlow), Barlow, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  color: rgba(15, 23, 31, 0.6) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Score. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event-score,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-home .sw-fixture-pbp-event-score,
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp li.is-away .sw-fixture-pbp-event-score {
+  grid-area: score !important;
+  grid-column: 4 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
+  justify-self: end !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-special-gothic-condensed-one), 'Special Gothic Condensed One', Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: rgba(15, 23, 31, 0.6) !important;
+  letter-spacing: 0.28px !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Hide score on non-scoring rows. */
+.widget #synergy-widget-fixture_detail .sw-fixture-pbp .sw-fixture-pbp-event:not(.is-success) .sw-fixture-pbp-event-score {
+  display: none !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-shot-chart-person {
@@ -2258,11 +2923,14 @@ button.sw-sub-tabs-tab:not(.is-active):active {
  * surface gives subtle lift without flattening into a solid block. The
  * outer border picks up just enough light to outline the card edge. */
 .sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 6px 18px rgba(0, 0, 0, 0.18) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 18px !important;
   background-color: rgba(255, 255, 255, 0.04) !important;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)) !important;
+  width: calc(85% + 20px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* Top-player row: photo first, then name, stat pinned to the right.
@@ -2278,7 +2946,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   align-items: center !important;
   column-gap: 12px !important;
   row-gap: 8px !important;
-  padding: 12px 20px !important;
+  padding: 12px 17px !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-card[data-testid="leader-card"] .sw-leaders-card-top-person .sw-leaders-card-category {
@@ -2434,7 +3102,9 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 }
 
 .sport-radar-fixture-mobile-widget .sw-shot-chart-court-background {
-  background: rgba(54, 54, 54, 0.3) !important;
+  background: rgba(220, 220, 220, 0.85) !important;
+  border: 1px solid #191919 !important;
+  box-sizing: border-box !important;
 }
 
 .sport-radar-fixture-mobile-widget .sw-leaders-card-top-person .sw-person-photo-with-entity-logo .sw-ppwel-person {
