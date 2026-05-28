@@ -2,9 +2,12 @@
 
 import Link from 'next/link';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import { SERIES_DATA, TEAM_COLOR, type Series, type Game } from './data';
-
-const SERIES_LENGTH = 7;
+import { TEAM_COLOR } from './data';
+import {
+  usePlayoffsSeries,
+  type PlayoffsSeriesNode,
+  type SeriesMatch,
+} from '@/playoffs/hooks/usePlayoffsSeries';
 
 // ─── Líderes data ─────────────────────────────────────────────────────────────
 const LEADER_DATA = {
@@ -49,22 +52,35 @@ const C = {
   ink25: 'rgba(15,23,31,0.25)',
   ink10: 'rgba(15,23,31,0.10)',
   ink06: 'rgba(15,23,31,0.06)',
-  // Used for game-row bottom borders (subtle, repeats per row).
   hairline: 'rgba(15,23,31,0.07)',
-  // Used for the structural break between sections of a card (header→hero,
-  // hero→log, finals vertical split). Set to .132 — strong enough to read
-  // as a deliberate separator without darkening the card surface.
   divider: 'rgba(15,23,31,0.132)',
 };
 
 const HATCH = 'repeating-linear-gradient(135deg, rgba(15,23,31,0.028) 0 1px, transparent 1px 9px)';
 
-function canReachGameSeven(s: Series) {
-  return s.team1.wins < 4 && s.team2.wins < 4;
+function seriesLabel(round: number): string {
+  if (round === 3) return 'Final BSN';
+  if (round === 2) return 'Semifinal';
+  return 'Cuartos';
+}
+
+function statusPillText(node: PlayoffsSeriesNode): string {
+  const c1 = node.competitors[0];
+  const c2 = node.competitors[1];
+  if (!c1 || !c2) return '';
+  const w1 = c1.won;
+  const w2 = c2.won;
+  if (node.status === 'COMPLETED') {
+    if (w1 > w2) return `${c1.team.nickname.toUpperCase()} GANA ${w1}-${w2}`;
+    return `${c2.team.nickname.toUpperCase()} GANA ${w2}-${w1}`;
+  }
+  if (w1 === w2) return `EMPATE ${w1}-${w2}`;
+  if (w1 > w2) return `${c1.team.code} LIDERA ${w1}-${w2}`;
+  return `${c2.team.code} LIDERA ${w2}-${w1}`;
 }
 
 // ─── Card top header bar ──────────────────────────────────────────────────────
-function CardHeaderBar({ s, isFinal }: { s: Series; isFinal: boolean }) {
+function CardHeaderBar({ node, isFinal }: { node: PlayoffsSeriesNode; isFinal: boolean }) {
   return (
     <div
       className="flex items-center justify-center gap-2 border-b border-white/[0.05]"
@@ -82,22 +98,21 @@ function CardHeaderBar({ s, isFinal }: { s: Series; isFinal: boolean }) {
         className="font-barlow font-bold text-white uppercase whitespace-nowrap"
         style={{ fontSize: 11, letterSpacing: 1.6 }}
       >
-        {s.conferenceLabel || (isFinal ? 'Final BSN' : 'Serie')}
+        {seriesLabel(node.round)}
       </span>
-      {s.group && (
+      {node.group && !isFinal && (
         <span
           className="font-barlow font-bold text-white/55 uppercase whitespace-nowrap"
           style={{ fontSize: 10.5, letterSpacing: 1.6 }}
         >
-          · Grupo {s.group}
+          · {node.group}
         </span>
       )}
     </div>
   );
 }
 
-// ─── Status pill (shared by hero + final hero) ────────────────────────────────
-// `mobileSmall` shrinks the pill on narrow viewports for the in-card hero.
+// ─── Status pill ──────────────────────────────────────────────────────────────
 function StatusPill({
   children,
   size = 11,
@@ -125,33 +140,14 @@ function StatusPill({
   );
 }
 
-function statusPillText(s: Series): string {
-  if (s.status === 'COMPLETED') {
-    const w1 = s.team1.wins;
-    const w2 = s.team2.wins;
-    const winner = w1 > w2 ? s.team1 : s.team2;
-    const loser = w1 > w2 ? s.team2 : s.team1;
-    return `${winner.name.toUpperCase()} GANA ${winner.wins}-${loser.wins}`;
-  }
-  if (s.team1.wins === s.team2.wins) {
-    return `EMPATE ${s.team1.wins}-${s.team2.wins}`;
-  }
-  const lead = s.team1.wins > s.team2.wins ? s.team1 : s.team2;
-  const trail = lead.code === s.team1.code ? s.team2 : s.team1;
-  return `${lead.code} LIDERA ${lead.wins}-${trail.wins}`;
-}
-
-// ─── Side block (logo + name) — no ring, just the logo ───────────────────────
-// Logo shrinks 30% on mobile (<lg) — kept as two TeamLogoAvatar instances
-// since the avatar's size is inline-styled and isn't easily overridden via
-// responsive utilities.
+// ─── Side block (logo + name) ─────────────────────────────────────────────────
 function SideBlock({
   team,
   dim,
   logoSize,
   nameSize,
 }: {
-  team: Series['team1'];
+  team: { code: string; name: string };
   dim: boolean;
   logoSize: number;
   nameSize: number;
@@ -184,15 +180,15 @@ function SideBlock({
 }
 
 // ─── Hero block (non-final cards) ─────────────────────────────────────────────
-function CardHero({ s }: { s: Series }) {
-  const completed = s.status === 'COMPLETED';
-  const w1 = s.team1.wins;
-  const w2 = s.team2.wins;
+function CardHero({ node }: { node: PlayoffsSeriesNode }) {
+  const completed = node.status === 'COMPLETED';
+  const c1 = node.competitors[0];
+  const c2 = node.competitors[1];
+  const w1 = c1?.won ?? 0;
+  const w2 = c2?.won ?? 0;
   const t1Loser = completed && w1 < w2;
   const t2Loser = completed && w2 < w1;
 
-  // Logos stay the same; SCORES are smaller per user direction.
-  // Was 60 desktop / 50 mobile → now 44 desktop / 38 mobile.
   const scoreCls = 'text-[38px] lg:text-[44px]';
   const dashCls = 'text-[24px] lg:text-[28px]';
 
@@ -200,17 +196,13 @@ function CardHero({ s }: { s: Series }) {
     <div className="px-[18px] pt-[26px] pb-[16px]" style={{ backgroundImage: HATCH }}>
       <div className="grid items-center" style={{ gridTemplateColumns: '1fr auto 1fr', columnGap: 14 }}>
         <div className="flex justify-end" style={{ transform: 'translateX(-18px)' }}>
-          <SideBlock team={s.team1} dim={t1Loser} logoSize={70} nameSize={19} />
+          {c1 && <SideBlock team={{ code: c1.team.code, name: c1.team.nickname }} dim={t1Loser} logoSize={70} nameSize={19} />}
         </div>
         <div className="flex flex-col items-center shrink-0" style={{ rowGap: 13 }}>
           <div className="flex items-center gap-[6px] tabular-nums">
             <span
               className={`font-special-gothic-condensed-one ${scoreCls}`}
-              style={{
-                color: t1Loser ? C.ink25 : C.ink,
-                letterSpacing: 0.2,
-                lineHeight: 0.9,
-              }}
+              style={{ color: t1Loser ? C.ink25 : C.ink, letterSpacing: 0.2, lineHeight: 0.9 }}
             >
               {w1}
             </span>
@@ -222,35 +214,26 @@ function CardHero({ s }: { s: Series }) {
             </span>
             <span
               className={`font-special-gothic-condensed-one ${scoreCls}`}
-              style={{
-                color: t2Loser ? C.ink25 : C.ink,
-                letterSpacing: 0.2,
-                lineHeight: 0.9,
-              }}
+              style={{ color: t2Loser ? C.ink25 : C.ink, letterSpacing: 0.2, lineHeight: 0.9 }}
             >
               {w2}
             </span>
           </div>
-          <StatusPill mobileSmall>{statusPillText(s)}</StatusPill>
+          <StatusPill mobileSmall>{statusPillText(node)}</StatusPill>
         </div>
         <div className="flex justify-start" style={{ transform: 'translateX(18px)' }}>
-          <SideBlock team={s.team2} dim={t2Loser} logoSize={70} nameSize={19} />
+          {c2 && <SideBlock team={{ code: c2.team.code, name: c2.team.nickname }} dim={t2Loser} logoSize={70} nameSize={19} />}
         </div>
       </div>
 
-      {/* Next-game / status line */}
       <div className="mt-[14px] text-center">
-        {!completed && s.nextGame ? (
+        {completed ? (
           <span className="font-barlow font-semibold" style={{ fontSize: 12, color: C.ink70 }}>
-            Juego {s.games.length + 1}: {s.nextGame.date} · {s.nextGame.time}
-          </span>
-        ) : !completed ? (
-          <span className="font-barlow" style={{ fontSize: 12, color: C.ink55 }}>
-            Próximo partido por anunciar
+            Avanza a la siguiente ronda
           </span>
         ) : (
-          <span className="font-barlow" style={{ fontSize: 12, color: C.ink70 }}>
-            Avanza a la siguiente ronda
+          <span className="font-barlow" style={{ fontSize: 12, color: C.ink55 }}>
+            Próximo partido por anunciar
           </span>
         )}
       </div>
@@ -258,14 +241,16 @@ function CardHero({ s }: { s: Series }) {
   );
 }
 
-// ─── Final BSN hero (left column of the 60/40 split) ──────────────────────────
-function FinalHeader({ s }: { s: Series }) {
-  const completed = s.status === 'COMPLETED';
-  const w1 = s.team1.wins;
-  const w2 = s.team2.wins;
+// ─── Final BSN hero ────────────────────────────────────────────────────────────
+function FinalHeader({ node }: { node: PlayoffsSeriesNode }) {
+  const completed = node.status === 'COMPLETED';
+  const c1 = node.competitors[0];
+  const c2 = node.competitors[1];
+  const w1 = c1?.won ?? 0;
+  const w2 = c2?.won ?? 0;
   const t1Loser = completed && w1 < w2;
   const t2Loser = completed && w2 < w1;
-  const isPending = s.status === 'UPCOMING' && (!s.team1.code || s.team1.seed === 0);
+  const isPending = node.status === 'UPCOMING' && node.competitors.length < 2;
 
   if (isPending) {
     return (
@@ -281,13 +266,12 @@ function FinalHeader({ s }: { s: Series }) {
           Por definir
         </p>
         <p className="font-barlow text-center" style={{ fontSize: 13, color: C.ink55 }}>
-          {s.nextGame ? `Comienza ${s.nextGame.date} · ${s.nextGame.venue}` : 'A la espera de los finalistas'}
+          A la espera de los finalistas
         </p>
       </div>
     );
   }
 
-  // Final BSN: scores reduced from 60/50 → 52/44.
   const scoreCls = 'text-[44px] lg:text-[52px]';
   const dashCls = 'text-[28px] lg:text-[32px]';
 
@@ -298,16 +282,12 @@ function FinalHeader({ s }: { s: Series }) {
     >
       <div className="grid items-center w-full" style={{ gridTemplateColumns: '1fr auto 1fr', columnGap: 14 }}>
         <div className="flex justify-end" style={{ transform: 'translateX(-18px)' }}>
-          <SideBlock team={s.team1} dim={t2Loser} logoSize={88} nameSize={20} />
+          {c1 && <SideBlock team={{ code: c1.team.code, name: c1.team.nickname }} dim={t2Loser} logoSize={88} nameSize={20} />}
         </div>
         <div className="flex items-center gap-[6px] shrink-0 tabular-nums" style={{ paddingBottom: 22 }}>
           <span
             className={`font-special-gothic-condensed-one ${scoreCls}`}
-            style={{
-              color: t2Loser ? C.ink25 : C.ink,
-              letterSpacing: 0.2,
-              lineHeight: 0.9,
-            }}
+            style={{ color: t2Loser ? C.ink25 : C.ink, letterSpacing: 0.2, lineHeight: 0.9 }}
           >
             {w1}
           </span>
@@ -319,32 +299,21 @@ function FinalHeader({ s }: { s: Series }) {
           </span>
           <span
             className={`font-special-gothic-condensed-one ${scoreCls}`}
-            style={{
-              color: t1Loser ? C.ink25 : C.ink,
-              letterSpacing: 0.2,
-              lineHeight: 0.9,
-            }}
+            style={{ color: t1Loser ? C.ink25 : C.ink, letterSpacing: 0.2, lineHeight: 0.9 }}
           >
             {w2}
           </span>
         </div>
         <div className="flex justify-start" style={{ transform: 'translateX(18px)' }}>
-          <SideBlock team={s.team2} dim={t1Loser} logoSize={88} nameSize={20} />
+          {c2 && <SideBlock team={{ code: c2.team.code, name: c2.team.nickname }} dim={t1Loser} logoSize={88} nameSize={20} />}
         </div>
       </div>
 
-      <StatusPill>{statusPillText(s)}</StatusPill>
+      <StatusPill>{statusPillText(node)}</StatusPill>
 
       {completed ? (
         <div className="font-barlow uppercase" style={{ fontSize: 12, color: C.ink55, letterSpacing: 1.2 }}>
           Avanza a la siguiente ronda
-        </div>
-      ) : s.nextGame ? (
-        <div className="flex flex-col items-center gap-1">
-          <div className="font-barlow font-semibold" style={{ fontSize: 12, color: C.ink70 }}>
-            Juego {s.games.length + 1}: {s.nextGame.date}
-            {s.nextGame.time ? `, ${s.nextGame.time}` : ''}
-          </div>
         </div>
       ) : (
         <div className="font-barlow" style={{ fontSize: 12, color: C.ink55 }}>
@@ -357,38 +326,31 @@ function FinalHeader({ s }: { s: Series }) {
 
 // ─── Game row ─────────────────────────────────────────────────────────────────
 function GameRow({
-  s,
-  game,
+  match,
   n,
   last,
+  t1Code,
+  t2Code,
+  t1Wins,
+  t2Wins,
+  playedCount,
 }: {
-  s: Series;
-  game?: Game;
+  match?: SeriesMatch;
   n: number;
   last: boolean;
+  t1Code: string;
+  t2Code: string;
+  t1Wins: number;
+  t2Wins: number;
+  playedCount: number;
 }) {
-  const played = !!game && game.status === 'COMPLETED';
-  const t1Code = s.team1.code;
-  const t2Code = s.team2.code;
+  const played = !!match && match.status === 'COMPLETED';
+  const nextUp = !played && n === playedCount + 1;
+  const canReachSeven = t1Wins < 4 && t2Wins < 4;
+  const willHappen = played || nextUp || canReachSeven;
+  const interactive = played;
+  const href = played && match?.providerId ? `/partidos/${match.providerId}` : null;
 
-  let t1Score: number | null = null;
-  let t2Score: number | null = null;
-  let t1Won = false;
-  if (played && game) {
-    t1Score = game.homeCode === t1Code ? game.homeScore : game.visitorScore;
-    t2Score = game.homeCode === t2Code ? game.homeScore : game.visitorScore;
-    if (game.homeScore != null && game.visitorScore != null) {
-      const winnerCode = game.homeScore > game.visitorScore ? game.homeCode : game.visitorCode;
-      t1Won = winnerCode === t1Code;
-    }
-  }
-
-  const nextUp = !played && n === s.games.length + 1;
-  const willHappen = played || nextUp || canReachGameSeven(s);
-  const interactive = played || nextUp;
-  const href = played && game?.matchId ? `/partidos/${game.matchId}` : nextUp ? `/partidos/proximo/${s.id}-j${n}` : null;
-
-  // Center cell content
   let centerEl: React.ReactNode;
   if (played) {
     centerEl = (
@@ -399,16 +361,7 @@ function GameRow({
         FINAL
       </span>
     );
-  } else if (nextUp && s.nextGame) {
-    centerEl = (
-      <span
-        className="font-special-gothic-condensed-one tabular-nums whitespace-nowrap"
-        style={{ fontSize: 13, color: C.ink, letterSpacing: 0.4, lineHeight: 1 }}
-      >
-        {s.nextGame.time || s.nextGame.date}
-      </span>
-    );
-  } else if (!canReachGameSeven(s)) {
+  } else if (!willHappen) {
     centerEl = (
       <span
         className="font-barlow uppercase whitespace-nowrap"
@@ -428,14 +381,6 @@ function GameRow({
     );
   }
 
-  // Tighter layout per user direction: codes + scores cluster around the
-  // center cell. Outer columns (Juego pill, action) stay anchored to the
-  // edges; the middle [T1 code · T1 score · CENTER · T2 score · T2 code]
-  // forms a centered group with small gaps.
-  // Outer columns are the SAME width on both sides so the inner cluster
-  // (T1 code · T1 score · CENTER · T2 score · T2 code) sits at exact
-  // horizontal center of the row. Use the wider of the two anchors per
-  // breakpoint so neither pill nor "Ver resultado" link gets clipped.
   const rowInner = (
     <div
       className="grid items-center pl-[14px] pr-[18px] lg:pl-[18px] lg:pr-[24px] py-[14px] transition-colors duration-100 grid-cols-[40px_1fr_auto_1fr_40px] lg:grid-cols-[96px_1fr_auto_1fr_96px]"
@@ -447,7 +392,6 @@ function GameRow({
         cursor: interactive ? 'pointer' : 'default',
       }}
     >
-      {/* Juego N pill (anchored left). Compact JN on mobile. */}
       <span
         className="inline-flex items-center justify-center font-barlow font-bold uppercase whitespace-nowrap tabular-nums justify-self-start"
         style={{
@@ -465,34 +409,20 @@ function GameRow({
         <span className="hidden lg:inline">Juego {n}</span>
       </span>
 
-      {/* Spacer (1fr) — pushes the cluster toward center */}
       <span aria-hidden />
 
-      {/* Center cluster: T1 code | T1 score | center | T2 score | T2 code */}
       <div className="flex items-center" style={{ columnGap: 10 }}>
         <span
           className="font-special-gothic-condensed-one"
-          style={{
-            fontSize: 14,
-            color: played ? (t1Won ? C.ink : C.ink40) : C.ink55,
-            letterSpacing: 0.6,
-            lineHeight: 1,
-          }}
+          style={{ fontSize: 14, color: played ? C.ink : C.ink55, letterSpacing: 0.6, lineHeight: 1 }}
         >
           {t1Code}
         </span>
         <span
           className="font-special-gothic-condensed-one tabular-nums"
-          style={{
-            fontSize: 22,
-            color: played ? (t1Won ? C.ink : C.ink40) : C.ink25,
-            letterSpacing: 0.3,
-            lineHeight: 1,
-            minWidth: 26,
-            textAlign: 'right',
-          }}
+          style={{ fontSize: 22, color: C.ink25, letterSpacing: 0.3, lineHeight: 1, minWidth: 26, textAlign: 'right' }}
         >
-          {played ? t1Score : '—'}
+          —
         </span>
 
         <div className="flex items-center justify-center" style={{ minWidth: 60, padding: '0 8px' }}>
@@ -501,38 +431,23 @@ function GameRow({
 
         <span
           className="font-special-gothic-condensed-one tabular-nums"
-          style={{
-            fontSize: 22,
-            color: played ? (!t1Won ? C.ink : C.ink40) : C.ink25,
-            letterSpacing: 0.3,
-            lineHeight: 1,
-            minWidth: 26,
-            textAlign: 'left',
-          }}
+          style={{ fontSize: 22, color: C.ink25, letterSpacing: 0.3, lineHeight: 1, minWidth: 26, textAlign: 'left' }}
         >
-          {played ? t2Score : '—'}
+          —
         </span>
         <span
           className="font-special-gothic-condensed-one"
-          style={{
-            fontSize: 14,
-            color: played ? (!t1Won ? C.ink : C.ink40) : C.ink55,
-            letterSpacing: 0.6,
-            lineHeight: 1,
-          }}
+          style={{ fontSize: 14, color: played ? C.ink : C.ink55, letterSpacing: 0.6, lineHeight: 1 }}
         >
           {t2Code}
         </span>
       </div>
 
-      {/* Spacer (1fr) */}
       <span aria-hidden />
 
-      {/* Action: chevron mobile, "Ver resultado"/"Ver previa" link desktop */}
       <div className="justify-self-end flex items-center">
         {interactive ? (
           <>
-            {/* Mobile: chevron */}
             <span
               className="lg:hidden inline-flex items-center justify-center"
               style={{ width: 20, height: 20, color: C.ink55 }}
@@ -547,12 +462,11 @@ function GameRow({
                 />
               </svg>
             </span>
-            {/* Desktop: text link */}
             <span
               className="hidden lg:inline-block font-barlow font-semibold whitespace-nowrap transition-[color,transform] duration-100 group-hover/row:translate-x-[2px] group-hover/row:text-[#1257A8]"
               style={{ fontSize: 12, color: '#1772D9', letterSpacing: 0.3 }}
             >
-              {played ? 'Ver resultado' : 'Ver previa'}
+              Ver resultado
             </span>
           </>
         ) : null}
@@ -562,7 +476,7 @@ function GameRow({
 
   if (interactive && href) {
     return (
-      <Link href={href} aria-label={played ? `Ver resultado Juego ${n}` : `Ver previa Juego ${n}`} className="block group/row hover:bg-[#FAFAFA]">
+      <Link href={href} aria-label={`Ver resultado Juego ${n}`} className="block group/row hover:bg-[#FAFAFA]">
         {rowInner}
       </Link>
     );
@@ -571,23 +485,19 @@ function GameRow({
 }
 
 // ─── Series card ──────────────────────────────────────────────────────────────
-function SeriesCard({ series, fullWidth = false }: { series: Series; fullWidth?: boolean }) {
-  const isFinal = series.round === 'FINAL';
-  const isFinalPending = isFinal && series.status === 'UPCOMING' && (!series.team1.code || series.team1.seed === 0);
-  const completed = series.status === 'COMPLETED';
-  const playedCount = series.games.length;
-  const rowsToShow = completed ? playedCount : SERIES_LENGTH;
+function SeriesCard({ node, fullWidth = false }: { node: PlayoffsSeriesNode; fullWidth?: boolean }) {
+  const isFinal = node.round === 3;
+  const isFinalPending = isFinal && node.status === 'UPCOMING' && node.competitors.length < 2;
+  const playedCount = node.matches.filter((m) => m.status === 'COMPLETED').length;
 
-  const rows: { n: number; game?: Game }[] = [];
-  for (let i = 0; i < rowsToShow; i += 1) {
-    rows.push({ n: i + 1, game: series.games[i] });
-  }
+  const t1Code = node.competitors[0]?.team.code ?? '';
+  const t2Code = node.competitors[1]?.team.code ?? '';
+  const t1Wins = node.competitors[0]?.won ?? 0;
+  const t2Wins = node.competitors[1]?.won ?? 0;
 
-  // Game-log fills available vertical space so cards in the same row equalize
-  // on desktop (lg+); on mobile we stay content-sized.
   const rowsBlock = (
     <div className="bg-white lg:flex-1">
-      {rows.length === 0 ? (
+      {node.matches.length === 0 ? (
         <div
           className="font-barlow text-center"
           style={{ fontSize: 12, color: C.ink55, padding: '18px 14px' }}
@@ -595,8 +505,18 @@ function SeriesCard({ series, fullWidth = false }: { series: Series; fullWidth?:
           Calendario por confirmar
         </div>
       ) : (
-        rows.map((r, i) => (
-          <GameRow key={r.n} s={series} n={r.n} game={r.game} last={i === rows.length - 1} />
+        node.matches.map((match, i) => (
+          <GameRow
+            key={match.providerId}
+            n={i + 1}
+            match={match}
+            last={i === node.matches.length - 1}
+            t1Code={t1Code}
+            t2Code={t2Code}
+            t1Wins={t1Wins}
+            t2Wins={t2Wins}
+            playedCount={playedCount}
+          />
         ))
       )}
     </div>
@@ -617,14 +537,12 @@ function SeriesCard({ series, fullWidth = false }: { series: Series; fullWidth?:
       className={`${fullWidth ? 'lg:col-span-2' : ''} lg:flex lg:flex-col lg:h-full`}
       style={cardOuter}
     >
-      <CardHeaderBar s={series} isFinal={isFinal} />
+      <CardHeaderBar node={node} isFinal={isFinal} />
 
       {isFinal && fullWidth ? (
-        // Desktop Final BSN: 50/50 split with vertical hairline divider.
-        // Mobile collapses to stacked (hero on top, rows below) automatically.
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:flex-1">
           <div className="lg:border-r" style={{ borderRightColor: C.divider }}>
-            <FinalHeader s={series} />
+            <FinalHeader node={node} />
           </div>
           <div className="flex flex-col justify-center border-t lg:border-t-0" style={{ borderTopColor: C.divider }}>
             {!isFinalPending && rowsBlock}
@@ -632,7 +550,7 @@ function SeriesCard({ series, fullWidth = false }: { series: Series; fullWidth?:
         </div>
       ) : (
         <>
-          {isFinal ? <FinalHeader s={series} /> : <CardHero s={series} />}
+          {isFinal ? <FinalHeader node={node} /> : <CardHero node={node} />}
           {!isFinalPending && (
             <>
               <div className="h-px" style={{ background: C.divider }} />
@@ -724,9 +642,11 @@ function StatLeaderCard({
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function PlayoffsPageClient() {
-  const finalSeries = SERIES_DATA.find((s) => s.round === 'FINAL')!;
-  const grupoFinals = SERIES_DATA.filter((s) => s.round === 'GRUPO_FINAL');
-  const cuartos = SERIES_DATA.filter((s) => s.round === 'CUARTOS');
+  const { nodes } = usePlayoffsSeries();
+
+  const final = nodes.find((s) => s.round === 3);
+  const semifinals = nodes.filter((s) => s.round === 2);
+  const cuartos = nodes.filter((s) => s.round === 1);
 
   return (
     <>
@@ -737,17 +657,16 @@ export default function PlayoffsPageClient() {
             Estado de las series
           </h2>
 
-          {/* 2-col grid; Final BSN spans both columns at the top */}
           <div
             className="mt-7 lg:mt-10 grid grid-cols-1 lg:grid-cols-2"
             style={{ columnGap: 20, rowGap: 24 }}
           >
-            <SeriesCard series={finalSeries} fullWidth />
-            {grupoFinals.map((s) => (
-              <SeriesCard key={s.id} series={s} />
+            {final && <SeriesCard node={final} fullWidth />}
+            {semifinals.map((s) => (
+              <SeriesCard key={s.providerId} node={s} />
             ))}
             {cuartos.map((s) => (
-              <SeriesCard key={s.id} series={s} />
+              <SeriesCard key={s.providerId} node={s} />
             ))}
           </div>
         </div>
