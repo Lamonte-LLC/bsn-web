@@ -49,14 +49,56 @@ export const PLAYOFFS_SERIES_CONNECTION = gql`
               providerId
               code
               nickname
+              score
             }
             visitorTeam {
               providerId
               code
               nickname
+              score
             }
             status
           }
+        }
+      }
+    }
+  }
+`;
+
+export const PLAYOFFS_MATCHES = gql`
+  query findPlayoffsMatches($fromDate: String!, $toDate: String!) {
+    matches(fromDate: $fromDate, toDate: $toDate, playoffs: true) {
+      id
+      providerId
+      startAt
+      endAt
+      status
+      providerFixtureStatus
+      homeTeam {
+        code
+        name
+        nickname
+        city
+        score
+      }
+      visitorTeam {
+        code
+        name
+        nickname
+        city
+        score
+      }
+      overtimePeriods
+      gameNumber
+      series {
+        providerId
+        name
+        group
+        competitors {
+          team {
+            code
+          }
+          won
         }
       }
     }
