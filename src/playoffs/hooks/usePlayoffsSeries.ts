@@ -7,6 +7,7 @@ type Team = {
   providerId: string;
   code: string;
   nickname: string;
+  score: string;
 };
 
 export type SeriesCompetitor = {

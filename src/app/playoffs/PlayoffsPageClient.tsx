@@ -351,35 +351,19 @@ function GameRow({
   const interactive = played;
   const href = played && match?.providerId ? `/partidos/${match.providerId}` : null;
 
-  let centerEl: React.ReactNode;
-  if (played) {
-    centerEl = (
-      <span
-        className="font-barlow font-bold uppercase whitespace-nowrap"
-        style={{ fontSize: 11, color: C.ink70, letterSpacing: 1.4 }}
-      >
-        FINAL
-      </span>
-    );
-  } else if (!willHappen) {
-    centerEl = (
-      <span
-        className="font-barlow uppercase whitespace-nowrap"
-        style={{ fontSize: 9.5, color: C.ink40, letterSpacing: 1.2 }}
-      >
-        Si necesario
-      </span>
-    );
-  } else {
-    centerEl = (
-      <span
-        className="font-barlow uppercase"
-        style={{ fontSize: 9.5, color: C.ink40, letterSpacing: 1.2 }}
-      >
-        TBD
-      </span>
-    );
-  }
+  const t1Score = match?.homeTeam?.score;
+  const t2Score = match?.visitorTeam?.score;
+  const t1Won = played && t1Score != null && t2Score != null && Number(t1Score) > Number(t2Score);
+  const t2Won = played && t1Score != null && t2Score != null && Number(t2Score) > Number(t1Score);
+
+  const centerEl = (
+    <span
+      className="font-barlow font-bold uppercase whitespace-nowrap"
+      style={{ fontSize: 11, color: C.ink70, letterSpacing: 1.4 }}
+    >
+      {match?.status}
+    </span>
+  );
 
   const rowInner = (
     <div
@@ -420,9 +404,9 @@ function GameRow({
         </span>
         <span
           className="font-special-gothic-condensed-one tabular-nums"
-          style={{ fontSize: 22, color: C.ink25, letterSpacing: 0.3, lineHeight: 1, minWidth: 26, textAlign: 'right' }}
+          style={{ fontSize: 22, color: t1Won ? C.ink : t2Won ? C.ink40 : C.ink25, letterSpacing: 0.3, lineHeight: 1, minWidth: 26, textAlign: 'right' }}
         >
-          —
+          {t1Score ?? '—'}
         </span>
 
         <div className="flex items-center justify-center" style={{ minWidth: 60, padding: '0 8px' }}>
@@ -431,9 +415,9 @@ function GameRow({
 
         <span
           className="font-special-gothic-condensed-one tabular-nums"
-          style={{ fontSize: 22, color: C.ink25, letterSpacing: 0.3, lineHeight: 1, minWidth: 26, textAlign: 'left' }}
+          style={{ fontSize: 22, color: t2Won ? C.ink : t1Won ? C.ink40 : C.ink25, letterSpacing: 0.3, lineHeight: 1, minWidth: 26, textAlign: 'left' }}
         >
-          —
+          {t2Score ?? '—'}
         </span>
         <span
           className="font-special-gothic-condensed-one"
