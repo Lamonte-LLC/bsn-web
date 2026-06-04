@@ -240,3 +240,122 @@ export const MATCH_LEADERS_STATS = gql`
     }
   }
 `;
+
+export const PLAYOFFS_LEADERS_STATS_CONNECTION = gql`
+  query getSeasonTeamLeaderPlayerStats($first: Int!) {
+    pointsLeaders: seasonPlayerStatsConnection(
+      statsCode: "POINTS_AVG"
+      playoffs: true
+      first: $first
+    ) {
+      edges {
+        node {
+          player {
+            providerId
+            avatarUrl
+            name
+            playingPosition
+            teamCode
+            teamName
+          }
+          value
+        }
+      }
+    }
+    reboundsLeaders: seasonPlayerStatsConnection(
+      statsCode: "REBOUNDS_AVG"
+      playoffs: true
+      first: $first
+    ) {
+      edges {
+        node {
+          player {
+            providerId
+            avatarUrl
+            name
+            playingPosition
+            teamCode
+            teamName
+          }
+          value
+        }
+      }
+    }
+    assistsLeaders: seasonPlayerStatsConnection(
+      statsCode: "ASSISTS_AVG"
+      playoffs: true
+      first: $first
+    ) {
+      edges {
+        node {
+          player {
+            providerId
+            avatarUrl
+            name
+            playingPosition
+            teamCode
+            teamName
+          }
+          value
+        }
+      }
+    }
+    blocksLeaders: seasonPlayerStatsConnection(
+      statsCode: "BLOCKS_AVG"
+      playoffs: true
+      first: $first
+    ) {
+      edges {
+        node {
+          player {
+            providerId
+            avatarUrl
+            name
+            playingPosition
+            teamCode
+            teamName
+          }
+          value
+        }
+      }
+    }
+    stealsLeaders: seasonPlayerStatsConnection(
+      statsCode: "STEALS_AVG"
+      playoffs: true
+      first: $first
+    ) {
+      edges {
+        node {
+          player {
+            providerId
+            avatarUrl
+            name
+            playingPosition
+            teamCode
+            teamName
+          }
+          value
+        }
+      }
+    }
+    fieldGoalsLeaders: seasonPlayerStatsConnection(
+      statsCode: "FIELD_GOALS_AVG"
+      playoffs: true
+      first: $first
+    ) {
+      edges {
+        node {
+          player {
+            providerId
+            avatarUrl
+            name
+            playingPosition
+            teamCode
+            teamName
+          }
+          value
+        }
+      }
+    }
+  }
+`;
