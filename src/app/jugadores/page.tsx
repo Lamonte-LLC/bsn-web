@@ -1,12 +1,25 @@
 import { getClient } from '@/apollo-client';
-import { TEAM_PLAYERS_CONNECTION } from '@/graphql/team';
+import { SEASON_PLAYERS_CONNECTION } from '@/graphql/season';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import JugadoresPageClient, { JugadorItem } from './JugadoresPageClient';
 
-const TEAM_CODES = ['AGU', 'ARE', 'BAY', 'CAG', 'CAR', 'GBO', 'MAN', 'MAY', 'PON', 'QUE', 'SGE', 'SCE'];
+const TEAM_CODES = [
+  'AGU',
+  'ARE',
+  'BAY',
+  'CAG',
+  'CAR',
+  'GBO',
+  'MAN',
+  'MAY',
+  'PON',
+  'QUE',
+  'SGE',
+  'SCE',
+];
 
 type RosterResponse = {
-  teamRostersConnection: {
+  seasonRostersConnection: {
     edges: {
       node: {
         player: {
@@ -17,6 +30,11 @@ type RosterResponse = {
           height: number;
           weight: number;
         };
+        team: {
+          providerId: string;
+          code: string;
+          nickname: string;
+        };
         playingPosition: string;
       };
     }[];
@@ -24,43 +42,31 @@ type RosterResponse = {
 };
 
 async function fetchPlayers(): Promise<JugadorItem[]> {
-  const results = await Promise.all(
-    TEAM_CODES.map((code) =>
-      getClient()
-        .query<RosterResponse>({
-          query: TEAM_PLAYERS_CONNECTION,
-          variables: { code, first: 50 },
-          fetchPolicy: 'network-only',
-        })
-        .catch((e) => {
-          console.error(`[JugadoresPage] error fetching ${code}:`, e);
-          return null;
-        }),
-    ),
-  );
+  const results = await getClient().query<RosterResponse>({
+    query: SEASON_PLAYERS_CONNECTION,
+    variables: { first: 500 },
+    fetchPolicy: 'network-only',
+  });
 
   const seen = new Set<string>();
   const players: JugadorItem[] = [];
 
-  for (let i = 0; i < results.length; i++) {
-    const result = results[i];
-    const code = TEAM_CODES[i];
-    const edges = result?.data?.teamRostersConnection?.edges ?? [];
-    for (const edge of edges) {
-      const { player, playingPosition } = edge.node;
-      if (!player?.providerId || seen.has(player.providerId)) continue;
-      seen.add(player.providerId);
-      players.push({
-        providerId: player.providerId,
-        name: player.name,
-        avatarUrl: player.avatarUrl ?? null,
-        teamCode: code,
-        playingPosition: playingPosition ?? '',
-        height: player.height ?? 0,
-        weight: player.weight ?? 0,
-        dob: player.dob ?? '',
-      });
-    }
+  const edges = results.data?.seasonRostersConnection?.edges ?? [];
+
+  for (const edge of edges) {
+    const { player, playingPosition, team } = edge.node;
+    if (!player?.providerId || seen.has(player.providerId)) continue;
+    seen.add(player.providerId);
+    players.push({
+      providerId: player.providerId,
+      name: player.name,
+      avatarUrl: player.avatarUrl ?? null,
+      teamCode: team.code,
+      playingPosition: playingPosition ?? '',
+      height: player.height ?? 0,
+      weight: player.weight ?? 0,
+      dob: player.dob ?? '',
+    });
   }
 
   // Sort by last name. Spanish naming: "First LastName1 LastName2" → sort key is LastName1.
