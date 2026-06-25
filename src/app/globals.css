@@ -1102,3 +1102,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
     max-width: 79rem;
   }
 }
+
+.bsn-playoffs-leaders-section .sw-bg {
+  background-color: #f2f2f3 !important;
+}
