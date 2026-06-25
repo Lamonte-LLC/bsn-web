@@ -3179,3 +3179,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 .sport-radar-fixture-mobile-widget input:where([type="checkbox"]):checked:hover {
   filter: invert(1) !important;
 }
+
+.bsn-playoffs-leaders-section .sw-bg {
+  background-color: #f2f2f3 !important;
+}

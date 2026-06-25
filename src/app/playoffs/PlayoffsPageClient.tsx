@@ -8,11 +8,9 @@ import {
   type PlayoffsSeriesNode,
   type SeriesMatch,
 } from '@/playoffs/hooks/usePlayoffsSeries';
-import {
-  usePlayoffsLeaders,
-  type LeaderNode,
-} from '@/playoffs/hooks/usePlayoffsLeaders';
+import { type LeaderNode } from '@/playoffs/hooks/usePlayoffsLeaders';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
+import SportRadarPlayoffsLeadersWidget from '@/match/client/widgets/SportRadarPlayoffsLeadersWidget';
 
 // ─── Color tokens ─────────────────────────────────────────────────────────────
 const C = {
@@ -819,35 +817,19 @@ function StatLeaderCard({
 
 // ─── Líderes section ──────────────────────────────────────────────────────────
 function PlayoffsLeadersSection() {
-  const { pointsLeaders, reboundsLeaders, assistsLeaders, loading } =
-    usePlayoffsLeaders(5);
-
   return (
     <section className="bg-[#f2f2f3] border-t border-[rgba(15,23,31,0.06)]">
       <div className="container py-12 lg:py-16">
         <h2 className="font-special-gothic-condensed-one text-[#0F171F] text-[28px] lg:text-[36px] tracking-[-0.3px]">
           Líderes de Playoffs 2026
         </h2>
-        <p className="font-barlow text-[14px] lg:text-[15px] text-[rgba(15,23,31,0.6)] mt-2">
-          Los más productivos en la postemporada hasta el momento.
-        </p>
-
-        <div className="mt-6 lg:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-5">
-          <StatLeaderCard
-            label="Puntos por juego"
-            nodes={pointsLeaders}
-            loading={loading}
-          />
-          <StatLeaderCard
-            label="Rebotes por juego"
-            nodes={reboundsLeaders}
-            loading={loading}
-          />
-          <StatLeaderCard
-            label="Asistencias por juego"
-            nodes={assistsLeaders}
-            loading={loading}
-          />
+        <div className="mb-4 lg:mb-6">
+          <p className="font-barlow text-[14px] lg:text-[15px] text-[rgba(15,23,31,0.6)] mt-2">
+            Los más productivos en la postemporada hasta el momento.
+          </p>
+        </div>
+        <div className="bsn-playoffs-leaders-section">
+          <SportRadarPlayoffsLeadersWidget />
         </div>
       </div>
     </section>
