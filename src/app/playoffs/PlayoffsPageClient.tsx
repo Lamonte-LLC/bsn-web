@@ -11,6 +11,7 @@ import {
 import { type LeaderNode } from '@/playoffs/hooks/usePlayoffsLeaders';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import SportRadarPlayoffsLeadersWidget from '@/match/client/widgets/SportRadarPlayoffsLeadersWidget';
+import { getMatchStatusLabel } from '@/utils/bsn';
 
 // ─── Color tokens ─────────────────────────────────────────────────────────────
 const C = {
@@ -236,7 +237,7 @@ function CardHero({ node }: { node: PlayoffsSeriesNode }) {
               {w2}
             </span>
           </div>
-          <StatusPill mobileSmall>{statusPillText(node)}</StatusPill>
+          {statusPillText(node) && <StatusPill mobileSmall>{statusPillText(node)}</StatusPill>}
         </div>
         <div
           className="flex justify-start"
@@ -386,7 +387,7 @@ function FinalHeader({ node }: { node: PlayoffsSeriesNode }) {
         </div>
       </div>
 
-      <StatusPill>{statusPillText(node)}</StatusPill>
+      {statusPillText(node) && <StatusPill>{statusPillText(node)}</StatusPill>}
 
       {completed ? (
         <div
@@ -450,7 +451,7 @@ function GameRow({
       className="font-barlow font-bold uppercase whitespace-nowrap"
       style={{ fontSize: 11, color: C.ink70, letterSpacing: 1.4 }}
     >
-      {match?.status}
+      {getMatchStatusLabel(match?.status ?? '')}
     </span>
   );
 
@@ -860,13 +861,13 @@ export default function PlayoffsPageClient() {
             className="mt-7 lg:mt-10 grid grid-cols-1 lg:grid-cols-2"
             style={{ columnGap: 20, rowGap: 24 }}
           >
-            {final && <SeriesCard node={final} fullWidth />}
-            {semifinals.map((s) => (
-              <SeriesCard key={s.providerId} node={s} />
-            ))}
             {cuartos.map((s) => (
               <SeriesCard key={s.providerId} node={s} />
             ))}
+            {semifinals.map((s) => (
+              <SeriesCard key={s.providerId} node={s} />
+            ))}
+            {final && <SeriesCard node={final} fullWidth />}
           </div>
         </div>
       </section>
