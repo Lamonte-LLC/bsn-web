@@ -35,7 +35,7 @@ type PlayoffsMatchesResponse = {
 
 export function usePlayoffsMatches() {
   const { data, loading, error } = useQuery<PlayoffsMatchesResponse>(PLAYOFFS_MATCHES, {
-    variables: { fromDate: '2026-06-30', toDate: '2026-07-31' },
+    variables: { fromDate: '2026-07-06', toDate: '2026-08-15' },
     fetchPolicy: 'cache-and-network',
   });
 
