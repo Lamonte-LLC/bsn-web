@@ -61,6 +61,23 @@ export type MatchTeamBoxScoreType = {
   biggestScoringRun: number;
 };
 
+export type MatchSeriesCompetitorTeamType = {
+  code: string;
+};
+
+export type MatchSeriesCompetitorType = {
+  team: MatchSeriesCompetitorTeamType;
+  won: number;
+  lost: number;
+};
+
+export type MatchSeriesType = {
+  providerId: string;
+  name: string;
+  group: string;
+  competitors: MatchSeriesCompetitorType[];
+};
+
 export type MatchType = {
   startAt: string;
   homeTeam: MatchTeamCompetitorType;
@@ -86,4 +103,6 @@ export type MatchType = {
   periods?: MatchPeriodType[];
   homeTeamBoxscore?: MatchTeamBoxScoreType;
   visitorTeamBoxscore?: MatchTeamBoxScoreType;
+  gameNumber?: number;
+  series?: MatchSeriesType | null;
 };
