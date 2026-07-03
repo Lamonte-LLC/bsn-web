@@ -90,6 +90,7 @@ export const PLAYOFFS_MATCHES = gql`
       }
       overtimePeriods
       gameNumber
+      isFinals
       series {
         providerId
         name

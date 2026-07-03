@@ -16,6 +16,7 @@ import ScheduledMatchCard from '../components/card/ScheduledMatchCard';
 import { useRecentCalendar } from '../hooks/matches';
 import RecentCalendarDateItem from '../components/slider/RecentCalendarDateItem';
 import DefaultMatchCard from '../components/card/DefaultMatchCard';
+import { buildRoundLabel, buildSeriesStatus } from '@/app/playoffs/PlayoffsHeroCarousel';
 
 type DateItem = {
   type: 'date-item';
@@ -139,6 +140,9 @@ export default function RecentCalendarSliderWidget() {
                   overtimePeriods={match.overtimePeriods}
                   isFinals={match.isFinals}
                   finalsDescription={match.finalsDescription}
+                  gameNumber={match.gameNumber}
+                  roundLabel={buildRoundLabel(match.series?.name ?? '', match.series?.group ?? null)}
+                  seriesStatus={buildSeriesStatus(match.series?.competitors ?? [])}
                 />
               )}
               {isCompletedMatchForUi(
@@ -152,7 +156,9 @@ export default function RecentCalendarSliderWidget() {
                   visitorTeam={match.visitorTeam}
                   overtimePeriods={match.overtimePeriods}
                   isFinals={match.isFinals}
-                  finalsDescription={match.finalsDescription}
+                  gameNumber={match.gameNumber}
+                  roundLabel={buildRoundLabel(match.series?.name ?? '', match.series?.group ?? null)}
+                  seriesStatus={buildSeriesStatus(match.series?.competitors ?? [])}
                 />
               )}
               {isScheduledMatchPageStatus(
@@ -167,7 +173,9 @@ export default function RecentCalendarSliderWidget() {
                   mediaProvider={match.channel || DEFAULT_MEDIA_PROVIDER}
                   ticketUrl={match.homeTeam.ticketUrl}
                   isFinals={match.isFinals}
-                  finalsDescription={match.finalsDescription}
+                  gameNumber={match.gameNumber}
+                  roundLabel={buildRoundLabel(match.series?.name ?? '', match.series?.group ?? null)}
+                  seriesStatus={buildSeriesStatus(match.series?.competitors ?? [])}
                 />
               )}
               {['POSTPONED'].includes(match.status) && (

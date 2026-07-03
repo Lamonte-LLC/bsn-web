@@ -59,7 +59,6 @@ export default function CompletedMatchCard({
   seriesStatus,
 }: Props) {
   const hasSeriesFooter = roundLabel != null && seriesStatus != null;
-  const showFooter = isFinals || hasSeriesFooter;
   const isHomeTeamWinner = useMemo(
     () => parseInt(homeTeam.score) > parseInt(visitorTeam.score),
     [homeTeam, visitorTeam],
@@ -161,7 +160,7 @@ export default function CompletedMatchCard({
               </div>
             </div>
           </div>
-          {!hasSeriesFooter && (
+          {!isFinals && (
             <div className="pb-[12px] md:pb-[17px]">
               <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
                 <span className="text-sm text-white md:text-[15px]">
@@ -171,7 +170,7 @@ export default function CompletedMatchCard({
             </div>
           )}
         </CardBody>
-        {showFooter && (
+        {isFinals && (
           <CardFooter>
             {hasSeriesFooter ? (
               <div className="flex flex-row justify-between items-center gap-3">

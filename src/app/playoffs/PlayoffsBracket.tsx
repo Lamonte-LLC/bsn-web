@@ -201,8 +201,8 @@ type MobileRound = 1 | 2 | 3;
 
 const MOBILE_TABS: { key: MobileRound; label: string }[] = [
   { key: 1, label: 'Cuartos' },
-  { key: 2, label: 'Final Conf.' },
-  { key: 3, label: 'Final BSN' },
+  { key: 2, label: 'Finales de Conf.' },
+  { key: 3, label: 'Final Brava' },
 ];
 
 export default function PlayoffsBracket() {
@@ -223,11 +223,11 @@ export default function PlayoffsBracket() {
   const gapPct = `${(BR.gap / BR_W) * 100}%`;
 
   const columnLabels = [
-    { l: 'Cuartos · Grupo A', bright: false },
-    { l: 'Final Grupo A', bright: false },
-    { l: 'Final BSN', bright: true },
-    { l: 'Final Grupo B', bright: false },
-    { l: 'Cuartos · Grupo B', bright: false },
+    { l: 'Cuartos de Final A', bright: false },
+    { l: 'Finales Conferencia A', bright: false },
+    { l: 'Final Brava', bright: true },
+    { l: 'Finales Conferencia B', bright: false },
+    { l: 'Cuartos de Final B', bright: false },
   ];
 
   return (

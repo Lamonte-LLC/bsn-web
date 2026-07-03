@@ -138,6 +138,18 @@ export const RECENT_CALENDAR = gql`
       phaseName
       gameNumber
       finalsDescription
+      series {
+        providerId
+        name
+        group
+        competitors {
+          team {
+            code
+          }
+          won
+          lost
+        }
+      }
     }
   }
 `;

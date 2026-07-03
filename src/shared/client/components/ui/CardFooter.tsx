@@ -9,7 +9,7 @@ export default function CardFooter({ children, className }: Props) {
   return (
     <div
       className={cx(
-        'bg-[rgba(76,76,76,0.2)] rounded-b-xl px-5 py-3',
+        'bg-[rgba(76,76,76,0.2)] rounded-b-xl px-5 py-[17px]',
         className,
       )}
     >
