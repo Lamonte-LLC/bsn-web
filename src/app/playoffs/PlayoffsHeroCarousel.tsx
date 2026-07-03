@@ -25,6 +25,7 @@ type LiveItem = MatchInfo & {
   currentQuarter: string;
   currentTime: string;
   channel: string;
+  isFinals: boolean;
 };
 
 type CompletedItem = MatchInfo & {
@@ -33,6 +34,7 @@ type CompletedItem = MatchInfo & {
   startAt: string;
   homeCode: string; homeNickname: string; homeCity: string; homeScore: string;
   visitorCode: string; visitorNickname: string; visitorCity: string; visitorScore: string;
+  isFinals: boolean;
 };
 
 type ScheduledItem = MatchInfo & {
@@ -42,20 +44,21 @@ type ScheduledItem = MatchInfo & {
   homeCode: string; homeNickname: string; homeCity: string;
   visitorCode: string; visitorNickname: string; visitorCity: string;
   channel: string;
+  isFinals: boolean;
 };
 
 type Item = DateItem | LiveItem | CompletedItem | ScheduledItem;
 
 // ── Mapping helpers ────────────────────────────────────────────────────────────
 
-function buildRoundLabel(name: string, group: string | null): string {
+export function buildRoundLabel(name: string, group: string | null): string {
   return group ? `${name} - ${group}` : name;
 }
 
-function buildSeriesStatus(competitors: PlayoffSeriesCompetitor[]): string {
+export function buildSeriesStatus(competitors: PlayoffSeriesCompetitor[]): string {
   if (competitors.length < 2) return '';
   const [c1, c2] = competitors;
-  if (c1.won === c2.won) return `Serie empata a ${c1.won}`;
+  if (c1.won === c2.won) return `Empate a ${c1.won}`;
   const winner = c1.won > c2.won ? c1 : c2;
   const loser = c1.won > c2.won ? c2 : c1;
   return `${winner.team.code} lidera ${winner.won}-${loser.won}`;
@@ -94,8 +97,9 @@ function toItems(matches: PlayoffMatch[]): Item[] {
         currentQuarter: '',
         currentTime: '',
         channel: '',
+        isFinals: match.isFinals,
       });
-    } else if (match.status === 'COMPLETED' || match.status === 'FINISHED') {
+    } else if (match.status === 'COMPLETE' || match.status === 'FINISHED') {
       items.push({
         ...info,
         kind: 'completed',
@@ -109,6 +113,7 @@ function toItems(matches: PlayoffMatch[]): Item[] {
         visitorNickname: match.visitorTeam.nickname,
         visitorCity: match.visitorTeam.city,
         visitorScore: match.visitorTeam.score,
+        isFinals: match.isFinals,
       });
     } else {
       items.push({
@@ -123,6 +128,7 @@ function toItems(matches: PlayoffMatch[]): Item[] {
         visitorNickname: match.visitorTeam.nickname,
         visitorCity: match.visitorTeam.city,
         channel: '',
+        isFinals: match.isFinals,
       });
     }
   }
@@ -168,6 +174,7 @@ export default function PlayoffsHeroCarousel() {
                   gameNumber={item.gameNumber}
                   roundLabel={item.roundLabel}
                   seriesStatus={item.seriesStatus}
+                  isFinals={item.isFinals}
                 />
               </div>
             );
@@ -183,6 +190,7 @@ export default function PlayoffsHeroCarousel() {
                   gameNumber={item.gameNumber}
                   roundLabel={item.roundLabel}
                   seriesStatus={item.seriesStatus}
+                  isFinals={item.isFinals}
                 />
               </div>
             );
@@ -198,6 +206,7 @@ export default function PlayoffsHeroCarousel() {
                 gameNumber={item.gameNumber}
                 roundLabel={item.roundLabel}
                 seriesStatus={item.seriesStatus}
+                isFinals={item.isFinals}
               />
             </div>
           );
