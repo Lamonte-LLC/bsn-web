@@ -41,7 +41,7 @@ function statusPillText(node: PlayoffsSeriesNode): string {
   if (!c1 || !c2) return '';
   const w1 = c1.won;
   const w2 = c2.won;
-  if (node.status === 'COMPLETED') {
+  if (node.status === 'COMPLETE') {
     if (w1 > w2) return `${c1.team.nickname.toUpperCase()} GANA ${w1}-${w2}`;
     return `${c2.team.nickname.toUpperCase()} GANA ${w2}-${w1}`;
   }
@@ -167,7 +167,7 @@ function SideBlock({
 
 // ─── Hero block (non-final cards) ─────────────────────────────────────────────
 function CardHero({ node }: { node: PlayoffsSeriesNode }) {
-  const completed = node.status === 'COMPLETED';
+  const completed = node.status === 'COMPLETE';
   const c1 = node.competitors[0];
   const c2 = node.competitors[1];
   const w1 = c1?.won ?? 0;
@@ -237,7 +237,9 @@ function CardHero({ node }: { node: PlayoffsSeriesNode }) {
               {w2}
             </span>
           </div>
-          {statusPillText(node) && <StatusPill mobileSmall>{statusPillText(node)}</StatusPill>}
+          {statusPillText(node) && (
+            <StatusPill mobileSmall>{statusPillText(node)}</StatusPill>
+          )}
         </div>
         <div
           className="flex justify-start"
@@ -254,7 +256,7 @@ function CardHero({ node }: { node: PlayoffsSeriesNode }) {
         </div>
       </div>
 
-      <div className="mt-[14px] text-center">
+      <div className="mt-[14px] text-center hidden">
         {completed ? (
           <span
             className="font-barlow font-semibold"
@@ -277,7 +279,7 @@ function CardHero({ node }: { node: PlayoffsSeriesNode }) {
 
 // ─── Final BSN hero ────────────────────────────────────────────────────────────
 function FinalHeader({ node }: { node: PlayoffsSeriesNode }) {
-  const completed = node.status === 'COMPLETED';
+  const completed = node.status === 'COMPLETE';
   const c1 = node.competitors[0];
   const c2 = node.competitors[1];
   const w1 = c1?.won ?? 0;
@@ -425,7 +427,7 @@ function GameRow({
   t2Wins: number;
   playedCount: number;
 }) {
-  const played = !!match && match.status === 'COMPLETED';
+  const played = !!match && match.status === 'COMPLETE';
   const nextUp = !played && n === playedCount + 1;
   const canReachSeven = t1Wins < 4 && t2Wins < 4;
   const willHappen = played || nextUp || canReachSeven;
@@ -433,8 +435,8 @@ function GameRow({
   const href =
     played && match?.providerId ? `/partidos/${match.providerId}` : null;
 
-  const t1Score = match?.homeTeam?.score;
-  const t2Score = match?.visitorTeam?.score;
+  const t1Score = t1Code == match?.homeTeam?.code ? match?.homeTeam?.score : match?.visitorTeam?.score;
+  const t2Score = t1Code == match?.homeTeam?.code ? match?.visitorTeam?.score : match?.homeTeam?.score;
   const t1Won =
     played &&
     t1Score != null &&
@@ -607,7 +609,7 @@ function SeriesCard({
   const isFinalPending =
     isFinal && node.status === 'UPCOMING' && node.competitors.length < 2;
   const playedCount = node.matches.filter(
-    (m) => m.status === 'COMPLETED',
+    (m) => m.status === 'COMPLETE',
   ).length;
 
   const t1Code = node.competitors[0]?.team.code ?? '';
@@ -615,9 +617,20 @@ function SeriesCard({
   const t1Wins = node.competitors[0]?.won ?? 0;
   const t2Wins = node.competitors[1]?.won ?? 0;
 
+  // Mínimo 4 juegos; si la serie sigue sin decidirse, se revela un juego más
+  // por cada juego jugado (máximo 7, siempre limitado a los juegos anunciados).
+  const seriesDecided = t1Wins >= 4 || t2Wins >= 4;
+  const gamesToShow = seriesDecided
+    ? Math.max(4, playedCount)
+    : Math.min(7, Math.max(4, playedCount + 1));
+  const visibleMatches = node.matches.slice(
+    0,
+    Math.min(node.matches.length, gamesToShow),
+  );
+
   const rowsBlock = (
     <div className="bg-white lg:flex-1">
-      {node.matches.length === 0 ? (
+      {visibleMatches.length === 0 ? (
         <div
           className="font-barlow text-center"
           style={{ fontSize: 12, color: C.ink55, padding: '18px 14px' }}
@@ -625,12 +638,12 @@ function SeriesCard({
           Calendario por confirmar
         </div>
       ) : (
-        node.matches.map((match, i) => (
+        visibleMatches.map((match, i) => (
           <GameRow
             key={match.providerId}
             n={i + 1}
             match={match}
-            last={i === node.matches.length - 1}
+            last={i === visibleMatches.length - 1}
             t1Code={t1Code}
             t2Code={t2Code}
             t1Wins={t1Wins}
@@ -819,7 +832,7 @@ function StatLeaderCard({
 // ─── Líderes section ──────────────────────────────────────────────────────────
 function PlayoffsLeadersSection() {
   return (
-    <section className="bg-[#f2f2f3] border-t border-[rgba(15,23,31,0.06)]">
+    <section className="bg-[#f2f2f3] border-t border-[rgba(15,23,31,0.06)] hidden">
       <div className="container py-12 lg:py-16">
         <h2 className="font-special-gothic-condensed-one text-[#0F171F] text-[28px] lg:text-[36px] tracking-[-0.3px]">
           Líderes de Playoffs 2026

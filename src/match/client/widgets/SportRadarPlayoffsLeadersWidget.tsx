@@ -14,6 +14,7 @@ export default function SportRadarPlayoffsLeadersWidget() {
     script.dataset.type = 'statistics_leaders';
     script.dataset.websiteId = '312';
     script.dataset.useNativeStyles = 'false';
+    script.dataset.seasonId = '56485ec1-73ff-11f1-93ba-2384e3bab733';
     container.appendChild(script);
 
     return () => {
