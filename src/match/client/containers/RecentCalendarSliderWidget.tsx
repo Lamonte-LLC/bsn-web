@@ -33,7 +33,7 @@ type SliderItem = DateItem | MatchItem;
 export default function RecentCalendarSliderWidget() {
   const { data, loading } = useRecentCalendar({
     daysBefore: 5,
-    daysAfter: 5,
+    daysAfter: 15,
   });
 
   const today = useMemo(() => moment().startOf('day'), []);
