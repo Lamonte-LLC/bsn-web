@@ -525,9 +525,11 @@ function GameRow({
 
         <div
           className="flex items-center justify-center"
-          style={{ minWidth: 60, padding: '0 8px' }}
+          style={{ minWidth: 40, padding: '0 8px' }}
         >
-          {centerEl}
+          <div className="hidden md:block">
+            {centerEl}
+          </div>
         </div>
 
         <span

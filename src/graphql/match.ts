@@ -205,6 +205,12 @@ export const MATCH = gql`
       phaseName
       gameNumber
       finalsDescription
+      series {
+        providerId
+        name
+        group
+        round
+      }
     }
   }
 `;

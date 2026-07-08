@@ -76,6 +76,7 @@ export type MatchSeriesType = {
   name: string;
   group: string;
   competitors: MatchSeriesCompetitorType[];
+  round: number;
 };
 
 export type MatchType = {

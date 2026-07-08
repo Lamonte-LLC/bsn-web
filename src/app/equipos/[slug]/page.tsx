@@ -139,7 +139,18 @@ const fetchLastSeason = async (): Promise<SeasonType | null> => {
     return null;
   }
   return data?.lastSeason ?? null;
-}
+};
+
+const PLAYOFFS_TEAM_CODES = [
+  'BAY',
+  'CAR',
+  'SCE',
+  'CAG',
+  'ARE',
+  'AGU',
+  'PON',
+  'SGE',
+];
 
 export default async function DetalleEquipoPage({
   params,
@@ -158,7 +169,10 @@ export default async function DetalleEquipoPage({
             <div className="flex items-center justify-center mb-[18px]">
               <div
                 className="border border-2 w-[90px] h-[90px] rounded-full flex items-center justify-center md:w-[120px] md:h-[120px]"
-                style={{ borderColor: data.team.colorPrimary || 'rgba(255, 255, 255, 0.5)' }}
+                style={{
+                  borderColor:
+                    data.team.colorPrimary || 'rgba(255, 255, 255, 0.5)',
+                }}
               >
                 <figure className="hidden md:block">
                   <TeamLogoAvatar teamCode={data.team.code} size={68} />
@@ -319,7 +333,9 @@ export default async function DetalleEquipoPage({
                       </div>
                     </div>
                     <div>
-                      <TeamWscStoriesWidget teamProviderId={data.team.providerId} />
+                      <TeamWscStoriesWidget
+                        teamProviderId={data.team.providerId}
+                      />
                     </div>
                   </div>
                 </div>
@@ -360,11 +376,20 @@ export default async function DetalleEquipoPage({
                   </div>
                   <div>
                     <p className="font-barlow text-[13px] text-[rgba(15,23,31,0.7)]">
-                      {lastSeason?.name ?? ''}
+                      {PLAYOFFS_TEAM_CODES.includes(data.team.code)
+                        ? lastSeason?.name
+                        : currentSeason?.name}
                     </p>
                   </div>
                 </div>
-                <TeamPlayersWidget teamCode={data.team.code} seasonProviderId={lastSeason?.providerId} />
+                <TeamPlayersWidget
+                  teamCode={data.team.code}
+                  seasonProviderId={
+                    PLAYOFFS_TEAM_CODES.includes(data.team.code)
+                      ? lastSeason?.providerId
+                      : currentSeason?.providerId
+                  }
+                />
               </div>
             </div>
           </TabPanel>
@@ -391,7 +416,8 @@ export default async function DetalleEquipoPage({
                       <div className="flex flex-row justify-between items-center mb-[15px] md:mb-[30px]">
                         <div>
                           <h3 className="text-[22px] text-black md:text-[24px]">
-                            Jugadores {currentSeason ? `- ${currentSeason.name}` : ''}
+                            Jugadores{' '}
+                            {currentSeason ? `- ${currentSeason.name}` : ''}
                           </h3>
                         </div>
                       </div>
