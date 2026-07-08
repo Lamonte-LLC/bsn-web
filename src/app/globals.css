@@ -130,9 +130,6 @@ body {
   height: 100% !important;
   display: flex !important;
 }
-.playoffs-hero-slider .playoffs-date-item > div {
-  height: calc(100% + 1px) !important;
-}
 
 /* Recent Calendar Slider */
 

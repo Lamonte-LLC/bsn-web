@@ -19,6 +19,7 @@ export type SeriesCompetitor = {
 
 export type SeriesMatch = {
   providerId: string;
+  startAt: string;
   homeTeam: Team;
   visitorTeam: Team;
   status: string;

@@ -139,7 +139,7 @@ export default function ScheduledMatchCard({
         </div>
       </CardHeader>
       <CardBody className="pt-[3px]">
-        <div className="flex flex-row justify-between items-center mb-[7px]">
+        <div className="flex flex-row justify-between items-center">
           <div className="flex flex-1 flex-col">
             <div className="flex flex-row justify-between items-center gap-3">
               <div className="flex-1">
@@ -170,7 +170,7 @@ export default function ScheduledMatchCard({
           </div>
         </div>
         {!isFinals && (
-          <div className="pb-[12px] md:pb-[17px]">
+          <div className="pb-[12px] mt-[7px] md:pb-[17px]">
             <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
               <span className="text-sm text-white md:text-[15px]">
                 Ver previa
@@ -180,7 +180,7 @@ export default function ScheduledMatchCard({
         )}
       </CardBody>
       {isFinals && (
-        <CardFooter>
+        <CardFooter className="mt-[7px] md:mt-[18px]">
           {hasSeriesFooter ? (
             <div className="flex flex-row justify-between items-center gap-3">
               <div className="flex items-center gap-2 min-w-0">

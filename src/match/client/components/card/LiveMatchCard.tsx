@@ -173,7 +173,7 @@ export default function LiveMatchCard({
           </div>
         </CardHeader>
         <CardBody className="pt-[3px]">
-          <div className="flex flex-row justify-between items-center mb-[7px]">
+          <div className="flex flex-row justify-between items-center">
             <div className="flex flex-col flex-1">
               <div className="flex flex-row justify-between items-center gap-3">
                 <div className="flex-1">
@@ -208,7 +208,7 @@ export default function LiveMatchCard({
             </div>
           </div>
           {!isFinals && (
-            <div className="pb-[12px] md:pb-[17px]">
+            <div className="pb-[12px] mt-[7px] md:pb-[17px]">
               <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
                 <span className="text-sm text-white md:text-[15px]">
                   <svg
@@ -228,7 +228,7 @@ export default function LiveMatchCard({
           )}
         </CardBody>
         {isFinals && (
-          <CardFooter>
+          <CardFooter className="mt-[7px] md:mt-[18px]">
             {hasSeriesFooter ? (
               <div className="flex flex-row justify-between items-center gap-3">
                 <div className="flex items-center gap-2 min-w-0">
@@ -241,9 +241,21 @@ export default function LiveMatchCard({
                     {roundLabel}
                   </p>
                 </div>
-                <p className="font-barlow font-semibold text-[12px] text-white shrink-0 truncate">
-                  {seriesStatus}
-                </p>
+                <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] flex items-center justify-center rounded-[18px] px-2.5 h-[18px]">
+                  <span className="text-[10px] text-white md:text-xs">
+                    <svg
+                      width="6"
+                      height="8"
+                      viewBox="0 0 10 12"
+                      fill="none"
+                      aria-hidden
+                      className="inline-block align-middle mr-[5px] relative -top-[1px] md:mr-1.5 md:-top-[1px] md:w-[7px] md:h-[9px]"
+                    >
+                      <path d="M0 0L10 6L0 12V0Z" fill="#ff0000" />
+                    </svg>
+                    Ver en vivo
+                  </span>
+                </div>
               </div>
             ) : (
               <div className="flex flex-row justify-center items-center">

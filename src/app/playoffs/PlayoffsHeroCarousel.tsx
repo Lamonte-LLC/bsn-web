@@ -6,6 +6,8 @@ import LiveMatchCard from '@/match/client/components/card/LiveMatchCard';
 import CompletedMatchCard from '@/match/client/components/card/CompletedMatchCard';
 import ScheduledMatchCard from '@/match/client/components/card/ScheduledMatchCard';
 import { usePlayoffsMatches, type PlayoffMatch, type PlayoffSeriesCompetitor } from '@/playoffs/hooks/usePlayoffsMatches';
+import moment from 'moment';
+import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 
 // ── Item types ─────────────────────────────────────────────────────────────────
 
@@ -24,8 +26,8 @@ type LiveItem = MatchInfo & {
   visitorCode: string; visitorNickname: string; visitorCity: string; visitorScore: string;
   currentQuarter: string;
   currentTime: string;
-  channel: string;
   isFinals: boolean;
+  channel: string;
 };
 
 type CompletedItem = MatchInfo & {
@@ -35,6 +37,7 @@ type CompletedItem = MatchInfo & {
   homeCode: string; homeNickname: string; homeCity: string; homeScore: string;
   visitorCode: string; visitorNickname: string; visitorCity: string; visitorScore: string;
   isFinals: boolean;
+  channel: string;
 };
 
 type ScheduledItem = MatchInfo & {
@@ -43,8 +46,8 @@ type ScheduledItem = MatchInfo & {
   startAt: string;
   homeCode: string; homeNickname: string; homeCity: string;
   visitorCode: string; visitorNickname: string; visitorCity: string;
-  channel: string;
   isFinals: boolean;
+  channel: string;
 };
 
 type Item = DateItem | LiveItem | CompletedItem | ScheduledItem;
@@ -65,12 +68,14 @@ export function buildSeriesStatus(competitors: PlayoffSeriesCompetitor[]): strin
 }
 
 function toItems(matches: PlayoffMatch[]): Item[] {
-  const sorted = [...matches].sort((a, b) => a.startAt.localeCompare(b.startAt));
+  const sorted = [...matches].sort((a, b) => {
+    return moment(a.startAt).diff(moment(b.startAt));
+  });
   const items: Item[] = [];
   let lastDate = '';
 
   for (const match of sorted) {
-    const dateKey = match.startAt.slice(0, 10);
+    const dateKey = moment(match.startAt).format('YYYY-MM-DD');
     if (dateKey !== lastDate) {
       items.push({ kind: 'date', id: `d-${dateKey}`, date: match.startAt });
       lastDate = dateKey;
@@ -96,8 +101,8 @@ function toItems(matches: PlayoffMatch[]): Item[] {
         visitorScore: match.visitorTeam.score,
         currentQuarter: '',
         currentTime: '',
-        channel: '',
         isFinals: match.isFinals,
+        channel: match.channel ?? DEFAULT_MEDIA_PROVIDER,
       });
     } else if (match.status === 'COMPLETE' || match.status === 'FINISHED') {
       items.push({
@@ -114,6 +119,7 @@ function toItems(matches: PlayoffMatch[]): Item[] {
         visitorCity: match.visitorTeam.city,
         visitorScore: match.visitorTeam.score,
         isFinals: match.isFinals,
+        channel: match.channel ?? DEFAULT_MEDIA_PROVIDER,
       });
     } else {
       items.push({
@@ -127,8 +133,8 @@ function toItems(matches: PlayoffMatch[]): Item[] {
         visitorCode: match.visitorTeam.code,
         visitorNickname: match.visitorTeam.nickname,
         visitorCity: match.visitorTeam.city,
-        channel: '',
         isFinals: match.isFinals,
+        channel: match.channel ?? DEFAULT_MEDIA_PROVIDER,
       });
     }
   }

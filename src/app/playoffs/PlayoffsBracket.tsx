@@ -1,8 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import { usePlayoffsBracket, type SeriesNode } from '@/playoffs/hooks/usePlayoffsBracket';
+import {
+  usePlayoffsBracket,
+  type SeriesNode,
+} from '@/playoffs/hooks/usePlayoffsBracket';
 
 const BR = {
   cols: [220, 232, 248, 232, 220] as const,
@@ -38,7 +41,10 @@ function BracketRow({
   return (
     <div
       className="flex items-center gap-[12px] transition-opacity duration-200"
-      style={{ padding: big ? '15px 18px' : '13px 15px', opacity: dim ? 0.55 : 1 }}
+      style={{
+        padding: big ? '15px 18px' : '13px 15px',
+        opacity: dim ? 0.55 : 1,
+      }}
     >
       <TeamLogoAvatar teamCode={team.code} size={big ? 38 : 30} />
       <div className="flex-1 min-w-0 flex flex-col">
@@ -52,7 +58,7 @@ function BracketRow({
           className="font-barlow text-white/45"
           style={{ fontSize: 12, letterSpacing: 0.4, marginTop: 3 }}
         >
-          #{team.position}
+          {team.position ? `#${team.position}` : ''}
           {group ? ` · ${group}` : ''}
         </span>
       </div>
@@ -88,19 +94,40 @@ function BracketCard({
   const t2Won = completed && t2w > t1w;
   return (
     <div className={GLASS_CARD}>
-      <BracketRow team={team1} score={t1w} dim={t2Won} won={t1Won} big={big} group={group} />
+      <BracketRow
+        team={team1}
+        score={t1w}
+        dim={t2Won}
+        won={t1Won}
+        big={big}
+        group={group}
+      />
       <div className="h-px bg-white/[0.08]" />
-      <BracketRow team={team2} score={t2w} dim={t1Won} won={t2Won} big={big} group={group} />
+      <BracketRow
+        team={team2}
+        score={t2w}
+        dim={t1Won}
+        won={t2Won}
+        big={big}
+        group={group}
+      />
     </div>
   );
 }
 
 function PendingFinalCardRow() {
   return (
-    <div className="flex items-center" style={{ padding: '15px 18px', height: BR.qfH / 2 }}>
+    <div
+      className="flex items-center"
+      style={{ padding: '15px 18px', height: BR.qfH / 2 }}
+    >
       <div
         className="rounded-full shrink-0"
-        style={{ width: 44, height: 44, border: '1.5px dashed rgba(255,255,255,0.30)' }}
+        style={{
+          width: 44,
+          height: 44,
+          border: '1.5px dashed rgba(255,255,255,0.30)',
+        }}
       />
     </div>
   );
@@ -119,7 +146,10 @@ function PendingFinalCard() {
 function HalfPendingCard({ team }: { team: { code: string; name: string } }) {
   return (
     <div className={GLASS_CARD}>
-      <div className="flex items-center gap-[12px]" style={{ padding: '13px 15px' }}>
+      <div
+        className="flex items-center gap-[12px]"
+        style={{ padding: '13px 15px' }}
+      >
         <TeamLogoAvatar teamCode={team.code} size={30} />
         <div className="flex-1 min-w-0">
           <span
@@ -140,7 +170,11 @@ function HalfPendingCard({ team }: { team: { code: string; name: string } }) {
       <div className="flex items-center" style={{ padding: '13px 15px' }}>
         <div
           className="rounded-full shrink-0"
-          style={{ width: 30, height: 30, border: '1.5px dashed rgba(255,255,255,0.30)' }}
+          style={{
+            width: 30,
+            height: 30,
+            border: '1.5px dashed rgba(255,255,255,0.30)',
+          }}
         />
       </div>
     </div>
@@ -171,14 +205,56 @@ function BracketConnectors({ height }: { height: number }) {
       width="100%"
       height={height}
       aria-hidden
-      style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, display: 'block' }}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        zIndex: 0,
+        display: 'block',
+      }}
     >
-      <path d={elbow(x[0].right, qfTopY, x[1].left, midY)} stroke={stroke} strokeWidth={1.5} vectorEffect="non-scaling-stroke" fill="none" />
-      <path d={elbow(x[0].right, qfBotY, x[1].left, midY)} stroke={stroke} strokeWidth={1.5} vectorEffect="non-scaling-stroke" fill="none" />
-      <path d={`M ${x[1].right} ${midY} L ${x[2].left} ${midY}`} stroke={stroke} strokeWidth={1.5} vectorEffect="non-scaling-stroke" fill="none" />
-      <path d={elbow(x[4].left, qfTopY, x[3].right, midY)} stroke={stroke} strokeWidth={1.5} vectorEffect="non-scaling-stroke" fill="none" />
-      <path d={elbow(x[4].left, qfBotY, x[3].right, midY)} stroke={stroke} strokeWidth={1.5} vectorEffect="non-scaling-stroke" fill="none" />
-      <path d={`M ${x[3].left} ${midY} L ${x[2].right} ${midY}`} stroke={stroke} strokeWidth={1.5} vectorEffect="non-scaling-stroke" fill="none" />
+      <path
+        d={elbow(x[0].right, qfTopY, x[1].left, midY)}
+        stroke={stroke}
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        fill="none"
+      />
+      <path
+        d={elbow(x[0].right, qfBotY, x[1].left, midY)}
+        stroke={stroke}
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        fill="none"
+      />
+      <path
+        d={`M ${x[1].right} ${midY} L ${x[2].left} ${midY}`}
+        stroke={stroke}
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        fill="none"
+      />
+      <path
+        d={elbow(x[4].left, qfTopY, x[3].right, midY)}
+        stroke={stroke}
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        fill="none"
+      />
+      <path
+        d={elbow(x[4].left, qfBotY, x[3].right, midY)}
+        stroke={stroke}
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        fill="none"
+      />
+      <path
+        d={`M ${x[3].left} ${midY} L ${x[2].right} ${midY}`}
+        stroke={stroke}
+        strokeWidth={1.5}
+        vectorEffect="non-scaling-stroke"
+        fill="none"
+      />
     </svg>
   );
 }
@@ -186,12 +262,27 @@ function BracketConnectors({ height }: { height: number }) {
 function renderCard(node: SeriesNode | undefined, big = false) {
   if (!node) return <PendingFinalCard />;
   if (node.competitors.length >= 2) {
-    const team1 = { code: node.competitors[0].team.code, name: node.competitors[0].team.nickname, wins: node.competitors[0].won, position: node.competitors[0].position };
-    const team2 = { code: node.competitors[1].team.code, name: node.competitors[1].team.nickname, wins: node.competitors[1].won, position: node.competitors[1].position };
-    return <BracketCard team1={team1} team2={team2} group={node.group} big={big} />;
+    const team1 = {
+      code: node.competitors[0].team.code,
+      name: node.competitors[0].team.nickname,
+      wins: node.competitors[0].won,
+      position: node.competitors[0].position,
+    };
+    const team2 = {
+      code: node.competitors[1].team.code,
+      name: node.competitors[1].team.nickname,
+      wins: node.competitors[1].won,
+      position: node.competitors[1].position,
+    };
+    return (
+      <BracketCard team1={team1} team2={team2} group={node.group} big={big} />
+    );
   }
   if (node.competitors.length === 1) {
-    const team = { code: node.competitors[0].team.code, name: node.competitors[0].team.nickname };
+    const team = {
+      code: node.competitors[0].team.code,
+      name: node.competitors[0].team.nickname,
+    };
     return <HalfPendingCard team={team} />;
   }
   return <PendingFinalCard />;
@@ -206,7 +297,7 @@ const MOBILE_TABS: { key: MobileRound; label: string }[] = [
 ];
 
 export default function PlayoffsBracket() {
-  const [mobileRound, setMobileRound] = useState<MobileRound>(2);
+  const [mobileRound, setMobileRound] = useState<MobileRound>(1);
   const { nodes } = usePlayoffsBracket();
 
   const byRoundGroup = (round: number, group: string) =>
@@ -214,8 +305,24 @@ export default function PlayoffsBracket() {
 
   const [aQ1, aQ2] = byRoundGroup(1, 'Grupo A');
   const [bQ1, bQ2] = byRoundGroup(1, 'Grupo B');
-  const [aGF] = byRoundGroup(2, 'Grupo A');
-  const [bGF] = byRoundGroup(2, 'Grupo B');
+  const [aGF] = nodes
+    .filter((s) => s.round === 2)
+    .filter((s) =>
+      s.competitors.some(
+        (c) =>
+          c.team.code === aQ1?.competitors[0]?.team.code ||
+          c.team.code === aQ2?.competitors[0]?.team.code,
+      ),
+    );
+  const [bGF] = nodes
+    .filter((s) => s.round === 2)
+    .filter((s) =>
+      s.competitors.some(
+        (c) =>
+          c.team.code === bQ1?.competitors[0]?.team.code ||
+          c.team.code === bQ2?.competitors[0]?.team.code,
+      ),
+    );
   const [final] = nodes.filter((s) => s.round === 3);
 
   const qfTotal = 2 * BR.qfH + BR.vGapQF;
@@ -236,7 +343,11 @@ export default function PlayoffsBracket() {
       <div className="hidden lg:block w-full relative">
         <div
           className="grid"
-          style={{ gridTemplateColumns: colsTemplate, columnGap: gapPct, marginBottom: 22 }}
+          style={{
+            gridTemplateColumns: colsTemplate,
+            columnGap: gapPct,
+            marginBottom: 22,
+          }}
         >
           {columnLabels.map((label) => (
             <div
@@ -245,7 +356,9 @@ export default function PlayoffsBracket() {
               style={{
                 fontSize: 13,
                 letterSpacing: 1.6,
-                color: label.bright ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.45)',
+                color: label.bright
+                  ? 'rgba(255,255,255,0.85)'
+                  : 'rgba(255,255,255,0.45)',
                 paddingBottom: 12,
               }}
             >
@@ -258,7 +371,12 @@ export default function PlayoffsBracket() {
           <BracketConnectors height={qfTotal} />
           <div
             className="grid h-full"
-            style={{ position: 'relative', zIndex: 1, gridTemplateColumns: colsTemplate, columnGap: gapPct }}
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              gridTemplateColumns: colsTemplate,
+              columnGap: gapPct,
+            }}
           >
             <div className="flex flex-col justify-between">
               <div className="flex items-center" style={{ height: BR.qfH }}>
@@ -319,7 +437,7 @@ export default function PlayoffsBracket() {
                   className="font-barlow font-bold text-white/50 uppercase mb-2 text-center"
                   style={{ fontSize: 10, letterSpacing: 1.4 }}
                 >
-                  Grupo {grp}
+                  {grp}
                 </p>
                 <div className="flex flex-col gap-[14px]">
                   {byRoundGroup(1, grp).map((s, i) => (
@@ -333,30 +451,13 @@ export default function PlayoffsBracket() {
 
         {mobileRound === 2 && (
           <div className="flex flex-col gap-[18px]">
-            {(['Grupo A', 'Grupo B'] as const).map((grp) => (
-              <div key={grp}>
-                <p
-                  className="font-barlow font-bold text-white/50 uppercase mb-2 text-center"
-                  style={{ fontSize: 10, letterSpacing: 1.4 }}
-                >
-                  Grupo {grp}
-                </p>
-                {byRoundGroup(2, grp).map((s, i) => (
-                  <div key={i}>{renderCard(s)}</div>
-                ))}
-              </div>
-            ))}
+            <div>{renderCard(aGF)}</div>
+            <div>{renderCard(bGF)}</div>
           </div>
         )}
 
         {mobileRound === 3 && (
           <div>
-            <p
-              className="font-barlow font-bold text-white/50 uppercase mb-2 text-center"
-              style={{ fontSize: 10, letterSpacing: 1.4 }}
-            >
-              Final BSN
-            </p>
             {renderCard(final, true)}
           </div>
         )}

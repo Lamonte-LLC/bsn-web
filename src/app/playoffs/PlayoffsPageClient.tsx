@@ -12,6 +12,8 @@ import { type LeaderNode } from '@/playoffs/hooks/usePlayoffsLeaders';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import SportRadarPlayoffsLeadersWidget from '@/match/client/widgets/SportRadarPlayoffsLeadersWidget';
 import { getMatchStatusLabel } from '@/utils/bsn';
+import moment from 'moment';
+import { MATCH_DATE_SHORT_FORMAT, MATCH_TIME_FORMAT } from '@/constants';
 
 // ─── Color tokens ─────────────────────────────────────────────────────────────
 const C = {
@@ -431,12 +433,18 @@ function GameRow({
   const nextUp = !played && n === playedCount + 1;
   const canReachSeven = t1Wins < 4 && t2Wins < 4;
   const willHappen = played || nextUp || canReachSeven;
-  const interactive = played;
+  const interactive = ['COMPLETE', 'FINISHED', 'SCHEDULED', 'IN_PROGRESS'].includes(match?.status ?? '');
   const href =
-    played && match?.providerId ? `/partidos/${match.providerId}` : null;
+    interactive && match?.providerId ? `/partidos/${match.providerId}` : null;
 
-  const t1Score = t1Code == match?.homeTeam?.code ? match?.homeTeam?.score : match?.visitorTeam?.score;
-  const t2Score = t1Code == match?.homeTeam?.code ? match?.visitorTeam?.score : match?.homeTeam?.score;
+  const t1Score =
+    t1Code == match?.homeTeam?.code
+      ? match?.homeTeam?.score
+      : match?.visitorTeam?.score;
+  const t2Score =
+    t1Code == match?.homeTeam?.code
+      ? match?.visitorTeam?.score
+      : match?.homeTeam?.score;
   const t1Won =
     played &&
     t1Score != null &&
@@ -453,7 +461,9 @@ function GameRow({
       className="font-barlow font-bold uppercase whitespace-nowrap"
       style={{ fontSize: 11, color: C.ink70, letterSpacing: 1.4 }}
     >
-      {getMatchStatusLabel(match?.status ?? '')}
+      {match?.status == 'SCHEDULED'
+        ? moment(match.startAt).format(MATCH_DATE_SHORT_FORMAT) + ' - ' + moment(match.startAt).format(MATCH_TIME_FORMAT)
+        : getMatchStatusLabel(match?.status ?? '')}
     </span>
   );
 
@@ -575,7 +585,9 @@ function GameRow({
               className="hidden lg:inline-block font-barlow font-semibold whitespace-nowrap transition-[color,transform] duration-100 group-hover/row:translate-x-[2px] group-hover/row:text-[#1257A8]"
               style={{ fontSize: 12, color: '#1772D9', letterSpacing: 0.3 }}
             >
-              Ver resultado
+              {['COMPLETE', 'FINISHED'].includes(match?.status ?? '') && 'Ver resultado'}
+              {'SCHEDULED' === match?.status && 'Ver previa'}
+              {'IN_PROGRESS' === match?.status && 'Ver en vivo'}
             </span>
           </>
         ) : null}

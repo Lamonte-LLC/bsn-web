@@ -45,6 +45,7 @@ export const PLAYOFFS_SERIES_CONNECTION = gql`
           }
           matches {
             providerId
+            startAt
             homeTeam {
               providerId
               code
@@ -88,6 +89,7 @@ export const PLAYOFFS_MATCHES = gql`
         city
         score
       }
+      channel
       overtimePeriods
       gameNumber
       isFinals

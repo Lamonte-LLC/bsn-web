@@ -23,6 +23,7 @@ export type PlayoffMatch = {
   visitorTeam: PlayoffMatchTeam;
   gameNumber: number;
   isFinals: boolean;
+  channel: string;
   series: {
     name: string;
     group: string | null;
