@@ -433,7 +433,12 @@ function GameRow({
   const nextUp = !played && n === playedCount + 1;
   const canReachSeven = t1Wins < 4 && t2Wins < 4;
   const willHappen = played || nextUp || canReachSeven;
-  const interactive = ['COMPLETE', 'FINISHED', 'SCHEDULED', 'IN_PROGRESS'].includes(match?.status ?? '');
+  const interactive = [
+    'COMPLETE',
+    'FINISHED',
+    'SCHEDULED',
+    'IN_PROGRESS',
+  ].includes(match?.status ?? '');
   const href =
     interactive && match?.providerId ? `/partidos/${match.providerId}` : null;
 
@@ -461,9 +466,17 @@ function GameRow({
       className="font-barlow font-bold uppercase whitespace-nowrap"
       style={{ fontSize: 11, color: C.ink70, letterSpacing: 1.4 }}
     >
-      {match?.status == 'SCHEDULED'
-        ? moment(match.startAt).format(MATCH_DATE_SHORT_FORMAT) + ' - ' + moment(match.startAt).format(MATCH_TIME_FORMAT)
-        : getMatchStatusLabel(match?.status ?? '')}
+      {match?.status == 'SCHEDULED' ? (
+        <>
+          <span>{moment(match.startAt).format(MATCH_DATE_SHORT_FORMAT)}</span>
+          <span className="hidden md:inline">
+            {' - '}
+            {moment(match.startAt).format(MATCH_TIME_FORMAT)}
+          </span>
+        </>
+      ) : (
+        getMatchStatusLabel(match?.status ?? '')
+      )}
     </span>
   );
 
@@ -527,9 +540,7 @@ function GameRow({
           className="flex items-center justify-center"
           style={{ minWidth: 40, padding: '0 8px' }}
         >
-          <div className="hidden md:block">
-            {centerEl}
-          </div>
+          {centerEl}
         </div>
 
         <span
@@ -587,7 +598,8 @@ function GameRow({
               className="hidden lg:inline-block font-barlow font-semibold whitespace-nowrap transition-[color,transform] duration-100 group-hover/row:translate-x-[2px] group-hover/row:text-[#1257A8]"
               style={{ fontSize: 12, color: '#1772D9', letterSpacing: 0.3 }}
             >
-              {['COMPLETE', 'FINISHED'].includes(match?.status ?? '') && 'Ver resultado'}
+              {['COMPLETE', 'FINISHED'].includes(match?.status ?? '') &&
+                'Ver resultado'}
               {'SCHEDULED' === match?.status && 'Ver previa'}
               {'IN_PROGRESS' === match?.status && 'Ver en vivo'}
             </span>
