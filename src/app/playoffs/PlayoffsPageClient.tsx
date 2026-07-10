@@ -858,7 +858,7 @@ function StatLeaderCard({
 // ─── Líderes section ──────────────────────────────────────────────────────────
 function PlayoffsLeadersSection() {
   return (
-    <section className="bg-[#f2f2f3] border-t border-[rgba(15,23,31,0.06)] hidden">
+    <section className="bg-[#f2f2f3] border-t border-[rgba(15,23,31,0.06)]">
       <div className="container py-12 lg:py-16">
         <h2 className="font-special-gothic-condensed-one text-[#0F171F] text-[28px] lg:text-[36px] tracking-[-0.3px]">
           Líderes de Playoffs 2026
