@@ -64,7 +64,8 @@ export function buildSeriesStatus(competitors: PlayoffSeriesCompetitor[]): strin
   if (c1.won === c2.won) return `Empate a ${c1.won}`;
   const winner = c1.won > c2.won ? c1 : c2;
   const loser = c1.won > c2.won ? c2 : c1;
-  return `${winner.team.code} lidera ${winner.won}-${loser.won}`;
+  const result = winner.won >= 4 ? 'ganó' : 'lidera';
+  return `${winner.team.code} ${result} ${winner.won}-${loser.won}`;
 }
 
 function toItems(matches: PlayoffMatch[]): Item[] {
