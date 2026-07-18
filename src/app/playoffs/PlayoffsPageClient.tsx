@@ -48,8 +48,10 @@ function statusPillText(node: PlayoffsSeriesNode): string {
     return `${c2.team.nickname.toUpperCase()} GANA ${w2}-${w1}`;
   }
   if (w1 === w2) return `EMPATE ${w1}-${w2}`;
-  if (w1 > w2) return `${c1.team.code} LIDERA ${w1}-${w2}`;
-  return `${c2.team.code} LIDERA ${w2}-${w1}`;
+  const winner = w1 > w2 ? c1 : c2;
+  const loser = w1 > w2 ? c2 : c1;
+  const result = winner.won >= 4 ? 'GANÓ' : 'LIDERA';
+  return `${winner.team.code} ${result} ${winner.won}-${loser.won}`;
 }
 
 // ─── Card top header bar ──────────────────────────────────────────────────────
