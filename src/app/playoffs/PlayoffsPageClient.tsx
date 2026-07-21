@@ -33,7 +33,7 @@ const HATCH =
 
 function seriesLabel(round: number): string {
   if (round === 3) return 'Final BSN';
-  if (round === 2) return 'Semifinal';
+  if (round === 2) return 'Finales de Conferencia';
   return 'Cuartos';
 }
 
@@ -517,7 +517,7 @@ function GameRow({
           className="font-special-gothic-condensed-one"
           style={{
             fontSize: 14,
-            color: played ? C.ink : C.ink55,
+            color: t1Won ? C.ink : t2Won ? C.ink40 : C.ink25,
             letterSpacing: 0.6,
             lineHeight: 1,
           }}
@@ -562,7 +562,7 @@ function GameRow({
           className="font-special-gothic-condensed-one"
           style={{
             fontSize: 14,
-            color: played ? C.ink : C.ink55,
+            color: t2Won ? C.ink : t1Won ? C.ink40 : C.ink25,
             letterSpacing: 0.6,
             lineHeight: 1,
           }}
@@ -902,10 +902,10 @@ export default function PlayoffsPageClient() {
             className="mt-7 lg:mt-10 grid grid-cols-1 lg:grid-cols-2"
             style={{ columnGap: 20, rowGap: 24 }}
           >
-            {cuartos.map((s) => (
+            {semifinals.map((s) => (
               <SeriesCard key={s.providerId} node={s} />
             ))}
-            {semifinals.map((s) => (
+            {cuartos.map((s) => (
               <SeriesCard key={s.providerId} node={s} />
             ))}
             {final && <SeriesCard node={final} fullWidth />}

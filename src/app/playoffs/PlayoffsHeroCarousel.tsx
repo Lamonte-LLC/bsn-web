@@ -151,7 +151,13 @@ export default function PlayoffsHeroCarousel() {
   if (loading && matches.length === 0) return null;
 
   const items = toItems(matches);
-  const initial = items.findIndex((it) => it.kind === 'live');
+  const initial = items.findIndex((item) => {
+    if (item.kind === 'date') {
+      const today = moment().startOf('day');
+      return moment(item.date).startOf('day').isSameOrAfter(today);
+    }
+    return false;
+  });
 
   return (
     <div className="playoffs-hero-slider">
