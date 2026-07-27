@@ -242,19 +242,24 @@ export default function LiveMatchCard({
                   </p>
                 </div>
                 <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] flex items-center justify-center rounded-[18px] px-2.5 h-[18px]">
-                  <span className="text-[10px] text-white md:text-xs">
+                  <div className="flex flex-row justify-center items-center">
                     <svg
                       width="6"
                       height="8"
                       viewBox="0 0 10 12"
                       fill="none"
                       aria-hidden
-                      className="inline-block align-middle mr-[5px] relative -top-[1px] md:mr-1.5 md:-top-[1px] md:w-[7px] md:h-[9px]"
+                      className="mr-[5px] md:mr-1.5 md:w-[7px] md:h-[9px]"
                     >
                       <path d="M0 0L10 6L0 12V0Z" fill="#ff0000" />
                     </svg>
-                    Ver en vivo
-                  </span>
+                    <span className="hidden text-[10px] text-white md:text-xs md:inline">
+                      Ver en vivo
+                    </span>
+                    <span className="text-[10px] text-white md:text-xs md:hidden">
+                      En vivo
+                    </span>
+                  </div>
                 </div>
               </div>
             ) : (
