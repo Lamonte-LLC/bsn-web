@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "heroku-postbuild": "npx puppeteer browsers install chrome"
+    "heroku-postbuild": "next build && npx puppeteer browsers install chrome"
   },
   "dependencies": {
     "@apollo/client": "^4.1.2",
