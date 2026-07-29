@@ -1,12 +1,14 @@
-import { TeamType } from '@/team/types';
 import fs from 'fs';
 import path from 'path';
 import moment from 'moment';
 import 'moment/locale/es';
 import numeral from 'numeral';
 import type { CSSProperties } from 'react';
+import { DOMAIN_URL } from '@/constants';
+
 import { PlayerStatsType, PlayerType } from '@/player/types';
 import { SeasonType } from '@/season/types';
+import { TeamType } from '@/team/types';
 
 const logoPath = path.join(process.cwd(), 'public/assets/images/logo.png');
 const logoSrc = `data:image/png;base64,${fs.readFileSync(logoPath).toString('base64')}`;
@@ -88,7 +90,7 @@ export default function SeasonPlayerStatsExtendedDocument({ data, season }: Prop
               <td style={styles.tableCol}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <img
-                    src={item.player.avatarUrl || '/assets/images/players/default.png'}
+                    src={item.player.avatarUrl || `${DOMAIN_URL}/assets/images/players/default.png`}
                     width={24}
                     height={24}
                     alt={item.player.name}
