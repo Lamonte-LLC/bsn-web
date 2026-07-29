@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "heroku-postbuild": "mkdir ./.cache && mv /app/.cache/puppeteer ./.cache"
+    "lint": "eslint"
   },
   "dependencies": {
     "@apollo/client": "^4.1.2",
