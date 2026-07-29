@@ -5,7 +5,7 @@ type Props = {
   defaultLogo?: string;
 };
 
-const TEAM_LOGOS: Record<string, string> = {
+export const TEAM_LOGOS: Record<string, string> = {
   AGU: `/assets/images/teams/Aguada.png`,
   ARE: `/assets/images/teams/Arecibo.png`,
   BAY: `/assets/images/teams/Bayamon.png`,

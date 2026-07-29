@@ -60,3 +60,17 @@ export const getInitials = (fullName: string): string => {
   const suffix = suffixes.length ? ` ${suffixes.join(' ')}` : '';
   return `${core[0]![0]!.toUpperCase()}. ${core[core.length - 1]}${suffix}`;
 };
+
+export const normalizeFileName = (input: string, extension?: string): string => {
+  const slug = input
+    .trim()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+
+  return extension ? `${slug}.${extension}` : slug;
+};
+
