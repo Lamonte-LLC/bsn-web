@@ -88,7 +88,7 @@ export default function SeasonPlayerStatsExtendedDocument({ data, season }: Prop
               <td style={styles.tableCol}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <img
-                    src={item.player.avatarUrl}
+                    src={item.player.avatarUrl || '/assets/images/players/default.png'}
                     width={24}
                     height={24}
                     alt={item.player.name}
