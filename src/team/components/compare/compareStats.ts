@@ -12,11 +12,6 @@ export type CompareStat = {
   format: StatFormat;
   /** false cuando el número más bajo es mejor (pérdidas, faltas). */
   higherIsBetter: boolean;
-  /**
-   * Solo para las filas de "Resumen Estadístico": el backend todavía no expone
-   * estos campos, así que se leen de RESUMEN_FIXTURE. Ver nota en ese objeto.
-   */
-  fixtureKey?: keyof ResumenFixtureRow;
 };
 
 export type CompareSection = {
@@ -77,69 +72,23 @@ export const COMPARE_SECTIONS: CompareSection[] = [
     title: 'Resumen Estadístico',
     shortTitle: 'Resumen',
     stats: [
-      { code: 'PP', label: 'Puntos en la pintura', key: null, fixtureKey: 'pointsInPaint', format: 'avg', higherIsBetter: true },
-      { code: 'P2', label: 'Puntos de segunda oportunidad', key: null, fixtureKey: 'secondChancePoints', format: 'avg', higherIsBetter: true },
-      { code: 'PC', label: 'Puntos contraataque', key: null, fixtureKey: 'fastBreakPoints', format: 'avg', higherIsBetter: true },
-      { code: 'PB', label: 'Puntos desde el banquillo', key: null, fixtureKey: 'benchPoints', format: 'avg', higherIsBetter: true },
-      { code: 'RAP', label: 'Asistencia perdida', key: null, fixtureKey: 'assistTurnover', format: 'avg', higherIsBetter: false },
+      { code: 'PP', label: 'Puntos en la pintura', key: 'pointsInThePaintAverage', format: 'avg', higherIsBetter: true },
+      { code: 'P2', label: 'Puntos de segunda oportunidad', key: 'pointsSecondChanceAverage', format: 'avg', higherIsBetter: true },
+      { code: 'PC', label: 'Puntos contraataque', key: 'pointsFastBreakAverage', format: 'avg', higherIsBetter: true },
+      { code: 'PB', label: 'Puntos desde el banquillo', key: 'pointsFromBenchAverage', format: 'avg', higherIsBetter: true },
+      { code: 'RAP', label: 'Asistencia perdida', key: 'assistsTurnoverRatio', format: 'avg', higherIsBetter: false },
     ],
   },
 ];
 
-export type ResumenFixtureRow = {
-  pointsInPaint: number;
-  secondChancePoints: number;
-  fastBreakPoints: number;
-  benchPoints: number;
-  assistTurnover: number;
-};
-
-/**
- * ⚠️ DATOS DE MUESTRA — NO SON REALES.
- *
- * La query TEAM_STATS no expone puntos en la pintura, de segunda oportunidad,
- * de contraataque, del banquillo ni asistencia perdida. Estas cifras existen
- * solo para que la sección "Resumen Estadístico" se pueda evaluar visualmente.
- *
- * Antes de publicar: pedir estos campos al backend, añadirlos a TEAM_STATS y
- * a TeamSeasonStatsType, cambiar `key: null` por el campo real en la sección
- * `resumen` de COMPARE_SECTIONS, y borrar este objeto completo.
- */
-export const RESUMEN_FIXTURE: Record<string, ResumenFixtureRow> = {
-  SGE: { pointsInPaint: 39.4, secondChancePoints: 11.8, fastBreakPoints: 13.2, benchPoints: 27.6, assistTurnover: 9.1 },
-  SCE: { pointsInPaint: 42.7, secondChancePoints: 13.1, fastBreakPoints: 14.6, benchPoints: 30.2, assistTurnover: 8.4 },
-  ARE: { pointsInPaint: 40.1, secondChancePoints: 12.4, fastBreakPoints: 12.9, benchPoints: 28.8, assistTurnover: 8.9 },
-  CAG: { pointsInPaint: 41.6, secondChancePoints: 12.9, fastBreakPoints: 13.7, benchPoints: 29.4, assistTurnover: 8.7 },
-  CAR: { pointsInPaint: 38.9, secondChancePoints: 11.2, fastBreakPoints: 12.1, benchPoints: 26.9, assistTurnover: 9.4 },
-  MAY: { pointsInPaint: 40.8, secondChancePoints: 12.1, fastBreakPoints: 13.4, benchPoints: 28.1, assistTurnover: 8.8 },
-  PON: { pointsInPaint: 40.8, secondChancePoints: 12.1, fastBreakPoints: 14.1, benchPoints: 31.0, assistTurnover: 8.2 },
-  GBO: { pointsInPaint: 37.6, secondChancePoints: 10.9, fastBreakPoints: 11.8, benchPoints: 25.4, assistTurnover: 9.6 },
-  MAN: { pointsInPaint: 39.2, secondChancePoints: 11.5, fastBreakPoints: 12.6, benchPoints: 27.1, assistTurnover: 9.2 },
-  QUE: { pointsInPaint: 41.1, secondChancePoints: 12.7, fastBreakPoints: 13.9, benchPoints: 29.8, assistTurnover: 8.6 },
-  AGU: { pointsInPaint: 38.4, secondChancePoints: 11.6, fastBreakPoints: 12.4, benchPoints: 26.3, assistTurnover: 9.3 },
-  BAY: { pointsInPaint: 44.2, secondChancePoints: 13.5, fastBreakPoints: 12.6, benchPoints: 28.4, assistTurnover: 8.9 },
-};
-
-/** true si la sección no tiene respaldo real en el backend todavía. */
-export function isFixtureSection(section: CompareSection): boolean {
-  return section.stats.every((s) => s.key === null);
-}
-
 /** Valor crudo de un stat para un equipo, o null si no hay dato. */
 export function getStatValue(
   stat: CompareStat,
-  code: string,
   stats?: TeamSeasonStatsType,
 ): number | null {
-  if (stat.key) {
-    const value = stats?.[stat.key];
-    return typeof value === 'number' ? value : null;
-  }
-  if (stat.fixtureKey) {
-    const row = RESUMEN_FIXTURE[code];
-    return row ? row[stat.fixtureKey] : null;
-  }
-  return null;
+  if (!stat.key) return null;
+  const value = stats?.[stat.key];
+  return typeof value === 'number' ? value : null;
 }
 
 /** Formato de despliegue. Los porcentajes llegan como fracción 0–1. */

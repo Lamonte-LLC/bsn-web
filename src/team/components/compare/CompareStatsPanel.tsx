@@ -9,7 +9,6 @@ import {
   formatStatValue,
   getStatValue,
   getWinningIndexes,
-  isFixtureSection,
   type CompareStat,
 } from './compareStats';
 import { getCompareTeam } from './teams';
@@ -18,6 +17,7 @@ import CompareRecentMeetings from './CompareRecentMeetings';
 
 type Props = {
   teams: CompareTeamData[];
+  seasonProviderId?: string;
 };
 
 type TabId = 'todos' | string;
@@ -98,7 +98,7 @@ function StatRowTwo({
   stat: CompareStat;
   teams: CompareTeamData[];
 }) {
-  const values = teams.map((t) => getStatValue(stat, t.code, t.stats));
+  const values = teams.map((t) => getStatValue(stat, t.stats));
   const winners = getWinningIndexes(values, stat.higherIsBetter);
 
   const valueClass = (index: number) =>
@@ -157,7 +157,7 @@ function StatRowLeft({
   stat: CompareStat;
   teams: CompareTeamData[];
 }) {
-  const values = teams.map((t) => getStatValue(stat, t.code, t.stats));
+  const values = teams.map((t) => getStatValue(stat, t.stats));
   const winners = getWinningIndexes(values, stat.higherIsBetter);
 
   return (
@@ -202,7 +202,7 @@ function StatRowFour({
   stat: CompareStat;
   teams: CompareTeamData[];
 }) {
-  const values = teams.map((t) => getStatValue(stat, t.code, t.stats));
+  const values = teams.map((t) => getStatValue(stat, t.stats));
   const winners = getWinningIndexes(values, stat.higherIsBetter);
 
   const cell = (index: number) => (
@@ -403,7 +403,7 @@ function TeamTabsRow({ teams }: { teams: CompareTeamData[] }) {
   );
 }
 
-export default function CompareStatsPanel({ teams }: Props) {
+export default function CompareStatsPanel({ teams, seasonProviderId }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>('todos');
   const isLoading = teams.some((t) => t.loading);
   const count = teams.length;
@@ -466,11 +466,6 @@ export default function CompareStatsPanel({ teams }: Props) {
                 title={section.title}
                 align={count === 3 ? 'left' : 'center'}
               />
-              {isFixtureSection(section) && (
-                <p className="pb-[4px] text-center font-barlow text-[10px] font-medium text-[rgba(15,23,31,0.35)]">
-                  Datos de muestra — pendiente de backend
-                </p>
-              )}
               {section.stats.map(renderRow)}
             </div>
           ))}
@@ -479,6 +474,7 @@ export default function CompareStatsPanel({ teams }: Props) {
           {activeTab === 'todos' && (
             <CompareRecentMeetings
               codes={teams.map((t) => t.code)}
+              seasonProviderId={seasonProviderId}
               titleAlign={count === 3 ? 'left' : 'center'}
             />
           )}

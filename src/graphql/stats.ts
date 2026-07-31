@@ -509,3 +509,78 @@ export const SEASON_PLAYER_STATS_EXTENDED = gql`
     }
   }
 `;
+
+export const HEAD_TO_HEAD_TEAM_STATS_EXTENDED = gql`
+  query getHeadToHeadTeamStatsExtended(
+    $teamCodes: [String!]!
+    $seasonProviderId: String
+  ) {
+    headToHeadTeamStats(
+      teamCodes: $teamCodes
+      seasonProviderId: $seasonProviderId
+    ) {
+      season {
+        providerId
+        name
+      }
+      team {
+        providerId
+        code
+        name
+        nickname
+        city
+        colorPrimary
+      }
+      stats {
+        points
+        pointsInThePaint
+        pointsInThePaintAverage
+        pointsInThePaintMade
+        pointsInThePaintAttempted
+        pointsSecondChance
+        pointsSecondChanceAverage
+        pointsSecondChanceMade
+        pointsSecondChanceAttempted
+        pointsFastBreak
+        pointsFastBreakAverage
+        pointsFastBreakMade
+        pointsFastBreakAttempted
+        pointsFromBench
+        pointsFromBenchAverage
+        pointsAverage
+        fieldGoalsMade
+        fieldGoalsMadeAverage
+        fieldGoalsAttempted
+        fieldGoalsAttemptedAverage
+        fieldGoalsPercentage
+        threePointersMade
+        threePointersMadeAverage
+        threePointersAttempted
+        threePointersAttemptedAverage
+        threePointersPercentage
+        freeThrowsMade
+        freeThrowsMadeAverage
+        freeThrowsAttempted
+        freeThrowsAttemptedAverage
+        freeThrowsPercentage
+        offensiveRebounds
+        offensiveReboundsAverage
+        defensiveRebounds
+        defensiveReboundsAverage
+        reboundsTotal
+        reboundsTotalAverage
+        assists
+        assistsAverage
+        assistsTurnoverRatio
+        turnovers
+        turnoversAverage
+        steals
+        stealsAverage
+        blocks
+        blocksAverage
+        foulsPersonal
+        foulsPersonalAverage
+      }
+    }
+  }
+`;

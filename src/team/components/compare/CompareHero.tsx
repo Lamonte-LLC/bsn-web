@@ -2,6 +2,7 @@
 
 import cx from 'classnames';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import type { SeasonType } from '@/season/types';
 import CompareTeamMark from './CompareTeamMark';
 import { getCompareTeam, MAX_COMPARE_TEAMS } from './teams';
 import type { TeamRecord } from './types';
@@ -9,8 +10,11 @@ import type { TeamRecord } from './types';
 type Props = {
   selected: string[];
   records: Record<string, TeamRecord>;
+  seasons: SeasonType[];
+  selectedSeasonProviderId?: string;
   seasonName?: string;
   onOpenPicker: () => void;
+  onSeasonChange: (seasonProviderId: string) => void;
   onRemove: (code: string) => void;
 };
 
@@ -208,8 +212,11 @@ function TeamSlotStacked({
 export default function CompareHero({
   selected,
   records,
+  seasons,
+  selectedSeasonProviderId,
   seasonName,
   onOpenPicker,
+  onSeasonChange,
   onRemove,
 }: Props) {
   const count = selected.length;
@@ -310,7 +317,6 @@ export default function CompareHero({
         )}
 
         <div className="mb-[10px] mt-[18px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
-          {/* Dropdown de temporada — por ahora una sola opción. */}
           <Menu>
             <MenuButton className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-colors hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-none lg:px-[16px] lg:py-[7px] lg:text-[13px]">
               {seasonName ? `Temporada ${seasonName}` : 'Temporada regular'}
@@ -324,14 +330,22 @@ export default function CompareHero({
               anchor="bottom"
               className="z-[999] mt-[8px] rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0"
             >
-              <MenuItem>
-                <button
-                  type="button"
-                  className="block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] text-[#0F171F] data-focus:bg-[#F4F4F4]"
-                >
-                  {seasonName ? `Temporada ${seasonName}` : 'Temporada regular'}
-                </button>
-              </MenuItem>
+              {seasons.map((season) => (
+                <MenuItem key={season.providerId}>
+                  <button
+                    type="button"
+                    onClick={() => onSeasonChange(season.providerId)}
+                    className={cx(
+                      'block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]',
+                      season.providerId === selectedSeasonProviderId
+                        ? 'text-[#0F171F]'
+                        : 'text-[rgba(15,23,31,0.6)]',
+                    )}
+                  >
+                    Temporada {season.name}
+                  </button>
+                </MenuItem>
+              ))}
             </MenuItems>
           </Menu>
           {count >= 1 && count < MAX_COMPARE_TEAMS && (

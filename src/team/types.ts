@@ -93,8 +93,16 @@ export type TeamCompetitionStandingType = {
 export type TeamSeasonStatsType = {
   points: number;
   pointsAverage: number;
+  pointsInThePaint: number;
+  pointsInThePaintAverage: number;
+  pointsSecondChance: number;
+  pointsSecondChanceAverage: number;
+  pointsFastBreak: number;
+  pointsFastBreakAverage: number;
+  pointsFromBenchAverage: number;
   assists: number;
   assistsAverage: number;
+  assistsTurnoverRatio: number;
   fieldGoalsMade: number;
   fieldGoalsMadeAverage: number;
   fieldGoalsAttempted: number;
@@ -124,6 +132,29 @@ export type TeamSeasonStatsType = {
   blocksAverage: number;
   foulsPersonal: number;
   foulsPersonalAverage: number;
+};
+
+export type SeasonHeadToHeadMatchType = {
+  id: string;
+  providerId: string;
+  startAt: string;
+  status: string;
+  homeTeam: {
+    code: string;
+    score: number;
+  };
+  visitorTeam: {
+    code: string;
+    score: number;
+  };
+  series?: {
+    providerId: string;
+    competitors: {
+      team: { code: string };
+      won: number;
+      lost: number;
+    }[];
+  };
 };
 
 export type TeamType = {

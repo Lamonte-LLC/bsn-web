@@ -10,14 +10,20 @@ import { MAX_COMPARE_TEAMS } from '@/team/components/compare/teams';
 type CompareSelectionState = {
   selected: string[];
   pickerOpen: boolean;
+  seasonProviderId?: string;
 };
 
-let state: CompareSelectionState = { selected: [], pickerOpen: false };
+let state: CompareSelectionState = {
+  selected: [],
+  pickerOpen: false,
+  seasonProviderId: undefined,
+};
 const listeners = new Set<() => void>();
 
 const SERVER_SNAPSHOT: CompareSelectionState = {
   selected: [],
   pickerOpen: false,
+  seasonProviderId: undefined,
 };
 
 function subscribe(listener: () => void) {
@@ -53,6 +59,11 @@ export function toggleCompareTeam(code: string) {
 export function setComparePickerOpen(open: boolean) {
   if (state.pickerOpen === open) return;
   emit({ ...state, pickerOpen: open });
+}
+
+export function setCompareSeason(seasonProviderId: string) {
+  if (state.seasonProviderId === seasonProviderId) return;
+  emit({ ...state, seasonProviderId });
 }
 
 export function useCompareSelection(): CompareSelectionState {

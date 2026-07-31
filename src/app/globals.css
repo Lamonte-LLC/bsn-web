@@ -2233,6 +2233,11 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   display: none;
 }
 
+/* Reusable: hide scrollbar on native horizontal scroll/swipe rows (Webkit). */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Sportsradar widget */
 #synergy-widget-fixture_detail .sw-bg,
 #synergy-widget-fixture_detail .sw-widget-fixture {

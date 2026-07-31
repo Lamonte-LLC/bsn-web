@@ -1,10 +1,15 @@
 'use client';
 
+import type { ReactNode } from 'react';
+import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
+import { useSeasonHeadToHeadMatches } from '@/team/client/hooks/teams';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import { crossRecord, getMeetings, type MeetingFixture } from './meetingsFixture';
+import type { SeasonHeadToHeadMatchType } from '@/team/types';
+import { crossRecord, getMeetings, type Meeting } from './meetings';
 
 type Props = {
   codes: string[];
+  seasonProviderId?: string;
   /** Alineación del título — 'left' en el layout de 3 equipos. */
   titleAlign?: 'center' | 'left';
 };
@@ -32,17 +37,16 @@ function MeetingCard({
   pair,
   serie,
 }: {
-  meeting: MeetingFixture;
+  meeting: Meeting;
   /** Cruce en el orden de selección: ["BAY", "PON"]. */
   pair: [string, string];
   /** Récord del cruce en la temporada: "3-2". */
   serie: string;
 }) {
   return (
-    <div className="rounded-[10px] border border-[rgba(15,23,31,0.05)] bg-[#FAFBFC] px-[15px] py-[12px] text-center">
+    <div className="w-[220px] shrink-0 snap-start rounded-[10px] border border-[rgba(15,23,31,0.05)] bg-[#FAFBFC] px-[15px] py-[12px] text-center md:w-[280px]">
       <div className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.5)]">
         {meeting.date}
-        {meeting.note ? ` · ${meeting.note}` : ''}
       </div>
       <div className="mt-[9px] flex items-center justify-center gap-[10px]">
         <ScoreLogo code={meeting.winner} />
@@ -64,6 +68,18 @@ function MeetingCard({
   );
 }
 
+/** Fila con scroll horizontal + snap, sin JS: el usuario desliza con swipe. */
+function SliderRow({ children }: { children: ReactNode }) {
+  return (
+    <div
+      className="no-scrollbar flex snap-x snap-mandatory gap-[8px] overflow-x-auto pb-[2px] lg:gap-[10px]"
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+    >
+      {children}
+    </div>
+  );
+}
+
 function EmptyCard() {
   return (
     <div className="rounded-[10px] border border-[rgba(15,23,31,0.05)] bg-[#FAFBFC] px-[15px] py-[18px] text-center">
@@ -74,27 +90,53 @@ function EmptyCard() {
   );
 }
 
+function LoadingCards({ count }: { count: number }) {
+  return (
+    <SliderRow>
+      {Array.from({ length: count }).map((_, index) => (
+        <div key={index} className="w-[280px] shrink-0">
+          <ShimmerLine height="72px" />
+        </div>
+      ))}
+    </SliderRow>
+  );
+}
+
 /** 2 equipos: hasta 5 juegos del cruce en una fila. */
-function TwoTeamMeetings({ a, b }: { a: string; b: string }) {
-  const meetings = getMeetings(a, b);
+function TwoTeamMeetings({
+  a,
+  b,
+  matches,
+}: {
+  a: string;
+  b: string;
+  matches: SeasonHeadToHeadMatchType[];
+}) {
+  const meetings = getMeetings(matches, a, b);
 
   if (meetings.length === 0) {
     return <EmptyCard />;
   }
 
-  const serie = crossRecord(a, b);
+  const serie = crossRecord(matches, a, b);
 
   return (
-    <div className="grid grid-cols-1 gap-[8px] lg:grid-cols-5 lg:gap-[10px]">
+    <SliderRow>
       {meetings.slice(0, 5).map((meeting, index) => (
         <MeetingCard key={index} meeting={meeting} pair={[a, b]} serie={serie} />
       ))}
-    </div>
+    </SliderRow>
   );
 }
 
 /** 3–4 equipos: una tarjeta por cruce con su juego más reciente. */
-function CrossMeetings({ codes }: { codes: string[] }) {
+function CrossMeetings({
+  codes,
+  matches,
+}: {
+  codes: string[];
+  matches: SeasonHeadToHeadMatchType[];
+}) {
   const pairs: [string, string][] = [];
   for (let i = 0; i < codes.length; i += 1) {
     for (let j = i + 1; j < codes.length; j += 1) {
@@ -102,31 +144,36 @@ function CrossMeetings({ codes }: { codes: string[] }) {
     }
   }
 
-  const withData = pairs.filter(([a, b]) => getMeetings(a, b).length > 0);
+  const withData = pairs.filter(([a, b]) => getMeetings(matches, a, b).length > 0);
 
   if (withData.length === 0) {
     return <EmptyCard />;
   }
 
   return (
-    <div className="grid grid-cols-1 gap-[8px] lg:grid-cols-3 lg:gap-[12px]">
+    <SliderRow>
       {withData.map(([a, b]) => (
         <MeetingCard
           key={`${a}-${b}`}
-          meeting={getMeetings(a, b)[0]}
+          meeting={getMeetings(matches, a, b)[0]}
           pair={[a, b]}
-          serie={crossRecord(a, b)}
+          serie={crossRecord(matches, a, b)}
         />
       ))}
-    </div>
+    </SliderRow>
   );
 }
 
 export default function CompareRecentMeetings({
   codes,
+  seasonProviderId,
   titleAlign = 'center',
 }: Props) {
   const isPair = codes.length === 2;
+  const { data: matches, loading } = useSeasonHeadToHeadMatches(
+    codes,
+    seasonProviderId,
+  );
 
   return (
     <div>
@@ -140,13 +187,12 @@ export default function CompareRecentMeetings({
         </span>
         <span className="h-px flex-1 bg-[rgba(15,23,31,0.08)]" />
       </div>
-      <p className="pb-[8px] text-center font-barlow text-[10px] font-medium text-[rgba(15,23,31,0.35)]">
-        Datos de muestra — pendiente de backend
-      </p>
-      {isPair ? (
-        <TwoTeamMeetings a={codes[0]} b={codes[1]} />
+      {loading ? (
+        <LoadingCards count={isPair ? 5 : 3} />
+      ) : isPair ? (
+        <TwoTeamMeetings a={codes[0]} b={codes[1]} matches={matches} />
       ) : (
-        <CrossMeetings codes={codes} />
+        <CrossMeetings codes={codes} matches={matches} />
       )}
     </div>
   );
