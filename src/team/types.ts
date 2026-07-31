@@ -100,6 +100,7 @@ export type TeamSeasonStatsType = {
   pointsFastBreak: number;
   pointsFastBreakAverage: number;
   pointsFromBenchAverage: number;
+  pointsFromBench: number;
   assists: number;
   assistsAverage: number;
   assistsTurnoverRatio: number;
