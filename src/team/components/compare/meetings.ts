@@ -11,11 +11,13 @@ export type Meeting = {
   loserScore: number;
   /** "lun, 13 jul, 2026". */
   date: string;
+  /** providerId del partido, para enlazar a /partidos/[id]. */
+  matchProviderId: string;
 };
 
 /** Convierte un partido finalizado en un `Meeting` (ganador siempre primero). */
 function toMeeting(match: SeasonHeadToHeadMatchType): Meeting {
-  const { homeTeam, visitorTeam, startAt } = match;
+  const { homeTeam, visitorTeam, startAt, providerId } = match;
   const [winner, loser] =
     homeTeam.score >= visitorTeam.score
       ? [homeTeam, visitorTeam]
@@ -27,6 +29,7 @@ function toMeeting(match: SeasonHeadToHeadMatchType): Meeting {
     winnerScore: winner.score,
     loserScore: loser.score,
     date: formatDate(startAt, 'ddd, D MMM, YYYY'),
+    matchProviderId: providerId,
   };
 }
 

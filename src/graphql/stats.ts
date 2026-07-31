@@ -553,6 +553,11 @@ export const HEAD_TO_HEAD_TEAM_STATS_EXTENDED = gql`
         fieldGoalsAttempted
         fieldGoalsAttemptedAverage
         fieldGoalsPercentage
+        twoPointsMade
+        twoPointsMadeAverage
+        twoPointsAttempted
+        twoPointsAttemptedAverage
+        twoPointsPercentage
         threePointersMade
         threePointersMadeAverage
         threePointersAttempted
@@ -578,8 +583,15 @@ export const HEAD_TO_HEAD_TEAM_STATS_EXTENDED = gql`
         stealsAverage
         blocks
         blocksAverage
+        blocksReceived
+        blocksReceivedAverage
         foulsPersonal
         foulsPersonalAverage
+        foulsTotal
+        foulsTechnical
+        foulsUnsportsmanlike
+        dunks
+        dunksAverage
       }
     }
   }

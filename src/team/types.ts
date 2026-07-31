@@ -108,6 +108,11 @@ export type TeamSeasonStatsType = {
   fieldGoalsAttempted: number;
   fieldGoalsAttemptedAverage: number;
   fieldGoalsPercentage: number;
+  twoPointsMade: number;
+  twoPointsMadeAverage: number;
+  twoPointsAttempted: number;
+  twoPointsAttemptedAverage: number;
+  twoPointsPercentage: number;
   threePointersMade: number;
   threePointersMadeAverage: number;
   threePointersAttempted: number;
@@ -130,8 +135,15 @@ export type TeamSeasonStatsType = {
   stealsAverage: number;
   blocks: number;
   blocksAverage: number;
+  blocksReceived: number;
+  blocksReceivedAverage: number;
   foulsPersonal: number;
   foulsPersonalAverage: number;
+  foulsTotal: number;
+  foulsTechnical: number;
+  foulsUnsportsmanlike: number;
+  dunks: number;
+  dunksAverage: number;
 };
 
 export type SeasonHeadToHeadMatchType = {

@@ -1,6 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { useSeasonHeadToHeadMatches } from '@/team/client/hooks/teams';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
@@ -44,7 +45,10 @@ function MeetingCard({
   serie: string;
 }) {
   return (
-    <div className="w-[220px] shrink-0 snap-start rounded-[10px] border border-[rgba(15,23,31,0.05)] bg-[#FAFBFC] px-[15px] py-[12px] text-center md:w-[280px]">
+    <Link
+      href={`/partidos/${meeting.matchProviderId}`}
+      className="block w-[220px] shrink-0 snap-start rounded-[10px] border border-[rgba(15,23,31,0.05)] bg-[#FAFBFC] px-[15px] py-[12px] text-center md:w-[280px]"
+    >
       <div className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.5)]">
         {meeting.date}
       </div>
@@ -64,7 +68,7 @@ function MeetingCard({
       <div className="mt-[9px] font-barlow font-semibold text-[10px] uppercase tracking-[0.8px] text-[rgba(15,23,31,0.45)]">
         {pair[0]} – {pair[1]} · Serie {serie}
       </div>
-    </div>
+    </Link>
   );
 }
 
