@@ -145,6 +145,8 @@ export type TeamSeasonStatsType = {
   foulsUnsportsmanlike: number;
   dunks: number;
   dunksAverage: number;
+  foulsDrawn: number;
+  foulsDrawnAverage: number;
 };
 
 export type SeasonHeadToHeadMatchType = {
