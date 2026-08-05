@@ -40,7 +40,7 @@ export default function CompareExportPdfFooter({
   }
 
   return (
-    <div className="mt-[15px] hidden justify-center border-t border-[rgba(15,23,31,0.07)] pb-[16px] pt-[14px] lg:flex">
+    <div className="mt-[25px] hidden justify-center border-t border-[rgba(15,23,31,0.07)] pb-[16px] pt-[14px] lg:flex">
       <button
         type="button"
         onClick={handleClick}
