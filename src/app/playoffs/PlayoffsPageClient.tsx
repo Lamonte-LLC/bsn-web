@@ -902,13 +902,13 @@ export default function PlayoffsPageClient() {
             className="mt-7 lg:mt-10 grid grid-cols-1 lg:grid-cols-2"
             style={{ columnGap: 20, rowGap: 24 }}
           >
+            {final && <SeriesCard node={final} fullWidth />}
             {semifinals.map((s) => (
               <SeriesCard key={s.providerId} node={s} />
             ))}
             {cuartos.map((s) => (
               <SeriesCard key={s.providerId} node={s} />
             ))}
-            {final && <SeriesCard node={final} fullWidth />}
           </div>
         </div>
       </section>

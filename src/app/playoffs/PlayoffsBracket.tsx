@@ -297,7 +297,7 @@ const MOBILE_TABS: { key: MobileRound; label: string }[] = [
 ];
 
 export default function PlayoffsBracket() {
-  const [mobileRound, setMobileRound] = useState<MobileRound>(2);
+  const [mobileRound, setMobileRound] = useState<MobileRound>(3);
   const { nodes } = usePlayoffsBracket();
 
   const byRoundGroup = (round: number, group: string) =>
