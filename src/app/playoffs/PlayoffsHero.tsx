@@ -19,7 +19,7 @@ export default function PlayoffsHero() {
         {/* Centered logo */}
         <div className="flex justify-center pt-6 pb-6 lg:pt-10 lg:pb-10">
           <img
-            src="/assets/images/playoffs-logo.png"
+            src="/assets/images/playoffs-logo.png?v=1"
             alt="BSN Playoffs 2026"
             className="w-[180px] sm:w-[220px] lg:w-[280px] h-auto"
           />
