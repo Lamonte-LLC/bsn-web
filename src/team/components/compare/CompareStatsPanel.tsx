@@ -14,6 +14,9 @@ import {
 import { getCompareTeam } from './teams';
 import type { CompareTeamData } from './types';
 import CompareRecentMeetings from './CompareRecentMeetings';
+import CompareExportPdfFooter, {
+  type TeamComparisonPrintRequest,
+} from './CompareExportPdfFooter';
 
 type Props = {
   teams: CompareTeamData[];
@@ -478,6 +481,13 @@ export default function CompareStatsPanel({ teams, seasonProviderId }: Props) {
               titleAlign={count === 3 ? 'left' : 'center'}
             />
           )}
+
+          <CompareExportPdfFooter
+            season={seasonProviderId ?? ''}
+            teamIds={teams.map((t) => t.code)}
+            /* TabId es 'todos' | string, así que no estrecha solo. */
+            tab={activeTab as TeamComparisonPrintRequest['tab']}
+          />
         </>
       )}
     </div>
