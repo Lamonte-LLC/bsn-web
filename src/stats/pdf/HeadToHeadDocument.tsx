@@ -14,9 +14,15 @@ type Props = {
     stats: TeamSeasonStatsType;
   }[];
   season?: SeasonType | null;
+  section?: string;
 };
 
-export default function HeadToHeadDocument({ season, data }: Props) {
+export default function HeadToHeadDocument({ season, data, section = 'todos' }: Props) {
+  const sections =
+    section === 'todos'
+      ? COMPARE_SECTIONS
+      : COMPARE_SECTIONS.filter((compareSection) => compareSection.id === section);
+
   return (
     <div style={styles.page}>
       <div style={styles.header}>
@@ -37,22 +43,22 @@ export default function HeadToHeadDocument({ season, data }: Props) {
                 </th>
               ))}
             </tr>
-            {COMPARE_SECTIONS.flatMap((section) => [
-              <tr key={`${section.id}-header`} style={styles.rowCategory}>
+            {sections.flatMap((compareSection) => [
+              <tr key={`${compareSection.id}-header`} style={styles.rowCategory}>
                 <td colSpan={1 + data.length} style={styles.colCategory}>
-                  {section.title.toUpperCase()}
+                  {compareSection.title.toUpperCase()}
                 </td>
               </tr>,
-              ...section.stats.map((stat, index) => {
+              ...compareSection.stats.map((stat, index) => {
                 const values = data.map((item) => getStatValue(stat, item.stats));
                 const winners = getWinningIndexes(values, stat.higherIsBetter);
 
                 return (
                   <tr
-                    key={`${section.id}-${stat.code}-${stat.label}`}
+                    key={`${compareSection.id}-${stat.code}-${stat.label}`}
                     style={index % 2 === 0 ? styles.evenRow : styles.oddRow}
                   >
-                    <td style={section.id === 'promedio' ? styles.colCategory : styles.colStat}>
+                    <td style={compareSection.id === 'promedio' ? styles.colCategory : styles.colStat}>
                       <span style={styles.statCode}>{stat.code}</span>
                       <span style={styles.statName}>{stat.label}</span>
                     </td>

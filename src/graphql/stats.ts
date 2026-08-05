@@ -590,6 +590,8 @@ export const HEAD_TO_HEAD_TEAM_STATS_EXTENDED = gql`
         foulsTotal
         foulsTechnical
         foulsUnsportsmanlike
+        foulsDrawn
+        foulsDrawnAverage
         dunks
         dunksAverage
       }

@@ -41,6 +41,7 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const seasonParam = searchParams.get('season');
   const teamsParam = searchParams.get('teams')?.split(',') ?? [];
+  const sectionParam = searchParams.get('section') || 'todos';
   const data = await fetchHeadToHead(seasonParam, teamsParam);
   const season = data.length > 0 ? data[0].season : null;
 
@@ -54,7 +55,7 @@ export async function GET(request: NextRequest) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
   </head>
-  <body>${renderToStaticMarkup(<HeadToHeadDocument season={season} data={data} />)}</body>
+  <body>${renderToStaticMarkup(<HeadToHeadDocument season={season} data={data} section={sectionParam} />)}</body>
 </html>`;
 
   const browser = await puppeteer.launch({
@@ -72,7 +73,7 @@ export async function GET(request: NextRequest) {
   }
 
   const fileName = normalizeFileName(
-    `estadisticas-equipos-${season?.name ?? 'bsn'}`,
+    `cmp-equipos-${teamsParam.join('-')}-${season?.name ?? 'bsn'}`,
     'pdf',
   );
 

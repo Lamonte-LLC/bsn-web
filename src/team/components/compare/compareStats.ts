@@ -73,7 +73,7 @@ export const COMPARE_SECTIONS: CompareSection[] = [
       { code: 'TF', label: 'Faltas', key: 'foulsTotal', format: 'int', higherIsBetter: false },
       { code: 'FT', label: 'Faltas técnicas', key: 'foulsTechnical', format: 'int', higherIsBetter: false },
       { code: 'FA', label: 'Faltas antideportivas', key: 'foulsUnsportsmanlike', format: 'int', higherIsBetter: false },
-      { code: 'FR', label: 'Faltas cometidas', key: 'foulsPersonal', format: 'int', higherIsBetter: false },
+      { code: 'FR', label: 'Faltas cometidas', key: 'foulsDrawn', format: 'int', higherIsBetter: false },
       { code: 'PE', label: 'Perdidas', key: 'turnovers', format: 'int', higherIsBetter: false },
       { code: 'REC', label: 'Robadas', key: 'steals', format: 'int', higherIsBetter: true },
       { code: 'BLQ', label: 'Bloqueos', key: 'blocks', format: 'int', higherIsBetter: true },
