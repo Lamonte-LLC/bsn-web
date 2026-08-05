@@ -32,7 +32,7 @@ const HATCH =
   'repeating-linear-gradient(135deg, rgba(15,23,31,0.028) 0 1px, transparent 1px 9px)';
 
 function seriesLabel(round: number): string {
-  if (round === 3) return 'Final BSN';
+  if (round === 3) return 'Final Brava';
   if (round === 2) return 'Finales de Conferencia';
   return 'Cuartos';
 }
@@ -394,19 +394,6 @@ function FinalHeader({ node }: { node: PlayoffsSeriesNode }) {
       </div>
 
       {statusPillText(node) && <StatusPill>{statusPillText(node)}</StatusPill>}
-
-      {completed ? (
-        <div
-          className="font-barlow uppercase"
-          style={{ fontSize: 12, color: C.ink55, letterSpacing: 1.2 }}
-        >
-          Avanza a la siguiente ronda
-        </div>
-      ) : (
-        <div className="font-barlow" style={{ fontSize: 12, color: C.ink55 }}>
-          Próximo partido por anunciar
-        </div>
-      )}
     </div>
   );
 }
