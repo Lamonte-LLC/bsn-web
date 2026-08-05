@@ -44,4 +44,6 @@ export type TeamStatsType = {
   blocksAverage: number;
   foulsPersonal: number;
   foulsPersonalAverage: number;
+  foulsDrawn: number;
+  foulsDrawnAverage: number;
 };
