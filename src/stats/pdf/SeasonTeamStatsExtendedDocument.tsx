@@ -1,112 +1,113 @@
-import { TeamType } from '@/team/types';
-import fs from 'fs';
-import path from 'path';
-import moment from 'moment';
-import 'moment/locale/es';
-import numeral from 'numeral';
 import type { CSSProperties } from 'react';
-import { TeamStatsType } from '../types';
-import { getTeamLogoBase64 } from '@/utils/bsn-team';
+import { TeamType, TeamSeasonStatsType } from '@/team/types';
 import { SeasonType } from '@/season/types';
-
-const logoPath = path.join(process.cwd(), 'public/assets/images/logo.png');
-const logoSrc = `data:image/png;base64,${fs.readFileSync(logoPath).toString('base64')}`;
-
-const TEAM_STATS_COLUMNS: {
-  label: string;
-  key: keyof TeamStatsType;
-  format?: 'percentage';
-}[] = [
-  { label: 'PTS', key: 'points' },
-  { label: 'FGM', key: 'fieldGoalsMade' },
-  { label: 'FGA', key: 'fieldGoalsAttempted' },
-  { label: 'FG%', key: 'fieldGoalsPercentage', format: 'percentage' },
-  { label: '3PM', key: 'threePointersMade' },
-  { label: '3PA', key: 'threePointersAttempted' },
-  { label: '3P%', key: 'threePointersPercentage', format: 'percentage' },
-  { label: 'FTM', key: 'freeThrowsMade' },
-  { label: 'FTA', key: 'freeThrowsAttempted' },
-  { label: 'FT%', key: 'freeThrowsPercentage', format: 'percentage' },
-  { label: 'OREB', key: 'offensiveRebounds' },
-  { label: 'DREB', key: 'defensiveRebounds' },
-  { label: 'REB', key: 'reboundsTotal' },
-  { label: 'AST', key: 'assists' },
-  { label: 'TO', key: 'turnovers' },
-  { label: 'STL', key: 'steals' },
-  { label: 'BLK', key: 'blocks' },
-  { label: 'PF', key: 'foulsPersonal' },
-];
+import {
+  COMPARE_SECTIONS,
+  formatStatValue,
+  getStatValue,
+} from '@/team/components/compare/compareStats';
 
 type Props = {
   data: {
     team: TeamType;
-    stats: TeamStatsType;
+    stats: TeamSeasonStatsType;
   }[];
   season?: SeasonType | null;
 };
 
-export default function SeasonTeamStatsExtendedDocument({ data, season }: Props) {
-  const currentDate = moment().locale('es').format('D [de] MMMM [de] YYYY');
+const LEGEND_COLUMNS = 4;
 
+function chunkIntoColumns<T>(items: T[], columns: number): T[][] {
+  const perColumn = Math.ceil(items.length / columns);
+  return Array.from({ length: columns }, (_, index) =>
+    items.slice(index * perColumn, index * perColumn + perColumn),
+  ).filter((column) => column.length > 0);
+}
+
+export default function SeasonTeamStatsExtendedDocument({
+  data,
+  season,
+}: Props) {
   return (
     <div style={styles.page}>
       <div style={styles.header}>
-        <div style={styles.headerCol}>
-          <img src={logoSrc} width={72} height={72} alt="BSN" />
-        </div>
-        <div style={styles.headerCol}>
-          <h1 style={styles.headerTitle}>Estadísticas de Equipos</h1>
-          {season && <h2 style={styles.headerSubtitle}>{season.name}</h2>}
-        </div>
-        <div style={{ ...styles.headerCol, ...styles.textRight }}>
-          {currentDate}
-        </div>
+        <h1 style={styles.titleLabel}>BSN · Estadísticas de equipos</h1>
+        {season && (
+          <span style={styles.seasonLabel}>{season.name.toUpperCase()}</span>
+        )}
       </div>
-      <table style={styles.table}>
-        <thead style={styles.tableHead}>
-          <tr>
-            <th style={styles.tableColHeader}>NOMBRE</th>
-            {TEAM_STATS_COLUMNS.map((column) => (
-              <th
-                key={`team-stats-header-${column.key}`}
-                style={{ ...styles.tableColHeader, ...styles.textRight }}
-              >
-                {column.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr
-              key={`team-stats-row-${index}`}
-              style={index % 2 === 1 ? styles.tableRowStriped : undefined}
-            >
-              <td style={styles.tableCol}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <img
-                    src={getTeamLogoBase64(item.team.code)}
-                    width={24}
-                    height={24}
-                    alt={item.team.name}
-                  />
-                  <span>{item.team.name}</span>
-                </div>
-              </td>
-              {TEAM_STATS_COLUMNS.map((column) => (
-                <td
-                  key={`team-stats-col-${index}-${column.key}`}
-                  style={{ ...styles.tableCol, ...styles.textRight }}
+      {COMPARE_SECTIONS.map((section) => (
+        <>
+          <div>
+            <h3 style={styles.sectionTitle}>
+              {section.title}
+            </h3>
+          </div>
+          <table key={section.id} style={styles.tableStats}>
+            <tbody>
+              <tr style={styles.rowCategory}>
+                <th style={styles.colCategory}>EQUIPO</th>
+                {section.stats.map((stat) => (
+                  <th
+                    key={`${section.id}-head-${stat.code}`}
+                    style={{ ...styles.colCategory, textAlign: 'right' }}
+                  >
+                    {stat.code}
+                  </th>
+                ))}
+              </tr>
+              {data.map((item, index) => (
+                <tr
+                  key={`${section.id}-${item.team.code}`}
+                  style={index % 2 === 1 ? styles.oddRow : styles.evenRow}
                 >
-                  {column.format === 'percentage'
-                    ? numeral(item.stats[column.key]).format('0.0%')
-                    : numeral(item.stats[column.key]).format('0')}
-                </td>
+                  <td style={styles.colTeam}>
+                    <span style={styles.teamCode}>{item.team.code}</span>
+                    <span style={styles.teamName}>{item.team.name}</span>
+                  </td>
+                  {section.stats.map((stat) => (
+                    <td
+                      key={`${section.id}-${item.team.code}-${stat.code}`}
+                      style={styles.colStatValue}
+                    >
+                      <span style={styles.statValue}>
+                        {formatStatValue(
+                          getStatValue(stat, item.stats),
+                          stat.format,
+                        )}
+                      </span>
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+          <div style={styles.legend}>
+            <h4 style={styles.legendTitle}>LEYENDA</h4>
+            <div style={styles.legendGrid}>
+              {chunkIntoColumns(section.stats, LEGEND_COLUMNS).map(
+                (column, columnIndex) => (
+                  <div
+                    key={`${section.id}-legend-col-${columnIndex}`}
+                    style={styles.legendColumn}
+                  >
+                    {column.map((stat) => (
+                      <div
+                        key={`${section.id}-legend-${stat.code}`}
+                        style={styles.legendItem}
+                      >
+                        <span style={styles.legendCode}>{stat.code}</span>
+                        <span style={styles.legendLabel}>{stat.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+          <div style={styles.pageBreak} />
+        </>
+      ))}
     </div>
   );
 }
@@ -114,52 +115,151 @@ export default function SeasonTeamStatsExtendedDocument({ data, season }: Props)
 const styles: Record<string, CSSProperties> = {
   page: {
     padding: 24,
-    fontFamily: 'Helvetica, Arial, sans-serif',
+    fontFamily: 'Barlow, Arial, sans-serif',
   },
   header: {
+    borderBottom: '0.5px solid #bfbfbf',
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'baseline',
   },
-  headerCol: {
-    flex: 1,
+  titleLabel: {
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '27px',
+    lineHeight: 1,
+    letterSpacing: '0.4px',
+    color: '#000',
   },
-  headerTitle: {
-    margin: 0,
-    fontSize: 18,
-    textAlign: 'center',
+  seasonLabel: {
+    color: '#333',
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '11px',
+    fontWeight: '600',
+    letterSpacing: '1.4px',
   },
-  headerSubtitle: {
-    margin: 0,
-    fontSize: 14,
-    fontWeight: 'normal',
-    textAlign: 'center',
-  },
-  table: {
+  tableStats: {
     borderCollapse: 'collapse',
     width: '100%',
-    border: '1px solid #dee2e6',
     marginTop: 20,
   },
-  tableHead: {
-    backgroundColor: '#f0f0f0',
-    verticalAlign: 'bottom',
+  rowHead: {
+    alignItems: 'bottom',
+    marginBottom: '6px',
   },
-  tableColHeader: {
-    border: '1px solid #dee2e6',
-    padding: '8px',
-    fontSize: 10,
+  evenRow: {
+    backgroundColor: '#fff',
   },
-  tableRowStriped: {
-    backgroundColor: '#f2f2f2',
+  oddRow: {
+    backgroundColor: '#f5f5f5',
   },
-  tableCol: {
-    border: '1px solid #dee2e6',
-    padding: '8px',
-    fontSize: 10,
-    verticalAlign: 'top',
+  rowCategory: {
+    backgroundColor: '#000',
+    color: '#fff',
+    fontWeight: '600',
   },
-  textRight: {
+  colCategory: {
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '8.2px',
+    fontWeight: '600',
+    letterSpacing: '0.6px',
+    padding: '4px 6px',
+    textAlign: 'left',
+  },
+  colHeadTeam: {
+    color: '#666',
+    fontSize: '8px',
+    fontWeight: '600',
+    letterSpacing: '1.4px',
+    padding: '8px 6px',
+    textAlign: 'left',
+    width: '150px',
+  },
+  colHeadStat: {
+    color: '#666',
+    fontSize: '8px',
+    fontWeight: '600',
+    letterSpacing: '0.8px',
+    padding: '8px 6px',
     textAlign: 'right',
+    borderLeft: '0.5px solid #d8d8d8',
+  },
+  colTeam: {
+    padding: '1px 6px',
+  },
+  colStatValue: {
+    padding: '1px 6px',
+    textAlign: 'right',
+  },
+  teamCode: {
+    color: '#000',
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '12px',
+    letterSpacing: '0.4px',
+    marginRight: '6px',
+  },
+  teamName: {
+    color: '#666',
+    fontSize: '8.5px',
+    fontWeight: '400',
+  },
+  statValue: {
+    color: '#111',
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '9.6px',
+  },
+  sectionTitle: {
+    color: '#000',
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '20px',
+    lineHeight: 1,
+    letterSpacing: '0.4px',
+  },
+  legend: {
+    marginTop: '16px',
+    marginBottom: '24px',
+  },
+  legendTitle: {
+    margin: 0,
+    color: '#666',
+    fontSize: '8px',
+    fontWeight: '600',
+    letterSpacing: '1.4px',
+    paddingBottom: '6px',
+    borderBottom: '0.5px solid #d8d8d8',
+    marginBottom: '8px',
+  },
+  legendGrid: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '16px',
+  },
+  legendColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '3px',
+    flex: 1,
+  },
+  legendItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '6px',
+    fontSize: '9px',
+  },
+  legendCode: {
+    color: '#333',
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '7.6px',
+    fontWeight: '700',
+    minWidth: '26px',
+  },
+  legendLabel: {
+    color: '#333',
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '7.6px',
+    fontWeight: '400',
+  },
+  pageBreak: {
+    pageBreakAfter: 'always',
   },
 };

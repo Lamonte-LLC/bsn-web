@@ -386,12 +386,31 @@ export const SEASON_TEAM_STATS_EXTENDED = gql`
           }
           stats {
             points
+            pointsInThePaint
+            pointsInThePaintAverage
+            pointsInThePaintMade
+            pointsInThePaintAttempted
+            pointsSecondChance
+            pointsSecondChanceAverage
+            pointsSecondChanceMade
+            pointsSecondChanceAttempted
+            pointsFastBreak
+            pointsFastBreakAverage
+            pointsFastBreakMade
+            pointsFastBreakAttempted
+            pointsFromBench
+            pointsFromBenchAverage
             pointsAverage
             fieldGoalsMade
             fieldGoalsMadeAverage
             fieldGoalsAttempted
             fieldGoalsAttemptedAverage
             fieldGoalsPercentage
+            twoPointsMade
+            twoPointsMadeAverage
+            twoPointsAttempted
+            twoPointsAttemptedAverage
+            twoPointsPercentage
             threePointersMade
             threePointersMadeAverage
             threePointersAttempted
@@ -410,14 +429,24 @@ export const SEASON_TEAM_STATS_EXTENDED = gql`
             reboundsTotalAverage
             assists
             assistsAverage
+            assistsTurnoverRatio
             turnovers
             turnoversAverage
             steals
             stealsAverage
             blocks
             blocksAverage
+            blocksReceived
+            blocksReceivedAverage
             foulsPersonal
             foulsPersonalAverage
+            foulsTotal
+            foulsTechnical
+            foulsUnsportsmanlike
+            foulsDrawn
+            foulsDrawnAverage
+            dunks
+            dunksAverage
           }
         }
       }
