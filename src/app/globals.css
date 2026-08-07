@@ -3191,26 +3191,35 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   background-color: #f2f2f3 !important;
 }
 
-/* Drawer móvil: el contenido asienta hacia arriba al abrir el menú.
-   Easing expo-out para que no se sienta plano. */
-@keyframes drawer-rise {
+
+/* Drawer móvil: entra deslizando desde la derecha, del mismo lado donde
+   vive el botón de menú. Curva estándar para que el recorrido se lea. */
+@keyframes drawer-slide-in {
   from {
-    opacity: 0;
-    transform: translate3d(0, 14px, 0);
+    transform: translate3d(100%, 0, 0);
   }
   to {
-    opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
-.drawer-rise {
-  animation: drawer-rise 420ms cubic-bezier(0.16, 1, 0.3, 1) 110ms both;
-  will-change: transform, opacity;
+@keyframes drawer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.drawer-slide-in {
+  animation: drawer-slide-in 300ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .drawer-rise {
-    animation: none;
+  .drawer-slide-in {
+    animation: drawer-fade-in 120ms ease-out both;
   }
 }

@@ -515,11 +515,11 @@ export default function HeaderBoxLayout() {
           className="relative z-50"
         >
         <div className="fixed inset-0 flex w-screen h-[100dvh] overflow-hidden overscroll-none">
-          <DialogPanel
-            transition
-            className="bg-[#171819] w-full h-full overflow-y-auto overscroll-contain transition duration-150 ease-out data-closed:opacity-0 motion-reduce:transition-none"
-          >
-            <div className="drawer-rise flex flex-col min-h-full pb-[26px]">
+          {/* La animación de entrada va en CSS y no con el `transition` de
+              Headless UI: el Dialog se monta de forma condicional, así que
+              nunca llega a pintar el estado cerrado y la transición no corre. */}
+          <DialogPanel className="drawer-slide-in bg-[#171819] w-full h-full overflow-y-auto overscroll-contain">
+            <div className="flex flex-col min-h-full pb-[26px]">
               {/* Misma estructura que el header cerrado: py-[10px] + container,
                   para que el logo y el botón no salten al abrir. */}
               <div className="py-[10px]">
