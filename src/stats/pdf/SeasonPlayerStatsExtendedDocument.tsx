@@ -1,43 +1,86 @@
-import fs from 'fs';
-import path from 'path';
-import moment from 'moment';
-import 'moment/locale/es';
-import numeral from 'numeral';
 import type { CSSProperties } from 'react';
-import { DOMAIN_URL } from '@/constants';
 
 import { PlayerStatsType, PlayerType } from '@/player/types';
 import { SeasonType } from '@/season/types';
 import { TeamType } from '@/team/types';
+import { formatStatValue } from '@/team/components/compare/compareStats';
 
-const logoPath = path.join(process.cwd(), 'public/assets/images/logo.png');
-const logoSrc = `data:image/png;base64,${fs.readFileSync(logoPath).toString('base64')}`;
-
-const PLAYER_STATS_COLUMNS: {
-  label: string;
-  key: keyof PlayerStatsType;
-  format?: 'percentage';
+const PLAYER_STATS_SECTIONS: {
+  id: string;
+  title: string;
+  shortTitle: string;
+  stats: {
+    code: string;
+    label: string;
+    key: keyof PlayerStatsType;
+    format: 'avg' | 'int' | 'pct';
+  }[];
 }[] = [
-  { label: 'PJ', key: 'games' },
-  { label: 'MIN', key: 'minutes' },
-  { label: 'PTS', key: 'points' },
-  { label: 'FGM', key: 'fieldGoalsMade' },
-  { label: 'FGA', key: 'fieldGoalsAttempted' },
-  { label: 'FG%', key: 'fieldGoalsPercentage', format: 'percentage' },
-  { label: '3PM', key: 'threePointersMade' },
-  { label: '3PA', key: 'threePointersAttempted' },
-  { label: '3P%', key: 'threePointersPercentage', format: 'percentage' },
-  { label: 'FTM', key: 'freeThrowsMade' },
-  { label: 'FTA', key: 'freeThrowsAttempted' },
-  { label: 'FT%', key: 'freeThrowsPercentage', format: 'percentage' },
-  { label: 'OREB', key: 'offensiveRebounds' },
-  { label: 'DREB', key: 'defensiveRebounds' },
-  { label: 'REB', key: 'reboundsTotal' },
-  { label: 'AST', key: 'assists' },
-  { label: 'TOV', key: 'turnovers' },
-  { label: 'STL', key: 'steals' },
-  { label: 'BLK', key: 'blocks' },
-  { label: 'PF', key: 'foulsPersonal' },
+  {
+    id: 'promedio',
+    title: 'Promedio',
+    shortTitle: 'Promedio',
+    stats: [
+      { code: 'J', label: 'Juegos', key: 'games', format: 'int' },
+      { code: 'PPJ', label: 'Puntos por juego', key: 'pointsAvg', format: 'avg' },
+      { code: 'MPJ', label: 'Minutos por juego', key: 'minutesAvg', format: 'avg' },
+      { code: 'TI%', label: 'Tiros porcentaje', key: 'fieldGoalsPercentage', format: 'avg' },
+      { code: 'APJ', label: 'Asistencia por juego', key: 'assistsAvg', format: 'avg' },
+      { code: 'RPJ', label: 'Rebote por juego', key: 'reboundsTotalAvg', format: 'avg' },
+      { code: '3P%', label: 'Tres puntos porcentaje', key: 'threePointersPercentage', format: 'avg' },
+      { code: 'TL%', label: 'Tiro libre porcentaje', key: 'freeThrowsPercentage', format: 'avg' },
+      { code: 'RDPJ', label: 'Rebote defensivo por juego', key: 'defensiveReboundsAvg', format: 'avg' },
+      { code: 'ROPJ', label: 'Rebote ofensivo por juego', key: 'offensiveReboundsAvg', format: 'avg' },
+      { code: 'RPJ', label: 'Robadas por juego', key: 'stealsAvg', format: 'avg' },
+      { code: 'BPJ', label: 'Bloqueo por juego', key: 'blocksAvg', format: 'avg' },
+      { code: 'FPJ', label: 'Faltas personales por juego', key: 'foulsPersonalAvg', format: 'avg' },
+      { code: 'PPJ', label: 'Pérdidas por juego', key: 'turnoversAvg', format: 'avg' },
+    ],
+  },
+  {
+    id: 'totales',
+    title: 'Totales',
+    shortTitle: 'Totales',
+    stats: [
+      { code: 'J', label: 'Juegos', key: 'games', format: 'int' },
+      { code: 'MIN', label: 'Minutos', key: 'minutes', format: 'int' },
+      { code: 'PTS', label: 'Puntos', key: 'points', format: 'int' },
+      { code: 'AST', label: 'Asistencias', key: 'assists', format: 'int' },
+      { code: 'REB', label: 'Rebotes', key: 'reboundsTotal', format: 'int' },
+      { code: 'RD', label: 'Rebote defensivo', key: 'defensiveRebounds', format: 'int' },
+      { code: 'RO', label: 'Rebote ofensivo', key: 'offensiveRebounds', format: 'int' },
+      { code: 'TC', label: 'Tiros convertidos', key: 'fieldGoalsMade', format: 'int' },
+      { code: 'TI', label: 'Tiros intentados', key: 'fieldGoalsAttempted', format: 'int' },
+      { code: '2PC', label: 'Dos puntos convertidos', key: 'twoPointsMade', format: 'int' },
+      { code: '2PI', label: 'Dos puntos intentados', key: 'twoPointsAttempted', format: 'int' },
+      { code: '3PC', label: 'Tres puntos convertidos', key: 'threePointersMade', format: 'int' },
+      { code: '3PI', label: 'Tres puntos intentados', key: 'threePointersAttempted', format: 'int' },
+      { code: 'TLC', label: 'Tiros libres hechos', key: 'freeThrowsMade', format: 'int' },
+      { code: 'TLI', label: 'Tiros libres intentados', key: 'freeThrowsAttempted', format: 'int' },
+      { code: 'REC', label: 'Robadas', key: 'steals', format: 'int' },
+      { code: 'BLQ', label: 'Bloqueos', key: 'blocks', format: 'int' },
+      { code: 'TF', label: 'Faltas', key: 'foulsPersonal', format: 'int' },
+      { code: 'PE', label: 'Pérdidas', key: 'turnovers', format: 'int' },
+    ],
+  },
+  {
+    id: 'resumen',
+    title: 'Resumen Estadístico',
+    shortTitle: 'Resumen',
+    stats: [
+      { code: 'EF', label: 'Eficiencia', key: 'efficiency', format: 'int' },
+      { code: 'IDE', label: 'Índice de éxito', key: 'indexOfSuccess', format: 'int' },
+      { code: '+/-', label: 'Más menos', key: 'plusMinusPointsAvg', format: 'avg' },
+      { code: 'DD', label: 'Doble doble', key: 'doubleDouble', format: 'int' },
+      { code: 'M', label: 'Mates', key: 'dunks', format: 'int' },
+      { code: 'PC', label: 'Puntos contraataque', key: 'pointsFastBreak', format: 'int' },
+      { code: 'RAP', label: 'Asistencia perdida', key: 'assistsTurnoverRatio', format: 'avg' },
+      { code: 'FR', label: 'Faltas cometidas', key: 'foulsDrawn', format: 'int' },
+      { code: 'PIR', label: 'Calificación del índice de rendimiento', key: 'pir', format: 'int' },
+      { code: 'PP', label: 'Puntos en la pintura', key: 'pointsInThePaint', format: 'int' },
+      { code: 'P2', label: 'Puntos de segunda oportunidad', key: 'pointsSecondChance', format: 'int' },
+    ],
+  },
 ];
 
 type Props = {
@@ -49,125 +92,238 @@ type Props = {
   season?: SeasonType | null;
 };
 
-export default function SeasonPlayerStatsExtendedDocument({ data, season }: Props) {
-  const currentDate = moment().locale('es').format('D [de] MMMM [de] YYYY');
+const LEGEND_COLUMNS = 4;
 
+function chunkIntoColumns<T>(items: T[], columns: number): T[][] {
+  const perColumn = Math.ceil(items.length / columns);
+  return Array.from({ length: columns }, (_, index) =>
+    items.slice(index * perColumn, index * perColumn + perColumn),
+  ).filter((column) => column.length > 0);
+}
+
+export default function SeasonPlayerStatsExtendedDocument({ data, season }: Props) {
   return (
     <div style={styles.page}>
       <div style={styles.header}>
-        <div style={styles.headerCol}>
-          <img src={logoSrc} width={72} height={72} alt="BSN" />
-        </div>
-        <div style={styles.headerCol}>
-          <h1 style={styles.headerTitle}>Estadísticas de Jugadores</h1>
-          {season && <h2 style={styles.headerSubtitle}>{season.name}</h2>}
-        </div>
-        <div style={{ ...styles.headerCol, ...styles.textRight }}>
-          {currentDate}
-        </div>
+        <h1 style={styles.titleLabel}>BSN · Estadísticas de jugadores</h1>
+        {season && (
+          <span style={styles.seasonLabel}>{season.name.toUpperCase()}</span>
+        )}
       </div>
-      <table style={styles.table}>
-        <thead style={styles.tableHead}>
-          <tr>
-            <th style={styles.tableColHeader}>NOMBRE</th>
-            <th style={styles.tableColHeader}>EQUIPO</th>
-            {PLAYER_STATS_COLUMNS.map((column) => (
-              <th
-                key={`player-stats-header-${column.key}`}
-                style={{ ...styles.tableColHeader, ...styles.textRight }}
-              >
-                {column.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr
-              key={`player-stats-row-${index}`}
-              style={index % 2 === 1 ? styles.tableRowStriped : undefined}
-            >
-              <td style={styles.tableCol}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <img
-                    src={item.player.avatarUrl || `${DOMAIN_URL}/assets/images/players/default.png`}
-                    width={24}
-                    height={24}
-                    alt={item.player.name}
-                  />
-                  <span>{item.player.name}</span>
-                </div>
-              </td>
-              <td style={styles.tableCol}>
-                {item.team.name}
-              </td>
-              {PLAYER_STATS_COLUMNS.map((column) => (
-                <td
-                  key={`player-stats-col-${index}-${column.key}`}
-                  style={{ ...styles.tableCol, ...styles.textRight }}
+      {PLAYER_STATS_SECTIONS.map((section) => (
+        <>
+          <div>
+            <h3 style={styles.sectionTitle}>{section.title}</h3>
+          </div>
+          <table key={section.id} style={styles.tableStats}>
+            <tbody>
+              <tr style={styles.rowCategory}>
+                <th style={styles.colCategory}>JUGADOR</th>
+                <th style={styles.colCategory}>EQUIPO</th>
+                {section.stats.map((stat) => (
+                  <th
+                    key={`${section.id}-head-${stat.code}`}
+                    style={{ ...styles.colCategory, textAlign: 'right' }}
+                  >
+                    {stat.code}
+                  </th>
+                ))}
+              </tr>
+              {data.map((item, index) => (
+                <tr
+                  key={`${section.id}-${item.player.providerId}`}
+                  style={index % 2 === 1 ? styles.oddRow : styles.evenRow}
                 >
-                  {column.format === 'percentage'
-                    ? numeral(item.stats[column.key]).format('0.0%')
-                    : numeral(item.stats[column.key]).format('0')}
-                </td>
+                  <td style={styles.colTeam}>
+                    <span style={styles.teamName}>{item.player.name}</span>
+                  </td>
+                  <td style={styles.colTeam}>
+                    <span style={styles.teamName}>{item.team.name}</span>
+                  </td>
+                  {section.stats.map((stat) => (
+                    <td
+                      key={`${section.id}-${item.player.providerId}-${stat.code}`}
+                      style={styles.colStatValue}
+                    >
+                      <span style={styles.statValue}>
+                        {formatStatValue(item.stats[stat.key] ?? null, stat.format)}
+                      </span>
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+          <div style={styles.legend}>
+            <h4 style={styles.legendTitle}>LEYENDA</h4>
+            <div style={styles.legendGrid}>
+              {chunkIntoColumns(section.stats, LEGEND_COLUMNS).map(
+                (column, columnIndex) => (
+                  <div
+                    key={`${section.id}-legend-col-${columnIndex}`}
+                    style={styles.legendColumn}
+                  >
+                    {column.map((stat) => (
+                      <div
+                        key={`${section.id}-legend-${stat.code}`}
+                        style={styles.legendItem}
+                      >
+                        <span style={styles.legendCode}>{stat.code}</span>
+                        <span style={styles.legendLabel}>{stat.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+        </>
+      ))}
     </div>
   );
 }
 
 const styles: Record<string, CSSProperties> = {
   page: {
+    fontFamily: 'Barlow, Arial, sans-serif',
     padding: 24,
-    fontFamily: 'Helvetica, Arial, sans-serif',
   },
   header: {
+    borderBottom: '0.5px solid #bfbfbf',
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'baseline',
   },
-  headerCol: {
-    flex: 1,
+  titleLabel: {
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '27px',
+    lineHeight: 1,
+    letterSpacing: '0.4px',
+    color: '#000',
   },
-  headerTitle: {
-    margin: 0,
-    fontSize: 18,
-    textAlign: 'center',
+  seasonLabel: {
+    color: '#333',
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '11px',
+    fontWeight: '600',
+    letterSpacing: '1.4px',
   },
-  headerSubtitle: {
-    margin: 0,
-    fontSize: 14,
-    fontWeight: 'normal',
-    textAlign: 'center',
-  },
-  table: {
+  tableStats: {
     borderCollapse: 'collapse',
     width: '100%',
-    border: '1px solid #dee2e6',
     marginTop: 20,
   },
-  tableHead: {
-    backgroundColor: '#f0f0f0',
-    verticalAlign: 'bottom',
+  rowHead: {
+    alignItems: 'bottom',
+    marginBottom: '6px',
   },
-  tableColHeader: {
-    border: '1px solid #dee2e6',
-    padding: '8px',
-    fontSize: 10,
+  evenRow: {
+    backgroundColor: '#fff',
   },
-  tableRowStriped: {
-    backgroundColor: '#f2f2f2',
+  oddRow: {
+    backgroundColor: '#f5f5f5',
   },
-  tableCol: {
-    border: '1px solid #dee2e6',
-    padding: '8px',
-    fontSize: 10,
-    verticalAlign: 'top',
+  rowCategory: {
+    backgroundColor: '#000',
+    color: '#fff',
+    fontWeight: '600',
   },
-  textRight: {
+  colCategory: {
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '8.2px',
+    fontWeight: '600',
+    letterSpacing: '0.6px',
+    padding: '4px 6px',
+    textAlign: 'left',
+  },
+  colHeadTeam: {
+    color: '#666',
+    fontSize: '8px',
+    fontWeight: '600',
+    letterSpacing: '1.4px',
+    padding: '8px 6px',
+    textAlign: 'left',
+    width: '150px',
+  },
+  colHeadStat: {
+    color: '#666',
+    fontSize: '8px',
+    fontWeight: '600',
+    letterSpacing: '0.8px',
+    padding: '8px 6px',
     textAlign: 'right',
+    borderLeft: '0.5px solid #d8d8d8',
+  },
+  colTeam: {
+    padding: '1px 6px',
+  },
+  colStatValue: {
+    padding: '1px 6px',
+    textAlign: 'right',
+  },
+  teamCode: {
+    color: '#000',
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '12px',
+    letterSpacing: '0.4px',
+    marginRight: '6px',
+  },
+  teamName: {
+    color: '#666',
+    fontSize: '8.5px',
+    fontWeight: '400',
+  },
+  statValue: {
+    color: '#111',
+    fontFamily: 'Barlow, Arial, sans-serif',
+    fontSize: '9.6px',
+  },
+  sectionTitle: {
+    color: '#000',
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '20px',
+    lineHeight: 1,
+    letterSpacing: '0.4px',
+  },
+  legend: {
+    marginTop: '10px',
+    marginBottom: '18px',
+  },
+  legendTitle: {
+    margin: 0,
+    color: '#000',
+    fontSize: '10px',
+    fontWeight: '700',
+    letterSpacing: '1.4px',
+    paddingBottom: '6px',
+    borderBottom: '0.5px solid #d8d8d8',
+    marginBottom: '8px',
+  },
+  legendGrid: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '16px',
+  },
+  legendColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '3px',
+    flex: 1,
+  },
+  legendItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '6px',
+    fontSize: '9px',
+  },
+  legendCode: {
+    color: '#000',
+    fontWeight: '700',
+    minWidth: '26px',
+  },
+  legendLabel: {
+    color: '#666',
+    fontWeight: '400',
   },
 };

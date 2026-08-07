@@ -500,11 +500,25 @@ export const SEASON_PLAYER_STATS_EXTENDED = gql`
             minutesAvg
             points
             pointsAvg
+            pointsInThePaint
+            pointsInThePaintMade
+            pointsInThePaintAttempted
+            pointsSecondChance
+            pointsSecondChanceMade
+            pointsSecondChanceAttempted
+            pointsFastBreak
+            pointsFastBreakMade
+            pointsFastBreakAttempted
             fieldGoalsMade
             fieldGoalsMadeAvg
             fieldGoalsAttempted
             fieldGoalsAttemptedAvg
             fieldGoalsPercentage
+            twoPointsMade
+            twoPointsMadeAvg
+            twoPointsAttempted
+            twoPointsAttemptedAvg
+            twoPointsPercentage
             threePointersMade
             threePointersMadeAvg
             threePointersAttempted
@@ -523,15 +537,27 @@ export const SEASON_PLAYER_STATS_EXTENDED = gql`
             reboundsTotalAvg
             assists
             assistsAvg
+            assistsTurnoverRatio
             turnovers
             turnoversAvg
             steals
             stealsAvg
             blocks
             blocksAvg
+            foulsTotal
+            foulsTechnical
+            foulsUnsportsmanlike
+            foulsDrawn
+            foulsDrawnAvg
             foulsPersonal
             foulsPersonalAvg
             plusMinusPointsAvg
+            efficiency
+            indexOfSuccess
+            pir
+            doubleDouble
+            draws
+            dunks
           }
         }
       }
