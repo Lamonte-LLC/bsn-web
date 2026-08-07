@@ -163,7 +163,9 @@ export default function HeaderBoxLayout() {
                       <img
                         src="/assets/images/icons/chevron-mobile-menu.svg"
                         alt=""
-                        className="w-[10px] opacity-70 rotate-180"
+                        className={`w-[10px] opacity-70 transition-transform duration-150 ${
+                          open ? 'rotate-0' : 'rotate-180'
+                        }`}
                       />
                     </PopoverButton>
                     <PopoverPanel
@@ -386,7 +388,9 @@ export default function HeaderBoxLayout() {
                           <img
                             src="/assets/images/icons/chevron-mobile-menu.svg"
                             alt=""
-                            className="w-[10px] opacity-70 rotate-180"
+                            className={`w-[10px] opacity-70 transition-transform duration-150 ${
+                              open ? 'rotate-0' : 'rotate-180'
+                            }`}
                           />
                         </PopoverButton>
                         <PopoverPanel
