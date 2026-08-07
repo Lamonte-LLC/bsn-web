@@ -802,37 +802,32 @@ export default function HeaderBoxLayout() {
                 </div>
               </li>
             </ul>
-            <div className="mt-auto flex flex-col gap-[18px] pt-[30px]">
+            <div className="mt-auto flex items-center gap-[12px] border-t border-[rgba(255,255,255,0.09)] pt-[16px]">
               <Link
                 href="/boletos"
-                className="flex items-center justify-center bg-white text-[#0F171F] text-[19px] rounded-full py-[13px] active:opacity-45"
+                className="flex-1 flex items-center justify-center bg-white text-[#0F171F] text-[18px] leading-[1.2] rounded-full py-[12px] active:opacity-45"
               >
                 Boletos
               </Link>
-              <div className="flex justify-between items-center border-t border-[rgba(255,255,255,0.09)] pt-[16px]">
-                <span className="font-barlow font-semibold text-[10px] tracking-[1.6px] text-white/45">
-                  SÍGUENOS
-                </span>
-                <ul className="flex gap-[14px]">
-                  {SOCIAL_LINKS.map((social) => (
-                    <li key={social.label}>
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                        className="w-[30px] h-[30px] rounded-full border border-[rgba(125,125,125,0.24)] inline-flex items-center justify-center active:opacity-45"
-                      >
-                        <img
-                          src={social.icon}
-                          alt=""
-                          className="max-w-[14px] max-h-[13px]"
-                        />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="flex gap-[10px]">
+                {SOCIAL_LINKS.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="w-[36px] h-[36px] rounded-full border border-[rgba(125,125,125,0.24)] inline-flex items-center justify-center active:opacity-45"
+                    >
+                      <img
+                        src={social.icon}
+                        alt=""
+                        className="max-w-[14px] max-h-[14px]"
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
             </div>
             </div>
