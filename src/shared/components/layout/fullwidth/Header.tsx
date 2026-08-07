@@ -33,6 +33,18 @@ const ESTADISTICAS_LINKS = [
   },
 ];
 
+/**
+ * Botón circular de vidrio del header. Lo comparten el hamburger y el botón de
+ * cerrar del drawer para que no salte nada al abrir el menú.
+ */
+const GLASS_BUTTON_STYLE = {
+  background: 'rgba(255, 255, 255, 0.12)',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
+  boxShadow:
+    '0 0 1.5px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.15), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.06)',
+  borderRadius: '100px',
+} as const;
+
 const SOCIAL_LINKS = [
   {
     label: 'Instagram',
@@ -112,13 +124,7 @@ export default function HeaderBoxLayout() {
                 className="w-[42px] h-[42px] flex justify-center items-center rounded-full cursor-pointer"
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.12)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  boxShadow:
-                    '0 0 1.5px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.15), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.06)',
-                  borderRadius: '100px',
-                }}
+                style={GLASS_BUTTON_STYLE}
               >
                 <img
                   src="/assets/images/icons/icon-bars.svg"
@@ -509,23 +515,38 @@ export default function HeaderBoxLayout() {
           className="relative z-50"
         >
         <div className="fixed inset-0 flex w-screen h-[100dvh] overflow-hidden overscroll-none">
-          <DialogPanel className="bg-[#171819] w-full h-full overflow-y-auto overscroll-contain">
-            <div className="flex flex-col min-h-full px-[24px] pt-[20px] pb-[26px]">
-              <div className="flex justify-between items-center">
-                <Link href="/" onClick={() => setIsOpen(false)}>
-                  <img
-                    src="/assets/images/bsn-logo.svg"
-                    alt="BSN"
-                    className="w-[62px]"
-                  />
-                </Link>
-                <CloseButton
-                  onClick={() => setIsOpen(false)}
-                  className="bg-[#252933] cursor-pointer rounded-full w-[36px] h-[36px] flex justify-center items-center shrink-0"
-                >
-                  <img src="/assets/images/icons/icon-close.svg" alt="Cerrar" />
-                </CloseButton>
+          <DialogPanel
+            transition
+            className="bg-[#171819] w-full h-full overflow-y-auto overscroll-contain transition duration-150 ease-out data-closed:opacity-0 motion-reduce:transition-none"
+          >
+            <div className="drawer-rise flex flex-col min-h-full pb-[26px]">
+              {/* Misma estructura que el header cerrado: py-[10px] + container,
+                  para que el logo y el botón no salten al abrir. */}
+              <div className="py-[10px]">
+                <div className="container">
+                  <div className="flex flex-row justify-between items-center">
+                    <Link href="/" onClick={() => setIsOpen(false)}>
+                      <img
+                        src="/assets/images/bsn-logo.svg"
+                        alt="BSN"
+                        width="113"
+                        className="w-[68px]"
+                      />
+                    </Link>
+                    <CloseButton
+                      onClick={() => setIsOpen(false)}
+                      className="w-[42px] h-[42px] flex justify-center items-center rounded-full cursor-pointer shrink-0"
+                      style={GLASS_BUTTON_STYLE}
+                    >
+                      <img
+                        src="/assets/images/icons/icon-close.svg"
+                        alt="Cerrar"
+                      />
+                    </CloseButton>
+                  </div>
+                </div>
               </div>
+            <div className="container flex flex-col flex-1">
             <ul className="flex flex-col gap-[2px] pt-[26px]">
               <li>
                 <Link
@@ -812,6 +833,7 @@ export default function HeaderBoxLayout() {
                   ))}
                 </ul>
               </div>
+            </div>
             </div>
             </div>
           </DialogPanel>
