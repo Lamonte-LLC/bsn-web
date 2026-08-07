@@ -33,6 +33,34 @@ const ESTADISTICAS_LINKS = [
   },
 ];
 
+const SOCIAL_LINKS = [
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/bsnpr/',
+    icon: '/assets/images/icons/social/icon-instagram.svg',
+  },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/bsnpr/',
+    icon: '/assets/images/icons/social/icon-facebook.svg',
+  },
+  {
+    label: 'X',
+    href: 'https://x.com/bsnpr',
+    icon: '/assets/images/icons/social/icon-x.svg',
+  },
+  {
+    label: 'TikTok',
+    href: 'https://www.tiktok.com/@bsnpr?lang=en',
+    icon: '/assets/images/icons/social/icon-tiktok.svg',
+  },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@BaloncestoSuperiorNacionalPR',
+    icon: '/assets/images/icons/social/icon-youtube.svg',
+  },
+];
+
 export default function HeaderBoxLayout() {
   const [isOpen, setIsOpen] = useState(false);
   const equiposButtonRef = useRef<HTMLButtonElement>(null);
@@ -481,54 +509,75 @@ export default function HeaderBoxLayout() {
           className="relative z-50"
         >
         <div className="fixed inset-0 flex w-screen h-[100dvh] overflow-hidden overscroll-none">
-          <DialogPanel className="bg-[#171819] w-full h-full overflow-y-auto overscroll-contain py-[10px]">
-            <div className="container">
-              <div className="flex justify-end">
+          <DialogPanel className="bg-[#171819] w-full h-full overflow-y-auto overscroll-contain">
+            <div className="flex flex-col min-h-full px-[24px] pt-[20px] pb-[26px]">
+              <div className="flex justify-between items-center">
+                <Link href="/" onClick={() => setIsOpen(false)}>
+                  <img
+                    src="/assets/images/bsn-logo.svg"
+                    alt="BSN"
+                    className="w-[62px]"
+                  />
+                </Link>
                 <CloseButton
                   onClick={() => setIsOpen(false)}
-                  className="bg-[#252933] cursor-pointer rounded-full w-[42px] h-[42px] flex justify-center items-center"
+                  className="bg-[#252933] cursor-pointer rounded-full w-[36px] h-[36px] flex justify-center items-center shrink-0"
                 >
-                  <img src="/assets/images/icons/icon-close.svg" alt="Close" />
+                  <img src="/assets/images/icons/icon-close.svg" alt="Cerrar" />
                 </CloseButton>
               </div>
-            </div>
-            <ul className="divide-y divide-[rgba(255,255,255,0.05)]">
-              <li className="px-[30px]">
-                <Link href="/" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Inicio</span>
+            <ul className="flex flex-col gap-[2px] pt-[26px]">
+              <li>
+                <Link
+                  href="/"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Inicio
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/calendario" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Calendario</span>
+              <li>
+                <Link
+                  href="/calendario"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Calendario
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/playoffs" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Playoffs</span>
+              <li>
+                <Link
+                  href="/playoffs"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Playoffs
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/noticias" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Noticias</span>
+              <li>
+                <Link
+                  href="/noticias"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Noticias
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/jugadores" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Jugadores</span>
+              <li>
+                <Link
+                  href="/jugadores"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Jugadores
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <div className="py-[8px]">
+              <li>
+                <div>
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <DisclosureButton className="cursor-pointer text-[33px] text-left text-white w-full flex items-center justify-between">
+                        <DisclosureButton className="cursor-pointer text-[36px] leading-[1.55] text-left text-white w-full flex items-center justify-between active:opacity-45">
                           <span>Estadísticas</span>
                           <img
                             src="/assets/images/icons/chevron-mobile-menu.svg"
                             alt=""
-                            className={`w-[18px] transition-transform duration-150 ${
+                            className={`w-[17px] opacity-55 transition-transform duration-150 ${
                               open ? 'rotate-0' : 'rotate-180'
                             }`}
                           />
@@ -542,12 +591,12 @@ export default function HeaderBoxLayout() {
                                   key={item.label}
                                   href={item.href}
                                   onClick={() => setIsOpen(false)}
-                                  className={`block rounded-[8px] -mx-[12px] px-[12px] py-[9px] transition-colors duration-150 ${
+                                  className={`block rounded-[8px] -mx-[12px] px-[12px] py-[9px] transition-colors duration-150 active:opacity-45 ${
                                     isActive ? 'bg-[rgba(255,255,255,0.08)]' : ''
                                   }`}
                                 >
                                   <span
-                                    className={`block text-[23px] leading-[1.1] ${
+                                    className={`block text-[25px] leading-[1.1] ${
                                       isActive ? 'text-white' : 'text-white/70'
                                     }`}
                                   >
@@ -563,22 +612,17 @@ export default function HeaderBoxLayout() {
                   </Disclosure>
                 </div>
               </li>
-              <li className="px-[30px]">
-                <Link href="/boletos" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Boletos</span>
-                </Link>
-              </li>
-              <li className="px-[30px]">
-                <div className="py-[8px]">
+              <li>
+                <div>
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <DisclosureButton className="cursor-pointer text-[33px] text-left text-white w-full flex items-center justify-between">
+                        <DisclosureButton className="cursor-pointer text-[36px] leading-[1.55] text-left text-white/55 w-full flex items-center justify-between active:opacity-45">
                           <span>Equipos</span>
                           <img
                             src="/assets/images/icons/chevron-mobile-menu.svg"
                             alt=""
-                            className={`w-[18px] transition-transform duration-150 ${
+                            className={`w-[17px] opacity-40 transition-transform duration-150 ${
                               open ? 'rotate-0' : 'rotate-180'
                             }`}
                           />
@@ -737,6 +781,39 @@ export default function HeaderBoxLayout() {
                 </div>
               </li>
             </ul>
+            <div className="mt-auto flex flex-col gap-[18px] pt-[30px]">
+              <Link
+                href="/boletos"
+                className="flex items-center justify-center bg-white text-[#0F171F] text-[19px] rounded-full py-[13px] active:opacity-45"
+              >
+                Boletos
+              </Link>
+              <div className="flex justify-between items-center border-t border-[rgba(255,255,255,0.09)] pt-[16px]">
+                <span className="font-barlow font-semibold text-[10px] tracking-[1.6px] text-white/45">
+                  SÍGUENOS
+                </span>
+                <ul className="flex gap-[14px]">
+                  {SOCIAL_LINKS.map((social) => (
+                    <li key={social.label}>
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        className="w-[30px] h-[30px] rounded-full border border-[rgba(125,125,125,0.24)] inline-flex items-center justify-center active:opacity-45"
+                      >
+                        <img
+                          src={social.icon}
+                          alt=""
+                          className="max-w-[14px] max-h-[13px]"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            </div>
           </DialogPanel>
         </div>
         </Dialog>
