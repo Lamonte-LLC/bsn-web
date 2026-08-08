@@ -6,7 +6,7 @@ import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { useSeasonHeadToHeadMatches } from '@/team/client/hooks/teams';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import type { SeasonHeadToHeadMatchType } from '@/team/types';
-import { crossRecord, getMeetings, type Meeting } from './meetings';
+import { getMeetings, type Meeting } from './meetings';
 
 type Props = {
   codes: string[];
@@ -30,20 +30,15 @@ function ScoreLogo({ code }: { code: string }) {
 }
 
 /**
- * Tarjeta 6b: scoreboard en línea. El ganador va siempre a la izquierda
- * del separador.
+ * Tarjeta 6b: scoreboard en línea. El visitante va siempre a la izquierda
+ * del separador y el local a la derecha; el marcador mayor se resalta.
  */
-function MeetingCard({
-  meeting,
-  pair,
-  serie,
-}: {
-  meeting: Meeting;
-  /** Cruce en el orden de selección: ["BAY", "PON"]. */
-  pair: [string, string];
-  /** Récord del cruce en la temporada: "3-2". */
-  serie: string;
-}) {
+function MeetingCard({ meeting }: { meeting: Meeting }) {
+  const scoreStyle = (code: string) =>
+    code === meeting.winner
+      ? 'text-[20px] leading-none tabular-nums text-[#0F171F] lg:text-[24px]'
+      : 'text-[20px] leading-none tabular-nums text-[rgba(15,23,31,0.3)] lg:text-[24px]';
+
   return (
     <Link
       href={`/partidos/${meeting.matchProviderId}`}
@@ -53,20 +48,17 @@ function MeetingCard({
         {meeting.date}
       </div>
       <div className="mt-[9px] flex items-center justify-center gap-[10px]">
-        <ScoreLogo code={meeting.winner} />
-        <span className="text-[20px] leading-none tabular-nums text-[#0F171F] lg:text-[24px]">
-          {meeting.winnerScore}
-        </span>
+        <ScoreLogo code={meeting.visitor.code} />
+        <span className={scoreStyle(meeting.visitor.code)}>{meeting.visitor.score}</span>
         <span className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.35)]">
           —
         </span>
-        <span className="text-[20px] leading-none tabular-nums text-[rgba(15,23,31,0.3)] lg:text-[24px]">
-          {meeting.loserScore}
-        </span>
-        <ScoreLogo code={meeting.loser} />
+        <span className={scoreStyle(meeting.home.code)}>{meeting.home.score}</span>
+        <ScoreLogo code={meeting.home.code} />
       </div>
       <div className="mt-[9px] font-barlow font-semibold text-[10px] uppercase tracking-[0.8px] text-[rgba(15,23,31,0.45)]">
-        {pair[0]} – {pair[1]} · Serie {serie}
+        {meeting.visitor.code} {meeting.visitor.competitionStandings?.won ?? ''} -{' '}
+        {meeting.home.competitionStandings?.won ?? ''} {meeting.home.code}
       </div>
     </Link>
   );
@@ -122,12 +114,10 @@ function TwoTeamMeetings({
     return <EmptyCard />;
   }
 
-  const serie = crossRecord(matches, a, b);
-
   return (
     <SliderRow>
       {meetings.slice(0, 5).map((meeting, index) => (
-        <MeetingCard key={index} meeting={meeting} pair={[a, b]} serie={serie} />
+        <MeetingCard key={index} meeting={meeting} />
       ))}
     </SliderRow>
   );
@@ -156,14 +146,10 @@ function CrossMeetings({
 
   return (
     <SliderRow>
-      {withData.map(([a, b]) => (
-        <MeetingCard
-          key={`${a}-${b}`}
-          meeting={getMeetings(matches, a, b)[0]}
-          pair={[a, b]}
-          serie={crossRecord(matches, a, b)}
-        />
-      ))}
+      {withData.map(([a, b]) => {
+        const meeting = getMeetings(matches, a, b)[0];
+        return <MeetingCard key={`${a}-${b}`} meeting={meeting} />;
+      })}
     </SliderRow>
   );
 }

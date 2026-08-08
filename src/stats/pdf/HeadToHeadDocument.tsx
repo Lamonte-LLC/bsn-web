@@ -1,6 +1,7 @@
-import { TeamType, TeamSeasonStatsType } from '@/team/types';
+import { TeamType, TeamSeasonStatsType, SeasonHeadToHeadMatchType } from '@/team/types';
 import type { CSSProperties } from 'react';
 import { SeasonType } from '@/season/types';
+import { formatDate } from '@/utils/date-formatter';
 import {
   COMPARE_SECTIONS,
   formatStatValue,
@@ -15,9 +16,15 @@ type Props = {
   }[];
   season?: SeasonType | null;
   section?: string;
+  matches?: SeasonHeadToHeadMatchType[];
 };
 
-export default function HeadToHeadDocument({ season, data, section = 'todos' }: Props) {
+export default function HeadToHeadDocument({
+  season,
+  data,
+  section = 'todos',
+  matches = [],
+}: Props) {
   const sections =
     section === 'todos'
       ? COMPARE_SECTIONS
@@ -84,6 +91,62 @@ export default function HeadToHeadDocument({ season, data, section = 'todos' }: 
           </tbody>
         </table>
       </div>
+      {matches.length > 0 && (
+        <div style={styles.meetingsWrapper}>
+          <table style={styles.tableMeetings}>
+            <tbody>
+              <tr style={styles.rowMeetingsTitle}>
+                <td colSpan={3} style={styles.colMeetingsTitle}>
+                  ÚLTIMOS ENCUENTROS POR CRUCE
+                </td>
+              </tr>
+              {matches.map((match, index) => {
+                const { homeTeam, visitorTeam } = match;
+                const homeScore = Number(homeTeam.score);
+                const visitorScore = Number(visitorTeam.score);
+                const winnerCode = homeScore >= visitorScore ? homeTeam.code : visitorTeam.code;
+
+                return (
+                  <tr
+                    key={match.id}
+                    style={index % 2 === 0 ? styles.oddRow : styles.evenRow}
+                  >
+                    <td style={styles.colMeetingDate}>
+                      {formatDate(match.startAt, 'ddd, D MMM, YYYY')}
+                    </td>
+                    <td style={styles.colMeetingScore}>
+                      <div style={styles.meetingScoreRow}>
+                        <span
+                          style={
+                            visitorTeam.code === winnerCode
+                              ? styles.meetingWinnerBadge
+                              : styles.meetingLoserScore
+                          }
+                        >
+                          {visitorTeam.code} {visitorScore}
+                        </span>
+                        <span
+                          style={
+                            homeTeam.code === winnerCode
+                              ? styles.meetingWinnerBadge
+                              : styles.meetingLoserScore
+                          }
+                        >
+                          {homeTeam.code} {homeScore}
+                        </span>
+                      </div>
+                    </td>
+                    <td style={styles.colMeetingSerie}>
+                      {visitorTeam.code} {visitorTeam.competitionStandings?.won ?? ''} -{' '}
+                      {homeTeam.competitionStandings?.won ?? ''} {homeTeam.code}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
@@ -199,5 +262,63 @@ const styles: Record<string, CSSProperties> = {
     fontSize: '14px',
     lineHeight: '1.35',
     padding: '1px 7px',
+  },
+  meetingsWrapper: {
+    marginTop: '18px',
+  },
+  tableMeetings: {
+    borderCollapse: 'collapse',
+    tableLayout: 'fixed',
+    width: '100%',
+  },
+  rowMeetingsTitle: {
+    backgroundColor: '#000',
+  },
+  colMeetingsTitle: {
+    color: '#fff',
+    fontSize: '10px',
+    fontWeight: 'bold',
+    letterSpacing: '0.6px',
+    padding: '3px 6px',
+  },
+  colMeetingDate: {
+    color: '#666',
+    fontSize: '9.5px',
+    fontWeight: '500',
+    padding: '8px 10px',
+    textAlign: 'left',
+    width: '30%',
+  },
+  colMeetingScore: {
+    padding: '8px 10px',
+    textAlign: 'left',
+  },
+  meetingScoreRow: {
+    alignItems: 'center',
+    display: 'flex',
+    gap: '10px',
+  },
+  colMeetingSerie: {
+    color: '#000',
+    fontSize: '9.5px',
+    fontWeight: '600',
+    letterSpacing: '0.3px',
+    padding: '8px 10px',
+    textAlign: 'right',
+    width: '25%',
+  },
+  meetingWinnerBadge: {
+    backgroundColor: '#000',
+    borderRadius: '2px',
+    color: '#fff',
+    display: 'inline-block',
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '13px',
+    padding: '2px 8px',
+  },
+  meetingLoserScore: {
+    color: '#a3a3a3',
+    fontFamily: 'Special Gothic Condensed One, Arial, sans-serif',
+    fontSize: '13px',
   },
 };

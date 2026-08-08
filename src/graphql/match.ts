@@ -789,21 +789,17 @@ export const SEASON_HEAD_TO_HEAD_MATCHES = gql`
           homeTeam {
             code
             score
+            competitionStandings {
+              won
+            }
           }
           visitorTeam {
             code
             score
-          }
-          series {
-            providerId
-            competitors {
-              team {
-                code
-              }
+            competitionStandings {
               won
-              lost
             }
-          }    
+          }
         }
       }
     }

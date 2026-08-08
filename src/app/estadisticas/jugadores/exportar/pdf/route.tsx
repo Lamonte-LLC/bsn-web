@@ -9,6 +9,7 @@ import { normalizeFileName } from '@/utils/text';
 import { PlayerStatsType, PlayerType } from '@/player/types';
 import { SeasonType } from '@/season/types';
 import { TeamType } from '@/team/types';
+import { formatDate } from '@/utils/date-formatter';
 
 export const runtime = 'nodejs';
 
@@ -88,7 +89,7 @@ export async function GET(request: NextRequest) {
       headerTemplate: '<div></div>',
       footerTemplate: `
         <div style="width:100%; margin: 0 24px; padding-top: 8px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #d2d2d2; font-family: Arial, Helvetica, sans-serif; font-weight: 500; font-size: 8px; color: #666; letter-spacing: 0.6px;">
-          <span>Baloncesto Superior Nacional</span>
+          <span>Baloncesto Superior Nacional · ${formatDate(new Date(), 'YYYY-MM-DD h:mm A')}</span>
           <span>bsnpr.com</span>
         </div>
       `,

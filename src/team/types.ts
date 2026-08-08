@@ -157,18 +157,12 @@ export type SeasonHeadToHeadMatchType = {
   homeTeam: {
     code: string;
     score: number;
+    competitionStandings: { won: number };
   };
   visitorTeam: {
     code: string;
     score: number;
-  };
-  series?: {
-    providerId: string;
-    competitors: {
-      team: { code: string };
-      won: number;
-      lost: number;
-    }[];
+    competitionStandings: { won: number };
   };
 };
 

@@ -2,32 +2,43 @@ import { MATCH_STATUS } from '@/constants';
 import { formatDate } from '@/utils/date-formatter';
 import type { SeasonHeadToHeadMatchType } from '@/team/types';
 
+type MeetingTeam = {
+  code: string;
+  score: number;
+  competitionStandings: { won: number };
+};
+
 export type Meeting = {
-  /** Código del ganador. */
+  /** Equipo visitante, se muestra a la izquierda. */
+  visitor: MeetingTeam;
+  /** Equipo local, se muestra a la derecha. */
+  home: MeetingTeam;
+  /** Código del equipo con mayor score, para resaltar su marcador. */
   winner: string;
-  /** Código del perdedor. */
-  loser: string;
-  winnerScore: number;
-  loserScore: number;
   /** "lun, 13 jul, 2026". */
   date: string;
   /** providerId del partido, para enlazar a /partidos/[id]. */
   matchProviderId: string;
 };
 
-/** Convierte un partido finalizado en un `Meeting` (ganador siempre primero). */
+/** Convierte un partido finalizado en un `Meeting` (visitante siempre primero). */
 function toMeeting(match: SeasonHeadToHeadMatchType): Meeting {
   const { homeTeam, visitorTeam, startAt, providerId } = match;
-  const [winner, loser] =
-    homeTeam.score >= visitorTeam.score
-      ? [homeTeam, visitorTeam]
-      : [visitorTeam, homeTeam];
+  const homeScore = Number(homeTeam.score);
+  const visitorScore = Number(visitorTeam.score);
 
   return {
-    winner: winner.code,
-    loser: loser.code,
-    winnerScore: winner.score,
-    loserScore: loser.score,
+    visitor: {
+      code: visitorTeam.code,
+      score: visitorScore,
+      competitionStandings: visitorTeam.competitionStandings,
+    },
+    home: {
+      code: homeTeam.code,
+      score: homeScore,
+      competitionStandings: homeTeam.competitionStandings,
+    },
+    winner: homeScore >= visitorScore ? homeTeam.code : visitorTeam.code,
     date: formatDate(startAt, 'ddd, D MMM, YYYY'),
     matchProviderId: providerId,
   };
@@ -47,15 +58,4 @@ export function getMeetings(
     )
     .sort((x, y) => (x.startAt < y.startAt ? 1 : -1))
     .map(toMeeting);
-}
-
-/** Récord del cruce "2-1" visto desde el equipo `a`. */
-export function crossRecord(
-  matches: SeasonHeadToHeadMatchType[],
-  a: string,
-  b: string,
-): string {
-  const meetings = getMeetings(matches, a, b);
-  const winsA = meetings.filter((m) => m.winner === a).length;
-  return `${winsA}-${meetings.length - winsA}`;
 }
