@@ -49,7 +49,12 @@ body {
   background: #0F171F;
   color: var(--foreground);
   font-family: var(--font-special-gothic-condensed-one), Arial, Helvetica, sans-serif;
+  /* `hidden` convierte al body en scroll container y rompe position:sticky
+   * (los sticky anclan al body, que nunca scrollea — el scroller es html).
+   * `clip` recorta sin crear scroll container; los browsers viejos ignoran
+   * la segunda declaración y se quedan con `hidden`. */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /*
@@ -2228,6 +2233,11 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   display: none;
 }
 
+/* Reusable: hide scrollbar on native horizontal scroll/swipe rows (Webkit). */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Sportsradar widget */
 #synergy-widget-fixture_detail .sw-bg,
 #synergy-widget-fixture_detail .sw-widget-fixture {
@@ -3179,4 +3189,37 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 
 .bsn-playoffs-leaders-section .sw-bg {
   background-color: #f2f2f3 !important;
+}
+
+
+/* Drawer móvil: entra deslizando desde la derecha, del mismo lado donde
+   vive el botón de menú. Curva estándar para que el recorrido se lea. */
+@keyframes drawer-slide-in {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes drawer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.drawer-slide-in {
+  animation: drawer-slide-in 300ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-slide-in {
+    animation: drawer-fade-in 120ms ease-out both;
+  }
 }

@@ -5,11 +5,25 @@ export type PlayerStatsType = {
   minutesAvg: number;
   points: number;
   pointsAvg: number;
+  pointsInThePaint: number;
+  pointsInThePaintMade: number;
+  pointsInThePaintAttempted: number;
+  pointsSecondChance: number;
+  pointsSecondChanceMade: number;
+  pointsSecondChanceAttempted: number;
+  pointsFastBreak: number;
+  pointsFastBreakMade: number;
+  pointsFastBreakAttempted: number;
   fieldGoalsMade: number;
   fieldGoalsMadeAvg: number;
   fieldGoalsAttempted: number;
   fieldGoalsAttemptedAvg: number;
   fieldGoalsPercentage: number;
+  twoPointsMade: number;
+  twoPointsMadeAvg: number;
+  twoPointsAttempted: number;
+  twoPointsAttemptedAvg: number;
+  twoPointsPercentage: number;
   threePointersMade: number;
   threePointersMadeAvg: number;
   threePointersAttempted: number;
@@ -28,15 +42,27 @@ export type PlayerStatsType = {
   reboundsTotalAvg: number;
   assists: number;
   assistsAvg: number;
+  assistsTurnoverRatio: number;
   turnovers: number;
   turnoversAvg: number;
   steals: number;
   stealsAvg: number;
   blocks: number;
   blocksAvg: number;
+  foulsTotal: number;
+  foulsTechnical: number;
+  foulsUnsportsmanlike: number;
+  foulsDrawn: number;
+  foulsDrawnAvg: number;
   foulsPersonal: number;
   foulsPersonalAvg: number;
   plusMinusPointsAvg: number;
+  efficiency: number;
+  indexOfSuccess: number;
+  pir: number;
+  doubleDouble: number;
+  draws: number;
+  dunks: number;
 }
 
 export type PlayerMatchStatsType = {

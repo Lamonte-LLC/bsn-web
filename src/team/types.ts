@@ -93,13 +93,27 @@ export type TeamCompetitionStandingType = {
 export type TeamSeasonStatsType = {
   points: number;
   pointsAverage: number;
+  pointsInThePaint: number;
+  pointsInThePaintAverage: number;
+  pointsSecondChance: number;
+  pointsSecondChanceAverage: number;
+  pointsFastBreak: number;
+  pointsFastBreakAverage: number;
+  pointsFromBenchAverage: number;
+  pointsFromBench: number;
   assists: number;
   assistsAverage: number;
+  assistsTurnoverRatio: number;
   fieldGoalsMade: number;
   fieldGoalsMadeAverage: number;
   fieldGoalsAttempted: number;
   fieldGoalsAttemptedAverage: number;
   fieldGoalsPercentage: number;
+  twoPointsMade: number;
+  twoPointsMadeAverage: number;
+  twoPointsAttempted: number;
+  twoPointsAttemptedAverage: number;
+  twoPointsPercentage: number;
   threePointersMade: number;
   threePointersMadeAverage: number;
   threePointersAttempted: number;
@@ -122,8 +136,34 @@ export type TeamSeasonStatsType = {
   stealsAverage: number;
   blocks: number;
   blocksAverage: number;
+  blocksReceived: number;
+  blocksReceivedAverage: number;
   foulsPersonal: number;
   foulsPersonalAverage: number;
+  foulsTotal: number;
+  foulsTechnical: number;
+  foulsUnsportsmanlike: number;
+  dunks: number;
+  dunksAverage: number;
+  foulsDrawn: number;
+  foulsDrawnAverage: number;
+};
+
+export type SeasonHeadToHeadMatchType = {
+  id: string;
+  providerId: string;
+  startAt: string;
+  status: string;
+  homeTeam: {
+    code: string;
+    score: number;
+    competitionStandings: { won: number };
+  };
+  visitorTeam: {
+    code: string;
+    score: number;
+    competitionStandings: { won: number };
+  };
 };
 
 export type TeamType = {

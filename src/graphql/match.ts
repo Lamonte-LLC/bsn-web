@@ -765,3 +765,43 @@ export const HEAD_TO_HEAD_MATCHES = gql`
     }
   }
 `;
+
+
+export const SEASON_HEAD_TO_HEAD_MATCHES = gql`
+  query getSeasonHeadToHeadMatches(
+    $teamCodes: [String!]!
+    $seasonProviderId: String
+    $first: Int!
+    $after: String
+  ) {
+    seasonHeadToHeadMatchesConnection(
+      teamCodes: $teamCodes
+      seasonProviderId: $seasonProviderId
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          id
+          providerId
+          startAt
+          status
+          homeTeam {
+            code
+            score
+            competitionStandings {
+              won
+            }
+          }
+          visitorTeam {
+            code
+            score
+            competitionStandings {
+              won
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -2,6 +2,8 @@ import {
   DATE_TIME_TZ_FORMAT,
   SEASON_TEAM_LEADERS_CONNECTION_FIRST,
 } from '@/constants';
+import { SEASON_HEAD_TO_HEAD_MATCHES } from '@/graphql/match';
+import { HEAD_TO_HEAD_TEAM_STATS_EXTENDED } from '@/graphql/stats';
 import {
   TEAM_LEADERS_STATS_CONNECTION,
   TEAM_PLAYERS_CONNECTION,
@@ -10,7 +12,12 @@ import {
   TEAM_UPCOMING_CALENDAR,
 } from '@/graphql/team';
 import { MatchType } from '@/match/types';
-import { TeamPlayerType, TeamType } from '@/team/types';
+import {
+  SeasonHeadToHeadMatchType,
+  TeamPlayerType,
+  TeamSeasonStatsType,
+  TeamType,
+} from '@/team/types';
 import { useQuery } from '@apollo/client/react';
 import moment from 'moment';
 
@@ -210,5 +217,80 @@ export function useTeamStats(code: string) {
     data: data?.team,
     loading,
     error,
-  }; 
+  };
+}
+
+type HeadToHeadTeamStatsResponse = {
+  headToHeadTeamStats: {
+    team: Pick<
+      TeamType,
+      'providerId' | 'code' | 'name' | 'nickname' | 'city' | 'colorPrimary'
+    >;
+    stats: TeamSeasonStatsType;
+  }[];
+};
+
+/**
+ * Stats de varios equipos en un solo request (vs. una query por equipo).
+ * Usado por la página de comparar equipos.
+ */
+export function useHeadToHeadTeamStats(
+  codes: string[],
+  seasonProviderId?: string,
+) {
+  const { data, loading, error } = useQuery<HeadToHeadTeamStatsResponse>(
+    HEAD_TO_HEAD_TEAM_STATS_EXTENDED,
+    {
+      variables: { teamCodes: codes, seasonProviderId },
+      fetchPolicy: 'network-only',
+      skip: codes.length === 0,
+    },
+  );
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.headToHeadTeamStats,
+    loading,
+    error,
+  };
+}
+
+type SeasonHeadToHeadMatchesResponse = {
+  seasonHeadToHeadMatchesConnection: {
+    edges: {
+      node: SeasonHeadToHeadMatchType;
+    }[];
+  };
+};
+
+/**
+ * Historial de enfrentamientos entre los equipos seleccionados en una
+ * temporada. Usado por "Últimos encuentros" en la página de comparar equipos.
+ */
+export function useSeasonHeadToHeadMatches(
+  teamCodes: string[],
+  seasonProviderId?: string,
+  first: number = 999,
+) {
+  const { data, loading, error } = useQuery<SeasonHeadToHeadMatchesResponse>(
+    SEASON_HEAD_TO_HEAD_MATCHES,
+    {
+      variables: { teamCodes, seasonProviderId, first },
+      fetchPolicy: 'network-only',
+      skip: teamCodes.length < 2,
+    },
+  );
+
+  if (error) {
+    console.error(error);
+  }
+
+  return {
+    data: data?.seasonHeadToHeadMatchesConnection?.edges.map((edge) => edge.node) ?? [],
+    loading,
+    error,
+  };
 }

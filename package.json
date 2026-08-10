@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "heroku-postbuild": "npm run build && mkdir ./.cache && mv /app/.cache/puppeteer ./.cache"
   },
   "dependencies": {
     "@apollo/client": "^4.1.2",
@@ -21,6 +22,7 @@
     "moment": "^2.30.1",
     "next": "16.1.1",
     "numeral": "^2.0.6",
+    "puppeteer": "^25.4.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-slick": "^0.31.0",

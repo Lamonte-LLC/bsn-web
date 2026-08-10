@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client';
 
 export const SEASON_TOP_PLAYER_LEADER_STATS_BY_CATEGORY = gql`
-  query getSeasonTopPlayerLeaderStatsByCategory($statsCode: String!, $first: Int!) {
-    seasonPlayerStatsConnection(
-      statsCode: $statsCode
-      first: $first
-    ) {
+  query getSeasonTopPlayerLeaderStatsByCategory(
+    $statsCode: String!
+    $first: Int!
+  ) {
+    seasonPlayerStatsConnection(statsCode: $statsCode, first: $first) {
       edges {
         node {
           player {
@@ -102,7 +102,6 @@ export const SEASON_TEAM_LEADER_PLAYER_STATS = gql`
     }
   }
 `;
-
 
 export const MATCH_LEADERS_STATS = gql`
   query getMatchLeadersStats($matchProviderId: String!, $first: Int!) {
@@ -355,6 +354,301 @@ export const PLAYOFFS_LEADERS_STATS_CONNECTION = gql`
           }
           value
         }
+      }
+    }
+  }
+`;
+
+export const SEASON_TEAM_STATS_EXTENDED = gql`
+  query getSeasonTeamStatsExtended(
+    $seasonProviderId: String
+    $first: Int!
+    $after: String
+  ) {
+    seasonTeamStatsExtendedConnection(
+      seasonProviderId: $seasonProviderId
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          season {
+            providerId
+            name
+          }
+          team {
+            providerId
+            code
+            name
+            nickname
+            city
+            colorPrimary
+          }
+          stats {
+            points
+            pointsInThePaint
+            pointsInThePaintAverage
+            pointsInThePaintMade
+            pointsInThePaintAttempted
+            pointsSecondChance
+            pointsSecondChanceAverage
+            pointsSecondChanceMade
+            pointsSecondChanceAttempted
+            pointsFastBreak
+            pointsFastBreakAverage
+            pointsFastBreakMade
+            pointsFastBreakAttempted
+            pointsFromBench
+            pointsFromBenchAverage
+            pointsAverage
+            fieldGoalsMade
+            fieldGoalsMadeAverage
+            fieldGoalsAttempted
+            fieldGoalsAttemptedAverage
+            fieldGoalsPercentage
+            twoPointsMade
+            twoPointsMadeAverage
+            twoPointsAttempted
+            twoPointsAttemptedAverage
+            twoPointsPercentage
+            threePointersMade
+            threePointersMadeAverage
+            threePointersAttempted
+            threePointersAttemptedAverage
+            threePointersPercentage
+            freeThrowsMade
+            freeThrowsMadeAverage
+            freeThrowsAttempted
+            freeThrowsAttemptedAverage
+            freeThrowsPercentage
+            offensiveRebounds
+            offensiveReboundsAverage
+            defensiveRebounds
+            defensiveReboundsAverage
+            reboundsTotal
+            reboundsTotalAverage
+            assists
+            assistsAverage
+            assistsTurnoverRatio
+            turnovers
+            turnoversAverage
+            steals
+            stealsAverage
+            blocks
+            blocksAverage
+            blocksReceived
+            blocksReceivedAverage
+            foulsPersonal
+            foulsPersonalAverage
+            foulsTotal
+            foulsTechnical
+            foulsUnsportsmanlike
+            foulsDrawn
+            foulsDrawnAverage
+            dunks
+            dunksAverage
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const SEASON_PLAYER_STATS_EXTENDED = gql`
+  query getSeasonPlayerStatsExtended(
+    $teamCode: String
+    $seasonProviderId: String
+    $playoffs: Boolean
+    $first: Int!
+    $after: String
+  ) {
+    seasonPlayerStatsExtendedConnection(
+      teamCode: $teamCode
+      seasonProviderId: $seasonProviderId
+      playoffs: $playoffs
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          season {
+            providerId
+            name
+          }
+          team {
+            providerId
+            code
+            name
+            nickname
+            city
+            colorPrimary
+          }
+          player {
+            providerId
+            name
+            nickname
+            avatarUrl
+            height
+            weight
+            dob
+            nationality
+          }
+          stats {
+            games
+            gamesAvg
+            minutes
+            minutesAvg
+            points
+            pointsAvg
+            pointsInThePaint
+            pointsInThePaintMade
+            pointsInThePaintAttempted
+            pointsSecondChance
+            pointsSecondChanceMade
+            pointsSecondChanceAttempted
+            pointsFastBreak
+            pointsFastBreakMade
+            pointsFastBreakAttempted
+            fieldGoalsMade
+            fieldGoalsMadeAvg
+            fieldGoalsAttempted
+            fieldGoalsAttemptedAvg
+            fieldGoalsPercentage
+            twoPointsMade
+            twoPointsMadeAvg
+            twoPointsAttempted
+            twoPointsAttemptedAvg
+            twoPointsPercentage
+            threePointersMade
+            threePointersMadeAvg
+            threePointersAttempted
+            threePointersAttemptedAvg
+            threePointersPercentage
+            freeThrowsMade
+            freeThrowsMadeAvg
+            freeThrowsAttempted
+            freeThrowsAttemptedAvg
+            freeThrowsPercentage
+            offensiveRebounds
+            offensiveReboundsAvg
+            defensiveRebounds
+            defensiveReboundsAvg
+            reboundsTotal
+            reboundsTotalAvg
+            assists
+            assistsAvg
+            assistsTurnoverRatio
+            turnovers
+            turnoversAvg
+            steals
+            stealsAvg
+            blocks
+            blocksAvg
+            foulsTotal
+            foulsTechnical
+            foulsUnsportsmanlike
+            foulsDrawn
+            foulsDrawnAvg
+            foulsPersonal
+            foulsPersonalAvg
+            plusMinusPointsAvg
+            efficiency
+            indexOfSuccess
+            pir
+            doubleDouble
+            draws
+            dunks
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const HEAD_TO_HEAD_TEAM_STATS_EXTENDED = gql`
+  query getHeadToHeadTeamStatsExtended(
+    $teamCodes: [String!]!
+    $seasonProviderId: String
+  ) {
+    headToHeadTeamStats(
+      teamCodes: $teamCodes
+      seasonProviderId: $seasonProviderId
+    ) {
+      season {
+        providerId
+        name
+      }
+      team {
+        providerId
+        code
+        name
+        nickname
+        city
+        colorPrimary
+      }
+      stats {
+        points
+        pointsInThePaint
+        pointsInThePaintAverage
+        pointsInThePaintMade
+        pointsInThePaintAttempted
+        pointsSecondChance
+        pointsSecondChanceAverage
+        pointsSecondChanceMade
+        pointsSecondChanceAttempted
+        pointsFastBreak
+        pointsFastBreakAverage
+        pointsFastBreakMade
+        pointsFastBreakAttempted
+        pointsFromBench
+        pointsFromBenchAverage
+        pointsAverage
+        fieldGoalsMade
+        fieldGoalsMadeAverage
+        fieldGoalsAttempted
+        fieldGoalsAttemptedAverage
+        fieldGoalsPercentage
+        twoPointsMade
+        twoPointsMadeAverage
+        twoPointsAttempted
+        twoPointsAttemptedAverage
+        twoPointsPercentage
+        threePointersMade
+        threePointersMadeAverage
+        threePointersAttempted
+        threePointersAttemptedAverage
+        threePointersPercentage
+        freeThrowsMade
+        freeThrowsMadeAverage
+        freeThrowsAttempted
+        freeThrowsAttemptedAverage
+        freeThrowsPercentage
+        offensiveRebounds
+        offensiveReboundsAverage
+        defensiveRebounds
+        defensiveReboundsAverage
+        reboundsTotal
+        reboundsTotalAverage
+        assists
+        assistsAverage
+        assistsTurnoverRatio
+        turnovers
+        turnoversAverage
+        steals
+        stealsAverage
+        blocks
+        blocksAverage
+        blocksReceived
+        blocksReceivedAverage
+        foulsPersonal
+        foulsPersonalAverage
+        foulsTotal
+        foulsTechnical
+        foulsUnsportsmanlike
+        foulsDrawn
+        foulsDrawnAverage
+        dunks
+        dunksAverage
       }
     }
   }

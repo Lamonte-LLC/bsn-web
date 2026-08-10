@@ -15,10 +15,75 @@ import {
 } from '@headlessui/react';
 import { useState, useRef, useEffect } from 'react';
 
+const ESTADISTICAS_LINKS = [
+  {
+    href: '/estadisticas',
+    label: 'Jugadores',
+    description: 'Líderes y tablas por jugador',
+  },
+  {
+    href: '/estadisticas',
+    label: 'Equipos',
+    description: 'Números colectivos por franquicia',
+  },
+  {
+    href: '/comparar-equipos',
+    label: 'Comparar equipos',
+    description: 'De 2 a 4 equipos, lado a lado',
+  },
+];
+
+/**
+ * Botón circular de vidrio del header. Lo comparten el hamburger y el botón de
+ * cerrar del drawer para que no salte nada al abrir el menú.
+ */
+const GLASS_BUTTON_STYLE = {
+  background: 'rgba(255, 255, 255, 0.12)',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
+  boxShadow:
+    '0 0 1.5px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.15), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.06)',
+  borderRadius: '100px',
+} as const;
+
+const SOCIAL_LINKS = [
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/bsnpr/',
+    icon: '/assets/images/icons/social/icon-instagram.svg',
+  },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/bsnpr/',
+    icon: '/assets/images/icons/social/icon-facebook.svg',
+  },
+  {
+    label: 'X',
+    href: 'https://x.com/bsnpr',
+    icon: '/assets/images/icons/social/icon-x.svg',
+  },
+  {
+    label: 'TikTok',
+    href: 'https://www.tiktok.com/@bsnpr?lang=en',
+    icon: '/assets/images/icons/social/icon-tiktok.svg',
+  },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@BaloncestoSuperiorNacionalPR',
+    icon: '/assets/images/icons/social/icon-youtube.svg',
+  },
+];
+
 export default function HeaderBoxLayout() {
   const [isOpen, setIsOpen] = useState(false);
   const equiposButtonRef = useRef<HTMLButtonElement>(null);
+  const estadisticasButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+
+  // Activo por pathname: en empate gana el primero (Jugadores, el tab por
+  // defecto de /estadisticas).
+  const activeEstadisticasIndex = ESTADISTICAS_LINKS.findIndex(
+    (item) => item.href === pathname
+  );
 
   useEffect(() => {
     setIsOpen(false);
@@ -59,13 +124,7 @@ export default function HeaderBoxLayout() {
                 className="w-[42px] h-[42px] flex justify-center items-center rounded-full cursor-pointer"
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.12)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  boxShadow:
-                    '0 0 1.5px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.15), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.06)',
-                  borderRadius: '100px',
-                }}
+                style={GLASS_BUTTON_STYLE}
               >
                 <img
                   src="/assets/images/icons/icon-bars.svg"
@@ -104,7 +163,9 @@ export default function HeaderBoxLayout() {
                       <img
                         src="/assets/images/icons/chevron-mobile-menu.svg"
                         alt=""
-                        className="w-[10px] opacity-70 rotate-180"
+                        className={`w-[10px] opacity-70 transition-transform duration-150 ${
+                          open ? 'rotate-0' : 'rotate-180'
+                        }`}
                       />
                     </PopoverButton>
                     <PopoverPanel
@@ -112,166 +173,166 @@ export default function HeaderBoxLayout() {
                       anchor="bottom"
                       className="bg-white border border-[#E2E2E2] mt-4 rounded-[12px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 z-[999]"
                     >
-                      <div className="grid grid-cols-3 gap-[10px] p-[20px] min-w-[348px]">
+                      <div className="grid grid-cols-3 gap-[8px] p-[16px] min-w-[278px]">
                         <Link href="/equipos/SGE">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/San-German.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">
+                              <p className="text-[13px] text-[#0F171F]">
                                 Atléticos
                               </p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/SCE">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Santurce.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">
+                              <p className="text-[13px] text-[#0F171F]">
                                 Cangrejeros
                               </p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/ARE">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Arecibo.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">
+                              <p className="text-[13px] text-[#0F171F]">
                                 Capitanes
                               </p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/CAG">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Caguas.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Criollos</p>
+                              <p className="text-[13px] text-[#0F171F]">Criollos</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/CAR">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Carolina.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Gigantes</p>
+                              <p className="text-[13px] text-[#0F171F]">Gigantes</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/MAY">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Mayaguez.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Indios</p>
+                              <p className="text-[13px] text-[#0F171F]">Indios</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/PON">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Ponce.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Leones</p>
+                              <p className="text-[13px] text-[#0F171F]">Leones</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/GBO">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Guaynabo.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Mets</p>
+                              <p className="text-[13px] text-[#0F171F]">Mets</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/MAN">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Manati.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Osos</p>
+                              <p className="text-[13px] text-[#0F171F]">Osos</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/QUE">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Quebradillas.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Piratas</p>
+                              <p className="text-[13px] text-[#0F171F]">Piratas</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/AGU">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Aguada.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Santeros</p>
+                              <p className="text-[13px] text-[#0F171F]">Santeros</p>
                             </div>
                           </div>
                         </Link>
                         <Link href="/equipos/BAY">
-                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[10px] justify-center items-center p-[10px] hover:border-[rgba(47,47,47,1)]">
+                          <div className="bg-white border border-[rgba(125,125,125,0.13)] flex flex-col rounded-[8px] justify-center items-center p-[8px] hover:border-[rgba(47,47,47,1)]">
                             <div className="flex flex-col justify-center items-center gap-0.5">
                               <img
                                 src="/assets/images/teams/Bayamon.png"
                                 alt=""
-                                height="46"
-                                width="46"
+                                height="37"
+                                width="37"
                               />
-                              <p className="text-sm text-[#0F171F]">Vaqueros</p>
+                              <p className="text-[13px] text-[#0F171F]">Vaqueros</p>
                             </div>
                           </div>
                         </Link>
@@ -313,9 +374,67 @@ export default function HeaderBoxLayout() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/estadisticas" className="text-[20px] text-white">
-                    Estadísticas
-                  </Link>
+                  <Popover>
+                    {({ open, close }) => (
+                      <div
+                        onMouseEnter={() => { if (!open) estadisticasButtonRef.current?.click(); }}
+                        onMouseLeave={() => close()}
+                      >
+                        <PopoverButton
+                          ref={estadisticasButtonRef}
+                          className="flex items-center gap-1.5 cursor-pointer text-[20px] text-white focus-visible:outline-none data-open:text-[rgba(255,255,255,0.7)]"
+                        >
+                          Estadísticas
+                          <img
+                            src="/assets/images/icons/chevron-mobile-menu.svg"
+                            alt=""
+                            className={`w-[10px] opacity-70 transition-transform duration-150 ${
+                              open ? 'rotate-0' : 'rotate-180'
+                            }`}
+                          />
+                        </PopoverButton>
+                        <PopoverPanel
+                          transition
+                          anchor="bottom"
+                          className="bg-white border border-[#E2E2E2] mt-4 rounded-[12px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 z-[999]"
+                        >
+                          <div className="w-[264px] p-[6px]">
+                            {ESTADISTICAS_LINKS.map((item, index) => {
+                              const isActive = index === activeEstadisticasIndex;
+                              return (
+                                <Link
+                                  key={item.label}
+                                  href={item.href}
+                                  className={`group block rounded-[8px] px-[12px] py-[10px] transition-colors duration-150 ${
+                                    isActive ? 'bg-[#F3F3F3]' : 'hover:bg-[#EAEAEA]'
+                                  }`}
+                                >
+                                  <span
+                                    className={`block text-[16px] leading-[1.1] transition-colors duration-150 ${
+                                      isActive
+                                        ? 'text-[#0F171F]'
+                                        : 'text-[rgba(15,23,31,0.88)] group-hover:text-[#0F171F]'
+                                    }`}
+                                  >
+                                    {item.label}
+                                  </span>
+                                  <span
+                                    className={`block font-barlow font-normal text-[11px] mt-[3px] transition-colors duration-150 ${
+                                      isActive
+                                        ? 'text-[rgba(0,0,0,0.7)]'
+                                        : 'text-[rgba(0,0,0,0.6)] group-hover:text-[rgba(0,0,0,0.75)]'
+                                    }`}
+                                  >
+                                    {item.description}
+                                  </span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </PopoverPanel>
+                      </div>
+                    )}
+                  </Popover>
                 </li>
               </ul>
             </div>
@@ -400,64 +519,135 @@ export default function HeaderBoxLayout() {
           className="relative z-50"
         >
         <div className="fixed inset-0 flex w-screen h-[100dvh] overflow-hidden overscroll-none">
-          <DialogPanel className="bg-[#171819] w-full h-full overflow-y-auto overscroll-contain py-[10px]">
-            <div className="container">
-              <div className="flex justify-end">
-                <CloseButton
-                  onClick={() => setIsOpen(false)}
-                  className="bg-[#252933] cursor-pointer rounded-full w-[42px] h-[42px] flex justify-center items-center"
-                >
-                  <img src="/assets/images/icons/icon-close.svg" alt="Close" />
-                </CloseButton>
+          {/* La animación de entrada va en CSS y no con el `transition` de
+              Headless UI: el Dialog se monta de forma condicional, así que
+              nunca llega a pintar el estado cerrado y la transición no corre. */}
+          <DialogPanel className="drawer-slide-in bg-[#171819] w-full h-full overflow-y-auto overscroll-contain">
+            <div className="flex flex-col min-h-full pb-[26px]">
+              {/* Misma estructura que el header cerrado: py-[10px] + container,
+                  para que el logo y el botón no salten al abrir. */}
+              <div className="py-[10px]">
+                <div className="container">
+                  <div className="flex flex-row justify-between items-center">
+                    <Link href="/" onClick={() => setIsOpen(false)}>
+                      <img
+                        src="/assets/images/bsn-logo.svg"
+                        alt="BSN"
+                        width="113"
+                        className="w-[68px]"
+                      />
+                    </Link>
+                    <CloseButton
+                      onClick={() => setIsOpen(false)}
+                      className="w-[42px] h-[42px] flex justify-center items-center rounded-full cursor-pointer shrink-0"
+                      style={GLASS_BUTTON_STYLE}
+                    >
+                      <img
+                        src="/assets/images/icons/icon-close.svg"
+                        alt="Cerrar"
+                      />
+                    </CloseButton>
+                  </div>
+                </div>
               </div>
-            </div>
-            <ul className="divide-y divide-[rgba(255,255,255,0.05)]">
-              <li className="px-[30px]">
-                <Link href="/" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Inicio</span>
+            <div className="container flex flex-col flex-1">
+            <ul className="flex flex-col gap-[2px] pt-[26px]">
+              <li>
+                <Link
+                  href="/"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Inicio
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/calendario" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Calendario</span>
+              <li>
+                <Link
+                  href="/calendario"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Calendario
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/playoffs" className="block py-[8px]">
-                  <span className="text-[36px] text-white">Playoffs</span>
+              <li>
+                <Link
+                  href="/playoffs"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Playoffs
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/noticias" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Noticias</span>
+              <li>
+                <Link
+                  href="/noticias"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Noticias
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/jugadores" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Jugadores</span>
+              <li>
+                <Link
+                  href="/jugadores"
+                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                >
+                  Jugadores
                 </Link>
               </li>
-              <li className="px-[30px]">
-                <Link href="/estadisticas" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Estadísticas</span>
-                </Link>
-              </li>
-              <li className="px-[30px]">
-                <Link href="/boletos" className="block py-[8px]">
-                  <span className="text-[33px] text-white">Boletos</span>
-                </Link>
-              </li>
-              <li className="px-[30px]">
-                <div className="py-[8px]">
+              <li>
+                <div>
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <DisclosureButton className="cursor-pointer text-[33px] text-left text-white w-full flex items-center justify-between">
+                        <DisclosureButton className="cursor-pointer text-[36px] leading-[1.55] text-left text-white w-full flex items-center justify-between active:opacity-45">
+                          <span>Estadísticas</span>
+                          <img
+                            src="/assets/images/icons/chevron-mobile-menu.svg"
+                            alt=""
+                            className={`w-[17px] opacity-55 transition-transform duration-150 ${
+                              open ? 'rotate-0' : 'rotate-180'
+                            }`}
+                          />
+                        </DisclosureButton>
+                        <DisclosurePanel>
+                          <div className="pl-[18px] pt-[4px] pb-[12px]">
+                            {ESTADISTICAS_LINKS.map((item, index) => {
+                              const isActive = index === activeEstadisticasIndex;
+                              return (
+                                <Link
+                                  key={item.label}
+                                  href={item.href}
+                                  onClick={() => setIsOpen(false)}
+                                  className={`block rounded-[8px] -mx-[12px] px-[12px] py-[9px] transition-colors duration-150 active:opacity-45 ${
+                                    isActive ? 'bg-[rgba(255,255,255,0.08)]' : ''
+                                  }`}
+                                >
+                                  <span
+                                    className={`block text-[25px] leading-[1.1] ${
+                                      isActive ? 'text-white' : 'text-white/70'
+                                    }`}
+                                  >
+                                    {item.label}
+                                  </span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </DisclosurePanel>
+                      </>
+                    )}
+                  </Disclosure>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <Disclosure>
+                    {({ open }) => (
+                      <>
+                        <DisclosureButton className="cursor-pointer text-[36px] leading-[1.55] text-left text-white/55 w-full flex items-center justify-between active:opacity-45">
                           <span>Equipos</span>
                           <img
                             src="/assets/images/icons/chevron-mobile-menu.svg"
                             alt=""
-                            className={`w-[18px] transition-transform duration-150 ${
+                            className={`w-[17px] opacity-40 transition-transform duration-150 ${
                               open ? 'rotate-0' : 'rotate-180'
                             }`}
                           />
@@ -616,6 +806,35 @@ export default function HeaderBoxLayout() {
                 </div>
               </li>
             </ul>
+            <div className="mt-auto flex items-center gap-[12px] border-t border-[rgba(255,255,255,0.09)] pt-[16px]">
+              <Link
+                href="/boletos"
+                className="flex-1 flex items-center justify-center bg-white text-[#0F171F] text-[18px] leading-[1.2] rounded-full py-[12px] active:opacity-45"
+              >
+                Boletos
+              </Link>
+              <ul className="flex gap-[10px]">
+                {SOCIAL_LINKS.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="w-[36px] h-[36px] rounded-full border border-[rgba(125,125,125,0.24)] inline-flex items-center justify-center active:opacity-45"
+                    >
+                      <img
+                        src={social.icon}
+                        alt=""
+                        className="max-w-[14px] max-h-[14px]"
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            </div>
+            </div>
           </DialogPanel>
         </div>
         </Dialog>
