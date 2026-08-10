@@ -45,6 +45,10 @@ type Props = {
   overtimePeriods?: number;
   isFinals?: boolean;
   finalsDescription?: string;
+  /** Playoffs decorations — when set, render a structured footer + JN pill */
+  gameNumber?: number;
+  roundLabel?: string;
+  seriesStatus?: string;
 };
 
 export default function LiveMatchCard({
@@ -59,7 +63,11 @@ export default function LiveMatchCard({
   overtimePeriods = 0,
   isFinals = false,
   finalsDescription = "",
+  gameNumber,
+  roundLabel,
+  seriesStatus,
 }: Props) {
+  const hasSeriesFooter = roundLabel != null && seriesStatus != null;
   const headerLine = useMemo(
     () =>
       getLiveScoreboardCenterLine(
@@ -95,6 +103,11 @@ export default function LiveMatchCard({
         <CardHeader className="border-b border-b-[rgba(255,255,255,0.05)] mx-[15px] py-[8px] md:mx-[20px]">
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row justify-start items-center gap-[7px]">
+              {gameNumber != null && (
+                <span className="inline-flex items-center px-[6px] h-[17px] rounded-[5px] bg-white/10 border border-white/15 font-barlow font-semibold text-[10px] text-white/85 tracking-[0.04em] lg:hidden">
+                  J{gameNumber}
+                </span>
+              )}
               <Lottie
                 animationData={animationLiveStreamData}
                 loop
@@ -160,7 +173,7 @@ export default function LiveMatchCard({
           </div>
         </CardHeader>
         <CardBody className="pt-[3px]">
-          <div className="flex flex-row justify-between items-center mb-[7px]">
+          <div className="flex flex-row justify-between items-center">
             <div className="flex flex-col flex-1">
               <div className="flex flex-row justify-between items-center gap-3">
                 <div className="flex-1">
@@ -194,31 +207,68 @@ export default function LiveMatchCard({
               </div>
             </div>
           </div>
-          <div className="pb-[12px] md:pb-[17px]">
-            <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
-              <span className="text-sm text-white md:text-[15px]">
-                <svg
-                  width="6"
-                  height="8"
-                  viewBox="0 0 10 12"
-                  fill="none"
-                  aria-hidden
-                  className="inline-block align-middle mr-[5px] relative -top-[1px] md:mr-1.5 md:-top-[1px] md:w-[7px] md:h-[9px]"
-                >
-                  <path d="M0 0L10 6L0 12V0Z" fill="#ff0000" />
-                </svg>
-                Ver en vivo
-              </span>
+          {!isFinals && (
+            <div className="pb-[12px] mt-[7px] md:pb-[17px]">
+              <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] block text-center rounded-[18px] p-[2px] md:p-[5px]">
+                <span className="text-sm text-white md:text-[15px]">
+                  <svg
+                    width="6"
+                    height="8"
+                    viewBox="0 0 10 12"
+                    fill="none"
+                    aria-hidden
+                    className="inline-block align-middle mr-[5px] relative -top-[1px] md:mr-1.5 md:-top-[1px] md:w-[7px] md:h-[9px]"
+                  >
+                    <path d="M0 0L10 6L0 12V0Z" fill="#ff0000" />
+                  </svg>
+                  Ver en vivo
+                </span>
+              </div>
             </div>
-          </div>
+          )}
         </CardBody>
         {isFinals && (
-          <CardFooter>
-            <div className="flex flex-row justify-center items-center">
-              <p className="font-barlow text-sm text-neutral-90">
-                {finalsDescription}
-              </p>
-            </div>
+          <CardFooter className="mt-[7px] md:mt-[18px]">
+            {hasSeriesFooter ? (
+              <div className="flex flex-row justify-between items-center gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  {gameNumber != null && (
+                    <span className="hidden lg:inline-flex items-center px-[6px] h-[17px] rounded-[5px] bg-white/10 border border-white/15 font-barlow font-semibold text-[10px] text-white/85 tracking-[0.04em] shrink-0">
+                      J{gameNumber}
+                    </span>
+                  )}
+                  <p className="font-barlow text-[12px] text-white/55 truncate">
+                    {roundLabel}
+                  </p>
+                </div>
+                <div className="glass-match-card-pill border border-[rgba(255,255,255,0.21)] flex items-center justify-center rounded-[18px] px-2.5 h-[18px]">
+                  <div className="flex flex-row justify-center items-center">
+                    <svg
+                      width="6"
+                      height="8"
+                      viewBox="0 0 10 12"
+                      fill="none"
+                      aria-hidden
+                      className="mr-[5px] md:mr-1.5 md:w-[7px] md:h-[9px]"
+                    >
+                      <path d="M0 0L10 6L0 12V0Z" fill="#ff0000" />
+                    </svg>
+                    <span className="hidden text-[10px] text-white md:text-xs md:inline">
+                      Ver en vivo
+                    </span>
+                    <span className="text-[10px] text-white md:text-xs md:hidden">
+                      En vivo
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-row justify-center items-center">
+                <p className="font-barlow text-sm text-neutral-90">
+                  {finalsDescription}
+                </p>
+              </div>
+            )}
           </CardFooter>
         )}
       </Card>

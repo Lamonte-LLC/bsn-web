@@ -24,20 +24,19 @@ export default async function Home() {
           <div className="container">
             <RecentCalendarSliderWidget />
             <a
-              href="https://www.atleticos2022.com/events/162734"
-              target="_blank"
+              href="/playoffs"
               rel="noopener noreferrer"
               className="block mt-[12px] lg:mt-[22px]"
             >
               <img
-                src="/assets/ads/home-top-mobile-allstar.png"
+                src="/assets/ads/home-top-playoffs-mobile.png"
                 alt=""
                 width={1242}
                 height={212}
                 className="block md:hidden w-full h-auto max-w-full object-contain rounded-[12px] border border-[rgba(125,125,125,0.4)]"
               />
               <img
-                src="/assets/ads/home-top-desktop-allstar.jpg"
+                src="/assets/ads/home-top-playoffs-desktop.png"
                 alt=""
                 width={1920}
                 height={155}

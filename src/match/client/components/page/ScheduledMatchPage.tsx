@@ -106,6 +106,8 @@ export default function ScheduledMatchPage({
                   venue={{ name: match.venue?.name ?? '' }}
                   channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
                   ticketUrl={match.homeTeam.ticketUrl}
+                  gameNumber={match.gameNumber}
+                  series={match.series}
                 />
               </div>
               <div className="mb-6 md:mb-10 lg:mb-15">
@@ -190,6 +192,8 @@ export default function ScheduledMatchPage({
                   venue={{ name: match.venue?.name ?? '' }}
                   channel={match.channel ?? DEFAULT_MEDIA_PROVIDER}
                   ticketUrl={match.homeTeam.ticketUrl}
+                  gameNumber={match.gameNumber}
+                  series={match.series}
                 />
               </div>
               {homeTeamBoxScore && visitorTeamBoxScore && (

@@ -1,6 +1,13 @@
 import { MATCH_DATE_FULL_FORMAT, MATCH_TIME_FORMAT } from '@/constants';
 import { formatDate } from '@/utils/date-formatter';
 
+type SeriesType = {
+  providerId: string;
+  name: string;
+  group: string;
+  round: number;
+};
+
 type Props = {
   startAt?: string;
   venue?: { name: string };
@@ -8,6 +15,8 @@ type Props = {
   ticketUrl?: string;
   hideTicket?: boolean;
   hideChannel?: boolean;
+  gameNumber?: number;
+  series?: SeriesType | null;
 };
 
 export default function MatchInfoCard({
@@ -17,6 +26,8 @@ export default function MatchInfoCard({
   ticketUrl,
   hideTicket = false,
   hideChannel = false,
+  gameNumber = 0,
+  series,
 }: Props) {
   return (
     <div className="border border-[#EAEAEA] flex-1 rounded-[12px] bg-white shadow-[0px_1px_3px_0px_#14181F0A]">
@@ -41,6 +52,23 @@ export default function MatchInfoCard({
               {formatDate(startAt, MATCH_DATE_FULL_FORMAT)}
             </p>
           </li>
+          {series && (
+            <li className="flex flex-row items-center gap-[12px]">
+              <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
+                <img
+                  src="/assets/images/icons/icon-cup.svg"
+                  alt=""
+                  className="h-[18px] w-[18px]"
+                />
+              </span>
+              <p className="font-barlow font-medium text-sm">
+                {series.round === 1 && 'Cuartos de Final • '}
+                {series.round === 2 && 'Finales de Conferencia • '}
+                {series.round === 3 && 'Finales Brava • '}
+                {gameNumber ? `Juego ${gameNumber}` : ''}
+              </p>
+            </li>
+          )}
           <li className="flex flex-row items-center gap-[12px]">
             <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white border border-[rgba(230,230,230,0.74)]">
               <img

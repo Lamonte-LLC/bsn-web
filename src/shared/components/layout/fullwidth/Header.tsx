@@ -83,6 +83,11 @@ export default function HeaderBoxLayout() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/playoffs" className="text-[20px] text-white">
+                    Playoffs
+                  </Link>
+                </li>
+                <li>
                   <Link href="/noticias" className="text-[20px] text-white">
                     Noticias
                   </Link>
@@ -415,6 +420,11 @@ export default function HeaderBoxLayout() {
               <li className="px-[30px]">
                 <Link href="/calendario" className="block py-[8px]">
                   <span className="text-[33px] text-white">Calendario</span>
+                </Link>
+              </li>
+              <li className="px-[30px]">
+                <Link href="/playoffs" className="block py-[8px]">
+                  <span className="text-[36px] text-white">Playoffs</span>
                 </Link>
               </li>
               <li className="px-[30px]">

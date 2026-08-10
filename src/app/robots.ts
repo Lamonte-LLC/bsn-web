@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 
+const BASE_URL = 'https://bsnpr.com';
 const isProduction = process.env.ENV === 'production'
 
 export default function robots(): MetadataRoute.Robots {
@@ -8,8 +9,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         ...(isProduction ? { allow: '/' } : { disallow: '/' }),
-        disallow: '/mobile/',
+        disallow: ['/mobile/', '/api/', '/_next/'],
       },
     ],
+    sitemap: isProduction ? `${BASE_URL}/sitemap.xml` : undefined,
   }
 }

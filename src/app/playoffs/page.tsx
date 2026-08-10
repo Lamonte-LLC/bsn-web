@@ -1,15 +1,11 @@
-import Header from '@/shared/components/layout/fullwidth/Header';
-import Footer from '@/shared/components/layout/fullwidth/Footer';
+import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
 import PlayoffsPageClient from './PlayoffsPageClient';
+import PlayoffsHero from './PlayoffsHero';
 
 export default function PlayoffsPage() {
   return (
-    <div className="min-h-screen bg-[#fdfdfd]">
-      <header className="bg-bsn">
-        <Header />
-      </header>
+    <FullWidthLayout divider subheader={<PlayoffsHero />}>
       <PlayoffsPageClient />
-      <Footer />
-    </div>
+    </FullWidthLayout>
   );
 }

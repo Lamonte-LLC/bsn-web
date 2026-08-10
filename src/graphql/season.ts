@@ -42,3 +42,31 @@ export const LAST_SEASON = gql`
     }
   }
 `;
+
+export const SEASON_PLAYERS_CONNECTION = gql`
+  query getSeasonPlayers($first: Int!, $after: String) {
+    seasonRostersConnection(first: $first, after: $after) {
+      edges {
+        node {
+          player {
+            providerId
+            name
+            nickname
+            avatarUrl
+            dob
+            height
+            weight
+          }
+          team {
+            providerId
+            nickname
+            code
+          }
+          playingPosition
+          jerseyNumber
+          status
+        }
+      }
+    }
+  }
+`;
