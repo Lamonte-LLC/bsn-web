@@ -57,8 +57,8 @@ function MeetingCard({ meeting }: { meeting: Meeting }) {
         <ScoreLogo code={meeting.home.code} />
       </div>
       <div className="mt-[9px] font-barlow font-semibold text-[10px] uppercase tracking-[0.8px] text-[rgba(15,23,31,0.45)]">
-        {meeting.visitor.code} {meeting.visitor.competitionStandings?.won ?? ''} -{' '}
-        {meeting.home.competitionStandings?.won ?? ''} {meeting.home.code}
+        {meeting.visitor.code} {meeting.visitor.headToHead?.won ?? ''} -{' '}
+        {meeting.home.headToHead?.won ?? ''} {meeting.home.code}
       </div>
     </Link>
   );

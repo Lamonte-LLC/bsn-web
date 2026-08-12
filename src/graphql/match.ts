@@ -789,14 +789,14 @@ export const SEASON_HEAD_TO_HEAD_MATCHES = gql`
           homeTeam {
             code
             score
-            competitionStandings {
+            headToHead {
               won
             }
           }
           visitorTeam {
             code
             score
-            competitionStandings {
+            headToHead {
               won
             }
           }

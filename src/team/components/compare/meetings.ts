@@ -6,6 +6,7 @@ type MeetingTeam = {
   code: string;
   score: number;
   competitionStandings: { won: number };
+  headToHead: { won: number };
 };
 
 export type Meeting = {
@@ -32,11 +33,13 @@ function toMeeting(match: SeasonHeadToHeadMatchType): Meeting {
       code: visitorTeam.code,
       score: visitorScore,
       competitionStandings: visitorTeam.competitionStandings,
+      headToHead: visitorTeam.headToHead,
     },
     home: {
       code: homeTeam.code,
       score: homeScore,
       competitionStandings: homeTeam.competitionStandings,
+      headToHead: homeTeam.headToHead,
     },
     winner: homeScore >= visitorScore ? homeTeam.code : visitorTeam.code,
     date: formatDate(startAt, 'ddd, D MMM, YYYY'),

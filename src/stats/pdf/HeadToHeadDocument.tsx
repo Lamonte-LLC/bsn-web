@@ -137,8 +137,8 @@ export default function HeadToHeadDocument({
                       </div>
                     </td>
                     <td style={styles.colMeetingSerie}>
-                      {visitorTeam.code} {visitorTeam.competitionStandings?.won ?? ''} -{' '}
-                      {homeTeam.competitionStandings?.won ?? ''} {homeTeam.code}
+                      {visitorTeam.code} {visitorTeam.headToHead?.won ?? ''} -{' '}
+                      {homeTeam.headToHead?.won ?? ''} {homeTeam.code}
                     </td>
                   </tr>
                 );
