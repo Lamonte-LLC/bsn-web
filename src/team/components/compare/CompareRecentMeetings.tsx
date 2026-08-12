@@ -116,7 +116,7 @@ function TwoTeamMeetings({
 
   return (
     <SliderRow>
-      {meetings.slice(0, 5).map((meeting, index) => (
+      {meetings.map((meeting, index) => (
         <MeetingCard key={index} meeting={meeting} />
       ))}
     </SliderRow>
