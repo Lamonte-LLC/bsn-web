@@ -5,6 +5,7 @@ import {
 import { SEASON_HEAD_TO_HEAD_MATCHES } from '@/graphql/match';
 import { HEAD_TO_HEAD_TEAM_STATS_EXTENDED } from '@/graphql/stats';
 import {
+  COMPARE_TEAMS_STATS,
   TEAM_LEADERS_STATS_CONNECTION,
   TEAM_PLAYERS_CONNECTION,
   TEAM_PLAYERS_STATS_CONNECTION,
@@ -12,6 +13,7 @@ import {
   TEAM_UPCOMING_CALENDAR,
 } from '@/graphql/team';
 import { MatchType } from '@/match/types';
+import type { TeamRecord } from '@/team/components/compare/types';
 import {
   SeasonHeadToHeadMatchType,
   TeamPlayerType,
@@ -290,6 +292,60 @@ export function useSeasonHeadToHeadMatches(
 
   return {
     data: data?.seasonHeadToHeadMatchesConnection?.edges.map((edge) => edge.node) ?? [],
+    loading,
+    error,
+  };
+}
+
+type TeamSeasonRecordsResponse = {
+  teamsConnection: {
+    edges: {
+      node: {
+        code: string;
+        group?: string;
+        seasonStats?: {
+          position?: number;
+          positionInGroup?: number;
+          won: number;
+          lost: number;
+        };
+      };
+    }[];
+  };
+};
+
+/**
+ * Récords (G-P, posición, grupo) de todos los equipos para una temporada
+ * específica. Usado por el hero de comparar equipos, que necesita que won/lost
+ * cambien según la temporada seleccionada (a diferencia de standings, que
+ * siempre refleja la temporada actual).
+ */
+export function useTeamSeasonRecords(seasonProviderId?: string, first: number = 50) {
+  const { data, loading, error } = useQuery<TeamSeasonRecordsResponse>(
+    COMPARE_TEAMS_STATS,
+    {
+      variables: { seasonProviderId, first },
+      fetchPolicy: 'network-only',
+      skip: !seasonProviderId,
+    },
+  );
+
+  if (error) {
+    console.error(error);
+  }
+
+  const records: Record<string, TeamRecord> = {};
+  data?.teamsConnection.edges.forEach(({ node }) => {
+    records[node.code] = {
+      won: node.seasonStats?.won ?? 0,
+      lost: node.seasonStats?.lost ?? 0,
+      position: node.seasonStats?.positionInGroup,
+      groupName: node.group ? `Grupo ${node.group}` : undefined,
+    };
+  });
+
+  return {
+    data: records,
     loading,
     error,
   };

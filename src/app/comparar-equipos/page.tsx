@@ -70,7 +70,7 @@ export default async function CompararEquiposPage() {
   const records = await fetchTeamRecords();
 
   return (
-    <FullWidthLayout divider subheader={<CompararEquiposHero records={records} />}>
+    <FullWidthLayout divider subheader={<CompararEquiposHero />}>
       <CompararEquiposPageClient records={records} />
     </FullWidthLayout>
   );

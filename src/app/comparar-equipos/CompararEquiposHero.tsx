@@ -2,9 +2,9 @@
 
 import { useEffect } from 'react';
 import { useSeasonConnection } from '@/season/client/hooks/season';
+import { useTeamSeasonRecords } from '@/team/client/hooks/teams';
 import CompareHero from '@/team/components/compare/CompareHero';
 import CompareTeamPickerDialog from '@/team/components/compare/CompareTeamPickerDialog';
-import type { TeamRecord } from '@/team/components/compare/types';
 import {
   setComparePickerOpen,
   setCompareSeason,
@@ -12,14 +12,11 @@ import {
   useCompareSelection,
 } from './useCompareSelection';
 
-type Props = {
-  records: Record<string, TeamRecord>;
-};
-
 /** Subheader de la banda ink: hero + diálogo selector. */
-export default function CompararEquiposHero({ records }: Props) {
+export default function CompararEquiposHero() {
   const { selected, pickerOpen, seasonProviderId } = useCompareSelection();
   const { seasons } = useSeasonConnection();
+  const { data: records } = useTeamSeasonRecords(seasonProviderId);
 
   useEffect(() => {
     if (seasonProviderId || seasons.length === 0) return;

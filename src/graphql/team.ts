@@ -452,3 +452,26 @@ export const TEAM_STATS = gql`
     }
   }
 `;
+
+
+export const COMPARE_TEAMS_STATS = gql`
+  query getTeamStats($seasonProviderId: String, $first: Int!, $after: String) {
+    teamsConnection(first: $first, after: $after) {
+      edges {
+        node {
+          providerId
+          name
+          nickname
+          code
+          group
+          seasonStats(seasonProviderId: $seasonProviderId) {
+            position
+            positionInGroup
+            won
+            lost
+          }
+        }
+      }
+    }
+  }
+`;
