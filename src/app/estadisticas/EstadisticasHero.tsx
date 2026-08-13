@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname, useRouter } from 'next/navigation';
 import PrintableViewButton from './PrintableViewButton';
 import { useEstadisticasTab, type EstadisticasTab } from './useEstadisticasTab';
 
@@ -7,6 +8,13 @@ const TABS: EstadisticasTab[] = ['jugadores', 'equipos'];
 
 export default function EstadisticasHero() {
   const [activeTab, setActiveTab] = useEstadisticasTab();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleTabClick = (tab: EstadisticasTab) => {
+    setActiveTab(tab);
+    router.replace(`${pathname}?tab=${tab}`, { scroll: false });
+  };
 
   return (
     <div className="container">
@@ -19,7 +27,7 @@ export default function EstadisticasHero() {
           {TABS.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => handleTabClick(tab)}
               className={`relative font-special-gothic-condensed-one text-[20px] pb-2 capitalize transition-colors ${
                 activeTab === tab
                   ? 'text-white'
@@ -49,7 +57,7 @@ export default function EstadisticasHero() {
             {TABS.map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => handleTabClick(tab)}
                 className={`relative font-special-gothic-condensed-one text-[22px] pb-2 capitalize transition-colors ${
                   activeTab === tab
                     ? 'text-white'

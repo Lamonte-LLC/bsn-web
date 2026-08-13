@@ -28,6 +28,16 @@ export function setEstadisticasTab(next: EstadisticasTab) {
   listeners.forEach((l) => l());
 }
 
+function isEstadisticasTab(value: string | null): value is EstadisticasTab {
+  return value === 'jugadores' || value === 'equipos';
+}
+
+export function initEstadisticasTabFromParam(value: string | null) {
+  if (isEstadisticasTab(value)) {
+    setEstadisticasTab(value);
+  }
+}
+
 export function useEstadisticasTab(): [EstadisticasTab, (next: EstadisticasTab) => void] {
   const value = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   return [value, setEstadisticasTab];

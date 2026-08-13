@@ -17,12 +17,12 @@ import { useState, useRef, useEffect } from 'react';
 
 const ESTADISTICAS_LINKS = [
   {
-    href: '/estadisticas',
+    href: '/estadisticas?tab=jugadores',
     label: 'Jugadores',
     description: 'Líderes y tablas por jugador',
   },
   {
-    href: '/estadisticas',
+    href: '/estadisticas?tab=equipos',
     label: 'Equipos',
     description: 'Números colectivos por franquicia',
   },
@@ -408,6 +408,7 @@ export default function HeaderBoxLayout() {
                                   className={`group block rounded-[8px] px-[12px] py-[10px] transition-colors duration-150 ${
                                     isActive ? 'bg-[#F3F3F3]' : 'hover:bg-[#EAEAEA]'
                                   }`}
+                                  replace
                                 >
                                   <span
                                     className={`block text-[16px] leading-[1.1] transition-colors duration-150 ${
