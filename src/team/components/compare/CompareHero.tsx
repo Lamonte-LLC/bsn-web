@@ -319,7 +319,7 @@ export default function CompareHero({
         <div className="mb-[10px] mt-[18px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
           <Menu>
             <MenuButton className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-colors hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-none lg:px-[16px] lg:py-[7px] lg:text-[13px]">
-              {seasonName ? `Temporada ${seasonName}` : 'Temporada regular'}
+              {seasonName ? `${seasonName}` : 'Temporada regular'}
               <span
                 className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]"
                 aria-hidden
@@ -342,7 +342,7 @@ export default function CompareHero({
                         : 'text-[rgba(15,23,31,0.6)]',
                     )}
                   >
-                    Temporada {season.name}
+                    {season.name}
                   </button>
                 </MenuItem>
               ))}

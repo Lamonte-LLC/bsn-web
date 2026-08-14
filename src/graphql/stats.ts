@@ -585,8 +585,13 @@ export const HEAD_TO_HEAD_TEAM_STATS_EXTENDED = gql`
         nickname
         city
         colorPrimary
+        group
       }
       stats {
+        position
+        positionInGroup
+        won
+        lost
         points
         pointsInThePaint
         pointsInThePaintAverage

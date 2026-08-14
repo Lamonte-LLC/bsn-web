@@ -91,6 +91,10 @@ export type TeamCompetitionStandingType = {
 };
 
 export type TeamSeasonStatsType = {
+  position: number;
+  positionInGroup: number;
+  won: number;
+  lost: number;
   points: number;
   pointsAverage: number;
   pointsInThePaint: number;

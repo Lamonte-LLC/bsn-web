@@ -8,6 +8,7 @@ import {
   getStatValue,
   getWinningIndexes,
 } from '@/team/components/compare/compareStats';
+import { ordinalNumber } from '@/utils/number-formater';
 
 type Props = {
   data: {
@@ -45,7 +46,9 @@ export default function HeadToHeadDocument({
                 <th key={`head-${item.team.code}`} style={styles.colHeadTeam}>
                   <div style={{ borderLeft: '0.5px solid #d8d8d8' }}>
                     <div style={styles.teamCode}>{item.team.code}</div>
-                    <div style={styles.teamRecord}>3-5 · 4to Grupo A</div>
+                    <div style={styles.teamRecord}>
+                      {item.stats.won}-{item.stats.lost} · {item.stats.position ? ordinalNumber(item.stats.position) : ''} {item.team.group ? `Grupo ${item.team.group}` : ''}
+                    </div>
                   </div>
                 </th>
               ))}
