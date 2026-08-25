@@ -1,6 +1,8 @@
 import TeamLinkCard from '@/team/components/card/TeamLinkCard';
 import Link from 'next/link';
 
+import { SEASON_IN_PROGRESS } from '@/shared/constants/season';
+
 type Props = {
   hideStoreAppLinks?: boolean;
 };
@@ -121,14 +123,16 @@ export default function FooterBoxLayout({ hideStoreAppLinks = false }: Props) {
                   Estadísticas
                 </Link>
               </li>
-              <li className="text-center md:text-right lg:text-left">
-                <Link
-                  href="/boletos"
-                  className="font-special-gothic-condensed-one text-white text-[26px]"
-                >
-                  Boletos
-                </Link>
-              </li>
+              {SEASON_IN_PROGRESS && (
+                <li className="text-center md:text-right lg:text-left">
+                  <Link
+                    href="/boletos"
+                    className="font-special-gothic-condensed-one text-white text-[26px]"
+                  >
+                    Boletos
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <div className="md:col-span-12 lg:col-span-6">

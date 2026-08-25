@@ -15,6 +15,8 @@ import {
 } from '@headlessui/react';
 import { useState, useRef, useEffect } from 'react';
 
+import { SEASON_IN_PROGRESS } from '@/shared/constants/season';
+
 const ESTADISTICAS_LINKS = [
   {
     href: '/estadisticas?tab=jugadores',
@@ -85,6 +87,9 @@ export default function HeaderBoxLayout() {
     (item) => item.href === pathname
   );
 
+  /** Drawer móvil: el item de Equipos se atenúa solo cuando ya estás en la sección. */
+  const isEquiposActive = pathname.startsWith('/equipos');
+
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -141,11 +146,13 @@ export default function HeaderBoxLayout() {
                     Calendario
                   </Link>
                 </li>
-                <li>
-                  <Link href="/playoffs" className="text-[20px] text-white">
-                    Playoffs
-                  </Link>
-                </li>
+                {SEASON_IN_PROGRESS && (
+                  <li>
+                    <Link href="/playoffs" className="text-[20px] text-white">
+                      Playoffs
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link href="/noticias" className="text-[20px] text-white">
                     Noticias
@@ -405,18 +412,16 @@ export default function HeaderBoxLayout() {
                                 <Link
                                   key={item.label}
                                   href={item.href}
-                                  className={`group block rounded-[8px] px-[12px] py-[10px] transition-colors duration-150 ${
+                                  // `hover:opacity-100!` anula el fade global de
+                                  // globals.css (`a:hover { opacity: .7 }`), que
+                                  // apagaba el texto a la vez que entraba el gris
+                                  // y lo hacía ver por delante del label.
+                                  className={`group block rounded-[8px] px-[12px] py-[10px] transition-colors duration-150 hover:opacity-100! ${
                                     isActive ? 'bg-[#F3F3F3]' : 'hover:bg-[#EAEAEA]'
                                   }`}
                                   replace
                                 >
-                                  <span
-                                    className={`block text-[16px] leading-[1.1] transition-colors duration-150 ${
-                                      isActive
-                                        ? 'text-[#0F171F]'
-                                        : 'text-[rgba(15,23,31,0.88)] group-hover:text-[#0F171F]'
-                                    }`}
-                                  >
+                                  <span className="block text-[16px] leading-[1.1] text-[#0F171F]">
                                     {item.label}
                                   </span>
                                   <span
@@ -440,12 +445,14 @@ export default function HeaderBoxLayout() {
               </ul>
             </div>
             <div className="hidden md:flex md:flex-1 md:justify-end md:items-center md:gap-[14px]">
-              <Link
-                href="/boletos"
-                className="ml-[3px] font-special-gothic-condensed-one text-[17px] text-white/85 hover:text-white border border-white/20 hover:border-white/40 rounded-full px-3.5 py-1.5 transition-colors whitespace-nowrap"
-              >
-                Boletos
-              </Link>
+              {SEASON_IN_PROGRESS && (
+                <Link
+                  href="/boletos"
+                  className="ml-[3px] font-special-gothic-condensed-one text-[17px] text-white/85 hover:text-white border border-white/20 hover:border-white/40 rounded-full px-3.5 py-1.5 transition-colors whitespace-nowrap"
+                >
+                  Boletos
+                </Link>
+              )}
               <ul className="flex flex-row">
                 <li className="flex items-center justify-center h-[40px] w-[32px]">
                   <a
@@ -569,14 +576,16 @@ export default function HeaderBoxLayout() {
                   Calendario
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/playoffs"
-                  className="block text-[36px] leading-[1.55] text-white active:opacity-45"
-                >
-                  Playoffs
-                </Link>
-              </li>
+              {SEASON_IN_PROGRESS && (
+                <li>
+                  <Link
+                    href="/playoffs"
+                    className="block text-[36px] leading-[1.55] text-white active:opacity-45"
+                  >
+                    Playoffs
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="/noticias"
@@ -643,7 +652,11 @@ export default function HeaderBoxLayout() {
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <DisclosureButton className="cursor-pointer text-[36px] leading-[1.55] text-left text-white/55 w-full flex items-center justify-between active:opacity-45">
+                        <DisclosureButton
+                          className={`cursor-pointer text-[36px] leading-[1.55] text-left w-full flex items-center justify-between active:opacity-45 ${
+                            isEquiposActive ? 'text-white/55' : 'text-white'
+                          }`}
+                        >
                           <span>Equipos</span>
                           <img
                             src="/assets/images/icons/chevron-mobile-menu.svg"
@@ -808,12 +821,14 @@ export default function HeaderBoxLayout() {
               </li>
             </ul>
             <div className="mt-auto flex items-center gap-[12px] border-t border-[rgba(255,255,255,0.09)] pt-[16px]">
-              <Link
-                href="/boletos"
-                className="flex-1 flex items-center justify-center bg-white text-[#0F171F] text-[18px] leading-[1.2] rounded-full py-[12px] active:opacity-45"
-              >
-                Boletos
-              </Link>
+              {SEASON_IN_PROGRESS && (
+                <Link
+                  href="/boletos"
+                  className="flex-1 flex items-center justify-center bg-white text-[#0F171F] text-[18px] leading-[1.2] rounded-full py-[12px] active:opacity-45"
+                >
+                  Boletos
+                </Link>
+              )}
               <ul className="flex gap-[10px]">
                 {SOCIAL_LINKS.map((social) => (
                   <li key={social.label}>

@@ -15,7 +15,7 @@ export default function TopNewsHero({ article }: Props) {
     >
       <div className="relative overflow-hidden rounded-[12px]">
         <div
-          className="news-hero-img border border-[rgba(125,125,125,0.4)] pt-[53.20%] bg-cover bg-no-repeat bg-center rounded-[12px]"
+          className="news-hero-img border border-[rgba(125,125,125,0.4)] pt-[calc(53.20%_+_25px)] bg-cover bg-no-repeat bg-center rounded-[12px]"
           style={{
             backgroundImage: `url(${article?.imageUrl || 'https://dummyimage.com/600x400/cccccc/ffffff'})`,
           }}

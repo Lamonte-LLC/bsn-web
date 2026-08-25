@@ -2,8 +2,8 @@ import { getClient } from '@/apollo-client';
 import { LATEST_NEWS } from '@/graphql/news';
 import type { NewsType } from '@/news/types';
 
-/** Noticias para home: una sola query sirve hero (1) + sidebar (5). */
-export const HOME_LATEST_NEWS_COUNT = 6;
+/** Noticias para home: una sola query sirve hero (1) + sidebar (6). */
+export const HOME_LATEST_NEWS_COUNT = 7;
 
 type LatestNewsResponse = {
   news: {
