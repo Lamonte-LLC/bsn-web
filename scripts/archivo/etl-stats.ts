@@ -739,6 +739,7 @@ for (const year of seasonYears) {
     phaseLabels: [...new Set(yrows.map((r) => r.line.phaseLabel))],
     leaders,
     rosters,
+    results: null,
   };
   writeJson(`seasons/${year}.json`, season);
 }
@@ -827,6 +828,7 @@ for (const f of franchises) {
       .sort((a, b) => b.year - a.year),
     leaders: { pts: leaderFor('pts'), reb: leaderFor('reb'), ast: leaderFor('ast') },
     players,
+    seasonRecords: [],
   };
   writeJson(`franchises/${f.slug}.json`, file);
 }

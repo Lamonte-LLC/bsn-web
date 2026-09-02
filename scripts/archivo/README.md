@@ -10,9 +10,28 @@ Node 22+ (usa `--experimental-strip-types`, sin dependencias nuevas):
 curl -sL "https://project-alzl7.vercel.app/bsn_data.js" -o scripts/archivo/raw/bsn_data.js   # solo si cambió la fuente
 node --experimental-strip-types scripts/archivo/extract-raw.ts   # bsn_data.js -> raw/enc.json, careers.json, season-logs.json
 node --experimental-strip-types scripts/archivo/etl-stats.ts     # raw/ + data/ -> data/archivo/**
+node --experimental-strip-types scripts/archivo/etl-results.ts   # GraphQL de BSN + FPO -> results en seasons/, seasonRecords en franchises/
 ```
 
-`etl-stats.ts` imprime una validación al final (conteos esperados, Carlos Arroyo 2019, campeones y MVPs sin resolver, stats no registradas por temporada). Revisar antes de commitear la salida.
+El orden importa: `etl-stats.ts` regenera `seasons/` desde cero y `etl-results.ts` escribe dentro de esos archivos. `etl-results.ts --from-cache` usa las respuestas guardadas en `raw/graphql/` en vez de pegarle al API (usa `BSN_GRAPHQL_URI` de `.env`).
+
+Ambos imprimen una validación al final. Revisar antes de commitear la salida.
+
+## Resultados: real vs FPO
+
+El GraphQL de BSN solo conoce las temporadas 2025 y 2026. `etl-results.ts` llena `season.results` así:
+
+| Temporada | Standings | Juegos | Series de playoffs | Rosters | Stats de jugadores |
+|---|---|---|---|---|---|
+| 2026 | real | real (246) | real (7) | real | real |
+| 2025 | real | **FPO** (solo 2 juegos reales de All-Star) | **FPO** | real | real |
+| 2015 a 2024 | **FPO** | **FPO** | **FPO** | ninguno | ninguno |
+
+Cada bloque lleva su bandera en `results.fpo.{standings,games,series,rosters,playerStats}`; el UI debe marcar visualmente lo que sea FPO. Los FPO son deterministas (semilla por año), usan la lista real de equipos de cada temporada, el campeón real gana la final con el marcador real de `champions.json`, y en 2025 los juegos dummy se ajustan al récord y las posiciones reales. Los ids FPO empiezan con `fpo-`.
+
+Los jugadores de rosters y stats de GraphQL se enlazan al perfil del archivo (`playerId`) solo cuando el nombre cruza con exactamente un jugador de `players.json`; los importados recientes no tienen carrera en bsn_data y quedan con `playerId: null`.
+
+`seasons/2026.json` lo crea `etl-results.ts` (no existe en bsn_data ni en champions.json). El campeón 2026 queda null hasta que el backend marque la final como completada.
 
 ## Entradas curadas (`scripts/archivo/data/`)
 

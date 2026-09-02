@@ -1,0 +1,26 @@
+[
+  {
+    "providerId": "56485ec1-73ff-11f1-93ba-2384e3bab733",
+    "name": "Playoffs 2026",
+    "year": 2026,
+    "startDate": "2026-07-09",
+    "endDate": null,
+    "isPlayoffs": true
+  },
+  {
+    "providerId": "9f53cf45-10c4-11f1-809a-553215bd4b86",
+    "name": "BSN 2026",
+    "year": 2026,
+    "startDate": "2026-03-19",
+    "endDate": "2026-08-31",
+    "isPlayoffs": false
+  },
+  {
+    "providerId": "ea3e0eb6-ca02-11f0-ab93-1765d67ca5cb",
+    "name": "BSN 2025",
+    "year": 2025,
+    "startDate": "2025-03-15",
+    "endDate": "2025-11-27",
+    "isPlayoffs": false
+  }
+]

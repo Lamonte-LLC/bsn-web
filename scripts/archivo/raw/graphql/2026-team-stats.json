@@ -1,0 +1,170 @@
+[
+  {
+    "team": {
+      "code": "CAG",
+      "name": "Criollos de Caguas",
+      "group": "A"
+    },
+    "stats": {
+      "won": 22,
+      "lost": 12,
+      "position": 2,
+      "positionInGroup": 2,
+      "pointsAverage": 100.62
+    }
+  },
+  {
+    "team": {
+      "code": "SCE",
+      "name": "Cangrejeros de Santurce",
+      "group": "A"
+    },
+    "stats": {
+      "won": 19,
+      "lost": 15,
+      "position": 3,
+      "positionInGroup": 3,
+      "pointsAverage": 94.97
+    }
+  },
+  {
+    "team": {
+      "code": "ARE",
+      "name": "Capitanes de Arecibo",
+      "group": "B"
+    },
+    "stats": {
+      "won": 18,
+      "lost": 16,
+      "position": 2,
+      "positionInGroup": 2,
+      "pointsAverage": 94.26
+    }
+  },
+  {
+    "team": {
+      "code": "MAN",
+      "name": "Osos de Manati",
+      "group": "A"
+    },
+    "stats": {
+      "won": 15,
+      "lost": 19,
+      "position": 5,
+      "positionInGroup": 5,
+      "pointsAverage": 92.62
+    }
+  },
+  {
+    "team": {
+      "code": "PON",
+      "name": "Leones de Ponce",
+      "group": "B"
+    },
+    "stats": {
+      "won": 15,
+      "lost": 19,
+      "position": 4,
+      "positionInGroup": 4,
+      "pointsAverage": 92.41
+    }
+  },
+  {
+    "team": {
+      "code": "CAR",
+      "name": "Gigantes de Carolina/Canóvanas",
+      "group": "A"
+    },
+    "stats": {
+      "won": 18,
+      "lost": 16,
+      "position": 4,
+      "positionInGroup": 4,
+      "pointsAverage": 92.35
+    }
+  },
+  {
+    "team": {
+      "code": "GBO",
+      "name": "Mets de Guaynabo",
+      "group": "A"
+    },
+    "stats": {
+      "won": 14,
+      "lost": 20,
+      "position": 6,
+      "positionInGroup": 6,
+      "pointsAverage": 91.18
+    }
+  },
+  {
+    "team": {
+      "code": "BAY",
+      "name": "Vaqueros de Bayamón",
+      "group": "A"
+    },
+    "stats": {
+      "won": 22,
+      "lost": 12,
+      "position": 1,
+      "positionInGroup": 1,
+      "pointsAverage": 91
+    }
+  },
+  {
+    "team": {
+      "code": "MAY",
+      "name": "Indios de Mayagüez",
+      "group": "B"
+    },
+    "stats": {
+      "won": 13,
+      "lost": 21,
+      "position": 5,
+      "positionInGroup": 5,
+      "pointsAverage": 90.18
+    }
+  },
+  {
+    "team": {
+      "code": "QUE",
+      "name": "Piratas de Quebradillas",
+      "group": "B"
+    },
+    "stats": {
+      "won": 10,
+      "lost": 24,
+      "position": 6,
+      "positionInGroup": 6,
+      "pointsAverage": 89.76
+    }
+  },
+  {
+    "team": {
+      "code": "SGE",
+      "name": "Atléticos de San Germán",
+      "group": "B"
+    },
+    "stats": {
+      "won": 21,
+      "lost": 13,
+      "position": 1,
+      "positionInGroup": 1,
+      "pointsAverage": 89.62
+    }
+  },
+  {
+    "team": {
+      "code": "AGU",
+      "name": "Santeros de Aguada",
+      "group": "B"
+    },
+    "stats": {
+      "won": 17,
+      "lost": 17,
+      "position": 3,
+      "positionInGroup": 3,
+      "pointsAverage": 89.59
+    }
+  }
+]

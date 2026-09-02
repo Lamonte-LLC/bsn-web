@@ -175,6 +175,125 @@ export interface SeasonRoster {
   players: RosterEntry[];
 }
 
+// ---- Season results (standings, games, playoffs). Real from the BSN GraphQL backend where it exists,
+// ---- otherwise FPO placeholder data flagged with `fpo: true` so the UI can badge it.
+
+export type ResultsSource = 'bsn-graphql' | 'fpo';
+
+export interface SeasonStanding {
+  franchiseSlug: string | null;
+  code: string;
+  name: string;
+  group: string | null;
+  position: number | null;
+  positionInGroup: number | null;
+  won: number;
+  lost: number;
+  pointsAverage: number | null;
+}
+
+export interface GameTeam {
+  franchiseSlug: string | null;
+  code: string;
+  name: string;
+  score: number | null;
+}
+
+export interface SeasonGame {
+  id: string;
+  /** ISO 8601 with offset, as delivered by the backend. */
+  date: string;
+  phase: 'regular' | 'playoffs' | 'other';
+  status: string;
+  home: GameTeam;
+  visitor: GameTeam;
+  venue: string | null;
+  seriesId: string | null;
+  gameNumber: number | null;
+  isFinals: boolean;
+}
+
+export interface SeriesCompetitor {
+  franchiseSlug: string | null;
+  code: string;
+  won: number;
+  lost: number;
+  seed: number | null;
+}
+
+export interface SeasonSeries {
+  id: string;
+  name: string;
+  round: number;
+  group: string | null;
+  status: string;
+  startDate: string | null;
+  endDate: string | null;
+  competitors: SeriesCompetitor[];
+  winnerSlug: string | null;
+}
+
+export interface LiveRosterEntry {
+  franchiseSlug: string | null;
+  code: string;
+  playerProviderId: string;
+  /** bsn_data player id when the name matched exactly one archive player, else null. */
+  playerId: string | null;
+  slug: string | null;
+  name: string;
+  position: string | null;
+  jerseyNumber: string | null;
+  nationality: string | null;
+  dob: string | null;
+  height: number | null;
+  avatarUrl: string | null;
+}
+
+export interface LivePlayerStats {
+  franchiseSlug: string | null;
+  code: string;
+  playerProviderId: string;
+  playerId: string | null;
+  slug: string | null;
+  name: string;
+  g: number;
+  minutesAvg: number | null;
+  ppg: number | null;
+  rpg: number | null;
+  apg: number | null;
+  spg: number | null;
+  bpg: number | null;
+  topg: number | null;
+  fgPct: number | null;
+  fg3Pct: number | null;
+  ftPct: number | null;
+  pts: number | null;
+  reb: number | null;
+  ast: number | null;
+}
+
+export interface ResultsFpoFlags {
+  standings: boolean;
+  games: boolean;
+  series: boolean;
+  rosters: boolean;
+  playerStats: boolean;
+}
+
+export interface SeasonResults {
+  source: ResultsSource;
+  /** True on any block that is placeholder data, never real. */
+  fpo: ResultsFpoFlags;
+  seasonProviderId: string | null;
+  fetchedAt: string | null;
+  standings: SeasonStanding[];
+  games: SeasonGame[];
+  series: SeasonSeries[];
+  rosters: LiveRosterEntry[];
+  playerStats: LivePlayerStats[];
+  playerStatsPlayoffs: LivePlayerStats[];
+}
+
 export interface SeasonFile {
   year: number;
   champion: Champion | null;
@@ -183,6 +302,8 @@ export interface SeasonFile {
   phaseLabels: string[];
   leaders: Record<LeaderCategory, LeaderEntry[]> | null;
   rosters: SeasonRoster[];
+  /** Filled by etl-results.ts; null before it runs and for seasons with neither real nor FPO results. */
+  results: SeasonResults | null;
 }
 
 export type SeasonRecordKey = 'ppg' | 'rpg' | 'apg' | 'spg' | 'bpg' | 'pts';
@@ -246,6 +367,15 @@ export interface FranchisePlayer {
   seasons: number;
 }
 
+export interface FranchiseSeasonRecord {
+  year: number;
+  won: number;
+  lost: number;
+  position: number | null;
+  group: string | null;
+  fpo: boolean;
+}
+
 export interface FranchiseFile extends Franchise {
   titles: FranchiseTitle[];
   mvps: FranchiseMvp[];
@@ -255,4 +385,6 @@ export interface FranchiseFile extends Franchise {
     ast: FranchiseLeaderEntry[];
   };
   players: FranchisePlayer[];
+  /** Filled by etl-results.ts (2015 onward). */
+  seasonRecords: FranchiseSeasonRecord[];
 }
