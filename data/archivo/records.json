@@ -1,0 +1,1524 @@
+{
+  "minGames": 10,
+  "season": {
+    "ppg": [
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "year": 1987,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 30,
+        "value": 35.5
+      },
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "year": 1982,
+        "franchiseSlug": "polluelos",
+        "teamName": "Polluelos",
+        "g": 33,
+        "value": 34.2
+      },
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "year": 1980,
+        "franchiseSlug": "polluelos",
+        "teamName": "Polluelos",
+        "g": 26,
+        "value": 34
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "year": 1985,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 33,
+        "value": 33.5
+      },
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "year": 1981,
+        "franchiseSlug": "polluelos",
+        "teamName": "Polluelos",
+        "g": 31,
+        "value": 33.4
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "year": 1979,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 30,
+        "value": 32.9
+      },
+      {
+        "playerId": "790",
+        "slug": "george-torres-rivera",
+        "name": "George Torres Rivera",
+        "year": 1979,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 30,
+        "value": 32.9
+      },
+      {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario 'Quijote' Morales Micheo",
+        "year": 1980,
+        "franchiseSlug": "mets",
+        "teamName": "Mets",
+        "g": 30,
+        "value": 32.9
+      },
+      {
+        "playerId": "508",
+        "slug": "edgar-leon-cruz",
+        "name": "Edgar Leon Cruz",
+        "year": 1990,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 30,
+        "value": 31.8
+      },
+      {
+        "playerId": "553",
+        "slug": "edwin-pellot-rosa",
+        "name": "Edwin Pellot Rosa",
+        "year": 1991,
+        "franchiseSlug": "gallitos",
+        "teamName": "Gallitos",
+        "g": 30,
+        "value": 31.5
+      }
+    ],
+    "rpg": [
+      {
+        "playerId": "985",
+        "slug": "ja-ja-richards-boulware",
+        "name": "Ja Ja Richards Boulware",
+        "year": 2005,
+        "franchiseSlug": "gallitos",
+        "teamName": "Gallitos",
+        "g": 10,
+        "value": 23.6
+      },
+      {
+        "playerId": "2204",
+        "slug": "thomas-burrough-austin",
+        "name": "Thomas Burrough Austin",
+        "year": 2005,
+        "franchiseSlug": "maratonistas",
+        "teamName": "Maratonistas",
+        "g": 10,
+        "value": 23
+      },
+      {
+        "playerId": "1429",
+        "slug": "lee-benson",
+        "name": "Lee Benson",
+        "year": 2008,
+        "franchiseSlug": "vaqueros",
+        "teamName": "Vaqueros",
+        "g": 29,
+        "value": 14.2
+      },
+      {
+        "playerId": "13436",
+        "slug": "hassan-whiteside",
+        "name": "Hassan Whiteside",
+        "year": 2023,
+        "franchiseSlug": "piratas",
+        "teamName": "Piratas",
+        "g": 16,
+        "value": 14.2
+      },
+      {
+        "playerId": "1562",
+        "slug": "manuel-antonio-narvaez-rivera",
+        "name": "Manuel Antonio Narvaez Rivera",
+        "year": 2007,
+        "franchiseSlug": "maratonistas",
+        "teamName": "Maratonistas",
+        "g": 29,
+        "value": 13.9
+      },
+      {
+        "playerId": "1429",
+        "slug": "lee-benson",
+        "name": "Lee Benson",
+        "year": 2006,
+        "franchiseSlug": "capitanes",
+        "teamName": "Capitanes",
+        "g": 10,
+        "value": 13.6
+      },
+      {
+        "playerId": "13406",
+        "slug": "cheick-diallo",
+        "name": "Cheick Diallo",
+        "year": 2022,
+        "franchiseSlug": "cangrejeros",
+        "teamName": "Cangrejeros",
+        "g": 22,
+        "value": 13.5
+      },
+      {
+        "playerId": "2622",
+        "slug": "shaun-pruitt",
+        "name": "Shaun Pruitt",
+        "year": 2010,
+        "franchiseSlug": "gallitos",
+        "teamName": "Gallitos",
+        "g": 22,
+        "value": 13.5
+      },
+      {
+        "playerId": "968",
+        "slug": "jack-michael-martinez-ramirez",
+        "name": "Jack Michael Martinez Ramirez",
+        "year": 2005,
+        "franchiseSlug": "atleticos",
+        "teamName": "Atleticos",
+        "g": 32,
+        "value": 12.8
+      },
+      {
+        "playerId": "2697",
+        "slug": "mike-harris",
+        "name": "Mike Harris",
+        "year": 2011,
+        "franchiseSlug": "atleticos",
+        "teamName": "Atleticos",
+        "g": 24,
+        "value": 12.7
+      }
+    ],
+    "apg": [
+      {
+        "playerId": "273",
+        "slug": "carlos-arroyo-bermudez",
+        "name": "Carlos Arroyo Bermúdez",
+        "year": 2019,
+        "franchiseSlug": "leones",
+        "teamName": "Leones",
+        "g": 19,
+        "value": 10.6
+      },
+      {
+        "playerId": "1774",
+        "slug": "pablo-alicea-rodriguez",
+        "name": "Pablo Alicea Rodriguez",
+        "year": 1990,
+        "franchiseSlug": "gigantes",
+        "teamName": "Gigantes",
+        "g": 30,
+        "value": 10.4
+      },
+      {
+        "playerId": "13345",
+        "slug": "kalin-lucas",
+        "name": "Kalin Lucas",
+        "year": 2021,
+        "franchiseSlug": "gigantes",
+        "teamName": "Gigantes",
+        "g": 12,
+        "value": 9.3
+      },
+      {
+        "playerId": "1048",
+        "slug": "jimmy-ferrer-fernandez",
+        "name": "Jimmy Ferrer Fernandez",
+        "year": 1991,
+        "franchiseSlug": "piratas",
+        "teamName": "Piratas",
+        "g": 30,
+        "value": 9.2
+      },
+      {
+        "playerId": "2074",
+        "slug": "roberto-jose-bobby-joe-hatton-negron",
+        "name": "Roberto Jose 'Bobby Joe' Hatton Negron",
+        "year": 2007,
+        "franchiseSlug": "leones",
+        "teamName": "Leones",
+        "g": 24,
+        "value": 9.2
+      },
+      {
+        "playerId": "1011",
+        "slug": "javier-antonio-tonito-colon-rodriguez",
+        "name": "Javier Antonio 'Toñito' Colon Rodriguez",
+        "year": 1990,
+        "franchiseSlug": "leones",
+        "teamName": "Leones",
+        "g": 24,
+        "value": 9
+      },
+      {
+        "playerId": "13019",
+        "slug": "cedric-jackson",
+        "name": "Cedric Jackson",
+        "year": 2015,
+        "franchiseSlug": "mets",
+        "teamName": "Mets",
+        "g": 13,
+        "value": 8.8
+      },
+      {
+        "playerId": "2586",
+        "slug": "marcus-williams",
+        "name": "Marcus Williams",
+        "year": 2009,
+        "franchiseSlug": "piratas",
+        "teamName": "Piratas",
+        "g": 30,
+        "value": 8.6
+      },
+      {
+        "playerId": "13175",
+        "slug": "angel-daniel-rodriguez-tricoche",
+        "name": "Angel Daniel Rodriguez Tricoche",
+        "year": 2021,
+        "franchiseSlug": "vaqueros",
+        "teamName": "Vaqueros",
+        "g": 24,
+        "value": 8.4
+      },
+      {
+        "playerId": "273",
+        "slug": "carlos-arroyo-bermudez",
+        "name": "Carlos Arroyo Bermúdez",
+        "year": 2002,
+        "franchiseSlug": "cangrejeros",
+        "teamName": "Cangrejeros",
+        "g": 10,
+        "value": 8.4
+      }
+    ],
+    "spg": [
+      {
+        "playerId": "120",
+        "slug": "angel-de-jesus-velazquez",
+        "name": "Angel De Jesus Velazquez",
+        "year": 2001,
+        "franchiseSlug": "brujos",
+        "teamName": "Brujos",
+        "g": 12,
+        "value": 3
+      },
+      {
+        "playerId": "160",
+        "slug": "anthony-bonner-evans",
+        "name": "Anthony Bonner Evans",
+        "year": 2002,
+        "franchiseSlug": "leones",
+        "teamName": "Leones",
+        "g": 18,
+        "value": 2.9
+      },
+      {
+        "playerId": "13175",
+        "slug": "angel-daniel-rodriguez-tricoche",
+        "name": "Angel Daniel Rodriguez Tricoche",
+        "year": 2018,
+        "franchiseSlug": "vaqueros",
+        "teamName": "Vaqueros",
+        "g": 13,
+        "value": 2.9
+      },
+      {
+        "playerId": "509",
+        "slug": "edgar-padilla-rivera",
+        "name": "Edgar Padilla Rivera",
+        "year": 2000,
+        "franchiseSlug": "mets",
+        "teamName": "Mets",
+        "g": 12,
+        "value": 2.9
+      },
+      {
+        "playerId": "509",
+        "slug": "edgar-padilla-rivera",
+        "name": "Edgar Padilla Rivera",
+        "year": 2003,
+        "franchiseSlug": "cangrejeros",
+        "teamName": "Cangrejeros",
+        "g": 29,
+        "value": 2.5
+      },
+      {
+        "playerId": "502",
+        "slug": "eddin-santiago-cordero",
+        "name": "Eddin Santiago Cordero",
+        "year": 2002,
+        "franchiseSlug": "vaqueros",
+        "teamName": "Vaqueros",
+        "g": 27,
+        "value": 2.4
+      },
+      {
+        "playerId": "2356",
+        "slug": "kevin-hamilton-rivera",
+        "name": "Kevin Hamilton Rivera",
+        "year": 2014,
+        "franchiseSlug": "indios",
+        "teamName": "Indios",
+        "g": 19,
+        "value": 2.4
+      },
+      {
+        "playerId": "70",
+        "slug": "alonso-goldston",
+        "name": "Alonso Goldston",
+        "year": 2000,
+        "franchiseSlug": "capitanes",
+        "teamName": "Capitanes",
+        "g": 13,
+        "value": 2.4
+      },
+      {
+        "playerId": "502",
+        "slug": "eddin-santiago-cordero",
+        "name": "Eddin Santiago Cordero",
+        "year": 2005,
+        "franchiseSlug": "vaqueros",
+        "teamName": "Vaqueros",
+        "g": 12,
+        "value": 2.4
+      },
+      {
+        "playerId": "12931",
+        "slug": "anthony-johnson",
+        "name": "Anthony Johnson",
+        "year": 2018,
+        "franchiseSlug": "atleticos",
+        "teamName": "Atleticos",
+        "g": 10,
+        "value": 2.4
+      }
+    ],
+    "bpg": [
+      {
+        "playerId": "985",
+        "slug": "ja-ja-richards-boulware",
+        "name": "Ja Ja Richards Boulware",
+        "year": 2005,
+        "franchiseSlug": "gallitos",
+        "teamName": "Gallitos",
+        "g": 10,
+        "value": 4
+      },
+      {
+        "playerId": "2424",
+        "slug": "robert-traylor",
+        "name": "Robert Traylor",
+        "year": 2010,
+        "franchiseSlug": "vaqueros",
+        "teamName": "Vaqueros",
+        "g": 27,
+        "value": 3.2
+      },
+      {
+        "playerId": "2576",
+        "slug": "kurt-looby",
+        "name": "Kurt Looby",
+        "year": 2009,
+        "franchiseSlug": "caciques",
+        "teamName": "Caciques",
+        "g": 22,
+        "value": 2.8
+      },
+      {
+        "playerId": "2424",
+        "slug": "robert-traylor",
+        "name": "Robert Traylor",
+        "year": 2007,
+        "franchiseSlug": "cangrejeros",
+        "teamName": "Cangrejeros",
+        "g": 12,
+        "value": 2.8
+      },
+      {
+        "playerId": "2615",
+        "slug": "kleon-penn",
+        "name": "Kleon Penn",
+        "year": 2010,
+        "franchiseSlug": "caciques",
+        "teamName": "Caciques",
+        "g": 29,
+        "value": 2.7
+      },
+      {
+        "playerId": "1025",
+        "slug": "jeffrion-aubry-flores",
+        "name": "Jeffrion Aubry Flores",
+        "year": 2007,
+        "franchiseSlug": "leones",
+        "teamName": "Leones",
+        "g": 27,
+        "value": 2.7
+      },
+      {
+        "playerId": "2016",
+        "slug": "richard-lugo",
+        "name": "Richard Lugo",
+        "year": 2008,
+        "franchiseSlug": "atleticos",
+        "teamName": "Atleticos",
+        "g": 18,
+        "value": 2.7
+      },
+      {
+        "playerId": "13436",
+        "slug": "hassan-whiteside",
+        "name": "Hassan Whiteside",
+        "year": 2023,
+        "franchiseSlug": "piratas",
+        "teamName": "Piratas",
+        "g": 16,
+        "value": 2.7
+      },
+      {
+        "playerId": "985",
+        "slug": "ja-ja-richards-boulware",
+        "name": "Ja Ja Richards Boulware",
+        "year": 2004,
+        "franchiseSlug": "maratonistas",
+        "teamName": "Maratonistas",
+        "g": 30,
+        "value": 2.6
+      },
+      {
+        "playerId": "2615",
+        "slug": "kleon-penn",
+        "name": "Kleon Penn",
+        "year": 2011,
+        "franchiseSlug": "caciques",
+        "teamName": "Caciques",
+        "g": 30,
+        "value": 2.6
+      }
+    ],
+    "pts": [
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "year": 1982,
+        "franchiseSlug": "polluelos",
+        "teamName": "Polluelos",
+        "g": 33,
+        "value": 1127
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "year": 1985,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 33,
+        "value": 1107
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "year": 1987,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 30,
+        "value": 1065
+      },
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "year": 1981,
+        "franchiseSlug": "polluelos",
+        "teamName": "Polluelos",
+        "g": 31,
+        "value": 1035
+      },
+      {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario 'Quijote' Morales Micheo",
+        "year": 1982,
+        "franchiseSlug": "mets",
+        "teamName": "Mets",
+        "g": 33,
+        "value": 1029
+      },
+      {
+        "playerId": "1046",
+        "slug": "jim-maldonado-chabot",
+        "name": "Jim Maldonado Chabot",
+        "year": 1983,
+        "franchiseSlug": "capitanes",
+        "teamName": "Capitanes",
+        "g": 33,
+        "value": 1010
+      },
+      {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario 'Quijote' Morales Micheo",
+        "year": 1980,
+        "franchiseSlug": "mets",
+        "teamName": "Mets",
+        "g": 30,
+        "value": 988
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "year": 1979,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 30,
+        "value": 987
+      },
+      {
+        "playerId": "790",
+        "slug": "george-torres-rivera",
+        "name": "George Torres Rivera",
+        "year": 1979,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 30,
+        "value": 987
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "year": 1986,
+        "franchiseSlug": "cariduros",
+        "teamName": "Cariduros",
+        "g": 33,
+        "value": 983
+      }
+    ]
+  },
+  "career": {
+    "pts": [
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "fy": 1975,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "cariduros",
+          "mets",
+          "vaqueros",
+          "gallitos",
+          "cangrejeros",
+          "gigantes"
+        ],
+        "value": 15863
+      },
+      {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario 'Quijote' Morales Micheo",
+        "fy": 1975,
+        "ly": 1998,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "mets"
+        ],
+        "value": 15293
+      },
+      {
+        "playerId": "1575",
+        "slug": "mario-alberto-butler-graham",
+        "name": "Mario Alberto Butler Graham",
+        "fy": 1980,
+        "ly": 2008,
+        "franchiseSlugs": [
+          "titanes",
+          "cangrejeros",
+          "gigantes",
+          "capitanes"
+        ],
+        "value": 12267
+      },
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "fy": 1980,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "polluelos",
+          "capitanes",
+          "avancinos",
+          "maratonistas"
+        ],
+        "value": 12096
+      },
+      {
+        "playerId": "1962",
+        "slug": "raymond-dalmau-perez",
+        "name": "Raymond Dalmau Perez",
+        "fy": 1966,
+        "ly": 1985,
+        "franchiseSlugs": [
+          "piratas"
+        ],
+        "value": 11592
+      },
+      {
+        "playerId": "2113",
+        "slug": "ruben-rodriguez-leon",
+        "name": "Ruben Rodriguez Leon",
+        "fy": 1969,
+        "ly": 1991,
+        "franchiseSlugs": [
+          "vaqueros"
+        ],
+        "value": 11549
+      },
+      {
+        "playerId": "2076",
+        "slug": "roberto-bobby-rios-osorio",
+        "name": "Roberto 'Bobby' Rios Osorio",
+        "fy": 1978,
+        "ly": 2000,
+        "franchiseSlugs": [
+          "vaqueros",
+          "leones",
+          "atleticos",
+          "brujos"
+        ],
+        "value": 11312
+      },
+      {
+        "playerId": "119",
+        "slug": "angel-cachorro-santiago-del-valle",
+        "name": "Angel 'Cachorro' Santiago Del Valle",
+        "fy": 1973,
+        "ly": 1996,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "mets",
+          "cardenales",
+          "leones",
+          "polluelos",
+          "brujos",
+          "capitanes"
+        ],
+        "value": 11287
+      },
+      {
+        "playerId": "1157",
+        "slug": "jose-willie-quinonez-figueroa",
+        "name": "Jose 'Willie' Quiñonez Figueroa",
+        "fy": 1976,
+        "ly": 1995,
+        "franchiseSlugs": [
+          "criollos",
+          "maratonistas",
+          "gigantes",
+          "vaqueros",
+          "titanes"
+        ],
+        "value": 11012
+      },
+      {
+        "playerId": "574",
+        "slug": "elias-larry-ayuso-carrillo",
+        "name": "Elias 'Larry' Ayuso Carrillo",
+        "fy": 1996,
+        "ly": 2020,
+        "franchiseSlugs": [
+          "piratas",
+          "atleticos",
+          "capitanes",
+          "cangrejeros",
+          "mets",
+          "vaqueros",
+          "cariduros",
+          "brujos"
+        ],
+        "value": 10747
+      }
+    ],
+    "reb": [
+      {
+        "playerId": "1836",
+        "slug": "peter-john-ramos-fuentes",
+        "name": "Peter John Ramos Fuentes",
+        "fy": 2001,
+        "ly": 2020,
+        "franchiseSlugs": [
+          "criollos",
+          "piratas",
+          "capitanes",
+          "brujos",
+          "vaqueros",
+          "leones"
+        ],
+        "value": 3612
+      },
+      {
+        "playerId": "37",
+        "slug": "alejandro-bimbo-carmona-sanchez",
+        "name": "Alejandro 'Bimbo' Carmona Sanchez",
+        "fy": 2001,
+        "ly": 2023,
+        "franchiseSlugs": [
+          "indios",
+          "vaqueros",
+          "gigantes",
+          "caciques",
+          "brujos",
+          "atenienses",
+          "piratas"
+        ],
+        "value": 2645
+      },
+      {
+        "playerId": "1025",
+        "slug": "jeffrion-aubry-flores",
+        "name": "Jeffrion Aubry Flores",
+        "fy": 1998,
+        "ly": 2016,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "leones",
+          "capitanes",
+          "indios"
+        ],
+        "value": 2579
+      },
+      {
+        "playerId": "2355",
+        "slug": "javier-mojica-izquierdo",
+        "name": "Javier Mojica Izquierdo",
+        "fy": 2007,
+        "ly": 2023,
+        "franchiseSlugs": [
+          "cariduros",
+          "vaqueros",
+          "cangrejeros",
+          "piratas"
+        ],
+        "value": 2304
+      },
+      {
+        "playerId": "151",
+        "slug": "angelo-reyes-canales",
+        "name": "Angelo Reyes Canales",
+        "fy": 2002,
+        "ly": 2016,
+        "franchiseSlugs": [
+          "titanes",
+          "criollos",
+          "caciques",
+          "gigantes",
+          "capitanes",
+          "cangrejeros",
+          "piratas",
+          "brujos",
+          "atenienses",
+          "leones"
+        ],
+        "value": 2227
+      },
+      {
+        "playerId": "135",
+        "slug": "angel-buster-figueroa-sepulveda",
+        "name": "Angel 'Buster' Figueroa Sepulveda",
+        "fy": 1999,
+        "ly": 2016,
+        "franchiseSlugs": [
+          "mets",
+          "capitanes",
+          "piratas",
+          "brujos",
+          "indios",
+          "caciques"
+        ],
+        "value": 2083
+      },
+      {
+        "playerId": "2615",
+        "slug": "kleon-penn",
+        "name": "Kleon Penn",
+        "fy": 2010,
+        "ly": 2023,
+        "franchiseSlugs": [
+          "caciques",
+          "vaqueros",
+          "brujos",
+          "cangrejeros"
+        ],
+        "value": 1975
+      },
+      {
+        "playerId": "1562",
+        "slug": "manuel-antonio-narvaez-rivera",
+        "name": "Manuel Antonio Narvaez Rivera",
+        "fy": 2000,
+        "ly": 2015,
+        "franchiseSlugs": [
+          "vaqueros",
+          "titanes",
+          "gallitos",
+          "leones",
+          "maratonistas",
+          "cangrejeros",
+          "mets"
+        ],
+        "value": 1974
+      },
+      {
+        "playerId": "2200",
+        "slug": "teofilo-teo-cruz-downs",
+        "name": "Teofilo 'Teo' Cruz Downs",
+        "fy": 1957,
+        "ly": 1982,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "indios",
+          "mets",
+          "cardenales"
+        ],
+        "value": 1937
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "fy": 1975,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "cariduros",
+          "mets",
+          "vaqueros",
+          "gallitos",
+          "cangrejeros",
+          "gigantes"
+        ],
+        "value": 1873
+      }
+    ],
+    "ast": [
+      {
+        "playerId": "989",
+        "slug": "james-carter-gaudino",
+        "name": "James Carter Gaudino",
+        "fy": 1987,
+        "ly": 2006,
+        "franchiseSlugs": [
+          "brujos",
+          "indios",
+          "criollos",
+          "capitanes",
+          "maratonistas"
+        ],
+        "value": 3025
+      },
+      {
+        "playerId": "382",
+        "slug": "christian-dalmau-santana",
+        "name": "Christian Dalmau Santana",
+        "fy": 1992,
+        "ly": 2017,
+        "franchiseSlugs": [
+          "piratas",
+          "maratonistas",
+          "avancinos",
+          "atleticos",
+          "vaqueros",
+          "mets",
+          "cangrejeros"
+        ],
+        "value": 2972
+      },
+      {
+        "playerId": "1011",
+        "slug": "javier-antonio-tonito-colon-rodriguez",
+        "name": "Javier Antonio 'Toñito' Colon Rodriguez",
+        "fy": 1987,
+        "ly": 2008,
+        "franchiseSlugs": [
+          "leones"
+        ],
+        "value": 2769
+      },
+      {
+        "playerId": "1774",
+        "slug": "pablo-alicea-rodriguez",
+        "name": "Pablo Alicea Rodriguez",
+        "fy": 1987,
+        "ly": 2006,
+        "franchiseSlugs": [
+          "vaqueros",
+          "gigantes",
+          "maratonistas",
+          "piratas",
+          "mets",
+          "leones",
+          "capitanes",
+          "cangrejeros",
+          "titanes",
+          "gallitos"
+        ],
+        "value": 2762
+      },
+      {
+        "playerId": "2290",
+        "slug": "wilfredo-pagan-roque",
+        "name": "Wilfredo Pagan Roque",
+        "fy": 1992,
+        "ly": 2017,
+        "franchiseSlugs": [
+          "mets",
+          "titanes",
+          "vaqueros",
+          "brujos",
+          "leones",
+          "capitanes",
+          "cangrejeros",
+          "atenienses"
+        ],
+        "value": 2444
+      },
+      {
+        "playerId": "660",
+        "slug": "federico-fico-lopez-camacho",
+        "name": "Federico \"Fico\" Lopez Camacho",
+        "fy": 1981,
+        "ly": 1997,
+        "franchiseSlugs": [
+          "mets"
+        ],
+        "value": 2440
+      },
+      {
+        "playerId": "1970",
+        "slug": "raymond-richie-dalmau-santana",
+        "name": "Raymond 'Richie' Dalmau Santana",
+        "fy": 1990,
+        "ly": 2009,
+        "franchiseSlugs": [
+          "capitanes",
+          "piratas",
+          "indios",
+          "cangrejeros"
+        ],
+        "value": 2395
+      },
+      {
+        "playerId": "2074",
+        "slug": "roberto-jose-bobby-joe-hatton-negron",
+        "name": "Roberto Jose 'Bobby Joe' Hatton Negron",
+        "fy": 1994,
+        "ly": 2012,
+        "franchiseSlugs": [
+          "atleticos",
+          "leones",
+          "capitanes",
+          "vaqueros",
+          "mets"
+        ],
+        "value": 2345
+      },
+      {
+        "playerId": "2076",
+        "slug": "roberto-bobby-rios-osorio",
+        "name": "Roberto 'Bobby' Rios Osorio",
+        "fy": 1978,
+        "ly": 2000,
+        "franchiseSlugs": [
+          "vaqueros",
+          "leones",
+          "atleticos",
+          "brujos"
+        ],
+        "value": 2315
+      },
+      {
+        "playerId": "704",
+        "slug": "filiberto-rivera-isaac",
+        "name": "Filiberto Rivera Isaac",
+        "fy": 2000,
+        "ly": 2023,
+        "franchiseSlugs": [
+          "maratonistas",
+          "gigantes",
+          "gallitos",
+          "atleticos",
+          "caciques",
+          "vaqueros",
+          "indios",
+          "cariduros",
+          "santeros",
+          "cangrejeros"
+        ],
+        "value": 2295
+      }
+    ],
+    "g": [
+      {
+        "playerId": "1575",
+        "slug": "mario-alberto-butler-graham",
+        "name": "Mario Alberto Butler Graham",
+        "fy": 1980,
+        "ly": 2008,
+        "franchiseSlugs": [
+          "titanes",
+          "cangrejeros",
+          "gigantes",
+          "capitanes"
+        ],
+        "value": 791
+      },
+      {
+        "playerId": "2076",
+        "slug": "roberto-bobby-rios-osorio",
+        "name": "Roberto 'Bobby' Rios Osorio",
+        "fy": 1978,
+        "ly": 2000,
+        "franchiseSlugs": [
+          "vaqueros",
+          "leones",
+          "atleticos",
+          "brujos"
+        ],
+        "value": 681
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "fy": 1975,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "cariduros",
+          "mets",
+          "vaqueros",
+          "gallitos",
+          "cangrejeros",
+          "gigantes"
+        ],
+        "value": 679
+      },
+      {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario 'Quijote' Morales Micheo",
+        "fy": 1975,
+        "ly": 1998,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "mets"
+        ],
+        "value": 675
+      },
+      {
+        "playerId": "2290",
+        "slug": "wilfredo-pagan-roque",
+        "name": "Wilfredo Pagan Roque",
+        "fy": 1992,
+        "ly": 2017,
+        "franchiseSlugs": [
+          "mets",
+          "titanes",
+          "vaqueros",
+          "brujos",
+          "leones",
+          "capitanes",
+          "cangrejeros",
+          "atenienses"
+        ],
+        "value": 665
+      },
+      {
+        "playerId": "382",
+        "slug": "christian-dalmau-santana",
+        "name": "Christian Dalmau Santana",
+        "fy": 1992,
+        "ly": 2017,
+        "franchiseSlugs": [
+          "piratas",
+          "maratonistas",
+          "avancinos",
+          "atleticos",
+          "vaqueros",
+          "mets",
+          "cangrejeros"
+        ],
+        "value": 649
+      },
+      {
+        "playerId": "574",
+        "slug": "elias-larry-ayuso-carrillo",
+        "name": "Elias 'Larry' Ayuso Carrillo",
+        "fy": 1996,
+        "ly": 2020,
+        "franchiseSlugs": [
+          "piratas",
+          "atleticos",
+          "capitanes",
+          "cangrejeros",
+          "mets",
+          "vaqueros",
+          "cariduros",
+          "brujos"
+        ],
+        "value": 645
+      },
+      {
+        "playerId": "2113",
+        "slug": "ruben-rodriguez-leon",
+        "name": "Ruben Rodriguez Leon",
+        "fy": 1969,
+        "ly": 1991,
+        "franchiseSlugs": [
+          "vaqueros"
+        ],
+        "value": 631
+      },
+      {
+        "playerId": "119",
+        "slug": "angel-cachorro-santiago-del-valle",
+        "name": "Angel 'Cachorro' Santiago Del Valle",
+        "fy": 1973,
+        "ly": 1996,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "mets",
+          "cardenales",
+          "leones",
+          "polluelos",
+          "brujos",
+          "capitanes"
+        ],
+        "value": 617
+      },
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "fy": 1980,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "polluelos",
+          "capitanes",
+          "avancinos",
+          "maratonistas"
+        ],
+        "value": 603
+      }
+    ],
+    "seasons": [
+      {
+        "playerId": "1575",
+        "slug": "mario-alberto-butler-graham",
+        "name": "Mario Alberto Butler Graham",
+        "fy": 1980,
+        "ly": 2008,
+        "franchiseSlugs": [
+          "titanes",
+          "cangrejeros",
+          "gigantes",
+          "capitanes"
+        ],
+        "value": 29
+      },
+      {
+        "playerId": "2290",
+        "slug": "wilfredo-pagan-roque",
+        "name": "Wilfredo Pagan Roque",
+        "fy": 1992,
+        "ly": 2017,
+        "franchiseSlugs": [
+          "mets",
+          "titanes",
+          "vaqueros",
+          "brujos",
+          "leones",
+          "capitanes",
+          "cangrejeros",
+          "atenienses"
+        ],
+        "value": 28
+      },
+      {
+        "playerId": "193",
+        "slug": "antonio-latimer-rivera",
+        "name": "Antonio Latimer Rivera",
+        "fy": 1994,
+        "ly": 2015,
+        "franchiseSlugs": [
+          "vaqueros",
+          "maratonistas",
+          "indios",
+          "atleticos",
+          "mets",
+          "leones",
+          "gigantes",
+          "capitanes",
+          "brujos",
+          "cangrejeros"
+        ],
+        "value": 28
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "fy": 1975,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "cariduros",
+          "mets",
+          "vaqueros",
+          "gallitos",
+          "cangrejeros",
+          "gigantes"
+        ],
+        "value": 26
+      },
+      {
+        "playerId": "2200",
+        "slug": "teofilo-teo-cruz-downs",
+        "name": "Teofilo 'Teo' Cruz Downs",
+        "fy": 1957,
+        "ly": 1982,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "indios",
+          "mets",
+          "cardenales"
+        ],
+        "value": 25
+      },
+      {
+        "playerId": "119",
+        "slug": "angel-cachorro-santiago-del-valle",
+        "name": "Angel 'Cachorro' Santiago Del Valle",
+        "fy": 1973,
+        "ly": 1996,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "mets",
+          "cardenales",
+          "leones",
+          "polluelos",
+          "brujos",
+          "capitanes"
+        ],
+        "value": 24
+      },
+      {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario 'Quijote' Morales Micheo",
+        "fy": 1975,
+        "ly": 1998,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "mets"
+        ],
+        "value": 24
+      },
+      {
+        "playerId": "2076",
+        "slug": "roberto-bobby-rios-osorio",
+        "name": "Roberto 'Bobby' Rios Osorio",
+        "fy": 1978,
+        "ly": 2000,
+        "franchiseSlugs": [
+          "vaqueros",
+          "leones",
+          "atleticos",
+          "brujos"
+        ],
+        "value": 24
+      },
+      {
+        "playerId": "1271",
+        "slug": "jose-rafael-piculin-ortiz-rijos",
+        "name": "Jose Rafael 'Piculín' Ortiz Rijos",
+        "fy": 1980,
+        "ly": 2006,
+        "franchiseSlugs": [
+          "atleticos",
+          "cangrejeros",
+          "capitanes"
+        ],
+        "value": 24
+      },
+      {
+        "playerId": "382",
+        "slug": "christian-dalmau-santana",
+        "name": "Christian Dalmau Santana",
+        "fy": 1992,
+        "ly": 2017,
+        "franchiseSlugs": [
+          "piratas",
+          "maratonistas",
+          "avancinos",
+          "atleticos",
+          "vaqueros",
+          "mets",
+          "cangrejeros"
+        ],
+        "value": 24
+      }
+    ],
+    "mvps": [
+      {
+        "playerId": "2200",
+        "slug": "teofilo-teo-cruz-downs",
+        "name": "Teofilo 'Teo' Cruz Downs",
+        "fy": 1957,
+        "ly": 1982,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "indios",
+          "mets",
+          "cardenales"
+        ],
+        "value": 4
+      },
+      {
+        "playerId": "1327",
+        "slug": "juan-pachin-vicens-sastre",
+        "name": "Juan 'Pachín' Vicens Sastre",
+        "fy": 1958,
+        "ly": 1966,
+        "franchiseSlugs": [
+          "leones"
+        ],
+        "value": 4
+      },
+      {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario 'Quijote' Morales Micheo",
+        "fy": 1975,
+        "ly": 1998,
+        "franchiseSlugs": [
+          "cangrejeros",
+          "mets"
+        ],
+        "value": 4
+      },
+      {
+        "playerId": "1088",
+        "slug": "johnny-el-indio-baez",
+        "name": "Johnny 'El Indio' Baez",
+        "fy": 1957,
+        "ly": 1969,
+        "franchiseSlugs": [
+          "cardenales"
+        ],
+        "value": 3
+      },
+      {
+        "playerId": "1962",
+        "slug": "raymond-dalmau-perez",
+        "name": "Raymond Dalmau Perez",
+        "fy": 1966,
+        "ly": 1985,
+        "franchiseSlugs": [
+          "piratas"
+        ],
+        "value": 3
+      },
+      {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "George Torres Dougherty",
+        "fy": 1975,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "cariduros",
+          "mets",
+          "vaqueros",
+          "gallitos",
+          "cangrejeros",
+          "gigantes"
+        ],
+        "value": 3
+      },
+      {
+        "playerId": "382",
+        "slug": "christian-dalmau-santana",
+        "name": "Christian Dalmau Santana",
+        "fy": 1992,
+        "ly": 2017,
+        "franchiseSlugs": [
+          "piratas",
+          "maratonistas",
+          "avancinos",
+          "atleticos",
+          "vaqueros",
+          "mets",
+          "cangrejeros"
+        ],
+        "value": 3
+      },
+      {
+        "playerId": "1943",
+        "slug": "raul-tinajon-feliciano-rodriguez",
+        "name": "Raul 'Tinajón' Feliciano Rodriguez",
+        "fy": 1961,
+        "ly": 1967,
+        "franchiseSlugs": [
+          "santos"
+        ],
+        "value": 2
+      },
+      {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer Thorne",
+        "fy": 1980,
+        "ly": 2001,
+        "franchiseSlugs": [
+          "polluelos",
+          "capitanes",
+          "avancinos",
+          "maratonistas"
+        ],
+        "value": 2
+      },
+      {
+        "playerId": "989",
+        "slug": "james-carter-gaudino",
+        "name": "James Carter Gaudino",
+        "fy": 1987,
+        "ly": 2006,
+        "franchiseSlugs": [
+          "brujos",
+          "indios",
+          "criollos",
+          "capitanes",
+          "maratonistas"
+        ],
+        "value": 2
+      }
+    ]
+  }
+}

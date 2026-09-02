@@ -1,0 +1,24 @@
+{
+  "note": "Manual playerId resolution for MVPs whose name in mvps.json does not match CAREER_DATA automatically. playerId null = no stats exist for that player in bsn_data.js.",
+  "overrides": [
+    { "year": 2025, "player": "Emmanuel Mudiay", "playerId": null, "reason": "La data estadística termina en 2023." },
+    { "year": 2002, "player": "José Ortiz", "playerId": "1271", "reason": "Jose Rafael 'Piculín' Ortiz Rijos (1980-2006), Cangrejeros." },
+    { "year": 1990, "player": "Edgar de León", "playerId": "508", "reason": "Edgar Leon Cruz (1981-2001), Cariduros." },
+    { "year": 1986, "player": "Georgie Torres", "playerId": "788", "reason": "George Torres Dougherty (1975-2001), Cariduros." },
+    { "year": 1985, "player": "Georgie Torres", "playerId": "788", "reason": "George Torres Dougherty (1975-2001), Cariduros." },
+    { "year": 1984, "player": "Georgie Torres", "playerId": "788", "reason": "George Torres Dougherty (1975-2001), Cariduros." },
+    { "year": 1979, "player": "Rubén Rodríguez", "playerId": "2113", "reason": "Ruben Rodriguez Leon (1969-1991), Vaqueros. Ambiguo con Ruben Montañez Rodriguez, también de Vaqueros." },
+    { "year": 1978, "player": "Carlos \"Charlie\" Bermúdez", "playerId": "334", "reason": "Carlos'Charlie' Bermudez Torres (1970-1984), Indios." },
+    { "year": 1974, "player": "Jimmy Thordsen", "playerId": "993", "reason": "James Thordsen Lasvitt (1970-1983), Gallitos." },
+    { "year": 1964, "player": "Juan Báez", "playerId": "1088", "reason": "Johnny 'El Indio' Baez (1957-1969), Cardenales." },
+    { "year": 1963, "player": "Juan Báez", "playerId": "1088", "reason": "Johnny 'El Indio' Baez (1957-1969), Cardenales." },
+    { "year": 1957, "player": "Juan Báez", "playerId": "1088", "reason": "Johnny 'El Indio' Baez (1957-1969), Cardenales." },
+    { "year": 1960, "player": "Juan \"Pachín\" Vicéns", "playerId": "1327", "reason": "Juan 'Pachín' Vicens Sastre (1958-1966), Leones. Ambiguo con Juan Enrique 'Coco' Vicens." },
+    { "year": 1958, "player": "Juan \"Pachín\" Vicéns", "playerId": "1327", "reason": "Juan 'Pachín' Vicens Sastre (1958-1966), Leones." },
+    { "year": 1954, "player": "Juan \"Pachín\" Vicéns", "playerId": "1327", "reason": "Anterior al inicio de la data (1956); mismo jugador." },
+    { "year": 1952, "player": "Juan \"Pachín\" Vicéns", "playerId": "1327", "reason": "Anterior al inicio de la data (1956); mismo jugador." },
+    { "year": 1955, "player": "Raúl \"Tinajón\" Feliciano", "playerId": "1943", "reason": "Raul 'Tinajón' Feliciano Rodriguez (1961-1967), Santos. Anterior al inicio de la data." },
+    { "year": 1951, "player": "Raúl \"Tinajón\" Feliciano", "playerId": "1943", "reason": "Raul 'Tinajón' Feliciano Rodriguez (1961-1967). Anterior al inicio de la data." },
+    { "year": 1953, "player": "Fufi Santori", "playerId": "1176", "reason": "Jose 'Fufi' Santori Coll (1957-1961), Capitanes. Anterior al inicio de la data." }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "note": "Index in this array = team code used in column 1 of _ENC.data rows. Indices 24+ are All-Star / exhibition / national-team entries, not franchises.",
+  "teams": [
+    {
+      "index": 0,
+      "name": "Santos"
+    },
+    {
+      "index": 1,
+      "name": "Vaqueros"
+    },
+    {
+      "index": 2,
+      "name": "Cardenales"
+    },
+    {
+      "index": 3,
+      "name": "Piratas"
+    },
+    {
+      "index": 4,
+      "name": "Cangrejeros"
+    },
+    {
+      "index": 5,
+      "name": "Atleticos"
+    },
+    {
+      "index": 6,
+      "name": "Leones"
+    },
+    {
+      "index": 7,
+      "name": "Indios"
+    },
+    {
+      "index": 8,
+      "name": "Capitanes"
+    },
+    {
+      "index": 9,
+      "name": "Gallitos"
+    },
+    {
+      "index": 10,
+      "name": "Criollos"
+    },
+    {
+      "index": 11,
+      "name": "Gigantes"
+    },
+    {
+      "index": 12,
+      "name": "Brujos"
+    },
+    {
+      "index": 13,
+      "name": "Cariduros"
+    },
+    {
+      "index": 14,
+      "name": "Mets"
+    },
+    {
+      "index": 15,
+      "name": "Polluelos"
+    },
+    {
+      "index": 16,
+      "name": "Titanes"
+    },
+    {
+      "index": 17,
+      "name": "Maratonistas"
+    },
+    {
+      "index": 18,
+      "name": "Tainos"
+    },
+    {
+      "index": 19,
+      "name": "Santeros"
+    },
+    {
+      "index": 20,
+      "name": "Tiburones"
+    },
+    {
+      "index": 21,
+      "name": "Avancinos"
+    },
+    {
+      "index": 22,
+      "name": "Toritos"
+    },
+    {
+      "index": 23,
+      "name": "Caciques"
+    },
+    {
+      "index": 24,
+      "name": "Equipo Nacional de Puerto Rico"
+    },
+    {
+      "index": 25,
+      "name": "Equipo de Refuerzos"
+    },
+    {
+      "index": 26,
+      "name": "Metro"
+    },
+    {
+      "index": 27,
+      "name": "ProspectosBSN"
+    },
+    {
+      "index": 28,
+      "name": "Isla"
+    },
+    {
+      "index": 29,
+      "name": "BoricuasColegiales"
+    },
+    {
+      "index": 30,
+      "name": "Equipo de Nativos"
+    },
+    {
+      "index": 31,
+      "name": "Atenienses"
+    },
+    {
+      "index": 32,
+      "name": "Estrellas OESTE"
+    },
+    {
+      "index": 33,
+      "name": "Estrellas ESTE"
+    },
+    {
+      "index": 34,
+      "name": "Caciques-Gallitos"
+    },
+    {
+      "index": 35,
+      "name": "Estrellas BSN"
+    },
+    {
+      "index": 36,
+      "name": "Rising Stars - Este"
+    },
+    {
+      "index": 37,
+      "name": "Rising Stars - Oeste"
+    },
+    {
+      "index": 38,
+      "name": "Norte"
+    },
+    {
+      "index": 39,
+      "name": "Sur"
+    },
+    {
+      "index": 40,
+      "name": "Rising Stars B"
+    },
+    {
+      "index": 41,
+      "name": "Rising Stars A"
+    },
+    {
+      "index": 42,
+      "name": "Grises"
+    },
+    {
+      "index": 43,
+      "name": "Team Walter"
+    },
+    {
+      "index": 44,
+      "name": "Team Benito"
+    },
+    {
+      "index": 45,
+      "name": "Osos"
+    }
+  ]
+}

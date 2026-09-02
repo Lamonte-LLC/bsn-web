@@ -1,0 +1,452 @@
+[
+  {
+    "year": 2025,
+    "player": "Emmanuel Mudiay",
+    "mvpNumber": null,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 2024,
+    "player": "Travis Trice",
+    "mvpNumber": null,
+    "team": "Criollos de Caguas"
+  },
+  {
+    "year": 2023,
+    "player": "Brandon Knight",
+    "mvpNumber": null,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 2022,
+    "player": "Walter Hodge",
+    "mvpNumber": 2,
+    "team": "Capitanes de Arecibo"
+  },
+  {
+    "year": 2021,
+    "player": "Ángel Rodríguez",
+    "mvpNumber": null,
+    "team": "Vaqueros de Bayamón"
+  },
+  {
+    "year": 2020,
+    "player": "Paris Bass",
+    "mvpNumber": null,
+    "team": "Atléticos de San Germán"
+  },
+  {
+    "year": 2019,
+    "player": "Brian Conklin",
+    "mvpNumber": null,
+    "team": "Piratas de Quebradillas Indios de Mayagüez"
+  },
+  {
+    "year": 2018,
+    "player": "Reyshawn Terry",
+    "mvpNumber": null,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 2017,
+    "player": "Gary Browne",
+    "mvpNumber": null,
+    "team": "Atléticos de San Germán"
+  },
+  {
+    "year": 2016,
+    "player": "Ángel Daniel Vassallo",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 2015,
+    "player": "Peter John Ramos",
+    "mvpNumber": null,
+    "team": "Brujos de Guayama"
+  },
+  {
+    "year": 2014,
+    "player": "Walter Hodge",
+    "mvpNumber": null,
+    "team": "Capitanes de Arecibo"
+  },
+  {
+    "year": 2013,
+    "player": "Mike Harris",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 2012,
+    "player": "Donta Smith",
+    "mvpNumber": null,
+    "team": "Indios de Mayagüez"
+  },
+  {
+    "year": 2011,
+    "player": "Christian Dalmau",
+    "mvpNumber": 3,
+    "team": "Vaqueros de Bayamón"
+  },
+  {
+    "year": 2010,
+    "player": "Christian Dalmau",
+    "mvpNumber": 2,
+    "team": "Vaqueros de Bayamón"
+  },
+  {
+    "year": 2009,
+    "player": "Jesse Pellot-Rosa",
+    "mvpNumber": null,
+    "team": "Atléticos de San Germán"
+  },
+  {
+    "year": 2008,
+    "player": "Ánsel Guzmán",
+    "mvpNumber": null,
+    "team": "Grises de Humacao"
+  },
+  {
+    "year": 2007,
+    "player": "Angelo Reyes",
+    "mvpNumber": null,
+    "team": "Gigantes de Carolina"
+  },
+  {
+    "year": 2006,
+    "player": "Wilfredo Pagán",
+    "mvpNumber": null,
+    "team": "Brujos de Guayama"
+  },
+  {
+    "year": 2005,
+    "player": "Bobby Joe Hatton",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 2004,
+    "player": "Christian Dalmau",
+    "mvpNumber": null,
+    "team": "Atléticos de San Germán"
+  },
+  {
+    "year": 2003,
+    "player": "Carlos Escalera",
+    "mvpNumber": null,
+    "team": "Maratonistas de Coamo"
+  },
+  {
+    "year": 2002,
+    "player": "José Ortiz",
+    "mvpNumber": null,
+    "team": "Cangrejeros de Santurce"
+  },
+  {
+    "year": 2001,
+    "player": "Monty Wilson",
+    "mvpNumber": null,
+    "team": "Polluelos de Aibonito"
+  },
+  {
+    "year": 2000,
+    "player": "Ian Lockhart",
+    "mvpNumber": null,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 1999,
+    "player": "Tony Farmer",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1998,
+    "player": "Javier \"Tonito\" Colon",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1997,
+    "player": "Eddie Casiano",
+    "mvpNumber": null,
+    "team": "Atléticos de San Germán"
+  },
+  {
+    "year": 1996,
+    "player": "Luis Allende",
+    "mvpNumber": null,
+    "team": "Criollos de Caguas"
+  },
+  {
+    "year": 1995,
+    "player": "Bobby Ríos",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1994,
+    "player": "James Carter",
+    "mvpNumber": 2,
+    "team": "Brujos de Guayama"
+  },
+  {
+    "year": 1993,
+    "player": "Mario \"Quijote\" Morales",
+    "mvpNumber": 4,
+    "team": "Mets de Guaynabo"
+  },
+  {
+    "year": 1992,
+    "player": "Frantz Volcy",
+    "mvpNumber": null,
+    "team": "Atléticos de San Germán"
+  },
+  {
+    "year": 1991,
+    "player": "James Carter",
+    "mvpNumber": null,
+    "team": "Brujos de Guayama"
+  },
+  {
+    "year": 1990,
+    "player": "Edgar de León",
+    "mvpNumber": null,
+    "team": "Cariduros de Fajardo"
+  },
+  {
+    "year": 1989,
+    "player": "Ramón Rivas",
+    "mvpNumber": null,
+    "team": "Gigantes de Carolina"
+  },
+  {
+    "year": 1988,
+    "player": "Mario Butler",
+    "mvpNumber": null,
+    "team": "Titanes de Morovis"
+  },
+  {
+    "year": 1987,
+    "player": "Rolando Frazer",
+    "mvpNumber": 2,
+    "team": "Polluelos de Aibonito"
+  },
+  {
+    "year": 1986,
+    "player": "Georgie Torres",
+    "mvpNumber": 3,
+    "team": "Cariduros de Fajardo"
+  },
+  {
+    "year": 1985,
+    "player": "Georgie Torres",
+    "mvpNumber": 2,
+    "team": "Cariduros de Fajardo"
+  },
+  {
+    "year": 1984,
+    "player": "Georgie Torres",
+    "mvpNumber": null,
+    "team": "Cariduros de Fajardo"
+  },
+  {
+    "year": 1983,
+    "player": "Mario \"Quijote\" Morales",
+    "mvpNumber": 3,
+    "team": "Mets de Guaynabo"
+  },
+  {
+    "year": 1982,
+    "player": "Mario \"Quijote\" Morales",
+    "mvpNumber": 2,
+    "team": "Mets de Guaynabo"
+  },
+  {
+    "year": 1981,
+    "player": "Rolando Frazer",
+    "mvpNumber": null,
+    "team": "Polluelos de Aibonito"
+  },
+  {
+    "year": 1980,
+    "player": "Mario \"Quijote\" Morales",
+    "mvpNumber": null,
+    "team": "Mets de Guaynabo"
+  },
+  {
+    "year": 1979,
+    "player": "Rubén Rodríguez",
+    "mvpNumber": null,
+    "team": "Vaqueros de Bayamón"
+  },
+  {
+    "year": 1978,
+    "player": "Carlos \"Charlie\" Bermúdez",
+    "mvpNumber": null,
+    "team": "Indios de Canovanas"
+  },
+  {
+    "year": 1977,
+    "player": "Hector Olivencia",
+    "mvpNumber": null,
+    "team": "Criollos de Caguas"
+  },
+  {
+    "year": 1976,
+    "player": "Earl Brown",
+    "mvpNumber": null,
+    "team": "Cardenales de Río Piedras"
+  },
+  {
+    "year": 1975,
+    "player": "Josean Baez",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1974,
+    "player": "Jimmy Thordsen",
+    "mvpNumber": null,
+    "team": "Gallitos de Isabela"
+  },
+  {
+    "year": 1973,
+    "player": "Neftalí Rivera",
+    "mvpNumber": null,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 1972,
+    "player": "Raymond Dalmau",
+    "mvpNumber": 3,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 1971,
+    "player": "Teófilo Cruz",
+    "mvpNumber": 4,
+    "team": "Cangrejeros de Santurce"
+  },
+  {
+    "year": 1970,
+    "player": "Teófilo Cruz",
+    "mvpNumber": 3,
+    "team": "Cangrejeros de Santurce"
+  },
+  {
+    "year": 1969,
+    "player": "Raymond Dalmau",
+    "mvpNumber": 2,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 1968,
+    "player": "Raymond Dalmau",
+    "mvpNumber": null,
+    "team": "Piratas de Quebradillas"
+  },
+  {
+    "year": 1967,
+    "player": "Teófilo Cruz",
+    "mvpNumber": 2,
+    "team": "Cangrejeros de Santurce"
+  },
+  {
+    "year": 1966,
+    "player": "Jaime Frontera",
+    "mvpNumber": null,
+    "team": "Capitanes de Arecibo"
+  },
+  {
+    "year": 1965,
+    "player": "Richie Pietri",
+    "mvpNumber": null,
+    "team": "Atléticos de San Germán"
+  },
+  {
+    "year": 1964,
+    "player": "Juan Báez",
+    "mvpNumber": 3,
+    "team": "Cardenales de Río Piedras"
+  },
+  {
+    "year": 1963,
+    "player": "Juan Báez",
+    "mvpNumber": 2,
+    "team": "Cardenales de Río Piedras"
+  },
+  {
+    "year": 1962,
+    "player": "Teófilo Cruz",
+    "mvpNumber": null,
+    "team": "Cangrejeros de Santurce"
+  },
+  {
+    "year": 1961,
+    "player": "Tomás \"Guabina\" Gutiérrez",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1960,
+    "player": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": 4,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1959,
+    "player": "Bill McCadney",
+    "mvpNumber": null,
+    "team": "Capitanes de Arecibo"
+  },
+  {
+    "year": 1958,
+    "player": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": 3,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1957,
+    "player": "Juan Báez",
+    "mvpNumber": null,
+    "team": "Cardenales de Río Piedras"
+  },
+  {
+    "year": 1956,
+    "player": "Rafael Valle",
+    "mvpNumber": null,
+    "team": "Santos de San Juan"
+  },
+  {
+    "year": 1955,
+    "player": "Raúl \"Tinajón\" Feliciano",
+    "mvpNumber": 2,
+    "team": "Cardenales de Río Piedras"
+  },
+  {
+    "year": 1954,
+    "player": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": 2,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1953,
+    "player": "Fufi Santori",
+    "mvpNumber": null,
+    "team": "Gallitos de la UPR"
+  },
+  {
+    "year": 1952,
+    "player": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": null,
+    "team": "Leones de Ponce"
+  },
+  {
+    "year": 1951,
+    "player": "Raúl \"Tinajón\" Feliciano",
+    "mvpNumber": null,
+    "team": "Gallitos de la UPR"
+  }
+]
