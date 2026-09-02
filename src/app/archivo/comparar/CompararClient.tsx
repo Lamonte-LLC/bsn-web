@@ -11,9 +11,12 @@ import { usePlayerSearch } from '@/archivo/hooks/usePlayerSearch';
 import { fmt, fmtInt, fmtPct, yearsLabel } from '@/archivo/lib/format';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
 import { COMPARABLE_ROWS, type ComparableKey, type ComparableStats } from '@/archivo/lib/stats';
+import type { CareerArcPoint } from '@/archivo/lib/types';
+import CareerArcChart from '@/archivo/components/CareerArcChart';
 
 export interface ComparePlayer {
   id: string;
+  arc: { arc: CareerArcPoint[]; peakSeason: number | null } | null;
   slug: string;
   name: string;
   fy: number;
@@ -231,6 +234,16 @@ export default function CompararClient({ players, franchises }: Props) {
               {preEra ? ' Rebotes, asistencias y triples no se registraban de forma consistente antes de 1975. Los guiones indican data no disponible.' : ''}
             </p>
           </section>
+
+          {filled.some((p) => p.arc && p.arc.arc.length >= 3) ? (
+            <section className="mb-8">
+              <SectionTitle>Arco de carrera</SectionTitle>
+              <CareerArcChart
+                players={filled.filter((p) => p.arc).map((p, i) => ({ id: p.id, name: p.name, color: SLOT_COLORS[i], arc: p.arc!.arc, peakSeason: p.arc!.peakSeason }))}
+                franchises={franchises}
+              />
+            </section>
+          ) : null}
 
           <section>
             <SectionTitle right="Según su perfil estadístico">Jugadores parecidos</SectionTitle>

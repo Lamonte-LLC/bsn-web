@@ -5,7 +5,8 @@ import ArchivoShell from '@/archivo/components/ArchivoShell';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import { Badge, HeroEyebrow, HeroTitle, PaperCard, SectionTitle, StatBlock } from '@/archivo/components/ui';
-import { getFranchiseMap, getPlayerBySlug, getSimilarPlayers } from '@/archivo/lib/data';
+import CareerArcChart from '@/archivo/components/CareerArcChart';
+import { getCareerArc, getFranchiseMap, getPlayerBySlug, getSimilarPlayers } from '@/archivo/lib/data';
 import { fmt, fmtInt, fmtPct, yearsLabel } from '@/archivo/lib/format';
 import { franchiseViewMap } from '@/archivo/lib/franchise-view';
 import PlayerSeasonTabs from './PlayerSeasonTabs';
@@ -36,6 +37,7 @@ export default async function PlayerPage({ params }: Params) {
   const totals = p.career ?? p.computed.regular;
   const similar = getSimilarPlayers(p.id).slice(0, 3);
   const preEra = p.fy < 1975;
+  const arc = getCareerArc(p.id);
 
   return (
     <ArchivoShell
@@ -90,6 +92,13 @@ export default async function PlayerPage({ params }: Params) {
           {preEra ? ' Rebotes, asistencias y triples no se registraban de forma consistente antes de 1975. Los guiones indican data no disponible.' : ''}
         </p>
       </section>
+
+      {arc && arc.arc.length >= 3 ? (
+        <section className="mb-10">
+          <SectionTitle>Arco de carrera</SectionTitle>
+          <CareerArcChart players={[{ id: p.id, name: p.name, color: '#E51F1F', arc: arc.arc, peakSeason: arc.peakSeason }]} franchises={franchises} />
+        </section>
+      ) : null}
 
       <section className="mb-10" id="temporadas">
         <SectionTitle>Temporada por temporada</SectionTitle>

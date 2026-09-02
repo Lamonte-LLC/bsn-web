@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import ArchivoShell from '@/archivo/components/ArchivoShell';
 import { HeroEyebrow, HeroTitle } from '@/archivo/components/ui';
-import { getFranchises, getPlayerBySlug, getSimilarPlayers } from '@/archivo/lib/data';
+import { getCareerArc, getFranchises, getPlayerBySlug, getSimilarPlayers } from '@/archivo/lib/data';
 import { franchiseViewMap } from '@/archivo/lib/franchise-view';
 import { careerStats, playoffStats, regularStats } from '@/archivo/lib/stats';
 import CompararClient, { type ComparePlayer } from './CompararClient';
@@ -14,8 +14,10 @@ function loadPlayer(slug: string | undefined): ComparePlayer | null {
   if (!slug) return null;
   const p = getPlayerBySlug(slug);
   if (!p) return null;
+  const arc = getCareerArc(p.id);
   return {
     id: p.id,
+    arc: arc ? { arc: arc.arc, peakSeason: arc.peakSeason } : null,
     slug: p.slug,
     name: p.name,
     fy: p.fy,
