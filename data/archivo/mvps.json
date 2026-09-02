@@ -5,6 +5,7 @@
     "slug": null,
     "name": "Emmanuel Mudiay",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -16,6 +17,7 @@
     "slug": "travis-trice",
     "name": "Travis Trice",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Criollos de Caguas",
     "franchiseSlugs": [
       "criollos"
@@ -27,6 +29,7 @@
     "slug": "brandon-knight",
     "name": "Brandon Knight",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -38,6 +41,7 @@
     "slug": "walter-hodge-jr",
     "name": "Walter Hodge",
     "mvpNumber": 2,
+    "position": "Base",
     "teamName": "Capitanes de Arecibo",
     "franchiseSlugs": [
       "capitanes"
@@ -49,6 +53,7 @@
     "slug": "angel-daniel-rodriguez-tricoche",
     "name": "Ángel Rodríguez",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Vaqueros de Bayamón",
     "franchiseSlugs": [
       "vaqueros"
@@ -60,6 +65,7 @@
     "slug": "paris-bass",
     "name": "Paris Bass",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Atléticos de San Germán",
     "franchiseSlugs": [
       "atleticos"
@@ -71,6 +77,7 @@
     "slug": "brian-conklin",
     "name": "Brian Conklin",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Piratas de Quebradillas Indios de Mayagüez",
     "franchiseSlugs": [
       "piratas",
@@ -83,6 +90,7 @@
     "slug": "reyshawn-terry",
     "name": "Reyshawn Terry",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -94,6 +102,7 @@
     "slug": "gary-browne-ramirez",
     "name": "Gary Browne",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Atléticos de San Germán",
     "franchiseSlugs": [
       "atleticos"
@@ -105,6 +114,7 @@
     "slug": "angel-daniel-vassallo-colon",
     "name": "Ángel Daniel Vassallo",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -116,6 +126,7 @@
     "slug": "peter-john-ramos-fuentes",
     "name": "Peter John Ramos",
     "mvpNumber": null,
+    "position": "Pívot",
     "teamName": "Brujos de Guayama",
     "franchiseSlugs": [
       "brujos"
@@ -127,6 +138,7 @@
     "slug": "walter-hodge-jr",
     "name": "Walter Hodge",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Capitanes de Arecibo",
     "franchiseSlugs": [
       "capitanes"
@@ -138,6 +150,7 @@
     "slug": "mike-harris",
     "name": "Mike Harris",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -149,6 +162,7 @@
     "slug": "donta-smith",
     "name": "Donta Smith",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Indios de Mayagüez",
     "franchiseSlugs": [
       "indios"
@@ -160,6 +174,7 @@
     "slug": "christian-dalmau-santana",
     "name": "Christian Dalmau",
     "mvpNumber": 3,
+    "position": "Base",
     "teamName": "Vaqueros de Bayamón",
     "franchiseSlugs": [
       "vaqueros"
@@ -171,6 +186,7 @@
     "slug": "christian-dalmau-santana",
     "name": "Christian Dalmau",
     "mvpNumber": 2,
+    "position": "Base",
     "teamName": "Vaqueros de Bayamón",
     "franchiseSlugs": [
       "vaqueros"
@@ -182,6 +198,7 @@
     "slug": "jesse-pellot-rosa",
     "name": "Jesse Pellot-Rosa",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Atléticos de San Germán",
     "franchiseSlugs": [
       "atleticos"
@@ -193,6 +210,7 @@
     "slug": "ansel-guzman-hernaiz",
     "name": "Ánsel Guzmán",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Grises de Humacao",
     "franchiseSlugs": [
       "grises"
@@ -204,6 +222,7 @@
     "slug": "angelo-reyes-canales",
     "name": "Angelo Reyes",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Gigantes de Carolina",
     "franchiseSlugs": [
       "gigantes"
@@ -215,6 +234,7 @@
     "slug": "wilfredo-pagan-roque",
     "name": "Wilfredo Pagán",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Brujos de Guayama",
     "franchiseSlugs": [
       "brujos"
@@ -226,6 +246,7 @@
     "slug": "roberto-jose-bobby-joe-hatton-negron",
     "name": "Bobby Joe Hatton",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -237,6 +258,7 @@
     "slug": "christian-dalmau-santana",
     "name": "Christian Dalmau",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Atléticos de San Germán",
     "franchiseSlugs": [
       "atleticos"
@@ -248,6 +270,7 @@
     "slug": "carlos-escalera-gonzalez",
     "name": "Carlos Escalera",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Maratonistas de Coamo",
     "franchiseSlugs": [
       "maratonistas"
@@ -259,6 +282,7 @@
     "slug": "jose-rafael-piculin-ortiz-rijos",
     "name": "José Ortiz",
     "mvpNumber": null,
+    "position": "Alero/Pívot",
     "teamName": "Cangrejeros de Santurce",
     "franchiseSlugs": [
       "cangrejeros"
@@ -270,6 +294,7 @@
     "slug": "monty-wilson-wilder",
     "name": "Monty Wilson",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Polluelos de Aibonito",
     "franchiseSlugs": [
       "polluelos"
@@ -281,6 +306,7 @@
     "slug": "ian-lockhart-collie",
     "name": "Ian Lockhart",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -292,6 +318,7 @@
     "slug": "anthony-tony-farmer",
     "name": "Tony Farmer",
     "mvpNumber": null,
+    "position": "Alero/Pívot",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -303,6 +330,7 @@
     "slug": "javier-antonio-tonito-colon-rodriguez",
     "name": "Javier \"Tonito\" Colon",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -314,6 +342,7 @@
     "slug": "eddie-casiano-ojeda",
     "name": "Eddie Casiano",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Atléticos de San Germán",
     "franchiseSlugs": [
       "atleticos"
@@ -325,6 +354,7 @@
     "slug": "luis-allende-ruiz",
     "name": "Luis Allende",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Criollos de Caguas",
     "franchiseSlugs": [
       "criollos"
@@ -336,6 +366,7 @@
     "slug": "roberto-bobby-rios-osorio",
     "name": "Bobby Ríos",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -347,6 +378,7 @@
     "slug": "james-carter-gaudino",
     "name": "James Carter",
     "mvpNumber": 2,
+    "position": "Base",
     "teamName": "Brujos de Guayama",
     "franchiseSlugs": [
       "brujos"
@@ -358,6 +390,7 @@
     "slug": "mario-quijote-morales-micheo",
     "name": "Mario \"Quijote\" Morales",
     "mvpNumber": 4,
+    "position": "Alero",
     "teamName": "Mets de Guaynabo",
     "franchiseSlugs": [
       "mets"
@@ -369,6 +402,7 @@
     "slug": "frantz-volcy",
     "name": "Frantz Volcy",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Atléticos de San Germán",
     "franchiseSlugs": [
       "atleticos"
@@ -380,6 +414,7 @@
     "slug": "james-carter-gaudino",
     "name": "James Carter",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Brujos de Guayama",
     "franchiseSlugs": [
       "brujos"
@@ -391,6 +426,7 @@
     "slug": "edgar-leon-cruz",
     "name": "Edgar de León",
     "mvpNumber": null,
+    "position": "Alero/Pívot",
     "teamName": "Cariduros de Fajardo",
     "franchiseSlugs": [
       "cariduros"
@@ -402,6 +438,7 @@
     "slug": "ramon-rivas-contreras",
     "name": "Ramón Rivas",
     "mvpNumber": null,
+    "position": "Alero/Pívot",
     "teamName": "Gigantes de Carolina",
     "franchiseSlugs": [
       "gigantes"
@@ -413,6 +450,7 @@
     "slug": "mario-alberto-butler-graham",
     "name": "Mario Butler",
     "mvpNumber": null,
+    "position": "Pívot",
     "teamName": "Titanes de Morovis",
     "franchiseSlugs": [
       "titanes"
@@ -424,6 +462,7 @@
     "slug": "rolando-frazer-thorne",
     "name": "Rolando Frazer",
     "mvpNumber": 2,
+    "position": "Alero/Pívot",
     "teamName": "Polluelos de Aibonito",
     "franchiseSlugs": [
       "polluelos"
@@ -435,6 +474,7 @@
     "slug": "george-torres-dougherty",
     "name": "Georgie Torres",
     "mvpNumber": 3,
+    "position": "Base/Alero",
     "teamName": "Cariduros de Fajardo",
     "franchiseSlugs": [
       "cariduros"
@@ -446,6 +486,7 @@
     "slug": "george-torres-dougherty",
     "name": "Georgie Torres",
     "mvpNumber": 2,
+    "position": "Base/Alero",
     "teamName": "Cariduros de Fajardo",
     "franchiseSlugs": [
       "cariduros"
@@ -457,6 +498,7 @@
     "slug": "george-torres-dougherty",
     "name": "Georgie Torres",
     "mvpNumber": null,
+    "position": "Base/Alero",
     "teamName": "Cariduros de Fajardo",
     "franchiseSlugs": [
       "cariduros"
@@ -468,6 +510,7 @@
     "slug": "mario-quijote-morales-micheo",
     "name": "Mario \"Quijote\" Morales",
     "mvpNumber": 3,
+    "position": "Alero",
     "teamName": "Mets de Guaynabo",
     "franchiseSlugs": [
       "mets"
@@ -479,6 +522,7 @@
     "slug": "mario-quijote-morales-micheo",
     "name": "Mario \"Quijote\" Morales",
     "mvpNumber": 2,
+    "position": "Alero",
     "teamName": "Mets de Guaynabo",
     "franchiseSlugs": [
       "mets"
@@ -490,6 +534,7 @@
     "slug": "rolando-frazer-thorne",
     "name": "Rolando Frazer",
     "mvpNumber": null,
+    "position": "Alero/Pívot",
     "teamName": "Polluelos de Aibonito",
     "franchiseSlugs": [
       "polluelos"
@@ -501,6 +546,7 @@
     "slug": "mario-quijote-morales-micheo",
     "name": "Mario \"Quijote\" Morales",
     "mvpNumber": null,
+    "position": "Alero",
     "teamName": "Mets de Guaynabo",
     "franchiseSlugs": [
       "mets"
@@ -512,6 +558,7 @@
     "slug": "ruben-rodriguez-leon",
     "name": "Rubén Rodríguez",
     "mvpNumber": null,
+    "position": "Alero/Pívot",
     "teamName": "Vaqueros de Bayamón",
     "franchiseSlugs": [
       "vaqueros"
@@ -523,6 +570,7 @@
     "slug": "carlos-charlie-bermudez-torres",
     "name": "Carlos \"Charlie\" Bermúdez",
     "mvpNumber": null,
+    "position": "Pívot",
     "teamName": "Indios de Canovanas",
     "franchiseSlugs": [
       "indios"
@@ -534,6 +582,7 @@
     "slug": "hector-olivencia-mateo",
     "name": "Hector Olivencia",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Criollos de Caguas",
     "franchiseSlugs": [
       "criollos"
@@ -545,6 +594,7 @@
     "slug": "earl-brown",
     "name": "Earl Brown",
     "mvpNumber": null,
+    "position": "Pívot",
     "teamName": "Cardenales de Río Piedras",
     "franchiseSlugs": [
       "cardenales"
@@ -556,6 +606,7 @@
     "slug": "jose-andres-josean-baez-camacho",
     "name": "Josean Baez",
     "mvpNumber": null,
+    "position": "Escolta",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -567,6 +618,7 @@
     "slug": "james-thordsen-lasvitt",
     "name": "Jimmy Thordsen",
     "mvpNumber": null,
+    "position": "Ala-pívot",
     "teamName": "Gallitos de Isabela",
     "franchiseSlugs": [
       "gallitos"
@@ -578,6 +630,7 @@
     "slug": "neftali-rivera-olivera",
     "name": "Neftalí Rivera",
     "mvpNumber": null,
+    "position": "Escolta",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -589,6 +642,7 @@
     "slug": "raymond-dalmau-perez",
     "name": "Raymond Dalmau",
     "mvpNumber": 3,
+    "position": "Ala-Pívot",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -600,6 +654,7 @@
     "slug": "teofilo-teo-cruz-downs",
     "name": "Teófilo Cruz",
     "mvpNumber": 4,
+    "position": "Pívot",
     "teamName": "Cangrejeros de Santurce",
     "franchiseSlugs": [
       "cangrejeros"
@@ -611,6 +666,7 @@
     "slug": "teofilo-teo-cruz-downs",
     "name": "Teófilo Cruz",
     "mvpNumber": 3,
+    "position": "Pívot",
     "teamName": "Cangrejeros de Santurce",
     "franchiseSlugs": [
       "cangrejeros"
@@ -622,6 +678,7 @@
     "slug": "raymond-dalmau-perez",
     "name": "Raymond Dalmau",
     "mvpNumber": 2,
+    "position": "Ala-Pívot",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -633,6 +690,7 @@
     "slug": "raymond-dalmau-perez",
     "name": "Raymond Dalmau",
     "mvpNumber": null,
+    "position": "Ala-Pívot",
     "teamName": "Piratas de Quebradillas",
     "franchiseSlugs": [
       "piratas"
@@ -644,6 +702,7 @@
     "slug": "teofilo-teo-cruz-downs",
     "name": "Teófilo Cruz",
     "mvpNumber": 2,
+    "position": "Pívot",
     "teamName": "Cangrejeros de Santurce",
     "franchiseSlugs": [
       "cangrejeros"
@@ -655,6 +714,7 @@
     "slug": "jaime-frontera-colley",
     "name": "Jaime Frontera",
     "mvpNumber": null,
+    "position": "Base/Alero",
     "teamName": "Capitanes de Arecibo",
     "franchiseSlugs": [
       "capitanes"
@@ -666,6 +726,7 @@
     "slug": "richard-richie-pietri-villanueva",
     "name": "Richie Pietri",
     "mvpNumber": null,
+    "position": null,
     "teamName": "Atléticos de San Germán",
     "franchiseSlugs": [
       "atleticos"
@@ -677,6 +738,7 @@
     "slug": "johnny-el-indio-baez",
     "name": "Juan Báez",
     "mvpNumber": 3,
+    "position": "Pívot",
     "teamName": "Cardenales de Río Piedras",
     "franchiseSlugs": [
       "cardenales"
@@ -688,6 +750,7 @@
     "slug": "johnny-el-indio-baez",
     "name": "Juan Báez",
     "mvpNumber": 2,
+    "position": "Pívot",
     "teamName": "Cardenales de Río Piedras",
     "franchiseSlugs": [
       "cardenales"
@@ -699,6 +762,7 @@
     "slug": "teofilo-teo-cruz-downs",
     "name": "Teófilo Cruz",
     "mvpNumber": null,
+    "position": "Pívot",
     "teamName": "Cangrejeros de Santurce",
     "franchiseSlugs": [
       "cangrejeros"
@@ -710,6 +774,7 @@
     "slug": "tomas-guabina-gutierrez",
     "name": "Tomás \"Guabina\" Gutiérrez",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -721,6 +786,7 @@
     "slug": "juan-pachin-vicens-sastre",
     "name": "Juan \"Pachín\" Vicéns",
     "mvpNumber": 4,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -732,6 +798,7 @@
     "slug": "william-bill-mccadney",
     "name": "Bill McCadney",
     "mvpNumber": null,
+    "position": "Pívot",
     "teamName": "Capitanes de Arecibo",
     "franchiseSlugs": [
       "capitanes"
@@ -743,6 +810,7 @@
     "slug": "juan-pachin-vicens-sastre",
     "name": "Juan \"Pachín\" Vicéns",
     "mvpNumber": 3,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -754,6 +822,7 @@
     "slug": "johnny-el-indio-baez",
     "name": "Juan Báez",
     "mvpNumber": null,
+    "position": "Pívot",
     "teamName": "Cardenales de Río Piedras",
     "franchiseSlugs": [
       "cardenales"
@@ -765,6 +834,7 @@
     "slug": "rafael-valle",
     "name": "Rafael Valle",
     "mvpNumber": null,
+    "position": "Ala-pívot",
     "teamName": "Santos de San Juan",
     "franchiseSlugs": [
       "santos"
@@ -776,6 +846,7 @@
     "slug": "raul-tinajon-feliciano-rodriguez",
     "name": "Raúl \"Tinajón\" Feliciano",
     "mvpNumber": 2,
+    "position": "Base",
     "teamName": "Cardenales de Río Piedras",
     "franchiseSlugs": [
       "cardenales"
@@ -787,6 +858,7 @@
     "slug": "juan-pachin-vicens-sastre",
     "name": "Juan \"Pachín\" Vicéns",
     "mvpNumber": 2,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -798,6 +870,7 @@
     "slug": "jose-fufi-santori-coll",
     "name": "Fufi Santori",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Gallitos de la UPR",
     "franchiseSlugs": [
       "gallitos-upr"
@@ -809,6 +882,7 @@
     "slug": "juan-pachin-vicens-sastre",
     "name": "Juan \"Pachín\" Vicéns",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Leones de Ponce",
     "franchiseSlugs": [
       "leones"
@@ -820,6 +894,7 @@
     "slug": "raul-tinajon-feliciano-rodriguez",
     "name": "Raúl \"Tinajón\" Feliciano",
     "mvpNumber": null,
+    "position": "Base",
     "teamName": "Gallitos de la UPR",
     "franchiseSlugs": [
       "gallitos-upr"

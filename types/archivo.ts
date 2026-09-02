@@ -17,6 +17,8 @@ export interface Franchise {
   fullName: string;
   code: string | null;
   colors: FranchiseColors;
+  /** 'bsn-web' = official color from the site; 'prototype' = placeholder color from the league prototype, not official. */
+  colorSource: 'bsn-web' | 'prototype' | null;
   logo: string | null;
   status: FranchiseStatus;
   activeYears: number[];
@@ -37,7 +39,10 @@ export type FranchiseEntry = Franchise | EventTeam;
 export interface Champion {
   year: number;
   franchiseSlug: string | null;
+  /** Nickname as it appears in the league data (e.g. "Vaqueros", "Fénix"). */
   name: string;
+  /** Full club name (e.g. "Vaqueros de Bayamón", "Fénix de Vega Baja"). */
+  fullName: string;
   coach: string | null;
   series: string | null;
   seriesRaw: string | null;
@@ -50,6 +55,8 @@ export interface Mvp {
   slug: string | null;
   name: string;
   mvpNumber: number | null;
+  /** Playing position from the league prototype (e.g. "Base", "Delantero"). */
+  position: string | null;
   teamName: string;
   franchiseSlugs: string[];
 }

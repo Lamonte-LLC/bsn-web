@@ -8,9 +8,10 @@
     "fullName": "Santos de San Juan",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#4488cc",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -62,6 +63,7 @@
       "primary": "#468AD9",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Bayamon.png",
     "status": "active",
     "activeYears": [
@@ -153,9 +155,10 @@
     "fullName": "Cardenales de Río Piedras",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#aa0000",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -212,6 +215,7 @@
       "primary": "#F9170C",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Quebradillas.png",
     "status": "active",
     "activeYears": [
@@ -301,6 +305,7 @@
       "primary": "#FA4515",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Santurce.png",
     "status": "active",
     "activeYears": [
@@ -367,6 +372,7 @@
       "primary": "#F75400",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/San-German.png",
     "status": "active",
     "activeYears": [
@@ -467,6 +473,7 @@
       "primary": "#B82027",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Ponce.png",
     "status": "active",
     "activeYears": [
@@ -559,6 +566,7 @@
       "primary": "#F5E0BF",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Mayaguez.png",
     "status": "active",
     "activeYears": [
@@ -634,6 +642,7 @@
       "primary": "#FFB900",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Arecibo.png",
     "status": "active",
     "activeYears": [
@@ -723,9 +732,10 @@
     "fullName": "Gallitos de Isabela",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#ff4500",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -785,9 +795,10 @@
     "fullName": "Gallitos de la UPR",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#ff4500",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -816,6 +827,7 @@
       "primary": "#DDB7E7",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Caguas.png",
     "status": "active",
     "activeYears": [
@@ -881,6 +893,7 @@
       "primary": "#FEC200",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Carolina.png",
     "status": "active",
     "activeYears": [
@@ -942,9 +955,10 @@
     "fullName": "Brujos de Guayama",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#6a0dad",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1011,9 +1025,10 @@
     "fullName": "Cariduros de Fajardo",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#800000",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1073,6 +1088,7 @@
       "primary": "#245AA3",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Guaynabo.png",
     "status": "active",
     "activeYears": [
@@ -1131,9 +1147,10 @@
     "fullName": "Polluelos de Aibonito",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#e07b00",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1180,9 +1197,10 @@
     "fullName": "Titanes de Morovis",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#003580",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1232,9 +1250,10 @@
     "fullName": "Maratonistas de Coamo",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#1d7a3a",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1279,9 +1298,10 @@
     "fullName": "Taínos",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#884400",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1311,6 +1331,7 @@
       "primary": "#67CA59",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Aguada.png",
     "status": "active",
     "activeYears": [
@@ -1344,9 +1365,10 @@
     "fullName": "Tiburones de Aguadilla",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#0077aa",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1373,9 +1395,10 @@
     "fullName": "Avancinos",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#555599",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1399,9 +1422,10 @@
     "fullName": "Toritos de Cayey",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#cc6600",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1426,9 +1450,10 @@
     "fullName": "Caciques de Humacao",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#ff6b00",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1463,9 +1488,10 @@
     "fullName": "Atenienses de Manatí",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#001f5b",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1490,9 +1516,10 @@
     "fullName": "Grises de Humacao",
     "code": null,
     "colors": {
-      "primary": null,
+      "primary": "#607080",
       "secondary": null
     },
+    "colorSource": "prototype",
     "logo": null,
     "status": "extinct",
     "activeYears": [
@@ -1521,6 +1548,7 @@
       "primary": "#347CAF",
       "secondary": null
     },
+    "colorSource": "bsn-web",
     "logo": "/assets/images/teams/Manati.png",
     "status": "active",
     "activeYears": [

@@ -61,4 +61,6 @@ Los jugadores de rosters y stats de GraphQL se enlazan al perfil del archivo (`p
 - Los totales en `computed` solo se reportan cuando todas las líneas tienen el valor; una suma parcial subestimaría carreras viejas.
 - `career` viene tal cual de la liga (`CAREER_DATA`). Sus porcentajes de tiro para jugadores pre-1965 heredan el problema de `fga = fgm`; preferir `computed` cuando `career` y `computed` difieran en porcentajes.
 - Los índices 24+ de `_ENC.teams` son eventos (All-Star, selección, etc.), excepto Atenienses (31), Grises (42) y Osos (45), que son franquicias reales y están en la tabla semilla.
+- La columna 11 de `_ENC.data` es "MPG" según el decodificador del prototipo, pero la data es inconsistente: ceros hasta 1999, mezcla de promedios y totales en los 2000s, y valores imposibles después (Arroyo 2019 = 1812.2). Se ignora hasta que la liga la confirme.
+- `prototype-inline.json` guarda las constantes inline del prototipo: `TEAM_COLORS` (colores no oficiales, usados como placeholder para franquicias extintas, marcados `colorSource: "prototype"`), `CHAMP_DATA` (nombre completo de los clubes pre-1946, ej. "Fénix de Vega Baja"), `MVP_DATA` (posición de cada MVP) y `EXCLUDED_TEAMS`.
 - La data estadística termina en 2023. 2024 y 2025 solo tienen campeón y MVP hasta que entre Sportradar.

@@ -102,6 +102,7 @@ interface SeedFranchise {
   city: string | null;
   code: string | null;
   primaryColor: string | null;
+  colorSource: 'bsn-web' | 'prototype' | null;
   aliases: string[];
   fullNameOverride?: string;
   notes?: string;
@@ -120,6 +121,12 @@ interface MvpOverride {
 
 interface MvpOverridesFile {
   overrides: MvpOverride[];
+}
+
+// Inline constants lifted from the league prototype page (see scripts/archivo/data/prototype-inline.json).
+interface PrototypeInline {
+  CHAMP_DATA: Array<{ y: number; tm: string; series: string; short: string }>;
+  MVP_DATA: Array<{ y: number; n: string; pos: string | null; tm: string }>;
 }
 
 // ---------- helpers ----------
@@ -204,6 +211,9 @@ const rawChampions = readJson<RawChampion[]>(join(SEED_DIR, 'champions.json'));
 const rawMvps = readJson<RawMvp[]>(join(SEED_DIR, 'mvps.json'));
 const seed = readJson<SeedFile>(join(SEED_DIR, 'franchises.seed.json'));
 const mvpOverrides = readJson<MvpOverridesFile>(join(SEED_DIR, 'mvp-overrides.json'));
+const prototype = readJson<PrototypeInline>(join(SEED_DIR, 'prototype-inline.json'));
+const protoChampionName = new Map(prototype.CHAMP_DATA.map((c) => [c.y, c.tm]));
+const protoMvpPosition = new Map(prototype.MVP_DATA.map((m) => [m.y, m.pos || null]));
 
 // ---------- franchises ----------
 
@@ -321,6 +331,7 @@ const franchises: Franchise[] = seed.franchises.map((f) => {
     fullName,
     code: f.code,
     colors: { primary: f.primaryColor, secondary: null },
+    colorSource: f.primaryColor ? f.colorSource : null,
     logo: f.code && LOGO_FILE_BY_CODE[f.code] ? `/assets/images/teams/${LOGO_FILE_BY_CODE[f.code]}.png` : null,
     status: f.code ? 'active' : 'extinct',
     activeYears: [],
@@ -377,15 +388,19 @@ function resolveTeams(name: string, year: number): string[] {
 // ---------- champions ----------
 
 const champions: Champion[] = rawChampions
-  .map((c): Champion => ({
-    year: c.year,
-    franchiseSlug: resolveTeam(c.champion, c.year),
-    name: c.champion,
-    coach: c.coach,
-    series: c.series,
-    seriesRaw: c.seriesRaw,
-    coachTitleNumber: c.coachTitleNumber,
-  }))
+  .map((c): Champion => {
+    const franchiseSlug = resolveTeam(c.champion, c.year);
+    return {
+      year: c.year,
+      franchiseSlug,
+      name: c.champion,
+      fullName: franchiseSlug ? franchiseBySlug.get(franchiseSlug)!.fullName : protoChampionName.get(c.year) ?? c.champion,
+      coach: c.coach,
+      series: c.series,
+      seriesRaw: c.seriesRaw,
+      coachTitleNumber: c.coachTitleNumber,
+    };
+  })
   .sort((a, b) => b.year - a.year);
 
 const championByYear = new Map<number, Champion>(champions.map((c) => [c.year, c]));
@@ -491,6 +506,7 @@ const mvps: Mvp[] = rawMvps
       slug: res.playerId ? slugById.get(res.playerId) ?? null : null,
       name: m.player,
       mvpNumber: m.mvpNumber,
+      position: protoMvpPosition.get(m.year) ?? null,
       teamName: m.team,
       franchiseSlugs: resolveTeams(m.team, m.year),
     };
