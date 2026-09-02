@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
+import { textOn } from '@/archivo/lib/color';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
 
 export interface DynastyTitle {
@@ -154,6 +155,9 @@ export default function DynastyTracker({ titles, franchises }: Props) {
           <div className="min-w-0">
             <p className="font-barlow text-[12px] font-semibold uppercase tracking-[1px] text-[rgba(15,23,31,0.55)]">Campeón {year}</p>
             <p className="truncate text-[18px] text-[rgba(15,23,31,0.9)]">{champion?.name ?? '–'}</p>
+            <p role="status" className="mt-[6px] h-[26px]">
+              {caption ? <span className="inline-block rounded-[6px] bg-[#0F171F] px-[10px] py-[4px] font-barlow text-[13px] font-semibold text-white">{caption}</span> : null}
+            </p>
           </div>
           <div aria-live="polite" className="shrink-0 text-right text-[56px] leading-[0.9] text-black [font-variant-numeric:tabular-nums] md:text-[80px]">
             {year}
@@ -174,7 +178,7 @@ export default function DynastyTracker({ titles, franchises }: Props) {
                 <FranchiseLogo franchise={f} fallbackName={t.name} sizePx={mobile ? 30 : 32} />
                 <span className="relative min-w-0 flex-1">
                   <span className="absolute inset-y-0 left-0 rounded-[4px]" style={{ width: `${entry ? Math.max(4, (entry.count / max) * 100) : 0}%`, background: color, opacity: 0.85, transition }} />
-                  <span className={`relative flex h-full items-center gap-[8px] pl-[10px] ${mobile ? 'text-[16px]' : 'text-[16px]'} text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]`}>
+                  <span className="relative flex h-full items-center gap-[8px] pl-[10px] text-[16px]" style={{ color: textOn(color) }}>
                     <span className="truncate">{f?.nickname ?? t.name}</span>
                   </span>
                 </span>
@@ -195,11 +199,6 @@ export default function DynastyTracker({ titles, franchises }: Props) {
           })}
         </div>
 
-        {caption ? (
-          <p role="status" className="pointer-events-none absolute left-[16px] top-[16px] rounded-[6px] bg-[#0F171F] px-[10px] py-[6px] font-barlow text-[14px] font-semibold text-white md:left-[24px] md:top-[24px]">
-            {caption}
-          </p>
-        ) : null}
       </div>
 
       <div className="mt-4">
