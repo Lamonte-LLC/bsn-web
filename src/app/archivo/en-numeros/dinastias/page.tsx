@@ -12,8 +12,10 @@ export default function DinastiasPage() {
   const titles: DynastyTitle[] = champions
     .map((c) => ({ year: c.year, key: c.franchiseSlug ?? `club:${c.name}`, franchiseSlug: c.franchiseSlug, name: c.fullName }))
     .sort((a, b) => a.year - b.year);
+  const first = titles[0]?.year;
+  const last = titles[titles.length - 1]?.year;
   return (
-    <InsightPage title="Dinastías" context="Noventa y cinco títulos en noventa y seis años. Míralos acumularse." heroNumber={champions.length} heroNumberLabel="títulos desde 1930">
+    <InsightPage title="Dinastías" context={`${champions.length} títulos en ${last - first + 1} años. Míralos acumularse.`} heroNumber={champions.length} heroNumberLabel={`títulos desde ${first}`} share={false}>
       <DynastyTracker titles={titles} franchises={franchises} />
     </InsightPage>
   );

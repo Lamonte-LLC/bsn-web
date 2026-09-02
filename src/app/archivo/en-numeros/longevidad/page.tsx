@@ -2,26 +2,30 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import InsightPage from '@/archivo/components/InsightPage';
 import Tabs from '@/archivo/components/Tabs';
-import { getFranchiseMap, getLongevity } from '@/archivo/lib/data';
+import { PaperCard } from '@/archivo/components/ui';
+import { getLongevity } from '@/archivo/lib/data';
 import { fmtInt } from '@/archivo/lib/format';
+import { cls } from '@/archivo/lib/tokens';
 import type { LongevityEntry } from '@/archivo/lib/types';
 
 export const metadata: Metadata = { title: 'Los que duraron · Archivo BSN', description: 'Los jugadores con más temporadas y más juegos en la historia del BSN.' };
 
 const MIN_YEAR = 1956;
 const MAX_YEAR = 2023;
+const TICKS = [1960, 1980, 2000, 2020];
+const MINOR = [1970, 1990, 2010];
 
-function Gantt({ list, valueKey, unit }: { list: LongevityEntry[]; valueKey: 'seasons' | 'g'; unit: string }) {
-  const franchises = getFranchiseMap();
+function Gantt({ list, valueKey }: { list: LongevityEntry[]; valueKey: 'seasons' | 'g' }) {
   const span = MAX_YEAR - MIN_YEAR;
-  const ticks = [1960, 1970, 1980, 1990, 2000, 2010, 2020];
+  const pos = (y: number) => `${((y - MIN_YEAR) / span) * 100}%`;
   return (
     <div>
-      <div className="hidden grid-cols-[220px_1fr_70px] gap-x-3 md:grid">
+      <div className="hidden grid-cols-[28px_220px_1fr_60px] gap-x-[14px] md:grid">
         <span />
-        <div className="relative h-[18px] border-b border-[rgba(0,0,0,0.12)]">
-          {ticks.map((t) => (
-            <span key={t} className="absolute -translate-x-1/2 font-barlow text-[12px] text-[rgba(15,23,31,0.5)]" style={{ left: `${((t - MIN_YEAR) / span) * 100}%` }}>
+        <span />
+        <div className="relative h-[18px]">
+          {TICKS.map((t) => (
+            <span key={t} className={`absolute -translate-x-1/2 font-barlow text-[10.5px] text-[rgba(0,0,0,0.45)] ${cls.tabular}`} style={{ left: pos(t) }}>
               {t}
             </span>
           ))}
@@ -29,29 +33,26 @@ function Gantt({ list, valueKey, unit }: { list: LongevityEntry[]; valueKey: 'se
         <span />
       </div>
       <ol>
-        {list.map((e, i) => {
-          const color = e.franchiseSlugs[0] ? franchises.get(e.franchiseSlugs[0])?.colors.primary ?? '#0F171F' : '#0F171F';
-          return (
-            <li key={e.playerId} className="grid min-h-[48px] grid-cols-[1fr_64px] items-center gap-x-3 border-b border-[rgba(0,0,0,0.05)] py-[6px] md:grid-cols-[220px_1fr_70px]">
-              <div className="min-w-0">
-                <Link href={`/archivo/jugadores/${e.slug}`} className="flex items-baseline gap-[6px] hover:underline">
-                  <span className="w-[20px] shrink-0 font-barlow-condensed text-[13px] text-[rgba(0,0,0,0.6)]">{i + 1}</span>
-                  <span className="truncate text-[16px] text-[rgba(15,23,31,0.9)]">{e.name}</span>
-                </Link>
-                <span className="block pl-[26px] font-barlow text-[12px] text-[rgba(15,23,31,0.55)] md:hidden">
-                  {e.fy} a {e.ly}
-                </span>
-              </div>
-              <div className="relative hidden h-[14px] md:block">
-                <span className="absolute inset-y-0 rounded-[3px]" style={{ left: `${((e.fy - MIN_YEAR) / span) * 100}%`, width: `${Math.max(1, ((e.ly - e.fy + 1) / span) * 100)}%`, background: color, opacity: 0.85 }} title={`${e.fy} a ${e.ly}`} />
-              </div>
-              <span className="text-right text-[20px] text-black [font-variant-numeric:tabular-nums]">
-                {fmtInt(e[valueKey])}
-                <span className="ml-[3px] font-barlow text-[11px] text-[rgba(15,23,31,0.5)]">{unit}</span>
+        {list.map((e, i) => (
+          <li key={e.playerId} className="grid min-h-[45px] grid-cols-[24px_1fr_48px] items-center gap-x-[10px] border-b border-[rgba(0,0,0,0.05)] py-[6px] last:border-b-0 md:grid-cols-[28px_220px_1fr_60px] md:gap-x-[14px]">
+            <span className="font-barlow-condensed text-[13px] text-[rgba(0,0,0,0.45)]">{i + 1}</span>
+            <div className="min-w-0">
+              <Link href={`/archivo/jugadores/${e.slug}`} className={`block truncate font-barlow text-[14px] font-semibold text-[#0F171F] rounded-[4px] ${cls.focus}`}>
+                {e.name}
+              </Link>
+              <span className={`block font-barlow text-[12px] text-[rgba(0,0,0,0.5)] md:hidden ${cls.tabular}`}>
+                {e.fy} a {e.ly}
               </span>
-            </li>
-          );
-        })}
+            </div>
+            <div className="relative hidden h-[20px] md:block">
+              {[...TICKS, ...MINOR].map((t) => (
+                <span key={t} aria-hidden className="absolute inset-y-0 w-px bg-[rgba(0,0,0,0.06)]" style={{ left: pos(t) }} />
+              ))}
+              <span className="absolute top-[6px] h-[8px] rounded-[4px] bg-[#0F171F]" style={{ left: pos(e.fy), width: `${Math.max(1, ((e.ly - e.fy + 1) / span) * 100)}%` }} title={`${e.fy} a ${e.ly}`} />
+            </div>
+            <span className={`text-right text-[20px] leading-[1] text-[#0F171F] ${cls.tabular}`}>{fmtInt(e[valueKey])}</span>
+          </li>
+        ))}
       </ol>
     </div>
   );
@@ -61,14 +62,23 @@ export default function LongevidadPage() {
   const data = getLongevity();
   const top = data.bySeasons[0];
   return (
-    <InsightPage title="Los que duraron" context="Teófilo Cruz jugó veinticinco temporadas. Empezó antes de que existiera la línea de tres." heroNumber={top?.seasons} heroNumberLabel={`temporadas de ${top?.name}`}>
-      <Tabs
-        tabs={[
-          { label: 'Por temporadas', panel: <Gantt list={data.bySeasons} valueKey="seasons" unit="temp." /> },
-          { label: 'Por juegos', panel: <Gantt list={data.byGames} valueKey="g" unit="juegos" /> },
-        ]}
-      />
-      <p className="mt-4 max-w-[72ch] font-barlow text-[15px] text-[rgba(15,23,31,0.6)]">La barra va del año de debut al de retiro; el color es el de la primera franquicia del jugador. Los juegos son los totales de Serie Regular publicados por la liga.</p>
+    <InsightPage
+      title="Los que duraron"
+      context={`${top?.name} jugó ${top?.seasons} temporadas. Teófilo Cruz empezó antes de que existiera la línea de tres.`}
+      heroNumber={top?.seasons}
+      heroNumberLabel={`temporadas de ${top?.name}`}
+      source={`Barra del año de debut al de retiro, eje ${MIN_YEAR} a ${MAX_YEAR}. Los juegos son los totales de Serie Regular publicados por la liga.`}
+    >
+      <PaperCard className="px-[16px] pb-[8px] pt-[16px] md:px-[26px] md:pt-[20px]">
+        <Tabs
+          small
+          title={<p className="font-barlow text-[12px] font-bold uppercase tracking-[1px] text-[#0F171F]">Los que duraron · Top 25</p>}
+          tabs={[
+            { label: 'Temporadas', panel: <Gantt list={data.bySeasons} valueKey="seasons" /> },
+            { label: 'Juegos', panel: <Gantt list={data.byGames} valueKey="g" /> },
+          ]}
+        />
+      </PaperCard>
     </InsightPage>
   );
 }

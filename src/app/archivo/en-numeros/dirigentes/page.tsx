@@ -2,46 +2,77 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import InsightPage from '@/archivo/components/InsightPage';
+import { PaperCard } from '@/archivo/components/ui';
 import { getCoaches, getFranchiseMap } from '@/archivo/lib/data';
+import { cls } from '@/archivo/lib/tokens';
+import type { CoachInsight, Franchise } from '@/archivo/lib/types';
 
 export const metadata: Metadata = { title: 'Los dirigentes que ganaron · Archivo BSN', description: 'Los dirigentes con más campeonatos en la historia del BSN.' };
+
+const SHOWN = 8;
+
+function CoachRow({ c, i, max, franchises }: { c: CoachInsight; i: number; max: number; franchises: Map<string, Franchise> }) {
+  return (
+    <li className="grid grid-cols-[24px_1fr_40px] items-start gap-x-[10px] border-b border-[rgba(0,0,0,0.05)] py-[14px] last:border-b-0 md:grid-cols-[28px_190px_1fr_44px] md:gap-x-[14px] md:py-[15px]">
+      <span className="pt-[2px] font-barlow-condensed text-[15px] text-[rgba(0,0,0,0.45)]">{i + 1}</span>
+      <div className="md:contents">
+        <span className="block pt-[1px] font-barlow text-[15px] font-semibold text-[#0F171F]">{c.name}</span>
+        <div className="mt-[8px] md:mt-0">
+          <div className="h-[16px] rounded-[3px] bg-[#0F171F]" style={{ width: `${Math.max(3, (c.titles / max) * 100)}%` }} />
+          <div className="mt-[9px] flex flex-wrap gap-[5px]">
+            {c.championships.map((ch) => (
+              <Link
+                key={`${ch.year}-${ch.franchiseSlug}`}
+                href={`/archivo/temporadas/${ch.year}`}
+                title={`${ch.franchiseName}${ch.coCoach ? ` (con ${ch.coCoach})` : ''}`}
+                className={`inline-flex h-[24px] items-center gap-[5px] rounded-[7px] border border-[rgba(0,0,0,0.1)] py-[2px] pl-[3px] pr-[8px] font-barlow text-[12px] font-medium text-[rgba(0,0,0,0.65)] transition-colors duration-150 hover:border-[rgba(0,0,0,0.3)] hover:text-[#0F171F] ${cls.tabular} ${cls.focus}`}
+              >
+                <FranchiseLogo franchise={ch.franchiseSlug ? franchises.get(ch.franchiseSlug) ?? null : null} fallbackName={ch.franchiseName} sizePx={16} />
+                {ch.year}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+      <span className={`text-right text-[24px] leading-[1] text-[#0F171F] ${cls.tabular}`}>{c.titles}</span>
+    </li>
+  );
+}
 
 export default function DirigentesPage() {
   const coaches = getCoaches().slice(0, 15);
   const franchises = getFranchiseMap();
   const max = coaches[0]?.titles ?? 1;
+  const first = coaches.slice(0, SHOWN);
+  const rest = coaches.slice(SHOWN);
   return (
-    <InsightPage title="Los dirigentes que ganaron" context="Julio Toro ganó doce campeonatos en cuatro décadas. Nadie está cerca." heroNumber={coaches[0]?.titles} heroNumberLabel={`títulos de ${coaches[0]?.name}`}>
-      <ol className="flex flex-col gap-[14px]">
-        {coaches.map((c, i) => (
-          <li key={c.name} className="grid grid-cols-[28px_1fr] items-start gap-3 md:grid-cols-[32px_220px_1fr]">
-            <span className="pt-[6px] font-barlow-condensed text-[15px] text-[rgba(0,0,0,0.6)]">{i + 1}</span>
-            <div className="md:contents">
-              <span className="block pt-[3px] text-[18px] leading-[1.2] text-[rgba(15,23,31,0.9)]">{c.name}</span>
-              <div className="mt-[6px] md:mt-0">
-                <div className="flex items-center gap-[10px]">
-                  <span className="h-[26px] rounded-[4px] bg-[#0F171F]" style={{ width: `${Math.max(3, (c.titles / max) * 100)}%` }} />
-                  <span className="text-[22px] leading-[1] text-black [font-variant-numeric:tabular-nums]">{c.titles}</span>
-                </div>
-                <div className="mt-[6px] flex flex-wrap gap-[4px]">
-                  {c.championships.map((ch) => (
-                    <Link
-                      key={`${ch.year}-${ch.franchiseSlug}`}
-                      href={`/archivo/temporadas/${ch.year}`}
-                      title={`${ch.franchiseName}${ch.coCoach ? ` (con ${ch.coCoach})` : ''}`}
-                      className="inline-flex h-[28px] items-center gap-[5px] rounded-[6px] border border-[#EAEAEA] bg-white px-[7px] font-barlow text-[13px] font-medium text-[rgba(15,23,31,0.8)] transition-colors duration-150 hover:border-[rgba(47,47,47,1)]"
-                    >
-                      <FranchiseLogo franchise={ch.franchiseSlug ? franchises.get(ch.franchiseSlug) ?? null : null} fallbackName={ch.franchiseName} sizePx={16} />
-                      {ch.year}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <p className="mt-6 max-w-[72ch] font-barlow text-[15px] text-[rgba(15,23,31,0.6)]">Los títulos con dos dirigentes (por ejemplo, Del Harris y Tom Nissalke en 1975) cuentan para ambos.</p>
+    <InsightPage
+      title="Los dirigentes que ganaron"
+      context="Julio Toro ganó doce campeonatos en cuatro décadas. Nadie está cerca."
+      heroNumber={coaches[0]?.titles}
+      heroNumberLabel={`títulos de ${coaches[0]?.name}`}
+      source="Los títulos con dos dirigentes cuentan para ambos. Fuente: registro de campeonatos de la liga, 1930 a 2025."
+    >
+      <PaperCard className="px-[16px] py-[4px] md:px-[26px] md:py-[8px]">
+        <ol>
+          {first.map((c, i) => (
+            <CoachRow key={c.name} c={c} i={i} max={max} franchises={franchises} />
+          ))}
+        </ol>
+        {rest.length ? (
+          <details className="group">
+            <summary className={`cursor-pointer list-none border-t border-[rgba(0,0,0,0.05)] py-[13px] text-center font-barlow text-[12.5px] text-[rgba(0,0,0,0.5)] transition-colors duration-150 hover:text-[#0F171F] ${cls.focus} [&::-webkit-details-marker]:hidden`}>
+              <span className="group-open:hidden">Ver los {coaches.length}</span>
+              <span className="hidden group-open:inline">Ver menos</span>
+            </summary>
+            <ol className="border-t border-[rgba(0,0,0,0.05)]">
+              {rest.map((c, i) => (
+                <CoachRow key={c.name} c={c} i={i + SHOWN} max={max} franchises={franchises} />
+              ))}
+            </ol>
+          </details>
+        ) : null}
+      </PaperCard>
     </InsightPage>
   );
 }

@@ -26,11 +26,11 @@ export default function ArchivoNav() {
 
   useEffect(() => {
     // Keep the active tab visible when the row overflows (mobile). Instant, so nothing animates on load.
-    activeRef.current?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    activeRef.current?.scrollIntoView({ block: 'nearest', inline: 'center' });
   }, [pathname]);
 
   return (
-    <nav aria-label="Secciones del archivo" className="no-scrollbar -mx-4 overflow-x-auto px-4 [mask-image:linear-gradient(to_right,#000_0%,#000_calc(100%-40px),transparent_100%)] md:mx-0 md:px-0 md:[mask-image:none]">
+    <nav aria-label="Secciones del archivo" className="no-scrollbar -mx-4 overflow-x-auto px-4 [mask-image:linear-gradient(to_right,#000_0%,#000_calc(100%-28px),transparent_100%)] md:mx-0 md:px-0 md:[mask-image:none]">
       <ul className="flex min-w-max flex-row gap-[20px] lg:gap-[24px]">
         {ARCHIVO_SECTIONS.map((s) => {
           const active = s.href === '/archivo' ? pathname === '/archivo' : pathname.startsWith(s.href);
