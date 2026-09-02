@@ -3,8 +3,9 @@ import Link from 'next/link';
 import ArchivoShell from '@/archivo/components/ArchivoShell';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
-import { Eyebrow, HeroEyebrow, HeroTitle, PaperCard, SectionTitle } from '@/archivo/components/ui';
+import { CardLink, HeroEyebrow, HeroTitle, Label, PaperCard, SectionTitle } from '@/archivo/components/ui';
 import { getChampions, getFranchiseMap, getMvps, getPlayerIndex } from '@/archivo/lib/data';
+import { cls } from '@/archivo/lib/tokens';
 
 export const metadata: Metadata = {
   title: 'Archivo BSN · Historia del Baloncesto Superior Nacional',
@@ -18,7 +19,7 @@ const SECTIONS = [
   { href: '/archivo/mvps', title: 'Salón de MVPs', text: 'Los mejores de cada año desde 1951.' },
   { href: '/archivo/records', title: 'Récords', text: 'Las marcas de temporada y de carrera.' },
   { href: '/archivo/franquicias', title: 'Franquicias', text: '28 franquicias, activas y extintas.' },
-  { href: '/archivo/en-numeros', title: 'El BSN en números', text: 'Siete historias contadas con data.' },
+  { href: '/archivo/en-numeros', title: 'El BSN en números', text: 'Ocho historias contadas con data.' },
   { href: '/archivo/comparar', title: 'Cara a cara', text: 'Compara dos leyendas, número por número.' },
 ];
 
@@ -33,6 +34,8 @@ export default function ArchivoHome() {
   const latestChampion = champions[0];
   const latestMvp = mvps[0];
   const playersCount = getPlayerIndex().length;
+  const latestChampionF = latestChampion.franchiseSlug ? franchises.get(latestChampion.franchiseSlug) ?? null : null;
+  const latestMvpF = latestMvp.franchiseSlugs[0] ? franchises.get(latestMvp.franchiseSlugs[0]) ?? null : null;
 
   return (
     <ArchivoShell
@@ -40,37 +43,37 @@ export default function ArchivoHome() {
         <div className="max-w-[720px]">
           <HeroEyebrow>El museo digital del BSN</HeroEyebrow>
           <HeroTitle>Noventa y seis años de baloncesto, en un solo lugar.</HeroTitle>
-          <p className="mt-[14px] font-barlow text-[15px] font-medium leading-[1.4] text-white/75 lg:text-[16px]">
+          <p className="mt-[14px] max-w-[62ch] font-barlow text-[15px] leading-[1.5] text-white/75 lg:text-[16px]">
             Campeones desde 1930, MVPs desde 1951 y las estadísticas de {playersCount.toLocaleString('es-PR')} jugadores. Cada año es un enlace, cada nombre es una historia.
           </p>
         </div>
       }
     >
-      <section className="mb-10 lg:mb-14">
+      <section className="mb-[36px] lg:mb-[44px]">
         <SectionTitle>Este año en la historia</SectionTitle>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-[12px] md:grid-cols-3 md:gap-[16px]">
           {anniversaries.map(({ n, year, champion, mvp }) => (
-            <PaperCard key={n} className="p-[16px] md:p-[20px]">
-              <Eyebrow>Hace {n} años</Eyebrow>
-              <Link href={`/archivo/temporadas/${year}`} className="mt-[4px] block text-[38px] leading-[1] text-black">
+            <PaperCard key={n} className="px-[18px] py-[18px] md:px-[22px] md:py-[20px]">
+              <Label>Hace {n} años</Label>
+              <Link href={`/archivo/temporadas/${year}`} className={`mt-[6px] inline-block text-[40px] leading-[1] text-[#0F171F] ${cls.tabular} rounded-[4px] ${cls.focus}`}>
                 {year}
               </Link>
-              <div className="mt-[14px] flex flex-col gap-[12px]">
+              <div className="mt-[16px] flex flex-col gap-[12px] border-t border-[rgba(0,0,0,0.06)] pt-[14px]">
                 {champion ? (
-                  <Link href={champion.franchiseSlug ? `/archivo/franquicias/${champion.franchiseSlug}` : `/archivo/temporadas/${year}`} className="flex items-center gap-[10px]">
+                  <Link href={champion.franchiseSlug ? `/archivo/franquicias/${champion.franchiseSlug}` : `/archivo/temporadas/${year}`} className={`flex items-center gap-[10px] rounded-[4px] ${cls.focus}`}>
                     <FranchiseLogo franchise={champion.franchiseSlug ? franchises.get(champion.franchiseSlug) ?? null : null} fallbackName={champion.fullName} size="avatar" />
                     <span className="min-w-0">
-                      <span className="block font-barlow text-[11px] font-semibold uppercase tracking-[1px] text-[rgba(15,23,31,0.5)]">Campeón</span>
-                      <span className="block truncate text-[17px] text-[rgba(15,23,31,0.9)]">{champion.fullName}</span>
+                      <span className={`block ${cls.label} !text-[10px]`}>Campeón</span>
+                      <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">{champion.fullName}</span>
                     </span>
                   </Link>
                 ) : null}
                 {mvp ? (
-                  <Link href={mvp.slug ? `/archivo/jugadores/${mvp.slug}` : `/archivo/mvps`} className="flex items-center gap-[10px]">
+                  <Link href={mvp.slug ? `/archivo/jugadores/${mvp.slug}` : `/archivo/mvps`} className={`flex items-center gap-[10px] rounded-[4px] ${cls.focus}`}>
                     <PlayerAvatar name={mvp.name} color={mvp.franchiseSlugs[0] ? franchises.get(mvp.franchiseSlugs[0])?.colors.primary : null} size="avatar" />
                     <span className="min-w-0">
-                      <span className="block font-barlow text-[11px] font-semibold uppercase tracking-[1px] text-[rgba(15,23,31,0.5)]">MVP</span>
-                      <span className="block truncate text-[17px] text-[rgba(15,23,31,0.9)]">{mvp.name}</span>
+                      <span className={`block ${cls.label} !text-[10px]`}>MVP</span>
+                      <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">{mvp.name}</span>
                     </span>
                   </Link>
                 ) : null}
@@ -80,44 +83,40 @@ export default function ArchivoHome() {
         </div>
       </section>
 
-      <section className="mb-10 lg:mb-14">
+      <section className="mb-[36px] lg:mb-[44px]">
         <SectionTitle>Explora el archivo</SectionTitle>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-[12px] md:gap-[16px] lg:grid-cols-4">
           {SECTIONS.map((s) => (
-            <Link key={s.href} href={s.href} className="group rounded-[12px] border border-[#EAEAEA] bg-white p-[16px] shadow-[0px_1px_3px_0px_rgba(20,24,31,0.04)] transition-colors duration-150 hover:border-[rgba(47,47,47,1)] md:p-[20px]">
-              <span className="block text-[22px] text-black">{s.title}</span>
-              <span className="mt-[4px] block font-barlow text-[13px] text-[rgba(0,0,0,0.6)]">{s.text}</span>
-            </Link>
+            <CardLink key={s.href} href={s.href} className="px-[18px] py-[18px] md:px-[22px] md:py-[20px]">
+              <span className="block text-[20px] leading-[1.1] text-[#0F171F] md:text-[22px]">{s.title}</span>
+              <span className={`mt-[6px] block ${cls.meta}`}>{s.text}</span>
+            </CardLink>
           ))}
         </div>
       </section>
 
       <section>
         <SectionTitle>Lo más reciente</SectionTitle>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <PaperCard className="flex items-center gap-[14px] p-[16px] md:p-[20px]">
-            <FranchiseLogo franchise={latestChampion.franchiseSlug ? franchises.get(latestChampion.franchiseSlug) ?? null : null} fallbackName={latestChampion.fullName} sizePx={72} />
-            <div className="min-w-0">
-              <Eyebrow>Campeón {latestChampion.year}</Eyebrow>
-              <Link href={`/archivo/temporadas/${latestChampion.year}`} className="block text-[24px] leading-[1.1] text-black">
-                {latestChampion.fullName}
-              </Link>
-              <p className="mt-[4px] font-barlow text-[13px] text-[rgba(0,0,0,0.6)]">
+        <div className="grid grid-cols-1 gap-[12px] md:grid-cols-2 md:gap-[16px]">
+          <CardLink href={`/archivo/temporadas/${latestChampion.year}`} className="flex items-center gap-[16px] px-[18px] py-[18px] md:px-[22px] md:py-[20px]">
+            <FranchiseLogo franchise={latestChampionF} fallbackName={latestChampion.fullName} sizePx={64} />
+            <span className="min-w-0">
+              <Label>Campeón {latestChampion.year}</Label>
+              <span className="mt-[4px] block text-[24px] leading-[1.1] text-[#0F171F]">{latestChampion.fullName}</span>
+              <span className={`mt-[4px] block ${cls.meta}`}>
                 {latestChampion.coach ? `Dirigente: ${latestChampion.coach}` : ''}
                 {latestChampion.series ? ` · Serie final ${latestChampion.series}` : ''}
-              </p>
-            </div>
-          </PaperCard>
-          <PaperCard className="flex items-center gap-[14px] p-[16px] md:p-[20px]">
-            <PlayerAvatar name={latestMvp.name} color={latestMvp.franchiseSlugs[0] ? franchises.get(latestMvp.franchiseSlugs[0])?.colors.primary : null} sizePx={72} />
-            <div className="min-w-0">
-              <Eyebrow>MVP {latestMvp.year}</Eyebrow>
-              <Link href={latestMvp.slug ? `/archivo/jugadores/${latestMvp.slug}` : '/archivo/mvps'} className="block text-[24px] leading-[1.1] text-black">
-                {latestMvp.name}
-              </Link>
-              <p className="mt-[4px] font-barlow text-[13px] text-[rgba(0,0,0,0.6)]">{latestMvp.teamName}</p>
-            </div>
-          </PaperCard>
+              </span>
+            </span>
+          </CardLink>
+          <CardLink href={latestMvp.slug ? `/archivo/jugadores/${latestMvp.slug}` : '/archivo/mvps'} className="flex items-center gap-[16px] px-[18px] py-[18px] md:px-[22px] md:py-[20px]">
+            <PlayerAvatar name={latestMvp.name} color={latestMvpF?.colors.primary} sizePx={64} />
+            <span className="min-w-0">
+              <Label>MVP {latestMvp.year}</Label>
+              <span className="mt-[4px] block text-[24px] leading-[1.1] text-[#0F171F]">{latestMvp.name}</span>
+              <span className={`mt-[4px] block ${cls.meta}`}>{latestMvpF?.nickname ?? latestMvp.teamName}</span>
+            </span>
+          </CardLink>
         </div>
       </section>
     </ArchivoShell>

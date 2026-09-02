@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import ArchivoShell from '@/archivo/components/ArchivoShell';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
-import { HeroEyebrow, HeroTitle, SectionTitle } from '@/archivo/components/ui';
+import { CardLink, HeroEyebrow, HeroTitle, SectionTitle } from '@/archivo/components/ui';
 import { getChampions, getFranchises } from '@/archivo/lib/data';
+import { cls } from '@/archivo/lib/tokens';
 
 export const metadata: Metadata = { title: 'Franquicias · Archivo BSN', description: 'Las 28 franquicias en la historia del BSN, activas y extintas.' };
 
@@ -26,22 +26,25 @@ export default function FranquiciasPage() {
       }
     >
       {groups.map((g) => (
-        <section key={g.label} className="mb-10">
-          <SectionTitle right={`${g.list.length}`}>{g.label}</SectionTitle>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {g.list.map((f) => (
-              <Link key={f.slug} href={`/archivo/franquicias/${f.slug}`} className="flex items-center gap-[12px] rounded-[12px] border border-[#EAEAEA] bg-white p-[14px] shadow-[0px_1px_3px_0px_rgba(20,24,31,0.04)] transition-colors duration-150 hover:border-[rgba(47,47,47,1)]">
-                <FranchiseLogo franchise={f} sizePx={48} />
-                <span className="min-w-0">
-                  <span className="block truncate text-[18px] leading-[1.1] text-[rgba(15,23,31,0.9)]">{f.nickname}</span>
-                  <span className="block truncate font-barlow text-[12px] text-[rgba(15,23,31,0.55)]">{f.city ?? 'Ciudad por confirmar'}</span>
-                  <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.55)]">
-                    {f.firstYear && f.lastYear ? `${f.firstYear} a ${f.lastYear}` : ''}
-                    {titles.get(f.slug) ? ` · ${titles.get(f.slug)} título${titles.get(f.slug) === 1 ? '' : 's'}` : ''}
+        <section key={g.label} className="mb-[36px] lg:mb-[44px]">
+          <SectionTitle right={<span className={`${cls.meta} ${cls.tabular}`}>{g.list.length}</span>}>{g.label}</SectionTitle>
+          <div className="grid grid-cols-1 gap-[12px] sm:grid-cols-2 md:gap-[16px] lg:grid-cols-4">
+            {g.list.map((f) => {
+              const n = titles.get(f.slug) ?? 0;
+              return (
+                <CardLink key={f.slug} href={`/archivo/franquicias/${f.slug}`} className="flex items-center gap-[14px] px-[16px] py-[14px]">
+                  <FranchiseLogo franchise={f} sizePx={48} />
+                  <span className="min-w-0">
+                    <span className="block truncate font-barlow text-[15px] font-semibold text-[#0F171F]">{f.nickname}</span>
+                    <span className={`block truncate ${cls.meta} !text-[12px]`}>{f.city ?? 'Ciudad por confirmar'}</span>
+                    <span className={`block ${cls.meta} !text-[12px] ${cls.tabular}`}>
+                      {f.firstYear && f.lastYear ? `${f.firstYear} a ${f.lastYear}` : ''}
+                      {n ? `${f.firstYear ? ' · ' : ''}${n} título${n === 1 ? '' : 's'}` : ''}
+                    </span>
                   </span>
-                </span>
-              </Link>
-            ))}
+                </CardLink>
+              );
+            })}
           </div>
         </section>
       ))}

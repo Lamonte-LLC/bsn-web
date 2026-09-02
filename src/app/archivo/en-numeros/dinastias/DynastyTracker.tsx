@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import ShareButton from '@/archivo/components/ShareButton';
@@ -65,6 +65,24 @@ export default function DynastyTracker({ titles, franchises }: Props) {
     };
   }, []);
 
+  // Every change of year goes through here so landmark captions fire with it. The caption slot under the
+  // champion's name is reserved, so nothing moves when one appears.
+  const goTo = useCallback((y: number) => {
+    setYear(y);
+    const text = CAPTIONS[y];
+    if (captionTimer.current) window.clearTimeout(captionTimer.current);
+    if (!text) {
+      setCaption(null);
+      return;
+    }
+    setCaption(text);
+    captionTimer.current = window.setTimeout(() => setCaption(null), 2000);
+  }, []);
+
+  useEffect(() => () => {
+    if (captionTimer.current) window.clearTimeout(captionTimer.current);
+  }, []);
+
   // Advance one title-year per tick while playing.
   useEffect(() => {
     if (!playing || reduced) return;
@@ -72,22 +90,10 @@ export default function DynastyTracker({ titles, franchises }: Props) {
       const idx = years.indexOf(year);
       const next = years[idx + 1];
       if (next === undefined) setPlaying(false);
-      else setYear(next);
+      else goTo(next);
     }, BASE_MS / speed);
     return () => window.clearTimeout(t);
-  }, [playing, reduced, year, years, speed]);
-
-  // Captions for landmark years. The slot under the champion's name is reserved, so nothing moves.
-  useEffect(() => {
-    const text = CAPTIONS[year];
-    if (!text) return;
-    setCaption(text);
-    if (captionTimer.current) window.clearTimeout(captionTimer.current);
-    captionTimer.current = window.setTimeout(() => setCaption(null), 2000);
-    return () => {
-      if (captionTimer.current) window.clearTimeout(captionTimer.current);
-    };
-  }, [year]);
+  }, [playing, reduced, year, years, speed, goTo]);
 
   const { ranked, max } = useMemo(() => {
     const counts = new Map<string, { key: string; name: string; franchiseSlug: string | null; count: number; last: number }>();
@@ -117,10 +123,10 @@ export default function DynastyTracker({ titles, franchises }: Props) {
 
   const jump = (y: number) => {
     setPlaying(false);
-    setYear(y);
+    goTo(y);
   };
   const play = () => {
-    if (year >= maxYear) setYear(minYear);
+    if (year >= maxYear) goTo(minYear);
     setPlaying(true);
   };
 

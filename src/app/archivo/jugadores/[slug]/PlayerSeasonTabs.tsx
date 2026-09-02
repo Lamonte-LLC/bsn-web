@@ -55,11 +55,12 @@ export default function PlayerSeasonTabs({ lines, totals, franchises, footnote }
       if (source.length && source.every((l) => l[k] === null)) absent.add(k);
     }
     const value = (key: NumKey) => (r: Row) => (key in r.line ? ((r.line as unknown as Record<string, number | null>)[key] ?? null) : null);
-    const num = (key: NumKey, kind: 'int' | 'avg' | 'pct') => (r: Row) => {
-      if (absent.has(key)) return r.isTotal ? '–' : <NotRecorded />;
-      const v = value(key)(r);
-      return kind === 'int' ? fmtInt(v) : kind === 'pct' ? fmtPct(v) : fmt(v);
-    };
+    const num = (key: NumKey, kind: 'int' | 'avg' | 'pct') =>
+      function renderStat(r: Row) {
+        if (absent.has(key)) return r.isTotal ? '–' : <NotRecorded />;
+        const v = value(key)(r);
+        return kind === 'int' ? fmtInt(v) : kind === 'pct' ? fmtPct(v) : fmt(v);
+      };
     const sort = (key: NumKey) => (r: Row) => (r.isTotal ? null : value(key)(r));
     return [
       {
