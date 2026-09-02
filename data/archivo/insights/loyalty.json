@@ -1,0 +1,7739 @@
+{
+  "minSeasons": 5,
+  "oneClub": [
+    {
+      "playerId": "2113",
+      "slug": "ruben-rodriguez-leon",
+      "name": "Ruben Rodriguez Leon",
+      "seasons": 23,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1011",
+      "slug": "javier-antonio-tonito-colon-rodriguez",
+      "name": "Javier Antonio 'Toñito' Colon Rodriguez",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "448",
+      "slug": "david-cortes-ruiz",
+      "name": "David Cortes Ruiz",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1962",
+      "slug": "raymond-dalmau-perez",
+      "name": "Raymond Dalmau Perez",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1574",
+      "slug": "mariano-tito-ortiz-marrero",
+      "name": "Mariano 'Tito' Ortiz Marrero",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "660",
+      "slug": "federico-fico-lopez-camacho",
+      "name": "Federico \"Fico\" Lopez Camacho",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2109",
+      "slug": "ruben-montanez-rodriguez",
+      "name": "Ruben Montañez Rodriguez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "2278",
+      "slug": "wesley-wes-correa-crump",
+      "name": "Wesley 'Wes' Correa Crump",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "289",
+      "slug": "carlos-hernandez-fernandez",
+      "name": "Carlos Hernandez Fernandez",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1308",
+      "slug": "juan-lopez-velez",
+      "name": "Juan Lopez Velez",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "33",
+      "slug": "alberto-zamot-bula",
+      "name": "Alberto Zamot Bula",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "655",
+      "slug": "evelio-el-potro-droz-ramos",
+      "name": "Evelio 'El Potro' Droz Ramos",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "922",
+      "slug": "irving-barea-rosa",
+      "name": "Irving Barea Rosa",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "993",
+      "slug": "james-thordsen-lasvitt",
+      "name": "James Thordsen Lasvitt",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1627",
+      "slug": "michael-vicens",
+      "name": "Michael Vicens",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2315",
+      "slug": "william-bill-mccadney",
+      "name": "William 'Bill' McCadney",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1088",
+      "slug": "johnny-el-indio-baez",
+      "name": "Johnny 'El Indio' Baez",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "215",
+      "slug": "armando-armandito-torres-ortiz",
+      "name": "Armando \"armandito\" Torres Ortiz",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "356",
+      "slug": "cesar-bocachica",
+      "name": "Cesar Bocachica",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "907",
+      "slug": "hiram-f-ortiz",
+      "name": "Hiram f. Ortiz",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "837",
+      "slug": "gustavo-mattei",
+      "name": "Gustavo Mattei",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1056",
+      "slug": "joe-hatton-gotay",
+      "name": "Joe Hatton Gotay",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1594",
+      "slug": "martin-anza",
+      "name": "Martin Anza",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1749",
+      "slug": "orlando-febres",
+      "name": "Orlando Febres",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "321",
+      "slug": "carlos-charlie-lanauze-montalvo",
+      "name": "Carlos 'Charlie' Lanauze Montalvo",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1264",
+      "slug": "jose-r-cestero",
+      "name": "Jose r. Cestero",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "1544",
+      "slug": "mague-santana",
+      "name": "Mague Santana",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "82",
+      "slug": "andres-baez",
+      "name": "Andres Baez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "617",
+      "slug": "eric-william-billy-baum",
+      "name": "Eric William 'Billy' Baum",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "711",
+      "slug": "francisco-colon-oquendo",
+      "name": "Francisco Colon Oquendo",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "903",
+      "slug": "hiram-marrero-pizarro",
+      "name": "Hiram Marrero Pizarro",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1230",
+      "slug": "jose-ivan-ruiz-nieves",
+      "name": "Jose ivan Ruiz Nieves",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1327",
+      "slug": "juan-pachin-vicens-sastre",
+      "name": "Juan 'Pachín' Vicens Sastre",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1704",
+      "slug": "nelson-morales",
+      "name": "Nelson Morales",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "2258",
+      "slug": "victor-vitito-cuevas",
+      "name": "Victor 'Vitito' Cuevas",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "111",
+      "slug": "angel-ruiz",
+      "name": "Angel Ruiz",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "192",
+      "slug": "antonio-guepa-rivera",
+      "name": "Antonio \"guepa\" Rivera",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "336",
+      "slug": "carlos-raul-vazquez-virola",
+      "name": "Carlos Raul Vazquez Virola",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "648",
+      "slug": "eugenio-borrero-martinez",
+      "name": "Eugenio Borrero Martinez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1054",
+      "slug": "joaquin-porrata-vazquez",
+      "name": "Joaquin Porrata Vazquez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1207",
+      "slug": "jose-totin-cestero-rodriguez",
+      "name": "Jose ' Totin' Cestero Rodriguez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "1495",
+      "slug": "luis-rivera-sonfront",
+      "name": "Luis Rivera Sonfront",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1573",
+      "slug": "mariano-ortiz",
+      "name": "Mariano Ortiz",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1585",
+      "slug": "mario-e-henry-rodriguez-flores",
+      "name": "Mario e. \"henry\" Rodriguez Flores",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1597",
+      "slug": "martin-jr-velez-ortiz-1957",
+      "name": "Martin jr Velez Ortiz",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1716",
+      "slug": "nestor-serrano",
+      "name": "Nestor Serrano",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1931",
+      "slug": "ramon-siragusa",
+      "name": "Ramon Siragusa",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1987",
+      "slug": "ricardo-calzada",
+      "name": "Ricardo Calzada",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "249",
+      "slug": "bj-carter-gaudino",
+      "name": "Bj Carter Gaudino",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "368",
+      "slug": "charles-williams",
+      "name": "Charles Williams",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "549",
+      "slug": "edwin-loubriel",
+      "name": "Edwin Loubriel",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "894",
+      "slug": "henry-sanchez-torres",
+      "name": "Henry Sanchez Torres",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "mets"
+      ]
+    },
+    {
+      "playerId": "947",
+      "slug": "ivan-igartua",
+      "name": "Ivan Igartua",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1080",
+      "slug": "john-padilla",
+      "name": "John Padilla",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1509",
+      "slug": "luis-a-lopez",
+      "name": "Luis a. Lopez",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1477",
+      "slug": "luis-garcia",
+      "name": "Luis Garcia",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1891",
+      "slug": "rafael-ufret",
+      "name": "Rafael Ufret",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1902",
+      "slug": "rafael-v-hernandez-moore",
+      "name": "Rafael v. Hernandez Moore",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1926",
+      "slug": "ramon-ramos-manso",
+      "name": "Ramon Ramos Manso",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "indios"
+      ]
+    },
+    {
+      "playerId": "13180",
+      "slug": "alexis-j-negron-nieves",
+      "name": "Alexis J. Negron Nieves",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "92",
+      "slug": "andy-martinez-rivera",
+      "name": "Andy Martinez Rivera",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "197",
+      "slug": "antonio-tony-mercado-abreu",
+      "name": "Antonio \"tony\" Mercado Abreu",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "232",
+      "slug": "augusto-guzman",
+      "name": "Augusto Guzman",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "311",
+      "slug": "carlos-roman",
+      "name": "Carlos Roman",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "13031",
+      "slug": "chinemelu-elonu",
+      "name": "Chinemelu Elonu",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "600",
+      "slug": "emilio-j-beniquez",
+      "name": "Emilio j. Beniquez",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "667",
+      "slug": "felix-lugo-1961",
+      "name": "Felix Lugo",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1090",
+      "slug": "jonas-lopez-clark",
+      "name": "Jonas Lopez Clark",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "1182",
+      "slug": "jose-pepito-diaz",
+      "name": "Jose \"pepito\" Diaz",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "1213",
+      "slug": "jose-armando-torres",
+      "name": "Jose armando Torres",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1226",
+      "slug": "jose-francisco-nava",
+      "name": "Jose francisco Nava",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1358",
+      "slug": "julian-rodriguez-garcia",
+      "name": "Julian Rodriguez Garcia",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1364",
+      "slug": "julio-clivilles",
+      "name": "Julio Clivilles",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "1453",
+      "slug": "lolito-castro",
+      "name": "Lolito Castro",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1718",
+      "slug": "nick-o-brien",
+      "name": "Nick O'brien",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "1828",
+      "slug": "pedro-juan-santana",
+      "name": "Pedro juan Santana",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1861",
+      "slug": "rafael-del-valle-ruiz",
+      "name": "Rafael Del valle Ruiz",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "2129",
+      "slug": "salvador-santiago-pagan",
+      "name": "Salvador Santiago Pagan",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "13170",
+      "slug": "wilfredo-willie-rodriguez-valentin",
+      "name": "Wilfredo 'Willie' Rodriguez Valentin",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "403",
+      "slug": "corpus-deliz",
+      "name": "Corpus Deliz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "525",
+      "slug": "edmundo-baez-rivera",
+      "name": "Edmundo Baez Rivera",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "721",
+      "slug": "francisco-llovet-ayala-1965",
+      "name": "Francisco Llovet Ayala",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "790",
+      "slug": "george-torres-rivera",
+      "name": "George Torres Rivera",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "836",
+      "slug": "gustavo-firpi",
+      "name": "Gustavo Firpi",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "873",
+      "slug": "hector-hetin-reyes",
+      "name": "Hector \"hetin\" Reyes",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "961",
+      "slug": "ivan-m-garcia-saenz",
+      "name": "Ivan m. Garcia Saenz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1115",
+      "slug": "jorge-sevillano",
+      "name": "Jorge Sevillano",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1176",
+      "slug": "jose-fufi-santori-coll",
+      "name": "Jose 'Fufi' Santori Coll",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1188",
+      "slug": "jose-antonio-tonin-casillas-fernandez",
+      "name": "Jose Antonio 'Toñín' Casillas Fernández",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santos"
+      ]
+    },
+    {
+      "playerId": "1225",
+      "slug": "jose-ferdinand-ocasio-cruz",
+      "name": "Jose ferdinand Ocasio Cruz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1299",
+      "slug": "juan-cain",
+      "name": "Juan Cain",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "1320",
+      "slug": "juan-rosario",
+      "name": "Juan Rosario",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santos"
+      ]
+    },
+    {
+      "playerId": "13217",
+      "slug": "luis-lopez-martinez",
+      "name": "Luis López Martínez",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1541",
+      "slug": "luis-ramon-ortiz",
+      "name": "Luis ramon Ortiz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "1560",
+      "slug": "manuel-rosario",
+      "name": "Manuel Rosario",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1591",
+      "slug": "mark-stuart-valderas-wahl",
+      "name": "Mark stuart Valderas Wahl",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1762",
+      "slug": "oscar-chiaramello-degiovanni",
+      "name": "Oscar Chiaramello Degiovanni",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2044",
+      "slug": "roberto-alvarez",
+      "name": "Roberto Alvarez",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santos"
+      ]
+    },
+    {
+      "playerId": "2275",
+      "slug": "walter-ruiz",
+      "name": "Walter Ruiz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "2297",
+      "slug": "wilfredo-freddie-lugo",
+      "name": "Wilfredo \"freddie\" Lugo",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cardenales"
+      ]
+    }
+  ],
+  "journeymen": [
+    {
+      "playerId": "1178",
+      "slug": "jose-joe-cruz-ayala",
+      "name": "Jose \"joe\" Cruz Ayala",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "santos",
+        "titanes",
+        "mets",
+        "indios",
+        "capitanes",
+        "criollos",
+        "polluelos",
+        "gallitos",
+        "gigantes",
+        "cariduros",
+        "piratas",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1995",
+      "slug": "ricardo-ricky-melendez-huertas",
+      "name": "Ricardo 'Ricky' Meléndez Huertas",
+      "seasons": 23,
+      "franchiseSlugs": [
+        "criollos",
+        "vaqueros",
+        "leones",
+        "atleticos",
+        "cangrejeros",
+        "capitanes",
+        "piratas",
+        "atenienses",
+        "cariduros",
+        "gigantes",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "63",
+      "slug": "alfredo-morales-rivera",
+      "name": "Alfredo Morales Rivera",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "tainos",
+        "santeros",
+        "indios",
+        "tiburones",
+        "leones",
+        "polluelos",
+        "titanes",
+        "piratas",
+        "gigantes",
+        "maratonistas",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "193",
+      "slug": "antonio-latimer-rivera",
+      "name": "Antonio Latimer Rivera",
+      "seasons": 28,
+      "franchiseSlugs": [
+        "vaqueros",
+        "maratonistas",
+        "indios",
+        "atleticos",
+        "mets",
+        "leones",
+        "gigantes",
+        "capitanes",
+        "brujos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "1774",
+      "slug": "pablo-alicea-rodriguez",
+      "name": "Pablo Alicea Rodriguez",
+      "seasons": 23,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gigantes",
+        "maratonistas",
+        "piratas",
+        "mets",
+        "leones",
+        "capitanes",
+        "cangrejeros",
+        "titanes",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "335",
+      "slug": "carlos-r-payano-ocasio",
+      "name": "Carlos R. Payano Ocasio",
+      "seasons": 22,
+      "franchiseSlugs": [
+        "criollos",
+        "polluelos",
+        "leones",
+        "maratonistas",
+        "vaqueros",
+        "atleticos",
+        "brujos",
+        "caciques",
+        "capitanes",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "528",
+      "slug": "eduardo-arrufat-albarran",
+      "name": "Eduardo Arrufat Albarran",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "criollos",
+        "mets",
+        "piratas",
+        "indios",
+        "capitanes",
+        "polluelos",
+        "atleticos",
+        "cangrejeros",
+        "titanes",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "704",
+      "slug": "filiberto-rivera-isaac",
+      "name": "Filiberto Rivera Isaac",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "maratonistas",
+        "gigantes",
+        "gallitos",
+        "atleticos",
+        "caciques",
+        "vaqueros",
+        "indios",
+        "cariduros",
+        "santeros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "151",
+      "slug": "angelo-reyes-canales",
+      "name": "Angelo Reyes Canales",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "titanes",
+        "criollos",
+        "caciques",
+        "gigantes",
+        "capitanes",
+        "cangrejeros",
+        "piratas",
+        "brujos",
+        "atenienses",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2310",
+      "slug": "william-memo-reveron-de-jesus",
+      "name": "William 'Memo' Reveron De Jesus",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "gigantes",
+        "maratonistas",
+        "polluelos",
+        "criollos",
+        "titanes",
+        "capitanes",
+        "indios",
+        "mets",
+        "piratas",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "808",
+      "slug": "gilberto-venzen-aloyo",
+      "name": "Gilberto Venzen Aloyo",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "cariduros",
+        "gallitos",
+        "polluelos",
+        "toritos",
+        "piratas",
+        "indios",
+        "atleticos",
+        "maratonistas",
+        "leones",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "2815",
+      "slug": "gabriel-j-belardo-del-rio",
+      "name": "Gabriel J. Belardo Del Rio",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "mets",
+        "piratas",
+        "vaqueros",
+        "atleticos",
+        "indios",
+        "santeros",
+        "leones",
+        "cariduros",
+        "brujos",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "748",
+      "slug": "frank-memoli-martin",
+      "name": "Frank Memoli Martin",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "atleticos",
+        "brujos",
+        "piratas",
+        "leones",
+        "indios",
+        "tainos",
+        "gallitos",
+        "criollos",
+        "santeros",
+        "tiburones"
+      ]
+    },
+    {
+      "playerId": "2782",
+      "slug": "nathaniel-butler-lind",
+      "name": "Nathaniel Butler Lind",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "piratas",
+        "atenienses",
+        "caciques",
+        "indios",
+        "santeros",
+        "atleticos",
+        "mets",
+        "capitanes",
+        "grises",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "555",
+      "slug": "edwin-santiago-rivera",
+      "name": "Edwin Santiago Rivera",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "cariduros",
+        "indios",
+        "brujos",
+        "capitanes",
+        "criollos",
+        "piratas",
+        "cangrejeros",
+        "leones",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1094",
+      "slug": "jonathan-garcia-bermudez",
+      "name": "Jonathan García Bermúdez",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "criollos",
+        "piratas",
+        "caciques",
+        "atenienses",
+        "leones",
+        "indios",
+        "atleticos",
+        "brujos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1666",
+      "slug": "miguel-ali-berdiel-aponte",
+      "name": "Miguel 'Ali' Berdiel Aponte",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "leones",
+        "maratonistas",
+        "caciques",
+        "cangrejeros",
+        "vaqueros",
+        "cariduros",
+        "brujos",
+        "mets",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "2309",
+      "slug": "william-orozco-santiago",
+      "name": "William Orozco Santiago",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "vaqueros",
+        "toritos",
+        "brujos",
+        "caciques",
+        "capitanes",
+        "cangrejeros",
+        "piratas",
+        "atleticos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "479",
+      "slug": "diego-melendez-montanez",
+      "name": "Diego Melendez Montañez",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "gigantes",
+        "indios",
+        "cariduros",
+        "atleticos",
+        "capitanes",
+        "criollos",
+        "maratonistas",
+        "leones",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "1739",
+      "slug": "omar-j-alvarado-sierra",
+      "name": "Omar J. Alvarado Sierra",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "toritos",
+        "caciques",
+        "criollos",
+        "atleticos",
+        "capitanes",
+        "vaqueros",
+        "maratonistas",
+        "atenienses",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "2033",
+      "slug": "ricardo-ricky-sanchez-rosa",
+      "name": "Ricardo 'Ricky' Sánchez Rosa",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "criollos",
+        "caciques",
+        "cangrejeros",
+        "indios",
+        "atenienses",
+        "brujos",
+        "cariduros",
+        "santeros",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "2565",
+      "slug": "jose-guitian-alicea",
+      "name": "José Guitián Alicea",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "caciques",
+        "atleticos",
+        "vaqueros",
+        "maratonistas",
+        "santeros",
+        "leones",
+        "gigantes",
+        "cangrejeros",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "357",
+      "slug": "cesar-armando-bocachica-salvador",
+      "name": "Cesar Armando Bocachica Salvador",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "mets",
+        "tainos",
+        "indios",
+        "atleticos",
+        "titanes",
+        "cangrejeros",
+        "toritos",
+        "brujos",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "120",
+      "slug": "angel-de-jesus-velazquez",
+      "name": "Angel De Jesus Velazquez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "mets",
+        "polluelos",
+        "indios",
+        "brujos",
+        "titanes",
+        "cangrejeros",
+        "caciques",
+        "criollos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "2028",
+      "slug": "rick-apodaca-perez",
+      "name": "Rick Apodaca Perez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "vaqueros",
+        "capitanes",
+        "atleticos",
+        "cangrejeros",
+        "leones",
+        "piratas",
+        "caciques",
+        "indios",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1512",
+      "slug": "luis-a-rivas-kuzmitsky",
+      "name": "Luis A. Rivas Kuzmitsky",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "piratas",
+        "criollos",
+        "gallitos",
+        "leones",
+        "titanes",
+        "cariduros",
+        "cangrejeros",
+        "caciques",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "392",
+      "slug": "christopher-vega-johnson",
+      "name": "Christopher Vega Johnson",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "titanes",
+        "gigantes",
+        "vaqueros",
+        "capitanes",
+        "atleticos",
+        "mets",
+        "maratonistas",
+        "brujos",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "611",
+      "slug": "ensor-l-gotay-leddux",
+      "name": "Ensor l. Gotay Leddux",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "vaqueros",
+        "leones",
+        "cardenales",
+        "maratonistas",
+        "piratas",
+        "capitanes",
+        "indios",
+        "criollos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "932",
+      "slug": "ismael-caro-beltran",
+      "name": "Ismael Caro Beltran",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "indios",
+        "gigantes",
+        "caciques",
+        "maratonistas",
+        "atleticos",
+        "cariduros",
+        "brujos",
+        "mets",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1884",
+      "slug": "rafael-ramos-soler",
+      "name": "Rafael Ramos Soler",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "criollos",
+        "gigantes",
+        "vaqueros",
+        "gallitos",
+        "polluelos",
+        "leones",
+        "capitanes",
+        "atleticos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "12981",
+      "slug": "wil-martinez-correa",
+      "name": "Wil Martínez Correa",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "atleticos",
+        "cariduros",
+        "leones",
+        "caciques",
+        "indios",
+        "capitanes",
+        "gigantes",
+        "piratas",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2857",
+      "slug": "angel-piwi-garcia-garcia",
+      "name": "Angel 'Piwi' Garcia Garcia",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "vaqueros",
+        "caciques",
+        "mets",
+        "piratas",
+        "capitanes",
+        "atleticos",
+        "santeros",
+        "cangrejeros",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "1385",
+      "slug": "karim-malpica-torres",
+      "name": "Karim Malpica Torres",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "brujos",
+        "gallitos",
+        "toritos",
+        "titanes",
+        "maratonistas",
+        "caciques",
+        "leones",
+        "atleticos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2290",
+      "slug": "wilfredo-pagan-roque",
+      "name": "Wilfredo Pagan Roque",
+      "seasons": 28,
+      "franchiseSlugs": [
+        "mets",
+        "titanes",
+        "vaqueros",
+        "brujos",
+        "leones",
+        "capitanes",
+        "cangrejeros",
+        "atenienses"
+      ]
+    },
+    {
+      "playerId": "574",
+      "slug": "elias-larry-ayuso-carrillo",
+      "name": "Elias 'Larry' Ayuso Carrillo",
+      "seasons": 24,
+      "franchiseSlugs": [
+        "piratas",
+        "atleticos",
+        "capitanes",
+        "cangrejeros",
+        "mets",
+        "vaqueros",
+        "brujos",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "1127",
+      "slug": "jorge-luis-rivera-motta",
+      "name": "Jorge Luis Rivera Motta",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "criollos",
+        "indios",
+        "santeros",
+        "capitanes",
+        "vaqueros",
+        "cangrejeros",
+        "cariduros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2045",
+      "slug": "roberto-aponte-flecha",
+      "name": "Roberto Aponte Flecha",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "cariduros",
+        "polluelos",
+        "criollos",
+        "leones",
+        "atleticos",
+        "brujos",
+        "indios",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "217",
+      "slug": "arnaldo-febres-salicrup",
+      "name": "Arnaldo Febres Salicrup",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "vaqueros",
+        "atleticos",
+        "titanes",
+        "toritos",
+        "gallitos",
+        "caciques",
+        "indios",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "729",
+      "slug": "francisco-rivera-cordero",
+      "name": "Francisco Rivera Cordero",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "titanes",
+        "gallitos",
+        "brujos",
+        "cariduros",
+        "maratonistas",
+        "indios",
+        "piratas",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "434",
+      "slug": "danny-vassallo-ocasio",
+      "name": "Danny Vassallo Ocasio",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "cariduros",
+        "capitanes",
+        "gallitos",
+        "criollos",
+        "maratonistas",
+        "mets",
+        "santos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1275",
+      "slug": "jose-rafael-cheo-otero-cancel",
+      "name": "Jose Rafael 'Cheo' Otero Cancel",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "santos",
+        "indios",
+        "gigantes",
+        "capitanes",
+        "atleticos",
+        "titanes",
+        "cariduros",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1181",
+      "slug": "johnny-caraballo-sepulveda",
+      "name": "Johnny Caraballo Sepulveda",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "polluelos",
+        "atleticos",
+        "tainos",
+        "indios",
+        "capitanes",
+        "brujos",
+        "leones",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "143",
+      "slug": "angel-miguel-lopez-ortiz",
+      "name": "Angel Miguel Lopez Ortiz",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "brujos",
+        "cariduros",
+        "polluelos",
+        "toritos",
+        "vaqueros",
+        "titanes",
+        "maratonistas",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1676",
+      "slug": "mitchel-lebron",
+      "name": "Mitchel Lebron",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "capitanes",
+        "mets",
+        "cariduros",
+        "piratas",
+        "indios",
+        "maratonistas",
+        "tiburones",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "587",
+      "slug": "elmyr-garcia-rodriguez",
+      "name": "Elmyr Garcia Rodriguez",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "indios",
+        "piratas",
+        "polluelos",
+        "vaqueros",
+        "cangrejeros",
+        "leones",
+        "criollos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1321",
+      "slug": "juan-rosas-bayron",
+      "name": "Juan Rosas Bayron",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "capitanes",
+        "mets",
+        "gallitos",
+        "atleticos",
+        "indios",
+        "titanes",
+        "piratas",
+        "tainos"
+      ]
+    },
+    {
+      "playerId": "777",
+      "slug": "gary-joe-burgos-algarin",
+      "name": "Gary Joe Burgos Algarin",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "criollos",
+        "toritos",
+        "atleticos",
+        "indios",
+        "maratonistas",
+        "vaqueros",
+        "caciques",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1077",
+      "slug": "john-cotte-martinez",
+      "name": "John Cotte Martinez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "mets",
+        "cariduros",
+        "piratas",
+        "indios",
+        "maratonistas",
+        "gallitos",
+        "capitanes",
+        "toritos"
+      ]
+    },
+    {
+      "playerId": "772",
+      "slug": "gabriel-ruiz-negron",
+      "name": "Gabriel Ruiz Negrón",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "indios",
+        "criollos",
+        "atleticos",
+        "brujos",
+        "atenienses",
+        "piratas",
+        "santeros",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2570",
+      "slug": "francis-jonathan-han-alicea",
+      "name": "Francis Jonathan Han Alicea",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "criollos",
+        "gallitos",
+        "vaqueros",
+        "cangrejeros",
+        "capitanes",
+        "caciques",
+        "santeros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "512",
+      "slug": "edgar-gary-williams-rivas",
+      "name": "Edgar \"gary\" Williams Rivas",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "indios",
+        "leones",
+        "brujos",
+        "atleticos",
+        "gallitos",
+        "vaqueros",
+        "cariduros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "134",
+      "slug": "angel-luis-romer-canario",
+      "name": "Angel luis Romer Canario",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "polluelos",
+        "vaqueros",
+        "santos",
+        "capitanes",
+        "mets",
+        "brujos",
+        "maratonistas",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1984",
+      "slug": "reyes-ortiz-cepero",
+      "name": "Reyes Ortiz Cepero",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "cariduros",
+        "tainos",
+        "atleticos",
+        "criollos",
+        "santeros",
+        "gigantes",
+        "vaqueros",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "798",
+      "slug": "german-hernandez-nieves",
+      "name": "German Hernandez Nieves",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "brujos",
+        "polluelos",
+        "gallitos",
+        "indios",
+        "gigantes",
+        "vaqueros",
+        "titanes",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "1108",
+      "slug": "jorge-melendez-montanez",
+      "name": "Jorge Melendez Montañez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "indios",
+        "brujos",
+        "titanes",
+        "maratonistas",
+        "gigantes",
+        "polluelos",
+        "mets",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1205",
+      "slug": "jose-alberto-lopez-perez",
+      "name": "Jose Alberto Lopez Perez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "brujos",
+        "mets",
+        "capitanes",
+        "cangrejeros",
+        "indios",
+        "maratonistas",
+        "atleticos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "673",
+      "slug": "felix-rivera-benitez",
+      "name": "Felix Rivera Benitez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "cardenales",
+        "maratonistas",
+        "gallitos",
+        "tainos",
+        "polluelos",
+        "vaqueros",
+        "santos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "866",
+      "slug": "hector-rodriguez-marcussi",
+      "name": "Hector Rodriguez Marcussi",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "leones",
+        "gallitos",
+        "brujos",
+        "capitanes",
+        "atleticos",
+        "piratas",
+        "tainos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1644",
+      "slug": "miguel-dionisio-rivera",
+      "name": "Miguel Dionisio Rivera",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "santeros",
+        "gallitos",
+        "mets",
+        "brujos",
+        "vaqueros",
+        "capitanes",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1753",
+      "slug": "orlando-melendez-gilbert",
+      "name": "Orlando Melendez Gilbert",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "polluelos",
+        "toritos",
+        "atleticos",
+        "indios",
+        "gallitos",
+        "caciques",
+        "cangrejeros",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "888",
+      "slug": "helder-pressoir-desrouillere",
+      "name": "Helder Pressoir Desrouillere",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "criollos",
+        "maratonistas",
+        "gallitos",
+        "vaqueros",
+        "polluelos",
+        "mets",
+        "santeros",
+        "tiburones"
+      ]
+    },
+    {
+      "playerId": "1429",
+      "slug": "lee-benson",
+      "name": "Lee Benson",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "toritos",
+        "indios",
+        "caciques",
+        "capitanes",
+        "vaqueros",
+        "mets",
+        "gigantes",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "2628",
+      "slug": "luis-damian-morales",
+      "name": "Luis Damian Morales",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "mets",
+        "atleticos",
+        "capitanes",
+        "cangrejeros",
+        "vaqueros",
+        "indios",
+        "brujos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "385",
+      "slug": "christian-vazquez-alvarez",
+      "name": "Christian Vazquez Alvarez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "gigantes",
+        "vaqueros",
+        "gallitos",
+        "maratonistas",
+        "caciques",
+        "cariduros",
+        "criollos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "399",
+      "slug": "conrado-pastrano-done",
+      "name": "Conrado Pastrano Doñe",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "santos",
+        "cariduros",
+        "atleticos",
+        "capitanes",
+        "indios",
+        "gigantes",
+        "gallitos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "119",
+      "slug": "angel-cachorro-santiago-del-valle",
+      "name": "Angel 'Cachorro' Santiago Del Valle",
+      "seasons": 24,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "mets",
+        "cardenales",
+        "leones",
+        "polluelos",
+        "brujos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "382",
+      "slug": "christian-dalmau-santana",
+      "name": "Christian Dalmau Santana",
+      "seasons": 24,
+      "franchiseSlugs": [
+        "piratas",
+        "maratonistas",
+        "avancinos",
+        "atleticos",
+        "vaqueros",
+        "mets",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "37",
+      "slug": "alejandro-bimbo-carmona-sanchez",
+      "name": "Alejandro 'Bimbo' Carmona Sanchez",
+      "seasons": 23,
+      "franchiseSlugs": [
+        "indios",
+        "vaqueros",
+        "gigantes",
+        "caciques",
+        "brujos",
+        "atenienses",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "624",
+      "slug": "erick-rodriguez-mandes",
+      "name": "Erick Rodriguez Mandes",
+      "seasons": 22,
+      "franchiseSlugs": [
+        "brujos",
+        "polluelos",
+        "cangrejeros",
+        "leones",
+        "capitanes",
+        "vaqueros",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "74",
+      "slug": "alvin-cruz-torres",
+      "name": "Alvin Cruz Torres",
+      "seasons": 22,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gigantes",
+        "leones",
+        "piratas",
+        "mets",
+        "capitanes",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "1272",
+      "slug": "jose-r-rosario-amaro",
+      "name": "Jose R. Rosario Amaro",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "brujos",
+        "gallitos",
+        "cangrejeros",
+        "atleticos",
+        "leones",
+        "capitanes",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1967",
+      "slug": "raymond-milligan-folkes",
+      "name": "Raymond Milligan Folkes",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "santos",
+        "indios",
+        "cariduros",
+        "vaqueros",
+        "leones",
+        "maratonistas",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "685",
+      "slug": "ferdinand-morales-martinez",
+      "name": "Ferdinand Morales Martinez",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gigantes",
+        "criollos",
+        "brujos",
+        "capitanes",
+        "leones",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "2067",
+      "slug": "roberto-nieves-perez",
+      "name": "Roberto Nieves Perez",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "cariduros",
+        "titanes",
+        "atleticos",
+        "maratonistas",
+        "caciques",
+        "cangrejeros",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "509",
+      "slug": "edgar-padilla-rivera",
+      "name": "Edgar Padilla Rivera",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "vaqueros",
+        "mets",
+        "gallitos",
+        "criollos",
+        "cangrejeros",
+        "capitanes",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2476",
+      "slug": "angel-junito-alamo-lopez",
+      "name": "Angel 'Junito' Alamo López",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "criollos",
+        "piratas",
+        "mets",
+        "atleticos",
+        "capitanes",
+        "cangrejeros",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "2336",
+      "slug": "benjamin-colon-mojica",
+      "name": "Benjamín Colón Mojica",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "vaqueros",
+        "cariduros",
+        "cangrejeros",
+        "atleticos",
+        "brujos",
+        "leones",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "2386",
+      "slug": "johwen-villegas-mercado",
+      "name": "Johwen Villegas Mercado",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "maratonistas",
+        "atleticos",
+        "capitanes",
+        "mets",
+        "leones",
+        "caciques",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "118",
+      "slug": "angel-paniagua-medina",
+      "name": "Angel Paniagua Medina",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "mets",
+        "polluelos",
+        "brujos",
+        "titanes",
+        "gallitos",
+        "vaqueros",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1193",
+      "slug": "jose-a-rodriguez-maldonado",
+      "name": "Jose a. Rodriguez Maldonado",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "vaqueros",
+        "indios",
+        "cardenales",
+        "polluelos",
+        "maratonistas",
+        "criollos",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1562",
+      "slug": "manuel-antonio-narvaez-rivera",
+      "name": "Manuel Antonio Narvaez Rivera",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "vaqueros",
+        "titanes",
+        "gallitos",
+        "leones",
+        "maratonistas",
+        "cangrejeros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "158",
+      "slug": "ansel-guzman-hernaiz",
+      "name": "Ánsel Guzmán Hernaiz",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "indios",
+        "caciques",
+        "mets",
+        "vaqueros",
+        "piratas",
+        "cangrejeros",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "94",
+      "slug": "angel-alicea-rivera",
+      "name": "Angel Alicea Rivera",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "indios",
+        "criollos",
+        "gigantes",
+        "polluelos",
+        "mets",
+        "maratonistas",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1063",
+      "slug": "joel-curbelo-melendez",
+      "name": "Joel Curbelo Melendez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "gigantes",
+        "santos",
+        "capitanes",
+        "atleticos",
+        "piratas",
+        "leones",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1793",
+      "slug": "pedro-albizu-aponte",
+      "name": "Pedro Albizu Aponte",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "leones",
+        "atleticos",
+        "indios",
+        "polluelos",
+        "gigantes",
+        "maratonistas",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1818",
+      "slug": "pedro-rodriguez-martinez",
+      "name": "Pedro Rodriguez Martinez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "atleticos",
+        "criollos",
+        "vaqueros",
+        "indios",
+        "leones",
+        "santos",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "2050",
+      "slug": "roberto-collado-torres",
+      "name": "Roberto Collado Torres",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "leones",
+        "maratonistas",
+        "avancinos",
+        "criollos",
+        "vaqueros",
+        "indios",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "358",
+      "slug": "cesar-miguel-bocachica-salvador",
+      "name": "Cesar Miguel Bocachica Salvador",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "leones",
+        "mets",
+        "tainos",
+        "indios",
+        "vaqueros",
+        "santos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "388",
+      "slug": "christopher-hiraldo-garcia",
+      "name": "Christopher Hiraldo Garcia",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "gigantes",
+        "polluelos",
+        "toritos",
+        "vaqueros",
+        "caciques",
+        "maratonistas",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "719",
+      "slug": "francisco-hernandez-sauri",
+      "name": "Francisco Hernandez Sauri",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "criollos",
+        "atleticos",
+        "vaqueros",
+        "polluelos",
+        "gigantes",
+        "maratonistas",
+        "tainos"
+      ]
+    },
+    {
+      "playerId": "1568",
+      "slug": "marcos-pipo-rivera-correa",
+      "name": "Marcos \"pipo\" Rivera Correa",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "gallitos",
+        "cardenales",
+        "vaqueros",
+        "leones",
+        "indios",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "2014",
+      "slug": "richard-declet-calderon",
+      "name": "Richard Declet Calderon",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "titanes",
+        "cariduros",
+        "indios",
+        "gigantes",
+        "mets",
+        "polluelos",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "2637",
+      "slug": "luis-pelacoco-hernandez-matias",
+      "name": "Luis 'Pelacoco' Hernández Matías",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "gallitos",
+        "mets",
+        "vaqueros",
+        "maratonistas",
+        "santeros",
+        "piratas",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "914",
+      "slug": "ian-lockhart-collie",
+      "name": "Ian Lockhart Collie",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "tainos",
+        "piratas",
+        "mets",
+        "tiburones",
+        "vaqueros",
+        "leones",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1180",
+      "slug": "jose-paris-ramirez",
+      "name": "Jose Paris Ramirez",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "capitanes",
+        "atleticos",
+        "santos",
+        "indios",
+        "vaqueros",
+        "cardenales",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2021",
+      "slug": "richard-soto-estrada",
+      "name": "Richard Soto Estrada",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "indios",
+        "tainos",
+        "piratas",
+        "maratonistas",
+        "avancinos",
+        "santos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "2116",
+      "slug": "ruben-villoch-torres",
+      "name": "Ruben Villoch Torres",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "gigantes",
+        "cariduros",
+        "atleticos",
+        "mets",
+        "indios",
+        "santeros",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "2821",
+      "slug": "chris-gaston",
+      "name": "Chris Gaston",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "leones",
+        "indios",
+        "santeros",
+        "atleticos",
+        "capitanes",
+        "osos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "320",
+      "slug": "carlos-rivera-camacho",
+      "name": "Carlos Rivera Camacho",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "brujos",
+        "atleticos",
+        "gallitos",
+        "titanes",
+        "criollos",
+        "leones",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "869",
+      "slug": "hector-valenzuela-hernandez",
+      "name": "Hector Valenzuela Hernandez",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "capitanes",
+        "gigantes",
+        "brujos",
+        "mets",
+        "vaqueros",
+        "indios",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "1685",
+      "slug": "monty-wilson-wilder",
+      "name": "Monty Wilson Wilder",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "maratonistas",
+        "polluelos",
+        "cangrejeros",
+        "brujos",
+        "mets",
+        "vaqueros",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1897",
+      "slug": "rafael-perez-tejeda",
+      "name": "Rafael Pérez Tejeda",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "brujos",
+        "vaqueros",
+        "criollos",
+        "gallitos",
+        "capitanes",
+        "mets",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "214",
+      "slug": "armando-torres-maldonado",
+      "name": "Armando Torres Maldonado",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "criollos",
+        "vaqueros",
+        "cardenales",
+        "polluelos",
+        "atleticos",
+        "tainos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "2823",
+      "slug": "jezreel-de-jesus",
+      "name": "Jezreel De Jesús",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "leones",
+        "maratonistas",
+        "santeros",
+        "indios",
+        "atleticos",
+        "caciques",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "834",
+      "slug": "guillermo-panama-myers-houghton",
+      "name": "Guillermo \"panama\" Myers Houghton",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "indios",
+        "santeros",
+        "polluelos",
+        "gigantes",
+        "criollos",
+        "gallitos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1164",
+      "slug": "jose-rivera-murillo",
+      "name": "Jose Rivera Murillo",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "indios",
+        "mets",
+        "leones",
+        "atleticos",
+        "tiburones",
+        "maratonistas",
+        "avancinos"
+      ]
+    },
+    {
+      "playerId": "2087",
+      "slug": "rolando-alvarez-quinones",
+      "name": "Rolando Alvarez Quiñones",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "santos",
+        "vaqueros",
+        "cariduros",
+        "piratas",
+        "indios",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "253",
+      "slug": "bradley-pacheco-nevares",
+      "name": "Bradley Pacheco Nevares",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "capitanes",
+        "indios",
+        "piratas",
+        "maratonistas",
+        "gallitos",
+        "brujos",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "2701",
+      "slug": "gilberto-clavell",
+      "name": "Gilberto Clavell",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "maratonistas",
+        "caciques",
+        "santeros",
+        "cariduros",
+        "cangrejeros",
+        "indios",
+        "osos"
+      ]
+    },
+    {
+      "playerId": "2776",
+      "slug": "owen-perez",
+      "name": "Owen Pérez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "atleticos",
+        "piratas",
+        "cangrejeros",
+        "santeros",
+        "indios",
+        "capitanes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "485",
+      "slug": "donald-bought-padilla",
+      "name": "Donald Bought Padilla",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "atleticos",
+        "cardenales",
+        "capitanes",
+        "maratonistas",
+        "criollos",
+        "piratas",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "778",
+      "slug": "gaston-jose-gonzalez",
+      "name": "Gaston jose Gonzalez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "indios",
+        "vaqueros",
+        "polluelos",
+        "cardenales",
+        "piratas",
+        "titanes",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "13082",
+      "slug": "jorge-l-matos-nieves",
+      "name": "Jorge L. Matos Nieves",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "santeros",
+        "piratas",
+        "cariduros",
+        "atleticos",
+        "cangrejeros",
+        "grises",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "199",
+      "slug": "antonio-j-cabrero-muniz",
+      "name": "Antonio j. Cabrero Muñiz",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "cardenales",
+        "brujos",
+        "santos",
+        "polluelos",
+        "mets",
+        "indios",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "175",
+      "slug": "antonio-charlemagne-sierra",
+      "name": "Antonio Charlemagne Sierra",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "brujos",
+        "titanes",
+        "indios",
+        "cariduros",
+        "piratas",
+        "leones",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1504",
+      "slug": "luis-a-ayala-alvarez",
+      "name": "Luis a. Ayala Alvarez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos",
+        "indios",
+        "santeros",
+        "titanes",
+        "piratas",
+        "cariduros",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "191",
+      "slug": "antonio-watson",
+      "name": "Antonio Watson",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos",
+        "capitanes",
+        "mets",
+        "maratonistas",
+        "gigantes",
+        "toritos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1976",
+      "slug": "renato-reynoso-rivera",
+      "name": "Renato Reynoso Rivera",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "brujos",
+        "vaqueros",
+        "cardenales",
+        "cariduros",
+        "mets",
+        "criollos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "1497",
+      "slug": "luis-rosa-clemente",
+      "name": "Luis Rosa Clemente",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "mets",
+        "leones",
+        "criollos",
+        "maratonistas",
+        "gigantes",
+        "caciques",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "788",
+      "slug": "george-torres-dougherty",
+      "name": "George Torres Dougherty",
+      "seasons": 26,
+      "franchiseSlugs": [
+        "cariduros",
+        "mets",
+        "vaqueros",
+        "gallitos",
+        "cangrejeros",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "738",
+      "slug": "francisco-papiro-leon-cruz",
+      "name": "Francisco \"Papiro\" Leon Cruz",
+      "seasons": 23,
+      "franchiseSlugs": [
+        "mets",
+        "indios",
+        "leones",
+        "atleticos",
+        "polluelos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1171",
+      "slug": "jose-sosa-oliveras",
+      "name": "Jose Sosa Oliveras",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "mets",
+        "piratas",
+        "vaqueros",
+        "brujos",
+        "gallitos",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "812",
+      "slug": "giovanni-jimenez-brain",
+      "name": "Giovanni Jimenez Brain",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "piratas",
+        "capitanes",
+        "atleticos",
+        "titanes",
+        "indios",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "135",
+      "slug": "angel-buster-figueroa-sepulveda",
+      "name": "Angel 'Buster' Figueroa Sepulveda",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "mets",
+        "capitanes",
+        "piratas",
+        "brujos",
+        "indios",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "651",
+      "slug": "eugenio-felipe-geno-soto-diaz",
+      "name": "Eugenio Felipe 'Geño' Soto Diaz",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "atleticos",
+        "santeros",
+        "indios",
+        "vaqueros",
+        "mets",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "676",
+      "slug": "felix-rivera-rodriguez",
+      "name": "Felix Rivera Rodriguez",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "gigantes",
+        "indios",
+        "mets",
+        "criollos",
+        "vaqueros",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "776",
+      "slug": "gary-voce-mcleod",
+      "name": "Gary Voce Mcleod",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "maratonistas",
+        "brujos",
+        "santeros",
+        "gigantes",
+        "cangrejeros",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1125",
+      "slug": "jorge-l-medrano-nunez",
+      "name": "Jorge l. Medrano Ñunez",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "gallitos",
+        "santeros",
+        "indios",
+        "titanes",
+        "criollos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1347",
+      "slug": "juan-jose-chemba-lanauze-muniz",
+      "name": "Juan Jose 'Chemba' Lanauze Muñiz",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "leones",
+        "cardenales",
+        "mets",
+        "maratonistas",
+        "gigantes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1759",
+      "slug": "orlando-vega-smith",
+      "name": "Orlando Vega Smith",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "piratas",
+        "criollos",
+        "indios",
+        "leones",
+        "gallitos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1766",
+      "slug": "osiris-ricardo-gonzalez",
+      "name": "Osiris Ricardo Gonzalez",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "vaqueros",
+        "polluelos",
+        "leones",
+        "capitanes",
+        "piratas",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "284",
+      "slug": "carlos-escalera-gonzalez",
+      "name": "Carlos Escalera Gonzalez",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "tiburones",
+        "indios",
+        "maratonistas",
+        "vaqueros",
+        "mets",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "553",
+      "slug": "edwin-pellot-rosa",
+      "name": "Edwin Pellot Rosa",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "gallitos",
+        "tiburones",
+        "indios",
+        "titanes",
+        "cangrejeros",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "791",
+      "slug": "gerald-lebron-arrufat",
+      "name": "Gerald Lebron Arrufat",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "santos",
+        "atleticos",
+        "capitanes",
+        "maratonistas",
+        "indios",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1199",
+      "slug": "jose-a-carita-lopez-quinones-1985",
+      "name": "Jose a. \"carita\" Lopez Quiñones",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "cariduros",
+        "gigantes",
+        "piratas",
+        "leones",
+        "gallitos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1286",
+      "slug": "joseph-murray-quinones",
+      "name": "Joseph Murray Quiñones",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "cariduros",
+        "leones",
+        "polluelos",
+        "toritos",
+        "indios",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1304",
+      "slug": "juan-griles-eaton",
+      "name": "Juan Griles Eaton",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "atleticos",
+        "capitanes",
+        "santeros",
+        "gigantes",
+        "brujos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1502",
+      "slug": "luis-villafane-silva",
+      "name": "Luis Villafane Silva",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "caciques",
+        "gigantes",
+        "piratas",
+        "indios",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "1550",
+      "slug": "manuel-de-jesus-rivera",
+      "name": "Manuel De Jesus Rivera",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "atleticos",
+        "piratas",
+        "gallitos",
+        "cangrejeros",
+        "leones",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1590",
+      "slug": "mark-anthony-benson-carrasco",
+      "name": "Mark Anthony Benson Carrasco",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "brujos",
+        "cangrejeros",
+        "toritos",
+        "atleticos",
+        "gigantes",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1836",
+      "slug": "peter-john-ramos-fuentes",
+      "name": "Peter John Ramos Fuentes",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "criollos",
+        "piratas",
+        "capitanes",
+        "brujos",
+        "vaqueros",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "789",
+      "slug": "george-torres-perez",
+      "name": "George Torres Perez",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "atleticos",
+        "gallitos",
+        "mets",
+        "piratas",
+        "titanes",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "792",
+      "slug": "gerald-ocasio-serrano",
+      "name": "Gerald Ocasio Serrano",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "cariduros",
+        "capitanes",
+        "indios",
+        "leones",
+        "vaqueros",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "895",
+      "slug": "heriberto-eddie-rivera-santiago",
+      "name": "Heriberto \"eddie\" Rivera Santiago",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "capitanes",
+        "titanes",
+        "mets",
+        "criollos",
+        "gallitos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1204",
+      "slug": "jose-a-tony-diaz-baez",
+      "name": "Jose a. \"tony\" Diaz Baez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "mets",
+        "cardenales",
+        "polluelos",
+        "gigantes",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "2035",
+      "slug": "robert-coyne-ortiz",
+      "name": "Robert Coyne Ortiz",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "vaqueros",
+        "piratas",
+        "tiburones",
+        "gallitos",
+        "atleticos",
+        "toritos"
+      ]
+    },
+    {
+      "playerId": "1660",
+      "slug": "miguel-davila-cordero",
+      "name": "Miguel Davila Cordero",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "vaqueros",
+        "santos",
+        "criollos",
+        "indios",
+        "maratonistas",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1821",
+      "slug": "pedro-perico-verdejo-carrion",
+      "name": "Pedro \"perico\" Verdejo Carrion",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "indios",
+        "gigantes",
+        "criollos",
+        "polluelos",
+        "piratas",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "218",
+      "slug": "arnaldo-guzman-cintron",
+      "name": "Arnaldo Guzman Cintron",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "gallitos",
+        "gigantes",
+        "leones",
+        "mets",
+        "piratas",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "2225",
+      "slug": "tyler-brown-rivera",
+      "name": "Tyler Brown Rivera",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "vaqueros",
+        "tiburones",
+        "capitanes",
+        "indios",
+        "atleticos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "2367",
+      "slug": "cliff-duran-colon",
+      "name": "Cliff Duran Colon",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "mets",
+        "caciques",
+        "indios",
+        "leones",
+        "vaqueros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "2517",
+      "slug": "angel-daniel-vassallo-colon",
+      "name": "Ángel Daniel Vassallo Colon",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "criollos",
+        "gallitos",
+        "mets",
+        "capitanes",
+        "leones",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "277",
+      "slug": "carlos-calcano-clausell",
+      "name": "Carlos Calcaño Clausell",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "criollos",
+        "cariduros",
+        "indios",
+        "leones",
+        "cardenales",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "763",
+      "slug": "freddie-martinez-arroyo",
+      "name": "Freddie Martinez Arroyo",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "leones",
+        "indios",
+        "toritos",
+        "brujos",
+        "titanes",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1064",
+      "slug": "joel-jones-camacho",
+      "name": "Joel Jones Camacho",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "vaqueros",
+        "leones",
+        "piratas",
+        "brujos",
+        "atleticos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1630",
+      "slug": "michael-mudo-torres-espinosa",
+      "name": "Michael \"mudo\" Torres Espinosa",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "gallitos",
+        "piratas",
+        "leones",
+        "cariduros",
+        "titanes",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "2145",
+      "slug": "samuel-villegas-aviles",
+      "name": "Samuel Villegas Aviles",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "atleticos",
+        "leones",
+        "mets",
+        "vaqueros",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "42",
+      "slug": "alex-galindo-rodriguez",
+      "name": "Alex Galindo Rodríguez",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "indios",
+        "gallitos",
+        "brujos",
+        "cangrejeros",
+        "vaqueros",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "814",
+      "slug": "giovanny-colon-maysonet",
+      "name": "Giovanny Colon Maysonet",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "mets",
+        "titanes",
+        "capitanes",
+        "tiburones",
+        "polluelos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "872",
+      "slug": "hector-el-mago-blondet-texidor",
+      "name": "Hector 'El Mago' Blondet Texidor",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "capitanes",
+        "cardenales",
+        "titanes",
+        "indios",
+        "mets",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1169",
+      "slug": "jose-santos-lanzot-1978",
+      "name": "Jose Santos Lanzot",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "cardenales",
+        "mets",
+        "gallitos",
+        "leones",
+        "maratonistas",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "2146",
+      "slug": "samuel-rosas-lebron",
+      "name": "Samuel Rosas Lebron",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "maratonistas",
+        "atleticos",
+        "criollos",
+        "piratas",
+        "caciques",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "2375",
+      "slug": "joel-nieves-perez",
+      "name": "Joel Nieves Perez",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "maratonistas",
+        "caciques",
+        "indios",
+        "atleticos",
+        "brujos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2813",
+      "slug": "tyler-polo-stoltman",
+      "name": "Tyler Polo Stoltman",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "vaqueros",
+        "atleticos",
+        "piratas",
+        "mets",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "839",
+      "slug": "gustavo-gus-santos",
+      "name": "Gustavo \"gus\" Santos",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "cardenales",
+        "mets",
+        "leones",
+        "indios",
+        "tainos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1878",
+      "slug": "rafael-novas-hidalgo",
+      "name": "Rafael Novas Hidalgo",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "capitanes",
+        "atleticos",
+        "maratonistas",
+        "vaqueros",
+        "piratas",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2022",
+      "slug": "richard-dickie-stone-vila",
+      "name": "Richard \"dickie\" Stone Vila",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "cariduros",
+        "capitanes",
+        "leones",
+        "gallitos",
+        "mets",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "2331",
+      "slug": "yan-garcia-perez",
+      "name": "Yan Garcia Perez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "tainos",
+        "atleticos",
+        "indios",
+        "capitanes",
+        "gigantes",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "2766",
+      "slug": "alexander-franklin",
+      "name": "Alexander Franklin",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "indios",
+        "vaqueros",
+        "atleticos",
+        "piratas",
+        "brujos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "306",
+      "slug": "carlos-rivera-martinez",
+      "name": "Carlos Rivera Martinez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "titanes",
+        "criollos",
+        "brujos",
+        "mets",
+        "polluelos",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "871",
+      "slug": "hector-bozo-estrada-rodriguez",
+      "name": "Hector \"bozo\" Estrada Rodriguez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "criollos",
+        "capitanes",
+        "leones",
+        "polluelos",
+        "piratas",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "952",
+      "slug": "ivan-lopez-rodriguez",
+      "name": "Ivan Lopez Rodriguez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "indios",
+        "vaqueros",
+        "gallitos",
+        "maratonistas",
+        "caciques",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1038",
+      "slug": "jesus-rivera-cruz-1975",
+      "name": "Jesus Rivera Cruz",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "vaqueros",
+        "indios",
+        "leones",
+        "piratas",
+        "capitanes",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "237",
+      "slug": "axel-rodriguez-gonzalez",
+      "name": "Axel Rodriguez Gonzalez",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "tainos",
+        "santeros",
+        "tiburones",
+        "capitanes",
+        "gigantes",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "2516",
+      "slug": "jonathan-rodriguez",
+      "name": "Jonathan Rodríguez",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "leones",
+        "gallitos",
+        "cangrejeros",
+        "santeros",
+        "cariduros",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2647",
+      "slug": "carlos-strong",
+      "name": "Carlos Strong",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "atleticos",
+        "caciques",
+        "piratas",
+        "indios",
+        "brujos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "705",
+      "slug": "fitzroy-brow-wilkinson",
+      "name": "Fitzroy Brow Wilkinson",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "gallitos",
+        "capitanes",
+        "indios",
+        "vaqueros",
+        "criollos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "870",
+      "slug": "hector-zayas-irizarry",
+      "name": "Hector Zayas Irizarry",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "atleticos",
+        "criollos",
+        "maratonistas",
+        "leones",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "990",
+      "slug": "james-cepeda-martinez",
+      "name": "James Cepeda Martinez",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "polluelos",
+        "santos",
+        "vaqueros",
+        "mets",
+        "maratonistas",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1166",
+      "slug": "jose-rodriguez-franco",
+      "name": "Jose Rodriguez Franco",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "indios",
+        "santeros",
+        "cariduros",
+        "criollos",
+        "vaqueros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "127",
+      "slug": "angel-l-martinez-baez",
+      "name": "Angel l. Martinez Baez",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "atleticos",
+        "vaqueros",
+        "titanes",
+        "mets",
+        "maratonistas",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "13011",
+      "slug": "joseph-soto-rivera",
+      "name": "Joseph Soto Rivera",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "atenienses",
+        "vaqueros",
+        "piratas",
+        "indios",
+        "capitanes",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1473",
+      "slug": "luis-colon-pica",
+      "name": "Luis Colon Pica",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "polluelos",
+        "leones",
+        "brujos",
+        "maratonistas",
+        "capitanes",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1613",
+      "slug": "melvin-simon",
+      "name": "Melvin Simon",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "brujos",
+        "titanes",
+        "gallitos",
+        "vaqueros",
+        "mets",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "2037",
+      "slug": "robert-bobby-lazor",
+      "name": "Robert 'Bobby' Lazor",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "atleticos",
+        "indios",
+        "leones",
+        "capitanes",
+        "brujos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "2252",
+      "slug": "victor-santos-colon",
+      "name": "Victor Santos Colon",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "brujos",
+        "cariduros",
+        "leones",
+        "mets",
+        "polluelos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "2371",
+      "slug": "donald-copeland-serra",
+      "name": "Donald Copeland Serra",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "gigantes",
+        "atleticos",
+        "capitanes",
+        "vaqueros",
+        "piratas",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2850",
+      "slug": "kevin-young-morales",
+      "name": "Kevin Young Morales",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "brujos",
+        "indios",
+        "cariduros",
+        "mets",
+        "cangrejeros",
+        "osos"
+      ]
+    },
+    {
+      "playerId": "2901",
+      "slug": "jeffrey-daniel-burgos-cartagena",
+      "name": "Jeffrey Daniel Burgos Cartagena",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "maratonistas",
+        "cangrejeros",
+        "leones",
+        "cariduros",
+        "atleticos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "91",
+      "slug": "andy-cheveres-nieves",
+      "name": "Andy Cheveres Nieves",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "titanes",
+        "capitanes",
+        "gallitos",
+        "polluelos",
+        "vaqueros",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "920",
+      "slug": "ira-miller-muriel",
+      "name": "Ira Miller Muriel",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gallitos",
+        "maratonistas",
+        "gigantes",
+        "atleticos",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "1203",
+      "slug": "jose-a-pipo-rivera-ramos",
+      "name": "Jose a. \"pipo\" Rivera Ramos",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "polluelos",
+        "titanes",
+        "piratas",
+        "maratonistas",
+        "gigantes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1249",
+      "slug": "jose-luis-rivera-morales",
+      "name": "Jose Luis Rivera Morales",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "piratas",
+        "caciques",
+        "vaqueros",
+        "mets",
+        "criollos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1284",
+      "slug": "joseph-rodriguez-rodriguez",
+      "name": "Joseph Rodriguez Rodriguez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "gigantes",
+        "titanes",
+        "piratas",
+        "criollos",
+        "cangrejeros",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "12939",
+      "slug": "matt-lopez",
+      "name": "Matt López",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos",
+        "santeros",
+        "cariduros",
+        "leones",
+        "piratas",
+        "osos"
+      ]
+    },
+    {
+      "playerId": "12961",
+      "slug": "rasham-suarez-donis",
+      "name": "Rasham Suárez Donis",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "mets",
+        "caciques",
+        "indios",
+        "atleticos",
+        "piratas",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1474",
+      "slug": "luis-cotte-romero",
+      "name": "Luis Cotte Romero",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "titanes",
+        "vaqueros",
+        "capitanes",
+        "polluelos",
+        "cardenales",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1667",
+      "slug": "miguel-angel-mike-gonzalez-collazo",
+      "name": "Miguel angel \"mike\" Gonzalez Collazo",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "brujos",
+        "cariduros",
+        "titanes",
+        "mets",
+        "leones",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "2149",
+      "slug": "santiago-gotay-merlo",
+      "name": "Santiago Gotay Merlo",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "mets",
+        "gallitos",
+        "indios",
+        "brujos",
+        "titanes",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "2555",
+      "slug": "paul-graham-gonzales",
+      "name": "Paul Graham Gonzales",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "indios",
+        "caciques",
+        "atleticos",
+        "piratas",
+        "vaqueros",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "2750",
+      "slug": "xavier-zambrana-quijano",
+      "name": "Xavier Zambrana Quijano",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "mets",
+        "vaqueros",
+        "cariduros",
+        "leones",
+        "gigantes",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "2883",
+      "slug": "darius-morales",
+      "name": "Darius Morales",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "caciques",
+        "leones",
+        "cariduros",
+        "vaqueros",
+        "atleticos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "580",
+      "slug": "elisamuel-morales-hoyos",
+      "name": "Elisamuel Morales Hoyos",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "piratas",
+        "titanes",
+        "gallitos",
+        "mets",
+        "cariduros",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1041",
+      "slug": "jesus-verdejo",
+      "name": "Jesus Verdejo",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "indios",
+        "piratas",
+        "gallitos",
+        "brujos",
+        "capitanes",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "13045",
+      "slug": "brandon-costner",
+      "name": "Brandon Costner",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "caciques",
+        "brujos",
+        "santeros",
+        "indios",
+        "gigantes",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "13076",
+      "slug": "jahvari-josiah",
+      "name": "Jahvari Josiah",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "atleticos",
+        "cariduros",
+        "brujos",
+        "capitanes",
+        "leones",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "1498",
+      "slug": "luis-salgado-moreno",
+      "name": "Luis Salgado Moreno",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "piratas",
+        "criollos",
+        "caciques",
+        "titanes",
+        "cariduros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2273",
+      "slug": "walter-hodges-edwards",
+      "name": "Walter Hodges Edwards",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "cariduros",
+        "mets",
+        "titanes",
+        "leones",
+        "capitanes",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "2377",
+      "slug": "kennel-sanchez",
+      "name": "Kennel Sanchez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "caciques",
+        "gigantes",
+        "indios",
+        "vaqueros",
+        "brujos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "811",
+      "slug": "giovanni-cotto-padilla",
+      "name": "Giovanni Cotto Padilla",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "tainos",
+        "titanes",
+        "indios",
+        "capitanes",
+        "santeros",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "12950",
+      "slug": "kyle-vinales",
+      "name": "Kyle Viñales",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "vaqueros",
+        "brujos",
+        "caciques",
+        "gigantes",
+        "cangrejeros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "12992",
+      "slug": "jonathan-ocasio-tulloch",
+      "name": "Jonathan Ocasio Tulloch",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "atleticos",
+        "santeros",
+        "grises",
+        "mets",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "13223",
+      "slug": "felix-rivera-vega",
+      "name": "Félix Rivera Vega",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "vaqueros",
+        "mets",
+        "indios",
+        "grises",
+        "piratas",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "2160",
+      "slug": "secundino-diaz-carrasquillo",
+      "name": "Secundino Diaz Carrasquillo",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "capitanes",
+        "mets",
+        "cariduros",
+        "gigantes",
+        "polluelos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "2824",
+      "slug": "justin-keenan",
+      "name": "Justin Keenan",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "capitanes",
+        "caciques",
+        "maratonistas",
+        "indios",
+        "atleticos",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "2858",
+      "slug": "joel-gierbolini",
+      "name": "Joel Gierbolini",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "leones",
+        "maratonistas",
+        "atleticos",
+        "cangrejeros",
+        "vaqueros",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "12964",
+      "slug": "will-daniels",
+      "name": "Will Daniels",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "mets",
+        "piratas",
+        "cariduros",
+        "leones",
+        "brujos",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "162",
+      "slug": "anthony-douglas",
+      "name": "Anthony Douglas",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "piratas",
+        "santeros",
+        "indios",
+        "tiburones",
+        "atleticos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1691",
+      "slug": "nate-higgs",
+      "name": "Nate Higgs",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "piratas",
+        "criollos",
+        "capitanes",
+        "gigantes",
+        "maratonistas",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "2057",
+      "slug": "roberto-herrera-garcia",
+      "name": "Roberto Herrera Garcia",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "gallitos",
+        "caciques",
+        "leones",
+        "indios",
+        "atleticos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "359",
+      "slug": "charles-bailey-rosado",
+      "name": "Charles Bailey Rosado",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "indios",
+        "polluelos",
+        "leones",
+        "brujos",
+        "maratonistas",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "56",
+      "slug": "alexis-sotomayor-rivera",
+      "name": "Alexis Sotomayor Rivera",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "brujos",
+        "titanes",
+        "vaqueros",
+        "criollos",
+        "atleticos",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2569",
+      "slug": "donta-smith",
+      "name": "Donta Smith",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "gigantes",
+        "vaqueros",
+        "indios",
+        "piratas",
+        "santeros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "292",
+      "slug": "carlos-lopez-gelica",
+      "name": "Carlos Lopez Gelica",
+      "seasons": 22,
+      "franchiseSlugs": [
+        "gallitos",
+        "titanes",
+        "piratas",
+        "leones",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "1157",
+      "slug": "jose-willie-quinonez-figueroa",
+      "name": "Jose 'Willie' Quiñonez Figueroa",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "criollos",
+        "maratonistas",
+        "gigantes",
+        "vaqueros",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "1462",
+      "slug": "luis-allende-ruiz",
+      "name": "Luis Allende Ruiz",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "indios",
+        "atleticos",
+        "criollos",
+        "piratas",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "50",
+      "slug": "alexander-falcon-melendez",
+      "name": "Alexander Falcon Melendez",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "leones",
+        "tiburones",
+        "mets",
+        "cangrejeros",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "827",
+      "slug": "grimaldi-vidot-hernandez",
+      "name": "Grimaldi Vidot Hernandez",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "capitanes",
+        "criollos",
+        "piratas",
+        "titanes",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "989",
+      "slug": "james-carter-gaudino",
+      "name": "James Carter Gaudino",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "brujos",
+        "indios",
+        "criollos",
+        "capitanes",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1711",
+      "slug": "nelson-javier-quinones-suarez",
+      "name": "Nelson Javier Quiñones Suarez",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "atleticos",
+        "toritos",
+        "leones",
+        "piratas",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1760",
+      "slug": "orlando-santiago-cordero",
+      "name": "Orlando Santiago Cordero",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "maratonistas",
+        "tiburones",
+        "cangrejeros",
+        "vaqueros",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "2287",
+      "slug": "wilfredo-melendez-velez",
+      "name": "Wilfredo Melendez Velez",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "santos",
+        "brujos",
+        "criollos",
+        "polluelos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "508",
+      "slug": "edgar-leon-cruz",
+      "name": "Edgar Leon Cruz",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "cariduros",
+        "leones",
+        "criollos",
+        "mets",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "2074",
+      "slug": "roberto-jose-bobby-joe-hatton-negron",
+      "name": "Roberto Jose 'Bobby Joe' Hatton Negron",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "atleticos",
+        "leones",
+        "capitanes",
+        "vaqueros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1069",
+      "slug": "joel-quinones-suarez",
+      "name": "Joel Quiñones Suarez",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "atleticos",
+        "indios",
+        "gallitos",
+        "capitanes",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1992",
+      "slug": "ricardo-dalmau-santana",
+      "name": "Ricardo Dalmau Santana",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "piratas",
+        "polluelos",
+        "indios",
+        "cangrejeros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2300",
+      "slug": "wilhelmus-caanen-cruz",
+      "name": "Wilhelmus Caanen Cruz",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "maratonistas",
+        "criollos",
+        "atleticos",
+        "leones",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "540",
+      "slug": "eduardo-eddie-martinez-rivera",
+      "name": "Eduardo \"eddie\" Martinez Rivera",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "capitanes",
+        "santos",
+        "leones",
+        "piratas",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1428",
+      "slug": "lee-arcia-centeno",
+      "name": "Lee Arcia Centeno",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "brujos",
+        "cariduros",
+        "gigantes",
+        "polluelos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1553",
+      "slug": "manuel-figueroa-asencio",
+      "name": "Manuel Figueroa Asencio",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "piratas",
+        "indios",
+        "brujos",
+        "polluelos",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "245",
+      "slug": "bernardo-figueroa-roman",
+      "name": "Bernardo Figueroa Roman",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "indios",
+        "mets",
+        "titanes",
+        "gigantes",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "477",
+      "slug": "diego-gomilla-mely",
+      "name": "Diego Gomilla Mely",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "brujos",
+        "criollos",
+        "leones",
+        "mets",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "501",
+      "slug": "eddie-torres-espinosa",
+      "name": "Eddie Torres Espinosa",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "gallitos",
+        "titanes",
+        "indios",
+        "piratas",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "697",
+      "slug": "fernando-ortiz-espada",
+      "name": "Fernando Ortiz Espada",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "maratonistas",
+        "avancinos",
+        "indios",
+        "criollos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "680",
+      "slug": "felix-javier-perez-rivera",
+      "name": "Felix Javier Perez Rivera",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "mets",
+        "atleticos",
+        "piratas",
+        "capitanes",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1211",
+      "slug": "jose-antonio-tony-becerril-walter",
+      "name": "Jose antonio \"tony\" Becerril Walter",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "criollos",
+        "brujos",
+        "leones",
+        "indios",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "1281",
+      "slug": "joseph-gamboa-taylor",
+      "name": "Joseph Gamboa Taylor",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "criollos",
+        "atleticos",
+        "polluelos",
+        "brujos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1324",
+      "slug": "juan-trinidad-martinez",
+      "name": "Juan Trinidad Martinez",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "vaqueros",
+        "atleticos",
+        "mets",
+        "indios",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "148",
+      "slug": "angel-r-rosa-clemente",
+      "name": "Angel R. Rosa Clemente",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "leones",
+        "capitanes",
+        "indios",
+        "atleticos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "196",
+      "slug": "antonio-carrasquillo-rivera",
+      "name": "Antonio Carrasquillo Rivera",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "mets",
+        "piratas",
+        "criollos",
+        "titanes",
+        "toritos"
+      ]
+    },
+    {
+      "playerId": "2062",
+      "slug": "roberto-medina-rivera",
+      "name": "Roberto Medina Rivera",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "indios",
+        "gallitos",
+        "polluelos",
+        "criollos",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "2201",
+      "slug": "therome-ray-latson-poling",
+      "name": "Therome Ray Latson Poling",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "piratas",
+        "indios",
+        "capitanes",
+        "atleticos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1702",
+      "slug": "nelson-medina-diaz",
+      "name": "Nelson Medina Diaz",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "leones",
+        "gigantes",
+        "vaqueros",
+        "criollos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1725",
+      "slug": "noel-martin-denizard",
+      "name": "Noel Martin Denizard",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "capitanes",
+        "titanes",
+        "indios",
+        "leones",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "629",
+      "slug": "erick-leonel-rivera-marin",
+      "name": "Erick leonel Rivera Marin",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "gigantes",
+        "leones",
+        "capitanes",
+        "mets",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "87",
+      "slug": "andres-rodriguez-fernandez",
+      "name": "Andres Rodriguez Fernandez",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "criollos",
+        "capitanes",
+        "cangrejeros",
+        "vaqueros",
+        "atenienses"
+      ]
+    },
+    {
+      "playerId": "1973",
+      "slug": "regino-ariel-santos-aviles",
+      "name": "Regino ariel Santos Aviles",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "capitanes",
+        "atleticos",
+        "criollos",
+        "maratonistas",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "2513",
+      "slug": "javier-gonzalez-lopez",
+      "name": "Javier Gonzalez Lopez",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "caciques",
+        "vaqueros",
+        "brujos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "304",
+      "slug": "carlos-prieto-resto",
+      "name": "Carlos Prieto Resto",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "leones",
+        "capitanes",
+        "titanes",
+        "criollos",
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "800",
+      "slug": "giddel-padilla-rivera",
+      "name": "Giddel Padilla Rivera",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "titanes",
+        "vaqueros",
+        "polluelos",
+        "cangrejeros",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1110",
+      "slug": "jorge-morales-saavedra",
+      "name": "Jorge Morales Saavedra",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "indios",
+        "cardenales",
+        "maratonistas",
+        "gigantes",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "1720",
+      "slug": "nicolas-perez-sanchez",
+      "name": "Nicolas Perez Sanchez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "brujos",
+        "gallitos",
+        "gigantes",
+        "mets",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "2058",
+      "slug": "roberto-irizarry-hernandez",
+      "name": "Roberto Irizarry Hernandez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "cardenales",
+        "criollos",
+        "gallitos",
+        "polluelos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "2151",
+      "slug": "santos-martinez-lopez",
+      "name": "Santos Martinez Lopez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "piratas",
+        "capitanes",
+        "tiburones",
+        "criollos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "2354",
+      "slug": "jesse-pellot-rosa",
+      "name": "Jesse Pellot Rosa",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "cariduros",
+        "atleticos",
+        "vaqueros",
+        "piratas",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2666",
+      "slug": "guillermo-diaz",
+      "name": "Guillermo Diaz",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "capitanes",
+        "atleticos",
+        "santeros",
+        "cariduros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "349",
+      "slug": "carmelo-antrone-lee",
+      "name": "Carmelo Antrone Lee",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "gallitos",
+        "mets",
+        "vaqueros",
+        "piratas",
+        "atenienses"
+      ]
+    },
+    {
+      "playerId": "422",
+      "slug": "daniel-rodriguez-valentin",
+      "name": "Daniel Rodriguez Valentin",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "capitanes",
+        "gigantes",
+        "mets",
+        "criollos",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "478",
+      "slug": "diego-martin",
+      "name": "Diego Martin",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "mets",
+        "criollos",
+        "gigantes",
+        "cariduros",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "570",
+      "slug": "efrain-fargas-hernandez",
+      "name": "Efrain Fargas Hernandez",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "gigantes",
+        "polluelos",
+        "piratas",
+        "mets",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "1228",
+      "slug": "jose-g-alicea-mirabal",
+      "name": "Jose g. Alicea Mirabal",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "brujos",
+        "titanes",
+        "capitanes",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "12942",
+      "slug": "jared-ruiz-melendez",
+      "name": "Jared Ruiz Melendez",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "piratas",
+        "cariduros",
+        "leones",
+        "indios",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "1359",
+      "slug": "julio-alvarado-gesualdo",
+      "name": "Julio Alvarado Gesualdo",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "leones",
+        "indios",
+        "vaqueros",
+        "criollos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1551",
+      "slug": "manuel-duran-juarbe",
+      "name": "Manuel Duran Juarbe",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "maratonistas",
+        "gallitos",
+        "titanes",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "1684",
+      "slug": "monserrate-rivera-ayala",
+      "name": "Monserrate Rivera Ayala",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "atleticos",
+        "gallitos",
+        "capitanes",
+        "piratas",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1794",
+      "slug": "pedro-berges-morales",
+      "name": "Pedro Berges Morales",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "criollos",
+        "titanes",
+        "capitanes",
+        "gigantes",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1824",
+      "slug": "pedro-a-burgos",
+      "name": "Pedro a. Burgos",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "vaqueros",
+        "cardenales",
+        "criollos",
+        "capitanes",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1910",
+      "slug": "ralph-menar",
+      "name": "Ralph Menar",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "mets",
+        "leones",
+        "cardenales",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "2353",
+      "slug": "florentino-valencia",
+      "name": "Florentino Valencia",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "cariduros",
+        "vaqueros",
+        "gallitos",
+        "indios",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "236",
+      "slug": "axel-rivera-ortiz",
+      "name": "Axel Rivera Ortiz",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "polluelos",
+        "toritos",
+        "brujos",
+        "criollos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "238",
+      "slug": "axel-antonio-calderon-osorio",
+      "name": "Axel Antonio Calderon Osorio",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "polluelos",
+        "indios",
+        "capitanes",
+        "piratas",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2818",
+      "slug": "isaac-sosa-carrion",
+      "name": "Isaac Sosa Carrion",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "cangrejeros",
+        "leones",
+        "atleticos",
+        "osos"
+      ]
+    },
+    {
+      "playerId": "348",
+      "slug": "carmelo-verdejo",
+      "name": "Carmelo Verdejo",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "brujos",
+        "atleticos",
+        "criollos",
+        "leones",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "59",
+      "slug": "alfred-butch-lee-porter",
+      "name": "Alfred 'Butch' Lee Porter",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "cardenales",
+        "brujos",
+        "atleticos",
+        "leones",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "804",
+      "slug": "gilberto-melendez-stanford",
+      "name": "Gilberto Melendez Stanford",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "titanes",
+        "cariduros",
+        "tiburones",
+        "criollos",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "1442",
+      "slug": "leroy-jackson",
+      "name": "Leroy Jackson",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "vaqueros",
+        "atleticos",
+        "toritos",
+        "indios",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "1733",
+      "slug": "obet-vazquez-king",
+      "name": "Obet Vazquez King",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "vaqueros",
+        "mets",
+        "polluelos",
+        "piratas",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "220",
+      "slug": "arnaldo-hernandez-mendez",
+      "name": "Arnaldo Hernandez Mendez",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "leones",
+        "gallitos",
+        "indios",
+        "atleticos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2316",
+      "slug": "william-billy-santos-alvarez",
+      "name": "William \"billy\" Santos Alvarez",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "indios",
+        "cardenales",
+        "mets",
+        "polluelos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "589",
+      "slug": "eloy-cortijo-apolinaris",
+      "name": "Eloy Cortijo Apolinaris",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "atleticos",
+        "mets",
+        "polluelos",
+        "gallitos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "85",
+      "slug": "andres-ortiz-aponte",
+      "name": "Andres Ortiz Aponte",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "brujos",
+        "vaqueros",
+        "cariduros",
+        "criollos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1075",
+      "slug": "john-ceballos-garcia",
+      "name": "John Ceballos Garcia",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos",
+        "indios",
+        "criollos",
+        "mets",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1283",
+      "slug": "joseph-narvaez-bermudez",
+      "name": "Joseph Narvaez Bermudez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "cardenales",
+        "piratas",
+        "brujos",
+        "leones",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "12962",
+      "slug": "ernesto-rodriguez-mendez",
+      "name": "Ernesto Rodriguez Mendez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "mets",
+        "piratas",
+        "capitanes",
+        "gigantes",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "1316",
+      "slug": "juan-pabon-miranda",
+      "name": "Juan Pabon Miranda",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "criollos",
+        "cardenales",
+        "cariduros",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "144",
+      "slug": "angel-caballero-curet",
+      "name": "Angel Caballero Curet",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "gigantes",
+        "maratonistas",
+        "leones",
+        "indios",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1791",
+      "slug": "pavel-melendez-cardona",
+      "name": "Pavel Melendez Cardona",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "piratas",
+        "gallitos",
+        "mets",
+        "brujos",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1823",
+      "slug": "pedro-polaco-yantin-marquez",
+      "name": "Pedro \"polaco\" Yantin Marquez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "polluelos",
+        "leones",
+        "titanes",
+        "brujos",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "1883",
+      "slug": "rafael-ramirez",
+      "name": "Rafael Ramirez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "cariduros",
+        "brujos",
+        "titanes",
+        "mets",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1901",
+      "slug": "rafael-r-ramos-colon",
+      "name": "Rafael r. Ramos Colon",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "vaqueros",
+        "capitanes",
+        "cardenales",
+        "cariduros",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1954",
+      "slug": "ray-lopez",
+      "name": "Ray Lopez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "atleticos",
+        "brujos",
+        "capitanes",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "60",
+      "slug": "alfredo-burgos-benitez",
+      "name": "Alfredo Burgos Benitez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "cariduros",
+        "atleticos",
+        "mets",
+        "brujos",
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "623",
+      "slug": "erick-rodriguez-llanos",
+      "name": "Erick Rodriguez Llanos",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "indios",
+        "gigantes",
+        "vaqueros",
+        "brujos",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "838",
+      "slug": "gustavo-salgado-sanchez",
+      "name": "Gustavo Salgado Sanchez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gallitos",
+        "indios",
+        "atleticos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "925",
+      "slug": "isaac-miller-muriel",
+      "name": "Isaac Miller Muriel",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "gigantes",
+        "tiburones",
+        "santeros",
+        "gallitos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "985",
+      "slug": "ja-ja-richards-boulware",
+      "name": "Ja Ja Richards Boulware",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "gallitos",
+        "titanes",
+        "vaqueros",
+        "maratonistas",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "1212",
+      "slug": "jose-tony-echevarria-vazquez",
+      "name": "Jose \"Tony\" Echevarria Vazquez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "tainos",
+        "santeros",
+        "leones",
+        "brujos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1700",
+      "slug": "nelson-aviles-borrero",
+      "name": "Nelson Aviles Borrero",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "atleticos",
+        "santos",
+        "indios",
+        "cariduros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2233",
+      "slug": "vicente-facey-mendez",
+      "name": "Vicente Facey Mendez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "santos",
+        "brujos",
+        "gigantes",
+        "titanes",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "411",
+      "slug": "damon-santiago-semidey",
+      "name": "Damon Santiago Semidey",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "maratonistas",
+        "gigantes",
+        "piratas",
+        "santeros",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "84",
+      "slug": "andres-guibert-sangerton",
+      "name": "Andres Guibert Sangerton",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "santos",
+        "criollos",
+        "indios",
+        "toritos",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1279",
+      "slug": "joseph-aska-zachariah",
+      "name": "Joseph Aska Zachariah",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "gigantes",
+        "piratas",
+        "atleticos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "12953",
+      "slug": "jorge-sanabria-robreno",
+      "name": "Jorge Sanabria Robreno",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "indios",
+        "vaqueros",
+        "caciques",
+        "piratas",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1309",
+      "slug": "juan-lozada-calderon",
+      "name": "Juan Lozada Calderon",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "capitanes",
+        "leones",
+        "mets",
+        "piratas",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "13185",
+      "slug": "melsahn-basabe",
+      "name": "Melsahn Basabe",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "caciques",
+        "brujos",
+        "indios",
+        "mets",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1601",
+      "slug": "matt-freije-sievert",
+      "name": "Matt Freije Sievert",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "brujos",
+        "leones",
+        "criollos",
+        "mets",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "2253",
+      "slug": "victor-secuola-smith",
+      "name": "Victor Secuola Smith",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "indios",
+        "leones",
+        "capitanes",
+        "mets",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "2563",
+      "slug": "james-maye",
+      "name": "James Maye",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "indios",
+        "caciques",
+        "mets",
+        "vaqueros",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "754",
+      "slug": "frankie-rivera-cruz",
+      "name": "Frankie Rivera Cruz",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "criollos",
+        "brujos",
+        "gigantes",
+        "atleticos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "796",
+      "slug": "gerardo-zayas-bello",
+      "name": "Gerardo Zayas Bello",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "maratonistas",
+        "avancinos",
+        "indios",
+        "criollos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1219",
+      "slug": "jose-e-blanco-ruiz",
+      "name": "Jose e. Blanco Ruiz",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "santos",
+        "indios",
+        "polluelos",
+        "leones",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "1373",
+      "slug": "julio-rivera-maldonado",
+      "name": "Julio Rivera Maldonado",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros",
+        "polluelos",
+        "cariduros",
+        "indios",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1480",
+      "slug": "luis-gonzalez-rodriguez-1984",
+      "name": "Luis Gonzalez Rodriguez",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "mets",
+        "leones",
+        "atleticos",
+        "brujos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1559",
+      "slug": "manuel-rodriguez-molina",
+      "name": "Manuel Rodriguez Molina",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "titanes",
+        "tainos",
+        "brujos",
+        "santos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1657",
+      "slug": "miguel-soto-sanchez",
+      "name": "Miguel Soto Sanchez",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cariduros",
+        "tiburones",
+        "santos",
+        "gigantes",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "1729",
+      "slug": "norman-lewis-nolan-roberts",
+      "name": "Norman Lewis Nolan Roberts",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "polluelos",
+        "indios",
+        "piratas",
+        "vaqueros",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "2700",
+      "slug": "edwin-ubiles",
+      "name": "Edwin Ubiles",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "indios",
+        "atenienses",
+        "vaqueros",
+        "caciques",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2779",
+      "slug": "jeff-early",
+      "name": "Jeff Early",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "atleticos",
+        "cangrejeros",
+        "cariduros",
+        "mets",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "370",
+      "slug": "charlie-ortiz-cabrera",
+      "name": "Charlie Ortiz Cabrera",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes",
+        "cariduros",
+        "titanes",
+        "mets",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "429",
+      "slug": "daniel-dunne-quevedo",
+      "name": "Daniel Dunne Quevedo",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "piratas",
+        "capitanes",
+        "polluelos",
+        "gallitos",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "481",
+      "slug": "diego-jr-melendez-hernandez",
+      "name": "Diego jr. Melendez Hernandez",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "maratonistas",
+        "cariduros",
+        "brujos",
+        "santos",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "530",
+      "slug": "eduardo-bermudez-espino",
+      "name": "Eduardo Bermudez Espino",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "atleticos",
+        "cardenales",
+        "indios",
+        "gigantes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1280",
+      "slug": "joseph-bunn-stallins",
+      "name": "Joseph Bunn Stallins",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "capitanes",
+        "toritos",
+        "gallitos",
+        "atleticos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "13289",
+      "slug": "terrence-jones",
+      "name": "Terrence Jones",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "mets",
+        "cariduros",
+        "indios",
+        "piratas",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1380",
+      "slug": "julio-a-llamas-soto",
+      "name": "Julio a. Llamas Soto",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "brujos",
+        "atleticos",
+        "capitanes",
+        "polluelos",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "2361",
+      "slug": "mark-konecny",
+      "name": "Mark Konecny",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "atleticos",
+        "criollos",
+        "piratas",
+        "cangrejeros",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "2423",
+      "slug": "aaron-mcghee",
+      "name": "Aaron McGhee",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "gigantes",
+        "leones",
+        "maratonistas",
+        "vaqueros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "446",
+      "slug": "david-blackwell",
+      "name": "David Blackwell",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "atleticos",
+        "piratas",
+        "indios",
+        "titanes",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "1575",
+      "slug": "mario-alberto-butler-graham",
+      "name": "Mario Alberto Butler Graham",
+      "seasons": 29,
+      "franchiseSlugs": [
+        "titanes",
+        "cangrejeros",
+        "gigantes",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2200",
+      "slug": "teofilo-teo-cruz-downs",
+      "name": "Teofilo 'Teo' Cruz Downs",
+      "seasons": 25,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "indios",
+        "mets",
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "2076",
+      "slug": "roberto-bobby-rios-osorio",
+      "name": "Roberto 'Bobby' Rios Osorio",
+      "seasons": 24,
+      "franchiseSlugs": [
+        "vaqueros",
+        "leones",
+        "atleticos",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "2089",
+      "slug": "rolando-frazer-thorne",
+      "name": "Rolando Frazer Thorne",
+      "seasons": 21,
+      "franchiseSlugs": [
+        "polluelos",
+        "capitanes",
+        "avancinos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1970",
+      "slug": "raymond-richie-dalmau-santana",
+      "name": "Raymond 'Richie' Dalmau Santana",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "capitanes",
+        "piratas",
+        "indios",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "502",
+      "slug": "eddin-santiago-cordero",
+      "name": "Eddin Santiago Cordero",
+      "seasons": 20,
+      "franchiseSlugs": [
+        "vaqueros",
+        "cangrejeros",
+        "capitanes",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "1175",
+      "slug": "jose-canito-nieves-rodriguez",
+      "name": "Jose 'Canito' Nieves Rodriguez",
+      "seasons": 19,
+      "franchiseSlugs": [
+        "piratas",
+        "mets",
+        "vaqueros",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1025",
+      "slug": "jeffrion-aubry-flores",
+      "name": "Jeffrion Aubry Flores",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "leones",
+        "capitanes",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1206",
+      "slug": "jose-andres-josean-baez-camacho",
+      "name": "Jose Andres 'Josean' Baez Camacho",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "leones",
+        "mets",
+        "atleticos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "2101",
+      "slug": "ruben-adorno-martinez",
+      "name": "Ruben Adorno Martinez",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "santos",
+        "cangrejeros",
+        "gigantes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "338",
+      "slug": "carlos-ruben-rivera-ruiz",
+      "name": "Carlos Rubén Rivera Ruiz",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "atleticos",
+        "capitanes",
+        "leones",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "609",
+      "slug": "enrique-quique-aponte-silva",
+      "name": "Enrique \"quique\" Aponte Silva",
+      "seasons": 18,
+      "franchiseSlugs": [
+        "gigantes",
+        "polluelos",
+        "brujos",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1712",
+      "slug": "nestor-cora-davis",
+      "name": "Nestor Cora Davis",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "piratas",
+        "mets",
+        "atleticos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "2257",
+      "slug": "victor-bomba-rivera-maldonado",
+      "name": "Victor \"bomba\" Rivera Maldonado",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "cariduros",
+        "titanes",
+        "vaqueros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2355",
+      "slug": "javier-mojica-izquierdo",
+      "name": "Javier Mojica Izquierdo",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "cariduros",
+        "vaqueros",
+        "cangrejeros",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "740",
+      "slug": "francisco-javier-rolon-carrillo",
+      "name": "Francisco Javier Rolon Carrillo",
+      "seasons": 17,
+      "franchiseSlugs": [
+        "brujos",
+        "polluelos",
+        "leones",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1465",
+      "slug": "luis-brignoni-alvarez",
+      "name": "Luis Brignoni Alvarez",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "vaqueros",
+        "cardenales",
+        "cariduros",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "95",
+      "slug": "angel-grillo-allende-diaz",
+      "name": "Angel 'Grillo' Allende Diaz",
+      "seasons": 16,
+      "franchiseSlugs": [
+        "cardenales",
+        "leones",
+        "gallitos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "1260",
+      "slug": "jose-oscar-santiago-alvarado",
+      "name": "Jose Oscar Santiago Alvarado",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "capitanes",
+        "atleticos",
+        "mets",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1293",
+      "slug": "josue-nieves-fred",
+      "name": "Josué Nieves Fred",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "criollos",
+        "indios",
+        "capitanes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "136",
+      "slug": "angel-luis-colon-colon",
+      "name": "Angel Luis Colon Colon",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "criollos",
+        "toritos",
+        "brujos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2090",
+      "slug": "rolando-hourruitiner-ortiz",
+      "name": "Rolando Hourruitiner Ortiz",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "leones",
+        "cariduros",
+        "gallitos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "2131",
+      "slug": "salvador-pucho-concepcion-villalobos",
+      "name": "Salvador \"pucho\" Concepcion Villalobos",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "titanes",
+        "capitanes",
+        "mets",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "2280",
+      "slug": "wilfredo-burgos-figueroa",
+      "name": "Wilfredo Burgos Figueroa",
+      "seasons": 15,
+      "franchiseSlugs": [
+        "piratas",
+        "polluelos",
+        "gigantes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "1336",
+      "slug": "juan-carlos-baez-hernaiz",
+      "name": "Juan Carlos Baez Hernaiz",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "capitanes",
+        "criollos",
+        "maratonistas",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "1377",
+      "slug": "julio-toro",
+      "name": "Julio Toro",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "santos",
+        "vaqueros",
+        "gigantes",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1536",
+      "slug": "luis-papo-pizarro-maldonado",
+      "name": "Luis \"Papo\" Pizarro Maldonado",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "gigantes",
+        "leones",
+        "brujos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "173",
+      "slug": "anthony-f-tony-diaz-diaz",
+      "name": "Anthony f. \"tony\" Diaz Diaz",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "cardenales",
+        "maratonistas",
+        "polluelos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1772",
+      "slug": "osvaldo-santos-ortiz",
+      "name": "Osvaldo Santos Ortiz",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "gigantes",
+        "brujos",
+        "polluelos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "2615",
+      "slug": "kleon-penn",
+      "name": "Kleon Penn",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "caciques",
+        "vaqueros",
+        "brujos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "978",
+      "slug": "jaime-pesquera",
+      "name": "Jaime Pesquera",
+      "seasons": 14,
+      "franchiseSlugs": [
+        "santos",
+        "vaqueros",
+        "criollos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1113",
+      "slug": "jorge-rivera-matos",
+      "name": "Jorge Rivera Matos",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "indios",
+        "vaqueros",
+        "santos",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1555",
+      "slug": "manuel-junco-de-la-fuente",
+      "name": "Manuel Junco De la fuente",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "brujos",
+        "criollos",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "1820",
+      "slug": "pedro-salgado-cruz",
+      "name": "Pedro Salgado Cruz",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "gallitos",
+        "mets",
+        "cariduros",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "2702",
+      "slug": "denis-clemente",
+      "name": "Denis Clemente",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "caciques",
+        "capitanes",
+        "cangrejeros",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "354",
+      "slug": "cesar-fantauzzi-basanet",
+      "name": "Cesar Fantauzzi Basanet",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "atleticos",
+        "indios",
+        "piratas",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "45",
+      "slug": "alex-vega-santos",
+      "name": "Alex Vega Santos",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "piratas",
+        "indios",
+        "gallitos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "980",
+      "slug": "jaime-rivera-hance",
+      "name": "Jaime Rivera Hance",
+      "seasons": 13,
+      "franchiseSlugs": [
+        "criollos",
+        "gigantes",
+        "indios",
+        "cardenales"
+      ]
+    },
+    {
+      "playerId": "2836",
+      "slug": "benito-santiago-jr",
+      "name": "Benito Santiago, Jr.",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "indios",
+        "maratonistas",
+        "atleticos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "2838",
+      "slug": "carlos-emory",
+      "name": "Carlos Emory",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "leones",
+        "santeros",
+        "mets",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "416",
+      "slug": "daniel-flores-morales",
+      "name": "Daniel Flores Morales",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "criollos",
+        "titanes",
+        "capitanes",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "712",
+      "slug": "francisco-cordova",
+      "name": "Francisco Cordova",
+      "seasons": 12,
+      "franchiseSlugs": [
+        "vaqueros",
+        "leones",
+        "atleticos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1356",
+      "slug": "juan-ramon-rivera-diaz",
+      "name": "Juan ramon Rivera Diaz",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "polluelos",
+        "leones",
+        "maratonistas",
+        "tainos"
+      ]
+    },
+    {
+      "playerId": "1503",
+      "slug": "luis-tin-davila-rivera",
+      "name": "Luis \"tin\" Davila Rivera",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "gigantes",
+        "polluelos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1963",
+      "slug": "raymond-de-jesus-swoggor",
+      "name": "Raymond De jesus Swoggor",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "tainos",
+        "mets",
+        "tiburones"
+      ]
+    },
+    {
+      "playerId": "2556",
+      "slug": "ramon-clemente",
+      "name": "Ramon Clemente",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "indios",
+        "vaqueros",
+        "piratas",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "423",
+      "slug": "daniel-tirado-mendoza",
+      "name": "Daniel Tirado Mendoza",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "gigantes",
+        "maratonistas",
+        "piratas",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "427",
+      "slug": "daniel-danny-santiago-lynn",
+      "name": "Daniel 'Danny' Santiago Lynn",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "vaqueros",
+        "capitanes",
+        "mets",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "850",
+      "slug": "hector-baez-perez",
+      "name": "Hector Baez Perez",
+      "seasons": 11,
+      "franchiseSlugs": [
+        "capitanes",
+        "criollos",
+        "gallitos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1005",
+      "slug": "javier-crespo-vargas",
+      "name": "Javier Crespo Vargas",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "capitanes",
+        "indios",
+        "atleticos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "123",
+      "slug": "angel-l-alvarez-diaz",
+      "name": "Angel l. Alvarez Diaz",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "leones",
+        "indios",
+        "mets",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1294",
+      "slug": "juan-alverio-baez",
+      "name": "Juan Alverio Baez",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "indios",
+        "piratas",
+        "atleticos",
+        "tainos"
+      ]
+    },
+    {
+      "playerId": "13",
+      "slug": "adrian-machado-torres",
+      "name": "Adrian Machado Torres",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "criollos",
+        "atleticos",
+        "santeros",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1521",
+      "slug": "luis-antonio-pena-marrero",
+      "name": "Luis antonio Peña Marrero",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "santos",
+        "brujos",
+        "titanes",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "2165",
+      "slug": "shariff-fajardo-blanding",
+      "name": "Shariff Fajardo Blanding",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "mets",
+        "piratas",
+        "atleticos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "2778",
+      "slug": "victor-liz",
+      "name": "Víctor Liz",
+      "seasons": 10,
+      "franchiseSlugs": [
+        "atleticos",
+        "caciques",
+        "leones",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1198",
+      "slug": "jose-a-santos-garcia",
+      "name": "Jose a. Santos Garcia",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "brujos",
+        "gigantes",
+        "criollos",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "12969",
+      "slug": "onzie-branch",
+      "name": "Onzie Branch",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "capitanes",
+        "caciques",
+        "atleticos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "13066",
+      "slug": "angel-l-matias-de-leon",
+      "name": "Ángel L. Matías De León",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "capitanes",
+        "piratas",
+        "indios",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "160",
+      "slug": "anthony-bonner-evans",
+      "name": "Anthony Bonner Evans",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "brujos",
+        "leones",
+        "maratonistas",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1948",
+      "slug": "raul-rivera-ramos",
+      "name": "Raul Rivera Ramos",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos",
+        "indios",
+        "maratonistas",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2511",
+      "slug": "ryann-abraham-mercado",
+      "name": "Ryann Abraham Mercado",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos",
+        "brujos",
+        "vaqueros",
+        "caciques"
+      ]
+    },
+    {
+      "playerId": "2664",
+      "slug": "richard-chaney",
+      "name": "Richard Chaney",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "atleticos",
+        "mets",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "582",
+      "slug": "elket-forbes-prado",
+      "name": "Elket Forbes Prado",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "capitanes",
+        "indios",
+        "leones",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "663",
+      "slug": "felipe-pipe-nieves-cintron",
+      "name": "Felipe \"pipe\" Nieves Cintron",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gallitos",
+        "indios",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "726",
+      "slug": "francisco-pepin-rodriguez",
+      "name": "Francisco Pepin Rodriguez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "titanes",
+        "gallitos",
+        "cardenales",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "739",
+      "slug": "francisco-j-amezaga-velez",
+      "name": "Francisco j. Amezaga Velez",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gallitos",
+        "criollos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "967",
+      "slug": "jack-allison",
+      "name": "Jack Allison",
+      "seasons": 9,
+      "franchiseSlugs": [
+        "atleticos",
+        "leones",
+        "indios",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1008",
+      "slug": "javier-leon-cruz",
+      "name": "Javier Leon Cruz",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "indios",
+        "brujos",
+        "cariduros",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1062",
+      "slug": "joe-wylie",
+      "name": "Joe Wylie",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "vaqueros",
+        "gigantes",
+        "leones",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1087",
+      "slug": "johnny-stevens-bocachica",
+      "name": "Johnny Stevens Bocachica",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "leones",
+        "piratas",
+        "atleticos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1154",
+      "slug": "jose-pacheco-del-valle",
+      "name": "Jose Pacheco Del valle",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "leones",
+        "indios",
+        "criollos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "13051",
+      "slug": "juan-pablo-pineiro",
+      "name": "Juan Pablo Piñeiro",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "brujos",
+        "caciques",
+        "cangrejeros",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "13056",
+      "slug": "enrique-ramos-abad",
+      "name": "Enrique Ramos Abad",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "brujos",
+        "caciques",
+        "cariduros",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "13057",
+      "slug": "chris-ortiz-2017",
+      "name": "Chris Ortiz",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "cariduros",
+        "caciques",
+        "brujos",
+        "osos"
+      ]
+    },
+    {
+      "playerId": "13113",
+      "slug": "derek-reese",
+      "name": "Derek Reese",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "leones",
+        "cariduros",
+        "gigantes",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "1346",
+      "slug": "juan-jose-hiraldo-santiago",
+      "name": "Juan jose Hiraldo Santiago",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "capitanes",
+        "gigantes",
+        "criollos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1366",
+      "slug": "julio-gotay-irizarry",
+      "name": "Julio Gotay Irizarry",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "leones",
+        "piratas",
+        "indios",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1472",
+      "slug": "luis-collazo-1961",
+      "name": "Luis Collazo",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "atleticos",
+        "capitanes",
+        "vaqueros",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1489",
+      "slug": "luis-ojeda-ramirez",
+      "name": "Luis Ojeda Ramirez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "criollos",
+        "brujos",
+        "santos",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1618",
+      "slug": "michael-guerens-buthenthal",
+      "name": "Michael Guerens Buthenthal",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "mets",
+        "cariduros",
+        "polluelos",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "1707",
+      "slug": "nelson-richardson-sanchez",
+      "name": "Nelson Richardson Sanchez",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "piratas",
+        "indios",
+        "brujos",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1738",
+      "slug": "omar-alamo-torres",
+      "name": "Omar Alamo Torres",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "indios",
+        "gallitos",
+        "atleticos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1876",
+      "slug": "rafael-martinez-ruiz",
+      "name": "Rafael Martinez Ruiz",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "piratas",
+        "mets",
+        "cariduros",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1896",
+      "slug": "rafael-a-negron-correa",
+      "name": "Rafael a. Negron Correa",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "atleticos",
+        "indios",
+        "capitanes",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "1938",
+      "slug": "ramses-kelly",
+      "name": "Ramses Kelly",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "santeros",
+        "piratas",
+        "gallitos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1946",
+      "slug": "raul-orta",
+      "name": "Raul Orta",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "leones",
+        "atleticos",
+        "brujos",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "2391",
+      "slug": "terrence-shannon-dogan",
+      "name": "Terrence Shannon Dogan",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "mets",
+        "vaqueros",
+        "piratas",
+        "leones"
+      ]
+    },
+    {
+      "playerId": "2755",
+      "slug": "andres-torres-saldana",
+      "name": "Andres Torres Saldaña",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "brujos",
+        "vaqueros",
+        "leones",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "347",
+      "slug": "carmelo-travieso-pena-1970",
+      "name": "Carmelo Travieso Peña",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "capitanes",
+        "titanes",
+        "vaqueros",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "631",
+      "slug": "ermelindo-ostolaza",
+      "name": "Ermelindo Ostolaza",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "leones",
+        "cariduros",
+        "capitanes",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "728",
+      "slug": "francisco-quijano-rivera",
+      "name": "Francisco Quijano Rivera",
+      "seasons": 8,
+      "franchiseSlugs": [
+        "indios",
+        "santos",
+        "cariduros",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "13055",
+      "slug": "jose-g-rodriguez",
+      "name": "Jose G. Rodriguez",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "brujos",
+        "indios",
+        "piratas",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "142",
+      "slug": "angel-marino-javier-sajuin",
+      "name": "Angel marino Javier Sajuin",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "cariduros",
+        "indios",
+        "capitanes",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1459",
+      "slug": "luciano-santiago-franceschi",
+      "name": "Luciano Santiago Franceschi",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "leones",
+        "polluelos",
+        "indios",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "1476",
+      "slug": "luis-diaz-roman",
+      "name": "Luis Diaz Roman",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "gigantes",
+        "cariduros",
+        "capitanes",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "1628",
+      "slug": "michael-watson-fuentes",
+      "name": "Michael Watson Fuentes",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "gigantes",
+        "caciques",
+        "cangrejeros",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "1665",
+      "slug": "miguel-a-mite-pizarro-suazo",
+      "name": "Miguel a. \"mite\" Pizarro Suazo",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "gigantes",
+        "polluelos",
+        "gallitos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "1715",
+      "slug": "nestor-ruiz-montalvo",
+      "name": "Nestor Ruiz Montalvo",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "santos",
+        "gallitos",
+        "cangrejeros",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1722",
+      "slug": "gabriel-muoneke",
+      "name": "Gabriel Muoneke",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "maratonistas",
+        "indios",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2202",
+      "slug": "thomas-jordan",
+      "name": "Thomas Jordan",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "gigantes",
+        "tiburones",
+        "cangrejeros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2270",
+      "slug": "waldemar-palmer",
+      "name": "Waldemar Palmer",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "cardenales",
+        "atleticos",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2631",
+      "slug": "carlos-figueroa-2010",
+      "name": "Carlos Figueroa",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "leones",
+        "maratonistas",
+        "atleticos",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "2675",
+      "slug": "ruben-cotto",
+      "name": "Rubén Cotto",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "gallitos",
+        "indios",
+        "caciques",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "2726",
+      "slug": "ferdinand-morales-soto",
+      "name": "Ferdinand Morales Soto",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "vaqueros",
+        "mets",
+        "caciques",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "2866",
+      "slug": "adrian-uter",
+      "name": "Adrian Uter",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "caciques",
+        "leones",
+        "vaqueros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "318",
+      "slug": "carlos-valentin-morales",
+      "name": "Carlos Valentin Morales",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "gigantes",
+        "maratonistas",
+        "piratas",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "461",
+      "slug": "de-juan-vazquez-woodley",
+      "name": "De Juan Vazquez Woodley",
+      "seasons": 7,
+      "franchiseSlugs": [
+        "brujos",
+        "leones",
+        "indios",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1014",
+      "slug": "javier-g-villeta-trigo",
+      "name": "Javier g. Villeta Trigo",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "mets",
+        "leones",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "13108",
+      "slug": "davon-jefferson",
+      "name": "Davon Jefferson",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes",
+        "cariduros",
+        "indios",
+        "osos"
+      ]
+    },
+    {
+      "playerId": "13160",
+      "slug": "juan-ramon-rivas-castillo",
+      "name": "Juan Ramón Rivas Castillo",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "santeros",
+        "indios",
+        "cariduros",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1319",
+      "slug": "juan-rodriguez-jackson",
+      "name": "Juan Rodriguez Jackson",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "indios",
+        "piratas",
+        "brujos",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "13211",
+      "slug": "isaiah-manderson",
+      "name": "Isaiah Manderson",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes",
+        "indios",
+        "cangrejeros",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "13258",
+      "slug": "brian-vazquez-arraiza",
+      "name": "Brian Vazquez Arraiza",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes",
+        "atleticos",
+        "brujos",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "1499",
+      "slug": "luis-santiago",
+      "name": "Luis Santiago",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "maratonistas",
+        "criollos",
+        "capitanes",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "1625",
+      "slug": "michael-santos",
+      "name": "Michael Santos",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "atleticos",
+        "vaqueros",
+        "brujos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "172",
+      "slug": "anthony-tony-farmer",
+      "name": "Anthony 'Tony' Farmer",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros",
+        "criollos",
+        "leones",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "2084",
+      "slug": "roger-cora",
+      "name": "Roger Cora",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "atleticos",
+        "gallitos",
+        "piratas",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "2139",
+      "slug": "samuel-maduro-rivera",
+      "name": "Samuel Maduro Rivera",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "mets",
+        "capitanes",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "2157",
+      "slug": "sean-ramirez-rodriguez",
+      "name": "Sean Ramirez Rodriguez",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "leones",
+        "indios",
+        "toritos",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "2204",
+      "slug": "thomas-burrough-austin",
+      "name": "Thomas Burrough Austin",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros",
+        "atleticos",
+        "maratonistas",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "2313",
+      "slug": "william-santiago-cabrera",
+      "name": "William Santiago Cabrera",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "atleticos",
+        "leones",
+        "cariduros",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "2347",
+      "slug": "ebi-ere-bell",
+      "name": "Ebi Ere Bell",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "gigantes",
+        "caciques",
+        "vaqueros",
+        "capitanes"
+      ]
+    },
+    {
+      "playerId": "2599",
+      "slug": "danilo-pinnock",
+      "name": "Danilo Pinnock",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes",
+        "indios",
+        "atleticos",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "2672",
+      "slug": "christian-a-soto-torres",
+      "name": "Christian A. Soto Torres",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "gallitos",
+        "capitanes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "2752",
+      "slug": "weyinmi-efejuku-rose",
+      "name": "Weyinmi Efejuku-Rose",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "indios",
+        "leones",
+        "atenienses",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "3",
+      "slug": "abdul-shamshid-deen",
+      "name": "Abdul Shamshid Deen",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "santeros",
+        "vaqueros",
+        "leones",
+        "maratonistas"
+      ]
+    },
+    {
+      "playerId": "301",
+      "slug": "carlos-ortiz-1984",
+      "name": "Carlos Ortiz",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "titanes",
+        "gallitos",
+        "polluelos",
+        "cariduros"
+      ]
+    },
+    {
+      "playerId": "328",
+      "slug": "carlos-alexis-robles-vazquez",
+      "name": "Carlos alexis Robles Vazquez",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros",
+        "santos",
+        "criollos",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "506",
+      "slug": "edgar-flores-alicea",
+      "name": "Edgar Flores Alicea",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "criollos",
+        "atleticos",
+        "polluelos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "64",
+      "slug": "alfredo-ortiz-ramos",
+      "name": "Alfredo Ortiz Ramos",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "tainos",
+        "atleticos",
+        "maratonistas",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "642",
+      "slug": "esteban-steven-quinones-trinidad",
+      "name": "Esteban \"steven\" Quiñones Trinidad",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros",
+        "atleticos",
+        "indios",
+        "brujos"
+      ]
+    },
+    {
+      "playerId": "666",
+      "slug": "felix-davila-ortiz",
+      "name": "Felix Davila Ortiz",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "gallitos",
+        "indios",
+        "brujos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "860",
+      "slug": "hector-martinez-canales",
+      "name": "Hector Martinez Canales",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "gallitos",
+        "caciques",
+        "leones",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "874",
+      "slug": "hector-e-nunez-mercado",
+      "name": "Hector e. Nuñez Mercado",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "gallitos",
+        "capitanes",
+        "atleticos",
+        "santeros"
+      ]
+    },
+    {
+      "playerId": "876",
+      "slug": "hector-enrique-burgos-miranda",
+      "name": "Hector enrique Burgos Miranda",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "leones",
+        "polluelos",
+        "maratonistas",
+        "avancinos"
+      ]
+    },
+    {
+      "playerId": "901",
+      "slug": "hilario-torres-lugo",
+      "name": "Hilario Torres Lugo",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "vaqueros",
+        "piratas",
+        "criollos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "940",
+      "slug": "ismael-verdejo-carrion",
+      "name": "Ismael Verdejo Carrion",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "cardenales",
+        "titanes",
+        "piratas",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "953",
+      "slug": "ivan-melendez-ramos",
+      "name": "Ivan Melendez Ramos",
+      "seasons": 6,
+      "franchiseSlugs": [
+        "capitanes",
+        "mets",
+        "titanes",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "1018",
+      "slug": "jean-gelpi-diaz",
+      "name": "Jean Gelpi Diaz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "criollos",
+        "piratas",
+        "atleticos",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "107",
+      "slug": "angel-ojeda-ramirez",
+      "name": "Angel Ojeda Ramirez",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cariduros",
+        "indios",
+        "polluelos",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1129",
+      "slug": "jorge-omar-cajigas-nieves",
+      "name": "Jorge omar Cajigas Nieves",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santeros",
+        "indios",
+        "polluelos",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "1231",
+      "slug": "jose-j-soto-aguirre",
+      "name": "Jose J. Soto Aguirre",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "leones",
+        "brujos",
+        "criollos",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "13027",
+      "slug": "gary-browne-ramirez",
+      "name": "Gary Browne Ramirez",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "maratonistas",
+        "atleticos",
+        "piratas",
+        "mets"
+      ]
+    },
+    {
+      "playerId": "13033",
+      "slug": "eric-dawson",
+      "name": "Eric Dawson",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "leones",
+        "vaqueros",
+        "cariduros",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "13059",
+      "slug": "marcel-souberbielle",
+      "name": "Marcel Souberbielle",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "leones",
+        "capitanes",
+        "cariduros",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "13089",
+      "slug": "chane-behanan",
+      "name": "Chane Behanan",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santeros",
+        "brujos",
+        "capitanes",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "13115",
+      "slug": "william-cruz-rodriguez",
+      "name": "William Cruz Rodriguez",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "atleticos",
+        "leones",
+        "capitanes",
+        "piratas"
+      ]
+    },
+    {
+      "playerId": "13209",
+      "slug": "gerardo-suero",
+      "name": "Gerardo Suero",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cariduros",
+        "vaqueros",
+        "grises",
+        "osos"
+      ]
+    },
+    {
+      "playerId": "13236",
+      "slug": "dinero-mercurius-medina",
+      "name": "Dinero Mercurius Medina",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "indios",
+        "grises",
+        "brujos",
+        "gigantes"
+      ]
+    },
+    {
+      "playerId": "13275",
+      "slug": "georgie-pacheco-ortiz",
+      "name": "Georgie Pacheco Ortiz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "leones",
+        "brujos",
+        "indios",
+        "grises"
+      ]
+    },
+    {
+      "playerId": "1519",
+      "slug": "luis-alfonso-lopez-torres",
+      "name": "Luis alfonso Lopez Torres",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cangrejeros",
+        "capitanes",
+        "mets",
+        "polluelos"
+      ]
+    },
+    {
+      "playerId": "1538",
+      "slug": "luis-o-camacho-rosado",
+      "name": "Luis o. Camacho Rosado",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santos",
+        "avancinos",
+        "cariduros",
+        "gallitos"
+      ]
+    },
+    {
+      "playerId": "1653",
+      "slug": "miguel-rodriguez-deliz",
+      "name": "Miguel Rodriguez Deliz",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "maratonistas",
+        "avancinos",
+        "leones",
+        "titanes"
+      ]
+    },
+    {
+      "playerId": "1928",
+      "slug": "ramon-rodriguez-outlaw",
+      "name": "Ramon Rodriguez Outlaw",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "capitanes",
+        "piratas",
+        "criollos",
+        "santos"
+      ]
+    },
+    {
+      "playerId": "1974",
+      "slug": "reinaldo-irizarry",
+      "name": "Reinaldo Irizarry",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santos",
+        "capitanes",
+        "vaqueros",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "2016",
+      "slug": "richard-lugo",
+      "name": "Richard Lugo",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "vaqueros",
+        "brujos",
+        "atleticos",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "2317",
+      "slug": "william-billy-ubinas-taylor",
+      "name": "William \"billy\" Ubiñas Taylor",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "cardenales",
+        "santos",
+        "atleticos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "2905",
+      "slug": "terrell-tu-holloway",
+      "name": "Terrell 'Tu' Holloway",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "atleticos",
+        "mets",
+        "piratas",
+        "cangrejeros"
+      ]
+    },
+    {
+      "playerId": "39",
+      "slug": "alex-blackwell",
+      "name": "Alex Blackwell",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "santeros",
+        "avancinos",
+        "cangrejeros",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "521",
+      "slug": "edgardo-ruiz-montalvo",
+      "name": "Edgardo Ruiz Montalvo",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "mets",
+        "gallitos",
+        "gigantes",
+        "vaqueros"
+      ]
+    },
+    {
+      "playerId": "54",
+      "slug": "alexis-sepulveda-fontanez",
+      "name": "Alexis Sepulveda Fontanez",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "gigantes",
+        "santos",
+        "brujos",
+        "criollos"
+      ]
+    },
+    {
+      "playerId": "911",
+      "slug": "hugo-soto-ayala",
+      "name": "Hugo Soto Ayala",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "tiburones",
+        "titanes",
+        "gallitos",
+        "atleticos"
+      ]
+    },
+    {
+      "playerId": "93",
+      "slug": "aneuris-liriano-lugo",
+      "name": "Aneuris Liriano Lugo",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "titanes",
+        "piratas",
+        "brujos",
+        "indios"
+      ]
+    },
+    {
+      "playerId": "986",
+      "slug": "jameel-heywood-thomas",
+      "name": "Jameel Heywood Thomas",
+      "seasons": 5,
+      "franchiseSlugs": [
+        "capitanes",
+        "gallitos",
+        "gigantes",
+        "leones"
+      ]
+    }
+  ]
+}

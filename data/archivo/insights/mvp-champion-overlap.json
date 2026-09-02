@@ -1,0 +1,1202 @@
+{
+  "totalYears": 74,
+  "overlapYears": 16,
+  "overlapPct": 21.6,
+  "longestOverlapStreak": {
+    "length": 5,
+    "from": 1959,
+    "to": 1963
+  },
+  "longestNoOverlapStreak": {
+    "length": 14,
+    "from": 1983,
+    "to": 1996
+  },
+  "years": [
+    {
+      "year": 2025,
+      "mvp": {
+        "playerId": null,
+        "slug": null,
+        "name": "Emmanuel Mudiay",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2024,
+      "mvp": {
+        "playerId": "13483",
+        "slug": "travis-trice",
+        "name": "Travis Trice",
+        "franchiseSlugs": [
+          "criollos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "criollos",
+        "name": "Criollos"
+      },
+      "overlap": true
+    },
+    {
+      "year": 2023,
+      "mvp": {
+        "playerId": "13435",
+        "slug": "brandon-knight",
+        "name": "Brandon Knight",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "gigantes",
+        "name": "Gigantes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2022,
+      "mvp": {
+        "playerId": "2514",
+        "slug": "walter-hodge-jr",
+        "name": "Walter Hodge",
+        "franchiseSlugs": [
+          "capitanes"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2021,
+      "mvp": {
+        "playerId": "13175",
+        "slug": "angel-daniel-rodriguez-tricoche",
+        "name": "Ángel Rodríguez",
+        "franchiseSlugs": [
+          "vaqueros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2020,
+      "mvp": {
+        "playerId": "13271",
+        "slug": "paris-bass",
+        "name": "Paris Bass",
+        "franchiseSlugs": [
+          "atleticos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2019,
+      "mvp": {
+        "playerId": "12989",
+        "slug": "brian-conklin",
+        "name": "Brian Conklin",
+        "franchiseSlugs": [
+          "piratas",
+          "indios"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "santeros",
+        "name": "Santeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2018,
+      "mvp": {
+        "playerId": "13000",
+        "slug": "reyshawn-terry",
+        "name": "Reyshawn Terry",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2017,
+      "mvp": {
+        "playerId": "13027",
+        "slug": "gary-browne-ramirez",
+        "name": "Gary Browne",
+        "franchiseSlugs": [
+          "atleticos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "piratas",
+        "name": "Piratas"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2016,
+      "mvp": {
+        "playerId": "2517",
+        "slug": "angel-daniel-vassallo-colon",
+        "name": "Ángel Daniel Vassallo",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2015,
+      "mvp": {
+        "playerId": "1836",
+        "slug": "peter-john-ramos-fuentes",
+        "name": "Peter John Ramos",
+        "franchiseSlugs": [
+          "brujos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2014,
+      "mvp": {
+        "playerId": "2514",
+        "slug": "walter-hodge-jr",
+        "name": "Walter Hodge",
+        "franchiseSlugs": [
+          "capitanes"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2013,
+      "mvp": {
+        "playerId": "2697",
+        "slug": "mike-harris",
+        "name": "Mike Harris",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "piratas",
+        "name": "Piratas"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2012,
+      "mvp": {
+        "playerId": "2569",
+        "slug": "donta-smith",
+        "name": "Donta Smith",
+        "franchiseSlugs": [
+          "indios"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "indios",
+        "name": "Indios"
+      },
+      "overlap": true
+    },
+    {
+      "year": 2011,
+      "mvp": {
+        "playerId": "382",
+        "slug": "christian-dalmau-santana",
+        "name": "Christian Dalmau",
+        "franchiseSlugs": [
+          "vaqueros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2010,
+      "mvp": {
+        "playerId": "382",
+        "slug": "christian-dalmau-santana",
+        "name": "Christian Dalmau",
+        "franchiseSlugs": [
+          "vaqueros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2009,
+      "mvp": {
+        "playerId": "2354",
+        "slug": "jesse-pellot-rosa",
+        "name": "Jesse Pellot-Rosa",
+        "franchiseSlugs": [
+          "atleticos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2008,
+      "mvp": {
+        "playerId": "158",
+        "slug": "ansel-guzman-hernaiz",
+        "name": "Ánsel Guzmán",
+        "franchiseSlugs": [
+          "grises"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2007,
+      "mvp": {
+        "playerId": "151",
+        "slug": "angelo-reyes-canales",
+        "name": "Angelo Reyes",
+        "franchiseSlugs": [
+          "gigantes"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2006,
+      "mvp": {
+        "playerId": "2290",
+        "slug": "wilfredo-pagan-roque",
+        "name": "Wilfredo Pagán",
+        "franchiseSlugs": [
+          "brujos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "criollos",
+        "name": "Criollos"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2005,
+      "mvp": {
+        "playerId": "2074",
+        "slug": "roberto-jose-bobby-joe-hatton-negron",
+        "name": "Bobby Joe Hatton",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2004,
+      "mvp": {
+        "playerId": "382",
+        "slug": "christian-dalmau-santana",
+        "name": "Christian Dalmau",
+        "franchiseSlugs": [
+          "atleticos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2003,
+      "mvp": {
+        "playerId": "284",
+        "slug": "carlos-escalera-gonzalez",
+        "name": "Carlos Escalera",
+        "franchiseSlugs": [
+          "maratonistas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2002,
+      "mvp": {
+        "playerId": "1271",
+        "slug": "jose-rafael-piculin-ortiz-rijos",
+        "name": "José Ortiz",
+        "franchiseSlugs": [
+          "cangrejeros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2001,
+      "mvp": {
+        "playerId": "1685",
+        "slug": "monty-wilson-wilder",
+        "name": "Monty Wilson",
+        "franchiseSlugs": [
+          "polluelos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 2000,
+      "mvp": {
+        "playerId": "914",
+        "slug": "ian-lockhart-collie",
+        "name": "Ian Lockhart",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1999,
+      "mvp": {
+        "playerId": "172",
+        "slug": "anthony-tony-farmer",
+        "name": "Tony Farmer",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1998,
+      "mvp": {
+        "playerId": "1011",
+        "slug": "javier-antonio-tonito-colon-rodriguez",
+        "name": "Javier \"Tonito\" Colon",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1997,
+      "mvp": {
+        "playerId": "498",
+        "slug": "eddie-casiano-ojeda",
+        "name": "Eddie Casiano",
+        "franchiseSlugs": [
+          "atleticos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "atleticos",
+        "name": "Atléticos"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1996,
+      "mvp": {
+        "playerId": "1462",
+        "slug": "luis-allende-ruiz",
+        "name": "Luis Allende",
+        "franchiseSlugs": [
+          "criollos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1995,
+      "mvp": {
+        "playerId": "2076",
+        "slug": "roberto-bobby-rios-osorio",
+        "name": "Bobby Ríos",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1994,
+      "mvp": {
+        "playerId": "989",
+        "slug": "james-carter-gaudino",
+        "name": "James Carter",
+        "franchiseSlugs": [
+          "brujos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "atleticos",
+        "name": "Atléticos"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1993,
+      "mvp": {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario \"Quijote\" Morales",
+        "franchiseSlugs": [
+          "mets"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1992,
+      "mvp": {
+        "playerId": "759",
+        "slug": "frantz-volcy",
+        "name": "Frantz Volcy",
+        "franchiseSlugs": [
+          "atleticos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1991,
+      "mvp": {
+        "playerId": "989",
+        "slug": "james-carter-gaudino",
+        "name": "James Carter",
+        "franchiseSlugs": [
+          "brujos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "atleticos",
+        "name": "Atléticos"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1990,
+      "mvp": {
+        "playerId": "508",
+        "slug": "edgar-leon-cruz",
+        "name": "Edgar de León",
+        "franchiseSlugs": [
+          "cariduros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1989,
+      "mvp": {
+        "playerId": "1927",
+        "slug": "ramon-rivas-contreras",
+        "name": "Ramón Rivas",
+        "franchiseSlugs": [
+          "gigantes"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "mets",
+        "name": "Mets"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1988,
+      "mvp": {
+        "playerId": "1575",
+        "slug": "mario-alberto-butler-graham",
+        "name": "Mario Butler",
+        "franchiseSlugs": [
+          "titanes"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1987,
+      "mvp": {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer",
+        "franchiseSlugs": [
+          "polluelos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "titanes",
+        "name": "Titanes"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1986,
+      "mvp": {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "Georgie Torres",
+        "franchiseSlugs": [
+          "cariduros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "polluelos",
+        "name": "Polluelos"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1985,
+      "mvp": {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "Georgie Torres",
+        "franchiseSlugs": [
+          "cariduros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "atleticos",
+        "name": "Atléticos"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1984,
+      "mvp": {
+        "playerId": "788",
+        "slug": "george-torres-dougherty",
+        "name": "Georgie Torres",
+        "franchiseSlugs": [
+          "cariduros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "indios",
+        "name": "Indios"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1983,
+      "mvp": {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario \"Quijote\" Morales",
+        "franchiseSlugs": [
+          "mets"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "indios",
+        "name": "Indios"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1982,
+      "mvp": {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario \"Quijote\" Morales",
+        "franchiseSlugs": [
+          "mets"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "mets",
+        "name": "Mets"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1981,
+      "mvp": {
+        "playerId": "2089",
+        "slug": "rolando-frazer-thorne",
+        "name": "Rolando Frazer",
+        "franchiseSlugs": [
+          "polluelos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1980,
+      "mvp": {
+        "playerId": "1584",
+        "slug": "mario-quijote-morales-micheo",
+        "name": "Mario \"Quijote\" Morales",
+        "franchiseSlugs": [
+          "mets"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "mets",
+        "name": "Mets"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1979,
+      "mvp": {
+        "playerId": "2113",
+        "slug": "ruben-rodriguez-leon",
+        "name": "Rubén Rodríguez",
+        "franchiseSlugs": [
+          "vaqueros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "piratas",
+        "name": "Piratas"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1978,
+      "mvp": {
+        "playerId": "334",
+        "slug": "carlos-charlie-bermudez-torres",
+        "name": "Carlos \"Charlie\" Bermúdez",
+        "franchiseSlugs": [
+          "indios"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "piratas",
+        "name": "Piratas"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1977,
+      "mvp": {
+        "playerId": "863",
+        "slug": "hector-olivencia-mateo",
+        "name": "Hector Olivencia",
+        "franchiseSlugs": [
+          "criollos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "piratas",
+        "name": "Piratas"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1976,
+      "mvp": {
+        "playerId": "492",
+        "slug": "earl-brown",
+        "name": "Earl Brown",
+        "franchiseSlugs": [
+          "cardenales"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cardenales",
+        "name": "Cardenales"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1975,
+      "mvp": {
+        "playerId": "1206",
+        "slug": "jose-andres-josean-baez-camacho",
+        "name": "Josean Baez",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1974,
+      "mvp": {
+        "playerId": "993",
+        "slug": "james-thordsen-lasvitt",
+        "name": "Jimmy Thordsen",
+        "franchiseSlugs": [
+          "gallitos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1973,
+      "mvp": {
+        "playerId": "1698",
+        "slug": "neftali-rivera-olivera",
+        "name": "Neftalí Rivera",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1972,
+      "mvp": {
+        "playerId": "1962",
+        "slug": "raymond-dalmau-perez",
+        "name": "Raymond Dalmau",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1971,
+      "mvp": {
+        "playerId": "2200",
+        "slug": "teofilo-teo-cruz-downs",
+        "name": "Teófilo Cruz",
+        "franchiseSlugs": [
+          "cangrejeros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1970,
+      "mvp": {
+        "playerId": "2200",
+        "slug": "teofilo-teo-cruz-downs",
+        "name": "Teófilo Cruz",
+        "franchiseSlugs": [
+          "cangrejeros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "piratas",
+        "name": "Piratas"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1969,
+      "mvp": {
+        "playerId": "1962",
+        "slug": "raymond-dalmau-perez",
+        "name": "Raymond Dalmau",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1968,
+      "mvp": {
+        "playerId": "1962",
+        "slug": "raymond-dalmau-perez",
+        "name": "Raymond Dalmau",
+        "franchiseSlugs": [
+          "piratas"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1967,
+      "mvp": {
+        "playerId": "2200",
+        "slug": "teofilo-teo-cruz-downs",
+        "name": "Teófilo Cruz",
+        "franchiseSlugs": [
+          "cangrejeros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "vaqueros",
+        "name": "Vaqueros"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1966,
+      "mvp": {
+        "playerId": "974",
+        "slug": "jaime-frontera-colley",
+        "name": "Jaime Frontera",
+        "franchiseSlugs": [
+          "capitanes"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1965,
+      "mvp": {
+        "playerId": "2024",
+        "slug": "richard-richie-pietri-villanueva",
+        "name": "Richie Pietri",
+        "franchiseSlugs": [
+          "atleticos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1964,
+      "mvp": {
+        "playerId": "1088",
+        "slug": "johnny-el-indio-baez",
+        "name": "Juan Báez",
+        "franchiseSlugs": [
+          "cardenales"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1963,
+      "mvp": {
+        "playerId": "1088",
+        "slug": "johnny-el-indio-baez",
+        "name": "Juan Báez",
+        "franchiseSlugs": [
+          "cardenales"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cardenales",
+        "name": "Cardenales"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1962,
+      "mvp": {
+        "playerId": "2200",
+        "slug": "teofilo-teo-cruz-downs",
+        "name": "Teófilo Cruz",
+        "franchiseSlugs": [
+          "cangrejeros"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cangrejeros",
+        "name": "Cangrejeros"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1961,
+      "mvp": {
+        "playerId": "2216",
+        "slug": "tomas-guabina-gutierrez",
+        "name": "Tomás \"Guabina\" Gutiérrez",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1960,
+      "mvp": {
+        "playerId": "1327",
+        "slug": "juan-pachin-vicens-sastre",
+        "name": "Juan \"Pachín\" Vicéns",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1959,
+      "mvp": {
+        "playerId": "2315",
+        "slug": "william-bill-mccadney",
+        "name": "Bill McCadney",
+        "franchiseSlugs": [
+          "capitanes"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "capitanes",
+        "name": "Capitanes"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1958,
+      "mvp": {
+        "playerId": "1327",
+        "slug": "juan-pachin-vicens-sastre",
+        "name": "Juan \"Pachín\" Vicéns",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "santos",
+        "name": "Santos"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1957,
+      "mvp": {
+        "playerId": "1088",
+        "slug": "johnny-el-indio-baez",
+        "name": "Juan Báez",
+        "franchiseSlugs": [
+          "cardenales"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cardenales",
+        "name": "Cardenales"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1956,
+      "mvp": {
+        "playerId": "1892",
+        "slug": "rafael-valle",
+        "name": "Rafael Valle",
+        "franchiseSlugs": [
+          "santos"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cardenales",
+        "name": "Cardenales"
+      },
+      "overlap": false
+    },
+    {
+      "year": 1955,
+      "mvp": {
+        "playerId": "1943",
+        "slug": "raul-tinajon-feliciano-rodriguez",
+        "name": "Raúl \"Tinajón\" Feliciano",
+        "franchiseSlugs": [
+          "cardenales"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "cardenales",
+        "name": "Cardenales"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1954,
+      "mvp": {
+        "playerId": "1327",
+        "slug": "juan-pachin-vicens-sastre",
+        "name": "Juan \"Pachín\" Vicéns",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1952,
+      "mvp": {
+        "playerId": "1327",
+        "slug": "juan-pachin-vicens-sastre",
+        "name": "Juan \"Pachín\" Vicéns",
+        "franchiseSlugs": [
+          "leones"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "leones",
+        "name": "Leones"
+      },
+      "overlap": true
+    },
+    {
+      "year": 1951,
+      "mvp": {
+        "playerId": "1943",
+        "slug": "raul-tinajon-feliciano-rodriguez",
+        "name": "Raúl \"Tinajón\" Feliciano",
+        "franchiseSlugs": [
+          "gallitos-upr"
+        ]
+      },
+      "champion": {
+        "franchiseSlug": "gallitos-upr",
+        "name": "Gallitos"
+      },
+      "overlap": true
+    }
+  ]
+}

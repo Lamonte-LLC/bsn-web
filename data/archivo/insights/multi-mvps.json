@@ -1,0 +1,240 @@
+[
+  {
+    "playerId": "1327",
+    "slug": "juan-pachin-vicens-sastre",
+    "name": "Juan 'Pachín' Vicens Sastre",
+    "count": 4,
+    "mvps": [
+      {
+        "year": 1952,
+        "franchiseSlug": "leones"
+      },
+      {
+        "year": 1954,
+        "franchiseSlug": "leones"
+      },
+      {
+        "year": 1958,
+        "franchiseSlug": "leones"
+      },
+      {
+        "year": 1960,
+        "franchiseSlug": "leones"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "2200",
+    "slug": "teofilo-teo-cruz-downs",
+    "name": "Teofilo 'Teo' Cruz Downs",
+    "count": 4,
+    "mvps": [
+      {
+        "year": 1962,
+        "franchiseSlug": "cangrejeros"
+      },
+      {
+        "year": 1967,
+        "franchiseSlug": "cangrejeros"
+      },
+      {
+        "year": 1970,
+        "franchiseSlug": "cangrejeros"
+      },
+      {
+        "year": 1971,
+        "franchiseSlug": "cangrejeros"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "1584",
+    "slug": "mario-quijote-morales-micheo",
+    "name": "Mario 'Quijote' Morales Micheo",
+    "count": 4,
+    "mvps": [
+      {
+        "year": 1980,
+        "franchiseSlug": "mets"
+      },
+      {
+        "year": 1982,
+        "franchiseSlug": "mets"
+      },
+      {
+        "year": 1983,
+        "franchiseSlug": "mets"
+      },
+      {
+        "year": 1993,
+        "franchiseSlug": "mets"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "1088",
+    "slug": "johnny-el-indio-baez",
+    "name": "Johnny 'El Indio' Baez",
+    "count": 3,
+    "mvps": [
+      {
+        "year": 1957,
+        "franchiseSlug": "cardenales"
+      },
+      {
+        "year": 1963,
+        "franchiseSlug": "cardenales"
+      },
+      {
+        "year": 1964,
+        "franchiseSlug": "cardenales"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "1962",
+    "slug": "raymond-dalmau-perez",
+    "name": "Raymond Dalmau Perez",
+    "count": 3,
+    "mvps": [
+      {
+        "year": 1968,
+        "franchiseSlug": "piratas"
+      },
+      {
+        "year": 1969,
+        "franchiseSlug": "piratas"
+      },
+      {
+        "year": 1972,
+        "franchiseSlug": "piratas"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "788",
+    "slug": "george-torres-dougherty",
+    "name": "George Torres Dougherty",
+    "count": 3,
+    "mvps": [
+      {
+        "year": 1984,
+        "franchiseSlug": "cariduros"
+      },
+      {
+        "year": 1985,
+        "franchiseSlug": "cariduros"
+      },
+      {
+        "year": 1986,
+        "franchiseSlug": "cariduros"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "382",
+    "slug": "christian-dalmau-santana",
+    "name": "Christian Dalmau Santana",
+    "count": 3,
+    "mvps": [
+      {
+        "year": 2004,
+        "franchiseSlug": "atleticos"
+      },
+      {
+        "year": 2010,
+        "franchiseSlug": "vaqueros"
+      },
+      {
+        "year": 2011,
+        "franchiseSlug": "vaqueros"
+      }
+    ],
+    "distinctFranchises": 2,
+    "wonWithMultipleTeams": true
+  },
+  {
+    "playerId": "1943",
+    "slug": "raul-tinajon-feliciano-rodriguez",
+    "name": "Raul 'Tinajón' Feliciano Rodriguez",
+    "count": 2,
+    "mvps": [
+      {
+        "year": 1951,
+        "franchiseSlug": "gallitos-upr"
+      },
+      {
+        "year": 1955,
+        "franchiseSlug": "cardenales"
+      }
+    ],
+    "distinctFranchises": 2,
+    "wonWithMultipleTeams": true
+  },
+  {
+    "playerId": "2089",
+    "slug": "rolando-frazer-thorne",
+    "name": "Rolando Frazer Thorne",
+    "count": 2,
+    "mvps": [
+      {
+        "year": 1981,
+        "franchiseSlug": "polluelos"
+      },
+      {
+        "year": 1987,
+        "franchiseSlug": "polluelos"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "989",
+    "slug": "james-carter-gaudino",
+    "name": "James Carter Gaudino",
+    "count": 2,
+    "mvps": [
+      {
+        "year": 1991,
+        "franchiseSlug": "brujos"
+      },
+      {
+        "year": 1994,
+        "franchiseSlug": "brujos"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  },
+  {
+    "playerId": "2514",
+    "slug": "walter-hodge-jr",
+    "name": "Walter Hodge Jr.",
+    "count": 2,
+    "mvps": [
+      {
+        "year": 2014,
+        "franchiseSlug": "capitanes"
+      },
+      {
+        "year": 2022,
+        "franchiseSlug": "capitanes"
+      }
+    ],
+    "distinctFranchises": 1,
+    "wonWithMultipleTeams": false
+  }
+]

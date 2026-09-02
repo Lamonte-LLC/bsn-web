@@ -367,6 +367,149 @@ export interface FranchisePlayer {
   seasons: number;
 }
 
+// ---- Insights (data/archivo/insights/**), built by scripts/archivo/build-insights.ts ----
+
+export interface CoachChampionship {
+  year: number;
+  franchiseSlug: string | null;
+  franchiseName: string;
+  series: string | null;
+  coCoach: string | null;
+}
+
+export interface CoachInsight {
+  name: string;
+  titles: number;
+  championships: CoachChampionship[];
+}
+
+export interface MvpChampionYear {
+  year: number;
+  mvp: { playerId: string | null; slug: string | null; name: string; franchiseSlugs: string[] };
+  champion: { franchiseSlug: string | null; name: string };
+  overlap: boolean;
+}
+
+export interface MvpChampionOverlapFile {
+  totalYears: number;
+  overlapYears: number;
+  overlapPct: number;
+  longestOverlapStreak: { length: number; from: number; to: number } | null;
+  longestNoOverlapStreak: { length: number; from: number; to: number } | null;
+  years: MvpChampionYear[];
+}
+
+export interface MultiMvpEntry {
+  playerId: string | null;
+  slug: string | null;
+  name: string;
+  count: number;
+  mvps: Array<{ year: number; franchiseSlug: string | null }>;
+  distinctFranchises: number;
+  wonWithMultipleTeams: boolean;
+}
+
+export interface LongevityEntry {
+  playerId: string;
+  slug: string;
+  name: string;
+  seasons: number;
+  g: number;
+  fy: number;
+  ly: number;
+  span: number;
+  franchiseSlugs: string[];
+}
+
+export interface LongevityFile {
+  bySeasons: LongevityEntry[];
+  byGames: LongevityEntry[];
+}
+
+export interface LoyaltyEntry {
+  playerId: string;
+  slug: string;
+  name: string;
+  seasons: number;
+  franchiseSlugs: string[];
+}
+
+export interface LoyaltyFile {
+  minSeasons: number;
+  oneClub: LoyaltyEntry[];
+  journeymen: LoyaltyEntry[];
+}
+
+export interface ScoringSeason {
+  playerId: string;
+  slug: string;
+  name: string;
+  year: number;
+  franchiseSlug: string | null;
+  ppg: number;
+  g: number;
+}
+
+export interface ScoringClubFile {
+  minGames: number;
+  thresholds: number[];
+  byThreshold: Record<string, ScoringSeason[]>;
+  byDecade: Array<{ decade: number; counts: Record<string, number> }>;
+}
+
+export interface DecadeRecord {
+  playerId: string | null;
+  slug: string | null;
+  name: string | null;
+  year: number | null;
+  franchiseSlug: string | null;
+  value: number | null;
+  reason: 'no data' | null;
+}
+
+export interface RecordsByDecadeFile {
+  minGames: number;
+  categories: SeasonRecordKey[];
+  decades: Array<{ decade: number; records: Record<SeasonRecordKey, DecadeRecord> }>;
+}
+
+export interface CareerArcPoint {
+  seasonNumber: number;
+  year: number;
+  franchiseSlug: string | null;
+  ppg: number | null;
+  rpg: number | null;
+  apg: number | null;
+  g: number;
+}
+
+export interface CareerArc {
+  playerId: string;
+  slug: string;
+  name: string;
+  peakSeason: number | null;
+  arc: CareerArcPoint[];
+}
+
+export interface CareerArcIndexEntry {
+  playerId: string;
+  slug: string;
+  name: string;
+  seasons: number;
+  peakSeason: number | null;
+  file: string;
+}
+
+export interface SimilarPlayer {
+  playerId: string;
+  slug: string;
+  name: string;
+  score: number;
+  sharedDimensions: number;
+}
+
+export type SimilarityFile = Record<string, SimilarPlayer[]>;
+
 export interface FranchiseSeasonRecord {
   year: number;
   won: number;

@@ -1,0 +1,977 @@
+[
+  {
+    "name": "Julio Toro",
+    "titles": 12,
+    "championships": [
+      {
+        "year": 2009,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 2003,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": "4-0",
+        "coCoach": null
+      },
+      {
+        "year": 2001,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 2000,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1999,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1998,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1993,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-1",
+        "coCoach": null
+      },
+      {
+        "year": 1992,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 1989,
+        "franchiseSlug": "mets",
+        "franchiseName": "Mets de Guaynabo",
+        "series": "4-3",
+        "coCoach": null
+      },
+      {
+        "year": 1984,
+        "franchiseSlug": "indios",
+        "franchiseName": "Indios de Mayagüez",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 1982,
+        "franchiseSlug": "mets",
+        "franchiseName": "Mets de Guaynabo",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 1980,
+        "franchiseSlug": "mets",
+        "franchiseName": "Mets de Guaynabo",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Víctor M. Pérez",
+    "titles": 4,
+    "championships": [
+      {
+        "year": 1957,
+        "franchiseSlug": "cardenales",
+        "franchiseName": "Cardenales de Río Piedras",
+        "series": "3-1",
+        "coCoach": null
+      },
+      {
+        "year": 1956,
+        "franchiseSlug": "cardenales",
+        "franchiseName": "Cardenales de Río Piedras",
+        "series": "3-1",
+        "coCoach": null
+      },
+      {
+        "year": 1955,
+        "franchiseSlug": "cardenales",
+        "franchiseName": "Cardenales de Río Piedras",
+        "series": "3-1",
+        "coCoach": null
+      },
+      {
+        "year": 1951,
+        "franchiseSlug": "gallitos-upr",
+        "franchiseName": "Gallitos de la UPR",
+        "series": "3-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Nelson Colón",
+    "titles": 4,
+    "championships": [
+      {
+        "year": 2022,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 2020,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "3-0",
+        "coCoach": null
+      },
+      {
+        "year": 2015,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 2014,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-2",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Rodrigo Otero",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1937,
+        "franchiseSlug": null,
+        "franchiseName": "Heinz",
+        "series": "2-0",
+        "coCoach": null
+      },
+      {
+        "year": 1936,
+        "franchiseSlug": null,
+        "franchiseName": "Club Náutico San Juan",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1934,
+        "franchiseSlug": null,
+        "franchiseName": "Fénix",
+        "series": null,
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Lou Rossini",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1968,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": "4-3",
+        "coCoach": null
+      },
+      {
+        "year": 1963,
+        "franchiseSlug": "cardenales",
+        "franchiseName": "Cardenales de Río Piedras",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 1959,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Fufi Santori",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1972,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-2",
+        "coCoach": "Tom Nissalke"
+      },
+      {
+        "year": 1967,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": "Roy Rubbins"
+      },
+      {
+        "year": 1962,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Red Holzman",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1966,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-3",
+        "coCoach": null
+      },
+      {
+        "year": 1965,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-1",
+        "coCoach": null
+      },
+      {
+        "year": 1964,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Del Harris",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1975,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": "Tom Nissalke"
+      },
+      {
+        "year": 1974,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-1",
+        "coCoach": null
+      },
+      {
+        "year": 1973,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Ray Amalbert",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1979,
+        "franchiseSlug": "piratas",
+        "franchiseName": "Piratas de Quebradillas",
+        "series": "4-0",
+        "coCoach": null
+      },
+      {
+        "year": 1978,
+        "franchiseSlug": "piratas",
+        "franchiseName": "Piratas de Quebradillas",
+        "series": "4-1",
+        "coCoach": null
+      },
+      {
+        "year": 1977,
+        "franchiseSlug": "piratas",
+        "franchiseName": "Piratas de Quebradillas",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Flor Meléndez",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1996,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1995,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1985,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": "4-2",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Miguel Mercado",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 1997,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1990,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1987,
+        "franchiseSlug": "titanes",
+        "franchiseName": "Titanes de Morovis",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "David Rosario",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 2011,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-1",
+        "coCoach": null
+      },
+      {
+        "year": 2010,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-3",
+        "coCoach": null
+      },
+      {
+        "year": 2008,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Rafael Pachy Cruz",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 2021,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 2018,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 2016,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-2",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Carlos González",
+    "titles": 3,
+    "championships": [
+      {
+        "year": 2023,
+        "franchiseSlug": "gigantes",
+        "franchiseName": "Gigantes de Carolina",
+        "series": "4-1",
+        "coCoach": null
+      },
+      {
+        "year": 2019,
+        "franchiseSlug": "santeros",
+        "franchiseName": "Santeros de Aguada",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 2017,
+        "franchiseSlug": "piratas",
+        "franchiseName": "Piratas de Quebradillas",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Manuel Iglesia",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1931,
+        "franchiseSlug": null,
+        "franchiseName": "San Juan Matías Eagles",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1930,
+        "franchiseSlug": null,
+        "franchiseName": "San Juan Sport Shop",
+        "series": "3-2",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Ubaldino Ramírez",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1938,
+        "franchiseSlug": null,
+        "franchiseName": "All San Germán",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1932,
+        "franchiseSlug": null,
+        "franchiseName": "All San Germán",
+        "series": null,
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Onofre Carballeira",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1935,
+        "franchiseSlug": null,
+        "franchiseName": "Bayamón Casa Fernández",
+        "series": "3-0",
+        "coCoach": null
+      },
+      {
+        "year": 1933,
+        "franchiseSlug": null,
+        "franchiseName": "Bayamón Spalding",
+        "series": null,
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Felicio Torregrosa",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1944,
+        "franchiseSlug": "gallitos-upr",
+        "franchiseName": "Gallitos de la UPR",
+        "series": "2-1",
+        "coCoach": null
+      },
+      {
+        "year": 1939,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": null,
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Adolfo Porrata",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1945,
+        "franchiseSlug": null,
+        "franchiseName": "Capitalinos",
+        "series": "2-1",
+        "coCoach": null
+      },
+      {
+        "year": 1940,
+        "franchiseSlug": "santos",
+        "franchiseName": "Santos de San Juan",
+        "series": "3-2",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Raúl González",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1949,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": "3-2",
+        "coCoach": null
+      },
+      {
+        "year": 1941,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": null,
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Armando Torres",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1947,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1942,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": null,
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Tex Winters",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1954,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "3-1",
+        "coCoach": null
+      },
+      {
+        "year": 1952,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "3-0",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Art Loche",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1971,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-2",
+        "coCoach": null
+      },
+      {
+        "year": 1969,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Tom Nissalke",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1975,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": "Del Harris"
+      },
+      {
+        "year": 1972,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-2",
+        "coCoach": "Fufi Santori"
+      }
+    ]
+  },
+  {
+    "name": "Robert Corn",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1988,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": null
+      },
+      {
+        "year": 1981,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": "Gene Bartow"
+      }
+    ]
+  },
+  {
+    "name": "Carlos Morales",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 1994,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": null,
+        "coCoach": null
+      },
+      {
+        "year": 1991,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": null,
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Carlos Mario Rivera",
+    "titles": 2,
+    "championships": [
+      {
+        "year": 2005,
+        "franchiseSlug": "capitanes",
+        "franchiseName": "Capitanes de Arecibo",
+        "series": "4-0",
+        "coCoach": null
+      },
+      {
+        "year": 2002,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Arquelio Torres",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1943,
+        "franchiseSlug": null,
+        "franchiseName": "Tortuguero",
+        "series": "3-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Ramón Cestero",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1946,
+        "franchiseSlug": "cardenales",
+        "franchiseName": "Cardenales de Río Piedras",
+        "series": "2-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Víctor Murati",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1948,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": "3-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Luis F. Sambolín",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1950,
+        "franchiseSlug": "atleticos",
+        "franchiseName": "Atléticos de San Germán",
+        "series": "3-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Floyd Brown",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1958,
+        "franchiseSlug": "santos",
+        "franchiseName": "Santos de San Juan",
+        "series": "4-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Howard Shamon",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1960,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-0",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Jack McKenney",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1961,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Roy Rubbins",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1967,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": "Fufi Santori"
+      }
+    ]
+  },
+  {
+    "name": "Erick Geldart",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1970,
+        "franchiseSlug": "piratas",
+        "franchiseName": "Piratas de Quebradillas",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Bernie Bickerstaff",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1976,
+        "franchiseSlug": "cardenales",
+        "franchiseName": "Cardenales de Río Piedras",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Gene Bartow",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1981,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-3",
+        "coCoach": "Robert Corn"
+      }
+    ]
+  },
+  {
+    "name": "Herb Brown",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1983,
+        "franchiseSlug": "indios",
+        "franchiseName": "Indios de Mayagüez",
+        "series": "4-2",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Charlie Bermúdez",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 1986,
+        "franchiseSlug": "polluelos",
+        "franchiseName": "Polluelos de Aibonito",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Manolo Cintrón",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 2004,
+        "franchiseSlug": "leones",
+        "franchiseName": "Leones de Ponce",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Leonel Arill",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 2006,
+        "franchiseSlug": "criollos",
+        "franchiseName": "Criollos de Caguas",
+        "series": "4-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Tony Ruiz",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 2007,
+        "franchiseSlug": "cangrejeros",
+        "franchiseName": "Cangrejeros de Santurce",
+        "series": "4-3",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Eddie Casiano",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 2012,
+        "franchiseSlug": "indios",
+        "franchiseName": "Indios de Mayagüez",
+        "series": "4-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Carlos Calcaño",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 2013,
+        "franchiseSlug": "piratas",
+        "franchiseName": "Piratas de Quebradillas",
+        "series": "4-2",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Wilhelmus Caanen",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 2024,
+        "franchiseSlug": "criollos",
+        "franchiseName": "Criollos de Caguas",
+        "series": "4-1",
+        "coCoach": null
+      }
+    ]
+  },
+  {
+    "name": "Christian Dalmau",
+    "titles": 1,
+    "championships": [
+      {
+        "year": 2025,
+        "franchiseSlug": "vaqueros",
+        "franchiseName": "Vaqueros de Bayamón",
+        "series": "4-2",
+        "coCoach": null
+      }
+    ]
+  }
+]

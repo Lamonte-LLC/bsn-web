@@ -11,7 +11,10 @@ curl -sL "https://project-alzl7.vercel.app/bsn_data.js" -o scripts/archivo/raw/b
 node --experimental-strip-types scripts/archivo/extract-raw.ts   # bsn_data.js -> raw/enc.json, careers.json, season-logs.json
 node --experimental-strip-types scripts/archivo/etl-stats.ts     # raw/ + data/ -> data/archivo/**
 node --experimental-strip-types scripts/archivo/etl-results.ts   # GraphQL de BSN + FPO -> results en seasons/, seasonRecords en franchises/
+node --experimental-strip-types scripts/archivo/build-insights.ts # data/archivo -> data/archivo/insights/ (ver insights/README.md)
 ```
+
+O todo junto: `scripts/archivo/build-all.sh [--from-cache]`.
 
 El orden importa: `etl-stats.ts` regenera `seasons/` desde cero y `etl-results.ts` escribe dentro de esos archivos. `etl-results.ts --from-cache` usa las respuestas guardadas en `raw/graphql/` en vez de pegarle al API (usa `BSN_GRAPHQL_URI` de `.env`).
 
