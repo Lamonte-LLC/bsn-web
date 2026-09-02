@@ -59,17 +59,23 @@ export function Chip({ children, href, active = false, className = '' }: { child
 }
 
 /** Badge for MVPs / championships. */
-export function Badge({ children, tone = 'gold', className = '' }: { children: ReactNode; tone?: 'gold' | 'red' | 'ink'; className?: string }) {
-  const tones = {
-    gold: 'bg-[rgba(254,194,0,0.16)] text-[rgba(15,23,31,0.9)] border-[rgba(254,194,0,0.5)]',
-    red: 'bg-[rgba(229,31,31,0.10)] text-[rgba(15,23,31,0.9)] border-[rgba(229,31,31,0.4)]',
-    ink: 'bg-[#0F171F] text-white border-[#0F171F]',
-  } as const;
+export function Badge({ children, tone = 'gold', onDark = false, className = '' }: { children: ReactNode; tone?: 'gold' | 'red' | 'ink'; onDark?: boolean; className?: string }) {
+  const tones = onDark
+    ? {
+        gold: 'bg-[rgba(254,194,0,0.18)] text-[#FEC200] border-[rgba(254,194,0,0.45)]',
+        red: 'bg-[rgba(229,31,31,0.18)] text-white border-[rgba(229,31,31,0.5)]',
+        ink: 'bg-white text-[#0F171F] border-white',
+      }
+    : {
+        gold: 'bg-[rgba(254,194,0,0.16)] text-[rgba(15,23,31,0.9)] border-[rgba(254,194,0,0.5)]',
+        red: 'bg-[rgba(229,31,31,0.10)] text-[rgba(15,23,31,0.9)] border-[rgba(229,31,31,0.4)]',
+        ink: 'bg-[#0F171F] text-white border-[#0F171F]',
+      };
   return <span className={`inline-flex items-center gap-[5px] rounded-[6px] border px-[8px] py-[3px] font-barlow text-[12px] font-semibold ${tones[tone]} ${className}`}>{children}</span>;
 }
 
 export function EmptyState({ children }: { children: ReactNode }) {
-  return <p className="rounded-[12px] border border-dashed border-[#D5D5D5] px-4 py-8 text-center font-barlow text-[13px] text-[rgba(0,0,0,0.5)]">{children}</p>;
+  return <p className="rounded-[12px] border border-[#EAEAEA] bg-white px-4 py-6 font-barlow text-[15px] text-[rgba(15,23,31,0.7)]">{children}</p>;
 }
 
 /** Inline text link in the brand blue. */

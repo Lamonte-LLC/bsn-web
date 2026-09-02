@@ -140,6 +140,8 @@ export interface PlayerIndexEntry {
   id: string;
   slug: string;
   name: string;
+  /** Other names the player is known by (e.g. the MVP list's "Georgie Torres" for George Torres Dougherty). */
+  aliases: string[];
   fy: number;
   ly: number;
   franchiseSlugs: string[];

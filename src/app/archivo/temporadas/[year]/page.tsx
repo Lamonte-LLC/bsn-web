@@ -61,10 +61,10 @@ export default async function SeasonPage({ params }: Params) {
         </span>
       ),
     },
-    { key: 'w', label: 'G', align: 'right', render: (s) => s.won },
-    { key: 'l', label: 'P', align: 'right', render: (s) => s.lost },
-    { key: 'pct', label: '%', align: 'right', render: (s) => (s.won + s.lost ? (s.won / (s.won + s.lost)).toFixed(3).replace(/^0/, '') : '–') },
-    { key: 'pts', label: 'PPJ', align: 'right', render: (s) => fmt(s.pointsAverage) },
+    { key: 'w', label: 'G', align: 'right', sortValue: (s) => s.won, render: (s) => s.won },
+    { key: 'l', label: 'P', align: 'right', sortValue: (s) => s.lost, render: (s) => s.lost },
+    { key: 'pct', label: '%', align: 'right', sortValue: (s) => (s.won + s.lost ? s.won / (s.won + s.lost) : null), render: (s) => (s.won + s.lost ? (s.won / (s.won + s.lost)).toFixed(3).replace(/^0/, '') : '–') },
+    { key: 'pts', label: 'PPJ', align: 'right', sortValue: (s) => s.pointsAverage, render: (s) => fmt(s.pointsAverage) },
   ];
 
   const gameCols: StatsColumn<SeasonGame>[] = [
@@ -100,12 +100,12 @@ export default async function SeasonPage({ params }: Params) {
         </Link>
       ),
     },
-    { key: 'g', label: 'J', align: 'right', render: (r) => fmtInt(r.regular?.g ?? null) },
-    { key: 'ppg', label: 'PPJ', align: 'right', render: (r) => fmt(r.regular?.ppg) },
-    { key: 'rpg', label: 'RPJ', align: 'right', render: (r) => fmt(r.regular?.rpg) },
-    { key: 'apg', label: 'APJ', align: 'right', render: (r) => fmt(r.regular?.apg) },
-    { key: 'pg', label: 'J post.', align: 'right', render: (r) => fmtInt(r.playoffs?.g ?? null) },
-    { key: 'pppg', label: 'PPJ post.', align: 'right', render: (r) => fmt(r.playoffs?.ppg) },
+    { key: 'g', label: 'J', align: 'right', sortValue: (r) => r.regular?.g ?? null, render: (r) => fmtInt(r.regular?.g ?? null) },
+    { key: 'ppg', label: 'PPJ', align: 'right', sortValue: (r) => r.regular?.ppg ?? null, render: (r) => fmt(r.regular?.ppg) },
+    { key: 'rpg', label: 'RPJ', align: 'right', sortValue: (r) => r.regular?.rpg ?? null, render: (r) => fmt(r.regular?.rpg) },
+    { key: 'apg', label: 'APJ', align: 'right', sortValue: (r) => r.regular?.apg ?? null, render: (r) => fmt(r.regular?.apg) },
+    { key: 'pg', label: 'J post.', align: 'right', sortValue: (r) => r.playoffs?.g ?? null, render: (r) => fmtInt(r.playoffs?.g ?? null) },
+    { key: 'pppg', label: 'PPJ post.', align: 'right', sortValue: (r) => r.playoffs?.ppg ?? null, render: (r) => fmt(r.playoffs?.ppg) },
   ];
 
   const groups = results ? [...new Set(results.standings.map((s) => s.group ?? ''))] : [];
@@ -140,7 +140,7 @@ export default async function SeasonPage({ params }: Params) {
             ) : null}
             {mvp ? (
               <div className="flex items-center gap-[14px]">
-                <PlayerAvatar name={mvp.name} color={fOf(mvp.franchiseSlugs[0] ?? null)?.colors.primary} sizePx={64} />
+                <PlayerAvatar name={mvp.name} color={fOf(mvp.franchiseSlugs[0] ?? null)?.colors.primary} sizePx={64} onDark />
                 <div className="min-w-0">
                   <p className="font-barlow text-[11px] font-semibold uppercase tracking-[1px] text-white/60">MVP{mvp.mvpNumber ? ` · #${mvp.mvpNumber}` : ''}</p>
                   <Link href={mvp.slug ? `/archivo/jugadores/${mvp.slug}` : '/archivo/mvps'} className="block text-[24px] leading-[1.1] text-white">
@@ -215,7 +215,7 @@ export default async function SeasonPage({ params }: Params) {
                 <span className="hidden group-open:inline">Ocultar Serie Regular</span>
               </summary>
               <div className="mt-3">
-                <StatsTable columns={gameCols} rows={regularGames} rowKey={(g) => g.id} />
+                <StatsTable columns={gameCols} rows={regularGames} rowKey={(g) => g.id} maxHeight="70vh" />
               </div>
             </details>
           ) : null}
@@ -272,7 +272,7 @@ export default async function SeasonPage({ params }: Params) {
                   <span aria-hidden className="font-barlow text-[12px] text-[rgba(15,23,31,0.5)] transition-transform duration-150 group-open:rotate-180">▾</span>
                 </summary>
                 <div className="px-[14px] pb-[14px]">
-                  <StatsTable columns={rosterCols} rows={r.players} rowKey={(p) => p.playerId} />
+                  <StatsTable columns={rosterCols} rows={r.players} rowKey={(p) => p.playerId} maxHeight="60vh" />
                 </div>
               </details>
             ))}

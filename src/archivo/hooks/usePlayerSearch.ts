@@ -19,7 +19,8 @@ function loadIndex(): Promise<IndexedPlayer[]> {
       .then((list) =>
         list.map((entry) => {
           const full = normalizeSearch(entry.name);
-          return { entry, tokens: full.split(' '), full };
+          const tokens = [...new Set([full, ...(entry.aliases ?? []).map(normalizeSearch)].flatMap((s) => s.split(' ')))];
+          return { entry, tokens, full };
         }),
       );
   }

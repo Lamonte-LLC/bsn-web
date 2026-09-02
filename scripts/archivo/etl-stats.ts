@@ -648,10 +648,12 @@ for (const id of allPlayerIds) {
   playersWithLines.set(id, file);
   writeJson(`players/${id}.json`, file);
 
+  const aliases = [...new Set(mvps.filter((m) => m.playerId === id).map((m) => m.name.replace(/"/g, '')))].filter((a) => normalizeKey(a) !== normalizeKey(name));
   playerIndex.push({
     id,
     slug,
     name,
+    aliases,
     fy,
     ly,
     franchiseSlugs,

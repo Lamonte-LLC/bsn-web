@@ -40,9 +40,9 @@ export default async function FranchisePage({ params }: Params) {
         </Link>
       ),
     },
-    { key: 'seasons', label: 'Temp.', align: 'right', render: (l) => l.seasons },
-    { key: 'g', label: 'J', align: 'right', render: (l) => fmtInt(l.g) },
-    { key: 'value', label, align: 'right', render: (l) => <span className="font-semibold">{fmtInt(l.value)}</span> },
+    { key: 'seasons', label: 'Temp.', align: 'right', sortValue: (l) => l.seasons, render: (l) => l.seasons },
+    { key: 'g', label: 'J', align: 'right', sortValue: (l) => l.g, render: (l) => fmtInt(l.g) },
+    { key: 'value', label, align: 'right', sortValue: (l) => l.value, render: (l) => <span className="font-semibold">{fmtInt(l.value)}</span> },
   ];
   const withRank = (list: FranchiseLeaderEntry[]): Ranked[] => list.map((l, i) => ({ ...l, rank: i + 1 }));
 
@@ -51,6 +51,7 @@ export default async function FranchisePage({ params }: Params) {
       key: 'year',
       label: 'Temporada',
       sticky: true,
+      sortValue: (r) => r.year,
       render: (r) => (
         <span className="inline-flex items-center gap-[8px]">
           <Link href={`/archivo/temporadas/${r.year}`} className="text-[15px] hover:underline">
@@ -60,10 +61,10 @@ export default async function FranchisePage({ params }: Params) {
         </span>
       ),
     },
-    { key: 'w', label: 'G', align: 'right', render: (r) => r.won },
-    { key: 'l', label: 'P', align: 'right', render: (r) => r.lost },
-    { key: 'pct', label: '%', align: 'right', render: (r) => (r.won + r.lost ? (r.won / (r.won + r.lost)).toFixed(3).replace(/^0/, '') : '–') },
-    { key: 'pos', label: 'Posición', align: 'right', render: (r) => (r.position ? `${r.position}${r.group ? ` (Grupo ${r.group})` : ''}` : '–') },
+    { key: 'w', label: 'G', align: 'right', sortValue: (r) => r.won, render: (r) => r.won },
+    { key: 'l', label: 'P', align: 'right', sortValue: (r) => r.lost, render: (r) => r.lost },
+    { key: 'pct', label: '%', align: 'right', sortValue: (r) => (r.won + r.lost ? r.won / (r.won + r.lost) : null), render: (r) => (r.won + r.lost ? (r.won / (r.won + r.lost)).toFixed(3).replace(/^0/, '') : '–') },
+    { key: 'pos', label: 'Posición', align: 'right', sortValue: (r) => r.position, render: (r) => (r.position ? `${r.position}${r.group ? ` (Grupo ${r.group})` : ''}` : '–') },
   ];
 
   return (

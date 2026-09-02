@@ -41,7 +41,7 @@ export default async function PlayerPage({ params }: Params) {
     <ArchivoShell
       hero={
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:gap-8">
-          <PlayerAvatar name={p.name} color={main?.colors.primary} size="hero" className="ring-2 ring-white/20" />
+          <PlayerAvatar name={p.name} color={main?.colors.primary} size="hero" onDark />
           <div className="min-w-0 flex-1">
             <HeroEyebrow>{yearsLabel(p.fy, p.ly)} · {p.seasons} temporada{p.seasons === 1 ? '' : 's'}</HeroEyebrow>
             <HeroTitle>{p.name}</HeroTitle>
@@ -57,9 +57,9 @@ export default async function PlayerPage({ params }: Params) {
               })}
             </div>
             <div className="mt-[12px] flex flex-wrap gap-[6px]">
-              {p.mvpYears.length ? <Badge tone="gold">MVP {p.mvpYears.join(', ')}</Badge> : null}
+              {p.mvpYears.length ? <Badge tone="gold" onDark>MVP {p.mvpYears.join(', ')}</Badge> : null}
               {p.championships.length ? (
-                <Badge tone="red">
+                <Badge tone="red" onDark>
                   {p.championships.length === 1 ? 'Campeón' : `${p.championships.length} campeonatos`} · {p.championships.map((c) => c.year).join(', ')}
                 </Badge>
               ) : null}
@@ -85,7 +85,7 @@ export default async function PlayerPage({ params }: Params) {
           <StatBlock value={fmtPct(p.computed.regular.fg3Pct ?? totals.fg3Pct)} label="3P%" />
           <StatBlock value={fmtPct(p.computed.regular.ftPct ?? totals.ftPct)} label="TL%" />
         </PaperCard>
-        <p className="mt-[8px] font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">
+        <p className="mt-[10px] max-w-[72ch] font-barlow text-[15px] leading-[1.35] text-[rgba(15,23,31,0.6)]">
           Totales de Serie Regular{p.career ? ' publicados por la liga' : ' sumados de sus temporadas'}.
           {preEra ? ' Rebotes, asistencias y triples no se registraban de forma consistente antes de 1975. Los guiones indican data no disponible.' : ''}
         </p>

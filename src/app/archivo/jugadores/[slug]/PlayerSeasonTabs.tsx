@@ -34,11 +34,13 @@ function buildRows(lines: StatLine[], totals: CareerTotals | null, withPhase: bo
 }
 
 export default function PlayerSeasonTabs({ lines, totals, franchises }: Props) {
+  const num = (key: keyof CareerTotals) => (r: Row) => (r.isTotal ? null : (r.line[key] as number | null));
   const columns: StatsColumn<Row>[] = [
     {
       key: 'year',
       label: 'Temporada',
       sticky: true,
+      sortValue: (r) => r.year,
       render: (r) =>
         r.year ? (
           <Link href={`/archivo/temporadas/${r.year}`} className="text-[15px] text-[rgba(15,23,31,0.9)] hover:underline">
@@ -69,18 +71,18 @@ export default function PlayerSeasonTabs({ lines, totals, franchises }: Props) {
         );
       },
     },
-    { key: 'g', label: 'J', title: 'Juegos', align: 'right', render: (r) => fmtInt(r.line.g) },
-    { key: 'ppg', label: 'PPJ', title: 'Puntos por juego', align: 'right', render: (r) => fmt(r.line.ppg) },
-    { key: 'rpg', label: 'RPJ', title: 'Rebotes por juego', align: 'right', render: (r) => fmt(r.line.rpg) },
-    { key: 'apg', label: 'APJ', title: 'Asistencias por juego', align: 'right', render: (r) => fmt(r.line.apg) },
-    { key: 'spg', label: 'ROB', title: 'Robos por juego', align: 'right', render: (r) => ('spg' in r.line ? fmt(r.line.spg) : '–') },
-    { key: 'bpg', label: 'BLQ', title: 'Bloqueos por juego', align: 'right', render: (r) => ('bpg' in r.line ? fmt(r.line.bpg) : '–') },
-    { key: 'fgPct', label: 'TC%', title: 'Tiros de campo', align: 'right', render: (r) => fmtPct(r.line.fgPct) },
-    { key: 'fg3Pct', label: '3P%', title: 'Triples', align: 'right', render: (r) => fmtPct(r.line.fg3Pct) },
-    { key: 'ftPct', label: 'TL%', title: 'Tiros libres', align: 'right', render: (r) => fmtPct(r.line.ftPct) },
-    { key: 'pts', label: 'PTS', align: 'right', render: (r) => fmtInt(r.line.pts) },
-    { key: 'reb', label: 'REB', align: 'right', render: (r) => fmtInt(r.line.reb) },
-    { key: 'ast', label: 'AST', align: 'right', render: (r) => fmtInt(r.line.ast) },
+    { key: 'g', label: 'J', title: 'Juegos', align: 'right', sortValue: num('g'), render: (r) => fmtInt(r.line.g) },
+    { key: 'ppg', label: 'PPJ', title: 'Puntos por juego', align: 'right', sortValue: num('ppg'), render: (r) => fmt(r.line.ppg) },
+    { key: 'rpg', label: 'RPJ', title: 'Rebotes por juego', align: 'right', sortValue: num('rpg'), render: (r) => fmt(r.line.rpg) },
+    { key: 'apg', label: 'APJ', title: 'Asistencias por juego', align: 'right', sortValue: num('apg'), render: (r) => fmt(r.line.apg) },
+    { key: 'spg', label: 'ROB', title: 'Robos por juego', align: 'right', sortValue: (r) => ('spg' in r.line ? r.line.spg : null), render: (r) => ('spg' in r.line ? fmt(r.line.spg) : '–') },
+    { key: 'bpg', label: 'BLQ', title: 'Bloqueos por juego', align: 'right', sortValue: (r) => ('bpg' in r.line ? r.line.bpg : null), render: (r) => ('bpg' in r.line ? fmt(r.line.bpg) : '–') },
+    { key: 'fgPct', label: 'TC%', title: 'Tiros de campo', align: 'right', sortValue: num('fgPct'), render: (r) => fmtPct(r.line.fgPct) },
+    { key: 'fg3Pct', label: '3P%', title: 'Triples', align: 'right', sortValue: num('fg3Pct'), render: (r) => fmtPct(r.line.fg3Pct) },
+    { key: 'ftPct', label: 'TL%', title: 'Tiros libres', align: 'right', sortValue: num('ftPct'), render: (r) => fmtPct(r.line.ftPct) },
+    { key: 'pts', label: 'PTS', align: 'right', sortValue: num('pts'), render: (r) => fmtInt(r.line.pts) },
+    { key: 'reb', label: 'REB', align: 'right', sortValue: num('reb'), render: (r) => fmtInt(r.line.reb) },
+    { key: 'ast', label: 'AST', align: 'right', sortValue: num('ast'), render: (r) => fmtInt(r.line.ast) },
   ];
 
   const panels = [
