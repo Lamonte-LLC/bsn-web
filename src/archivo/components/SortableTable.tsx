@@ -5,7 +5,7 @@ import { useEffect, useRef, type ReactNode } from 'react';
 /**
  * Progressive enhancement for StatsTable: makes headers with `data-sort-key` clickable and reorders the
  * server-rendered rows by their cells' `data-sort-value`. Rows marked `data-pinned` (totals) stay at the bottom.
- * Works without hydration of the rows themselves, so server components can keep rendering the table.
+ * The sorted column reads in full ink with a red arrow; the rest stay quiet.
  */
 export default function SortableTable({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -19,7 +19,8 @@ export default function SortableTable({ children }: { children: ReactNode }) {
     const tbody = table.tBodies[0];
     if (!tbody) return;
     const original = [...tbody.rows];
-    let current: { index: number; dir: 'asc' | 'desc' } | null = null;
+    const initial = headers.find((h) => h.dataset.sortInitial);
+    let current: { index: number; dir: 'asc' | 'desc' } | null = initial ? { index: initial.cellIndex, dir: initial.dataset.sortInitial === 'asc' ? 'asc' : 'desc' } : null;
 
     const paint = () => {
       for (const h of headers) {
@@ -27,11 +28,9 @@ export default function SortableTable({ children }: { children: ReactNode }) {
         const icon = h.querySelector<HTMLElement>('[data-sort-icon]');
         const active = current && current.index === idx;
         h.setAttribute('aria-sort', active ? (current!.dir === 'asc' ? 'ascending' : 'descending') : 'none');
-        h.style.color = active ? 'rgba(0,0,0,0.9)' : '';
-        if (icon) {
-          icon.textContent = active ? (current!.dir === 'asc' ? '↑' : '↓') : '↕';
-          icon.style.color = active ? '#E51F1F' : '';
-        }
+        if (active) h.dataset.sorted = '';
+        else delete h.dataset.sorted;
+        if (icon) icon.textContent = active ? (current!.dir === 'asc' ? '↑' : '↓') : '';
       }
     };
 
@@ -61,8 +60,7 @@ export default function SortableTable({ children }: { children: ReactNode }) {
       const idx = th.cellIndex;
       const numeric = original[0]?.cells[idx]?.dataset.sortType === 'n';
       if (!current || current.index !== idx) current = { index: idx, dir: numeric ? 'desc' : 'asc' };
-      else if ((numeric && current.dir === 'desc') || (!numeric && current.dir === 'asc')) current = { index: idx, dir: numeric ? 'asc' : 'desc' };
-      else current = null;
+      else current = { index: idx, dir: current.dir === 'asc' ? 'desc' : 'asc' };
       apply();
     };
     const onKey = (e: KeyboardEvent) => {

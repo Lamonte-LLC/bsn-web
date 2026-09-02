@@ -4,21 +4,27 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 import Link from 'next/link';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import StatsTable, { type StatsColumn } from '@/archivo/components/StatsTable';
+import { TAB_PILL } from '@/archivo/components/Tabs';
+import { NotRecorded } from '@/archivo/components/ui';
 import { fmt, fmtInt, fmtPct } from '@/archivo/lib/format';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
+import { cls } from '@/archivo/lib/tokens';
 import type { CareerTotals, StatLine } from '@/archivo/lib/types';
 
 interface Props {
   lines: { regular: StatLine[]; playoffs: StatLine[]; other: StatLine[] };
   totals: { regular: CareerTotals; playoffs: CareerTotals };
   franchises: Record<string, FranchiseView>;
+  /** Era note rendered inside the table card for careers that predate consistent record keeping. */
+  footnote?: string;
 }
 
-type Row = { key: string; label: string; year: number | null; line: StatLine | CareerTotals; franchiseSlug: string | null; teamName: string | null; phaseLabel: string | null; isTotal: boolean };
+type Row = { key: string; label: string; year: number | null; line: StatLine | CareerTotals; franchiseSlug: string | null; teamName: string | null; phaseLabel: string | null; isTotal: boolean; seasons: number };
 
-const TAB_CLS = 'cursor-pointer rounded-[100px] border border-[#D5D5D5] bg-white px-[16px] py-[5px] text-[15px] text-[rgba(0,0,0,0.65)] outline-none data-selected:border-[#0F171F] data-selected:bg-[#0F171F] data-selected:text-white';
+type NumKey = 'g' | 'ppg' | 'rpg' | 'apg' | 'spg' | 'bpg' | 'fgPct' | 'fg3Pct' | 'ftPct' | 'pts' | 'reb' | 'ast';
 
 function buildRows(lines: StatLine[], totals: CareerTotals | null, withPhase: boolean): Row[] {
+  const seasons = new Set(lines.map((l) => l.year)).size;
   const rows: Row[] = lines.map((l, i) => ({
     key: `${l.year}-${l.teamIndex}-${l.phaseLabel}-${i}`,
     label: withPhase ? `${l.year} · ${l.phaseLabel}` : String(l.year),
@@ -28,84 +34,107 @@ function buildRows(lines: StatLine[], totals: CareerTotals | null, withPhase: bo
     teamName: l.teamName,
     phaseLabel: l.phaseLabel,
     isTotal: false,
+    seasons,
   }));
-  if (totals && totals.g) rows.push({ key: 'total', label: 'Total', year: null, line: totals, franchiseSlug: null, teamName: null, phaseLabel: null, isTotal: true });
+  if (totals && totals.g) rows.push({ key: 'total', label: 'Total', year: null, line: totals, franchiseSlug: null, teamName: null, phaseLabel: null, isTotal: true, seasons });
   return rows;
 }
 
-export default function PlayerSeasonTabs({ lines, totals, franchises }: Props) {
-  const num = (key: keyof CareerTotals) => (r: Row) => (r.isTotal ? null : (r.line[key] as number | null));
-  const columns: StatsColumn<Row>[] = [
-    {
-      key: 'year',
-      label: 'Temporada',
-      sticky: true,
-      sortValue: (r) => r.year,
-      render: (r) =>
-        r.year ? (
-          <Link href={`/archivo/temporadas/${r.year}`} className="text-[15px] text-[rgba(15,23,31,0.9)] hover:underline">
-            {r.label}
-          </Link>
-        ) : (
-          <span className="text-[15px]">{r.label}</span>
-        ),
-    },
-    {
-      key: 'team',
-      label: 'Equipo',
-      render: (r) => {
-        const f = r.franchiseSlug ? franchises[r.franchiseSlug] : null;
-        if (!r.teamName) return '';
-        const inner = (
-          <span className="inline-flex items-center gap-[6px]">
-            <FranchiseLogo franchise={f} fallbackName={r.teamName} size="chip" />
-            <span>{f?.nickname ?? r.teamName}</span>
-          </span>
-        );
-        return f ? (
-          <Link href={`/archivo/franquicias/${f.slug}`} className="hover:underline">
-            {inner}
-          </Link>
-        ) : (
-          inner
-        );
-      },
-    },
-    { key: 'g', label: 'J', title: 'Juegos', align: 'right', sortValue: num('g'), render: (r) => fmtInt(r.line.g) },
-    { key: 'ppg', label: 'PPJ', title: 'Puntos por juego', align: 'right', sortValue: num('ppg'), render: (r) => fmt(r.line.ppg) },
-    { key: 'rpg', label: 'RPJ', title: 'Rebotes por juego', align: 'right', sortValue: num('rpg'), render: (r) => fmt(r.line.rpg) },
-    { key: 'apg', label: 'APJ', title: 'Asistencias por juego', align: 'right', sortValue: num('apg'), render: (r) => fmt(r.line.apg) },
-    { key: 'spg', label: 'ROB', title: 'Robos por juego', align: 'right', sortValue: (r) => ('spg' in r.line ? r.line.spg : null), render: (r) => ('spg' in r.line ? fmt(r.line.spg) : '–') },
-    { key: 'bpg', label: 'BLQ', title: 'Bloqueos por juego', align: 'right', sortValue: (r) => ('bpg' in r.line ? r.line.bpg : null), render: (r) => ('bpg' in r.line ? fmt(r.line.bpg) : '–') },
-    { key: 'fgPct', label: 'TC%', title: 'Tiros de campo', align: 'right', sortValue: num('fgPct'), render: (r) => fmtPct(r.line.fgPct) },
-    { key: 'fg3Pct', label: '3P%', title: 'Triples', align: 'right', sortValue: num('fg3Pct'), render: (r) => fmtPct(r.line.fg3Pct) },
-    { key: 'ftPct', label: 'TL%', title: 'Tiros libres', align: 'right', sortValue: num('ftPct'), render: (r) => fmtPct(r.line.ftPct) },
-    { key: 'pts', label: 'PTS', align: 'right', sortValue: num('pts'), render: (r) => fmtInt(r.line.pts) },
-    { key: 'reb', label: 'REB', align: 'right', sortValue: num('reb'), render: (r) => fmtInt(r.line.reb) },
-    { key: 'ast', label: 'AST', align: 'right', sortValue: num('ast'), render: (r) => fmtInt(r.line.ast) },
+/** Season-by-season table with Serie Regular, Postemporada and Otros as pill tabs; tabs without lines are disabled. */
+export default function PlayerSeasonTabs({ lines, totals, franchises, footnote }: Props) {
+  const panels = [
+    { name: 'Serie Regular', rows: buildRows(lines.regular, totals.regular, false), lines: lines.regular },
+    { name: 'Postemporada', rows: buildRows(lines.playoffs, totals.playoffs, true), lines: lines.playoffs },
+    { name: 'Otros', rows: buildRows(lines.other, null, true), lines: lines.other },
   ];
 
-  const panels = [
-    { name: 'Serie Regular', rows: buildRows(lines.regular, totals.regular, false) },
-    { name: 'Postemporada', rows: buildRows(lines.playoffs, totals.playoffs, true) },
-    { name: 'Otros', rows: buildRows(lines.other, null, true) },
-  ].filter((p) => p.rows.length > 0);
-
-  if (!panels.length) return <p className="font-barlow text-[13px] text-[rgba(0,0,0,0.6)]">No hay datos disponibles.</p>;
+  const columnsFor = (source: StatLine[]): StatsColumn<Row>[] => {
+    // A stat that no line of this phase records is "no registrado" for the whole era, not a row-level gap.
+    const absent = new Set<NumKey>();
+    for (const k of ['rpg', 'apg', 'spg', 'bpg', 'fgPct', 'fg3Pct', 'ftPct', 'reb', 'ast'] as NumKey[]) {
+      if (source.length && source.every((l) => l[k] === null)) absent.add(k);
+    }
+    const value = (key: NumKey) => (r: Row) => (key in r.line ? ((r.line as unknown as Record<string, number | null>)[key] ?? null) : null);
+    const num = (key: NumKey, kind: 'int' | 'avg' | 'pct') => (r: Row) => {
+      if (absent.has(key)) return r.isTotal ? '–' : <NotRecorded />;
+      const v = value(key)(r);
+      return kind === 'int' ? fmtInt(v) : kind === 'pct' ? fmtPct(v) : fmt(v);
+    };
+    const sort = (key: NumKey) => (r: Row) => (r.isTotal ? null : value(key)(r));
+    return [
+      {
+        key: 'year',
+        label: (
+          <>
+            <span className="md:hidden">Temp.</span>
+            <span className="hidden md:inline">Temporada</span>
+          </>
+        ),
+        sticky: true,
+        sortValue: (r) => r.year,
+        initialSort: 'asc',
+        render: (r) =>
+          r.year ? (
+            <Link href={`/archivo/temporadas/${r.year}`} className={`font-semibold text-[#0F171F] ${cls.dataLink}`}>
+              {r.label}
+            </Link>
+          ) : (
+            <span className="font-bold">{r.label}</span>
+          ),
+      },
+      {
+        key: 'team',
+        label: 'Equipo',
+        render: (r) => {
+          if (r.isTotal) return <span className="font-medium text-[13px] text-[rgba(0,0,0,0.5)]">{r.seasons} temporada{r.seasons === 1 ? '' : 's'}</span>;
+          const f = r.franchiseSlug ? franchises[r.franchiseSlug] : null;
+          if (!r.teamName) return '';
+          const inner = (
+            <span className="inline-flex items-center gap-[7px] font-medium">
+              <FranchiseLogo franchise={f} fallbackName={r.teamName} size="chip" />
+              <span>{f?.nickname ?? r.teamName}</span>
+            </span>
+          );
+          return f ? (
+            <Link href={`/archivo/franquicias/${f.slug}`} className="transition-colors duration-150 hover:text-[rgba(0,0,0,0.65)]">
+              {inner}
+            </Link>
+          ) : (
+            inner
+          );
+        },
+      },
+      { key: 'g', label: 'J', title: 'Juegos', align: 'right', sortValue: sort('g'), render: num('g', 'int') },
+      { key: 'ppg', label: 'PPJ', title: 'Puntos por juego', align: 'right', strong: true, sortValue: sort('ppg'), render: num('ppg', 'avg') },
+      { key: 'rpg', label: 'RPJ', title: 'Rebotes por juego', align: 'right', sortValue: sort('rpg'), render: num('rpg', 'avg') },
+      { key: 'apg', label: 'APJ', title: 'Asistencias por juego', align: 'right', sortValue: sort('apg'), render: num('apg', 'avg') },
+      { key: 'spg', label: 'ROB', title: 'Robos por juego', align: 'right', sortValue: sort('spg'), render: num('spg', 'avg') },
+      { key: 'bpg', label: 'BLQ', title: 'Bloqueos por juego', align: 'right', sortValue: sort('bpg'), render: num('bpg', 'avg') },
+      { key: 'fgPct', label: 'TC%', title: 'Tiros de campo', align: 'right', sortValue: sort('fgPct'), render: num('fgPct', 'pct') },
+      { key: 'fg3Pct', label: '3P%', title: 'Triples', align: 'right', sortValue: sort('fg3Pct'), render: num('fg3Pct', 'pct') },
+      { key: 'ftPct', label: 'TL%', title: 'Tiros libres', align: 'right', sortValue: sort('ftPct'), render: num('ftPct', 'pct') },
+      { key: 'pts', label: 'PTS', title: 'Puntos', align: 'right', sortValue: sort('pts'), render: num('pts', 'int') },
+      { key: 'reb', label: 'REB', title: 'Rebotes', align: 'right', sortValue: sort('reb'), render: num('reb', 'int') },
+      { key: 'ast', label: 'AST', title: 'Asistencias', align: 'right', sortValue: sort('ast'), render: num('ast', 'int') },
+    ];
+  };
 
   return (
     <TabGroup>
-      <TabList className="mb-[16px] flex flex-wrap gap-[8px]">
-        {panels.map((p) => (
-          <Tab key={p.name} className={TAB_CLS}>
-            {p.name}
-          </Tab>
-        ))}
-      </TabList>
+      <div className="mb-[14px] flex flex-wrap items-center justify-between gap-x-4 gap-y-[10px] md:mb-[16px]">
+        <h2 className="text-[22px] leading-[1.1] text-[#0F171F]">Temporada por temporada</h2>
+        <TabList className="flex flex-wrap gap-[8px]">
+          {panels.map((p) => (
+            <Tab key={p.name} className={TAB_PILL} disabled={p.rows.length === 0}>
+              {p.name}
+            </Tab>
+          ))}
+        </TabList>
+      </div>
       <TabPanels>
         {panels.map((p) => (
           <TabPanel key={p.name}>
-            <StatsTable columns={columns} rows={p.rows} rowKey={(r) => r.key} emphasize={(r) => r.isTotal} caption={`Estadísticas de ${p.name}`} />
+            <StatsTable columns={columnsFor(p.lines)} rows={p.rows} rowKey={(r) => r.key} emphasize={(r) => r.isTotal} caption={`Estadísticas de ${p.name}`} zebra={p.rows.length > 12} footnote={footnote} emptyMessage="No hay datos disponibles." />
           </TabPanel>
         ))}
       </TabPanels>

@@ -22,6 +22,7 @@ import type {
   SeasonFile,
   SimilarityFile,
 } from '../../../types/archivo';
+import { EXTINCT_COLORS, EXTINCT_FALLBACK } from './tokens';
 
 const DATA_DIR = join(process.cwd(), 'data', 'archivo');
 const cache = new Map<string, unknown>();
@@ -40,8 +41,21 @@ function readJsonOrNull<T>(relPath: string): T | null {
 
 // ---------- franchises ----------
 
+/**
+ * Franchises with the archive's provisional palette applied to the extinct ones whose color came from the
+ * league prototype (see lib/tokens.ts). The JSON keeps the prototype value; only the rendered color changes.
+ */
 export function getFranchises(): Franchise[] {
-  return readJson<FranchiseEntry[]>('franchises.json').filter((f): f is Franchise => f.type === 'franchise');
+  const key = '__franchises';
+  const hit = cache.get(key) as Franchise[] | undefined;
+  if (hit) return hit;
+  const list = readJson<FranchiseEntry[]>('franchises.json')
+    .filter((f): f is Franchise => f.type === 'franchise')
+    .map((f) =>
+      f.colorSource === 'prototype' ? { ...f, colors: { ...f.colors, primary: EXTINCT_COLORS[f.slug] ?? EXTINCT_FALLBACK } } : f,
+    );
+  cache.set(key, list);
+  return list;
 }
 
 export function getFranchiseMap(): Map<string, Franchise> {
