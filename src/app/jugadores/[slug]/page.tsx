@@ -95,15 +95,6 @@ function careerRow(lines: SeasonRow[], published: Published): CareerRow | null {
   };
 }
 
-function Fact({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="border-b border-r border-[rgba(255,255,255,0.12)] px-[20px] py-[10px] [&:nth-child(2n)]:border-r-0 md:[&:nth-child(2n)]:border-r md:[&:nth-child(3n)]:border-r-0 md:[&:nth-child(n+4)]:border-b-0">
-      <p className="font-barlow text-[9.5px] font-semibold uppercase tracking-[1.3px] text-white/50">{label}</p>
-      <p className="mt-[3px] font-barlow text-[14px] font-semibold text-white">{value}</p>
-    </div>
-  );
-}
-
 /**
  * One profile for active and retired players, on the nba.com model: the band carries identity, three numbers
  * of the current season (or the career) and the facts; the white area carries the full table by season and,
@@ -148,8 +139,8 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
   // Strip: the current season for actives, the career for everyone else.
   const current = liveLines.find((l) => l.current) ?? null;
   const strip = isActive && current
-    ? { title: `Temporada ${current.year}`, sub: `Serie regular · ${fmtInt(current.g)} juegos`, ppg: current.ppg, rpg: current.rpg, apg: current.apg }
-    : { title: 'Carrera', sub: `Serie regular · ${fmtInt(career?.g ?? null)} juegos · ${yearsActive(fy, ly)}`, ppg: career?.ppg ?? null, rpg: career?.rpg ?? null, apg: career?.apg ?? null };
+    ? { title: `Temporada ${current.year}`, sub: `Serie regular · ${fmtInt(current.g)} juegos`, ppg: current.ppg, rpg: current.rpg, apg: current.apg, fg: current.fgPct }
+    : { title: 'Carrera', sub: `Serie regular · ${fmtInt(career?.g ?? null)} juegos · ${yearsActive(fy, ly)}`, ppg: career?.ppg ?? null, rpg: career?.rpg ?? null, apg: career?.apg ?? null, fg: career?.fgPct ?? null };
 
   const best = archive ? bestSeason(archive) : null;
   const bestLine = best?.line ?? [...liveLines].filter((l) => l.g >= 10).sort((a, b) => (b.ppg ?? 0) - (a.ppg ?? 0))[0] ?? null;
@@ -245,39 +236,43 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
             </div>
           </div>
 
-          {/* Strip: three numbers and the facts, one row on desktop, stacked on mobile. */}
-          <div className="mt-[18px] border-t border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] md:mt-[28px]">
-            <div className="container border-b border-[rgba(255,255,255,0.12)] py-[9px] md:py-[10px]">
-              <p className={`font-barlow text-[13px] font-semibold text-white md:text-[14px] ${cls.tabular}`}>
-                {strip.title}
-                <span className="font-medium text-white/60"> · {strip.sub}</span>
-              </p>
-            </div>
-            <div className="container flex flex-col md:flex-row md:items-stretch">
-              <div className="grid grid-cols-3 md:flex md:shrink-0">
+          {/* Production-style stat boxes for the season (or career) and the facts in a lined grid. */}
+          <div className="container mt-[22px] grid grid-cols-1 items-start gap-[22px] pb-[28px] md:mt-[32px] md:grid-cols-[7fr_5fr] md:gap-[48px] md:pb-[40px]">
+            <div>
+              <h4 className={`mb-[12px] text-[14px] uppercase tracking-[1px] text-[rgba(255,255,255,0.5)] md:text-[16px] ${cls.tabular}`}>
+                {strip.title} · {strip.sub}
+              </h4>
+              <div className="grid grid-cols-2 gap-[10px] md:grid-cols-4">
                 {(
                   [
-                    ['PPJ', strip.ppg],
-                    ['RPJ', strip.rpg],
-                    ['APJ', strip.apg],
+                    ['Puntos por juego', strip.ppg, 'avg'],
+                    ['Rebotes por juego', strip.rpg, 'avg'],
+                    ['Asistencias por juego', strip.apg, 'avg'],
+                    ['% Tiros de campo', strip.fg, 'pct'],
                   ] as const
-                ).map(([label, value]) => (
-                  <div key={label} className="border-r border-[rgba(255,255,255,0.12)] px-[14px] py-[12px] text-center last:border-r-0 md:w-[130px] md:border-r md:px-[20px] md:py-[14px] md:text-left md:last:border-r">
-                    <p className="font-barlow text-[10px] font-semibold uppercase tracking-[1.3px] text-white/50">{label}</p>
-                    <p className={`mt-[6px] text-[28px] leading-[1] text-white md:text-[32px] ${cls.tabular}`}>{value === null ? '–' : fmt(value)}</p>
+                ).map(([label, value, kind]) => (
+                  <div key={label} className="rounded-[12px] border border-[rgba(255,255,255,0.2)] px-[14px] py-[12px]">
+                    <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">{label}</h5>
+                    <p className={`text-[22px] text-white md:text-[27px] ${cls.tabular}`}>{value === null ? '–' : kind === 'pct' ? `${fmt(value)}%` : fmt(value)}</p>
                   </div>
                 ))}
               </div>
-              {shownFacts.length ? (
-                <div className="grid grid-cols-2 border-t border-[rgba(255,255,255,0.12)] md:flex-1 md:grid-cols-3 md:border-t-0">
+            </div>
+            {shownFacts.length ? (
+              <div>
+                <h4 className="mb-[12px] text-[14px] uppercase tracking-[1px] text-[rgba(255,255,255,0.5)] md:text-[16px]">Ficha</h4>
+                <div className="grid grid-cols-2 border-l border-t border-[rgba(255,255,255,0.14)] md:grid-cols-3">
                   {shownFacts.map(([l, v]) => (
-                    <Fact key={l} label={l} value={v} />
+                    <div key={l} className="border-b border-r border-[rgba(255,255,255,0.14)] px-[14px] py-[10px]">
+                      <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-[15px]">{l}</h5>
+                      <p className={`mt-[2px] font-barlow text-[15px] text-white md:text-[17px] ${cls.tabular}`}>{v}</p>
+                    </div>
                   ))}
                 </div>
-              ) : null}
-            </div>
+              </div>
+            ) : null}
           </div>
-          <div className="container py-[12px] md:hidden">
+          <div className="container pb-[20px] md:hidden">
             <Button href={compareHref} onDark className="w-full">
               Comparar
             </Button>
