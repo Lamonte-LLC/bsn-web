@@ -20,7 +20,7 @@ const SECTIONS = [
   { href: '/archivo/records', title: 'Récords', text: 'Las marcas de temporada y de carrera.' },
   { href: '/archivo/franquicias', title: 'Franquicias', text: '28 franquicias, activas y extintas.' },
   { href: '/archivo/en-numeros', title: 'El BSN en números', text: 'Ocho historias contadas con data.' },
-  { href: '/archivo/comparar', title: 'Cara a cara', text: 'Compara dos leyendas, número por número.' },
+  { href: '/archivo/comparar', title: 'Head to head', text: 'Compara dos leyendas, número por número.' },
 ];
 
 export default function ArchivoHome() {

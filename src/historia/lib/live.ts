@@ -55,3 +55,15 @@ export function liveSeasonLines(opts: { providerId: string | null; archiveId: st
   }
   return out;
 }
+
+/** Minutes per game of the live seasons, by year; the archive never recorded minutes, the live snapshot does. */
+export function liveMinutesByYear(opts: { providerId: string | null; archiveId: string | null }): Record<number, number> {
+  const out: Record<number, number> = {};
+  for (const year of LIVE_SEASONS) {
+    const results = getSeason(year)?.results;
+    if (!results || results.fpo.playerStats) continue;
+    const hit = results.playerStats.find((s) => (opts.providerId && s.playerProviderId === opts.providerId) || (opts.archiveId && (s.playerId === opts.archiveId || linkLiveName(s.name)?.entry.id === opts.archiveId)));
+    if (hit && hit.g > 0 && typeof hit.minutesAvg === 'number') out[year] = Math.round(hit.minutesAvg * 10) / 10;
+  }
+  return out;
+}

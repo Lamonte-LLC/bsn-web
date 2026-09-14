@@ -39,7 +39,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
   const sp = await searchParams;
   const names = [sp.a, sp.b, sp.c].map((s) => getPlayerBySlug(s ?? '')?.name).filter((n): n is string => Boolean(n));
   return {
-    title: names.length >= 2 ? `${names.map(shortName).join(' vs ')} · Archivo BSN` : 'Cara a cara · Archivo BSN',
+    title: names.length >= 2 ? `${names.map(shortName).join(' vs ')} · Archivo BSN` : 'Head to head · Archivo BSN',
     description: 'Compara a dos jugadores del BSN número por número: carrera, Serie Regular y Postemporada.',
   };
 }
@@ -49,7 +49,7 @@ export default async function CompararPage({ searchParams }: { searchParams: Sea
   const players = [loadPlayer(sp.a), loadPlayer(sp.b), loadPlayer(sp.c)];
   const franchises = franchiseViewMap(getFranchises());
   const filled = players.filter((p): p is ComparePlayer => p !== null);
-  const title = filled.length >= 2 ? filled.map((p) => shortName(p.name)).join(' vs ') : 'Cara a cara';
+  const title = filled.length >= 2 ? filled.map((p) => shortName(p.name)).join(' vs ') : 'Head to head';
 
   return (
     <ArchivoShell

@@ -1,0 +1,144 @@
+'use client';
+
+import cx from 'classnames';
+import Link from 'next/link';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { commonSeasons, defaultScope, MAX_COMPARE_PLAYERS, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
+import PlayerMark from './PlayerMark';
+import PlayerPickerDialog, { type SuggestedPlayer } from './PlayerPickerDialog';
+import { setCompareScope, setPickerOpen, useCompareNavigation, useCompareState } from './useCompareState';
+
+type Props = {
+  players: ComparePlayerData[];
+  suggested: SuggestedPlayer[];
+};
+
+const profileHref = (p: ComparePlayerData) => `/jugadores/${p.slug ?? p.providerId}`;
+
+/** Empty slot: same anatomy as a real player, circle towards the VS. */
+function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick} className="flex cursor-pointer flex-col items-center gap-[6px] transition-opacity hover:opacity-80 lg:flex-row lg:gap-[18px]">
+      <span className={cx('order-1 flex h-[52px] w-[52px] items-center justify-center rounded-full border-2 border-dashed border-[rgba(255,255,255,0.25)] text-[20px] text-[rgba(255,255,255,0.35)] lg:h-[62px] lg:w-[62px] lg:text-[24px]', side === 'left' && 'lg:order-2')}>+</span>
+      <span className={cx('order-2 whitespace-nowrap text-[15px] leading-[1.1] text-[rgba(255,255,255,0.35)] lg:text-[28px]', side === 'left' && 'lg:order-1')}>Escoge un jugador</span>
+    </button>
+  );
+}
+
+/** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
+function SlotHorizontal({ p, side, onRemove }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void }) {
+  return (
+    <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
+      <Link href={profileHref(p)} title="Ver perfil" className={cx('transition-opacity hover:opacity-85', side === 'left' ? 'text-right' : 'text-left')}>
+        <span className="block text-[22px] leading-[1.05] text-white lg:text-[32px]">{p.name}</span>
+        <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.line}</span>
+      </Link>
+      <span className="lg:hidden">
+        <PlayerMark player={p} size={62} onDark onRemove={onRemove} />
+      </span>
+      <span className="hidden lg:inline-flex">
+        <PlayerMark player={p} size={96} onDark onRemove={onRemove} />
+      </span>
+    </div>
+  );
+}
+
+/** Stacked slot (mobile with 2, and 3–4 players everywhere). */
+function SlotStacked({ p, count, onRemove }: { p: ComparePlayerData; count: number; onRemove: () => void }) {
+  const size = count === 4 ? 44 : 50;
+  const sizeLg = count === 4 ? 62 : 70;
+  return (
+    <div className="flex flex-col items-center text-center">
+      <span className="lg:hidden">
+        <PlayerMark player={p} size={size} onDark onRemove={onRemove} />
+      </span>
+      <span className="hidden lg:inline-flex">
+        <PlayerMark player={p} size={sizeLg} onDark onRemove={onRemove} />
+      </span>
+      <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
+        <span className={cx('mt-[5px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')}>{p.name}</span>
+        <span className="mt-[2px] block font-barlow font-medium text-[10px] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line}</span>
+      </Link>
+    </div>
+  );
+}
+
+export default function PlayerCompareHero({ players, suggested }: Props) {
+  const { pickerOpen, scope: chosen } = useCompareState();
+  const keys = players.map((p) => p.key);
+  const { add, remove } = useCompareNavigation(keys);
+  const count = players.length;
+  const isEmpty = count < 2;
+  const seasons = commonSeasons(players);
+  const scope: CompareScope = chosen ?? defaultScope(players);
+  const options: CompareScope[] = [...seasons, 'career'];
+  const openPicker = () => setPickerOpen(true);
+
+  return (
+    <>
+      <section className="pb-[76px] pt-[10px] text-center lg:pb-[110px] lg:pt-[26px]">
+        <div className="container">
+          <h1 className="text-[30px] tracking-[0.4px] text-white lg:text-[42px]">Comparación de jugadores</h1>
+
+          {isEmpty ? (
+            <div className="mt-[30px] flex items-center justify-center gap-[20px] lg:gap-[48px]">
+              {players[0] ? <SlotHorizontal p={players[0]} side="left" onRemove={() => remove(players[0].key)} /> : <EmptySlot side="left" onClick={openPicker} />}
+              <span className="text-[20px] text-[rgba(255,255,255,0.3)] lg:text-[26px]">VS</span>
+              <EmptySlot side="right" onClick={openPicker} />
+            </div>
+          ) : count === 2 ? (
+            <>
+              <div className="mx-auto mt-[30px] grid max-w-[420px] grid-cols-[1fr_auto_1fr] items-center gap-[14px] lg:hidden">
+                <div className="flex justify-center">
+                  <SlotStacked p={players[0]} count={2} onRemove={() => remove(players[0].key)} />
+                </div>
+                <span className="px-[6px] text-[18px] text-[rgba(255,255,255,0.35)]">VS</span>
+                <div className="flex justify-center">
+                  <SlotStacked p={players[1]} count={2} onRemove={() => remove(players[1].key)} />
+                </div>
+              </div>
+              <div className="mx-auto mt-[30px] hidden max-w-[980px] grid-cols-[1fr_auto_1fr] items-center gap-[48px] lg:grid">
+                <SlotHorizontal p={players[0]} side="left" onRemove={() => remove(players[0].key)} />
+                <span className="px-[36px] text-[24px] text-[rgba(255,255,255,0.35)]">VS</span>
+                <SlotHorizontal p={players[1]} side="right" onRemove={() => remove(players[1].key)} />
+              </div>
+            </>
+          ) : (
+            <div className={cx('mx-auto mt-[30px] grid items-start', count === 3 ? 'max-w-[760px] grid-cols-3 gap-[8px] lg:gap-[20px]' : 'max-w-[900px] grid-cols-4 gap-[6px] lg:gap-[16px]')}>
+              {players.map((p) => (
+                <SlotStacked key={p.key} p={p} count={count} onRemove={() => remove(p.key)} />
+              ))}
+            </div>
+          )}
+
+          <div className="mb-[10px] mt-[18px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
+            {!isEmpty ? (
+              <Menu>
+                <MenuButton className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-colors hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-none lg:px-[16px] lg:py-[7px] lg:text-[13px]">
+                  {scopeLabel(scope)}
+                  <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
+                </MenuButton>
+                <MenuItems transition anchor="bottom" className="z-[999] mt-[8px] rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0">
+                  {options.map((o) => (
+                    <MenuItem key={String(o)}>
+                      <button type="button" onClick={() => setCompareScope(o)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', o === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
+                        {scopeLabel(o)}
+                      </button>
+                    </MenuItem>
+                  ))}
+                  {!seasons.length ? <p className="max-w-[240px] px-[14px] pb-[6px] pt-[4px] font-barlow text-[11px] text-[rgba(15,23,31,0.45)]">No coincidieron en ninguna temporada; se compara la carrera.</p> : null}
+                </MenuItems>
+              </Menu>
+            ) : null}
+            {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
+              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.28)] px-[13px] py-[5px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.6)] transition-colors hover:border-[rgba(255,255,255,0.5)] hover:text-[rgba(255,255,255,0.85)] lg:px-[15px] lg:py-[6px] lg:text-[12px]">
+                + Añadir jugador
+              </button>
+            ) : null}
+          </div>
+        </div>
+      </section>
+      <PlayerPickerDialog open={pickerOpen} onClose={() => setPickerOpen(false)} selectedKeys={keys} suggested={suggested} onPick={add} />
+    </>
+  );
+}
