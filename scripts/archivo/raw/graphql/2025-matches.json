@@ -1,0 +1,46 @@
+[
+  {
+    "providerId": "2666010",
+    "startAt": "2025-06-08 02:46:55+00:00",
+    "status": "COMPLETE",
+    "phaseName": null,
+    "gameNumber": 0,
+    "isFinals": false,
+    "homeTeam": {
+      "code": "ELC",
+      "name": "El Calentón",
+      "score": "53"
+    },
+    "visitorTeam": {
+      "code": "S8S",
+      "name": "Siete8Siete",
+      "score": "41"
+    },
+    "venue": {
+      "name": "Coliseo Carlos Miguel Mangual"
+    },
+    "series": null
+  },
+  {
+    "providerId": "2666009",
+    "startAt": "2025-06-08 00:47:03+00:00",
+    "status": "COMPLETE",
+    "phaseName": null,
+    "gameNumber": 0,
+    "isFinals": false,
+    "homeTeam": {
+      "code": "DAQ",
+      "name": "D Aquí",
+      "score": "136"
+    },
+    "visitorTeam": {
+      "code": "REF",
+      "name": "Refuerzos",
+      "score": "123"
+    },
+    "venue": {
+      "name": "Coliseo Carlos Miguel Mangual"
+    },
+    "series": null
+  }
+]

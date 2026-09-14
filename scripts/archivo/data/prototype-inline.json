@@ -1,0 +1,1975 @@
+{
+  "note": "Constantes inline del prototipo de la liga (project-alzl7.vercel.app). TEAM_COLORS son colores del prototipo, no oficiales.",
+  "TEAM_COLORS": {
+    "Cangrejeros": "#0055a4",
+    "Capitanes": "#c8102e",
+    "Maratonistas": "#1d7a3a",
+    "Caciques": "#ff6b00",
+    "Leones": "#f5c518",
+    "Piratas": "#444",
+    "Gigantes": "#8b0000",
+    "Indios": "#00529b",
+    "Brujos": "#6a0dad",
+    "Santeros": "#2d6a4f",
+    "Osos": "#7a4f2e",
+    "Vaqueros": "#b8860b",
+    "Criollos": "#cc0000",
+    "Titanes": "#003580",
+    "Mets": "#003e7e",
+    "Grises": "#607080",
+    "Gallitos": "#ff4500",
+    "Atenienses": "#001f5b",
+    "Atleticos": "#006400",
+    "Cariduros": "#800000",
+    "Polluelos": "#e07b00",
+    "Santos": "#4488cc",
+    "Tiburones": "#0077aa",
+    "Tainos": "#884400",
+    "Toritos": "#cc6600",
+    "Avancinos": "#555599",
+    "Cardenales": "#aa0000"
+  },
+  "EXCLUDED_TEAMS": [
+    "BoricuasColegiales",
+    "Equipo Nacional de Puerto Rico",
+    "Equipo de Nativos",
+    "Equipo de Refuerzos",
+    "Estrellas BSN",
+    "Estrellas ESTE",
+    "Estrellas OESTE",
+    "Isla",
+    "Metro",
+    "Norte",
+    "ProspectosBSN",
+    "Rising Stars - Este",
+    "Rising Stars - Oeste",
+    "Rising Stars A",
+    "Rising Stars B",
+    "Sur",
+    "Team Benito",
+    "Team Walter"
+  ],
+  "COACH_DATA": [
+    {
+      "y": 1930,
+      "coach": "Manuel Iglesia",
+      "tm": "San Juan Sport Shop",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1931,
+      "coach": "Manuel Iglesia",
+      "tm": "San Juan Matías Eagles",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1932,
+      "coach": "Ubaldino Ramírez",
+      "tm": "All San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1933,
+      "coach": "Onofre Carballeira",
+      "tm": "Bayamón Spalding",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1934,
+      "coach": "Rodrigo Otero",
+      "tm": "Fénix de Vega Baja",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1935,
+      "coach": "Onofre Carballeira",
+      "tm": "Bayamón Casa Fernández",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1936,
+      "coach": "Rodrigo Otero",
+      "tm": "Club Náutico San Juan",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1937,
+      "coach": "Rodrigo Otero",
+      "tm": "Heinz de Vega Baja",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1938,
+      "coach": "Ubaldino Ramírez",
+      "tm": "All San Germán",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1939,
+      "coach": "Felicio Torregrosa",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1940,
+      "coach": "Adolfo Porrata",
+      "tm": "Santos de San Juan",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1941,
+      "coach": "Raúl González",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1942,
+      "coach": "Armando Torres",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1942,
+      "coach": "Armando Torres",
+      "tm": "Atléticos de San Germán",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1943,
+      "coach": "Arquelio Torres",
+      "tm": "Tortuguero",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1944,
+      "coach": "Felicio Torregrosa",
+      "tm": "Gallitos de la UPR",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1945,
+      "coach": "Adolfo Porrata",
+      "tm": "Capitalinos de San Juan",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1946,
+      "coach": "Ramón Cestero",
+      "tm": "Cardenales de Río Piedras",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1947,
+      "coach": "Armando Torres",
+      "tm": "Atléticos de San Germán",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1948,
+      "coach": "Víctor Murati",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1949,
+      "coach": "Raúl González",
+      "tm": "Atléticos de San Germán",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1950,
+      "coach": "Luis F. Sambolín",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1951,
+      "coach": "Víctor M. Pérez",
+      "tm": "Gallitos de la UPR",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1952,
+      "coach": "Tex Winters",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1954,
+      "coach": "Tex Winters",
+      "tm": "Leones de Ponce",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1955,
+      "coach": "Víctor M. Pérez",
+      "tm": "Cardenales de Río Piedras",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1956,
+      "coach": "Víctor M. Pérez",
+      "tm": "Cardenales de Río Piedras",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1957,
+      "coach": "Víctor M. Pérez",
+      "tm": "Cardenales de Río Piedras",
+      "win": 4,
+      "sup": "⁴"
+    },
+    {
+      "y": 1958,
+      "coach": "Floyd Brown",
+      "tm": "Santos de San Juan",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1959,
+      "coach": "Lou Rossini",
+      "tm": "Capitanes de Arecibo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1960,
+      "coach": "Howard Shamon",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1961,
+      "coach": "Jack McKenney",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1962,
+      "coach": "Fufi Santori",
+      "tm": "Cangrejeros de Santurce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1963,
+      "coach": "Lou Rossini",
+      "tm": "Cardenales de Río Piedras",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1964,
+      "coach": "Red Holzman",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1965,
+      "coach": "Red Holzman",
+      "tm": "Leones de Ponce",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1966,
+      "coach": "Red Holzman",
+      "tm": "Leones de Ponce",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1967,
+      "coach": "Roy Rubbins y Fufi Santori",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1968,
+      "coach": "Lou Rossini",
+      "tm": "Cangrejeros de Santurce",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1969,
+      "coach": "Art Loche",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1970,
+      "coach": "Erick Geldart",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1971,
+      "coach": "Art Loche",
+      "tm": "Vaqueros de Bayamón",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1972,
+      "coach": "Tom Nissalke y Fufi Santori",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1973,
+      "coach": "Del Harris",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1974,
+      "coach": "Del Harris",
+      "tm": "Vaqueros de Bayamón",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1975,
+      "coach": "Del Harris y Tom Nissalke",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1976,
+      "coach": "Bernie Bickerstaff",
+      "tm": "Cardenales de Río Piedras",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1977,
+      "coach": "Ray Amalbert",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1978,
+      "coach": "Ray Amalbert",
+      "tm": "Piratas de Quebradillas",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1979,
+      "coach": "Ray Amalbert",
+      "tm": "Piratas de Quebradillas",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1980,
+      "coach": "Julio Toro",
+      "tm": "Mets de Guaynabo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1981,
+      "coach": "Gene Bartow y Robert Corn",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1982,
+      "coach": "Julio Toro",
+      "tm": "Mets de Guaynabo",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1983,
+      "coach": "Herb Brown",
+      "tm": "Indios de Canóvanas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1984,
+      "coach": "Julio Toro",
+      "tm": "Indios de Canóvanas",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1985,
+      "coach": "Flor Meléndez",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1986,
+      "coach": "Charlie Bermúdez",
+      "tm": "Polluelos de Aibonito",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1987,
+      "coach": "Miguel Mercado",
+      "tm": "Titanes de Morovis",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1988,
+      "coach": "Robert Corn",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1989,
+      "coach": "Julio Toro",
+      "tm": "Mets de Guaynabo",
+      "win": 4,
+      "sup": "⁴"
+    },
+    {
+      "y": 1990,
+      "coach": "Miguel Mercado",
+      "tm": "Leones de Ponce",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1991,
+      "coach": "Carlos Morales",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1992,
+      "coach": "Julio Toro",
+      "tm": "Leones de Ponce",
+      "win": 5,
+      "sup": "⁵"
+    },
+    {
+      "y": 1993,
+      "coach": "Julio Toro",
+      "tm": "Leones de Ponce",
+      "win": 6,
+      "sup": "⁶"
+    },
+    {
+      "y": 1994,
+      "coach": "Carlos Morales",
+      "tm": "Atléticos de San Germán",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1995,
+      "coach": "Flor Meléndez",
+      "tm": "Vaqueros de Bayamón",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1996,
+      "coach": "Flor Meléndez",
+      "tm": "Vaqueros de Bayamón",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1997,
+      "coach": "Miguel Mercado",
+      "tm": "Atléticos de San Germán",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1998,
+      "coach": "Julio Toro",
+      "tm": "Cangrejeros de Santurce",
+      "win": 7,
+      "sup": "⁷"
+    },
+    {
+      "y": 1999,
+      "coach": "Julio Toro",
+      "tm": "Cangrejeros de Santurce",
+      "win": 8,
+      "sup": "⁸"
+    },
+    {
+      "y": 2000,
+      "coach": "Julio Toro",
+      "tm": "Cangrejeros de Santurce",
+      "win": 9,
+      "sup": "⁹"
+    },
+    {
+      "y": 2001,
+      "coach": "Julio Toro",
+      "tm": "Cangrejeros de Santurce",
+      "win": 10,
+      "sup": "¹⁰"
+    },
+    {
+      "y": 2002,
+      "coach": "Carlos Mario Rivera",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2003,
+      "coach": "Julio Toro",
+      "tm": "Cangrejeros de Santurce",
+      "win": 11,
+      "sup": "¹¹"
+    },
+    {
+      "y": 2004,
+      "coach": "Manolo Cintrón",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2005,
+      "coach": "Carlos Mario Rivera",
+      "tm": "Capitanes de Arecibo",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 2006,
+      "coach": "Leonel Arill",
+      "tm": "Criollos de Caguas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2007,
+      "coach": "Tony Ruiz",
+      "tm": "Cangrejeros de Santurce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2008,
+      "coach": "David Rosario",
+      "tm": "Capitanes de Arecibo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2009,
+      "coach": "Julio Toro",
+      "tm": "Vaqueros de Bayamón",
+      "win": 12,
+      "sup": "¹²"
+    },
+    {
+      "y": 2010,
+      "coach": "David Rosario",
+      "tm": "Capitanes de Arecibo",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 2011,
+      "coach": "David Rosario",
+      "tm": "Capitanes de Arecibo",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 2012,
+      "coach": "Eddie Casiano",
+      "tm": "Indios de Mayagüez",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2013,
+      "coach": "Carlos Calcaño",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2014,
+      "coach": "Nelson Colón",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2015,
+      "coach": "Nelson Colón",
+      "tm": "Leones de Ponce",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 2016,
+      "coach": "Rafael Pachy Cruz",
+      "tm": "Capitanes de Arecibo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2017,
+      "coach": "Carlos González",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2018,
+      "coach": "Rafael Pachy Cruz",
+      "tm": "Capitanes de Arecibo",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 2019,
+      "coach": "Carlos González",
+      "tm": "Santeros de Aguada",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 2020,
+      "coach": "Nelson Colón",
+      "tm": "Vaqueros de Bayamón",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 2021,
+      "coach": "Rafael Pachy Cruz",
+      "tm": "Capitanes de Arecibo",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 2022,
+      "coach": "Nelson Colón",
+      "tm": "Vaqueros de Bayamón",
+      "win": 4,
+      "sup": "⁴"
+    },
+    {
+      "y": 2023,
+      "coach": "Carlos González",
+      "tm": "Gigantes de Carolina",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 2024,
+      "coach": "Wilhelmus Caanen",
+      "tm": "Criollos de Caguas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2025,
+      "coach": "Christian Dalmau",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    }
+  ],
+  "CHAMP_DATA": [
+    {
+      "y": 2025,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-2",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 2024,
+      "tm": "Criollos de Caguas",
+      "series": "4-1",
+      "short": "Criollos"
+    },
+    {
+      "y": 2023,
+      "tm": "Gigantes de Carolina",
+      "series": "4-1",
+      "short": "Gigantes"
+    },
+    {
+      "y": 2022,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-2",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 2021,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-2",
+      "short": "Capitanes"
+    },
+    {
+      "y": 2020,
+      "tm": "Vaqueros de Bayamón",
+      "series": "3-0",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 2019,
+      "tm": "Santeros de Aguada",
+      "series": "4-2",
+      "short": "Santeros"
+    },
+    {
+      "y": 2018,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-2",
+      "short": "Capitanes"
+    },
+    {
+      "y": 2017,
+      "tm": "Piratas de Quebradillas",
+      "series": "4-3",
+      "short": "Piratas"
+    },
+    {
+      "y": 2016,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-2",
+      "short": "Capitanes"
+    },
+    {
+      "y": 2015,
+      "tm": "Leones de Ponce",
+      "series": "4-2",
+      "short": "Leones"
+    },
+    {
+      "y": 2014,
+      "tm": "Leones de Ponce",
+      "series": "4-2",
+      "short": "Leones"
+    },
+    {
+      "y": 2013,
+      "tm": "Piratas de Quebradillas",
+      "series": "4-2",
+      "short": "Piratas"
+    },
+    {
+      "y": 2012,
+      "tm": "Indios de Mayagüez",
+      "series": "4-1",
+      "short": "Indios"
+    },
+    {
+      "y": 2011,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-1",
+      "short": "Capitanes"
+    },
+    {
+      "y": 2010,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-3",
+      "short": "Capitanes"
+    },
+    {
+      "y": 2009,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-2",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 2008,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-3",
+      "short": "Capitanes"
+    },
+    {
+      "y": 2007,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-3",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 2006,
+      "tm": "Criollos de Caguas",
+      "series": "4-1",
+      "short": "Criollos"
+    },
+    {
+      "y": 2005,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-0",
+      "short": "Capitanes"
+    },
+    {
+      "y": 2004,
+      "tm": "Leones de Ponce",
+      "series": "4-3",
+      "short": "Leones"
+    },
+    {
+      "y": 2003,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-0",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 2002,
+      "tm": "Leones de Ponce",
+      "series": "4-3",
+      "short": "Leones"
+    },
+    {
+      "y": 2001,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-?",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 2000,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-?",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 1999,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-?",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 1998,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-?",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 1997,
+      "tm": "Atléticos de San Germán",
+      "series": "4-?",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1996,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-?",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1995,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-?",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1994,
+      "tm": "Atléticos de San Germán",
+      "series": "4-?",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1993,
+      "tm": "Leones de Ponce",
+      "series": "4-1",
+      "short": "Leones"
+    },
+    {
+      "y": 1992,
+      "tm": "Leones de Ponce",
+      "series": "4-2",
+      "short": "Leones"
+    },
+    {
+      "y": 1991,
+      "tm": "Atléticos de San Germán",
+      "series": "4-?",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1990,
+      "tm": "Leones de Ponce",
+      "series": "4-?",
+      "short": "Leones"
+    },
+    {
+      "y": 1989,
+      "tm": "Mets de Guaynabo",
+      "series": "4-3",
+      "short": "Mets"
+    },
+    {
+      "y": 1988,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-3",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1987,
+      "tm": "Titanes de Morovis",
+      "series": "4-3",
+      "short": "Titanes"
+    },
+    {
+      "y": 1986,
+      "tm": "Polluelos de Aibonito",
+      "series": "4-3",
+      "short": "Polluelos"
+    },
+    {
+      "y": 1985,
+      "tm": "Atléticos de San Germán",
+      "series": "4-2",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1984,
+      "tm": "Indios de Canóvanas",
+      "series": "4-2",
+      "short": "Indios"
+    },
+    {
+      "y": 1983,
+      "tm": "Indios de Canóvanas",
+      "series": "4-2",
+      "short": "Indios"
+    },
+    {
+      "y": 1982,
+      "tm": "Mets de Guaynabo",
+      "series": "4-2",
+      "short": "Mets"
+    },
+    {
+      "y": 1981,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-3",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1980,
+      "tm": "Mets de Guaynabo",
+      "series": "4-3",
+      "short": "Mets"
+    },
+    {
+      "y": 1979,
+      "tm": "Piratas de Quebradillas",
+      "series": "4-0",
+      "short": "Piratas"
+    },
+    {
+      "y": 1978,
+      "tm": "Piratas de Quebradillas",
+      "series": "4-1",
+      "short": "Piratas"
+    },
+    {
+      "y": 1977,
+      "tm": "Piratas de Quebradillas",
+      "series": "4-3",
+      "short": "Piratas"
+    },
+    {
+      "y": 1976,
+      "tm": "Cardenales de Río Piedras",
+      "series": "4-3",
+      "short": "Cardenales"
+    },
+    {
+      "y": 1975,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-3",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1974,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-1",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1973,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-3",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1972,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-2",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1971,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-2",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1970,
+      "tm": "Piratas de Quebradillas",
+      "series": "4-3",
+      "short": "Piratas"
+    },
+    {
+      "y": 1969,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-3",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1968,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-3",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 1967,
+      "tm": "Vaqueros de Bayamón",
+      "series": "4-3",
+      "short": "Vaqueros"
+    },
+    {
+      "y": 1966,
+      "tm": "Leones de Ponce",
+      "series": "4-3",
+      "short": "Leones"
+    },
+    {
+      "y": 1965,
+      "tm": "Leones de Ponce",
+      "series": "4-1",
+      "short": "Leones"
+    },
+    {
+      "y": 1964,
+      "tm": "Leones de Ponce",
+      "series": "4-1",
+      "short": "Leones"
+    },
+    {
+      "y": 1963,
+      "tm": "Cardenales de Río Piedras",
+      "series": "4-2",
+      "short": "Cardenales"
+    },
+    {
+      "y": 1962,
+      "tm": "Cangrejeros de Santurce",
+      "series": "4-3",
+      "short": "Cangrejeros"
+    },
+    {
+      "y": 1961,
+      "tm": "Leones de Ponce",
+      "series": "4-3",
+      "short": "Leones"
+    },
+    {
+      "y": 1960,
+      "tm": "Leones de Ponce",
+      "series": "4-0",
+      "short": "Leones"
+    },
+    {
+      "y": 1959,
+      "tm": "Capitanes de Arecibo",
+      "series": "4-1",
+      "short": "Capitanes"
+    },
+    {
+      "y": 1958,
+      "tm": "Santos de San Juan",
+      "series": "4-1",
+      "short": "Santos"
+    },
+    {
+      "y": 1957,
+      "tm": "Cardenales de Río Piedras",
+      "series": "3-1",
+      "short": "Cardenales"
+    },
+    {
+      "y": 1956,
+      "tm": "Cardenales de Río Piedras",
+      "series": "3-1",
+      "short": "Cardenales"
+    },
+    {
+      "y": 1955,
+      "tm": "Cardenales de Río Piedras",
+      "series": "3-1",
+      "short": "Cardenales"
+    },
+    {
+      "y": 1954,
+      "tm": "Leones de Ponce",
+      "series": "3-1",
+      "short": "Leones"
+    },
+    {
+      "y": 1952,
+      "tm": "Leones de Ponce",
+      "series": "3-0",
+      "short": "Leones"
+    },
+    {
+      "y": 1951,
+      "tm": "Gallitos de la UPR",
+      "series": "3-1",
+      "short": "Gallitos"
+    },
+    {
+      "y": 1950,
+      "tm": "Atléticos de San Germán",
+      "series": "3-1",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1949,
+      "tm": "Atléticos de San Germán",
+      "series": "3-2",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1948,
+      "tm": "Atléticos de San Germán",
+      "series": "3-1",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1947,
+      "tm": "Atléticos de San Germán",
+      "series": "-",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1946,
+      "tm": "Cardenales de Río Piedras",
+      "series": "2-1",
+      "short": "Cardenales"
+    },
+    {
+      "y": 1945,
+      "tm": "Capitalinos de San Juan",
+      "series": "2-1",
+      "short": "Capitalinos"
+    },
+    {
+      "y": 1944,
+      "tm": "Gallitos de la UPR",
+      "series": "2-1",
+      "short": "Gallitos"
+    },
+    {
+      "y": 1943,
+      "tm": "Tortuguero",
+      "series": "3-1",
+      "short": "Tortuguero"
+    },
+    {
+      "y": 1942,
+      "tm": "Atléticos de San Germán",
+      "series": "-",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1941,
+      "tm": "Atléticos de San Germán",
+      "series": "-",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1940,
+      "tm": "Santos de San Juan",
+      "series": "3-2",
+      "short": "Santos"
+    },
+    {
+      "y": 1939,
+      "tm": "Atléticos de San Germán",
+      "series": "-",
+      "short": "Atléticos"
+    },
+    {
+      "y": 1938,
+      "tm": "All San Germán",
+      "series": "-",
+      "short": "All San Germán"
+    },
+    {
+      "y": 1937,
+      "tm": "Heinz de Vega Baja",
+      "series": "2-0",
+      "short": "Heinz"
+    },
+    {
+      "y": 1936,
+      "tm": "Club Náutico San Juan",
+      "series": "-",
+      "short": "Club Náutico San Juan"
+    },
+    {
+      "y": 1935,
+      "tm": "Bayamón Casa Fernández",
+      "series": "3-0",
+      "short": "Bayamón Casa Fernández"
+    },
+    {
+      "y": 1934,
+      "tm": "Fénix de Vega Baja",
+      "series": "-",
+      "short": "Fénix"
+    },
+    {
+      "y": 1933,
+      "tm": "Bayamón Spalding",
+      "series": "-",
+      "short": "Bayamón Spalding"
+    },
+    {
+      "y": 1932,
+      "tm": "All San Germán",
+      "series": "-",
+      "short": "All San Germán"
+    },
+    {
+      "y": 1931,
+      "tm": "San Juan Matías Eagles",
+      "series": "-",
+      "short": "San Juan Matías Eagles"
+    },
+    {
+      "y": 1930,
+      "tm": "San Juan Sport Shop",
+      "series": "3-2",
+      "short": "San Juan Sport Shop"
+    }
+  ],
+  "MVP_DATA": [
+    {
+      "y": 1951,
+      "n": "Raúl \"Tinajón\" Feliciano",
+      "raw": "Raúl \"Tinajón\" Feliciano",
+      "pos": "Base",
+      "tm": "Gallitos de la UPR",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1952,
+      "n": "Juan \"Pachín\" Vicéns",
+      "raw": "Juan \"Pachín\" Vicéns",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1953,
+      "n": "Fufi Santori",
+      "raw": "Fufi Santori",
+      "pos": "Base",
+      "tm": "Gallitos de la UPR",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1954,
+      "n": "Juan \"Pachín\" Vicéns",
+      "raw": "Juan \"Pachín\" Vicéns (2)",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1955,
+      "n": "Raúl \"Tinajón\" Feliciano",
+      "raw": "Raúl \"Tinajón\" Feliciano (2)",
+      "pos": "Base",
+      "tm": "Cardenales de Río Piedras",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1956,
+      "n": "Rafael Valle",
+      "raw": "Rafael Valle",
+      "pos": "Ala-pívot",
+      "tm": "Santos de San Juan",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1957,
+      "n": "Juan Báez",
+      "raw": "Juan Báez",
+      "pos": "Pívot",
+      "tm": "Cardenales de Río Piedras",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1958,
+      "n": "Juan \"Pachín\" Vicéns",
+      "raw": "Juan \"Pachín\" Vicéns (3)",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1959,
+      "n": "Bill McCadney",
+      "raw": "Bill McCadney",
+      "pos": "Pívot",
+      "tm": "Capitanes de Arecibo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1960,
+      "n": "Juan \"Pachín\" Vicéns",
+      "raw": "Juan \"Pachín\" Vicéns (4)",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 4,
+      "sup": "⁴"
+    },
+    {
+      "y": 1961,
+      "n": "Tomás \"Guabina\" Gutiérrez",
+      "raw": "Tomás \"Guabina\" Gutiérrez",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1962,
+      "n": "Teófilo Cruz",
+      "raw": "Teófilo Cruz",
+      "pos": "Pívot",
+      "tm": "Cangrejeros de Santurce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1963,
+      "n": "Juan Báez",
+      "raw": "Juan Báez (2)",
+      "pos": "Pívot",
+      "tm": "Cardenales de Río Piedras",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1964,
+      "n": "Juan Báez",
+      "raw": "Juan Báez (3)",
+      "pos": "Pívot",
+      "tm": "Cardenales de Río Piedras",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1965,
+      "n": "Richie Pietri",
+      "raw": "Richie Pietri",
+      "pos": "",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1966,
+      "n": "Jaime Frontera",
+      "raw": "Jaime Frontera",
+      "pos": "Base/Alero",
+      "tm": "Capitanes de Arecibo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1967,
+      "n": "Teófilo Cruz",
+      "raw": "Teófilo Cruz (2)",
+      "pos": "Pívot",
+      "tm": "Cangrejeros de Santurce",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1968,
+      "n": "Raymond Dalmau",
+      "raw": "Raymond Dalmau",
+      "pos": "Ala-Pívot",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1969,
+      "n": "Raymond Dalmau",
+      "raw": "Raymond Dalmau (2)",
+      "pos": "Ala-Pívot",
+      "tm": "Piratas de Quebradillas",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1970,
+      "n": "Teófilo Cruz",
+      "raw": "Teófilo Cruz (3)",
+      "pos": "Pívot",
+      "tm": "Cangrejeros de Santurce",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1971,
+      "n": "Teófilo Cruz",
+      "raw": "Teófilo Cruz (4)",
+      "pos": "Pívot",
+      "tm": "Cangrejeros de Santurce",
+      "win": 4,
+      "sup": "⁴"
+    },
+    {
+      "y": 1972,
+      "n": "Raymond Dalmau",
+      "raw": "Raymond Dalmau (3)",
+      "pos": "Ala-Pívot",
+      "tm": "Piratas de Quebradillas",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1973,
+      "n": "Neftalí Rivera",
+      "raw": "Neftalí Rivera",
+      "pos": "Escolta",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1974,
+      "n": "Jimmy Thordsen",
+      "raw": "Jimmy Thordsen",
+      "pos": "Ala-pívot",
+      "tm": "Gallitos de Isabela",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1975,
+      "n": "Josean Baez",
+      "raw": "Josean Baez",
+      "pos": "Escolta",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1976,
+      "n": "Earl Brown",
+      "raw": "Earl Brown",
+      "pos": "Pívot",
+      "tm": "Cardenales de Río Piedras",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1977,
+      "n": "Hector Olivencia",
+      "raw": "Hector Olivencia",
+      "pos": "Base",
+      "tm": "Criollos de Caguas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1978,
+      "n": "Carlos \"Charlie\" Bermúdez",
+      "raw": "Carlos \"Charlie\" Bermúdez",
+      "pos": "Pívot",
+      "tm": "Indios de Canovanas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1979,
+      "n": "Rubén Rodríguez",
+      "raw": "Rubén Rodríguez",
+      "pos": "Alero/Pívot",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1980,
+      "n": "Mario \"Quijote\" Morales",
+      "raw": "Mario \"Quijote\" Morales",
+      "pos": "Alero",
+      "tm": "Mets de Guaynabo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1981,
+      "n": "Rolando Frazer",
+      "raw": "Rolando Frazer",
+      "pos": "Alero/Pívot",
+      "tm": "Polluelos de Aibonito",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1982,
+      "n": "Mario \"Quijote\" Morales",
+      "raw": "Mario \"Quijote\" Morales (2)",
+      "pos": "Alero",
+      "tm": "Mets de Guaynabo",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1983,
+      "n": "Mario \"Quijote\" Morales",
+      "raw": "Mario \"Quijote\" Morales (3)",
+      "pos": "Alero",
+      "tm": "Mets de Guaynabo",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1984,
+      "n": "Georgie Torres",
+      "raw": "Georgie Torres",
+      "pos": "Base/Alero",
+      "tm": "Cariduros de Fajardo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1985,
+      "n": "Georgie Torres",
+      "raw": "Georgie Torres (2)",
+      "pos": "Base/Alero",
+      "tm": "Cariduros de Fajardo",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1986,
+      "n": "Georgie Torres",
+      "raw": "Georgie Torres (3)",
+      "pos": "Base/Alero",
+      "tm": "Cariduros de Fajardo",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 1987,
+      "n": "Rolando Frazer",
+      "raw": "Rolando Frazer (2)",
+      "pos": "Alero/Pívot",
+      "tm": "Polluelos de Aibonito",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1988,
+      "n": "Mario Butler",
+      "raw": "Mario Butler",
+      "pos": "Pívot",
+      "tm": "Titanes de Morovis",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1989,
+      "n": "Ramón Rivas",
+      "raw": "Ramón Rivas",
+      "pos": "Alero/Pívot",
+      "tm": "Gigantes de Carolina",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1990,
+      "n": "Edgar de León",
+      "raw": "Edgar de León",
+      "pos": "Alero/Pívot",
+      "tm": "Cariduros de Fajardo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1991,
+      "n": "James Carter",
+      "raw": "James Carter",
+      "pos": "Base",
+      "tm": "Brujos de Guayama",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1992,
+      "n": "Frantz Volcy",
+      "raw": "Frantz Volcy",
+      "pos": "Alero",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1993,
+      "n": "Mario \"Quijote\" Morales",
+      "raw": "Mario \"Quijote\" Morales (4)",
+      "pos": "Alero",
+      "tm": "Mets de Guaynabo",
+      "win": 4,
+      "sup": "⁴"
+    },
+    {
+      "y": 1994,
+      "n": "James Carter",
+      "raw": "James Carter (2)",
+      "pos": "Base",
+      "tm": "Brujos de Guayama",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 1995,
+      "n": "Bobby Ríos",
+      "raw": "Bobby Ríos",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1996,
+      "n": "Luis Allende",
+      "raw": "Luis Allende",
+      "pos": "Alero",
+      "tm": "Criollos de Caguas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1997,
+      "n": "Eddie Casiano",
+      "raw": "Eddie Casiano",
+      "pos": "Base",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1998,
+      "n": "Javier \"Tonito\" Colon",
+      "raw": "Javier \"Tonito\" Colon",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 1999,
+      "n": "Tony Farmer",
+      "raw": "Tony Farmer",
+      "pos": "Alero/Pívot",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2000,
+      "n": "Ian Lockhart",
+      "raw": "Ian Lockhart",
+      "pos": "Alero",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2001,
+      "n": "Monty Wilson",
+      "raw": "Monty Wilson",
+      "pos": "Base",
+      "tm": "Polluelos de Aibonito",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2002,
+      "n": "José Ortiz",
+      "raw": "José Ortiz",
+      "pos": "Alero/Pívot",
+      "tm": "Cangrejeros de Santurce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2003,
+      "n": "Carlos Escalera",
+      "raw": "Carlos Escalera",
+      "pos": "Base",
+      "tm": "Maratonistas de Coamo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2004,
+      "n": "Christian Dalmau",
+      "raw": "Christian Dalmau",
+      "pos": "Base",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2005,
+      "n": "Bobby Joe Hatton",
+      "raw": "Bobby Joe Hatton",
+      "pos": "Base",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2006,
+      "n": "Wilfredo Pagán",
+      "raw": "Wilfredo Pagán",
+      "pos": "Base",
+      "tm": "Brujos de Guayama",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2007,
+      "n": "Angelo Reyes",
+      "raw": "Angelo Reyes",
+      "pos": "Alero",
+      "tm": "Gigantes de Carolina",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2008,
+      "n": "Ánsel Guzmán",
+      "raw": "Ánsel Guzmán",
+      "pos": "Base",
+      "tm": "Grises de Humacao",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2009,
+      "n": "Jesse Pellot-Rosa",
+      "raw": "Jesse Pellot-Rosa",
+      "pos": "Base",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2010,
+      "n": "Christian Dalmau",
+      "raw": "Christian Dalmau (2)",
+      "pos": "Base",
+      "tm": "Vaqueros de Bayamón",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 2011,
+      "n": "Christian Dalmau",
+      "raw": "Christian Dalmau (3)",
+      "pos": "Base",
+      "tm": "Vaqueros de Bayamón",
+      "win": 3,
+      "sup": "³"
+    },
+    {
+      "y": 2012,
+      "n": "Donta Smith",
+      "raw": "Donta Smith",
+      "pos": "Alero",
+      "tm": "Indios de Mayagüez",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2013,
+      "n": "Mike Harris",
+      "raw": "Mike Harris",
+      "pos": "Alero",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2014,
+      "n": "Walter Hodge",
+      "raw": "Walter Hodge",
+      "pos": "Base",
+      "tm": "Capitanes de Arecibo",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2015,
+      "n": "Peter John Ramos",
+      "raw": "Peter John Ramos",
+      "pos": "Pívot",
+      "tm": "Brujos de Guayama",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2016,
+      "n": "Ángel Daniel Vassallo",
+      "raw": "Ángel Daniel Vassallo",
+      "pos": "Alero",
+      "tm": "Leones de Ponce",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2017,
+      "n": "Gary Browne",
+      "raw": "Gary Browne",
+      "pos": "Base",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2018,
+      "n": "Reyshawn Terry",
+      "raw": "Reyshawn Terry",
+      "pos": "Alero",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2019,
+      "n": "Brian Conklin",
+      "raw": "Brian Conklin",
+      "pos": "Alero",
+      "tm": "Piratas de Quebradillas Indios de Mayagüez",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2020,
+      "n": "Paris Bass",
+      "raw": "Paris Bass",
+      "pos": "Alero",
+      "tm": "Atléticos de San Germán",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2021,
+      "n": "Ángel Rodríguez",
+      "raw": "Ángel Rodríguez",
+      "pos": "Base",
+      "tm": "Vaqueros de Bayamón",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2022,
+      "n": "Walter Hodge",
+      "raw": "Walter Hodge (2)",
+      "pos": "Base",
+      "tm": "Capitanes de Arecibo",
+      "win": 2,
+      "sup": "²"
+    },
+    {
+      "y": 2023,
+      "n": "Brandon Knight",
+      "raw": "Brandon Knight",
+      "pos": "Base",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2024,
+      "n": "Travis Trice",
+      "raw": "Travis Trice",
+      "pos": "Base",
+      "tm": "Criollos de Caguas",
+      "win": 1,
+      "sup": "¹"
+    },
+    {
+      "y": 2025,
+      "n": "Emmanuel Mudiay",
+      "raw": "Emmanuel Mudiay",
+      "pos": "Base",
+      "tm": "Piratas de Quebradillas",
+      "win": 1,
+      "sup": "¹"
+    }
+  ]
+}

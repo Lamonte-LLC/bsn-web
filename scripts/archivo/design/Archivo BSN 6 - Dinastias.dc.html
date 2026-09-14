@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;1,700;1,800&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EFEDE8;font-family:system-ui,sans-serif}
+a{color:#1772D9;text-decoration:none} a:hover{color:#1257A8}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-intro{font:400 12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:760px;margin:0 0 24px}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:1000px}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:26px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.dv-cap{font:500 10px system-ui,sans-serif;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:.6px}
+.dv-note{font:400 11px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5);max-width:1000px;margin:2px 0 0}
+.stl{font:600 8.5px/1 Barlow,sans-serif;letter-spacing:1px;color:rgba(0,0,0,.4);text-transform:uppercase}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+</style>
+</helmet>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Archivo BSN · Tanda 6 — Dinastías, el Dynasty Tracker (acumulados reales de champions.json)</span></div>
+<p class="dv-intro">Los conteos salen de champions.json: 2025 cierra en Vaqueros 15, Leones 14, Atléticos 11, Capitanes 8, Cangrejeros 8, Piratas 6, Cardenales 6, Indios 3; en 1975 hay triple empate a 7. El caption tiene su espacio reservado bajo el nombre del campeón (nada se mueve al aparecer). Movimiento en producción: transform + width a 250ms con la curva del sistema; nada más se anima. <a class="dv-oid" href="#1a">1a</a> pausado 2025 · <a class="dv-oid" href="#1b">1b</a> reproduciendo 1975 · <a class="dv-oid" href="#1c">1c</a> reduced motion · <a class="dv-oid" href="#1d">1d</a> móvil.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Pausado en 2025 (estado inicial) — botón «Ver desde 1930», scrubber al final, barras enlazadas</div>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="dv-cap">Desktop 1100 · top 8</span><div class="dv-card" style="width:1100px;min-width:1100px" data-screen-label="1a Dinastias 2025"><div style="background:#FDFDFD;padding:28px 32px 34px">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:0 0 16px">
+  <span style="display:inline-flex;gap:10px;align-items:center"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:15px;background:#0F171F;border:1px solid #0F171F;color:#fff;border-radius:99px;padding:8px 20px">Ver desde 1930</span><span style="display:inline-flex;border:1px solid rgba(0,0,0,.14);border-radius:99px;overflow:hidden"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;background:#0F171F;color:#fff;padding:8px 15px">1x</span><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:rgba(0,0,0,.6);padding:8px 15px">2x</span></span></span>
+  <span style="display:inline-flex;align-items:center;gap:14px"><span style="font:400 12.5px Barlow;color:rgba(0,0,0,.5)">Toca una barra para ir a la franquicia</span><span style="display:inline-flex;border:1px solid rgba(0,0,0,.16);border-radius:99px;padding:6px 15px;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:rgba(0,0,0,.65)">Compartir</span></span>
+</div>
+  <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:24px 30px 20px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div>
+      <div style="font:700 12px Barlow;letter-spacing:1.1px;color:#0F171F">CAMPEÓN 2025</div>
+      <a href="#" style="font:600 16px Barlow;color:#0F171F;display:block;margin-top:3px">Vaqueros de Bayamón</a>
+      <div style="height:34px;display:flex;align-items:center"></div>
+    </div>
+    <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:72px;line-height:.9;color:#0F171F;font-variant-numeric:tabular-nums">2025</span>
+  </div>
+  <div style="padding-top:4px"><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #468AD9;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">BAY</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:26px;border-radius:6px;background:#468AD9;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Vaqueros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">15</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #B82027;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">PON</span>
+      <div><span style="display:inline-flex;align-items:center;width:93%;height:26px;border-radius:6px;background:#B82027;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Leones</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">14</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #F75400;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">SGE</span>
+      <div><span style="display:inline-flex;align-items:center;width:73%;height:26px;border-radius:6px;background:#F75400;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Atléticos</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">11</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #FFB900;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">ARE</span>
+      <div><span style="display:inline-flex;align-items:center;width:53%;height:26px;border-radius:6px;background:#FFB900;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#0F171F;white-space:nowrap">Capitanes</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">8</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #FA4515;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">SCE</span>
+      <div><span style="display:inline-flex;align-items:center;width:53%;height:26px;border-radius:6px;background:#FA4515;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Cangrejeros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">8</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #F9170C;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">QUE</span>
+      <div><span style="display:inline-flex;align-items:center;width:40%;height:26px;border-radius:6px;background:#F9170C;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Piratas</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">6</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:9px;flex:none">CAR</span>
+      <div><span style="display:inline-flex;align-items:center;width:40%;height:26px;border-radius:6px;background:#8A2A33;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Cardenales</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">6</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #F5E0BF;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">MAY</span>
+      <div><span style="display:inline-flex;align-items:center;width:20%;height:26px;border-radius:6px;background:#F5E0BF;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#0F171F;white-space:nowrap">Indios</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">3</span>
+    </div></div>
+</div>
+  <div style="padding:18px 2px 0">
+  <div style="position:relative;height:14px"><span style="position:absolute;left:0;right:0;top:6px;height:3px;border-radius:2px;background:rgba(0,0,0,.1)"></span><span style="position:absolute;left:0;width:100%;top:6px;height:3px;border-radius:2px;background:#E51F1F"></span><span style="position:absolute;left:calc(100% - 7px);top:0;width:14px;height:14px;border-radius:99px;background:#E51F1F;box-shadow:0 1px 4px rgba(0,0,0,.25)"></span></div>
+  <div style="display:flex;justify-content:space-between;font:400 11.5px Barlow;color:rgba(0,0,0,.45);padding-top:6px"><span>1930</span><span>2025</span></div>
+</div><div style="font:400 13px/1.6 Barlow;color:rgba(0,0,0,.5);padding-top:16px;max-width:560px">Se muestran las franquicias con más títulos en cada año. Los clubes anteriores a 1946 que ya no existen aparecen con su nombre y sin enlace.</div>
+</div></div></div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Reproduciendo, año 1975 — caption «Vaqueros: cinco al hilo» visible, botón «Pausa», barras sin tap</div>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="dv-cap">Desktop 1100 · triple empate a 7 real</span><div class="dv-card" style="width:1100px;min-width:1100px" data-screen-label="1b Dinastias 1975"><div style="background:#FDFDFD;padding:28px 32px 34px">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:0 0 16px">
+  <span style="display:inline-flex;gap:10px;align-items:center"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:15px;background:#0F171F;border:1px solid #0F171F;color:#fff;border-radius:99px;padding:8px 20px">Pausa</span><span style="display:inline-flex;border:1px solid rgba(0,0,0,.14);border-radius:99px;overflow:hidden"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;background:#0F171F;color:#fff;padding:8px 15px">1x</span><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:rgba(0,0,0,.6);padding:8px 15px">2x</span></span></span>
+  <span style="display:inline-flex;align-items:center;gap:14px"><span style="font:400 12.5px Barlow;color:rgba(0,0,0,.5)">Pausa para tocar una barra</span><span style="display:inline-flex;border:1px solid rgba(0,0,0,.16);border-radius:99px;padding:6px 15px;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:rgba(0,0,0,.65)">Compartir</span></span>
+</div>
+  <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:24px 30px 20px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div>
+      <div style="font:700 12px Barlow;letter-spacing:1.1px;color:#0F171F">CAMPEÓN 1975</div>
+      <a href="#" style="font:600 16px Barlow;color:#0F171F;display:block;margin-top:3px">Vaqueros de Bayamón</a>
+      <div style="height:34px;display:flex;align-items:center"><span style="background:#0F171F;color:#fff;border-radius:7px;padding:4px 12px;font:600 12.5px Barlow">Vaqueros: cinco al hilo</span></div>
+    </div>
+    <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:72px;line-height:.9;color:#0F171F;font-variant-numeric:tabular-nums">1975</span>
+  </div>
+  <div style="padding-top:4px"><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #468AD9;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">BAY</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:26px;border-radius:6px;background:#468AD9;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Vaqueros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">7</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #B82027;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">PON</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:26px;border-radius:6px;background:#B82027;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Leones</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">7</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #F75400;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">SGE</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:26px;border-radius:6px;background:#F75400;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Atléticos</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">7</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:9px;flex:none">CAR</span>
+      <div><span style="display:inline-flex;align-items:center;width:71%;height:26px;border-radius:6px;background:#8A2A33;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Cardenales</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">5</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #FA4515;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:8px;color:rgba(15,23,31,.7);flex:none">SCE</span>
+      <div><span style="display:inline-flex;align-items:center;width:29%;height:26px;border-radius:6px;background:#FA4515;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Cangrejeros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">2</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#54606E;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:9px;flex:none">SAN</span>
+      <div><span style="display:inline-flex;align-items:center;width:29%;height:26px;border-radius:6px;background:#54606E;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Santos</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">2</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#3E7A4E;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:9px;flex:none">GAL</span>
+      <div><span style="display:inline-flex;align-items:center;width:29%;height:26px;border-radius:6px;background:#3E7A4E;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">Gallitos</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">2</span>
+    </div><div style="display:grid;grid-template-columns:34px 1fr 40px;align-items:center;column-gap:12px;padding:7px 0">
+      <span style="width:30px;height:30px;border-radius:99px;background:#4A5560;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:9px;flex:none">ASG</span>
+      <div><span style="display:inline-flex;align-items:center;width:29%;height:26px;border-radius:6px;background:#4A5560;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:#fff;white-space:nowrap">All San Germán</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:24px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">2</span>
+    </div></div>
+</div>
+  <div style="padding:18px 2px 0">
+  <div style="position:relative;height:14px"><span style="position:absolute;left:0;right:0;top:6px;height:3px;border-radius:2px;background:rgba(0,0,0,.1)"></span><span style="position:absolute;left:0;width:47%;top:6px;height:3px;border-radius:2px;background:#E51F1F"></span><span style="position:absolute;left:calc(47% - 7px);top:0;width:14px;height:14px;border-radius:99px;background:#E51F1F;box-shadow:0 1px 4px rgba(0,0,0,.25)"></span></div>
+  <div style="display:flex;justify-content:space-between;font:400 11.5px Barlow;color:rgba(0,0,0,.45);padding-top:6px"><span>1930</span><span>2025</span></div>
+</div><div style="font:400 13px/1.6 Barlow;color:rgba(0,0,0,.5);padding-top:16px;max-width:560px">Se muestran las franquicias con más títulos en cada año. Los clubes anteriores a 1946 que ya no existen aparecen con su nombre y sin enlace.</div>
+</div></div></div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Reduced motion — selector de año en vez de reproducir, salto sin transición, año con aria-live</div>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="dv-cap">Desktop 860</span><div class="dv-card" style="width:860px;min-width:860px" data-screen-label="1c Dinastias reduced"><div style="background:#FDFDFD;padding:24px 28px 28px">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px">
+    <span style="display:inline-flex;align-items:center;gap:10px"><span style="font:600 13px Barlow;color:#0F171F">Año</span><span style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,0,0,.16);border-radius:8px;padding:8px 14px;font:500 14px Barlow;color:#0F171F;font-variant-numeric:tabular-nums">1975 <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5l5 5 5-5"></path></svg></span></span>
+    <span style="display:inline-flex;border:1px solid rgba(0,0,0,.16);border-radius:99px;padding:6px 15px;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:rgba(0,0,0,.65)">Compartir</span>
+  </div>
+  <div style="font:400 12.5px Barlow;color:rgba(0,0,0,.5);padding-bottom:14px">Tu sistema tiene el movimiento reducido: elige un año y el chart salta sin animación. El año se anuncia en voz alta.</div>
+  <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:18px 18px 16px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div>
+      <div style="font:700 11px Barlow;letter-spacing:1.1px;color:#0F171F">CAMPEÓN 1975</div>
+      <a href="#" style="font:600 14.5px Barlow;color:#0F171F;display:block;margin-top:3px">Vaqueros de Bayamón</a>
+      <div style="height:30px;display:flex;align-items:center"></div>
+    </div>
+    <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:52px;line-height:.9;color:#0F171F;font-variant-numeric:tabular-nums">1975</span>
+  </div>
+  <div style="padding-top:4px"><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #468AD9;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">BAY</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:23px;border-radius:6px;background:#468AD9;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Vaqueros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">7</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #B82027;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">PON</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:23px;border-radius:6px;background:#B82027;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Leones</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">7</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #F75400;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">SGE</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:23px;border-radius:6px;background:#F75400;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Atléticos</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">7</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:8px;flex:none">CAR</span>
+      <div><span style="display:inline-flex;align-items:center;width:71%;height:23px;border-radius:6px;background:#8A2A33;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Cardenales</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">5</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #FA4515;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">SCE</span>
+      <div><span style="display:inline-flex;align-items:center;width:29%;height:23px;border-radius:6px;background:#FA4515;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Cangrejeros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">2</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#54606E;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:8px;flex:none">SAN</span>
+      <div><span style="display:inline-flex;align-items:center;width:29%;height:23px;border-radius:6px;background:#54606E;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Santos</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">2</span>
+    </div></div>
+</div>
+</div></div></div>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Móvil 375 — top 6, scrubber al ancho completo bajo el chart</div>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="dv-cap">Mobile 375</span><div class="dv-card" style="width:375px;min-width:375px" data-screen-label="1d Dinastias mobile"><div style="background:#FDFDFD;padding:18px 14px 24px">
+  <div style="display:flex;gap:8px;align-items:center;padding-bottom:6px"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;background:#0F171F;border:1px solid #0F171F;color:#fff;border-radius:99px;padding:8px 16px">Ver desde 1930</span><span style="display:inline-flex;border:1px solid rgba(0,0,0,.14);border-radius:99px;overflow:hidden"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;background:#0F171F;color:#fff;padding:8px 15px">1x</span><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:14px;color:rgba(0,0,0,.6);padding:8px 15px">2x</span></span></div>
+  <div style="font:400 12px Barlow;color:rgba(0,0,0,.5);text-align:right;padding-bottom:10px">Toca una barra para ir a la franquicia</div>
+  <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:18px 18px 16px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div>
+      <div style="font:700 11px Barlow;letter-spacing:1.1px;color:#0F171F">CAMPEÓN 2025</div>
+      <a href="#" style="font:600 14.5px Barlow;color:#0F171F;display:block;margin-top:3px">Vaqueros de Bayamón</a>
+      <div style="height:30px;display:flex;align-items:center"></div>
+    </div>
+    <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:52px;line-height:.9;color:#0F171F;font-variant-numeric:tabular-nums">2025</span>
+  </div>
+  <div style="padding-top:4px"><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #468AD9;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">BAY</span>
+      <div><span style="display:inline-flex;align-items:center;width:100%;height:23px;border-radius:6px;background:#468AD9;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Vaqueros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">15</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #B82027;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">PON</span>
+      <div><span style="display:inline-flex;align-items:center;width:93%;height:23px;border-radius:6px;background:#B82027;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Leones</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">14</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #F75400;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">SGE</span>
+      <div><span style="display:inline-flex;align-items:center;width:73%;height:23px;border-radius:6px;background:#F75400;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Atléticos</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">11</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #FFB900;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">ARE</span>
+      <div><span style="display:inline-flex;align-items:center;width:53%;height:23px;border-radius:6px;background:#FFB900;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#0F171F;white-space:nowrap">Capitanes</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">8</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #FA4515;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">SCE</span>
+      <div><span style="display:inline-flex;align-items:center;width:53%;height:23px;border-radius:6px;background:#FA4515;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Cangrejeros</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">8</span>
+    </div><div style="display:grid;grid-template-columns:30px 1fr 34px;align-items:center;column-gap:12px;padding:6px 0">
+      <span style="width:26px;height:26px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #F9170C;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:7px;color:rgba(15,23,31,.7);flex:none">QUE</span>
+      <div><span style="display:inline-flex;align-items:center;width:40%;height:23px;border-radius:6px;background:#F9170C;padding:0 10px;box-sizing:border-box"><span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:13px;color:#fff;white-space:nowrap">Piratas</span></span></div>
+      <span style="font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:21px;line-height:1;color:#0F171F;text-align:right;font-variant-numeric:tabular-nums">6</span>
+    </div></div>
+</div>
+  <div style="padding:18px 2px 0">
+  <div style="position:relative;height:14px"><span style="position:absolute;left:0;right:0;top:6px;height:3px;border-radius:2px;background:rgba(0,0,0,.1)"></span><span style="position:absolute;left:0;width:100%;top:6px;height:3px;border-radius:2px;background:#E51F1F"></span><span style="position:absolute;left:calc(100% - 7px);top:0;width:14px;height:14px;border-radius:99px;background:#E51F1F;box-shadow:0 1px 4px rgba(0,0,0,.25)"></span></div>
+  <div style="display:flex;justify-content:space-between;font:400 11.5px Barlow;color:rgba(0,0,0,.45);padding-top:6px"><span>1930</span><span>2025</span></div>
+</div>
+  <div style="font:400 12.5px/1.6 Barlow;color:rgba(0,0,0,.5);padding-top:12px">Se muestran las 6 franquicias con más títulos en cada año. Los clubes anteriores a 1946 que ya no existen aparecen con su nombre y sin enlace.</div>
+</div></div></div>
+</div>
+
+</div>
+<p class="dv-next">La base quedó aplicada a las tandas anteriores en las correcciones ya hechas (sin left-borders, jerarquía de títulos, espaciado semántico); si ves algo que aún la viole, señálalo y lo corrijo puntual. Siguiente: Home del archivo.</p>
+</section>
+</x-dc>
+</body>
+</html>

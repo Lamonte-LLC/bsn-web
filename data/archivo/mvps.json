@@ -1,0 +1,903 @@
+[
+  {
+    "year": 2025,
+    "playerId": null,
+    "slug": null,
+    "name": "Emmanuel Mudiay",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 2024,
+    "playerId": "13483",
+    "slug": "travis-trice",
+    "name": "Travis Trice",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Criollos de Caguas",
+    "franchiseSlugs": [
+      "criollos"
+    ]
+  },
+  {
+    "year": 2023,
+    "playerId": "13435",
+    "slug": "brandon-knight",
+    "name": "Brandon Knight",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 2022,
+    "playerId": "2514",
+    "slug": "walter-hodge-jr",
+    "name": "Walter Hodge",
+    "mvpNumber": 2,
+    "position": "Base",
+    "teamName": "Capitanes de Arecibo",
+    "franchiseSlugs": [
+      "capitanes"
+    ]
+  },
+  {
+    "year": 2021,
+    "playerId": "13175",
+    "slug": "angel-daniel-rodriguez-tricoche",
+    "name": "Ángel Rodríguez",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Vaqueros de Bayamón",
+    "franchiseSlugs": [
+      "vaqueros"
+    ]
+  },
+  {
+    "year": 2020,
+    "playerId": "13271",
+    "slug": "paris-bass",
+    "name": "Paris Bass",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Atléticos de San Germán",
+    "franchiseSlugs": [
+      "atleticos"
+    ]
+  },
+  {
+    "year": 2019,
+    "playerId": "12989",
+    "slug": "brian-conklin",
+    "name": "Brian Conklin",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Piratas de Quebradillas Indios de Mayagüez",
+    "franchiseSlugs": [
+      "piratas",
+      "indios"
+    ]
+  },
+  {
+    "year": 2018,
+    "playerId": "13000",
+    "slug": "reyshawn-terry",
+    "name": "Reyshawn Terry",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 2017,
+    "playerId": "13027",
+    "slug": "gary-browne-ramirez",
+    "name": "Gary Browne",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Atléticos de San Germán",
+    "franchiseSlugs": [
+      "atleticos"
+    ]
+  },
+  {
+    "year": 2016,
+    "playerId": "2517",
+    "slug": "angel-daniel-vassallo-colon",
+    "name": "Ángel Daniel Vassallo",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 2015,
+    "playerId": "1836",
+    "slug": "peter-john-ramos-fuentes",
+    "name": "Peter John Ramos",
+    "mvpNumber": null,
+    "position": "Pívot",
+    "teamName": "Brujos de Guayama",
+    "franchiseSlugs": [
+      "brujos"
+    ]
+  },
+  {
+    "year": 2014,
+    "playerId": "2514",
+    "slug": "walter-hodge-jr",
+    "name": "Walter Hodge",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Capitanes de Arecibo",
+    "franchiseSlugs": [
+      "capitanes"
+    ]
+  },
+  {
+    "year": 2013,
+    "playerId": "2697",
+    "slug": "mike-harris",
+    "name": "Mike Harris",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 2012,
+    "playerId": "2569",
+    "slug": "donta-smith",
+    "name": "Donta Smith",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Indios de Mayagüez",
+    "franchiseSlugs": [
+      "indios"
+    ]
+  },
+  {
+    "year": 2011,
+    "playerId": "382",
+    "slug": "christian-dalmau-santana",
+    "name": "Christian Dalmau",
+    "mvpNumber": 3,
+    "position": "Base",
+    "teamName": "Vaqueros de Bayamón",
+    "franchiseSlugs": [
+      "vaqueros"
+    ]
+  },
+  {
+    "year": 2010,
+    "playerId": "382",
+    "slug": "christian-dalmau-santana",
+    "name": "Christian Dalmau",
+    "mvpNumber": 2,
+    "position": "Base",
+    "teamName": "Vaqueros de Bayamón",
+    "franchiseSlugs": [
+      "vaqueros"
+    ]
+  },
+  {
+    "year": 2009,
+    "playerId": "2354",
+    "slug": "jesse-pellot-rosa",
+    "name": "Jesse Pellot-Rosa",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Atléticos de San Germán",
+    "franchiseSlugs": [
+      "atleticos"
+    ]
+  },
+  {
+    "year": 2008,
+    "playerId": "158",
+    "slug": "ansel-guzman-hernaiz",
+    "name": "Ánsel Guzmán",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Grises de Humacao",
+    "franchiseSlugs": [
+      "grises"
+    ]
+  },
+  {
+    "year": 2007,
+    "playerId": "151",
+    "slug": "angelo-reyes-canales",
+    "name": "Angelo Reyes",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Gigantes de Carolina",
+    "franchiseSlugs": [
+      "gigantes"
+    ]
+  },
+  {
+    "year": 2006,
+    "playerId": "2290",
+    "slug": "wilfredo-pagan-roque",
+    "name": "Wilfredo Pagán",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Brujos de Guayama",
+    "franchiseSlugs": [
+      "brujos"
+    ]
+  },
+  {
+    "year": 2005,
+    "playerId": "2074",
+    "slug": "roberto-jose-bobby-joe-hatton-negron",
+    "name": "Bobby Joe Hatton",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 2004,
+    "playerId": "382",
+    "slug": "christian-dalmau-santana",
+    "name": "Christian Dalmau",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Atléticos de San Germán",
+    "franchiseSlugs": [
+      "atleticos"
+    ]
+  },
+  {
+    "year": 2003,
+    "playerId": "284",
+    "slug": "carlos-escalera-gonzalez",
+    "name": "Carlos Escalera",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Maratonistas de Coamo",
+    "franchiseSlugs": [
+      "maratonistas"
+    ]
+  },
+  {
+    "year": 2002,
+    "playerId": "1271",
+    "slug": "jose-rafael-piculin-ortiz-rijos",
+    "name": "José Ortiz",
+    "mvpNumber": null,
+    "position": "Alero/Pívot",
+    "teamName": "Cangrejeros de Santurce",
+    "franchiseSlugs": [
+      "cangrejeros"
+    ]
+  },
+  {
+    "year": 2001,
+    "playerId": "1685",
+    "slug": "monty-wilson-wilder",
+    "name": "Monty Wilson",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Polluelos de Aibonito",
+    "franchiseSlugs": [
+      "polluelos"
+    ]
+  },
+  {
+    "year": 2000,
+    "playerId": "914",
+    "slug": "ian-lockhart-collie",
+    "name": "Ian Lockhart",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 1999,
+    "playerId": "172",
+    "slug": "anthony-tony-farmer",
+    "name": "Tony Farmer",
+    "mvpNumber": null,
+    "position": "Alero/Pívot",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1998,
+    "playerId": "1011",
+    "slug": "javier-antonio-tonito-colon-rodriguez",
+    "name": "Javier \"Tonito\" Colon",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1997,
+    "playerId": "498",
+    "slug": "eddie-casiano-ojeda",
+    "name": "Eddie Casiano",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Atléticos de San Germán",
+    "franchiseSlugs": [
+      "atleticos"
+    ]
+  },
+  {
+    "year": 1996,
+    "playerId": "1462",
+    "slug": "luis-allende-ruiz",
+    "name": "Luis Allende",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Criollos de Caguas",
+    "franchiseSlugs": [
+      "criollos"
+    ]
+  },
+  {
+    "year": 1995,
+    "playerId": "2076",
+    "slug": "roberto-bobby-rios-osorio",
+    "name": "Bobby Ríos",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1994,
+    "playerId": "989",
+    "slug": "james-carter-gaudino",
+    "name": "James Carter",
+    "mvpNumber": 2,
+    "position": "Base",
+    "teamName": "Brujos de Guayama",
+    "franchiseSlugs": [
+      "brujos"
+    ]
+  },
+  {
+    "year": 1993,
+    "playerId": "1584",
+    "slug": "mario-quijote-morales-micheo",
+    "name": "Mario \"Quijote\" Morales",
+    "mvpNumber": 4,
+    "position": "Alero",
+    "teamName": "Mets de Guaynabo",
+    "franchiseSlugs": [
+      "mets"
+    ]
+  },
+  {
+    "year": 1992,
+    "playerId": "759",
+    "slug": "frantz-volcy",
+    "name": "Frantz Volcy",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Atléticos de San Germán",
+    "franchiseSlugs": [
+      "atleticos"
+    ]
+  },
+  {
+    "year": 1991,
+    "playerId": "989",
+    "slug": "james-carter-gaudino",
+    "name": "James Carter",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Brujos de Guayama",
+    "franchiseSlugs": [
+      "brujos"
+    ]
+  },
+  {
+    "year": 1990,
+    "playerId": "508",
+    "slug": "edgar-leon-cruz",
+    "name": "Edgar de León",
+    "mvpNumber": null,
+    "position": "Alero/Pívot",
+    "teamName": "Cariduros de Fajardo",
+    "franchiseSlugs": [
+      "cariduros"
+    ]
+  },
+  {
+    "year": 1989,
+    "playerId": "1927",
+    "slug": "ramon-rivas-contreras",
+    "name": "Ramón Rivas",
+    "mvpNumber": null,
+    "position": "Alero/Pívot",
+    "teamName": "Gigantes de Carolina",
+    "franchiseSlugs": [
+      "gigantes"
+    ]
+  },
+  {
+    "year": 1988,
+    "playerId": "1575",
+    "slug": "mario-alberto-butler-graham",
+    "name": "Mario Butler",
+    "mvpNumber": null,
+    "position": "Pívot",
+    "teamName": "Titanes de Morovis",
+    "franchiseSlugs": [
+      "titanes"
+    ]
+  },
+  {
+    "year": 1987,
+    "playerId": "2089",
+    "slug": "rolando-frazer-thorne",
+    "name": "Rolando Frazer",
+    "mvpNumber": 2,
+    "position": "Alero/Pívot",
+    "teamName": "Polluelos de Aibonito",
+    "franchiseSlugs": [
+      "polluelos"
+    ]
+  },
+  {
+    "year": 1986,
+    "playerId": "788",
+    "slug": "george-torres-dougherty",
+    "name": "Georgie Torres",
+    "mvpNumber": 3,
+    "position": "Base/Alero",
+    "teamName": "Cariduros de Fajardo",
+    "franchiseSlugs": [
+      "cariduros"
+    ]
+  },
+  {
+    "year": 1985,
+    "playerId": "788",
+    "slug": "george-torres-dougherty",
+    "name": "Georgie Torres",
+    "mvpNumber": 2,
+    "position": "Base/Alero",
+    "teamName": "Cariduros de Fajardo",
+    "franchiseSlugs": [
+      "cariduros"
+    ]
+  },
+  {
+    "year": 1984,
+    "playerId": "788",
+    "slug": "george-torres-dougherty",
+    "name": "Georgie Torres",
+    "mvpNumber": null,
+    "position": "Base/Alero",
+    "teamName": "Cariduros de Fajardo",
+    "franchiseSlugs": [
+      "cariduros"
+    ]
+  },
+  {
+    "year": 1983,
+    "playerId": "1584",
+    "slug": "mario-quijote-morales-micheo",
+    "name": "Mario \"Quijote\" Morales",
+    "mvpNumber": 3,
+    "position": "Alero",
+    "teamName": "Mets de Guaynabo",
+    "franchiseSlugs": [
+      "mets"
+    ]
+  },
+  {
+    "year": 1982,
+    "playerId": "1584",
+    "slug": "mario-quijote-morales-micheo",
+    "name": "Mario \"Quijote\" Morales",
+    "mvpNumber": 2,
+    "position": "Alero",
+    "teamName": "Mets de Guaynabo",
+    "franchiseSlugs": [
+      "mets"
+    ]
+  },
+  {
+    "year": 1981,
+    "playerId": "2089",
+    "slug": "rolando-frazer-thorne",
+    "name": "Rolando Frazer",
+    "mvpNumber": null,
+    "position": "Alero/Pívot",
+    "teamName": "Polluelos de Aibonito",
+    "franchiseSlugs": [
+      "polluelos"
+    ]
+  },
+  {
+    "year": 1980,
+    "playerId": "1584",
+    "slug": "mario-quijote-morales-micheo",
+    "name": "Mario \"Quijote\" Morales",
+    "mvpNumber": null,
+    "position": "Alero",
+    "teamName": "Mets de Guaynabo",
+    "franchiseSlugs": [
+      "mets"
+    ]
+  },
+  {
+    "year": 1979,
+    "playerId": "2113",
+    "slug": "ruben-rodriguez-leon",
+    "name": "Rubén Rodríguez",
+    "mvpNumber": null,
+    "position": "Alero/Pívot",
+    "teamName": "Vaqueros de Bayamón",
+    "franchiseSlugs": [
+      "vaqueros"
+    ]
+  },
+  {
+    "year": 1978,
+    "playerId": "334",
+    "slug": "carlos-charlie-bermudez-torres",
+    "name": "Carlos \"Charlie\" Bermúdez",
+    "mvpNumber": null,
+    "position": "Pívot",
+    "teamName": "Indios de Canovanas",
+    "franchiseSlugs": [
+      "indios"
+    ]
+  },
+  {
+    "year": 1977,
+    "playerId": "863",
+    "slug": "hector-olivencia-mateo",
+    "name": "Hector Olivencia",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Criollos de Caguas",
+    "franchiseSlugs": [
+      "criollos"
+    ]
+  },
+  {
+    "year": 1976,
+    "playerId": "492",
+    "slug": "earl-brown",
+    "name": "Earl Brown",
+    "mvpNumber": null,
+    "position": "Pívot",
+    "teamName": "Cardenales de Río Piedras",
+    "franchiseSlugs": [
+      "cardenales"
+    ]
+  },
+  {
+    "year": 1975,
+    "playerId": "1206",
+    "slug": "jose-andres-josean-baez-camacho",
+    "name": "Josean Baez",
+    "mvpNumber": null,
+    "position": "Escolta",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1974,
+    "playerId": "993",
+    "slug": "james-thordsen-lasvitt",
+    "name": "Jimmy Thordsen",
+    "mvpNumber": null,
+    "position": "Ala-pívot",
+    "teamName": "Gallitos de Isabela",
+    "franchiseSlugs": [
+      "gallitos"
+    ]
+  },
+  {
+    "year": 1973,
+    "playerId": "1698",
+    "slug": "neftali-rivera-olivera",
+    "name": "Neftalí Rivera",
+    "mvpNumber": null,
+    "position": "Escolta",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 1972,
+    "playerId": "1962",
+    "slug": "raymond-dalmau-perez",
+    "name": "Raymond Dalmau",
+    "mvpNumber": 3,
+    "position": "Ala-Pívot",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 1971,
+    "playerId": "2200",
+    "slug": "teofilo-teo-cruz-downs",
+    "name": "Teófilo Cruz",
+    "mvpNumber": 4,
+    "position": "Pívot",
+    "teamName": "Cangrejeros de Santurce",
+    "franchiseSlugs": [
+      "cangrejeros"
+    ]
+  },
+  {
+    "year": 1970,
+    "playerId": "2200",
+    "slug": "teofilo-teo-cruz-downs",
+    "name": "Teófilo Cruz",
+    "mvpNumber": 3,
+    "position": "Pívot",
+    "teamName": "Cangrejeros de Santurce",
+    "franchiseSlugs": [
+      "cangrejeros"
+    ]
+  },
+  {
+    "year": 1969,
+    "playerId": "1962",
+    "slug": "raymond-dalmau-perez",
+    "name": "Raymond Dalmau",
+    "mvpNumber": 2,
+    "position": "Ala-Pívot",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 1968,
+    "playerId": "1962",
+    "slug": "raymond-dalmau-perez",
+    "name": "Raymond Dalmau",
+    "mvpNumber": null,
+    "position": "Ala-Pívot",
+    "teamName": "Piratas de Quebradillas",
+    "franchiseSlugs": [
+      "piratas"
+    ]
+  },
+  {
+    "year": 1967,
+    "playerId": "2200",
+    "slug": "teofilo-teo-cruz-downs",
+    "name": "Teófilo Cruz",
+    "mvpNumber": 2,
+    "position": "Pívot",
+    "teamName": "Cangrejeros de Santurce",
+    "franchiseSlugs": [
+      "cangrejeros"
+    ]
+  },
+  {
+    "year": 1966,
+    "playerId": "974",
+    "slug": "jaime-frontera-colley",
+    "name": "Jaime Frontera",
+    "mvpNumber": null,
+    "position": "Base/Alero",
+    "teamName": "Capitanes de Arecibo",
+    "franchiseSlugs": [
+      "capitanes"
+    ]
+  },
+  {
+    "year": 1965,
+    "playerId": "2024",
+    "slug": "richard-richie-pietri-villanueva",
+    "name": "Richie Pietri",
+    "mvpNumber": null,
+    "position": null,
+    "teamName": "Atléticos de San Germán",
+    "franchiseSlugs": [
+      "atleticos"
+    ]
+  },
+  {
+    "year": 1964,
+    "playerId": "1088",
+    "slug": "johnny-el-indio-baez",
+    "name": "Juan Báez",
+    "mvpNumber": 3,
+    "position": "Pívot",
+    "teamName": "Cardenales de Río Piedras",
+    "franchiseSlugs": [
+      "cardenales"
+    ]
+  },
+  {
+    "year": 1963,
+    "playerId": "1088",
+    "slug": "johnny-el-indio-baez",
+    "name": "Juan Báez",
+    "mvpNumber": 2,
+    "position": "Pívot",
+    "teamName": "Cardenales de Río Piedras",
+    "franchiseSlugs": [
+      "cardenales"
+    ]
+  },
+  {
+    "year": 1962,
+    "playerId": "2200",
+    "slug": "teofilo-teo-cruz-downs",
+    "name": "Teófilo Cruz",
+    "mvpNumber": null,
+    "position": "Pívot",
+    "teamName": "Cangrejeros de Santurce",
+    "franchiseSlugs": [
+      "cangrejeros"
+    ]
+  },
+  {
+    "year": 1961,
+    "playerId": "2216",
+    "slug": "tomas-guabina-gutierrez",
+    "name": "Tomás \"Guabina\" Gutiérrez",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1960,
+    "playerId": "1327",
+    "slug": "juan-pachin-vicens-sastre",
+    "name": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": 4,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1959,
+    "playerId": "2315",
+    "slug": "william-bill-mccadney",
+    "name": "Bill McCadney",
+    "mvpNumber": null,
+    "position": "Pívot",
+    "teamName": "Capitanes de Arecibo",
+    "franchiseSlugs": [
+      "capitanes"
+    ]
+  },
+  {
+    "year": 1958,
+    "playerId": "1327",
+    "slug": "juan-pachin-vicens-sastre",
+    "name": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": 3,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1957,
+    "playerId": "1088",
+    "slug": "johnny-el-indio-baez",
+    "name": "Juan Báez",
+    "mvpNumber": null,
+    "position": "Pívot",
+    "teamName": "Cardenales de Río Piedras",
+    "franchiseSlugs": [
+      "cardenales"
+    ]
+  },
+  {
+    "year": 1956,
+    "playerId": "1892",
+    "slug": "rafael-valle",
+    "name": "Rafael Valle",
+    "mvpNumber": null,
+    "position": "Ala-pívot",
+    "teamName": "Santos de San Juan",
+    "franchiseSlugs": [
+      "santos"
+    ]
+  },
+  {
+    "year": 1955,
+    "playerId": "1943",
+    "slug": "raul-tinajon-feliciano-rodriguez",
+    "name": "Raúl \"Tinajón\" Feliciano",
+    "mvpNumber": 2,
+    "position": "Base",
+    "teamName": "Cardenales de Río Piedras",
+    "franchiseSlugs": [
+      "cardenales"
+    ]
+  },
+  {
+    "year": 1954,
+    "playerId": "1327",
+    "slug": "juan-pachin-vicens-sastre",
+    "name": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": 2,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1953,
+    "playerId": "1176",
+    "slug": "jose-fufi-santori-coll",
+    "name": "Fufi Santori",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Gallitos de la UPR",
+    "franchiseSlugs": [
+      "gallitos-upr"
+    ]
+  },
+  {
+    "year": 1952,
+    "playerId": "1327",
+    "slug": "juan-pachin-vicens-sastre",
+    "name": "Juan \"Pachín\" Vicéns",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Leones de Ponce",
+    "franchiseSlugs": [
+      "leones"
+    ]
+  },
+  {
+    "year": 1951,
+    "playerId": "1943",
+    "slug": "raul-tinajon-feliciano-rodriguez",
+    "name": "Raúl \"Tinajón\" Feliciano",
+    "mvpNumber": null,
+    "position": "Base",
+    "teamName": "Gallitos de la UPR",
+    "franchiseSlugs": [
+      "gallitos-upr"
+    ]
+  }
+]

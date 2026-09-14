@@ -1,0 +1,3282 @@
+[
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "7c683bd8-1642-11f1-8d6f-71bf4a3a1881",
+      "name": "Admiral Schofield",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d39ad371ba1745b9811d69b4417c7363",
+      "dob": "1997-03-30",
+      "nationality": "GBR",
+      "height": 196
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "3bfeeaf7-2479-11f1-a0c3-c545e4dec937",
+      "name": "Alejandro Ralat",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c005454361a4491db262b14fe21dbba3",
+      "dob": "2000-11-08",
+      "nationality": "PRI",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "21"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cadd8eeb-ca02-11f0-a598-affdf83cc02f",
+      "name": "Alejandro Vazquez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/165b862dec864bc68968fa9b04147f8f",
+      "dob": "2000-10-21",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ed9cfe96-ca01-11f0-99c2-a99038a1fbbd",
+      "name": "Alex Abreu",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/38f43bff777048e9ab2feabb678880ad",
+      "dob": "1991-08-14",
+      "nationality": null,
+      "height": 180
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "21"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "a3f8823e-ca02-11f0-82f5-2f7d6da7cc8d",
+      "name": "Alexander Kappos",
+      "nickname": "Alex Kappos",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ff13a74f228a4f30b77210cd0b79784a",
+      "dob": "1997-07-26",
+      "nationality": "PUR",
+      "height": 208
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "14"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "a40ef03c-ca02-11f0-9fb4-2f7d6da7cc8d",
+      "name": "Alfonso Plummer",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/92b1a63568984960989c21a72792e017",
+      "dob": "1997-09-04",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": null,
+    "jerseyNumber": "9"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "c0586fae-ca02-11f0-95b8-21515a92fdd7",
+      "name": "Andre Curbelo",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/0ae765ceaf6040589f2ed63e0eea9f2e",
+      "dob": "2001-10-13",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "11"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "edca4ef4-ca01-11f0-93e9-a99038a1fbbd",
+      "name": "Angel Matias",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/6265dcf2c07048758dd38481c9b6e509",
+      "dob": "1992-07-16",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "35"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "7df822ab-ca02-11f0-ba16-71bd8dec4466",
+      "name": "Angel Rodriguez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/75825c6d15f34d029c12f289525a346c",
+      "dob": "1992-05-12",
+      "nationality": "PUR",
+      "height": 178
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "d2d46de7-5307-11f1-b365-d5f92264f3ed",
+      "name": "Anthony Cowan Jr",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1997-10-07",
+      "nationality": "USA",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "26"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a409f489-ca02-11f0-8674-2f7d6da7cc8d",
+      "name": "Antonio Gordon",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/5c13db957aa1457b8d3a928234771205",
+      "dob": "2001-03-06",
+      "nationality": "PUR",
+      "height": 205
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "35"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "af13f1e5-ca02-11f0-b48c-0b8ba5d37ddd",
+      "name": "Antonio Ralat",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/e0413e8be0d048cdb84c8517189c8b2e",
+      "dob": "1996-10-24",
+      "nationality": "PUR",
+      "height": 191
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "9"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "27546704-6516-11f1-bf31-afceff6ae04b",
+      "name": "Arguster Daniels IV",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1998-07-18",
+      "nationality": "SRB",
+      "height": 196
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "21"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "146d8983-ca02-11f0-9ee0-0156807f34ad",
+      "name": "Arnaldo Toro",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1969-10-20",
+      "nationality": null,
+      "height": null
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "12"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a3fc82cb-ca02-11f0-86a3-2f7d6da7cc8d",
+      "name": "Arnaldo Toro Barea",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1997-10-28",
+      "nationality": "PUR",
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "12"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "a33c0ced-ca02-11f0-a201-2f7d6da7cc8d",
+      "name": "Benito Santiago Jr.",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d33e59a406564afdb43bfe811721302d",
+      "dob": "1989-06-22",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "22"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "935b43e4-2461-11f1-974e-b76fe5e34420",
+      "name": "Bradley Camacho",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/4aa72ceb798340fa9c78c06bd3624aab",
+      "dob": "2003-10-10",
+      "nationality": "PRI",
+      "height": 198
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cb2f025f-ca02-11f0-b561-affdf83cc02f",
+      "name": "Brady Manek",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1998-09-04",
+      "nationality": "USA",
+      "height": 206
+    },
+    "playingPosition": null,
+    "jerseyNumber": "45"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a35c5594-ca02-11f0-99e4-2f7d6da7cc8d",
+      "name": "Brandon Boyd",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1997-01-01",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "bf30486c-ca02-11f0-ad4e-21515a92fdd7",
+      "name": "Brandon Knight",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7bf6e43cb09648e8a7371bdf133804ac",
+      "dob": "1991-12-02",
+      "nationality": "USA",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "20"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "bf39260d-ca02-11f0-9fb4-21515a92fdd7",
+      "name": "Bryan Gonzalez Colon",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/06d42f1c9a2245199303c9b3f9216e96",
+      "dob": "2000-04-09",
+      "nationality": "PUR",
+      "height": 188
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "17"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "7258aa6d-2498-11f1-a8b6-510dd6b8e584",
+      "name": "Bryan Powell",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/40c41514f83c4677b5492c9afb519d1c",
+      "dob": "1999-01-01",
+      "nationality": "PRI",
+      "height": 198
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "979f767c-ca02-11f0-a438-3d891f4e2262",
+      "name": "Cady Lalanne",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1992-04-22",
+      "nationality": "USA",
+      "height": 208
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "ed6ff290-ca01-11f0-afbe-a99038a1fbbd",
+      "name": "Carlos Emory",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/6a8a40d2dbdf4dbe83fe49720a69c8c2",
+      "dob": "1991-10-11",
+      "nationality": "PUR",
+      "height": 200
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "30"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ed7f7858-ca01-11f0-88f9-a99038a1fbbd",
+      "name": "Carlos Yao Lopez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7b1f113ae2a6447ca56c61e917adcc47",
+      "dob": "1990-06-23",
+      "nationality": "PUR",
+      "height": 208
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "10"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a3f0256a-ca02-11f0-8f3e-2f7d6da7cc8d",
+      "name": "Cheick Diallo",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/2ad4f29c7a50469fb23e044541f714cd",
+      "dob": "1996-09-13",
+      "nationality": "MLI",
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "33"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "fc720026-ca01-11f0-baec-f7854434301d",
+      "name": "Chinanu Onuaku",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/94a95a7e144b4246a7c045c02fbc062e",
+      "dob": "1996-11-01",
+      "nationality": "USA",
+      "height": 208
+    },
+    "playingPosition": "FC",
+    "jerseyNumber": "32"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "7ded71c5-ca02-11f0-aab5-71bd8dec4466",
+      "name": "Chris Brady",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c1a28d3cc5c74a50b620bc108df1638a",
+      "dob": "1995-09-15",
+      "nationality": "PUR",
+      "height": 208
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "43"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ee9181e9-ca01-11f0-abe5-a99038a1fbbd",
+      "name": "Chris Gaston",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7f30024b506d465a83c4f35df6bd7ce6",
+      "dob": "1989-04-20",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "23"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "7de05246-ca02-11f0-b62b-71bd8dec4466",
+      "name": "Chris Ortiz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/62ad1ada8e9b4676b04cd412c631c94a",
+      "dob": "1993-04-02",
+      "nationality": "PUR",
+      "height": 203
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "6"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a3bcf688-ca02-11f0-8611-2f7d6da7cc8d",
+      "name": "Christian M. Negron",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/4ef5691f06af47e38b55de83f21b0b43",
+      "dob": "1998-11-24",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "FC",
+    "jerseyNumber": "22"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "7dd34f72-ca02-11f0-8874-71bd8dec4466",
+      "name": "Christian Pizarro Rios",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/12450f69e5e7463281a92a57b0665d45",
+      "dob": "1995-02-16",
+      "nationality": "PUR",
+      "height": 180
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "30"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "e976bbfa-24a6-11f1-90f6-593178550657",
+      "name": "Corey Jae Crowder",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/887f52e6c6804a29aea63c14d3c366a1",
+      "dob": "1990-07-06",
+      "nationality": "USA",
+      "height": 198
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "99"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "a40ebc1a-1415-11f1-aca4-55e2d81761db",
+      "name": "Corey McKeithan",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/590b5d2d3a16470d8b98bbb05a7165a1",
+      "dob": "2001-08-07",
+      "nationality": "PRI",
+      "height": 180
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "37848275-63f7-11f1-98f2-d7413c0ab7a7",
+      "name": "Damian Jones",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1995-06-30",
+      "nationality": "USA",
+      "height": 208
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "30"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "b2ed8a5c-2ddf-11f1-9e51-ab941581d0bf",
+      "name": "Daniel Rivera",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/bff93807901e43e7bddbaacfe63e8680",
+      "dob": "2002-11-03",
+      "nationality": "PRI",
+      "height": 201
+    },
+    "playingPosition": "FC",
+    "jerseyNumber": "23"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "d455b3f8-ca02-11f0-b7cd-3585e5df5da0",
+      "name": "Daniel Rosado",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2004-05-22",
+      "nationality": "PUR",
+      "height": null
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "41"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cb0d0c93-ca02-11f0-a314-affdf83cc02f",
+      "name": "Darius Bazley",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/e3e986cbb60a4d6aaeb78a6343037c74",
+      "dob": "2000-06-12",
+      "nationality": "USA",
+      "height": 206
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "35"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ce3829f0-ca02-11f0-97ca-affdf83cc02f",
+      "name": "David Scott James Jr",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1996-11-07",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "31"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "7dc65cd0-ca02-11f0-9c93-71bd8dec4466",
+      "name": "Davon Jefferson",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1986-11-03",
+      "nationality": "USA",
+      "height": 206
+    },
+    "playingPosition": null,
+    "jerseyNumber": "41"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "7dc65cd0-ca02-11f0-9c93-71bd8dec4466",
+      "name": "Davon Jefferson",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1986-11-03",
+      "nationality": "USA",
+      "height": 206
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "41"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "0ce0796b-6a41-11f1-a4e9-77899c34f87a",
+      "name": "Deandre Pinckney",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2000-02-29",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "ed59e864-ca01-11f0-933c-a99038a1fbbd",
+      "name": "Denis Clemente",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1986-04-10",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "16"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7dcea94f-ca02-11f0-a88d-71bd8dec4466",
+      "name": "Derek Reese",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/6b9da0d2a4af41c28f771bec4c5862f6",
+      "dob": "1993-03-11",
+      "nationality": "PUR",
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "15"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "b2d7e523-17d0-11f1-b50d-0dc0e012b264",
+      "name": "Derrick Walton",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/2fbcc5373246462aa32db8018abe9538",
+      "dob": "1995-04-03",
+      "nationality": "USA",
+      "height": 183
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "7"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a2ca7961-ca02-11f0-b627-2f7d6da7cc8d",
+      "name": "Devin Williams",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/4d0fec861a1d460cacf76d703855d1a6",
+      "dob": "1994-05-01",
+      "nationality": "PUR",
+      "height": 206
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "41"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "ee2b5c1e-ca01-11f0-9b9c-a99038a1fbbd",
+      "name": "Devon Collier",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d765475514824cc7a29d613a2ba8aaed",
+      "dob": "1991-01-21",
+      "nationality": "PUR",
+      "height": 203
+    },
+    "playingPosition": "FC",
+    "jerseyNumber": "44"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bfe7da9f-ca02-11f0-b665-21515a92fdd7",
+      "name": "Diego Gonzalez Pellot",
+      "nickname": "Diego Gonzalez",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/cf96c550e5824b2da4f290a2a11938f2",
+      "dob": "2001-08-02",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "a418ff83-ca02-11f0-9207-2f7d6da7cc8d",
+      "name": "Dimencio Vaughn",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/f8c15613366f4dcf9e67c9549a48bc6d",
+      "dob": "1997-02-18",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "14"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "c4925308-5302-11f1-ae80-d1040c4fa12b",
+      "name": "D J Wilson",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1996-02-19",
+      "nationality": "USA",
+      "height": 208
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "9"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a42157f6-ca02-11f0-b0eb-2f7d6da7cc8d",
+      "name": "Dyondre Dominguez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/16f2c02930a447098012e53e9ebaa562",
+      "dob": "2000-09-08",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "45"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a031b4ab-5a06-11f1-9657-f3a3ea200250",
+      "name": "Elijah Hughes",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1998-03-10",
+      "nationality": "USA",
+      "height": 196
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "33"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "7dbdd027-ca02-11f0-96e1-71bd8dec4466",
+      "name": "Emmanuel Andujar",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/10b51eb2acfe4e2481cc543defe333e2",
+      "dob": "1993-01-27",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "bca86e9e-ca02-11f0-8502-21515a92fdd7",
+      "name": "Emmanuel Maldonado",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/3c4ab944ab534769b2e7bf687b857fc7",
+      "dob": "2002-07-18",
+      "nationality": "PUR",
+      "height": 191
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "10"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "bf6a1d13-ca02-11f0-b875-21515a92fdd7",
+      "name": "Emmanuel Mudiay",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/fbb45d916b4d4cbbbfbe95caddcd4668",
+      "dob": "1996-03-05",
+      "nationality": "USA",
+      "height": 191
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "44"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "fcbd239c-ca01-11f0-9192-f7854434301d",
+      "name": "Enrique Ramos",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ae2b5dce05614bc68b198842bb1c2e03",
+      "dob": "1989-09-14",
+      "nationality": null,
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "51"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a3e67dfa-ca02-11f0-8855-2f7d6da7cc8d",
+      "name": "Eric Ayala",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1999-01-02",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "55"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "27717f65-5985-11f1-8501-3bb08c20c611",
+      "name": "Eugene German",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1997-12-02",
+      "nationality": "USA",
+      "height": 183
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "4"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a32bc140-ca02-11f0-b09d-2f7d6da7cc8d",
+      "name": "Evander Ortiz Colon",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/177338157d3840919cbe10e7f5df2fe7",
+      "dob": "1997-07-14",
+      "nationality": "PUR",
+      "height": 180
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "a32fa43a-ca02-11f0-ae54-2f7d6da7cc8d",
+      "name": "Felix A. Rivera Vega",
+      "nickname": "Felix Rivera",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/b393a11461ce46188a9a64c43b04550b",
+      "dob": "1997-02-01",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cab06468-ca02-11f0-8657-affdf83cc02f",
+      "name": "Fernando Caballero Acevedo",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8ffa45af5ddc44eaa649aae92d9ef9d8",
+      "dob": "2001-08-06",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "33"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "fc07e320-ca01-11f0-b444-f7854434301d",
+      "name": "Gary Browne",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a72b80d3f0d74b25bcc20d34169adffd",
+      "dob": "1993-03-24",
+      "nationality": null,
+      "height": 185
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "14"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "2c5bf8dc-17d1-11f1-ad47-fb48b2155318",
+      "name": "Geancarlo Peguero",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/3164f63e5e4d4de7961f57434cb3a536",
+      "dob": "2004-06-02",
+      "nationality": "PRI",
+      "height": 196
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "44"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "2c5bf8dc-17d1-11f1-ad47-fb48b2155318",
+      "name": "Geancarlo Peguero",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/3164f63e5e4d4de7961f57434cb3a536",
+      "dob": "2004-06-02",
+      "nationality": "PRI",
+      "height": 196
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "38"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "cb3e1055-ca02-11f0-9d7a-affdf83cc02f",
+      "name": "George Alexander Hamilton",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/eed9432c24a44362875f1e7c812ba845",
+      "dob": "1993-10-05",
+      "nationality": "USA",
+      "height": 193
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "55"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a3d9dbb0-ca02-11f0-af39-2f7d6da7cc8d",
+      "name": "George Conditt IV",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/4588a8c2d9aa4a7ea2dde3505f93987b",
+      "dob": "2000-08-22",
+      "nationality": "PUR",
+      "height": 208
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "4"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "cdc40daa-ca02-11f0-8b02-affdf83cc02f",
+      "name": "Gerardo Texeira",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/dd5803535ffa4375a65e4f23839a1df8",
+      "dob": "1998-03-07",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "51"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bffd1078-ca02-11f0-ad3e-21515a92fdd7",
+      "name": "Giancarlo Rosado",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/1e6c1415a1de4eb091e1c63753ae3601",
+      "dob": "2001-09-15",
+      "nationality": "PUR",
+      "height": 206
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7dd7d571-ca02-11f0-984f-71bd8dec4466",
+      "name": "Gian Clavell",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1993-11-26",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "bff07457-ca02-11f0-b6b1-21515a92fdd7",
+      "name": "Gianfranco Grafals",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8b02e5bd24b24ba0b0e877cbb3ccdab6",
+      "dob": "2000-06-13",
+      "nationality": "PUR",
+      "height": 191
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "21"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "eda1d6a2-ca01-11f0-b816-a99038a1fbbd",
+      "name": "Gilberto Clavell",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1989-08-10",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": null,
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "cb4c339a-ca02-11f0-b098-affdf83cc02f",
+      "name": "Grant Basile",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2000-04-19",
+      "nationality": "ITA",
+      "height": 206
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bf8c9d74-ca02-11f0-ba22-21515a92fdd7",
+      "name": "Harold Perez Abreu",
+      "nickname": "Harold Perez",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/80bec274a49a4dcfa5766d16a96b79ce",
+      "dob": "2003-10-19",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "a33feed2-ca02-11f0-b058-2f7d6da7cc8d",
+      "name": "Hiram Huertas",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/f02fdadb8cc04aa88c11163018364ea0",
+      "dob": "1997-02-13",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "01b47007-2ddf-11f1-9b70-e3bccb60dd6c",
+      "name": "Hunter Tyson",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/9d2da8fbe6da424786d2bb0ffab1599e",
+      "dob": "2000-06-13",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "5"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "d4ad2b7c-ca02-11f0-930f-3585e5df5da0",
+      "name": "Ian Clark",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1991-03-07",
+      "nationality": "USA",
+      "height": 190
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "21"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ed8c2fd8-ca01-11f0-b493-a99038a1fbbd",
+      "name": "Isaac Sosa",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8e560a7f7336479b910c74fe894a1fac",
+      "dob": "1990-02-16",
+      "nationality": "PUR",
+      "height": 190
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "22"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "ed8c2fd8-ca01-11f0-b493-a99038a1fbbd",
+      "name": "Isaac Sosa",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8e560a7f7336479b910c74fe894a1fac",
+      "dob": "1990-02-16",
+      "nationality": "PUR",
+      "height": 190
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": null
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ed8c2fd8-ca01-11f0-b493-a99038a1fbbd",
+      "name": "Isaac Sosa",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8e560a7f7336479b910c74fe894a1fac",
+      "dob": "1990-02-16",
+      "nationality": "PUR",
+      "height": 190
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "00"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cb477a3a-ca02-11f0-9adf-affdf83cc02f",
+      "name": "Isaiah Hicks",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/3710919fbbc441f08051dd79135235fc",
+      "dob": "1994-07-24",
+      "nationality": "USA",
+      "height": 206
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "32"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "bf0f1c01-ca02-11f0-a147-21515a92fdd7",
+      "name": "Isaiah Palermo",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/1363c6f43f914d6a8a73a793611fab2f",
+      "dob": "2000-06-13",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "a38e7f17-ca02-11f0-bfef-2f7d6da7cc8d",
+      "name": "Isaiah Pineiro",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/61aa49f4258842a5ae20460600526635",
+      "dob": "1995-02-02",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "82f72200-3a6f-11f1-8b49-23733e0fbcbd",
+      "name": "Isiah Gaiter",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2000-05-05",
+      "nationality": "PRI",
+      "height": 191
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "6"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "edadf191-ca01-11f0-aea3-a99038a1fbbd",
+      "name": "Ivan Gandia",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/069f81ac81a1435ca3be0da456b413c9",
+      "dob": "1997-09-14",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "10"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "e9548c20-17d0-11f1-adbb-a50b079a2484",
+      "name": "Jack Edward McVeigh",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/5c34611ca79440718696d81fdde1d648",
+      "dob": "1996-06-27",
+      "nationality": "AUS",
+      "height": 203
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "17"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a401330a-ca02-11f0-8b84-2f7d6da7cc8d",
+      "name": "Jacob Wiley",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1994-09-04",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "31"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ca92bb86-ca02-11f0-b422-affdf83cc02f",
+      "name": "Ja Kair Sanchez",
+      "nickname": "Jakair Sanchez",
+      "avatarUrl": null,
+      "dob": "1999-12-15",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "13"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "ea0ddbeb-337e-11f1-a344-e9d392d1d8b1",
+      "name": "Jalen Bernard Crutcher",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1999-07-18",
+      "nationality": "USA",
+      "height": 188
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "20"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "8e63ae92-3c2b-11f1-9aaa-eb69a6eca77f",
+      "name": "Jameer Nelson Jr",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d349db865b93470289187aaf9459b45e",
+      "dob": "2001-08-07",
+      "nationality": "USA",
+      "height": 185
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "19"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "8e63ae92-3c2b-11f1-9aaa-eb69a6eca77f",
+      "name": "Jameer Nelson Jr",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d349db865b93470289187aaf9459b45e",
+      "dob": "2001-08-07",
+      "nationality": "USA",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "22"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "bf65de1e-ca02-11f0-920c-21515a92fdd7",
+      "name": "James Michael Scott",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1988-07-16",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": null,
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "54498d3c-2498-11f1-ad24-5d71b9371255",
+      "name": "Jampier Lezcano",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/0849c20cba544ab6887c1b62404fe8e0",
+      "dob": "2005-06-06",
+      "nationality": "PRI",
+      "height": 188
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "77"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a41d4c67-ca02-11f0-a47e-2f7d6da7cc8d",
+      "name": "Janiel Jafet Romer",
+      "nickname": "JJ Romer",
+      "avatarUrl": null,
+      "dob": "1999-12-09",
+      "nationality": "PUR",
+      "height": 206
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "4"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "ed904352-ca01-11f0-8d06-a99038a1fbbd",
+      "name": "Jared Ruiz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/eb13b0a1dbaa474d811d168cdb00c225",
+      "dob": "1992-09-14",
+      "nationality": null,
+      "height": 194
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ed904352-ca01-11f0-8d06-a99038a1fbbd",
+      "name": "Jared Ruiz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/eb13b0a1dbaa474d811d168cdb00c225",
+      "dob": "1992-09-14",
+      "nationality": null,
+      "height": 194
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "29"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a414d8b2-ca02-11f0-875d-2f7d6da7cc8d",
+      "name": "Jase Febres",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1999-07-28",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "15"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "d4ded5c2-ca02-11f0-b6d3-3585e5df5da0",
+      "name": "Jassel Perez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ea8d5d47791149fba9ea6cd02f18af68",
+      "dob": "2001-09-12",
+      "nationality": "DOM",
+      "height": 194
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "d4944a79-ca02-11f0-8048-3585e5df5da0",
+      "name": "Javier Ezquerra",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/62bdd4f1faec486d83437511022bb12c",
+      "dob": "2002-01-03",
+      "nationality": "PUR",
+      "height": 188
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "22"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "ef2a4aba-ca01-11f0-aa76-a99038a1fbbd",
+      "name": "Javier Mojica",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c0a6dcfbdf9049159898b354f470db98",
+      "dob": "1984-08-31",
+      "nationality": null,
+      "height": 185
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "44"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "cad8b0d6-247e-11f1-a7bb-97b8f1c4c20c",
+      "name": "Javon Bennet",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2003-01-01",
+      "nationality": "PRI",
+      "height": 178
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "feacc94f-2dd3-11f1-933f-6d766f833f80",
+      "name": "Jaylen Nowell",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/013d64cb836b4649a61280dbcfd97cd6",
+      "dob": "1999-07-09",
+      "nationality": "USA",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "32138abe-24a6-11f1-8478-1bdf8ba0f611",
+      "name": "Jaylin Galloway",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2002-12-21",
+      "nationality": "AUS",
+      "height": 198
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a36dd8c7-ca02-11f0-b4f3-2f7d6da7cc8d",
+      "name": "Jaysean Paige",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ee1bc039e59741b29eae99c039d0f970",
+      "dob": "1994-07-30",
+      "nationality": "PUR",
+      "height": 188
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "6"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "64950be4-262c-11f1-9979-b755b1382475",
+      "name": "Jay Shawn Alvarez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/1facc1164c0b4afda231889f885a6c7a",
+      "dob": "2001-08-05",
+      "nationality": "PRI",
+      "height": 196
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "32"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "fb7d9bec-ca01-11f0-ad87-f7854434301d",
+      "name": "Jeff Early Jr.",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/462e71e860c4495d970d500fe57d2f54",
+      "dob": "1988-09-02",
+      "nationality": "PUR",
+      "height": 191
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a3de5035-ca02-11f0-b562-2f7d6da7cc8d",
+      "name": "Jesus A. Cruz Galarza",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/157697e2db854aaaa1b3c7357003a095",
+      "dob": "1998-02-12",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "20"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "b883847b-17d1-11f1-8e1a-7d6af3cbc826",
+      "name": "Jevin Nikolas Muniz",
+      "nickname": "Jevin Muniz",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7586946c1ac54d2993ece8b903ee5fef",
+      "dob": "2003-04-08",
+      "nationality": "USA",
+      "height": 198
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "55"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "ed63b22f-ca01-11f0-a33c-a99038a1fbbd",
+      "name": "Jezreel De Jesus",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8d6ad856e0434258abc558656a5f78ba",
+      "dob": "1991-05-05",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "cad8fad3-ca02-11f0-9c96-affdf83cc02f",
+      "name": "Joel Soriano",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2000-01-30",
+      "nationality": "DOM",
+      "height": 208
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "99584665-1642-11f1-aa32-3158067e0c3b",
+      "name": "John Brown III",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/59bace85d0bc4c14809ff926d9f3f344",
+      "dob": "1992-01-28",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a425baf0-ca02-11f0-b2c7-2f7d6da7cc8d",
+      "name": "Johned Walker",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/776c64f3e1ec47e1a70d1bf2c2e9e640",
+      "dob": "2003-05-20",
+      "nationality": "PUR",
+      "height": 180
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "30"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "eda624c4-ca01-11f0-82e5-a99038a1fbbd",
+      "name": "John Holland",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/6ac7e03aec1b45c0807ffc40d08b0d68",
+      "dob": "1988-11-06",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "23"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bfcc3d73-ca02-11f0-b641-21515a92fdd7",
+      "name": "John Jenkins lll",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1991-03-06",
+      "nationality": "USA",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "45"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ee855f84-ca01-11f0-9fe0-a99038a1fbbd",
+      "name": "Jonathan Garcia",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a8a698cc7e81455cadfbdb1aa0838cba",
+      "dob": "1987-12-17",
+      "nationality": "PUR",
+      "height": 178
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "7"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "edbf7e7d-ca01-11f0-99e9-a99038a1fbbd",
+      "name": "Jonathan Rodriguez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/f0d5a8ffef4b4c8ba1afe00f2ecc9456",
+      "dob": "1987-11-03",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bff8d80e-ca02-11f0-840e-21515a92fdd7",
+      "name": "Jonathan Zhao Olmos",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2003-07-29",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "16"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "bcd0226f-ca02-11f0-ae26-21515a92fdd7",
+      "name": "Jordan Daniel Cintron",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/f231df75c7484fd5bb5919ecde2c2c8a",
+      "dob": "1998-06-11",
+      "nationality": "PUR",
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "20"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a3a04834-ca02-11f0-af16-2f7d6da7cc8d",
+      "name": "Jordan Murphy",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/e741b71868a04b248958d84b74e2fd16",
+      "dob": "1997-02-28",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "34"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "ed67c14f-ca01-11f0-81eb-a99038a1fbbd",
+      "name": "Jorge Brian Diaz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7caac43acb98436f885737f85ade4530",
+      "dob": "1989-11-13",
+      "nationality": "PRI",
+      "height": 211
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "11"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "ed67c14f-ca01-11f0-81eb-a99038a1fbbd",
+      "name": "Jorge Brian Diaz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7caac43acb98436f885737f85ade4530",
+      "dob": "1989-11-13",
+      "nationality": "PRI",
+      "height": 211
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "31"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "fd1a33e1-ca01-11f0-a7b2-f7854434301d",
+      "name": "Jorge L. Matos",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/1638d4dc958c479c8e3c7c9d2c22e518",
+      "dob": "1992-04-30",
+      "nationality": null,
+      "height": 190
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a36515f7-ca02-11f0-a9f1-2f7d6da7cc8d",
+      "name": "Jorge L. Pacheco",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/6da3ab2f68df4b0b8297a189e933d6df",
+      "dob": "1998-06-21",
+      "nationality": "PUR",
+      "height": 185
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "12"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a34beb7e-ca02-11f0-942e-2f7d6da7cc8d",
+      "name": "Jorge Luis Torres",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/86ce7a90c747453c989ac0a8085046db",
+      "dob": "2000-04-19",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "14"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "bf7c9124-ca02-11f0-bcd7-21515a92fdd7",
+      "name": "Jose Carlos Placer Diaz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/0b6ce210ce75437c8cd5671cd8b067f5",
+      "dob": "2000-05-08",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "15"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "c012acb6-ca02-11f0-8285-21515a92fdd7",
+      "name": "Joseph Bull",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/e81729c822804a3d9491da48955108a8",
+      "dob": "1998-01-01",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "bf72f009-ca02-11f0-ae8e-21515a92fdd7",
+      "name": "Jose Roman Angueira",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7f4ad8592adb442582079998448c9f19",
+      "dob": "1996-01-01",
+      "nationality": "USA",
+      "height": 201
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "00"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "551144a5-2479-11f1-af69-c3e83c831143",
+      "name": "Joshua Denton",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ca343f417a4d47fface7039bd4f24b05",
+      "dob": "2002-12-24",
+      "nationality": "PRI",
+      "height": 196
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "15"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "629c7fe1-2ddf-11f1-acf7-a54f8ab11f72",
+      "name": "Joshua Rivera",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/05425cfbc3e04f89883bccda0c65b1b3",
+      "dob": "2003-08-05",
+      "nationality": "USA",
+      "height": 198
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "7"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "a3380e28-ca02-11f0-985e-2f7d6da7cc8d",
+      "name": "Josue Erazo",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c82244c03d994d7cb12dcc931d79e4cd",
+      "dob": "1995-04-07",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "GF",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "edb1f674-ca01-11f0-9b7c-a99038a1fbbd",
+      "name": "Juan Pablo Pineiro",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/30dbd5df318948bcbd82fb05707183e5",
+      "dob": "1990-04-15",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "23"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a347f8d1-ca02-11f0-9fda-2f7d6da7cc8d",
+      "name": "Julian Torres",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/4a7080b702e841ec8db61daa8f079a4e",
+      "dob": "1997-03-18",
+      "nationality": "PUR",
+      "height": 208
+    },
+    "playingPosition": "FC",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "a49009f2-ca02-11f0-907a-2f7d6da7cc8d",
+      "name": "Justin Reyes",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c37b91b797c24b1f88a9aa23ba3f1fa0",
+      "dob": "1995-03-16",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "12"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "7132b0df-3f4f-11f1-9a15-b918f9540baf",
+      "name": "Kendric Davis",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/4994d575ace14edfad161684734a48b1",
+      "dob": "1999-05-14",
+      "nationality": "USA",
+      "height": null
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "a3b2b3fb-ca02-11f0-8975-2f7d6da7cc8d",
+      "name": "Kenneth Faried",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1989-11-19",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "17"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a3a44caa-ca02-11f0-8239-2f7d6da7cc8d",
+      "name": "Kenneth Santos Velez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/6867b51727b54eccbd313934236fa86e",
+      "dob": "1998-04-23",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "21"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "7de93eeb-ca02-11f0-a312-71bd8dec4466",
+      "name": "Kevin Maura Colon",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/0441bee52c1b4a47bfbffa1ab5f79ed0",
+      "dob": "1995-07-30",
+      "nationality": "PUR",
+      "height": 173
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "11"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "a3a8b0e4-ca02-11f0-a71a-2f7d6da7cc8d",
+      "name": "Khary Mauras",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/3b0eef40776342abb4d7eba1fa241edb",
+      "dob": "1998-01-23",
+      "nationality": "USA",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ed839e3c-ca01-11f0-aac4-a99038a1fbbd",
+      "name": "Kleon Penn",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1986-09-01",
+      "nationality": "PUR",
+      "height": 211
+    },
+    "playingPosition": null,
+    "jerseyNumber": "50"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ca9d284a-ca02-11f0-bf67-affdf83cc02f",
+      "name": "Kobi Simmons",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1997-07-04",
+      "nationality": "USA",
+      "height": 197
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a371c816-ca02-11f0-97ab-2f7d6da7cc8d",
+      "name": "Kristian Doolittle",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/baaa9b196fa14fc9adc2bbb9e36a4785",
+      "dob": "1997-10-19",
+      "nationality": "USA",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "11"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "bf9b6044-ca02-11f0-9b44-21515a92fdd7",
+      "name": "Kyle Rose",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": null,
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "10"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a37aa8c1-ca02-11f0-8e1f-2f7d6da7cc8d",
+      "name": "Leandro Allende",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/cd4d76a787aa41aebcd86f797f1f1140",
+      "dob": "1998-08-04",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "5"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "eeb308a6-ca01-11f0-8980-a99038a1fbbd",
+      "name": "Luis Hernandez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/be2671a1e0ac4b36a80b5b501960bf6d",
+      "dob": "1988-07-16",
+      "nationality": null,
+      "height": 198
+    },
+    "playingPosition": "FC",
+    "jerseyNumber": "35"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a46d3aac-ca02-11f0-8d17-2f7d6da7cc8d",
+      "name": "Luis Lopez Martinez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c79c673f0fe2473bae44b2a381834f34",
+      "dob": "1998-04-25",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "76ccc63b-2a26-11f1-820c-017c52a81e98",
+      "name": "Luis Moya",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": null,
+      "nationality": "PRI",
+      "height": null
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "10"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "a38958ee-ca02-11f0-82d1-2f7d6da7cc8d",
+      "name": "Luis Rivera Rosario",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d284269542bb47bb9f92cb49120965f5",
+      "dob": "1998-09-22",
+      "nationality": "PUR",
+      "height": 180
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "10"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "74fa6db6-17d0-11f1-9ee2-dba29f69a98c",
+      "name": "Malachi Smith",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a7e72c67d9d448c2842b29d776b5ae78",
+      "dob": "2002-11-06",
+      "nationality": "PRI",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "e728bdf9-676d-11f1-a8c1-19e5d34e9eb8",
+      "name": "Malik Williams",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1998-08-26",
+      "nationality": "USA",
+      "height": 211
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "7"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a3d03db8-ca02-11f0-aea0-2f7d6da7cc8d",
+      "name": "Manuel Camper",
+      "nickname": "Manny Camper",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/29b3ac88d4f9446385645c86df6fcd3a",
+      "dob": "1999-05-18",
+      "nationality": "PUR",
+      "height": 196
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "bf41ecd2-ca02-11f0-8e81-21515a92fdd7",
+      "name": "Marlon Hargis",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/64d58a8106464d9aa4244b2757515505",
+      "dob": "1999-04-04",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "9"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "6b913967-17d1-11f1-8430-af4b2c7dc1ea",
+      "name": "Marvin Eliel Mantilla",
+      "nickname": "Marvin Mantilla",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/b8100dee000f4898877405ff035ea209",
+      "dob": "2005-07-10",
+      "nationality": "PRI",
+      "height": 198
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "45"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bf91766a-ca02-11f0-9017-21515a92fdd7",
+      "name": "Matthew Lee",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a0348741f189422db14ec39e81fafd9b",
+      "dob": "1999-10-25",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "74a847c9-3380-11f1-92e9-f78270b39cae",
+      "name": "Maxwell Abmas",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/27fb41d9967644f0b52bd2a0b81d9efe",
+      "dob": "2001-04-02",
+      "nationality": "USA",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "33"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "7682a3b8-2bb8-11f1-94e4-fb27af5b4b61",
+      "name": "Miguel Martinez",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2002-01-09",
+      "nationality": "PRI",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "14"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "7682a3b8-2bb8-11f1-94e4-fb27af5b4b61",
+      "name": "Miguel Martinez",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2002-01-09",
+      "nationality": "PRI",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "14"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "7682a3b8-2bb8-11f1-94e4-fb27af5b4b61",
+      "name": "Miguel Martinez",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2002-01-09",
+      "nationality": "PRI",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "14"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "cb1b2f7c-ca02-11f0-be0a-affdf83cc02f",
+      "name": "Montrezl Harrell",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d1f7bbe767cf4e48ade522bb3f3e140b",
+      "dob": "1994-01-26",
+      "nationality": "USA",
+      "height": 201
+    },
+    "playingPosition": "FC",
+    "jerseyNumber": "41"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "cac542ab-ca02-11f0-9589-affdf83cc02f",
+      "name": "Nathan Sobey",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ee857ce6a9bc4195b97f444ba7250895",
+      "dob": "1990-07-14",
+      "nationality": "AUS",
+      "height": 196
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "20"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "bf88132d-ca02-11f0-ab72-21515a92fdd7",
+      "name": "Neftali Acevedo Diaz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/924f4849bee24f0c96f04a2224d40b82",
+      "dob": "1999-12-01",
+      "nationality": "PUR",
+      "height": 170
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "55"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c04b2083-ca02-11f0-a006-21515a92fdd7",
+      "name": "Neftali Alvarez",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1999-06-20",
+      "nationality": "PUR",
+      "height": 178
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "12"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "de49e0da-2461-11f1-be7f-17ab4d36e8ae",
+      "name": "Nick Lucena",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a633c2984bd64597ae1ed905cffdde4e",
+      "dob": "2004-04-27",
+      "nationality": "PRI",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "bf96bd85-ca02-11f0-98a0-21515a92fdd7",
+      "name": "Nick Perkins",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d9b41d44b46045949d94cb13de0daeee",
+      "dob": "1996-10-15",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "34"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "5f7d0373-4593-11f1-b323-d3f401a83947",
+      "name": "Noah Horchler",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1998-01-01",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "bf27b4c3-ca02-11f0-9c8d-21515a92fdd7",
+      "name": "Oenis Medina",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d076e2e4c20b47488b32ced4641e4312",
+      "dob": "1998-05-28",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c04f8732-ca02-11f0-a44e-21515a92fdd7",
+      "name": "Olumiye Oni",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/40ae1b434e1040bfa174f8bdcb19d48c",
+      "dob": "1997-08-04",
+      "nationality": "USA",
+      "height": 198
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "9"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "c04f8732-ca02-11f0-a44e-21515a92fdd7",
+      "name": "Olumiye Oni",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/40ae1b434e1040bfa174f8bdcb19d48c",
+      "dob": "1997-08-04",
+      "nationality": "USA",
+      "height": 198
+    },
+    "playingPosition": null,
+    "jerseyNumber": "19"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "4f48934b-2497-11f1-bd07-6da73383f98b",
+      "name": "Omar Figueroa",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/92e2f319380c494fb2a271239a0a3a61",
+      "dob": "2002-10-09",
+      "nationality": "PRI",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "17"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "ed881422-ca01-11f0-a8cb-a99038a1fbbd",
+      "name": "Owen Perez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/b40f24ea89294d42981d8b4334e77d6a",
+      "dob": "1992-06-28",
+      "nationality": "PUR",
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "18"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "a3541a9e-ca02-11f0-a9f5-2f7d6da7cc8d",
+      "name": "Phillip Wheeler",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2002-04-23",
+      "nationality": "PUR",
+      "height": 204
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "23"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bfe2ef87-ca02-11f0-ade2-21515a92fdd7",
+      "name": "Rafael A. Pinzon Duperoy",
+      "nickname": "Rafael Pinzon",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/d580048ab8f643cc8cdf9e1a6ba7cf65",
+      "dob": "2002-11-08",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bfec0236-ca02-11f0-bad5-21515a92fdd7",
+      "name": "Ramses J. Melendez Vega",
+      "nickname": "Ramses Melendez",
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/5c416fe568ed4b4a8bc3cb2a383ade04",
+      "dob": "2002-12-03",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "22"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ee21c40e-ca01-11f0-9c18-a99038a1fbbd",
+      "name": "Raymond Cintron Jr",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/1d2802b42d744f7c8ff55f300f8a58c9",
+      "dob": "1990-02-22",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "26"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "bd5a544e-262a-11f1-b5b1-a7ab5f61aca3",
+      "name": "Reinaldo Santana",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/7b1c9ac31da74b6ab723dbba7a2b1b07",
+      "dob": "2004-05-13",
+      "nationality": "PRI",
+      "height": 185
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "9670b84d-ca02-11f0-b89a-3d891f4e2262",
+      "name": "Renaldo Balkman",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/b63babe135c74231a89a2d6164af6a4c",
+      "dob": "1984-07-14",
+      "nationality": null,
+      "height": 203
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "32"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "bf77251c-ca02-11f0-ab1c-21515a92fdd7",
+      "name": "Richard Nunez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/246b5be81d2542fca944040828347b12",
+      "dob": "2000-07-27",
+      "nationality": "PUR",
+      "height": 206
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "4"
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "2457d4ba-24ab-11f1-a907-d9a9d8a8a027",
+      "name": "Rico Hopping",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/5c8ff7082324437d85d067d12db73b3e",
+      "dob": null,
+      "nationality": "PRI",
+      "height": 196
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "0"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "fd597fc3-ca01-11f0-ab1c-f7854434301d",
+      "name": "Rigoberto Mendoza",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8b15e1f6fb5e4070a46cc52306e65ad9",
+      "dob": "1992-07-06",
+      "nationality": "DOM",
+      "height": 188
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "26"
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "c001f474-ca02-11f0-aaa5-21515a92fdd7",
+      "name": "Robiel Morales",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/e88901abac804c54bdf421f87c3b3fe8",
+      "dob": "2001-03-08",
+      "nationality": "PUR",
+      "height": 191
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "13"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ee4442e8-ca01-11f0-a516-a99038a1fbbd",
+      "name": "Ruben Cotto",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a88f9ea2de3a4fe2ab0682db302d8d55",
+      "dob": "1989-03-30",
+      "nationality": "PRI",
+      "height": 185
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "13"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a3c6be42-ca02-11f0-8be8-2f7d6da7cc8d",
+      "name": "Ryan Pearson",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1990-02-27",
+      "nationality": "PUR",
+      "height": 200
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "26"
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "cb429509-ca02-11f0-a336-affdf83cc02f",
+      "name": "Rychell Janga",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ff8081dcf8ed4702b86aac1d7b2f4103",
+      "dob": "1997-09-04",
+      "nationality": "PUR",
+      "height": 191
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "19"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "cb1fc653-ca02-11f0-b361-affdf83cc02f",
+      "name": "Theophilus A. Pinson Jr.",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/8de2d7d2607a47a5a07a77e0eed1c74d",
+      "dob": "1995-11-05",
+      "nationality": "USA",
+      "height": 198
+    },
+    "playingPosition": "SF",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "a384cf85-ca02-11f0-8abb-2f7d6da7cc8d",
+      "name": "Thomas Robinson",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/517ffc13967c4faa8e3d529ba9926725",
+      "dob": "1993-03-17",
+      "nationality": "USA",
+      "height": 208
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "22"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "a384cf85-ca02-11f0-8abb-2f7d6da7cc8d",
+      "name": "Thomas Robinson",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/517ffc13967c4faa8e3d529ba9926725",
+      "dob": "1993-03-17",
+      "nationality": "USA",
+      "height": 208
+    },
+    "playingPosition": null,
+    "jerseyNumber": "5"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a384cf85-ca02-11f0-8abb-2f7d6da7cc8d",
+      "name": "Thomas Robinson",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/517ffc13967c4faa8e3d529ba9926725",
+      "dob": "1993-03-17",
+      "nationality": "USA",
+      "height": 208
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "36"
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "cb8bd326-ca02-11f0-846d-affdf83cc02f",
+      "name": "Timothy Soares",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/936a954afdcd448aa51b8480e14739f7",
+      "dob": "1997-02-04",
+      "nationality": "BRA",
+      "height": 211
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "21"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "edcea277-ca01-11f0-a4d5-a99038a1fbbd",
+      "name": "Tjader Fernandez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a0836aca77a341beb8980f329b551ad8",
+      "dob": "1994-01-28",
+      "nationality": "PUR",
+      "height": 178
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "edcea277-ca01-11f0-a4d5-a99038a1fbbd",
+      "name": "Tjader Fernandez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/a0836aca77a341beb8980f329b551ad8",
+      "dob": "1994-01-28",
+      "nationality": "PUR",
+      "height": 178
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "39"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "12ebc345-4359-11f1-a5e8-538823ce9b48",
+      "name": "Torrey Craig",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/fdf9df08e6904267acfa80d53ae493bc",
+      "dob": "1990-12-19",
+      "nationality": "USA",
+      "height": null
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "2"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "bfd570e7-ca02-11f0-9120-21515a92fdd7",
+      "name": "Tory San Antonio",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/6f78e93990af437f8b7ec26ee9824756",
+      "dob": "2001-01-01",
+      "nationality": "PUR",
+      "height": 195
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "bf5458f2-ca02-11f0-ac94-21515a92fdd7",
+      "name": "Travis Trice",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c3fb180051f94bf0b41dd69c75afada2",
+      "dob": "1993-01-22",
+      "nationality": "USA",
+      "height": 185
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "13"
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "bcec5656-ca02-11f0-bc9a-21515a92fdd7",
+      "name": "Tremont Waters",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/00bdef3e32274a1baaaa68388004ad2d",
+      "dob": "1998-01-10",
+      "nationality": "PUR",
+      "height": 178
+    },
+    "playingPosition": "PG",
+    "jerseyNumber": "51"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "e9902366-1339-11f1-87dc-1f3970b33cb0",
+      "name": "Tyler Cook",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/9bfbeec4560b40c2ac90ff50c95a004a",
+      "dob": "1997-09-23",
+      "nationality": "USA",
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "25"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "efa8c607-ca01-11f0-aeda-a99038a1fbbd",
+      "name": "Tyler Polo",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/c6290bec209844e981f0bc8e1d92764d",
+      "dob": "1988-03-18",
+      "nationality": "PUR",
+      "height": 201
+    },
+    "playingPosition": "F",
+    "jerseyNumber": "18"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a327f585-ca02-11f0-a85c-2f7d6da7cc8d",
+      "name": "Tyquan Rolon",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/e533808837614652b22b4a03b4377c53",
+      "dob": "1995-03-07",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "1"
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c05ceb27-ca02-11f0-8e9c-21515a92fdd7",
+      "name": "Tyrell Harrison",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/56d6a01bab0d429885850859b9b1558f",
+      "dob": "1999-07-06",
+      "nationality": "AUS",
+      "height": 213
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "24"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "90842643-2a24-11f1-9ac1-6f3ab9ef56c1",
+      "name": "Vicktor Lakhin",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "2001-07-30",
+      "nationality": "RUS",
+      "height": 211
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "00"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7dc2039b-ca02-11f0-87a3-71bd8dec4466",
+      "name": "Victor Liz",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/9c6127ff0250446c8ddb86b7bb63eaa2",
+      "dob": "1986-05-12",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "SG",
+    "jerseyNumber": "20"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "eec839dc-ca01-11f0-a9b4-a99038a1fbbd",
+      "name": "Walter Hodge Jr.",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/36ca047d64a2490da32b7de0a554ef74",
+      "dob": "1986-09-21",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "15"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "7df3bbcc-ca02-11f0-abf5-71bd8dec4466",
+      "name": "Wilfredo Rodriguez Valentin",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/ecbe7620a0d54740a1395f8a80c7b908",
+      "dob": "1994-12-09",
+      "nationality": "PUR",
+      "height": 198
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "42"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7ddc32ec-ca02-11f0-a334-71bd8dec4466",
+      "name": "William Cruz Rodriguez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/aa2ffe89e6f945a4975a3af651ebe5e4",
+      "dob": "1995-04-12",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "61"
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a3583ead-ca02-11f0-ad9b-2f7d6da7cc8d",
+      "name": "Wilmer Lugo-Sanchez",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/72b74c6d72a7425095069c97ec6f0bb6",
+      "dob": "1998-06-11",
+      "nationality": "PUR",
+      "height": 183
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "edd2d942-ca01-11f0-a4dc-a99038a1fbbd",
+      "name": "Xavier Zambrana",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1991-03-25",
+      "nationality": "PUR",
+      "height": 193
+    },
+    "playingPosition": "PF",
+    "jerseyNumber": "8"
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "edd73bc2-ca01-11f0-991b-a99038a1fbbd",
+      "name": "Ysmael Romero",
+      "nickname": null,
+      "avatarUrl": "https://images.dc.prod.cloud.atriumsports.com/b12pt/74322768d8b848268fe2b8fcec5dbba8",
+      "dob": "1991-06-23",
+      "nationality": null,
+      "height": 203
+    },
+    "playingPosition": "C",
+    "jerseyNumber": "28"
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "caf0af1c-ca02-11f0-9dbc-affdf83cc02f",
+      "name": "Zhaire Jahi-Ihme Smith",
+      "nickname": null,
+      "avatarUrl": null,
+      "dob": "1999-06-04",
+      "nationality": "USA",
+      "height": 193
+    },
+    "playingPosition": "G",
+    "jerseyNumber": "40"
+  }
+]

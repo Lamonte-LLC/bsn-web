@@ -1,0 +1,741 @@
+[
+  {
+    "id": "1",
+    "slug": "a-g-rivera",
+    "name": "A.g. Rivera",
+    "fy": 1957,
+    "ly": 1957,
+    "franchiseSlugs": [
+      "capitanes"
+    ],
+    "g": 4,
+    "pts": 6,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2",
+    "slug": "a-l-calderon",
+    "name": "A.l. Calderon",
+    "fy": 1957,
+    "ly": 1957,
+    "franchiseSlugs": [
+      "cardenales"
+    ],
+    "g": 6,
+    "pts": 10,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13247",
+    "slug": "aaron-harper",
+    "name": "Aaron Harper",
+    "fy": 2020,
+    "ly": 2020,
+    "franchiseSlugs": [
+      "capitanes"
+    ],
+    "g": 4,
+    "pts": 69,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13456",
+    "slug": "aaron-harrison",
+    "name": "Aaron Harrison",
+    "fy": 2023,
+    "ly": 2023,
+    "franchiseSlugs": [
+      "capitanes",
+      "indios"
+    ],
+    "g": 19,
+    "pts": 245,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2423",
+    "slug": "aaron-mcghee",
+    "name": "Aaron McGhee",
+    "fy": 2007,
+    "ly": 2016,
+    "franchiseSlugs": [
+      "gigantes",
+      "leones",
+      "maratonistas",
+      "vaqueros",
+      "cangrejeros"
+    ],
+    "g": 75,
+    "pts": 1168,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "3",
+    "slug": "abdul-shamshid-deen",
+    "name": "Abdul Shamshid Deen",
+    "fy": 1992,
+    "ly": 2002,
+    "franchiseSlugs": [
+      "santeros",
+      "vaqueros",
+      "leones",
+      "maratonistas"
+    ],
+    "g": 50,
+    "pts": 729,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "4",
+    "slug": "abel-carmona-andino",
+    "name": "Abel Carmona Andino",
+    "fy": 1999,
+    "ly": 2004,
+    "franchiseSlugs": [
+      "maratonistas"
+    ],
+    "g": 41,
+    "pts": 62,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13219",
+    "slug": "abel-seda",
+    "name": "Abel Seda",
+    "fy": 2019,
+    "ly": 2020,
+    "franchiseSlugs": [
+      "brujos",
+      "leones"
+    ],
+    "g": 7,
+    "pts": 1,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "5",
+    "slug": "abraham-negron-torres",
+    "name": "Abraham Negron Torres",
+    "fy": 1985,
+    "ly": 1985,
+    "franchiseSlugs": [
+      "polluelos"
+    ],
+    "g": 3,
+    "pts": 0,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "6",
+    "slug": "abraham-reyes",
+    "name": "Abraham Reyes",
+    "fy": 1996,
+    "ly": 1996,
+    "franchiseSlugs": [
+      "cariduros"
+    ],
+    "g": 13,
+    "pts": 20,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "8",
+    "slug": "adalberto-alvin-lopez-arroyo",
+    "name": "Adalberto \"alvin\" Lopez Arroyo",
+    "fy": 1986,
+    "ly": 1987,
+    "franchiseSlugs": [
+      "gallitos"
+    ],
+    "g": 11,
+    "pts": 9,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "7",
+    "slug": "adalberto-lopez-jaime",
+    "name": "Adalberto Lopez Jaime",
+    "fy": 1997,
+    "ly": 1998,
+    "franchiseSlugs": [
+      "gallitos"
+    ],
+    "g": 16,
+    "pts": 6,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2346",
+    "slug": "adam-ballinger",
+    "name": "Adam Ballinger",
+    "fy": 2007,
+    "ly": 2007,
+    "franchiseSlugs": [
+      "gigantes"
+    ],
+    "g": 15,
+    "pts": 246,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2352",
+    "slug": "adam-gonzalez",
+    "name": "Adam Gonzalez",
+    "fy": 2007,
+    "ly": 2007,
+    "franchiseSlugs": [
+      "gigantes"
+    ],
+    "g": 15,
+    "pts": 18,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13014",
+    "slug": "adam-parada",
+    "name": "Adam Parada",
+    "fy": 2015,
+    "ly": 2015,
+    "franchiseSlugs": [
+      "indios"
+    ],
+    "g": 23,
+    "pts": 197,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "9",
+    "slug": "adolfo-medrick-wilson",
+    "name": "Adolfo Medrick Wilson",
+    "fy": 1981,
+    "ly": 1981,
+    "franchiseSlugs": [
+      "brujos"
+    ],
+    "g": 32,
+    "pts": 517,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "10",
+    "slug": "adolfo-porrata-doria",
+    "name": "Adolfo Porrata Doria",
+    "fy": 1964,
+    "ly": 1973,
+    "franchiseSlugs": [
+      "santos",
+      "cardenales",
+      "gigantes"
+    ],
+    "g": 176,
+    "pts": 2122,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "11",
+    "slug": "adolfo-velazquez",
+    "name": "Adolfo Velazquez",
+    "fy": 1974,
+    "ly": 1976,
+    "franchiseSlugs": [
+      "cariduros"
+    ],
+    "g": 88,
+    "pts": 326,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "12",
+    "slug": "adrian-diaz-trusan",
+    "name": "Adrian Diaz Trusan",
+    "fy": 1998,
+    "ly": 1998,
+    "franchiseSlugs": [
+      "criollos"
+    ],
+    "g": 12,
+    "pts": 14,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2696",
+    "slug": "adrian-hernandez",
+    "name": "Adrian Hernandez",
+    "fy": 2011,
+    "ly": 2011,
+    "franchiseSlugs": [
+      "piratas"
+    ],
+    "g": 5,
+    "pts": 4,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13",
+    "slug": "adrian-machado-torres",
+    "name": "Adrian Machado Torres",
+    "fy": 1993,
+    "ly": 2002,
+    "franchiseSlugs": [
+      "criollos",
+      "atleticos",
+      "santeros",
+      "gallitos"
+    ],
+    "g": 266,
+    "pts": 1620,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "14",
+    "slug": "adrian-mack",
+    "name": "Adrian Mack",
+    "fy": 1997,
+    "ly": 1997,
+    "franchiseSlugs": [
+      "cariduros"
+    ],
+    "g": 12,
+    "pts": 149,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13310",
+    "slug": "adrian-ocasio-negron",
+    "name": "Adrian Ocasio Negron",
+    "fy": 2021,
+    "ly": 2022,
+    "franchiseSlugs": [
+      "indios"
+    ],
+    "g": 39,
+    "pts": 59,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2866",
+    "slug": "adrian-uter",
+    "name": "Adrian Uter",
+    "fy": 2013,
+    "ly": 2022,
+    "franchiseSlugs": [
+      "caciques",
+      "leones",
+      "vaqueros",
+      "mets"
+    ],
+    "g": 104,
+    "pts": 1126,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2855",
+    "slug": "adris-deleon",
+    "name": "Adris DeLeon",
+    "fy": 2013,
+    "ly": 2016,
+    "franchiseSlugs": [
+      "vaqueros",
+      "piratas",
+      "atenienses"
+    ],
+    "g": 42,
+    "pts": 435,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "15",
+    "slug": "agustin-cirino-ayala",
+    "name": "Agustin Cirino Ayala",
+    "fy": 1986,
+    "ly": 1991,
+    "franchiseSlugs": [
+      "gigantes",
+      "maratonistas",
+      "cariduros"
+    ],
+    "g": 118,
+    "pts": 312,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "16",
+    "slug": "agustin-farfan-rodriguez",
+    "name": "Agustin Farfan Rodriguez",
+    "fy": 1989,
+    "ly": 1991,
+    "franchiseSlugs": [
+      "cariduros"
+    ],
+    "g": 16,
+    "pts": 27,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "17",
+    "slug": "agustin-garcia",
+    "name": "Agustin Garcia",
+    "fy": 1957,
+    "ly": 1962,
+    "franchiseSlugs": [
+      "cardenales"
+    ],
+    "g": 16,
+    "pts": 28,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "18",
+    "slug": "agustin-lledo",
+    "name": "Agustin Lledo",
+    "fy": 1965,
+    "ly": 1970,
+    "franchiseSlugs": [
+      "leones",
+      "atleticos"
+    ],
+    "g": 87,
+    "pts": 404,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "19",
+    "slug": "agustin-salgado",
+    "name": "Agustin Salgado",
+    "fy": 1962,
+    "ly": 1967,
+    "franchiseSlugs": [
+      "vaqueros",
+      "santos"
+    ],
+    "g": 37,
+    "pts": 42,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "20",
+    "slug": "ahmed-rivera",
+    "name": "Ahmed Rivera",
+    "fy": 1997,
+    "ly": 2001,
+    "franchiseSlugs": [
+      "gigantes",
+      "brujos",
+      "criollos"
+    ],
+    "g": 45,
+    "pts": 86,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "21",
+    "slug": "aki-thomas",
+    "name": "Aki Thomas",
+    "fy": 2002,
+    "ly": 2002,
+    "franchiseSlugs": [
+      "capitanes"
+    ],
+    "g": 5,
+    "pts": 53,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13487",
+    "slug": "akil-mitchell",
+    "name": "Akil Mitchell",
+    "fy": 2023,
+    "ly": 2023,
+    "franchiseSlugs": [
+      "grises"
+    ],
+    "g": 2,
+    "pts": 33,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2740",
+    "slug": "al-thornton",
+    "name": "Al Thornton",
+    "fy": 2012,
+    "ly": 2017,
+    "franchiseSlugs": [
+      "brujos"
+    ],
+    "g": 61,
+    "pts": 1417,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "13308",
+    "slug": "alade-aminu",
+    "name": "Alade Aminu",
+    "fy": 2021,
+    "ly": 2022,
+    "franchiseSlugs": [
+      "atleticos",
+      "gigantes",
+      "cangrejeros"
+    ],
+    "g": 62,
+    "pts": 972,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2649",
+    "slug": "alando-tucker",
+    "name": "Alando Tucker",
+    "fy": 2010,
+    "ly": 2010,
+    "franchiseSlugs": [
+      "gallitos"
+    ],
+    "g": 6,
+    "pts": 90,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "22",
+    "slug": "albert-burdet",
+    "name": "Albert Burdet",
+    "fy": 1996,
+    "ly": 1997,
+    "franchiseSlugs": [
+      "gigantes",
+      "santeros"
+    ],
+    "g": 4,
+    "pts": 34,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "23",
+    "slug": "albert-maldonado-davila",
+    "name": "Albert Maldonado Davila",
+    "fy": 1992,
+    "ly": 1995,
+    "franchiseSlugs": [
+      "cariduros",
+      "capitanes"
+    ],
+    "g": 20,
+    "pts": 50,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2502",
+    "slug": "albert-white",
+    "name": "Albert White",
+    "fy": 2008,
+    "ly": 2008,
+    "franchiseSlugs": [
+      "indios"
+    ],
+    "g": 17,
+    "pts": 246,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "34",
+    "slug": "alberto-a-montanez-carrillo",
+    "name": "Alberto a. Montañez Carrillo",
+    "fy": 1988,
+    "ly": 1997,
+    "franchiseSlugs": [
+      "vaqueros",
+      "indios",
+      "santos"
+    ],
+    "g": 264,
+    "pts": 2662,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "24",
+    "slug": "alberto-arroyo",
+    "name": "Alberto Arroyo",
+    "fy": 1965,
+    "ly": 1972,
+    "franchiseSlugs": [
+      "vaqueros",
+      "santos"
+    ],
+    "g": 120,
+    "pts": 397,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "25",
+    "slug": "alberto-aviles-bonilla",
+    "name": "Alberto Aviles Bonilla",
+    "fy": 1995,
+    "ly": 1997,
+    "franchiseSlugs": [
+      "santeros"
+    ],
+    "g": 2,
+    "pts": 0,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "26",
+    "slug": "alberto-berrios",
+    "name": "Alberto Berrios",
+    "fy": 1960,
+    "ly": 1961,
+    "franchiseSlugs": [
+      "cangrejeros"
+    ],
+    "g": 24,
+    "pts": 93,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "35",
+    "slug": "alberto-c-arroyo-bermudez",
+    "name": "Alberto C. Arroyo Bermudez",
+    "fy": 1996,
+    "ly": 2008,
+    "franchiseSlugs": [
+      "cariduros",
+      "cangrejeros",
+      "mets"
+    ],
+    "g": 176,
+    "pts": 279,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "36",
+    "slug": "alberto-carlos-gonzalez-vientos",
+    "name": "Alberto carlos Gonzalez Vientos",
+    "fy": 2005,
+    "ly": 2005,
+    "franchiseSlugs": [
+      "gallitos"
+    ],
+    "g": 19,
+    "pts": 42,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "2784",
+    "slug": "alberto-estwick",
+    "name": "Alberto Estwick",
+    "fy": 2013,
+    "ly": 2016,
+    "franchiseSlugs": [
+      "caciques",
+      "piratas",
+      "vaqueros"
+    ],
+    "g": 21,
+    "pts": 22,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "27",
+    "slug": "alberto-lopez-rosario",
+    "name": "Alberto Lopez Rosario",
+    "fy": 1980,
+    "ly": 1989,
+    "franchiseSlugs": [
+      "indios",
+      "capitanes",
+      "cariduros"
+    ],
+    "g": 173,
+    "pts": 846,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "28",
+    "slug": "alberto-maldonado-garcia",
+    "name": "Alberto Maldonado Garcia",
+    "fy": 1982,
+    "ly": 1983,
+    "franchiseSlugs": [
+      "indios",
+      "gallitos"
+    ],
+    "g": 17,
+    "pts": 30,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "29",
+    "slug": "alberto-morales-irizarry",
+    "name": "Alberto Morales Irizarry",
+    "fy": 1987,
+    "ly": 1987,
+    "franchiseSlugs": [
+      "atleticos"
+    ],
+    "g": 1,
+    "pts": 0,
+    "isMvp": false,
+    "mvpYears": []
+  },
+  {
+    "id": "30",
+    "slug": "alberto-roque",
+    "name": "Alberto Roque",
+    "fy": 1996,
+    "ly": 1996,
+    "franchiseSlugs": [
+      "gallitos"
+    ],
+    "g": 17,
+    "pts": 42,
+    "isMvp": false,
+    "mvpYears": []
+  }
+]

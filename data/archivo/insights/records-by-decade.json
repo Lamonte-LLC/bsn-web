@@ -1,0 +1,485 @@
+{
+  "minGames": 10,
+  "categories": [
+    "ppg",
+    "rpg",
+    "apg",
+    "spg",
+    "bpg",
+    "pts"
+  ],
+  "decades": [
+    {
+      "decade": 1950,
+      "records": {
+        "ppg": {
+          "playerId": "1088",
+          "slug": "johnny-el-indio-baez",
+          "name": "Johnny 'El Indio' Baez",
+          "year": 1957,
+          "franchiseSlug": "cardenales",
+          "value": 24.6,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "1299",
+          "slug": "juan-cain",
+          "name": "Juan Cain",
+          "year": 1958,
+          "franchiseSlug": "cangrejeros",
+          "value": 4.4,
+          "reason": null
+        },
+        "apg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "spg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "bpg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "pts": {
+          "playerId": "655",
+          "slug": "evelio-el-potro-droz-ramos",
+          "name": "Evelio 'El Potro' Droz Ramos",
+          "year": 1959,
+          "franchiseSlug": "vaqueros",
+          "value": 407,
+          "reason": null
+        }
+      }
+    },
+    {
+      "decade": 1960,
+      "records": {
+        "ppg": {
+          "playerId": "1088",
+          "slug": "johnny-el-indio-baez",
+          "name": "Johnny 'El Indio' Baez",
+          "year": 1960,
+          "franchiseSlug": "cardenales",
+          "value": 26.1,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "1841",
+          "slug": "piro-cabrera",
+          "name": "Piro Cabrera",
+          "year": 1965,
+          "franchiseSlug": "cangrejeros",
+          "value": 7,
+          "reason": null
+        },
+        "apg": {
+          "playerId": "907",
+          "slug": "hiram-f-ortiz",
+          "name": "Hiram f. Ortiz",
+          "year": 1968,
+          "franchiseSlug": "piratas",
+          "value": 6.1,
+          "reason": null
+        },
+        "spg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "bpg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "pts": {
+          "playerId": "1698",
+          "slug": "neftali-rivera-olivera",
+          "name": "Neftali Rivera Olivera",
+          "year": 1969,
+          "franchiseSlug": "piratas",
+          "value": 602,
+          "reason": null
+        }
+      }
+    },
+    {
+      "decade": 1970,
+      "records": {
+        "ppg": {
+          "playerId": "788",
+          "slug": "george-torres-dougherty",
+          "name": "George Torres Dougherty",
+          "year": 1979,
+          "franchiseSlug": "cariduros",
+          "value": 32.9,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "552",
+          "slug": "edwin-ocasio",
+          "name": "Edwin Ocasio",
+          "year": 1973,
+          "franchiseSlug": "piratas",
+          "value": 10.5,
+          "reason": null
+        },
+        "apg": {
+          "playerId": "1698",
+          "slug": "neftali-rivera-olivera",
+          "name": "Neftali Rivera Olivera",
+          "year": 1972,
+          "franchiseSlug": "piratas",
+          "value": 8,
+          "reason": null
+        },
+        "spg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "bpg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "pts": {
+          "playerId": "788",
+          "slug": "george-torres-dougherty",
+          "name": "George Torres Dougherty",
+          "year": 1979,
+          "franchiseSlug": "cariduros",
+          "value": 987,
+          "reason": null
+        }
+      }
+    },
+    {
+      "decade": 1980,
+      "records": {
+        "ppg": {
+          "playerId": "788",
+          "slug": "george-torres-dougherty",
+          "name": "George Torres Dougherty",
+          "year": 1987,
+          "franchiseSlug": "cariduros",
+          "value": 35.5,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "1927",
+          "slug": "ramon-rivas-contreras",
+          "name": "Ramón Rivas Contreras",
+          "year": 1985,
+          "franchiseSlug": "gigantes",
+          "value": 4.4,
+          "reason": null
+        },
+        "apg": {
+          "playerId": "1774",
+          "slug": "pablo-alicea-rodriguez",
+          "name": "Pablo Alicea Rodriguez",
+          "year": 1989,
+          "franchiseSlug": "gigantes",
+          "value": 8.2,
+          "reason": null
+        },
+        "spg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "bpg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "pts": {
+          "playerId": "2089",
+          "slug": "rolando-frazer-thorne",
+          "name": "Rolando Frazer Thorne",
+          "year": 1982,
+          "franchiseSlug": "polluelos",
+          "value": 1127,
+          "reason": null
+        }
+      }
+    },
+    {
+      "decade": 1990,
+      "records": {
+        "ppg": {
+          "playerId": "508",
+          "slug": "edgar-leon-cruz",
+          "name": "Edgar Leon Cruz",
+          "year": 1990,
+          "franchiseSlug": "cariduros",
+          "value": 31.8,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "800",
+          "slug": "giddel-padilla-rivera",
+          "name": "Giddel Padilla Rivera",
+          "year": 1996,
+          "franchiseSlug": "polluelos",
+          "value": 4.1,
+          "reason": null
+        },
+        "apg": {
+          "playerId": "1774",
+          "slug": "pablo-alicea-rodriguez",
+          "name": "Pablo Alicea Rodriguez",
+          "year": 1990,
+          "franchiseSlug": "gigantes",
+          "value": 10.4,
+          "reason": null
+        },
+        "spg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "bpg": {
+          "playerId": null,
+          "slug": null,
+          "name": null,
+          "year": null,
+          "franchiseSlug": null,
+          "value": null,
+          "reason": "no data"
+        },
+        "pts": {
+          "playerId": "508",
+          "slug": "edgar-leon-cruz",
+          "name": "Edgar Leon Cruz",
+          "year": 1990,
+          "franchiseSlug": "cariduros",
+          "value": 954,
+          "reason": null
+        }
+      }
+    },
+    {
+      "decade": 2000,
+      "records": {
+        "ppg": {
+          "playerId": "1729",
+          "slug": "norman-lewis-nolan-roberts",
+          "name": "Norman Lewis Nolan Roberts",
+          "year": 2001,
+          "franchiseSlug": "indios",
+          "value": 27.3,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "985",
+          "slug": "ja-ja-richards-boulware",
+          "name": "Ja Ja Richards Boulware",
+          "year": 2005,
+          "franchiseSlug": "gallitos",
+          "value": 23.6,
+          "reason": null
+        },
+        "apg": {
+          "playerId": "2074",
+          "slug": "roberto-jose-bobby-joe-hatton-negron",
+          "name": "Roberto Jose 'Bobby Joe' Hatton Negron",
+          "year": 2007,
+          "franchiseSlug": "leones",
+          "value": 9.2,
+          "reason": null
+        },
+        "spg": {
+          "playerId": "120",
+          "slug": "angel-de-jesus-velazquez",
+          "name": "Angel De Jesus Velazquez",
+          "year": 2001,
+          "franchiseSlug": "brujos",
+          "value": 3,
+          "reason": null
+        },
+        "bpg": {
+          "playerId": "985",
+          "slug": "ja-ja-richards-boulware",
+          "name": "Ja Ja Richards Boulware",
+          "year": 2005,
+          "franchiseSlug": "gallitos",
+          "value": 4,
+          "reason": null
+        },
+        "pts": {
+          "playerId": "1280",
+          "slug": "joseph-bunn-stallins",
+          "name": "Joseph Bunn Stallins",
+          "year": 2005,
+          "franchiseSlug": "gallitos",
+          "value": 833,
+          "reason": null
+        }
+      }
+    },
+    {
+      "decade": 2010,
+      "records": {
+        "ppg": {
+          "playerId": "2740",
+          "slug": "al-thornton",
+          "name": "Al Thornton",
+          "year": 2012,
+          "franchiseSlug": "brujos",
+          "value": 25.3,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "2622",
+          "slug": "shaun-pruitt",
+          "name": "Shaun Pruitt",
+          "year": 2010,
+          "franchiseSlug": "gallitos",
+          "value": 13.5,
+          "reason": null
+        },
+        "apg": {
+          "playerId": "273",
+          "slug": "carlos-arroyo-bermudez",
+          "name": "Carlos Arroyo Bermúdez",
+          "year": 2019,
+          "franchiseSlug": "leones",
+          "value": 10.6,
+          "reason": null
+        },
+        "spg": {
+          "playerId": "13175",
+          "slug": "angel-daniel-rodriguez-tricoche",
+          "name": "Angel Daniel Rodriguez Tricoche",
+          "year": 2018,
+          "franchiseSlug": "vaqueros",
+          "value": 2.9,
+          "reason": null
+        },
+        "bpg": {
+          "playerId": "2424",
+          "slug": "robert-traylor",
+          "name": "Robert Traylor",
+          "year": 2010,
+          "franchiseSlug": "vaqueros",
+          "value": 3.2,
+          "reason": null
+        },
+        "pts": {
+          "playerId": "13000",
+          "slug": "reyshawn-terry",
+          "name": "Reyshawn Terry",
+          "year": 2018,
+          "franchiseSlug": "piratas",
+          "value": 835,
+          "reason": null
+        }
+      }
+    },
+    {
+      "decade": 2020,
+      "records": {
+        "ppg": {
+          "playerId": "13399",
+          "slug": "sheldon-mac",
+          "name": "Sheldon Mac",
+          "year": 2022,
+          "franchiseSlug": "gigantes",
+          "value": 24.8,
+          "reason": null
+        },
+        "rpg": {
+          "playerId": "13436",
+          "slug": "hassan-whiteside",
+          "name": "Hassan Whiteside",
+          "year": 2023,
+          "franchiseSlug": "piratas",
+          "value": 14.2,
+          "reason": null
+        },
+        "apg": {
+          "playerId": "13345",
+          "slug": "kalin-lucas",
+          "name": "Kalin Lucas",
+          "year": 2021,
+          "franchiseSlug": "gigantes",
+          "value": 9.3,
+          "reason": null
+        },
+        "spg": {
+          "playerId": "13375",
+          "slug": "tremont-waters",
+          "name": "Tremont Waters",
+          "year": 2023,
+          "franchiseSlug": "gigantes",
+          "value": 2.4,
+          "reason": null
+        },
+        "bpg": {
+          "playerId": "13436",
+          "slug": "hassan-whiteside",
+          "name": "Hassan Whiteside",
+          "year": 2023,
+          "franchiseSlug": "piratas",
+          "value": 2.7,
+          "reason": null
+        },
+        "pts": {
+          "playerId": "13271",
+          "slug": "paris-bass",
+          "name": "Paris Bass",
+          "year": 2021,
+          "franchiseSlug": "atleticos",
+          "value": 725,
+          "reason": null
+        }
+      }
+    }
+  ]
+}

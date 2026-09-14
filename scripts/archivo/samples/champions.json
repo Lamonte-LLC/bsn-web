@@ -1,0 +1,857 @@
+[
+  {
+    "year": 2025,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Christian Dalmau",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2024,
+    "franchiseSlug": "criollos",
+    "name": "Criollos",
+    "coach": "Wilhelmus Caanen",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2023,
+    "franchiseSlug": "gigantes",
+    "name": "Gigantes",
+    "coach": "Carlos González",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 2022,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Nelson Colón",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 4
+  },
+  {
+    "year": 2021,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "Rafael Pachy Cruz",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 2020,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Nelson Colón",
+    "series": "3-0",
+    "seriesRaw": "3-0",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 2019,
+    "franchiseSlug": "santeros",
+    "name": "Santeros",
+    "coach": "Carlos González",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 2018,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "Rafael Pachy Cruz",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 2017,
+    "franchiseSlug": "piratas",
+    "name": "Piratas",
+    "coach": "Carlos González",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2016,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "Rafael Pachy Cruz",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2015,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Nelson Colón",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 2014,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Nelson Colón",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2013,
+    "franchiseSlug": "piratas",
+    "name": "Piratas",
+    "coach": "Carlos Calcaño",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2012,
+    "franchiseSlug": "indios",
+    "name": "Indios",
+    "coach": "Eddie Casiano",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2011,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "David Rosario",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 2010,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "David Rosario",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 2009,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Julio Toro",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 12
+  },
+  {
+    "year": 2008,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "David Rosario",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2007,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Tony Ruiz",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2006,
+    "franchiseSlug": "criollos",
+    "name": "Criollos",
+    "coach": "Leonel Arill",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2005,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "Carlos Mario Rivera",
+    "series": "4-0",
+    "seriesRaw": "4-0",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 2004,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Manolo Cintrón",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2003,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Julio Toro",
+    "series": "4-0",
+    "seriesRaw": "4-0",
+    "coachTitleNumber": 11
+  },
+  {
+    "year": 2002,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Carlos Mario Rivera",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 2001,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Julio Toro",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 10
+  },
+  {
+    "year": 2000,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Julio Toro",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 9
+  },
+  {
+    "year": 1999,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Julio Toro",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 8
+  },
+  {
+    "year": 1998,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Julio Toro",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 7
+  },
+  {
+    "year": 1997,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Miguel Mercado",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1996,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Flor Meléndez",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1995,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Flor Meléndez",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1994,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Carlos Morales",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1993,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Julio Toro",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": 6
+  },
+  {
+    "year": 1992,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Julio Toro",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 5
+  },
+  {
+    "year": 1991,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Carlos Morales",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1990,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Miguel Mercado",
+    "series": null,
+    "seriesRaw": "4-?",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1989,
+    "franchiseSlug": "mets",
+    "name": "Mets",
+    "coach": "Julio Toro",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": 4
+  },
+  {
+    "year": 1988,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Robert Corn",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1987,
+    "franchiseSlug": "titanes",
+    "name": "Titanes",
+    "coach": "Miguel Mercado",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1986,
+    "franchiseSlug": "polluelos",
+    "name": "Polluelos",
+    "coach": "Charlie Bermúdez",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1985,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Flor Meléndez",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1984,
+    "franchiseSlug": "indios",
+    "name": "Indios",
+    "coach": "Julio Toro",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1983,
+    "franchiseSlug": "indios",
+    "name": "Indios",
+    "coach": "Herb Brown",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1982,
+    "franchiseSlug": "mets",
+    "name": "Mets",
+    "coach": "Julio Toro",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1981,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Gene Bartow y Robert Corn",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1980,
+    "franchiseSlug": "mets",
+    "name": "Mets",
+    "coach": "Julio Toro",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1979,
+    "franchiseSlug": "piratas",
+    "name": "Piratas",
+    "coach": "Ray Amalbert",
+    "series": "4-0",
+    "seriesRaw": "4-0",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1978,
+    "franchiseSlug": "piratas",
+    "name": "Piratas",
+    "coach": "Ray Amalbert",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1977,
+    "franchiseSlug": "piratas",
+    "name": "Piratas",
+    "coach": "Ray Amalbert",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1976,
+    "franchiseSlug": "cardenales",
+    "name": "Cardenales",
+    "coach": "Bernie Bickerstaff",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1975,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Del Harris y Tom Nissalke",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1974,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Del Harris",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1973,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Del Harris",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1972,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Tom Nissalke y Fufi Santori",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1971,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Art Loche",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1970,
+    "franchiseSlug": "piratas",
+    "name": "Piratas",
+    "coach": "Erick Geldart",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1969,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Art Loche",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1968,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Lou Rossini",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1967,
+    "franchiseSlug": "vaqueros",
+    "name": "Vaqueros",
+    "coach": "Roy Rubbins y Fufi Santori",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1966,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Red Holzman",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1965,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Red Holzman",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1964,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Red Holzman",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1963,
+    "franchiseSlug": "cardenales",
+    "name": "Cardenales",
+    "coach": "Lou Rossini",
+    "series": "4-2",
+    "seriesRaw": "4-2",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1962,
+    "franchiseSlug": "cangrejeros",
+    "name": "Cangrejeros",
+    "coach": "Fufi Santori",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1961,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Jack McKenney",
+    "series": "4-3",
+    "seriesRaw": "4-3",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1960,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Howard Shamon",
+    "series": "4-0",
+    "seriesRaw": "4-0",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1959,
+    "franchiseSlug": "capitanes",
+    "name": "Capitanes",
+    "coach": "Lou Rossini",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1958,
+    "franchiseSlug": "santos",
+    "name": "Santos",
+    "coach": "Floyd Brown",
+    "series": "4-1",
+    "seriesRaw": "4-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1957,
+    "franchiseSlug": "cardenales",
+    "name": "Cardenales",
+    "coach": "Víctor M. Pérez",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": 4
+  },
+  {
+    "year": 1956,
+    "franchiseSlug": "cardenales",
+    "name": "Cardenales",
+    "coach": "Víctor M. Pérez",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1955,
+    "franchiseSlug": "cardenales",
+    "name": "Cardenales",
+    "coach": "Víctor M. Pérez",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1954,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Tex Winters",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1952,
+    "franchiseSlug": "leones",
+    "name": "Leones",
+    "coach": "Tex Winters",
+    "series": "3-0",
+    "seriesRaw": "3-0",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1951,
+    "franchiseSlug": "gallitos-upr",
+    "name": "Gallitos",
+    "coach": "Víctor M. Pérez",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1950,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Luis F. Sambolín",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1949,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Raúl González",
+    "series": "3-2",
+    "seriesRaw": "3-2",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1948,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Víctor Murati",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1947,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Armando Torres",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1946,
+    "franchiseSlug": "cardenales",
+    "name": "Cardenales",
+    "coach": "Ramón Cestero",
+    "series": "2-1",
+    "seriesRaw": "2-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1945,
+    "franchiseSlug": null,
+    "name": "Capitalinos",
+    "coach": "Adolfo Porrata",
+    "series": "2-1",
+    "seriesRaw": "2-1",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1944,
+    "franchiseSlug": "gallitos-upr",
+    "name": "Gallitos",
+    "coach": "Felicio Torregrosa",
+    "series": "2-1",
+    "seriesRaw": "2-1",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1943,
+    "franchiseSlug": null,
+    "name": "Tortuguero",
+    "coach": "Arquelio Torres",
+    "series": "3-1",
+    "seriesRaw": "3-1",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1942,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Armando Torres",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1941,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Raúl González",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1940,
+    "franchiseSlug": "santos",
+    "name": "Santos",
+    "coach": "Adolfo Porrata",
+    "series": "3-2",
+    "seriesRaw": "3-2",
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1939,
+    "franchiseSlug": "atleticos",
+    "name": "Atléticos",
+    "coach": "Felicio Torregrosa",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1938,
+    "franchiseSlug": null,
+    "name": "All San Germán",
+    "coach": "Ubaldino Ramírez",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1937,
+    "franchiseSlug": null,
+    "name": "Heinz",
+    "coach": "Rodrigo Otero",
+    "series": "2-0",
+    "seriesRaw": "2-0",
+    "coachTitleNumber": 3
+  },
+  {
+    "year": 1936,
+    "franchiseSlug": null,
+    "name": "Club Náutico San Juan",
+    "coach": "Rodrigo Otero",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1935,
+    "franchiseSlug": null,
+    "name": "Bayamón Casa Fernández",
+    "coach": "Onofre Carballeira",
+    "series": "3-0",
+    "seriesRaw": "3-0",
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1934,
+    "franchiseSlug": null,
+    "name": "Fénix",
+    "coach": "Rodrigo Otero",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1933,
+    "franchiseSlug": null,
+    "name": "Bayamón Spalding",
+    "coach": "Onofre Carballeira",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1932,
+    "franchiseSlug": null,
+    "name": "All San Germán",
+    "coach": "Ubaldino Ramírez",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": null
+  },
+  {
+    "year": 1931,
+    "franchiseSlug": null,
+    "name": "San Juan Matías Eagles",
+    "coach": "Manuel Iglesia",
+    "series": null,
+    "seriesRaw": null,
+    "coachTitleNumber": 2
+  },
+  {
+    "year": 1930,
+    "franchiseSlug": null,
+    "name": "San Juan Sport Shop",
+    "coach": "Manuel Iglesia",
+    "series": "3-2",
+    "seriesRaw": "3-2",
+    "coachTitleNumber": null
+  }
+]

@@ -1,0 +1,198 @@
+[
+  {
+    "providerId": "a4ymo4gpqor",
+    "name": "4tos A1",
+    "group": "Grupo A",
+    "round": 1,
+    "status": "COMPLETE",
+    "startDate": "2026-07-09",
+    "endDate": "2026-07-22",
+    "winner": null,
+    "competitors": [
+      {
+        "team": {
+          "code": "BAY"
+        },
+        "won": 4,
+        "lost": 1,
+        "position": 1
+      },
+      {
+        "team": {
+          "code": "CAR"
+        },
+        "won": 1,
+        "lost": 4,
+        "position": 4
+      }
+    ]
+  },
+  {
+    "providerId": "bk20a7jvjjn",
+    "name": "4tos A2",
+    "group": "Grupo A",
+    "round": 1,
+    "status": "COMPLETE",
+    "startDate": "2026-07-09",
+    "endDate": "2026-07-22",
+    "winner": null,
+    "competitors": [
+      {
+        "team": {
+          "code": "SCE"
+        },
+        "won": 2,
+        "lost": 4,
+        "position": 3
+      },
+      {
+        "team": {
+          "code": "CAG"
+        },
+        "won": 4,
+        "lost": 2,
+        "position": 2
+      }
+    ]
+  },
+  {
+    "providerId": "jzxiqqnci9",
+    "name": "4tos B1",
+    "group": "Grupo B",
+    "round": 1,
+    "status": "COMPLETE",
+    "startDate": "2026-07-09",
+    "endDate": "2026-07-22",
+    "winner": null,
+    "competitors": [
+      {
+        "team": {
+          "code": "ARE"
+        },
+        "won": 2,
+        "lost": 4,
+        "position": 2
+      },
+      {
+        "team": {
+          "code": "AGU"
+        },
+        "won": 4,
+        "lost": 2,
+        "position": 4
+      }
+    ]
+  },
+  {
+    "providerId": "zjas18tvmwm",
+    "name": "4tos B2",
+    "group": "Grupo B",
+    "round": 1,
+    "status": "COMPLETE",
+    "startDate": "2026-07-09",
+    "endDate": "2026-07-22",
+    "winner": null,
+    "competitors": [
+      {
+        "team": {
+          "code": "PON"
+        },
+        "won": 4,
+        "lost": 1,
+        "position": 4
+      },
+      {
+        "team": {
+          "code": "SGE"
+        },
+        "won": 1,
+        "lost": 4,
+        "position": 1
+      }
+    ]
+  },
+  {
+    "providerId": "2o3rb4pjz1",
+    "name": "Final Conferencia  A",
+    "group": "Grupo A",
+    "round": 2,
+    "status": "COMPLETE",
+    "startDate": "2026-07-23",
+    "endDate": "2026-08-05",
+    "winner": null,
+    "competitors": [
+      {
+        "team": {
+          "code": "BAY"
+        },
+        "won": 4,
+        "lost": 2,
+        "position": 0
+      },
+      {
+        "team": {
+          "code": "CAG"
+        },
+        "won": 2,
+        "lost": 4,
+        "position": 0
+      }
+    ]
+  },
+  {
+    "providerId": "3b722g3crjo",
+    "name": "Final Conferencia B",
+    "group": "Grupo B",
+    "round": 2,
+    "status": "COMPLETE",
+    "startDate": "2026-07-23",
+    "endDate": "2026-08-06",
+    "winner": null,
+    "competitors": [
+      {
+        "team": {
+          "code": "PON"
+        },
+        "won": 2,
+        "lost": 4,
+        "position": 0
+      },
+      {
+        "team": {
+          "code": "AGU"
+        },
+        "won": 4,
+        "lost": 2,
+        "position": 0
+      }
+    ]
+  },
+  {
+    "providerId": "0tv9miock5v",
+    "name": "Final BSN 2026",
+    "group": null,
+    "round": 3,
+    "status": "ACTIVE",
+    "startDate": "2026-08-09",
+    "endDate": "2026-08-24",
+    "winner": null,
+    "competitors": [
+      {
+        "team": {
+          "code": "BAY"
+        },
+        "won": 4,
+        "lost": 3,
+        "position": 0
+      },
+      {
+        "team": {
+          "code": "AGU"
+        },
+        "won": 3,
+        "lost": 4,
+        "position": 0
+      }
+    ]
+  }
+]

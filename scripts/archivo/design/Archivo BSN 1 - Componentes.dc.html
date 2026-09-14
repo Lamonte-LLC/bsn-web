@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;1,700;1,800&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EFEDE8;font-family:system-ui,sans-serif}
+a{color:#1772D9;text-decoration:none} a:hover{color:#1257A8}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-intro{font:400 12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:760px;margin:0 0 24px}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:1000px}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:26px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.dv-cap{font:500 10px system-ui,sans-serif;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:.6px}
+.dv-note{font:400 11px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5);max-width:1000px;margin:2px 0 0}
+.stl{font:600 8.5px/1 Barlow,sans-serif;letter-spacing:1px;color:rgba(0,0,0,.4);text-transform:uppercase}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+</style>
+</helmet>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Archivo BSN · Tanda 1 — Componentes base con todos sus estados</span></div>
+<p class="dv-intro">Fundaciones del archivo sobre el sistema bsn-web en modo light: rojo #E51F1F como único acento, tablas Stripe-density, placeholders intencionales. Wordmark tipográfico provisional (Barlow Condensed 800 itálica) hasta que suban el asset. Data real de los JSON: Georgie Torres, Pachín Vicéns, récords y franquicias. <a class="dv-oid" href="#1a">1a</a> sub-header · <a class="dv-oid" href="#1b">1b</a> tabla de stats · <a class="dv-oid" href="#1c">1c</a> placeholders · <a class="dv-oid" href="#1d">1d</a> badge FPO · <a class="dv-oid" href="#1e">1e</a> cards de líder/récord · <a class="dv-oid" href="#1f">1f</a> chips.</p>
+<div class="dv-opts">
+
+<!-- ===== 1A SUB-HEADER ===== -->
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Sub-header del archivo — wordmark + 9 secciones como tabs con scroll + búsqueda. Vive en la banda ink (es chrome del sitio, no contenido).</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span class="dv-cap">Desktop 1200 — activo: Jugadores</span>
+<div class="dv-card" style="width:1200px;min-width:1200px" data-screen-label="1a Sub-header desktop">
+<div style="background:#0F171F;padding:0 32px">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0 14px">
+    <span style="font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:24px;letter-spacing:.5px;color:#fff">ARCHIVO <span style="color:#E51F1F">BSN</span></span>
+    <span style="display:inline-flex;align-items:center;gap:7px;font-family:Barlow;font-weight:500;font-size:13px;color:rgba(255,255,255,.75)"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"></circle><path d="M14 14l-3.5-3.5"></path></svg>Buscar jugador</span>
+  </div>
+  <div style="display:flex;gap:24px;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:16px">
+    <span style="color:rgba(255,255,255,.55);padding-bottom:11px">Inicio</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:11px">Temporadas</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:11px">Campeones</span>
+    <span style="color:#fff;border-bottom:2px solid #E51F1F;padding-bottom:9px">Jugadores</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:11px">MVPs</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:11px">Récords</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:11px">Franquicias</span>
+    <span style="color:rgba(255,255,255,.85);padding-bottom:11px">Leyendas</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:11px">Galería</span>
+  </div>
+</div>
+</div>
+<span class="dv-note">Hover = blanco/85 («Leyendas» lo muestra). Activo = blanco pleno + subrayado rojo 2px — el rojo de la liga marcando navegación, uno de sus tres usos permitidos. Focus visible: anillo blanco/40 con offset 2px.</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span class="dv-cap">Mobile 375 — tabs con scroll, activo siempre visible</span>
+<div class="dv-card" style="width:375px;min-width:375px" data-screen-label="1a Sub-header mobile">
+<div style="background:#0F171F;padding:0 0 0 16px">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px 10px 0">
+    <span style="font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:20px;letter-spacing:.5px;color:#fff">ARCHIVO <span style="color:#E51F1F">BSN</span></span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"></circle><path d="M14 14l-3.5-3.5"></path></svg>
+  </div>
+  <div style="display:flex;gap:20px;font-family:'Special Gothic Condensed One',Arial,sans-serif;font-size:15px;overflow:hidden;mask-image:linear-gradient(to right,#000 0%,#000 88%,transparent 100%)">
+    <span style="color:rgba(255,255,255,.55);padding-bottom:10px;flex:none">Inicio</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:10px;flex:none">Temporadas</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:10px;flex:none">Campeones</span>
+    <span style="color:#fff;border-bottom:2px solid #E51F1F;padding-bottom:8px;flex:none">Jugadores</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:10px;flex:none">MVPs</span>
+    <span style="color:rgba(255,255,255,.55);padding-bottom:10px;flex:none">Récords</span>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== 1B TABLA ===== -->
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Tabla de stats — el componente más importante: columna fija, ordenable, tabular figures, nulls como guion, fila Total, 4 estados.</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span class="dv-cap">Con data + nulls de era (Pachín Vicéns 1958-1966) — ordenada por Temporada ↓, fila Total</span>
+<div class="dv-card" style="width:980px;min-width:980px" data-screen-label="1b Tabla con data">
+<div style="padding:22px 24px;font-family:Barlow,sans-serif">
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead>
+      <tr style="border-bottom:1px solid rgba(0,0,0,.12)">
+        <th style="text-align:left;padding:0 10px 9px 0;font:600 11px Barlow;letter-spacing:.8px;color:#0F171F;text-transform:uppercase;white-space:nowrap">Temporada <span style="color:#E51F1F">↓</span></th>
+        <th style="text-align:left;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">Equipo</th>
+        <th style="text-align:right;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">J</th>
+        <th style="text-align:right;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">PPJ</th>
+        <th style="text-align:right;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">RPJ</th>
+        <th style="text-align:right;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">APJ</th>
+        <th style="text-align:right;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">TC%</th>
+        <th style="text-align:right;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">TL%</th>
+        <th style="text-align:right;padding:0 10px 9px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">PTS</th>
+        <th style="text-align:right;padding:0 0 9px 10px;font:600 11px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase">REB</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid rgba(0,0,0,.06);height:44px">
+        <td style="padding:0 10px 0 0;font:600 14px Barlow;color:#0F171F"><a href="#1b" style="color:#0F171F;border-bottom:1px solid rgba(0,0,0,.18)">1958</a></td>
+        <td style="padding:0 10px;font:500 14px Barlow;color:#0F171F"><span style="display:inline-flex;align-items:center;gap:7px"><span style="width:20px;height:20px;border-radius:99px;background:rgba(184,32,39,.1);color:#B82027;display:inline-flex;align-items:center;justify-content:center;font:700 8px Barlow">PON</span>Leones</span></td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">18</td>
+        <td style="text-align:right;padding:0 10px;font:600 14px Barlow;color:#0F171F">18.7</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">2.4</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">66.0</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">337</td>
+        <td style="text-align:right;padding:0 0 0 10px;font:400 14px Barlow;color:#0F171F">43</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,.06);height:44px;background:#FAFAFA">
+        <td style="padding:0 10px 0 0;font:600 14px Barlow;color:#0F171F"><a href="#1b" style="color:#0F171F;border-bottom:1px solid rgba(0,0,0,.18)">1959</a></td>
+        <td style="padding:0 10px;font:500 14px Barlow;color:#0F171F"><span style="display:inline-flex;align-items:center;gap:7px"><span style="width:20px;height:20px;border-radius:99px;background:rgba(184,32,39,.1);color:#B82027;display:inline-flex;align-items:center;justify-content:center;font:700 8px Barlow">PON</span>Leones</span></td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">21</td>
+        <td style="text-align:right;padding:0 10px;font:600 14px Barlow;color:#0F171F">2.7</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">2.7</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">72.7</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">57</td>
+        <td style="text-align:right;padding:0 0 0 10px;font:400 14px Barlow;color:#0F171F">57</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,.06);height:44px">
+        <td style="padding:0 10px 0 0;font:600 14px Barlow;color:#0F171F"><a href="#1b" style="color:#0F171F;border-bottom:1px solid rgba(0,0,0,.18)">1960</a></td>
+        <td style="padding:0 10px;font:500 14px Barlow;color:#0F171F"><span style="display:inline-flex;align-items:center;gap:7px"><span style="width:20px;height:20px;border-radius:99px;background:rgba(184,32,39,.1);color:#B82027;display:inline-flex;align-items:center;justify-content:center;font:700 8px Barlow">PON</span>Leones</span></td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">18</td>
+        <td style="text-align:right;padding:0 10px;font:600 14px Barlow;color:#0F171F">21.3</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">2.9</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">74.1</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:#0F171F">384</td>
+        <td style="text-align:right;padding:0 0 0 10px;font:400 14px Barlow;color:#0F171F">52</td>
+      </tr>
+      <tr style="height:44px;border-top:1px solid rgba(0,0,0,.14)">
+        <td style="padding:0 10px 0 0;font:700 14px Barlow;color:#0F171F">Total</td>
+        <td style="padding:0 10px;font:500 13px Barlow;color:rgba(0,0,0,.5)">9 temporadas</td>
+        <td style="text-align:right;padding:0 10px;font:700 14px Barlow;color:#0F171F">171</td>
+        <td style="text-align:right;padding:0 10px;font:700 14px Barlow;color:#0F171F">15.1</td>
+        <td style="text-align:right;padding:0 10px;font:700 14px Barlow;color:#0F171F">2.6</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:400 14px Barlow;color:rgba(0,0,0,.35)">–</td>
+        <td style="text-align:right;padding:0 10px;font:700 14px Barlow;color:#0F171F">75.0</td>
+        <td style="text-align:right;padding:0 10px;font:700 14px Barlow;color:#0F171F">2,574</td>
+        <td style="text-align:right;padding:0 0 0 10px;font:700 14px Barlow;color:#0F171F">452</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font:400 12.5px/1.5 Barlow;color:rgba(0,0,0,.5);padding-top:12px;border-top:1px solid rgba(0,0,0,.06);margin-top:2px">Las asistencias y los porcentajes de campo no se registran de forma consistente antes de 1965. Las celdas sin registro muestran un guion.</div>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:14px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span class="dv-cap">Mobile 375 — columna fija + scroll con indicador</span>
+<div class="dv-card" style="width:375px;min-width:375px" data-screen-label="1b Tabla mobile">
+<div style="padding:16px;font-family:Barlow,sans-serif;position:relative">
+  <div style="display:grid;grid-template-columns:86px 64px 52px 52px 52px;font-variant-numeric:tabular-nums">
+    <div style="grid-column:1;border-right:1px solid rgba(0,0,0,.1);padding:0 8px 8px 0;font:600 10.5px Barlow;letter-spacing:.8px;color:#0F171F;text-transform:uppercase">Temp. <span style="color:#E51F1F">↓</span></div>
+    <div style="padding:0 8px 8px;font:600 10.5px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase;text-align:right">J</div>
+    <div style="padding:0 8px 8px;font:600 10.5px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase;text-align:right">PPJ</div>
+    <div style="padding:0 8px 8px;font:600 10.5px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase;text-align:right">RPJ</div>
+    <div style="padding:0 8px 8px;font:600 10.5px Barlow;letter-spacing:.8px;color:rgba(0,0,0,.45);text-transform:uppercase;text-align:right">APJ</div>
+    <div style="grid-column:1;border-right:1px solid rgba(0,0,0,.1);border-top:1px solid rgba(0,0,0,.08);padding:13px 8px 13px 0;font:600 15px Barlow;color:#0F171F">1958</div>
+    <div style="border-top:1px solid rgba(0,0,0,.08);padding:13px 8px;font:400 15px Barlow;text-align:right;color:#0F171F">18</div>
+    <div style="border-top:1px solid rgba(0,0,0,.08);padding:13px 8px;font:600 15px Barlow;text-align:right;color:#0F171F">18.7</div>
+    <div style="border-top:1px solid rgba(0,0,0,.08);padding:13px 8px;font:400 15px Barlow;text-align:right;color:#0F171F">2.4</div>
+    <div style="border-top:1px solid rgba(0,0,0,.08);padding:13px 8px;font:400 15px Barlow;text-align:right;color:rgba(0,0,0,.35)">–</div>
+    <div style="grid-column:1;border-right:1px solid rgba(0,0,0,.1);border-top:1px solid rgba(0,0,0,.06);padding:13px 8px 13px 0;font:600 15px Barlow;color:#0F171F">1959</div>
+    <div style="border-top:1px solid rgba(0,0,0,.06);padding:13px 8px;font:400 15px Barlow;text-align:right;color:#0F171F">21</div>
+    <div style="border-top:1px solid rgba(0,0,0,.06);padding:13px 8px;font:600 15px Barlow;text-align:right;color:#0F171F">2.7</div>
+    <div style="border-top:1px solid rgba(0,0,0,.06);padding:13px 8px;font:400 15px Barlow;text-align:right;color:#0F171F">2.7</div>
+    <div style="border-top:1px solid rgba(0,0,0,.06);padding:13px 8px;font:400 15px Barlow;text-align:right;color:rgba(0,0,0,.35)">–</div>
+  </div>
+  <div style="position:absolute;top:16px;right:0;bottom:16px;width:36px;background:linear-gradient(to left,#fff 15%,rgba(255,255,255,0));display:flex;align-items:center;justify-content:flex-end;padding-right:8px;pointer-events:none">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5l5 4.5-5 4.5"></path></svg>
+  </div>
+</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span class="dv-cap">Cargando</span>
+<div class="dv-card" style="width:280px;min-width:280px" data-screen-label="1b Tabla cargando">
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+  <div style="height:11px;width:70%;background:#E4E4E4;border-radius:6px;animation:pulse 2s ease-in-out infinite"></div>
+  <div style="height:15px;background:#ECECEC;border-radius:6px;animation:pulse 2s ease-in-out infinite"></div>
+  <div style="height:15px;width:85%;background:#ECECEC;border-radius:6px;animation:pulse 2s ease-in-out infinite"></div>
+  <div style="height:15px;width:92%;background:#ECECEC;border-radius:6px;animation:pulse 2s ease-in-out infinite"></div>
+</div>
+</div>
+<span class="dv-cap" style="margin-top:8px">Vacía</span>
+<div class="dv-card" style="width:280px;min-width:280px" data-screen-label="1b Tabla vacia">
+<div style="padding:24px 16px;text-align:center;font-family:Barlow">
+  <div style="font:500 14px Barlow;color:rgba(0,0,0,.55)">No hay datos disponibles.</div>
+  <a href="#1b" style="font:500 13px Barlow;display:inline-block;margin-top:6px">Ver la temporada 1960</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== 1C PLACEHOLDERS ===== -->
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Placeholders — foto de jugador (iniciales sobre color al 10%) y logo de franquicia extinta (tipográfico), tres tamaños cada uno.</div>
+<div class="dv-card" style="width:980px;min-width:980px" data-screen-label="1c Placeholders">
+<div style="padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:28px;font-family:Barlow">
+  <div>
+    <div class="stl" style="margin-bottom:14px">Foto de jugador — Pachín Vicéns (Leones #B82027)</div>
+    <div style="display:flex;align-items:flex-end;gap:22px">
+      <div style="text-align:center"><span style="width:120px;height:120px;border-radius:99px;background:rgba(184,32,39,.1);color:#B82027;display:inline-flex;align-items:center;justify-content:center;font:700 40px Barlow">JV</span><div class="stl" style="margin-top:6px">hero 120</div></div>
+      <div style="text-align:center"><span style="width:40px;height:40px;border-radius:99px;background:rgba(184,32,39,.1);color:#B82027;display:inline-flex;align-items:center;justify-content:center;font:700 14px Barlow">JV</span><div class="stl" style="margin-top:6px">avatar 40</div></div>
+      <div style="text-align:center"><span style="width:20px;height:20px;border-radius:99px;background:rgba(184,32,39,.1);color:#B82027;display:inline-flex;align-items:center;justify-content:center;font:700 8px Barlow">JV</span><div class="stl" style="margin-top:6px">chip 20</div></div>
+      <div style="text-align:center;background:#0F171F;border-radius:10px;padding:14px 18px"><span style="width:64px;height:64px;border-radius:99px;background:rgba(255,255,255,.06);color:#D0424A;display:inline-flex;align-items:center;justify-content:center;font:700 22px Barlow;border:1px solid rgba(255,255,255,.1)">JV</span><div class="stl" style="margin-top:6px;color:rgba(255,255,255,.5)">sobre banda ink</div></div>
+    </div>
+  </div>
+  <div>
+    <div class="stl" style="margin-bottom:14px">Logo de franquicia extinta — Cardenales de Río Piedras (color provisional)</div>
+    <div style="display:flex;align-items:flex-end;gap:22px">
+      <div style="text-align:center"><span style="width:120px;height:120px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:38px;letter-spacing:1px">CRD</span><div class="stl" style="margin-top:6px">hero 120</div></div>
+      <div style="text-align:center"><span style="width:40px;height:40px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:13px;letter-spacing:.5px">CRD</span><div class="stl" style="margin-top:6px">avatar 40</div></div>
+      <div style="text-align:center"><span style="width:20px;height:20px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:7px">CRD</span><div class="stl" style="margin-top:6px">chip 20</div></div>
+      <div style="display:flex;align-items:center;gap:10px;background:#FAFAFA;border:1px solid rgba(0,0,0,.07);border-radius:10px;padding:12px 16px">
+        <span style="width:40px;height:40px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 3px #B82027;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One';font-size:12px;color:rgba(15,23,31,.7)">PON</span>
+        <span style="width:40px;height:40px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:13px">CRD</span>
+        <span class="stl">junto a un logo real</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<p class="dv-note">Extintas: relleno sólido del color provisional con abreviatura en itálica condensada — se lee como identidad, no como hueco. Activas sin foto: iniciales del jugador en el color oficial sobre el mismo color al 10%. Sobre ink, las iniciales suben a una versión aclarada del color (#D0424A para Leones) para contraste AA.</p>
+</div>
+
+<!-- ===== 1D FPO ===== -->
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Badge FPO — discreto pero inequívoco; ámbar del sistema (--warn), aplicado a tabla, lista y bracket.</div>
+<div class="dv-card" style="width:980px;min-width:980px" data-screen-label="1d Badge FPO">
+<div style="padding:24px;display:flex;gap:24px;font-family:Barlow">
+  <div style="flex:1.2">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <span style="font-family:'Special Gothic Condensed One';font-size:18px;color:#0F171F">Standings · Grupo A</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;border:1px dashed #D9A62E;border-radius:5px;padding:3px 8px;font:700 9.5px Barlow;letter-spacing:1px;color:#9A7712">FPO</span>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+      <tr style="border-bottom:1px solid rgba(0,0,0,.06);height:38px"><td style="font:500 14px Barlow;color:#0F171F">1 &nbsp;Mets de Guaynabo</td><td style="text-align:right;font:400 14px Barlow;color:#0F171F">22</td><td style="text-align:right;font:400 14px Barlow;color:#0F171F;padding-left:14px">11</td><td style="text-align:right;font:400 14px Barlow;color:#0F171F;padding-left:14px">.667</td></tr>
+      <tr style="height:38px"><td style="font:500 14px Barlow;color:#0F171F">2 &nbsp;Vaqueros de Bayamón</td><td style="text-align:right;font:400 14px Barlow;color:#0F171F">20</td><td style="text-align:right;font:400 14px Barlow;color:#0F171F;padding-left:14px">13</td><td style="text-align:right;font:400 14px Barlow;color:#0F171F;padding-left:14px">.606</td></tr>
+    </table>
+  </div>
+  <div style="flex:1;border-left:1px solid rgba(0,0,0,.07);padding-left:24px">
+    <div style="font-family:'Special Gothic Condensed One';font-size:18px;color:#0F171F;margin-bottom:10px">Lista de juegos</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06)">
+      <span style="font:500 13px Barlow;color:rgba(0,0,0,.55)">12 mar</span>
+      <span style="font:600 14px Barlow;color:#0F171F;font-variant-numeric:tabular-nums">GBO 92 – 88 BAY</span>
+      <span style="display:inline-flex;border:1px dashed #D9A62E;border-radius:5px;padding:2px 6px;font:700 8.5px Barlow;letter-spacing:1px;color:#9A7712">FPO</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0">
+      <span style="font:500 13px Barlow;color:rgba(0,0,0,.55)">14 mar</span>
+      <span style="font:600 14px Barlow;color:#0F171F;font-variant-numeric:tabular-nums">SCE 101 – 97 ARE</span>
+      <span style="display:inline-flex;border:1px dashed #D9A62E;border-radius:5px;padding:2px 6px;font:700 8.5px Barlow;letter-spacing:1px;color:#9A7712">FPO</span>
+    </div>
+  </div>
+  <div style="flex:1;border-left:1px solid rgba(0,0,0,.07);padding-left:24px">
+    <div style="font-family:'Special Gothic Condensed One';font-size:18px;color:#0F171F;margin-bottom:10px">Serie de playoffs</div>
+    <div style="border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:12px 14px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span class="stl">Serie Final</span><span style="display:inline-flex;border:1px dashed #D9A62E;border-radius:5px;padding:2px 6px;font:700 8.5px Barlow;letter-spacing:1px;color:#9A7712">FPO</span></div>
+      <div style="display:flex;justify-content:space-between;padding-top:8px;font:600 14px Barlow;color:#0F171F"><span>(1) Vaqueros</span><span style="font-variant-numeric:tabular-nums">4</span></div>
+      <div style="display:flex;justify-content:space-between;padding-top:4px;font:500 14px Barlow;color:rgba(0,0,0,.45)"><span>(3) Capitanes</span><span style="font-variant-numeric:tabular-nums">2</span></div>
+    </div>
+  </div>
+</div>
+</div>
+<p class="dv-note">Borde discontinuo + ámbar = «provisional» sin gritar; desaparece sin dejar hueco (el badge es el único elemento añadido). Nunca colorea la data misma — los números FPO se ven idénticos a los reales para evaluar el layout.</p>
+</div>
+
+<!-- ===== 1E CARDS ===== -->
+<div class="dv-opt" id="1e">
+<div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Card de récord y de líder — número protagonista, contexto en secundario, todo el card es tap. Data real de records.json.</div>
+<div class="dv-card" style="width:980px;min-width:980px" data-screen-label="1e Cards">
+<div style="padding:24px;display:flex;gap:16px;font-family:Barlow">
+  <div style="flex:1;border:1px solid rgba(0,0,0,.09);border-radius:12px;padding:18px 20px;cursor:pointer">
+    <div class="stl">Puntos por juego · Temporada</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:12px">
+      <span style="width:56px;height:56px;border-radius:99px;background:rgba(194,84,43,.1);color:#C2542B;display:inline-flex;align-items:center;justify-content:center;font:700 19px Barlow;flex:none">GT</span>
+      <div>
+        <div style="font-family:'Special Gothic Condensed One';font-size:40px;line-height:1;color:#0F171F;font-variant-numeric:tabular-nums">35.5</div>
+        <div style="font:600 14px Barlow;color:#0F171F;margin-top:3px">George Torres Dougherty</div>
+        <div style="font:400 12.5px Barlow;color:rgba(0,0,0,.5)">1987 · Cariduros · 30 juegos</div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,.06);margin-top:14px;padding-top:10px;display:flex;flex-direction:column;gap:6px;font-variant-numeric:tabular-nums">
+      <div style="display:flex;justify-content:space-between;font:400 13px Barlow;color:rgba(0,0,0,.65)"><span>2. Rolando Frazer · 1982</span><span style="font-weight:600;color:#0F171F">34.2</span></div>
+      <div style="display:flex;justify-content:space-between;font:400 13px Barlow;color:rgba(0,0,0,.65)"><span>3. Rolando Frazer · 1980</span><span style="font-weight:600;color:#0F171F">34.0</span></div>
+      <div style="display:flex;justify-content:space-between;font:400 13px Barlow;color:rgba(0,0,0,.65)"><span>4. George Torres D. · 1985</span><span style="font-weight:600;color:#0F171F">33.5</span></div>
+      <div style="display:flex;justify-content:space-between;font:400 13px Barlow;color:rgba(0,0,0,.65)"><span>5. Rolando Frazer · 1981</span><span style="font-weight:600;color:#0F171F">33.4</span></div>
+    </div>
+  </div>
+  <div style="flex:1;border:1px solid rgba(0,0,0,.09);border-radius:12px;padding:18px 20px;box-shadow:0 2px 14px rgba(14,20,32,.08);cursor:pointer">
+    <div class="stl">Hover — sombra raised del sistema, sin lift</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:12px">
+      <span style="width:56px;height:56px;border-radius:99px;background:rgba(70,138,217,.1);color:#468AD9;display:inline-flex;align-items:center;justify-content:center;font:700 19px Barlow;flex:none">GT</span>
+      <div>
+        <div style="font-family:'Special Gothic Condensed One';font-size:40px;line-height:1;color:#0F171F;font-variant-numeric:tabular-nums">15,863</div>
+        <div style="font:600 14px Barlow;color:#0F171F;margin-top:3px">George Torres Dougherty</div>
+        <div style="font:400 12.5px Barlow;color:rgba(0,0,0,.5)">Puntos de carrera · 1975 a 2001</div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,.06);margin-top:14px;padding-top:10px;font:500 13px Barlow;color:#1772D9">Ver perfil →</div>
+  </div>
+  <div style="flex:1;border:1px solid rgba(0,0,0,.09);border-radius:12px;padding:18px 20px">
+    <div class="stl">Líder de categoría — el 1ro destacado</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:12px">
+      <span style="width:44px;height:44px;border-radius:99px;background:rgba(221,183,231,.18);color:#8E5FA0;display:inline-flex;align-items:center;justify-content:center;font:700 15px Barlow;flex:none">TT</span>
+      <div style="flex:1">
+        <div style="font:600 14px Barlow;color:#0F171F">Travis Trice</div>
+        <div style="font:400 12px Barlow;color:rgba(0,0,0,.5)">Criollos</div>
+      </div>
+      <span style="font-family:'Special Gothic Condensed One';font-size:26px;line-height:1;color:#0F171F;font-variant-numeric:tabular-nums">28.4</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-top:12px;border-top:1px solid rgba(0,0,0,.06);padding-top:10px;font-variant-numeric:tabular-nums">
+      <div style="display:flex;justify-content:space-between;font:400 13px Barlow;color:rgba(0,0,0,.65)"><span>2. Brandon Knight</span><span style="font-weight:600;color:#0F171F">26.1</span></div>
+      <div style="display:flex;justify-content:space-between;font:400 13px Barlow;color:rgba(0,0,0,.65)"><span>3. Walter Hodge</span><span style="font-weight:600;color:#0F171F">24.7</span></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ===== 1F CHIPS ===== -->
+<div class="dv-opt" id="1f">
+<div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Chips de año, franquicia y filtro — default / hover / activo / focus.</div>
+<div class="dv-card" style="width:980px;min-width:980px" data-screen-label="1f Chips">
+<div style="padding:24px;font-family:Barlow;display:flex;flex-direction:column;gap:18px">
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="stl" style="width:110px;flex:none">Año</span>
+    <span style="font:600 13.5px Barlow;color:#0F171F;border:1px solid rgba(0,0,0,.14);border-radius:8px;padding:6px 13px;font-variant-numeric:tabular-nums">1995</span>
+    <span style="font:600 13.5px Barlow;color:#0F171F;border:1px solid rgba(0,0,0,.3);border-radius:8px;padding:6px 13px;font-variant-numeric:tabular-nums;background:#FAFAFA">1996</span>
+    <span style="font:600 13.5px Barlow;color:#fff;background:#0F171F;border:1px solid #0F171F;border-radius:8px;padding:6px 13px;font-variant-numeric:tabular-nums">1999</span>
+    <span style="font:600 13.5px Barlow;color:#0F171F;border:1px solid rgba(0,0,0,.14);border-radius:8px;padding:6px 13px;font-variant-numeric:tabular-nums;outline:2px solid rgba(23,114,217,.5);outline-offset:2px">2001</span>
+    <span class="stl">default · hover · activo · focus</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="stl" style="width:110px;flex:none">Franquicia</span>
+    <span style="display:inline-flex;align-items:center;gap:7px;font:600 13.5px Barlow;color:#0F171F;border:1px solid rgba(0,0,0,.14);border-radius:99px;padding:5px 13px 5px 6px"><span style="width:20px;height:20px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #468AD9;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One';font-size:7px;color:rgba(15,23,31,.7)">BAY</span>Vaqueros</span>
+    <span style="display:inline-flex;align-items:center;gap:7px;font:600 13.5px Barlow;color:#0F171F;border:1px solid rgba(0,0,0,.3);border-radius:99px;padding:5px 13px 5px 6px;background:#FAFAFA"><span style="width:20px;height:20px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #B82027;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One';font-size:7px;color:rgba(15,23,31,.7)">PON</span>Leones</span>
+    <span style="display:inline-flex;align-items:center;gap:7px;font:600 13.5px Barlow;color:#fff;background:#0F171F;border:1px solid #0F171F;border-radius:99px;padding:5px 13px 5px 6px"><span style="width:20px;height:20px;border-radius:99px;background:#8A2A33;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-style:italic;font-weight:800;font-size:7px">CRD</span>Cardenales</span>
+    <span style="display:inline-flex;align-items:center;gap:7px;font:600 13.5px Barlow;color:#0F171F;border:1px solid rgba(0,0,0,.14);border-radius:99px;padding:5px 13px 5px 6px;outline:2px solid rgba(23,114,217,.5);outline-offset:2px"><span style="width:20px;height:20px;border-radius:99px;background:#fff;border:1px solid #E5E5E5;box-shadow:inset 0 0 0 2px #FFB900;display:inline-flex;align-items:center;justify-content:center;font-family:'Special Gothic Condensed One';font-size:7px;color:rgba(15,23,31,.7)">ARE</span>Capitanes</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="stl" style="width:110px;flex:none">Filtro (alfabeto)</span>
+    <span style="font:600 14px Barlow;color:rgba(0,0,0,.65);width:34px;height:34px;border:1px solid rgba(0,0,0,.14);border-radius:99px;display:inline-flex;align-items:center;justify-content:center">A</span>
+    <span style="font:600 14px Barlow;color:#0F171F;width:34px;height:34px;border:1px solid rgba(0,0,0,.3);border-radius:99px;display:inline-flex;align-items:center;justify-content:center;background:#FAFAFA">B</span>
+    <span style="font:600 14px Barlow;color:#fff;background:#E51F1F;border:1px solid #E51F1F;width:34px;height:34px;border-radius:99px;display:inline-flex;align-items:center;justify-content:center">T</span>
+    <span style="font:600 14px Barlow;color:rgba(0,0,0,.65);width:34px;height:34px;border:1px solid rgba(0,0,0,.14);border-radius:99px;display:inline-flex;align-items:center;justify-content:center;outline:2px solid rgba(23,114,217,.5);outline-offset:2px">V</span>
+    <span style="font:600 14px Barlow;color:rgba(0,0,0,.25);width:34px;height:34px;border:1px solid rgba(0,0,0,.07);border-radius:99px;display:inline-flex;align-items:center;justify-content:center">X</span>
+    <span class="stl">deshabilitado = sin jugadores con esa letra</span>
+  </div>
+</div>
+</div>
+<p class="dv-note">El activo del alfabeto es el único chip que usa rojo (es navegación dentro del índice). Chips de año/franquicia activan a ink sólido — el rojo se reserva.</p>
+</div>
+
+</div>
+<p class="dv-next">Siguiente tanda: Perfil de jugador (Georgie completo + Pachín con nulls de era), desktop y 375, en 2-3 direcciones. Corrige lo que no te convenza de estas fundaciones ahora — todo lo que viene las hereda.</p>
+</section>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Foreign folders that live in the repo root but are not part of the Next app.
+BSN-react-native-master
+bsn-main
+docs
+.claude
+scripts/archivo/design
+scripts/archivo/raw
+scripts/archivo/samples
+
+# Never upload local env files. The preview gets its variables from Vercel itself.
+.env
+.env.*
+!.env.example
+
+.next
+node_modules

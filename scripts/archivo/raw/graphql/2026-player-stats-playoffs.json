@@ -1,0 +1,5852 @@
+[
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "b2ed8a5c-2ddf-11f1-9e51-ab941581d0bf",
+      "name": "Daniel Rivera"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 20.65,
+      "points": 320,
+      "pointsAvg": 9.41,
+      "reboundsTotal": 153,
+      "reboundsTotalAvg": 4.5,
+      "assists": 37,
+      "assistsAvg": 1.09,
+      "stealsAvg": 0.62,
+      "blocksAvg": 0.85,
+      "turnoversAvg": 0.88,
+      "fieldGoalsPercentage": 0.630332,
+      "threePointersPercentage": 0.357143,
+      "freeThrowsPercentage": 0.637681
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a32bc140-ca02-11f0-b09d-2f7d6da7cc8d",
+      "name": "Evander Ortiz Colon"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 17.95,
+      "points": 184,
+      "pointsAvg": 5.41,
+      "reboundsTotal": 49,
+      "reboundsTotalAvg": 1.44,
+      "assists": 88,
+      "assistsAvg": 2.59,
+      "stealsAvg": 0.79,
+      "blocksAvg": 0.03,
+      "turnoversAvg": 0.94,
+      "fieldGoalsPercentage": 0.452229,
+      "threePointersPercentage": 0.33871,
+      "freeThrowsPercentage": 0.65625
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "fb7d9bec-ca01-11f0-ad87-f7854434301d",
+      "name": "Jeff Early Jr."
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 19.266667,
+      "points": 214,
+      "pointsAvg": 6.29,
+      "reboundsTotal": 76,
+      "reboundsTotalAvg": 2.24,
+      "assists": 48,
+      "assistsAvg": 1.41,
+      "stealsAvg": 0.65,
+      "blocksAvg": 0.09,
+      "turnoversAvg": 0.62,
+      "fieldGoalsPercentage": 0.452941,
+      "threePointersPercentage": 0.283333,
+      "freeThrowsPercentage": 0.811321
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "bf5458f2-ca02-11f0-ac94-21515a92fdd7",
+      "name": "Travis Trice"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 31.166667,
+      "points": 625,
+      "pointsAvg": 18.38,
+      "reboundsTotal": 113,
+      "reboundsTotalAvg": 3.32,
+      "assists": 343,
+      "assistsAvg": 10.09,
+      "stealsAvg": 1.59,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 2.09,
+      "fieldGoalsPercentage": 0.446009,
+      "threePointersPercentage": 0.366973,
+      "freeThrowsPercentage": 0.87766
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "a3f8823e-ca02-11f0-82f5-2f7d6da7cc8d",
+      "name": "Alexander Kappos"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 21.4,
+      "points": 323,
+      "pointsAvg": 9.5,
+      "reboundsTotal": 122,
+      "reboundsTotalAvg": 3.59,
+      "assists": 42,
+      "assistsAvg": 1.24,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0.53,
+      "turnoversAvg": 0.53,
+      "fieldGoalsPercentage": 0.49187,
+      "threePointersPercentage": 0.396342,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "ed6ff290-ca01-11f0-afbe-a99038a1fbbd",
+      "name": "Carlos Emory"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 19.666667,
+      "points": 240,
+      "pointsAvg": 7.06,
+      "reboundsTotal": 139,
+      "reboundsTotalAvg": 4.09,
+      "assists": 28,
+      "assistsAvg": 0.82,
+      "stealsAvg": 0.38,
+      "blocksAvg": 0.12,
+      "turnoversAvg": 0.41,
+      "fieldGoalsPercentage": 0.434286,
+      "threePointersPercentage": 0.380952,
+      "freeThrowsPercentage": 0.833333
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "ef2a4aba-ca01-11f0-aa76-a99038a1fbbd",
+      "name": "Javier Mojica"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 24.866667,
+      "points": 365,
+      "pointsAvg": 10.74,
+      "reboundsTotal": 90,
+      "reboundsTotalAvg": 2.65,
+      "assists": 90,
+      "assistsAvg": 2.65,
+      "stealsAvg": 0.94,
+      "blocksAvg": 0.12,
+      "turnoversAvg": 0.94,
+      "fieldGoalsPercentage": 0.434211,
+      "threePointersPercentage": 0.433735,
+      "freeThrowsPercentage": 0.805556
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "bf96bd85-ca02-11f0-98a0-21515a92fdd7",
+      "name": "Nick Perkins"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 28.383333,
+      "points": 538,
+      "pointsAvg": 15.82,
+      "reboundsTotal": 214,
+      "reboundsTotalAvg": 6.29,
+      "assists": 73,
+      "assistsAvg": 2.15,
+      "stealsAvg": 0.38,
+      "blocksAvg": 0.41,
+      "turnoversAvg": 1.44,
+      "fieldGoalsPercentage": 0.462585,
+      "threePointersPercentage": 0.3125,
+      "freeThrowsPercentage": 0.754717
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "bf41ecd2-ca02-11f0-8e81-21515a92fdd7",
+      "name": "Marlon Hargis"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 15.233333,
+      "points": 196,
+      "pointsAvg": 5.76,
+      "reboundsTotal": 36,
+      "reboundsTotalAvg": 1.06,
+      "assists": 13,
+      "assistsAvg": 0.38,
+      "stealsAvg": 0.56,
+      "blocksAvg": 0.09,
+      "turnoversAvg": 0.32,
+      "fieldGoalsPercentage": 0.473333,
+      "threePointersPercentage": 0.413793,
+      "freeThrowsPercentage": 0.818182
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a36515f7-ca02-11f0-a9f1-2f7d6da7cc8d",
+      "name": "Jorge L. Pacheco"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 23.333333,
+      "points": 309,
+      "pointsAvg": 9.09,
+      "reboundsTotal": 42,
+      "reboundsTotalAvg": 1.24,
+      "assists": 76,
+      "assistsAvg": 2.24,
+      "stealsAvg": 0.76,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.59,
+      "fieldGoalsPercentage": 0.458333,
+      "threePointersPercentage": 0.409091,
+      "freeThrowsPercentage": 0.868421
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a327f585-ca02-11f0-a85c-2f7d6da7cc8d",
+      "name": "Tyquan Rolon"
+    },
+    "stats": {
+      "games": 34,
+      "minutesAvg": 28.766667,
+      "points": 462,
+      "pointsAvg": 13.59,
+      "reboundsTotal": 91,
+      "reboundsTotalAvg": 2.68,
+      "assists": 125,
+      "assistsAvg": 3.68,
+      "stealsAvg": 0.62,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 1.62,
+      "fieldGoalsPercentage": 0.504762,
+      "threePointersPercentage": 0.398551,
+      "freeThrowsPercentage": 0.773913
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "fd597fc3-ca01-11f0-ab1c-f7854434301d",
+      "name": "Rigoberto Mendoza"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 33.033333,
+      "points": 582,
+      "pointsAvg": 17.64,
+      "reboundsTotal": 207,
+      "reboundsTotalAvg": 6.27,
+      "assists": 154,
+      "assistsAvg": 4.67,
+      "stealsAvg": 1.58,
+      "blocksAvg": 0.3,
+      "turnoversAvg": 1.79,
+      "fieldGoalsPercentage": 0.534442,
+      "threePointersPercentage": 0.351145,
+      "freeThrowsPercentage": 0.710744
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "edadf191-ca01-11f0-aea3-a99038a1fbbd",
+      "name": "Ivan Gandia"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 24.45,
+      "points": 345,
+      "pointsAvg": 10.45,
+      "reboundsTotal": 60,
+      "reboundsTotalAvg": 1.82,
+      "assists": 110,
+      "assistsAvg": 3.33,
+      "stealsAvg": 0.67,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 0.94,
+      "fieldGoalsPercentage": 0.407018,
+      "threePointersPercentage": 0.370732,
+      "freeThrowsPercentage": 0.822222
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "cdd2f529-ca02-11f0-883c-affdf83cc02f",
+      "name": "Louis King"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 30.466667,
+      "points": 539,
+      "pointsAvg": 16.33,
+      "reboundsTotal": 218,
+      "reboundsTotalAvg": 6.61,
+      "assists": 130,
+      "assistsAvg": 3.94,
+      "stealsAvg": 1.15,
+      "blocksAvg": 0.61,
+      "turnoversAvg": 2.45,
+      "fieldGoalsPercentage": 0.484925,
+      "threePointersPercentage": 0.435233,
+      "freeThrowsPercentage": 0.734043
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7dc2039b-ca02-11f0-87a3-71bd8dec4466",
+      "name": "Victor Liz"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 28.866667,
+      "points": 375,
+      "pointsAvg": 11.36,
+      "reboundsTotal": 153,
+      "reboundsTotalAvg": 4.64,
+      "assists": 82,
+      "assistsAvg": 2.48,
+      "stealsAvg": 0.79,
+      "blocksAvg": 0.24,
+      "turnoversAvg": 2.36,
+      "fieldGoalsPercentage": 0.456747,
+      "threePointersPercentage": 0.31783,
+      "freeThrowsPercentage": 0.714286
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "edca4ef4-ca01-11f0-93e9-a99038a1fbbd",
+      "name": "Angel Matias"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 18.916667,
+      "points": 308,
+      "pointsAvg": 9.33,
+      "reboundsTotal": 115,
+      "reboundsTotalAvg": 3.48,
+      "assists": 50,
+      "assistsAvg": 1.52,
+      "stealsAvg": 0.3,
+      "blocksAvg": 0.27,
+      "turnoversAvg": 1.12,
+      "fieldGoalsPercentage": 0.491803,
+      "threePointersPercentage": 0.368421,
+      "freeThrowsPercentage": 0.87037
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "d4944a79-ca02-11f0-8048-3585e5df5da0",
+      "name": "Javier Ezquerra"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 16.116667,
+      "points": 132,
+      "pointsAvg": 4,
+      "reboundsTotal": 84,
+      "reboundsTotalAvg": 2.55,
+      "assists": 92,
+      "assistsAvg": 2.79,
+      "stealsAvg": 0.64,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.3,
+      "fieldGoalsPercentage": 0.376712,
+      "threePointersPercentage": 0.308824,
+      "freeThrowsPercentage": 0.25
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "a38e7f17-ca02-11f0-bfef-2f7d6da7cc8d",
+      "name": "Isaiah Pineiro"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 24.083333,
+      "points": 368,
+      "pointsAvg": 11.15,
+      "reboundsTotal": 163,
+      "reboundsTotalAvg": 4.94,
+      "assists": 44,
+      "assistsAvg": 1.33,
+      "stealsAvg": 0.94,
+      "blocksAvg": 0.21,
+      "turnoversAvg": 1.33,
+      "fieldGoalsPercentage": 0.507463,
+      "threePointersPercentage": 0.337209,
+      "freeThrowsPercentage": 0.797619
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "9670b84d-ca02-11f0-b89a-3d891f4e2262",
+      "name": "Renaldo Balkman"
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 18.733333,
+      "points": 236,
+      "pointsAvg": 7.15,
+      "reboundsTotal": 152,
+      "reboundsTotalAvg": 4.61,
+      "assists": 49,
+      "assistsAvg": 1.48,
+      "stealsAvg": 1.06,
+      "blocksAvg": 0.76,
+      "turnoversAvg": 0.73,
+      "fieldGoalsPercentage": 0.689655,
+      "threePointersPercentage": 0.222222,
+      "freeThrowsPercentage": 0.641509
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "a33c0ced-ca02-11f0-a201-2f7d6da7cc8d",
+      "name": "Benito Santiago Jr."
+    },
+    "stats": {
+      "games": 33,
+      "minutesAvg": 20.05,
+      "points": 309,
+      "pointsAvg": 9.36,
+      "reboundsTotal": 83,
+      "reboundsTotalAvg": 2.52,
+      "assists": 34,
+      "assistsAvg": 1.03,
+      "stealsAvg": 0.82,
+      "blocksAvg": 0.24,
+      "turnoversAvg": 0.61,
+      "fieldGoalsPercentage": 0.4689,
+      "threePointersPercentage": 0.446809,
+      "freeThrowsPercentage": 0.746269
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "feacc94f-2dd3-11f1-933f-6d766f833f80",
+      "name": "Jaylen Nowell"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 30.95,
+      "points": 718,
+      "pointsAvg": 22.44,
+      "reboundsTotal": 91,
+      "reboundsTotalAvg": 2.84,
+      "assists": 113,
+      "assistsAvg": 3.53,
+      "stealsAvg": 0.81,
+      "blocksAvg": 0.19,
+      "turnoversAvg": 2.03,
+      "fieldGoalsPercentage": 0.510934,
+      "threePointersPercentage": 0.423913,
+      "freeThrowsPercentage": 0.823529
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "f30a0ac4-24af-11f1-b016-03fad19c0ff2",
+      "name": "Moses Brown"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 24.283333,
+      "points": 605,
+      "pointsAvg": 18.91,
+      "reboundsTotal": 339,
+      "reboundsTotalAvg": 10.59,
+      "assists": 21,
+      "assistsAvg": 0.66,
+      "stealsAvg": 0.5,
+      "blocksAvg": 1.75,
+      "turnoversAvg": 1.63,
+      "fieldGoalsPercentage": 0.643038,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.518717
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "c001f474-ca02-11f0-aaa5-21515a92fdd7",
+      "name": "Robiel Morales"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 12,
+      "points": 136,
+      "pointsAvg": 4.25,
+      "reboundsTotal": 62,
+      "reboundsTotalAvg": 1.94,
+      "assists": 48,
+      "assistsAvg": 1.5,
+      "stealsAvg": 0.56,
+      "blocksAvg": 0.09,
+      "turnoversAvg": 0.69,
+      "fieldGoalsPercentage": 0.5,
+      "threePointersPercentage": 0.413793,
+      "freeThrowsPercentage": 0.625
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "bf77251c-ca02-11f0-ab1c-21515a92fdd7",
+      "name": "Richard Nunez"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 11.666667,
+      "points": 122,
+      "pointsAvg": 3.81,
+      "reboundsTotal": 68,
+      "reboundsTotalAvg": 2.13,
+      "assists": 32,
+      "assistsAvg": 1,
+      "stealsAvg": 0.59,
+      "blocksAvg": 0.16,
+      "turnoversAvg": 0.53,
+      "fieldGoalsPercentage": 0.505376,
+      "threePointersPercentage": 0.380952,
+      "freeThrowsPercentage": 0.714286
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "edd73bc2-ca01-11f0-991b-a99038a1fbbd",
+      "name": "Ysmael Romero"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 29.083333,
+      "points": 557,
+      "pointsAvg": 17.41,
+      "reboundsTotal": 260,
+      "reboundsTotalAvg": 8.13,
+      "assists": 89,
+      "assistsAvg": 2.78,
+      "stealsAvg": 0.75,
+      "blocksAvg": 0.44,
+      "turnoversAvg": 1.47,
+      "fieldGoalsPercentage": 0.578164,
+      "threePointersPercentage": 0.16129,
+      "freeThrowsPercentage": 0.508876
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bfe7da9f-ca02-11f0-b665-21515a92fdd7",
+      "name": "Diego Gonzalez Pellot"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 15.25,
+      "points": 170,
+      "pointsAvg": 5.31,
+      "reboundsTotal": 59,
+      "reboundsTotalAvg": 1.84,
+      "assists": 61,
+      "assistsAvg": 1.91,
+      "stealsAvg": 0.81,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 0.72,
+      "fieldGoalsPercentage": 0.507813,
+      "threePointersPercentage": 0.25,
+      "freeThrowsPercentage": 0.644444
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a36dd8c7-ca02-11f0-b4f3-2f7d6da7cc8d",
+      "name": "Jaysean Paige"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 31.833333,
+      "points": 528,
+      "pointsAvg": 16.5,
+      "reboundsTotal": 107,
+      "reboundsTotalAvg": 3.34,
+      "assists": 131,
+      "assistsAvg": 4.09,
+      "stealsAvg": 1.34,
+      "blocksAvg": 0.28,
+      "turnoversAvg": 2.13,
+      "fieldGoalsPercentage": 0.446043,
+      "threePointersPercentage": 0.396078,
+      "freeThrowsPercentage": 0.808824
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a35c5594-ca02-11f0-99e4-2f7d6da7cc8d",
+      "name": "Brandon Boyd"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 12.016667,
+      "points": 114,
+      "pointsAvg": 3.56,
+      "reboundsTotal": 35,
+      "reboundsTotalAvg": 1.09,
+      "assists": 59,
+      "assistsAvg": 1.84,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0.03,
+      "turnoversAvg": 0.59,
+      "fieldGoalsPercentage": 0.34188,
+      "threePointersPercentage": 0.325,
+      "freeThrowsPercentage": 0.727273
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "bf0f1c01-ca02-11f0-a147-21515a92fdd7",
+      "name": "Isaiah Palermo"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 14.383333,
+      "points": 154,
+      "pointsAvg": 4.81,
+      "reboundsTotal": 53,
+      "reboundsTotalAvg": 1.66,
+      "assists": 26,
+      "assistsAvg": 0.81,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0.16,
+      "turnoversAvg": 0.38,
+      "fieldGoalsPercentage": 0.4,
+      "threePointersPercentage": 0.296296,
+      "freeThrowsPercentage": 0.636364
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "7dd34f72-ca02-11f0-8874-71bd8dec4466",
+      "name": "Christian Pizarro Rios"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 9.283333,
+      "points": 93,
+      "pointsAvg": 2.91,
+      "reboundsTotal": 21,
+      "reboundsTotalAvg": 0.66,
+      "assists": 70,
+      "assistsAvg": 2.19,
+      "stealsAvg": 0.38,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.13,
+      "fieldGoalsPercentage": 0.348315,
+      "threePointersPercentage": 0.277778,
+      "freeThrowsPercentage": 0.941177
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a3bcf688-ca02-11f0-8611-2f7d6da7cc8d",
+      "name": "Christian M. Negron"
+    },
+    "stats": {
+      "games": 32,
+      "minutesAvg": 16.7,
+      "points": 203,
+      "pointsAvg": 6.34,
+      "reboundsTotal": 115,
+      "reboundsTotalAvg": 3.59,
+      "assists": 24,
+      "assistsAvg": 0.75,
+      "stealsAvg": 0.34,
+      "blocksAvg": 0.78,
+      "turnoversAvg": 0.47,
+      "fieldGoalsPercentage": 0.666667,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.563636
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bf91766a-ca02-11f0-9017-21515a92fdd7",
+      "name": "Matthew Lee"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 15.8,
+      "points": 210,
+      "pointsAvg": 6.77,
+      "reboundsTotal": 32,
+      "reboundsTotalAvg": 1.03,
+      "assists": 67,
+      "assistsAvg": 2.16,
+      "stealsAvg": 0.23,
+      "blocksAvg": 0.03,
+      "turnoversAvg": 1.03,
+      "fieldGoalsPercentage": 0.373134,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a3d03db8-ca02-11f0-aea0-2f7d6da7cc8d",
+      "name": "Manuel Camper"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 19.733333,
+      "points": 279,
+      "pointsAvg": 9,
+      "reboundsTotal": 109,
+      "reboundsTotalAvg": 3.52,
+      "assists": 54,
+      "assistsAvg": 1.74,
+      "stealsAvg": 0.52,
+      "blocksAvg": 0.23,
+      "turnoversAvg": 0.9,
+      "fieldGoalsPercentage": 0.484375,
+      "threePointersPercentage": 0.397727,
+      "freeThrowsPercentage": 0.753247
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "bf6a1d13-ca02-11f0-b875-21515a92fdd7",
+      "name": "Emmanuel Mudiay"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 35.816667,
+      "points": 609,
+      "pointsAvg": 19.65,
+      "reboundsTotal": 135,
+      "reboundsTotalAvg": 4.35,
+      "assists": 179,
+      "assistsAvg": 5.77,
+      "stealsAvg": 0.81,
+      "blocksAvg": 0.13,
+      "turnoversAvg": 1.94,
+      "fieldGoalsPercentage": 0.426854,
+      "threePointersPercentage": 0.348571,
+      "freeThrowsPercentage": 0.767296
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a34beb7e-ca02-11f0-942e-2f7d6da7cc8d",
+      "name": "Jorge Luis Torres"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 9.383333,
+      "points": 72,
+      "pointsAvg": 2.32,
+      "reboundsTotal": 86,
+      "reboundsTotalAvg": 2.77,
+      "assists": 18,
+      "assistsAvg": 0.58,
+      "stealsAvg": 0.16,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.39,
+      "fieldGoalsPercentage": 0.53125,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.307692
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ee21c40e-ca01-11f0-9c18-a99038a1fbbd",
+      "name": "Raymond Cintron Jr"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 13.066667,
+      "points": 98,
+      "pointsAvg": 3.16,
+      "reboundsTotal": 21,
+      "reboundsTotalAvg": 0.68,
+      "assists": 31,
+      "assistsAvg": 1,
+      "stealsAvg": 0.71,
+      "blocksAvg": 0.03,
+      "turnoversAvg": 0.35,
+      "fieldGoalsPercentage": 0.344086,
+      "threePointersPercentage": 0.317073,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "bcd0226f-ca02-11f0-ae26-21515a92fdd7",
+      "name": "Jordan Daniel Cintron"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 16.433333,
+      "points": 200,
+      "pointsAvg": 6.45,
+      "reboundsTotal": 101,
+      "reboundsTotalAvg": 3.26,
+      "assists": 25,
+      "assistsAvg": 0.81,
+      "stealsAvg": 0.55,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 0.58,
+      "fieldGoalsPercentage": 0.507246,
+      "threePointersPercentage": 0.297297,
+      "freeThrowsPercentage": 0.803279
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "a40ebc1a-1415-11f1-aca4-55e2d81761db",
+      "name": "Corey McKeithan"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 14.383333,
+      "points": 183,
+      "pointsAvg": 5.9,
+      "reboundsTotal": 32,
+      "reboundsTotalAvg": 1.03,
+      "assists": 55,
+      "assistsAvg": 1.77,
+      "stealsAvg": 0.32,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 0.61,
+      "fieldGoalsPercentage": 0.428571,
+      "threePointersPercentage": 0.313253,
+      "freeThrowsPercentage": 0.764706
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ee4442e8-ca01-11f0-a516-a99038a1fbbd",
+      "name": "Ruben Cotto"
+    },
+    "stats": {
+      "games": 31,
+      "minutesAvg": 6.7,
+      "points": 54,
+      "pointsAvg": 1.74,
+      "reboundsTotal": 21,
+      "reboundsTotalAvg": 0.68,
+      "assists": 16,
+      "assistsAvg": 0.52,
+      "stealsAvg": 0.39,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.23,
+      "fieldGoalsPercentage": 0.4375,
+      "threePointersPercentage": 0.357143,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "bcec5656-ca02-11f0-bc9a-21515a92fdd7",
+      "name": "Tremont Waters"
+    },
+    "stats": {
+      "games": 30,
+      "minutesAvg": 31.6,
+      "points": 488,
+      "pointsAvg": 16.27,
+      "reboundsTotal": 75,
+      "reboundsTotalAvg": 2.5,
+      "assists": 204,
+      "assistsAvg": 6.8,
+      "stealsAvg": 1.9,
+      "blocksAvg": 0.17,
+      "turnoversAvg": 3.17,
+      "fieldGoalsPercentage": 0.386473,
+      "threePointersPercentage": 0.298755,
+      "freeThrowsPercentage": 0.888889
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "7de93eeb-ca02-11f0-a312-71bd8dec4466",
+      "name": "Kevin Maura Colon"
+    },
+    "stats": {
+      "games": 30,
+      "minutesAvg": 10.25,
+      "points": 49,
+      "pointsAvg": 1.63,
+      "reboundsTotal": 20,
+      "reboundsTotalAvg": 0.67,
+      "assists": 43,
+      "assistsAvg": 1.43,
+      "stealsAvg": 0.43,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.6,
+      "fieldGoalsPercentage": 0.387755,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.428571
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "fc07e320-ca01-11f0-b444-f7854434301d",
+      "name": "Gary Browne"
+    },
+    "stats": {
+      "games": 30,
+      "minutesAvg": 25.45,
+      "points": 305,
+      "pointsAvg": 10.17,
+      "reboundsTotal": 127,
+      "reboundsTotalAvg": 4.23,
+      "assists": 209,
+      "assistsAvg": 6.97,
+      "stealsAvg": 1.27,
+      "blocksAvg": 0.03,
+      "turnoversAvg": 2.13,
+      "fieldGoalsPercentage": 0.457983,
+      "threePointersPercentage": 0.38961,
+      "freeThrowsPercentage": 0.76
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "edbf7e7d-ca01-11f0-99e9-a99038a1fbbd",
+      "name": "Jonathan Rodriguez"
+    },
+    "stats": {
+      "games": 30,
+      "minutesAvg": 18.233333,
+      "points": 195,
+      "pointsAvg": 6.5,
+      "reboundsTotal": 138,
+      "reboundsTotalAvg": 4.6,
+      "assists": 23,
+      "assistsAvg": 0.77,
+      "stealsAvg": 0.4,
+      "blocksAvg": 0.1,
+      "turnoversAvg": 0.43,
+      "fieldGoalsPercentage": 0.492857,
+      "threePointersPercentage": 0.380952,
+      "freeThrowsPercentage": 0.78125
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "ed9471eb-ca01-11f0-995f-a99038a1fbbd",
+      "name": "Onzie Branch"
+    },
+    "stats": {
+      "games": 30,
+      "minutesAvg": 14.316667,
+      "points": 113,
+      "pointsAvg": 3.77,
+      "reboundsTotal": 74,
+      "reboundsTotalAvg": 2.47,
+      "assists": 36,
+      "assistsAvg": 1.2,
+      "stealsAvg": 0.3,
+      "blocksAvg": 0.1,
+      "turnoversAvg": 0.67,
+      "fieldGoalsPercentage": 0.462366,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.607143
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a409f489-ca02-11f0-8674-2f7d6da7cc8d",
+      "name": "Antonio Gordon"
+    },
+    "stats": {
+      "games": 30,
+      "minutesAvg": 11.433333,
+      "points": 174,
+      "pointsAvg": 5.8,
+      "reboundsTotal": 68,
+      "reboundsTotalAvg": 2.27,
+      "assists": 15,
+      "assistsAvg": 0.5,
+      "stealsAvg": 0.27,
+      "blocksAvg": 0.2,
+      "turnoversAvg": 0.6,
+      "fieldGoalsPercentage": 0.479675,
+      "threePointersPercentage": 0.371429,
+      "freeThrowsPercentage": 0.882353
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "7df822ab-ca02-11f0-ba16-71bd8dec4466",
+      "name": "Angel Rodriguez"
+    },
+    "stats": {
+      "games": 30,
+      "minutesAvg": 24.966667,
+      "points": 366,
+      "pointsAvg": 12.2,
+      "reboundsTotal": 101,
+      "reboundsTotalAvg": 3.37,
+      "assists": 187,
+      "assistsAvg": 6.23,
+      "stealsAvg": 1.67,
+      "blocksAvg": 0.1,
+      "turnoversAvg": 2.3,
+      "fieldGoalsPercentage": 0.440154,
+      "threePointersPercentage": 0.430769,
+      "freeThrowsPercentage": 0.811881
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "ed63b22f-ca01-11f0-a33c-a99038a1fbbd",
+      "name": "Jezreel De Jesus"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 33.55,
+      "points": 580,
+      "pointsAvg": 20,
+      "reboundsTotal": 83,
+      "reboundsTotalAvg": 2.86,
+      "assists": 121,
+      "assistsAvg": 4.17,
+      "stealsAvg": 0.93,
+      "blocksAvg": 0.07,
+      "turnoversAvg": 1.66,
+      "fieldGoalsPercentage": 0.489362,
+      "threePointersPercentage": 0.388535,
+      "freeThrowsPercentage": 0.834254
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "e976bbfa-24a6-11f1-90f6-593178550657",
+      "name": "Corey Jae Crowder"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 26.55,
+      "points": 419,
+      "pointsAvg": 14.45,
+      "reboundsTotal": 167,
+      "reboundsTotalAvg": 5.76,
+      "assists": 83,
+      "assistsAvg": 2.86,
+      "stealsAvg": 1.41,
+      "blocksAvg": 0.48,
+      "turnoversAvg": 1.1,
+      "fieldGoalsPercentage": 0.414706,
+      "threePointersPercentage": 0.313726,
+      "freeThrowsPercentage": 0.767241
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bffd1078-ca02-11f0-ad3e-21515a92fdd7",
+      "name": "Giancarlo Rosado"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 16.333333,
+      "points": 200,
+      "pointsAvg": 6.9,
+      "reboundsTotal": 68,
+      "reboundsTotalAvg": 2.34,
+      "assists": 64,
+      "assistsAvg": 2.21,
+      "stealsAvg": 0.31,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.28,
+      "fieldGoalsPercentage": 0.546053,
+      "threePointersPercentage": 0.230769,
+      "freeThrowsPercentage": 0.659575
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "bf27b4c3-ca02-11f0-9c8d-21515a92fdd7",
+      "name": "Oenis Medina"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 6.066667,
+      "points": 59,
+      "pointsAvg": 2.03,
+      "reboundsTotal": 45,
+      "reboundsTotalAvg": 1.55,
+      "assists": 9,
+      "assistsAvg": 0.31,
+      "stealsAvg": 0.1,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.38,
+      "fieldGoalsPercentage": 0.511628,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.714286
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bfe2ef87-ca02-11f0-ade2-21515a92fdd7",
+      "name": "Rafael A. Pinzon Duperoy"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 25.566667,
+      "points": 274,
+      "pointsAvg": 9.45,
+      "reboundsTotal": 95,
+      "reboundsTotalAvg": 3.28,
+      "assists": 55,
+      "assistsAvg": 1.9,
+      "stealsAvg": 0.41,
+      "blocksAvg": 0.14,
+      "turnoversAvg": 0.83,
+      "fieldGoalsPercentage": 0.408907,
+      "threePointersPercentage": 0.409449,
+      "freeThrowsPercentage": 0.952381
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7dcea94f-ca02-11f0-a88d-71bd8dec4466",
+      "name": "Derek Reese"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 10.4,
+      "points": 74,
+      "pointsAvg": 2.55,
+      "reboundsTotal": 81,
+      "reboundsTotalAvg": 2.79,
+      "assists": 10,
+      "assistsAvg": 0.34,
+      "stealsAvg": 0.17,
+      "blocksAvg": 0.31,
+      "turnoversAvg": 0.31,
+      "fieldGoalsPercentage": 0.41791,
+      "threePointersPercentage": 0.307692,
+      "freeThrowsPercentage": 0.7
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "cb1b2f7c-ca02-11f0-be0a-affdf83cc02f",
+      "name": "Montrezl Harrell"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 31.316667,
+      "points": 500,
+      "pointsAvg": 17.24,
+      "reboundsTotal": 291,
+      "reboundsTotalAvg": 10.03,
+      "assists": 78,
+      "assistsAvg": 2.69,
+      "stealsAvg": 0.62,
+      "blocksAvg": 0.59,
+      "turnoversAvg": 1.52,
+      "fieldGoalsPercentage": 0.614925,
+      "threePointersPercentage": 0.1875,
+      "freeThrowsPercentage": 0.666667
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a3a04834-ca02-11f0-af16-2f7d6da7cc8d",
+      "name": "Jordan Murphy"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 24.316667,
+      "points": 396,
+      "pointsAvg": 13.66,
+      "reboundsTotal": 167,
+      "reboundsTotalAvg": 5.76,
+      "assists": 24,
+      "assistsAvg": 0.83,
+      "stealsAvg": 0.45,
+      "blocksAvg": 0.59,
+      "turnoversAvg": 1.24,
+      "fieldGoalsPercentage": 0.541219,
+      "threePointersPercentage": 0.391304,
+      "freeThrowsPercentage": 0.638095
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "a350192f-ca02-11f0-ba1c-2f7d6da7cc8d",
+      "name": "Luis D. Cuascut"
+    },
+    "stats": {
+      "games": 29,
+      "minutesAvg": 12.9,
+      "points": 133,
+      "pointsAvg": 4.59,
+      "reboundsTotal": 63,
+      "reboundsTotalAvg": 2.17,
+      "assists": 20,
+      "assistsAvg": 0.69,
+      "stealsAvg": 0.45,
+      "blocksAvg": 0.69,
+      "turnoversAvg": 0.66,
+      "fieldGoalsPercentage": 0.571429,
+      "threePointersPercentage": 0.1875,
+      "freeThrowsPercentage": 0.434783
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "ea0ddbeb-337e-11f1-a344-e9d392d1d8b1",
+      "name": "Jalen Bernard Crutcher"
+    },
+    "stats": {
+      "games": 28,
+      "minutesAvg": 32.233333,
+      "points": 425,
+      "pointsAvg": 15.18,
+      "reboundsTotal": 98,
+      "reboundsTotalAvg": 3.5,
+      "assists": 172,
+      "assistsAvg": 6.14,
+      "stealsAvg": 0.68,
+      "blocksAvg": 0.11,
+      "turnoversAvg": 1.96,
+      "fieldGoalsPercentage": 0.4875,
+      "threePointersPercentage": 0.415493,
+      "freeThrowsPercentage": 0.830769
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "edb6893d-ca01-11f0-8cf7-a99038a1fbbd",
+      "name": "Christian Lopez Santiago"
+    },
+    "stats": {
+      "games": 28,
+      "minutesAvg": 21,
+      "points": 353,
+      "pointsAvg": 12.61,
+      "reboundsTotal": 75,
+      "reboundsTotalAvg": 2.68,
+      "assists": 50,
+      "assistsAvg": 1.79,
+      "stealsAvg": 0.57,
+      "blocksAvg": 0.07,
+      "turnoversAvg": 1.39,
+      "fieldGoalsPercentage": 0.474138,
+      "threePointersPercentage": 0.514563,
+      "freeThrowsPercentage": 0.91954
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "a33feed2-ca02-11f0-b058-2f7d6da7cc8d",
+      "name": "Hiram Huertas"
+    },
+    "stats": {
+      "games": 28,
+      "minutesAvg": 9.566667,
+      "points": 83,
+      "pointsAvg": 2.96,
+      "reboundsTotal": 40,
+      "reboundsTotalAvg": 1.43,
+      "assists": 38,
+      "assistsAvg": 1.36,
+      "stealsAvg": 0.54,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.43,
+      "fieldGoalsPercentage": 0.42623,
+      "threePointersPercentage": 0.357143,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a41d4c67-ca02-11f0-a47e-2f7d6da7cc8d",
+      "name": "Janiel Jafet Romer"
+    },
+    "stats": {
+      "games": 28,
+      "minutesAvg": 9.266667,
+      "points": 91,
+      "pointsAvg": 3.25,
+      "reboundsTotal": 41,
+      "reboundsTotalAvg": 1.46,
+      "assists": 2,
+      "assistsAvg": 0.07,
+      "stealsAvg": 0.25,
+      "blocksAvg": 0.11,
+      "turnoversAvg": 0.07,
+      "fieldGoalsPercentage": 0.37234,
+      "threePointersPercentage": 0.276923,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "7df3bbcc-ca02-11f0-abf5-71bd8dec4466",
+      "name": "Wilfredo Rodriguez Valentin"
+    },
+    "stats": {
+      "games": 28,
+      "minutesAvg": 13.283333,
+      "points": 94,
+      "pointsAvg": 3.36,
+      "reboundsTotal": 53,
+      "reboundsTotalAvg": 1.89,
+      "assists": 25,
+      "assistsAvg": 0.89,
+      "stealsAvg": 0.21,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.39,
+      "fieldGoalsPercentage": 0.441861,
+      "threePointersPercentage": 0.294118,
+      "freeThrowsPercentage": 0.666667
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "c0586fae-ca02-11f0-95b8-21515a92fdd7",
+      "name": "Andre Curbelo"
+    },
+    "stats": {
+      "games": 28,
+      "minutesAvg": 28.116667,
+      "points": 439,
+      "pointsAvg": 15.68,
+      "reboundsTotal": 179,
+      "reboundsTotalAvg": 6.39,
+      "assists": 187,
+      "assistsAvg": 6.68,
+      "stealsAvg": 1.39,
+      "blocksAvg": 0.21,
+      "turnoversAvg": 2.75,
+      "fieldGoalsPercentage": 0.491713,
+      "threePointersPercentage": 0.314815,
+      "freeThrowsPercentage": 0.804878
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a425baf0-ca02-11f0-b2c7-2f7d6da7cc8d",
+      "name": "Johned Walker"
+    },
+    "stats": {
+      "games": 28,
+      "minutesAvg": 17.85,
+      "points": 175,
+      "pointsAvg": 6.25,
+      "reboundsTotal": 40,
+      "reboundsTotalAvg": 1.43,
+      "assists": 34,
+      "assistsAvg": 1.21,
+      "stealsAvg": 0.86,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.61,
+      "fieldGoalsPercentage": 0.436242,
+      "threePointersPercentage": 0.36,
+      "freeThrowsPercentage": 0.62069
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a3e67dfa-ca02-11f0-8855-2f7d6da7cc8d",
+      "name": "Eric Ayala"
+    },
+    "stats": {
+      "games": 27,
+      "minutesAvg": 17.483333,
+      "points": 181,
+      "pointsAvg": 6.7,
+      "reboundsTotal": 46,
+      "reboundsTotalAvg": 1.7,
+      "assists": 33,
+      "assistsAvg": 1.22,
+      "stealsAvg": 0.26,
+      "blocksAvg": 0.11,
+      "turnoversAvg": 0.33,
+      "fieldGoalsPercentage": 0.433566,
+      "threePointersPercentage": 0.413044,
+      "freeThrowsPercentage": 0.703704
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "a38958ee-ca02-11f0-82d1-2f7d6da7cc8d",
+      "name": "Luis Rivera Rosario"
+    },
+    "stats": {
+      "games": 27,
+      "minutesAvg": 6.85,
+      "points": 102,
+      "pointsAvg": 3.78,
+      "reboundsTotal": 10,
+      "reboundsTotalAvg": 0.37,
+      "assists": 29,
+      "assistsAvg": 1.07,
+      "stealsAvg": 0.15,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.26,
+      "fieldGoalsPercentage": 0.376344,
+      "threePointersPercentage": 0.4,
+      "freeThrowsPercentage": 0.857143
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "bca86e9e-ca02-11f0-8502-21515a92fdd7",
+      "name": "Emmanuel Maldonado"
+    },
+    "stats": {
+      "games": 27,
+      "minutesAvg": 11.016667,
+      "points": 104,
+      "pointsAvg": 3.85,
+      "reboundsTotal": 38,
+      "reboundsTotalAvg": 1.41,
+      "assists": 34,
+      "assistsAvg": 1.26,
+      "stealsAvg": 0.48,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.67,
+      "fieldGoalsPercentage": 0.401961,
+      "threePointersPercentage": 0.313726,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "a3380e28-ca02-11f0-985e-2f7d6da7cc8d",
+      "name": "Josue Erazo"
+    },
+    "stats": {
+      "games": 26,
+      "minutesAvg": 21.283333,
+      "points": 186,
+      "pointsAvg": 7.15,
+      "reboundsTotal": 99,
+      "reboundsTotalAvg": 3.81,
+      "assists": 23,
+      "assistsAvg": 0.88,
+      "stealsAvg": 0.62,
+      "blocksAvg": 0.23,
+      "turnoversAvg": 0.92,
+      "fieldGoalsPercentage": 0.449664,
+      "threePointersPercentage": 0.145833,
+      "freeThrowsPercentage": 0.775862
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "d4a1851e-ca02-11f0-8687-3585e5df5da0",
+      "name": "Michael O Connell"
+    },
+    "stats": {
+      "games": 26,
+      "minutesAvg": 14.75,
+      "points": 155,
+      "pointsAvg": 5.96,
+      "reboundsTotal": 64,
+      "reboundsTotalAvg": 2.46,
+      "assists": 63,
+      "assistsAvg": 2.42,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0.04,
+      "turnoversAvg": 0.81,
+      "fieldGoalsPercentage": 0.458015,
+      "threePointersPercentage": 0.294118,
+      "freeThrowsPercentage": 0.769231
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "b2d7e523-17d0-11f1-b50d-0dc0e012b264",
+      "name": "Derrick Walton"
+    },
+    "stats": {
+      "games": 26,
+      "minutesAvg": 29.966667,
+      "points": 343,
+      "pointsAvg": 13.19,
+      "reboundsTotal": 103,
+      "reboundsTotalAvg": 3.96,
+      "assists": 230,
+      "assistsAvg": 8.85,
+      "stealsAvg": 0.96,
+      "blocksAvg": 0.08,
+      "turnoversAvg": 2.62,
+      "fieldGoalsPercentage": 0.46,
+      "threePointersPercentage": 0.325,
+      "freeThrowsPercentage": 0.828571
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "eeb308a6-ca01-11f0-8980-a99038a1fbbd",
+      "name": "Luis Hernandez"
+    },
+    "stats": {
+      "games": 26,
+      "minutesAvg": 9.3,
+      "points": 101,
+      "pointsAvg": 3.88,
+      "reboundsTotal": 56,
+      "reboundsTotalAvg": 2.15,
+      "assists": 7,
+      "assistsAvg": 0.27,
+      "stealsAvg": 0.31,
+      "blocksAvg": 0.08,
+      "turnoversAvg": 0.54,
+      "fieldGoalsPercentage": 0.5,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.529412
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "a3a8b0e4-ca02-11f0-a71a-2f7d6da7cc8d",
+      "name": "Khary Mauras"
+    },
+    "stats": {
+      "games": 26,
+      "minutesAvg": 9.833333,
+      "points": 82,
+      "pointsAvg": 3.15,
+      "reboundsTotal": 25,
+      "reboundsTotalAvg": 0.96,
+      "assists": 36,
+      "assistsAvg": 1.38,
+      "stealsAvg": 0.73,
+      "blocksAvg": 0.04,
+      "turnoversAvg": 0.46,
+      "fieldGoalsPercentage": 0.476191,
+      "threePointersPercentage": 0.304348,
+      "freeThrowsPercentage": 0.789474
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "cb8bd326-ca02-11f0-846d-affdf83cc02f",
+      "name": "Timothy Soares"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 31.15,
+      "points": 426,
+      "pointsAvg": 17.04,
+      "reboundsTotal": 196,
+      "reboundsTotalAvg": 7.84,
+      "assists": 58,
+      "assistsAvg": 2.32,
+      "stealsAvg": 0.72,
+      "blocksAvg": 1.28,
+      "turnoversAvg": 1.76,
+      "fieldGoalsPercentage": 0.522796,
+      "threePointersPercentage": 0.317757,
+      "freeThrowsPercentage": 0.607595
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "7dc65cd0-ca02-11f0-9c93-71bd8dec4466",
+      "name": "Davon Jefferson"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 26.1,
+      "points": 285,
+      "pointsAvg": 11.4,
+      "reboundsTotal": 193,
+      "reboundsTotalAvg": 7.72,
+      "assists": 44,
+      "assistsAvg": 1.76,
+      "stealsAvg": 0.52,
+      "blocksAvg": 0.52,
+      "turnoversAvg": 1.44,
+      "fieldGoalsPercentage": 0.654546,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.802326
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "bf9b6044-ca02-11f0-9b44-21515a92fdd7",
+      "name": "Kyle Rose"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 10.333333,
+      "points": 102,
+      "pointsAvg": 4.08,
+      "reboundsTotal": 41,
+      "reboundsTotalAvg": 1.64,
+      "assists": 16,
+      "assistsAvg": 0.64,
+      "stealsAvg": 0.64,
+      "blocksAvg": 0.2,
+      "turnoversAvg": 0.84,
+      "fieldGoalsPercentage": 0.447059,
+      "threePointersPercentage": 0.428571,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "551144a5-2479-11f1-af69-c3e83c831143",
+      "name": "Joshua Denton"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 10.366667,
+      "points": 115,
+      "pointsAvg": 4.6,
+      "reboundsTotal": 35,
+      "reboundsTotalAvg": 1.4,
+      "assists": 16,
+      "assistsAvg": 0.64,
+      "stealsAvg": 0.4,
+      "blocksAvg": 0.04,
+      "turnoversAvg": 0.32,
+      "fieldGoalsPercentage": 0.476744,
+      "threePointersPercentage": 0.409091,
+      "freeThrowsPercentage": 0.545455
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "bff07457-ca02-11f0-b6b1-21515a92fdd7",
+      "name": "Gianfranco Grafals"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 6.133333,
+      "points": 77,
+      "pointsAvg": 3.08,
+      "reboundsTotal": 29,
+      "reboundsTotalAvg": 1.16,
+      "assists": 10,
+      "assistsAvg": 0.4,
+      "stealsAvg": 0.28,
+      "blocksAvg": 0.16,
+      "turnoversAvg": 0.24,
+      "fieldGoalsPercentage": 0.516667,
+      "threePointersPercentage": 0.166667,
+      "freeThrowsPercentage": 0.722222
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "a49009f2-ca02-11f0-907a-2f7d6da7cc8d",
+      "name": "Justin Reyes"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 16.633333,
+      "points": 309,
+      "pointsAvg": 12.36,
+      "reboundsTotal": 85,
+      "reboundsTotalAvg": 3.4,
+      "assists": 38,
+      "assistsAvg": 1.52,
+      "stealsAvg": 0.44,
+      "blocksAvg": 0.76,
+      "turnoversAvg": 1.48,
+      "fieldGoalsPercentage": 0.613402,
+      "threePointersPercentage": 0.345455,
+      "freeThrowsPercentage": 0.753623
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a2ca7961-ca02-11f0-b627-2f7d6da7cc8d",
+      "name": "Devin Williams"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 26.2,
+      "points": 298,
+      "pointsAvg": 11.92,
+      "reboundsTotal": 223,
+      "reboundsTotalAvg": 8.92,
+      "assists": 35,
+      "assistsAvg": 1.4,
+      "stealsAvg": 0.72,
+      "blocksAvg": 0.12,
+      "turnoversAvg": 1.12,
+      "fieldGoalsPercentage": 0.528302,
+      "threePointersPercentage": 0.416667,
+      "freeThrowsPercentage": 0.574468
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ed9cfe96-ca01-11f0-99c2-a99038a1fbbd",
+      "name": "Alex Abreu"
+    },
+    "stats": {
+      "games": 25,
+      "minutesAvg": 12.433333,
+      "points": 88,
+      "pointsAvg": 3.52,
+      "reboundsTotal": 30,
+      "reboundsTotalAvg": 1.2,
+      "assists": 28,
+      "assistsAvg": 1.12,
+      "stealsAvg": 0.36,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.8,
+      "fieldGoalsPercentage": 0.414286,
+      "threePointersPercentage": 0.446809,
+      "freeThrowsPercentage": 0.818182
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a401330a-ca02-11f0-8b84-2f7d6da7cc8d",
+      "name": "Jacob Wiley"
+    },
+    "stats": {
+      "games": 24,
+      "minutesAvg": 24.616667,
+      "points": 308,
+      "pointsAvg": 12.83,
+      "reboundsTotal": 146,
+      "reboundsTotalAvg": 6.08,
+      "assists": 62,
+      "assistsAvg": 2.58,
+      "stealsAvg": 1.08,
+      "blocksAvg": 0.96,
+      "turnoversAvg": 1.17,
+      "fieldGoalsPercentage": 0.557851,
+      "threePointersPercentage": 0.348837,
+      "freeThrowsPercentage": 0.589744
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c05ceb27-ca02-11f0-8e9c-21515a92fdd7",
+      "name": "Tyrell Harrison"
+    },
+    "stats": {
+      "games": 24,
+      "minutesAvg": 29.216667,
+      "points": 448,
+      "pointsAvg": 18.67,
+      "reboundsTotal": 233,
+      "reboundsTotalAvg": 9.71,
+      "assists": 29,
+      "assistsAvg": 1.21,
+      "stealsAvg": 0.63,
+      "blocksAvg": 1.25,
+      "turnoversAvg": 2.42,
+      "fieldGoalsPercentage": 0.642141,
+      "threePointersPercentage": 0.428571,
+      "freeThrowsPercentage": 0.554546
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a37aa8c1-ca02-11f0-8e1f-2f7d6da7cc8d",
+      "name": "Leandro Allende"
+    },
+    "stats": {
+      "games": 24,
+      "minutesAvg": 13.416667,
+      "points": 82,
+      "pointsAvg": 3.42,
+      "reboundsTotal": 52,
+      "reboundsTotalAvg": 2.17,
+      "assists": 28,
+      "assistsAvg": 1.17,
+      "stealsAvg": 0.21,
+      "blocksAvg": 0.13,
+      "turnoversAvg": 0.38,
+      "fieldGoalsPercentage": 0.471429,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "a32fa43a-ca02-11f0-ae54-2f7d6da7cc8d",
+      "name": "Felix A. Rivera Vega"
+    },
+    "stats": {
+      "games": 24,
+      "minutesAvg": 6.833333,
+      "points": 53,
+      "pointsAvg": 2.21,
+      "reboundsTotal": 33,
+      "reboundsTotalAvg": 1.38,
+      "assists": 4,
+      "assistsAvg": 0.17,
+      "stealsAvg": 0.21,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.29,
+      "fieldGoalsPercentage": 0.489362,
+      "threePointersPercentage": 0.31579,
+      "freeThrowsPercentage": 0.25
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "ee2b5c1e-ca01-11f0-9b9c-a99038a1fbbd",
+      "name": "Devon Collier"
+    },
+    "stats": {
+      "games": 24,
+      "minutesAvg": 18.216667,
+      "points": 197,
+      "pointsAvg": 8.21,
+      "reboundsTotal": 128,
+      "reboundsTotalAvg": 5.33,
+      "assists": 40,
+      "assistsAvg": 1.67,
+      "stealsAvg": 0.63,
+      "blocksAvg": 0.42,
+      "turnoversAvg": 0.92,
+      "fieldGoalsPercentage": 0.710526,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.648148
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "cac542ab-ca02-11f0-9589-affdf83cc02f",
+      "name": "Nathan Sobey"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 36.65,
+      "points": 465,
+      "pointsAvg": 20.22,
+      "reboundsTotal": 116,
+      "reboundsTotalAvg": 5.04,
+      "assists": 158,
+      "assistsAvg": 6.87,
+      "stealsAvg": 0.91,
+      "blocksAvg": 0.22,
+      "turnoversAvg": 2.74,
+      "fieldGoalsPercentage": 0.427326,
+      "threePointersPercentage": 0.359116,
+      "freeThrowsPercentage": 0.791045
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a42157f6-ca02-11f0-b0eb-2f7d6da7cc8d",
+      "name": "Dyondre Dominguez"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 13.566667,
+      "points": 119,
+      "pointsAvg": 5.17,
+      "reboundsTotal": 68,
+      "reboundsTotalAvg": 2.96,
+      "assists": 18,
+      "assistsAvg": 0.78,
+      "stealsAvg": 0.52,
+      "blocksAvg": 0.3,
+      "turnoversAvg": 0.39,
+      "fieldGoalsPercentage": 0.505882,
+      "threePointersPercentage": 0.365385,
+      "freeThrowsPercentage": 0.823529
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bfec0236-ca02-11f0-bad5-21515a92fdd7",
+      "name": "Ramses J. Melendez Vega"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 29.45,
+      "points": 403,
+      "pointsAvg": 17.52,
+      "reboundsTotal": 120,
+      "reboundsTotalAvg": 5.22,
+      "assists": 52,
+      "assistsAvg": 2.26,
+      "stealsAvg": 0.78,
+      "blocksAvg": 0.65,
+      "turnoversAvg": 1.7,
+      "fieldGoalsPercentage": 0.548638,
+      "threePointersPercentage": 0.441667,
+      "freeThrowsPercentage": 0.708333
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a3de5035-ca02-11f0-b562-2f7d6da7cc8d",
+      "name": "Jesus A. Cruz Galarza"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 14.7,
+      "points": 120,
+      "pointsAvg": 5.22,
+      "reboundsTotal": 33,
+      "reboundsTotalAvg": 1.43,
+      "assists": 25,
+      "assistsAvg": 1.09,
+      "stealsAvg": 0.3,
+      "blocksAvg": 0.09,
+      "turnoversAvg": 0.74,
+      "fieldGoalsPercentage": 0.44898,
+      "threePointersPercentage": 0.326531,
+      "freeThrowsPercentage": 0.727273
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "01b47007-2ddf-11f1-9b70-e3bccb60dd6c",
+      "name": "Hunter Tyson"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 28.8,
+      "points": 379,
+      "pointsAvg": 16.48,
+      "reboundsTotal": 126,
+      "reboundsTotalAvg": 5.48,
+      "assists": 39,
+      "assistsAvg": 1.7,
+      "stealsAvg": 0.48,
+      "blocksAvg": 0.43,
+      "turnoversAvg": 1.35,
+      "fieldGoalsPercentage": 0.508834,
+      "threePointersPercentage": 0.420168,
+      "freeThrowsPercentage": 0.773585
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "bd5a544e-262a-11f1-b5b1-a7ab5f61aca3",
+      "name": "Reinaldo Santana"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 13.066667,
+      "points": 101,
+      "pointsAvg": 4.39,
+      "reboundsTotal": 32,
+      "reboundsTotalAvg": 1.39,
+      "assists": 45,
+      "assistsAvg": 1.96,
+      "stealsAvg": 0.26,
+      "blocksAvg": 0.04,
+      "turnoversAvg": 0.87,
+      "fieldGoalsPercentage": 0.420455,
+      "threePointersPercentage": 0.25,
+      "freeThrowsPercentage": 0.633333
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "cda0ec58-ca02-11f0-87d4-affdf83cc02f",
+      "name": "Tyler Davis"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 14.483333,
+      "points": 175,
+      "pointsAvg": 7.61,
+      "reboundsTotal": 115,
+      "reboundsTotalAvg": 5,
+      "assists": 23,
+      "assistsAvg": 1,
+      "stealsAvg": 0.3,
+      "blocksAvg": 0.39,
+      "turnoversAvg": 0.91,
+      "fieldGoalsPercentage": 0.598361,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.805556
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cadd8eeb-ca02-11f0-a598-affdf83cc02f",
+      "name": "Alejandro Vazquez"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 13.3,
+      "points": 149,
+      "pointsAvg": 6.48,
+      "reboundsTotal": 44,
+      "reboundsTotalAvg": 1.91,
+      "assists": 24,
+      "assistsAvg": 1.04,
+      "stealsAvg": 0.87,
+      "blocksAvg": 0.13,
+      "turnoversAvg": 0.83,
+      "fieldGoalsPercentage": 0.510204,
+      "threePointersPercentage": 0.352941,
+      "freeThrowsPercentage": 0.72549
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "935b43e4-2461-11f1-974e-b76fe5e34420",
+      "name": "Bradley Camacho"
+    },
+    "stats": {
+      "games": 23,
+      "minutesAvg": 5.483333,
+      "points": 51,
+      "pointsAvg": 2.22,
+      "reboundsTotal": 37,
+      "reboundsTotalAvg": 1.61,
+      "assists": 5,
+      "assistsAvg": 0.22,
+      "stealsAvg": 0.22,
+      "blocksAvg": 0.26,
+      "turnoversAvg": 0.17,
+      "fieldGoalsPercentage": 0.655172,
+      "threePointersPercentage": 0.25,
+      "freeThrowsPercentage": 0.545455
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a3d9dbb0-ca02-11f0-af39-2f7d6da7cc8d",
+      "name": "George Conditt IV"
+    },
+    "stats": {
+      "games": 22,
+      "minutesAvg": 26.533333,
+      "points": 173,
+      "pointsAvg": 7.86,
+      "reboundsTotal": 172,
+      "reboundsTotalAvg": 7.82,
+      "assists": 34,
+      "assistsAvg": 1.55,
+      "stealsAvg": 0.86,
+      "blocksAvg": 1,
+      "turnoversAvg": 1.05,
+      "fieldGoalsPercentage": 0.604651,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.425
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "82f72200-3a6f-11f1-8b49-23733e0fbcbd",
+      "name": "Isiah Gaiter"
+    },
+    "stats": {
+      "games": 22,
+      "minutesAvg": 14.866667,
+      "points": 120,
+      "pointsAvg": 5.45,
+      "reboundsTotal": 27,
+      "reboundsTotalAvg": 1.23,
+      "assists": 45,
+      "assistsAvg": 2.05,
+      "stealsAvg": 0.55,
+      "blocksAvg": 0.09,
+      "turnoversAvg": 0.82,
+      "fieldGoalsPercentage": 0.5,
+      "threePointersPercentage": 0.304348,
+      "freeThrowsPercentage": 0.578947
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "a3541a9e-ca02-11f0-a9f5-2f7d6da7cc8d",
+      "name": "Phillip Wheeler"
+    },
+    "stats": {
+      "games": 22,
+      "minutesAvg": 22.85,
+      "points": 278,
+      "pointsAvg": 12.64,
+      "reboundsTotal": 66,
+      "reboundsTotalAvg": 3,
+      "assists": 25,
+      "assistsAvg": 1.14,
+      "stealsAvg": 0.64,
+      "blocksAvg": 0.5,
+      "turnoversAvg": 1.41,
+      "fieldGoalsPercentage": 0.470588,
+      "threePointersPercentage": 0.346535,
+      "freeThrowsPercentage": 0.809524
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "a3b84fde-ca02-11f0-8dae-2f7d6da7cc8d",
+      "name": "Stephen Thompson Jr."
+    },
+    "stats": {
+      "games": 22,
+      "minutesAvg": 22.766667,
+      "points": 289,
+      "pointsAvg": 13.14,
+      "reboundsTotal": 74,
+      "reboundsTotalAvg": 3.36,
+      "assists": 54,
+      "assistsAvg": 2.45,
+      "stealsAvg": 0.91,
+      "blocksAvg": 0.27,
+      "turnoversAvg": 1.59,
+      "fieldGoalsPercentage": 0.463054,
+      "threePointersPercentage": 0.397727,
+      "freeThrowsPercentage": 0.694737
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "af13f1e5-ca02-11f0-b48c-0b8ba5d37ddd",
+      "name": "Antonio Ralat"
+    },
+    "stats": {
+      "games": 22,
+      "minutesAvg": 24.8,
+      "points": 221,
+      "pointsAvg": 10.05,
+      "reboundsTotal": 46,
+      "reboundsTotalAvg": 2.09,
+      "assists": 48,
+      "assistsAvg": 2.18,
+      "stealsAvg": 0.73,
+      "blocksAvg": 0.18,
+      "turnoversAvg": 1.23,
+      "fieldGoalsPercentage": 0.433121,
+      "threePointersPercentage": 0.466019,
+      "freeThrowsPercentage": 0.880952
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "cb3e1055-ca02-11f0-9d7a-affdf83cc02f",
+      "name": "George Alexander Hamilton"
+    },
+    "stats": {
+      "games": 22,
+      "minutesAvg": 30.733333,
+      "points": 271,
+      "pointsAvg": 12.32,
+      "reboundsTotal": 99,
+      "reboundsTotalAvg": 4.5,
+      "assists": 101,
+      "assistsAvg": 4.59,
+      "stealsAvg": 1.18,
+      "blocksAvg": 0.32,
+      "turnoversAvg": 1.68,
+      "fieldGoalsPercentage": 0.535135,
+      "threePointersPercentage": 0.4,
+      "freeThrowsPercentage": 0.761194
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ed904352-ca01-11f0-8d06-a99038a1fbbd",
+      "name": "Jared Ruiz"
+    },
+    "stats": {
+      "games": 21,
+      "minutesAvg": 25.016667,
+      "points": 214,
+      "pointsAvg": 10.19,
+      "reboundsTotal": 64,
+      "reboundsTotalAvg": 3.05,
+      "assists": 57,
+      "assistsAvg": 2.71,
+      "stealsAvg": 0.43,
+      "blocksAvg": 0.19,
+      "turnoversAvg": 1.52,
+      "fieldGoalsPercentage": 0.415301,
+      "threePointersPercentage": 0.383178,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "bf7c9124-ca02-11f0-bcd7-21515a92fdd7",
+      "name": "Jose Carlos Placer Diaz"
+    },
+    "stats": {
+      "games": 21,
+      "minutesAvg": 7.183333,
+      "points": 75,
+      "pointsAvg": 3.57,
+      "reboundsTotal": 14,
+      "reboundsTotalAvg": 0.67,
+      "assists": 12,
+      "assistsAvg": 0.57,
+      "stealsAvg": 0.14,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.43,
+      "fieldGoalsPercentage": 0.46875,
+      "threePointersPercentage": 0.321429,
+      "freeThrowsPercentage": 0.6
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "4f48934b-2497-11f1-bd07-6da73383f98b",
+      "name": "Omar Figueroa"
+    },
+    "stats": {
+      "games": 21,
+      "minutesAvg": 6.916667,
+      "points": 68,
+      "pointsAvg": 3.24,
+      "reboundsTotal": 12,
+      "reboundsTotalAvg": 0.57,
+      "assists": 7,
+      "assistsAvg": 0.33,
+      "stealsAvg": 0.19,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.29,
+      "fieldGoalsPercentage": 0.489362,
+      "threePointersPercentage": 0.466667,
+      "freeThrowsPercentage": 0.615385
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bff8d80e-ca02-11f0-840e-21515a92fdd7",
+      "name": "Jonathan Zhao Olmos"
+    },
+    "stats": {
+      "games": 20,
+      "minutesAvg": 13.733333,
+      "points": 127,
+      "pointsAvg": 6.35,
+      "reboundsTotal": 34,
+      "reboundsTotalAvg": 1.7,
+      "assists": 14,
+      "assistsAvg": 0.7,
+      "stealsAvg": 0.15,
+      "blocksAvg": 0.15,
+      "turnoversAvg": 0.3,
+      "fieldGoalsPercentage": 0.511628,
+      "threePointersPercentage": 0.387097,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "bf30486c-ca02-11f0-ad4e-21515a92fdd7",
+      "name": "Brandon Knight"
+    },
+    "stats": {
+      "games": 20,
+      "minutesAvg": 31.766667,
+      "points": 359,
+      "pointsAvg": 17.95,
+      "reboundsTotal": 73,
+      "reboundsTotalAvg": 3.65,
+      "assists": 125,
+      "assistsAvg": 6.25,
+      "stealsAvg": 1.05,
+      "blocksAvg": 0.1,
+      "turnoversAvg": 3.05,
+      "fieldGoalsPercentage": 0.469565,
+      "threePointersPercentage": 0.376068,
+      "freeThrowsPercentage": 0.779528
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7ddc32ec-ca02-11f0-a334-71bd8dec4466",
+      "name": "William Cruz Rodriguez"
+    },
+    "stats": {
+      "games": 20,
+      "minutesAvg": 18.45,
+      "points": 85,
+      "pointsAvg": 4.25,
+      "reboundsTotal": 42,
+      "reboundsTotalAvg": 2.1,
+      "assists": 32,
+      "assistsAvg": 1.6,
+      "stealsAvg": 0.4,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.45,
+      "fieldGoalsPercentage": 0.39726,
+      "threePointersPercentage": 0.375,
+      "freeThrowsPercentage": 0.545455
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "fd1a33e1-ca01-11f0-a7b2-f7854434301d",
+      "name": "Jorge L. Matos"
+    },
+    "stats": {
+      "games": 20,
+      "minutesAvg": 8.283333,
+      "points": 72,
+      "pointsAvg": 3.6,
+      "reboundsTotal": 21,
+      "reboundsTotalAvg": 1.05,
+      "assists": 3,
+      "assistsAvg": 0.15,
+      "stealsAvg": 0.05,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.2,
+      "fieldGoalsPercentage": 0.37931,
+      "threePointersPercentage": 0.24,
+      "freeThrowsPercentage": 0.733333
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c0420cf2-ca02-11f0-b690-21515a92fdd7",
+      "name": "Sam Waardenburg"
+    },
+    "stats": {
+      "games": 20,
+      "minutesAvg": 32.883333,
+      "points": 274,
+      "pointsAvg": 13.7,
+      "reboundsTotal": 145,
+      "reboundsTotalAvg": 7.25,
+      "assists": 73,
+      "assistsAvg": 3.65,
+      "stealsAvg": 0.8,
+      "blocksAvg": 1.05,
+      "turnoversAvg": 1.65,
+      "fieldGoalsPercentage": 0.484211,
+      "threePointersPercentage": 0.349398,
+      "freeThrowsPercentage": 0.824324
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c04b2083-ca02-11f0-a006-21515a92fdd7",
+      "name": "Neftali Alvarez"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 18.416667,
+      "points": 185,
+      "pointsAvg": 9.74,
+      "reboundsTotal": 40,
+      "reboundsTotalAvg": 2.11,
+      "assists": 63,
+      "assistsAvg": 3.32,
+      "stealsAvg": 1,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.32,
+      "fieldGoalsPercentage": 0.453901,
+      "threePointersPercentage": 0.428571,
+      "freeThrowsPercentage": 0.692308
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a371c816-ca02-11f0-97ab-2f7d6da7cc8d",
+      "name": "Kristian Doolittle"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 35.016667,
+      "points": 357,
+      "pointsAvg": 18.79,
+      "reboundsTotal": 160,
+      "reboundsTotalAvg": 8.42,
+      "assists": 83,
+      "assistsAvg": 4.37,
+      "stealsAvg": 0.63,
+      "blocksAvg": 0.05,
+      "turnoversAvg": 2.42,
+      "fieldGoalsPercentage": 0.461539,
+      "threePointersPercentage": 0.401786,
+      "freeThrowsPercentage": 0.884211
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "edcea277-ca01-11f0-a4d5-a99038a1fbbd",
+      "name": "Tjader Fernandez"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 24.5,
+      "points": 124,
+      "pointsAvg": 6.53,
+      "reboundsTotal": 29,
+      "reboundsTotalAvg": 1.53,
+      "assists": 40,
+      "assistsAvg": 2.11,
+      "stealsAvg": 0.58,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.63,
+      "fieldGoalsPercentage": 0.445545,
+      "threePointersPercentage": 0.354839,
+      "freeThrowsPercentage": 0.923077
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cb2f025f-ca02-11f0-b561-affdf83cc02f",
+      "name": "Brady Manek"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 30.6,
+      "points": 243,
+      "pointsAvg": 12.79,
+      "reboundsTotal": 138,
+      "reboundsTotalAvg": 7.26,
+      "assists": 50,
+      "assistsAvg": 2.63,
+      "stealsAvg": 0.84,
+      "blocksAvg": 0.47,
+      "turnoversAvg": 0.68,
+      "fieldGoalsPercentage": 0.424528,
+      "threePointersPercentage": 0.352113,
+      "freeThrowsPercentage": 0.619048
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a3610322-ca02-11f0-a930-2f7d6da7cc8d",
+      "name": "Timajh Parker"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 10.583333,
+      "points": 29,
+      "pointsAvg": 1.53,
+      "reboundsTotal": 46,
+      "reboundsTotalAvg": 2.42,
+      "assists": 12,
+      "assistsAvg": 0.63,
+      "stealsAvg": 0.42,
+      "blocksAvg": 0.16,
+      "turnoversAvg": 0.32,
+      "fieldGoalsPercentage": 0.56,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.333333
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ed8c2fd8-ca01-11f0-b493-a99038a1fbbd",
+      "name": "Isaac Sosa"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 8.816667,
+      "points": 63,
+      "pointsAvg": 3.32,
+      "reboundsTotal": 12,
+      "reboundsTotalAvg": 0.63,
+      "assists": 2,
+      "assistsAvg": 0.11,
+      "stealsAvg": 0.21,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.26,
+      "fieldGoalsPercentage": 0.387755,
+      "threePointersPercentage": 0.382353,
+      "freeThrowsPercentage": 0.923077
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "e9548c20-17d0-11f1-adbb-a50b079a2484",
+      "name": "Jack Edward McVeigh"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 37.3,
+      "points": 387,
+      "pointsAvg": 20.37,
+      "reboundsTotal": 108,
+      "reboundsTotalAvg": 5.68,
+      "assists": 71,
+      "assistsAvg": 3.74,
+      "stealsAvg": 0.42,
+      "blocksAvg": 0.37,
+      "turnoversAvg": 1.63,
+      "fieldGoalsPercentage": 0.472973,
+      "threePointersPercentage": 0.342857,
+      "freeThrowsPercentage": 0.855073
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "bf72f009-ca02-11f0-ae8e-21515a92fdd7",
+      "name": "Jose Roman Angueira"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 7.716667,
+      "points": 73,
+      "pointsAvg": 3.84,
+      "reboundsTotal": 35,
+      "reboundsTotalAvg": 1.84,
+      "assists": 7,
+      "assistsAvg": 0.37,
+      "stealsAvg": 0.11,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.32,
+      "fieldGoalsPercentage": 0.588235,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.722222
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "eec839dc-ca01-11f0-a9b4-a99038a1fbbd",
+      "name": "Walter Hodge Jr."
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 25.35,
+      "points": 241,
+      "pointsAvg": 12.68,
+      "reboundsTotal": 29,
+      "reboundsTotalAvg": 1.53,
+      "assists": 72,
+      "assistsAvg": 3.79,
+      "stealsAvg": 1.11,
+      "blocksAvg": 0.05,
+      "turnoversAvg": 1.74,
+      "fieldGoalsPercentage": 0.443787,
+      "threePointersPercentage": 0.366667,
+      "freeThrowsPercentage": 0.878788
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "e9902366-1339-11f1-87dc-1f3970b33cb0",
+      "name": "Tyler Cook"
+    },
+    "stats": {
+      "games": 19,
+      "minutesAvg": 21.816667,
+      "points": 244,
+      "pointsAvg": 12.84,
+      "reboundsTotal": 114,
+      "reboundsTotalAvg": 6,
+      "assists": 41,
+      "assistsAvg": 2.16,
+      "stealsAvg": 0.53,
+      "blocksAvg": 0.53,
+      "turnoversAvg": 1.68,
+      "fieldGoalsPercentage": 0.63871,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.597403
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ed7f7858-ca01-11f0-88f9-a99038a1fbbd",
+      "name": "Carlos Yao Lopez"
+    },
+    "stats": {
+      "games": 18,
+      "minutesAvg": 9.066667,
+      "points": 34,
+      "pointsAvg": 1.89,
+      "reboundsTotal": 41,
+      "reboundsTotalAvg": 2.28,
+      "assists": 11,
+      "assistsAvg": 0.61,
+      "stealsAvg": 0.17,
+      "blocksAvg": 0.39,
+      "turnoversAvg": 0.44,
+      "fieldGoalsPercentage": 0.4,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 0.857143
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ce3829f0-ca02-11f0-97ca-affdf83cc02f",
+      "name": "David Scott James Jr"
+    },
+    "stats": {
+      "games": 18,
+      "minutesAvg": 22.883333,
+      "points": 209,
+      "pointsAvg": 11.61,
+      "reboundsTotal": 119,
+      "reboundsTotalAvg": 6.61,
+      "assists": 24,
+      "assistsAvg": 1.33,
+      "stealsAvg": 0.28,
+      "blocksAvg": 0.22,
+      "turnoversAvg": 1.17,
+      "fieldGoalsPercentage": 0.470588,
+      "threePointersPercentage": 0.390805,
+      "freeThrowsPercentage": 0.775
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "12ebc345-4359-11f1-a5e8-538823ce9b48",
+      "name": "Torrey Craig"
+    },
+    "stats": {
+      "games": 18,
+      "minutesAvg": 35.583333,
+      "points": 305,
+      "pointsAvg": 16.94,
+      "reboundsTotal": 113,
+      "reboundsTotalAvg": 6.28,
+      "assists": 65,
+      "assistsAvg": 3.61,
+      "stealsAvg": 1.22,
+      "blocksAvg": 1.56,
+      "turnoversAvg": 1.33,
+      "fieldGoalsPercentage": 0.485106,
+      "threePointersPercentage": 0.39785,
+      "freeThrowsPercentage": 0.816327
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "edb1f674-ca01-11f0-9b7c-a99038a1fbbd",
+      "name": "Juan Pablo Pineiro"
+    },
+    "stats": {
+      "games": 18,
+      "minutesAvg": 14.9,
+      "points": 68,
+      "pointsAvg": 3.78,
+      "reboundsTotal": 27,
+      "reboundsTotalAvg": 1.5,
+      "assists": 21,
+      "assistsAvg": 1.17,
+      "stealsAvg": 1.06,
+      "blocksAvg": 0.17,
+      "turnoversAvg": 0.56,
+      "fieldGoalsPercentage": 0.472727,
+      "threePointersPercentage": 0.419355,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "7258aa6d-2498-11f1-a8b6-510dd6b8e584",
+      "name": "Bryan Powell"
+    },
+    "stats": {
+      "games": 18,
+      "minutesAvg": 7.366667,
+      "points": 43,
+      "pointsAvg": 2.39,
+      "reboundsTotal": 33,
+      "reboundsTotalAvg": 1.83,
+      "assists": 6,
+      "assistsAvg": 0.33,
+      "stealsAvg": 0.17,
+      "blocksAvg": 0.28,
+      "turnoversAvg": 0.5,
+      "fieldGoalsPercentage": 0.418605,
+      "threePointersPercentage": 0.117647,
+      "freeThrowsPercentage": 0.833333
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "74fa6db6-17d0-11f1-9ee2-dba29f69a98c",
+      "name": "Malachi Smith"
+    },
+    "stats": {
+      "games": 17,
+      "minutesAvg": 10.916667,
+      "points": 93,
+      "pointsAvg": 5.47,
+      "reboundsTotal": 28,
+      "reboundsTotalAvg": 1.65,
+      "assists": 38,
+      "assistsAvg": 2.24,
+      "stealsAvg": 0.59,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.18,
+      "fieldGoalsPercentage": 0.446154,
+      "threePointersPercentage": 0.285714,
+      "freeThrowsPercentage": 0.771429
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ed73d968-ca01-11f0-b084-a99038a1fbbd",
+      "name": "Alexander Franklin"
+    },
+    "stats": {
+      "games": 17,
+      "minutesAvg": 12,
+      "points": 39,
+      "pointsAvg": 2.29,
+      "reboundsTotal": 36,
+      "reboundsTotalAvg": 2.12,
+      "assists": 10,
+      "assistsAvg": 0.59,
+      "stealsAvg": 0.24,
+      "blocksAvg": 0.12,
+      "turnoversAvg": 0.47,
+      "fieldGoalsPercentage": 0.425,
+      "threePointersPercentage": 0.210526,
+      "freeThrowsPercentage": 0.25
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "db6c70af-1415-11f1-817f-47585e11eb1b",
+      "name": "Malik Beasley"
+    },
+    "stats": {
+      "games": 17,
+      "minutesAvg": 28.133333,
+      "points": 312,
+      "pointsAvg": 18.35,
+      "reboundsTotal": 71,
+      "reboundsTotalAvg": 4.18,
+      "assists": 30,
+      "assistsAvg": 1.76,
+      "stealsAvg": 1.24,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 1.76,
+      "fieldGoalsPercentage": 0.387218,
+      "threePointersPercentage": 0.302632,
+      "freeThrowsPercentage": 0.821918
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "d4ad2b7c-ca02-11f0-930f-3585e5df5da0",
+      "name": "Ian Clark"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 24.7,
+      "points": 219,
+      "pointsAvg": 13.69,
+      "reboundsTotal": 37,
+      "reboundsTotalAvg": 2.31,
+      "assists": 42,
+      "assistsAvg": 2.63,
+      "stealsAvg": 0.44,
+      "blocksAvg": 0.19,
+      "turnoversAvg": 1.25,
+      "fieldGoalsPercentage": 0.493902,
+      "threePointersPercentage": 0.488636,
+      "freeThrowsPercentage": 0.933333
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "4340c2a7-24a7-11f1-8996-510dd6b8e584",
+      "name": "Xavier Cooks"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 21.866667,
+      "points": 243,
+      "pointsAvg": 15.19,
+      "reboundsTotal": 107,
+      "reboundsTotalAvg": 6.69,
+      "assists": 29,
+      "assistsAvg": 1.81,
+      "stealsAvg": 0.56,
+      "blocksAvg": 1.06,
+      "turnoversAvg": 1.25,
+      "fieldGoalsPercentage": 0.686667,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.552239
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "32138abe-24a6-11f1-8478-1bdf8ba0f611",
+      "name": "Jaylin Galloway"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 26.916667,
+      "points": 221,
+      "pointsAvg": 13.81,
+      "reboundsTotal": 34,
+      "reboundsTotalAvg": 2.13,
+      "assists": 35,
+      "assistsAvg": 2.19,
+      "stealsAvg": 0.81,
+      "blocksAvg": 0.69,
+      "turnoversAvg": 0.81,
+      "fieldGoalsPercentage": 0.453988,
+      "threePointersPercentage": 0.393617,
+      "freeThrowsPercentage": 0.818182
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "c00e793d-ca02-11f0-a465-21515a92fdd7",
+      "name": "Anthony Morales"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 9.266667,
+      "points": 38,
+      "pointsAvg": 2.38,
+      "reboundsTotal": 32,
+      "reboundsTotalAvg": 2,
+      "assists": 4,
+      "assistsAvg": 0.25,
+      "stealsAvg": 0.25,
+      "blocksAvg": 0.06,
+      "turnoversAvg": 0.69,
+      "fieldGoalsPercentage": 0.342105,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.625
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "7dbdd027-ca02-11f0-96e1-71bd8dec4466",
+      "name": "Emmanuel Andujar"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 20.116667,
+      "points": 95,
+      "pointsAvg": 5.94,
+      "reboundsTotal": 76,
+      "reboundsTotalAvg": 4.75,
+      "assists": 36,
+      "assistsAvg": 2.25,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0.25,
+      "turnoversAvg": 1.38,
+      "fieldGoalsPercentage": 0.430233,
+      "threePointersPercentage": 0.304348,
+      "freeThrowsPercentage": 0.666667
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "64950be4-262c-11f1-9979-b755b1382475",
+      "name": "Jay Shawn Alvarez"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 12.05,
+      "points": 107,
+      "pointsAvg": 6.69,
+      "reboundsTotal": 34,
+      "reboundsTotalAvg": 2.13,
+      "assists": 11,
+      "assistsAvg": 0.69,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.56,
+      "fieldGoalsPercentage": 0.43617,
+      "threePointersPercentage": 0.242424,
+      "freeThrowsPercentage": 0.809524
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a37f51e5-ca02-11f0-9ff1-2f7d6da7cc8d",
+      "name": "Michael J. Bruesewitz"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 14.2,
+      "points": 81,
+      "pointsAvg": 5.06,
+      "reboundsTotal": 25,
+      "reboundsTotalAvg": 1.56,
+      "assists": 10,
+      "assistsAvg": 0.63,
+      "stealsAvg": 0.38,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.38,
+      "fieldGoalsPercentage": 0.369863,
+      "threePointersPercentage": 0.418182,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a3696b10-ca02-11f0-88cc-2f7d6da7cc8d",
+      "name": "E.J. Crawford"
+    },
+    "stats": {
+      "games": 16,
+      "minutesAvg": 10.7,
+      "points": 76,
+      "pointsAvg": 4.75,
+      "reboundsTotal": 18,
+      "reboundsTotalAvg": 1.13,
+      "assists": 8,
+      "assistsAvg": 0.5,
+      "stealsAvg": 0.38,
+      "blocksAvg": 0.13,
+      "turnoversAvg": 0.31,
+      "fieldGoalsPercentage": 0.519231,
+      "threePointersPercentage": 0.411765,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "8e63ae92-3c2b-11f1-9aaa-eb69a6eca77f",
+      "name": "Jameer Nelson Jr"
+    },
+    "stats": {
+      "games": 15,
+      "minutesAvg": 33.95,
+      "points": 312,
+      "pointsAvg": 20.8,
+      "reboundsTotal": 58,
+      "reboundsTotalAvg": 3.87,
+      "assists": 68,
+      "assistsAvg": 4.53,
+      "stealsAvg": 2.2,
+      "blocksAvg": 0.4,
+      "turnoversAvg": 2.67,
+      "fieldGoalsPercentage": 0.514019,
+      "threePointersPercentage": 0.376812,
+      "freeThrowsPercentage": 0.857143
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "7dd7d571-ca02-11f0-984f-71bd8dec4466",
+      "name": "Gian Clavell"
+    },
+    "stats": {
+      "games": 15,
+      "minutesAvg": 21.166667,
+      "points": 123,
+      "pointsAvg": 8.2,
+      "reboundsTotal": 24,
+      "reboundsTotalAvg": 1.6,
+      "assists": 36,
+      "assistsAvg": 2.4,
+      "stealsAvg": 0.4,
+      "blocksAvg": 0,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 0.392157,
+      "threePointersPercentage": 0.328767,
+      "freeThrowsPercentage": 0.863636
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "7dfc5db3-ca02-11f0-9b4a-71bd8dec4466",
+      "name": "Jordan Howard"
+    },
+    "stats": {
+      "games": 15,
+      "minutesAvg": 28.716667,
+      "points": 206,
+      "pointsAvg": 13.73,
+      "reboundsTotal": 24,
+      "reboundsTotalAvg": 1.6,
+      "assists": 57,
+      "assistsAvg": 3.8,
+      "stealsAvg": 0.33,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.13,
+      "fieldGoalsPercentage": 0.454546,
+      "threePointersPercentage": 0.48913,
+      "freeThrowsPercentage": 0.875
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a3583ead-ca02-11f0-ad9b-2f7d6da7cc8d",
+      "name": "Wilmer Lugo-Sanchez"
+    },
+    "stats": {
+      "games": 15,
+      "minutesAvg": 2.65,
+      "points": 13,
+      "pointsAvg": 0.87,
+      "reboundsTotal": 8,
+      "reboundsTotalAvg": 0.53,
+      "assists": 4,
+      "assistsAvg": 0.27,
+      "stealsAvg": 0.07,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.07,
+      "fieldGoalsPercentage": 0.555556,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "edd2d942-ca01-11f0-a4dc-a99038a1fbbd",
+      "name": "Xavier Zambrana"
+    },
+    "stats": {
+      "games": 15,
+      "minutesAvg": 5.883333,
+      "points": 67,
+      "pointsAvg": 4.47,
+      "reboundsTotal": 25,
+      "reboundsTotalAvg": 1.67,
+      "assists": 7,
+      "assistsAvg": 0.47,
+      "stealsAvg": 0.13,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.47,
+      "fieldGoalsPercentage": 0.676471,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 0.730769
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "bfd570e7-ca02-11f0-9120-21515a92fdd7",
+      "name": "Tory San Antonio"
+    },
+    "stats": {
+      "games": 15,
+      "minutesAvg": 6.366667,
+      "points": 21,
+      "pointsAvg": 1.4,
+      "reboundsTotal": 15,
+      "reboundsTotalAvg": 1,
+      "assists": 8,
+      "assistsAvg": 0.53,
+      "stealsAvg": 0.13,
+      "blocksAvg": 0.2,
+      "turnoversAvg": 0.07,
+      "fieldGoalsPercentage": 0.285714,
+      "threePointersPercentage": 0.235294,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "3bfeeaf7-2479-11f1-a0c3-c545e4dec937",
+      "name": "Alejandro Ralat"
+    },
+    "stats": {
+      "games": 15,
+      "minutesAvg": 3.583333,
+      "points": 11,
+      "pointsAvg": 0.73,
+      "reboundsTotal": 8,
+      "reboundsTotalAvg": 0.53,
+      "assists": 7,
+      "assistsAvg": 0.47,
+      "stealsAvg": 0.2,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.33,
+      "fieldGoalsPercentage": 0.307692,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "d2d46de7-5307-11f1-b365-d5f92264f3ed",
+      "name": "Anthony Cowan Jr"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 23.916667,
+      "points": 121,
+      "pointsAvg": 8.64,
+      "reboundsTotal": 27,
+      "reboundsTotalAvg": 1.93,
+      "assists": 53,
+      "assistsAvg": 3.79,
+      "stealsAvg": 0.64,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.5,
+      "fieldGoalsPercentage": 0.370787,
+      "threePointersPercentage": 0.34375,
+      "freeThrowsPercentage": 0.717391
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "a414d8b2-ca02-11f0-875d-2f7d6da7cc8d",
+      "name": "Jase Febres"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 12.3,
+      "points": 63,
+      "pointsAvg": 4.5,
+      "reboundsTotal": 25,
+      "reboundsTotalAvg": 1.79,
+      "assists": 17,
+      "assistsAvg": 1.21,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0.21,
+      "turnoversAvg": 0.36,
+      "fieldGoalsPercentage": 0.472727,
+      "threePointersPercentage": 0.304348,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "629c7fe1-2ddf-11f1-acf7-a54f8ab11f72",
+      "name": "Joshua Rivera"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 9.45,
+      "points": 65,
+      "pointsAvg": 4.64,
+      "reboundsTotal": 30,
+      "reboundsTotalAvg": 2.14,
+      "assists": 9,
+      "assistsAvg": 0.64,
+      "stealsAvg": 0.14,
+      "blocksAvg": 0.07,
+      "turnoversAvg": 0.29,
+      "fieldGoalsPercentage": 0.530612,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.464286
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a46d3aac-ca02-11f0-8d17-2f7d6da7cc8d",
+      "name": "Luis Lopez Martinez"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 7.45,
+      "points": 47,
+      "pointsAvg": 3.36,
+      "reboundsTotal": 17,
+      "reboundsTotalAvg": 1.21,
+      "assists": 29,
+      "assistsAvg": 2.07,
+      "stealsAvg": 0.14,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.64,
+      "fieldGoalsPercentage": 0.428571,
+      "threePointersPercentage": 0.266667,
+      "freeThrowsPercentage": 0.6
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ee855f84-ca01-11f0-9fe0-a99038a1fbbd",
+      "name": "Jonathan Garcia"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 4.4,
+      "points": 10,
+      "pointsAvg": 0.71,
+      "reboundsTotal": 4,
+      "reboundsTotalAvg": 0.29,
+      "assists": 17,
+      "assistsAvg": 1.21,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.21,
+      "fieldGoalsPercentage": 0.222222,
+      "threePointersPercentage": 0.166667,
+      "freeThrowsPercentage": 0.833333
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "bf3d91db-ca02-11f0-9878-21515a92fdd7",
+      "name": "Jayden Martinez"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 15.766667,
+      "points": 73,
+      "pointsAvg": 5.21,
+      "reboundsTotal": 64,
+      "reboundsTotalAvg": 4.57,
+      "assists": 14,
+      "assistsAvg": 1,
+      "stealsAvg": 0.21,
+      "blocksAvg": 0.64,
+      "turnoversAvg": 0.71,
+      "fieldGoalsPercentage": 0.447761,
+      "threePointersPercentage": 0.230769,
+      "freeThrowsPercentage": 0.583333
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "a418ff83-ca02-11f0-9207-2f7d6da7cc8d",
+      "name": "Dimencio Vaughn"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 16.45,
+      "points": 100,
+      "pointsAvg": 7.14,
+      "reboundsTotal": 36,
+      "reboundsTotalAvg": 2.57,
+      "assists": 19,
+      "assistsAvg": 1.36,
+      "stealsAvg": 0.71,
+      "blocksAvg": 0.21,
+      "turnoversAvg": 1.07,
+      "fieldGoalsPercentage": 0.447368,
+      "threePointersPercentage": 0.095238,
+      "freeThrowsPercentage": 0.731707
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "54498d3c-2498-11f1-ad24-5d71b9371255",
+      "name": "Jampier Lezcano"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 3.633333,
+      "points": 9,
+      "pointsAvg": 0.64,
+      "reboundsTotal": 6,
+      "reboundsTotalAvg": 0.43,
+      "assists": 8,
+      "assistsAvg": 0.57,
+      "stealsAvg": 0.07,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.29,
+      "fieldGoalsPercentage": 0.272727,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.285714
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "7de05246-ca02-11f0-b62b-71bd8dec4466",
+      "name": "Chris Ortiz"
+    },
+    "stats": {
+      "games": 14,
+      "minutesAvg": 21.85,
+      "points": 142,
+      "pointsAvg": 10.14,
+      "reboundsTotal": 54,
+      "reboundsTotalAvg": 3.86,
+      "assists": 10,
+      "assistsAvg": 0.71,
+      "stealsAvg": 0.64,
+      "blocksAvg": 0.57,
+      "turnoversAvg": 1.21,
+      "fieldGoalsPercentage": 0.420635,
+      "threePointersPercentage": 0.306452,
+      "freeThrowsPercentage": 0.772727
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ed8c2fd8-ca01-11f0-b493-a99038a1fbbd",
+      "name": "Isaac Sosa"
+    },
+    "stats": {
+      "games": 13,
+      "minutesAvg": 24.233333,
+      "points": 138,
+      "pointsAvg": 10.62,
+      "reboundsTotal": 16,
+      "reboundsTotalAvg": 1.23,
+      "assists": 6,
+      "assistsAvg": 0.46,
+      "stealsAvg": 0.23,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.46,
+      "fieldGoalsPercentage": 0.45098,
+      "threePointersPercentage": 0.402985,
+      "freeThrowsPercentage": 0.904762
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "c4925308-5302-11f1-ae80-d1040c4fa12b",
+      "name": "D J Wilson"
+    },
+    "stats": {
+      "games": 13,
+      "minutesAvg": 29.866667,
+      "points": 153,
+      "pointsAvg": 11.77,
+      "reboundsTotal": 103,
+      "reboundsTotalAvg": 7.92,
+      "assists": 36,
+      "assistsAvg": 2.77,
+      "stealsAvg": 0.31,
+      "blocksAvg": 0.31,
+      "turnoversAvg": 1.54,
+      "fieldGoalsPercentage": 0.463235,
+      "threePointersPercentage": 0.310345,
+      "freeThrowsPercentage": 0.5625
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "cb4c339a-ca02-11f0-b098-affdf83cc02f",
+      "name": "Grant Basile"
+    },
+    "stats": {
+      "games": 13,
+      "minutesAvg": 28.8,
+      "points": 218,
+      "pointsAvg": 16.77,
+      "reboundsTotal": 94,
+      "reboundsTotalAvg": 7.23,
+      "assists": 17,
+      "assistsAvg": 1.31,
+      "stealsAvg": 0.69,
+      "blocksAvg": 0.62,
+      "turnoversAvg": 1.85,
+      "fieldGoalsPercentage": 0.602941,
+      "threePointersPercentage": 0.393939,
+      "freeThrowsPercentage": 0.672131
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "ed7b7d1c-ca01-11f0-975f-a99038a1fbbd",
+      "name": "David Huertas"
+    },
+    "stats": {
+      "games": 13,
+      "minutesAvg": 14.866667,
+      "points": 66,
+      "pointsAvg": 5.08,
+      "reboundsTotal": 20,
+      "reboundsTotalAvg": 1.54,
+      "assists": 13,
+      "assistsAvg": 1,
+      "stealsAvg": 0.23,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.23,
+      "fieldGoalsPercentage": 0.381818,
+      "threePointersPercentage": 0.30303,
+      "freeThrowsPercentage": 0.823529
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "90842643-2a24-11f1-9ac1-6f3ab9ef56c1",
+      "name": "Vicktor Lakhin"
+    },
+    "stats": {
+      "games": 13,
+      "minutesAvg": 10.666667,
+      "points": 47,
+      "pointsAvg": 3.62,
+      "reboundsTotal": 48,
+      "reboundsTotalAvg": 3.69,
+      "assists": 6,
+      "assistsAvg": 0.46,
+      "stealsAvg": 0.23,
+      "blocksAvg": 0.15,
+      "turnoversAvg": 0.38,
+      "fieldGoalsPercentage": 0.421053,
+      "threePointersPercentage": 0.25,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "a347f8d1-ca02-11f0-9fda-2f7d6da7cc8d",
+      "name": "Julian Torres"
+    },
+    "stats": {
+      "games": 13,
+      "minutesAvg": 7.35,
+      "points": 47,
+      "pointsAvg": 3.62,
+      "reboundsTotal": 28,
+      "reboundsTotalAvg": 2.15,
+      "assists": 3,
+      "assistsAvg": 0.23,
+      "stealsAvg": 0,
+      "blocksAvg": 0.15,
+      "turnoversAvg": 0.54,
+      "fieldGoalsPercentage": 0.689655,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 0.4
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "efa8c607-ca01-11f0-aeda-a99038a1fbbd",
+      "name": "Tyler Polo"
+    },
+    "stats": {
+      "games": 13,
+      "minutesAvg": 4.716667,
+      "points": 16,
+      "pointsAvg": 1.23,
+      "reboundsTotal": 8,
+      "reboundsTotalAvg": 0.62,
+      "assists": 3,
+      "assistsAvg": 0.23,
+      "stealsAvg": 0.08,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.38,
+      "fieldGoalsPercentage": 0.411765,
+      "threePointersPercentage": 0.25,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "ed67c14f-ca01-11f0-81eb-a99038a1fbbd",
+      "name": "Jorge Brian Diaz"
+    },
+    "stats": {
+      "games": 12,
+      "minutesAvg": 9.333333,
+      "points": 35,
+      "pointsAvg": 2.92,
+      "reboundsTotal": 23,
+      "reboundsTotalAvg": 1.92,
+      "assists": 7,
+      "assistsAvg": 0.58,
+      "stealsAvg": 0.17,
+      "blocksAvg": 0.33,
+      "turnoversAvg": 0.58,
+      "fieldGoalsPercentage": 0.727273,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a3f0256a-ca02-11f0-8f3e-2f7d6da7cc8d",
+      "name": "Cheick Diallo"
+    },
+    "stats": {
+      "games": 12,
+      "minutesAvg": 28.6,
+      "points": 191,
+      "pointsAvg": 15.92,
+      "reboundsTotal": 99,
+      "reboundsTotalAvg": 8.25,
+      "assists": 11,
+      "assistsAvg": 0.92,
+      "stealsAvg": 0.58,
+      "blocksAvg": 0.58,
+      "turnoversAvg": 2,
+      "fieldGoalsPercentage": 0.619835,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.803922
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "eda624c4-ca01-11f0-82e5-a99038a1fbbd",
+      "name": "John Holland"
+    },
+    "stats": {
+      "games": 12,
+      "minutesAvg": 15.733333,
+      "points": 100,
+      "pointsAvg": 8.33,
+      "reboundsTotal": 25,
+      "reboundsTotalAvg": 2.08,
+      "assists": 17,
+      "assistsAvg": 1.42,
+      "stealsAvg": 1,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.67,
+      "fieldGoalsPercentage": 0.441861,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.714286
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "99584665-1642-11f1-aa32-3158067e0c3b",
+      "name": "John Brown III"
+    },
+    "stats": {
+      "games": 12,
+      "minutesAvg": 32.45,
+      "points": 154,
+      "pointsAvg": 12.83,
+      "reboundsTotal": 89,
+      "reboundsTotalAvg": 7.42,
+      "assists": 38,
+      "assistsAvg": 3.17,
+      "stealsAvg": 2.17,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.75,
+      "fieldGoalsPercentage": 0.488189,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.684211
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "cb1fc653-ca02-11f0-b361-affdf83cc02f",
+      "name": "Theophilus A. Pinson Jr."
+    },
+    "stats": {
+      "games": 12,
+      "minutesAvg": 30.916667,
+      "points": 125,
+      "pointsAvg": 10.42,
+      "reboundsTotal": 51,
+      "reboundsTotalAvg": 4.25,
+      "assists": 44,
+      "assistsAvg": 3.67,
+      "stealsAvg": 1,
+      "blocksAvg": 0.42,
+      "turnoversAvg": 1.83,
+      "fieldGoalsPercentage": 0.344828,
+      "threePointersPercentage": 0.310811,
+      "freeThrowsPercentage": 0.666667
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "eda1d6a2-ca01-11f0-b816-a99038a1fbbd",
+      "name": "Gilberto Clavell"
+    },
+    "stats": {
+      "games": 11,
+      "minutesAvg": 7.95,
+      "points": 37,
+      "pointsAvg": 3.36,
+      "reboundsTotal": 16,
+      "reboundsTotalAvg": 1.45,
+      "assists": 8,
+      "assistsAvg": 0.73,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.36,
+      "fieldGoalsPercentage": 0.5,
+      "threePointersPercentage": 0.466667,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cb0d0c93-ca02-11f0-a314-affdf83cc02f",
+      "name": "Darius Bazley"
+    },
+    "stats": {
+      "games": 11,
+      "minutesAvg": 29.566667,
+      "points": 138,
+      "pointsAvg": 12.55,
+      "reboundsTotal": 115,
+      "reboundsTotalAvg": 10.45,
+      "assists": 33,
+      "assistsAvg": 3,
+      "stealsAvg": 0.91,
+      "blocksAvg": 0.82,
+      "turnoversAvg": 2,
+      "fieldGoalsPercentage": 0.543478,
+      "threePointersPercentage": 0.411765,
+      "freeThrowsPercentage": 0.516667
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a371c816-ca02-11f0-97ab-2f7d6da7cc8d",
+      "name": "Kristian Doolittle"
+    },
+    "stats": {
+      "games": 11,
+      "minutesAvg": 30.366667,
+      "points": 141,
+      "pointsAvg": 12.82,
+      "reboundsTotal": 71,
+      "reboundsTotalAvg": 6.45,
+      "assists": 28,
+      "assistsAvg": 2.55,
+      "stealsAvg": 0.64,
+      "blocksAvg": 0.45,
+      "turnoversAvg": 1.36,
+      "fieldGoalsPercentage": 0.474748,
+      "threePointersPercentage": 0.325581,
+      "freeThrowsPercentage": 0.916667
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "ed67c14f-ca01-11f0-81eb-a99038a1fbbd",
+      "name": "Jorge Brian Diaz"
+    },
+    "stats": {
+      "games": 11,
+      "minutesAvg": 7.833333,
+      "points": 30,
+      "pointsAvg": 2.73,
+      "reboundsTotal": 15,
+      "reboundsTotalAvg": 1.36,
+      "assists": 2,
+      "assistsAvg": 0.18,
+      "stealsAvg": 0.18,
+      "blocksAvg": 0.18,
+      "turnoversAvg": 0.27,
+      "fieldGoalsPercentage": 0.608696,
+      "threePointersPercentage": 1,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cb477a3a-ca02-11f0-9adf-affdf83cc02f",
+      "name": "Isaiah Hicks"
+    },
+    "stats": {
+      "games": 11,
+      "minutesAvg": 20.866667,
+      "points": 131,
+      "pointsAvg": 11.91,
+      "reboundsTotal": 54,
+      "reboundsTotalAvg": 4.91,
+      "assists": 22,
+      "assistsAvg": 2,
+      "stealsAvg": 0.36,
+      "blocksAvg": 0.64,
+      "turnoversAvg": 1.55,
+      "fieldGoalsPercentage": 0.704225,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.771429
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "edcea277-ca01-11f0-a4d5-a99038a1fbbd",
+      "name": "Tjader Fernandez"
+    },
+    "stats": {
+      "games": 11,
+      "minutesAvg": 28.883333,
+      "points": 130,
+      "pointsAvg": 11.82,
+      "reboundsTotal": 28,
+      "reboundsTotalAvg": 2.55,
+      "assists": 46,
+      "assistsAvg": 4.18,
+      "stealsAvg": 0.45,
+      "blocksAvg": 0,
+      "turnoversAvg": 2.09,
+      "fieldGoalsPercentage": 0.453608,
+      "threePointersPercentage": 0.421875,
+      "freeThrowsPercentage": 0.9375
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "146d8983-ca02-11f0-9ee0-0156807f34ad",
+      "name": "Arnaldo Toro"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 18.05,
+      "points": 50,
+      "pointsAvg": 5,
+      "reboundsTotal": 49,
+      "reboundsTotalAvg": 4.9,
+      "assists": 20,
+      "assistsAvg": 2,
+      "stealsAvg": 0.1,
+      "blocksAvg": 0.1,
+      "turnoversAvg": 0.8,
+      "fieldGoalsPercentage": 0.7,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.666667
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a384cf85-ca02-11f0-8abb-2f7d6da7cc8d",
+      "name": "Thomas Robinson"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 19.683333,
+      "points": 126,
+      "pointsAvg": 12.6,
+      "reboundsTotal": 69,
+      "reboundsTotalAvg": 6.9,
+      "assists": 12,
+      "assistsAvg": 1.2,
+      "stealsAvg": 0.9,
+      "blocksAvg": 0.4,
+      "turnoversAvg": 1.3,
+      "fieldGoalsPercentage": 0.588889,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.606061
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "7ded71c5-ca02-11f0-aab5-71bd8dec4466",
+      "name": "Chris Brady"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 9.7,
+      "points": 32,
+      "pointsAvg": 3.2,
+      "reboundsTotal": 20,
+      "reboundsTotalAvg": 2,
+      "assists": 11,
+      "assistsAvg": 1.1,
+      "stealsAvg": 0.2,
+      "blocksAvg": 0.5,
+      "turnoversAvg": 0.5,
+      "fieldGoalsPercentage": 0.363636,
+      "threePointersPercentage": 0.384615,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "74a847c9-3380-11f1-92e9-f78270b39cae",
+      "name": "Maxwell Abmas"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 30.8,
+      "points": 159,
+      "pointsAvg": 15.9,
+      "reboundsTotal": 26,
+      "reboundsTotalAvg": 2.6,
+      "assists": 54,
+      "assistsAvg": 5.4,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.6,
+      "fieldGoalsPercentage": 0.504505,
+      "threePointersPercentage": 0.4,
+      "freeThrowsPercentage": 0.925926
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "cb429509-ca02-11f0-a336-affdf83cc02f",
+      "name": "Rychell Janga"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 2.633333,
+      "points": 11,
+      "pointsAvg": 1.1,
+      "reboundsTotal": 6,
+      "reboundsTotalAvg": 0.6,
+      "assists": 2,
+      "assistsAvg": 0.2,
+      "stealsAvg": 0.3,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0.333333,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "2457d4ba-24ab-11f1-a907-d9a9d8a8a027",
+      "name": "Rico Hopping"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 2.95,
+      "points": 4,
+      "pointsAvg": 0.4,
+      "reboundsTotal": 3,
+      "reboundsTotalAvg": 0.3,
+      "assists": 1,
+      "assistsAvg": 0.1,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.1,
+      "fieldGoalsPercentage": 0.153846,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "bf88132d-ca02-11f0-ab72-21515a92fdd7",
+      "name": "Neftali Acevedo Diaz"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 3.616667,
+      "points": 10,
+      "pointsAvg": 1,
+      "reboundsTotal": 1,
+      "reboundsTotalAvg": 0.1,
+      "assists": 6,
+      "assistsAvg": 0.6,
+      "stealsAvg": 0.6,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.2,
+      "fieldGoalsPercentage": 0.4,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "8b79c4b3-2498-11f1-8dfd-63f1f6f3ec03",
+      "name": "Terence Davis"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 28.883333,
+      "points": 143,
+      "pointsAvg": 14.3,
+      "reboundsTotal": 50,
+      "reboundsTotalAvg": 5,
+      "assists": 39,
+      "assistsAvg": 3.9,
+      "stealsAvg": 1.7,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.9,
+      "fieldGoalsPercentage": 0.45946,
+      "threePointersPercentage": 0.349206,
+      "freeThrowsPercentage": 0.863636
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "a8bd9a73-254d-11f1-8f77-3b122471a8da",
+      "name": "Ryan Arcidiacono"
+    },
+    "stats": {
+      "games": 10,
+      "minutesAvg": 27.866667,
+      "points": 126,
+      "pointsAvg": 12.6,
+      "reboundsTotal": 39,
+      "reboundsTotalAvg": 3.9,
+      "assists": 44,
+      "assistsAvg": 4.4,
+      "stealsAvg": 0.9,
+      "blocksAvg": 0,
+      "turnoversAvg": 2.3,
+      "fieldGoalsPercentage": 0.488636,
+      "threePointersPercentage": 0.314286,
+      "freeThrowsPercentage": 0.725
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "a40ef03c-ca02-11f0-9fb4-2f7d6da7cc8d",
+      "name": "Alfonso Plummer"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 32.133333,
+      "points": 156,
+      "pointsAvg": 17.33,
+      "reboundsTotal": 14,
+      "reboundsTotalAvg": 1.56,
+      "assists": 43,
+      "assistsAvg": 4.78,
+      "stealsAvg": 0.67,
+      "blocksAvg": 0.22,
+      "turnoversAvg": 2,
+      "fieldGoalsPercentage": 0.45614,
+      "threePointersPercentage": 0.402597,
+      "freeThrowsPercentage": 0.875
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "d4ded5c2-ca02-11f0-b6d3-3585e5df5da0",
+      "name": "Jassel Perez"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 26.183333,
+      "points": 193,
+      "pointsAvg": 21.44,
+      "reboundsTotal": 36,
+      "reboundsTotalAvg": 4,
+      "assists": 30,
+      "assistsAvg": 3.33,
+      "stealsAvg": 2.22,
+      "blocksAvg": 0.33,
+      "turnoversAvg": 2.56,
+      "fieldGoalsPercentage": 0.539683,
+      "threePointersPercentage": 0.461539,
+      "freeThrowsPercentage": 0.767442
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ee0088a5-ca01-11f0-83df-a99038a1fbbd",
+      "name": "Gabriel J. Belardo"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 8.833333,
+      "points": 23,
+      "pointsAvg": 2.56,
+      "reboundsTotal": 7,
+      "reboundsTotalAvg": 0.78,
+      "assists": 13,
+      "assistsAvg": 1.44,
+      "stealsAvg": 0.33,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.33,
+      "fieldGoalsPercentage": 0.45,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "b883847b-17d1-11f1-8e1a-7d6af3cbc826",
+      "name": "Jevin Nikolas Muniz"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 9.616667,
+      "points": 12,
+      "pointsAvg": 1.33,
+      "reboundsTotal": 17,
+      "reboundsTotalAvg": 1.89,
+      "assists": 10,
+      "assistsAvg": 1.11,
+      "stealsAvg": 0.33,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.89,
+      "fieldGoalsPercentage": 0.25,
+      "threePointersPercentage": 0.076923,
+      "freeThrowsPercentage": 0.25
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "7132b0df-3f4f-11f1-9a15-b918f9540baf",
+      "name": "Kendric Davis"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 32.7,
+      "points": 211,
+      "pointsAvg": 23.44,
+      "reboundsTotal": 20,
+      "reboundsTotalAvg": 2.22,
+      "assists": 42,
+      "assistsAvg": 4.67,
+      "stealsAvg": 1.11,
+      "blocksAvg": 0,
+      "turnoversAvg": 2.44,
+      "fieldGoalsPercentage": 0.45946,
+      "threePointersPercentage": 0.323944,
+      "freeThrowsPercentage": 0.753623
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "8e63ae92-3c2b-11f1-9aaa-eb69a6eca77f",
+      "name": "Jameer Nelson Jr"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 31.016667,
+      "points": 145,
+      "pointsAvg": 16.11,
+      "reboundsTotal": 31,
+      "reboundsTotalAvg": 3.44,
+      "assists": 26,
+      "assistsAvg": 2.89,
+      "stealsAvg": 1.89,
+      "blocksAvg": 0.44,
+      "turnoversAvg": 2,
+      "fieldGoalsPercentage": 0.45946,
+      "threePointersPercentage": 0.292683,
+      "freeThrowsPercentage": 0.688889
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "a3a44caa-ca02-11f0-8239-2f7d6da7cc8d",
+      "name": "Kenneth Santos Velez"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 3.15,
+      "points": 8,
+      "pointsAvg": 0.89,
+      "reboundsTotal": 5,
+      "reboundsTotalAvg": 0.56,
+      "assists": 2,
+      "assistsAvg": 0.22,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.22,
+      "fieldGoalsPercentage": 0.25,
+      "threePointersPercentage": 0.222222,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "b76bd86b-2ec2-11f1-998e-851547b487ca",
+      "name": "Kendall Munson"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 26.083333,
+      "points": 121,
+      "pointsAvg": 13.44,
+      "reboundsTotal": 70,
+      "reboundsTotalAvg": 7.78,
+      "assists": 15,
+      "assistsAvg": 1.67,
+      "stealsAvg": 0.78,
+      "blocksAvg": 0.33,
+      "turnoversAvg": 1.56,
+      "fieldGoalsPercentage": 0.544444,
+      "threePointersPercentage": 0.444444,
+      "freeThrowsPercentage": 0.76
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "bfb5cdec-ca02-11f0-861b-21515a92fdd7",
+      "name": "Giovanni Santiago"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 13.35,
+      "points": 47,
+      "pointsAvg": 5.22,
+      "reboundsTotal": 8,
+      "reboundsTotalAvg": 0.89,
+      "assists": 16,
+      "assistsAvg": 1.78,
+      "stealsAvg": 0.33,
+      "blocksAvg": 0,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 0.483871,
+      "threePointersPercentage": 0.444444,
+      "freeThrowsPercentage": 0.818182
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "7db94e66-ca02-11f0-916e-71bd8dec4466",
+      "name": "Jamil Wilson"
+    },
+    "stats": {
+      "games": 9,
+      "minutesAvg": 27.783333,
+      "points": 61,
+      "pointsAvg": 6.78,
+      "reboundsTotal": 55,
+      "reboundsTotalAvg": 6.11,
+      "assists": 22,
+      "assistsAvg": 2.44,
+      "stealsAvg": 0.78,
+      "blocksAvg": 1,
+      "turnoversAvg": 1.56,
+      "fieldGoalsPercentage": 0.396552,
+      "threePointersPercentage": 0.21875,
+      "freeThrowsPercentage": 0.727273
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "979f767c-ca02-11f0-a438-3d891f4e2262",
+      "name": "Cady Lalanne"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 19.383333,
+      "points": 77,
+      "pointsAvg": 9.63,
+      "reboundsTotal": 46,
+      "reboundsTotalAvg": 5.75,
+      "assists": 6,
+      "assistsAvg": 0.75,
+      "stealsAvg": 0.25,
+      "blocksAvg": 0.38,
+      "turnoversAvg": 1.38,
+      "fieldGoalsPercentage": 0.435484,
+      "threePointersPercentage": 0.366667,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "27717f65-5985-11f1-8501-3bb08c20c611",
+      "name": "Eugene German"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 32.7,
+      "points": 139,
+      "pointsAvg": 17.38,
+      "reboundsTotal": 28,
+      "reboundsTotalAvg": 3.5,
+      "assists": 36,
+      "assistsAvg": 4.5,
+      "stealsAvg": 0.63,
+      "blocksAvg": 0.13,
+      "turnoversAvg": 2.63,
+      "fieldGoalsPercentage": 0.434783,
+      "threePointersPercentage": 0.305085,
+      "freeThrowsPercentage": 0.875
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bfcc3d73-ca02-11f0-b641-21515a92fdd7",
+      "name": "John Jenkins lll"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 29,
+      "points": 123,
+      "pointsAvg": 15.38,
+      "reboundsTotal": 19,
+      "reboundsTotalAvg": 2.38,
+      "assists": 9,
+      "assistsAvg": 1.13,
+      "stealsAvg": 0.63,
+      "blocksAvg": 0,
+      "turnoversAvg": 1.75,
+      "fieldGoalsPercentage": 0.465909,
+      "threePointersPercentage": 0.430769,
+      "freeThrowsPercentage": 0.764706
+    }
+  },
+  {
+    "team": {
+      "code": "CAG"
+    },
+    "player": {
+      "providerId": "2c5bf8dc-17d1-11f1-ad47-fb48b2155318",
+      "name": "Geancarlo Peguero"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 5.583333,
+      "points": 10,
+      "pointsAvg": 1.25,
+      "reboundsTotal": 8,
+      "reboundsTotalAvg": 1,
+      "assists": 3,
+      "assistsAvg": 0.38,
+      "stealsAvg": 0.13,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.5,
+      "fieldGoalsPercentage": 0.444444,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "5f7d0373-4593-11f1-b323-d3f401a83947",
+      "name": "Noah Horchler"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 18.466667,
+      "points": 73,
+      "pointsAvg": 9.13,
+      "reboundsTotal": 39,
+      "reboundsTotalAvg": 4.88,
+      "assists": 4,
+      "assistsAvg": 0.5,
+      "stealsAvg": 0.63,
+      "blocksAvg": 0.63,
+      "turnoversAvg": 0.88,
+      "fieldGoalsPercentage": 0.47541,
+      "threePointersPercentage": 0.307692,
+      "freeThrowsPercentage": 0.777778
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "a384cf85-ca02-11f0-8abb-2f7d6da7cc8d",
+      "name": "Thomas Robinson"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 31.066667,
+      "points": 153,
+      "pointsAvg": 19.13,
+      "reboundsTotal": 93,
+      "reboundsTotalAvg": 11.63,
+      "assists": 15,
+      "assistsAvg": 1.88,
+      "stealsAvg": 0.38,
+      "blocksAvg": 0.25,
+      "turnoversAvg": 1.88,
+      "fieldGoalsPercentage": 0.673469,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.567568
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "cdc40daa-ca02-11f0-8b02-affdf83cc02f",
+      "name": "Gerardo Texeira"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 4.683333,
+      "points": 12,
+      "pointsAvg": 1.5,
+      "reboundsTotal": 11,
+      "reboundsTotalAvg": 1.38,
+      "assists": 4,
+      "assistsAvg": 0.5,
+      "stealsAvg": 0.13,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.13,
+      "fieldGoalsPercentage": 0.357143,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "2c5bf8dc-17d1-11f1-ad47-fb48b2155318",
+      "name": "Geancarlo Peguero"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 4.5,
+      "points": 9,
+      "pointsAvg": 1.13,
+      "reboundsTotal": 6,
+      "reboundsTotalAvg": 0.75,
+      "assists": 0,
+      "assistsAvg": 0,
+      "stealsAvg": 0.13,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.13,
+      "fieldGoalsPercentage": 0.4,
+      "threePointersPercentage": 0.2,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "a384cf85-ca02-11f0-8abb-2f7d6da7cc8d",
+      "name": "Thomas Robinson"
+    },
+    "stats": {
+      "games": 8,
+      "minutesAvg": 27.9,
+      "points": 89,
+      "pointsAvg": 11.13,
+      "reboundsTotal": 91,
+      "reboundsTotalAvg": 11.38,
+      "assists": 12,
+      "assistsAvg": 1.5,
+      "stealsAvg": 0.75,
+      "blocksAvg": 0.25,
+      "turnoversAvg": 2.63,
+      "fieldGoalsPercentage": 0.48,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.62963
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "37848275-63f7-11f1-98f2-d7413c0ab7a7",
+      "name": "Damian Jones"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 24.8,
+      "points": 99,
+      "pointsAvg": 14.14,
+      "reboundsTotal": 39,
+      "reboundsTotalAvg": 5.57,
+      "assists": 8,
+      "assistsAvg": 1.14,
+      "stealsAvg": 0.29,
+      "blocksAvg": 2.14,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 0.75,
+      "threePointersPercentage": 0.142857,
+      "freeThrowsPercentage": 0.866667
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "ca92bb86-ca02-11f0-b422-affdf83cc02f",
+      "name": "Ja Kair Sanchez"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 2.516667,
+      "points": 21,
+      "pointsAvg": 3,
+      "reboundsTotal": 2,
+      "reboundsTotalAvg": 0.29,
+      "assists": 2,
+      "assistsAvg": 0.29,
+      "stealsAvg": 0.14,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.29,
+      "fieldGoalsPercentage": 1,
+      "threePointersPercentage": 1,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "cab06468-ca02-11f0-8657-affdf83cc02f",
+      "name": "Fernando Caballero Acevedo"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 3.9,
+      "points": 24,
+      "pointsAvg": 3.43,
+      "reboundsTotal": 6,
+      "reboundsTotalAvg": 0.86,
+      "assists": 2,
+      "assistsAvg": 0.29,
+      "stealsAvg": 0.29,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.14,
+      "fieldGoalsPercentage": 0.642857,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "bf8c9d74-ca02-11f0-ba22-21515a92fdd7",
+      "name": "Harold Perez Abreu"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 2.25,
+      "points": 6,
+      "pointsAvg": 0.86,
+      "reboundsTotal": 1,
+      "reboundsTotalAvg": 0.14,
+      "assists": 1,
+      "assistsAvg": 0.14,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.14,
+      "fieldGoalsPercentage": 0.285714,
+      "threePointersPercentage": 0.4,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "7c683bd8-1642-11f1-8d6f-71bf4a3a1881",
+      "name": "Admiral Schofield"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 13.85,
+      "points": 35,
+      "pointsAvg": 5,
+      "reboundsTotal": 19,
+      "reboundsTotalAvg": 2.71,
+      "assists": 12,
+      "assistsAvg": 1.71,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.86,
+      "fieldGoalsPercentage": 0.382353,
+      "threePointersPercentage": 0.346154,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "de49e0da-2461-11f1-be7f-17ab4d36e8ae",
+      "name": "Nick Lucena"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 3.85,
+      "points": 7,
+      "pointsAvg": 1,
+      "reboundsTotal": 2,
+      "reboundsTotalAvg": 0.29,
+      "assists": 4,
+      "assistsAvg": 0.57,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.14,
+      "fieldGoalsPercentage": 0.333333,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "c012acb6-ca02-11f0-8285-21515a92fdd7",
+      "name": "Joseph Bull"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 3.3,
+      "points": 5,
+      "pointsAvg": 0.71,
+      "reboundsTotal": 9,
+      "reboundsTotalAvg": 1.29,
+      "assists": 3,
+      "assistsAvg": 0.43,
+      "stealsAvg": 0.14,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.86,
+      "fieldGoalsPercentage": 0.25,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "fcbd239c-ca01-11f0-9192-f7854434301d",
+      "name": "Enrique Ramos"
+    },
+    "stats": {
+      "games": 7,
+      "minutesAvg": 6.083333,
+      "points": 6,
+      "pointsAvg": 0.86,
+      "reboundsTotal": 11,
+      "reboundsTotalAvg": 1.57,
+      "assists": 0,
+      "assistsAvg": 0,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0.222222,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.333333
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "0ce0796b-6a41-11f1-a4e9-77899c34f87a",
+      "name": "Deandre Pinckney"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 26.483333,
+      "points": 66,
+      "pointsAvg": 11,
+      "reboundsTotal": 46,
+      "reboundsTotalAvg": 7.67,
+      "assists": 10,
+      "assistsAvg": 1.67,
+      "stealsAvg": 0.83,
+      "blocksAvg": 0.17,
+      "turnoversAvg": 1.33,
+      "fieldGoalsPercentage": 0.425926,
+      "threePointersPercentage": 0.3,
+      "freeThrowsPercentage": 0.6875
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "ed59e864-ca01-11f0-933c-a99038a1fbbd",
+      "name": "Denis Clemente"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 8.033333,
+      "points": 35,
+      "pointsAvg": 5.83,
+      "reboundsTotal": 2,
+      "reboundsTotalAvg": 0.33,
+      "assists": 5,
+      "assistsAvg": 0.83,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.67,
+      "fieldGoalsPercentage": 0.5,
+      "threePointersPercentage": 0.5625,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "SGE"
+    },
+    "player": {
+      "providerId": "27546704-6516-11f1-bf31-afceff6ae04b",
+      "name": "Arguster Daniels IV"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 29.816667,
+      "points": 78,
+      "pointsAvg": 13,
+      "reboundsTotal": 28,
+      "reboundsTotalAvg": 4.67,
+      "assists": 21,
+      "assistsAvg": 3.5,
+      "stealsAvg": 0.17,
+      "blocksAvg": 0.17,
+      "turnoversAvg": 1.83,
+      "fieldGoalsPercentage": 0.507937,
+      "threePointersPercentage": 0.363636,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "ee9181e9-ca01-11f0-abe5-a99038a1fbbd",
+      "name": "Chris Gaston"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 9.85,
+      "points": 17,
+      "pointsAvg": 2.83,
+      "reboundsTotal": 14,
+      "reboundsTotalAvg": 2.33,
+      "assists": 4,
+      "assistsAvg": 0.67,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0.4375,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "7682a3b8-2bb8-11f1-94e4-fb27af5b4b61",
+      "name": "Miguel Martinez"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 3.583333,
+      "points": 17,
+      "pointsAvg": 2.83,
+      "reboundsTotal": 2,
+      "reboundsTotalAvg": 0.33,
+      "assists": 1,
+      "assistsAvg": 0.17,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.17,
+      "fieldGoalsPercentage": 0.538462,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "c04f8732-ca02-11f0-a44e-21515a92fdd7",
+      "name": "Olumiye Oni"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 33.733333,
+      "points": 74,
+      "pointsAvg": 12.33,
+      "reboundsTotal": 43,
+      "reboundsTotalAvg": 7.17,
+      "assists": 27,
+      "assistsAvg": 4.5,
+      "stealsAvg": 1.33,
+      "blocksAvg": 0.33,
+      "turnoversAvg": 2,
+      "fieldGoalsPercentage": 0.373134,
+      "threePointersPercentage": 0.351351,
+      "freeThrowsPercentage": 0.6875
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "caf0af1c-ca02-11f0-9dbc-affdf83cc02f",
+      "name": "Zhaire Jahi-Ihme Smith"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 23.683333,
+      "points": 49,
+      "pointsAvg": 8.17,
+      "reboundsTotal": 12,
+      "reboundsTotalAvg": 2,
+      "assists": 12,
+      "assistsAvg": 2,
+      "stealsAvg": 1.17,
+      "blocksAvg": 0.5,
+      "turnoversAvg": 2,
+      "fieldGoalsPercentage": 0.514286,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.714286
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "6b913967-17d1-11f1-8430-af4b2c7dc1ea",
+      "name": "Marvin Eliel Mantilla"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 3.183333,
+      "points": 7,
+      "pointsAvg": 1.17,
+      "reboundsTotal": 5,
+      "reboundsTotalAvg": 0.83,
+      "assists": 1,
+      "assistsAvg": 0.17,
+      "stealsAvg": 0,
+      "blocksAvg": 0.17,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0.4,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "bff4c7f5-ca02-11f0-bfff-21515a92fdd7",
+      "name": "Daniel Rosado"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 3.133333,
+      "points": 4,
+      "pointsAvg": 0.67,
+      "reboundsTotal": 4,
+      "reboundsTotalAvg": 0.67,
+      "assists": 2,
+      "assistsAvg": 0.33,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0.285714,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "ed904352-ca01-11f0-8d06-a99038a1fbbd",
+      "name": "Jared Ruiz"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 13.016667,
+      "points": 28,
+      "pointsAvg": 4.67,
+      "reboundsTotal": 10,
+      "reboundsTotalAvg": 1.67,
+      "assists": 5,
+      "assistsAvg": 0.83,
+      "stealsAvg": 0.17,
+      "blocksAvg": 0,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 0.321429,
+      "threePointersPercentage": 0.4,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c04f8732-ca02-11f0-a44e-21515a92fdd7",
+      "name": "Olumiye Oni"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 37.216667,
+      "points": 101,
+      "pointsAvg": 16.83,
+      "reboundsTotal": 38,
+      "reboundsTotalAvg": 6.33,
+      "assists": 51,
+      "assistsAvg": 8.5,
+      "stealsAvg": 1,
+      "blocksAvg": 0.33,
+      "turnoversAvg": 3,
+      "fieldGoalsPercentage": 0.418919,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "bd76c353-2498-11f1-a0ef-596783a60f93",
+      "name": "Avry Holmes"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 32.433333,
+      "points": 78,
+      "pointsAvg": 13,
+      "reboundsTotal": 22,
+      "reboundsTotalAvg": 3.67,
+      "assists": 25,
+      "assistsAvg": 4.17,
+      "stealsAvg": 0.67,
+      "blocksAvg": 0.17,
+      "turnoversAvg": 1.67,
+      "fieldGoalsPercentage": 0.483333,
+      "threePointersPercentage": 0.5,
+      "freeThrowsPercentage": 0.6875
+    }
+  },
+  {
+    "team": {
+      "code": "PON"
+    },
+    "player": {
+      "providerId": "af7b102f-ca02-11f0-afa9-0b8ba5d37ddd",
+      "name": "Aleem Ford"
+    },
+    "stats": {
+      "games": 6,
+      "minutesAvg": 24.633333,
+      "points": 43,
+      "pointsAvg": 7.17,
+      "reboundsTotal": 10,
+      "reboundsTotalAvg": 1.67,
+      "assists": 11,
+      "assistsAvg": 1.83,
+      "stealsAvg": 0.33,
+      "blocksAvg": 0.33,
+      "turnoversAvg": 0.33,
+      "fieldGoalsPercentage": 0.5,
+      "threePointersPercentage": 0.473684,
+      "freeThrowsPercentage": 0.4
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "cad8fad3-ca02-11f0-9c96-affdf83cc02f",
+      "name": "Joel Soriano"
+    },
+    "stats": {
+      "games": 5,
+      "minutesAvg": 21.183333,
+      "points": 51,
+      "pointsAvg": 10.2,
+      "reboundsTotal": 30,
+      "reboundsTotalAvg": 6,
+      "assists": 7,
+      "assistsAvg": 1.4,
+      "stealsAvg": 0.2,
+      "blocksAvg": 0.4,
+      "turnoversAvg": 1.8,
+      "fieldGoalsPercentage": 0.479167,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.625
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "e728bdf9-676d-11f1-a8c1-19e5d34e9eb8",
+      "name": "Malik Williams"
+    },
+    "stats": {
+      "games": 5,
+      "minutesAvg": 30.183333,
+      "points": 81,
+      "pointsAvg": 16.2,
+      "reboundsTotal": 48,
+      "reboundsTotalAvg": 9.6,
+      "assists": 14,
+      "assistsAvg": 2.8,
+      "stealsAvg": 1,
+      "blocksAvg": 1.2,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 0.525424,
+      "threePointersPercentage": 0.363636,
+      "freeThrowsPercentage": 0.7
+    }
+  },
+  {
+    "team": {
+      "code": "MAN"
+    },
+    "player": {
+      "providerId": "76ccc63b-2a26-11f1-820c-017c52a81e98",
+      "name": "Luis Moya"
+    },
+    "stats": {
+      "games": 5,
+      "minutesAvg": 2.9,
+      "points": 12,
+      "pointsAvg": 2.4,
+      "reboundsTotal": 5,
+      "reboundsTotalAvg": 1,
+      "assists": 3,
+      "assistsAvg": 0.6,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.2,
+      "fieldGoalsPercentage": 0.8,
+      "threePointersPercentage": 1,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "AGU"
+    },
+    "player": {
+      "providerId": "ed881422-ca01-11f0-a8cb-a99038a1fbbd",
+      "name": "Owen Perez"
+    },
+    "stats": {
+      "games": 5,
+      "minutesAvg": 3.016667,
+      "points": 7,
+      "pointsAvg": 1.4,
+      "reboundsTotal": 5,
+      "reboundsTotalAvg": 1,
+      "assists": 1,
+      "assistsAvg": 0.2,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.4,
+      "fieldGoalsPercentage": 0.428571,
+      "threePointersPercentage": 0.25,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "BAY"
+    },
+    "player": {
+      "providerId": "b597e30c-2e15-11f1-a9ba-7b105ff369f2",
+      "name": "Jamarion Sharp"
+    },
+    "stats": {
+      "games": 5,
+      "minutesAvg": 13.333333,
+      "points": 32,
+      "pointsAvg": 6.4,
+      "reboundsTotal": 17,
+      "reboundsTotalAvg": 3.4,
+      "assists": 1,
+      "assistsAvg": 0.2,
+      "stealsAvg": 0,
+      "blocksAvg": 2,
+      "turnoversAvg": 0.8,
+      "fieldGoalsPercentage": 0.684211,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.428571
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "a3b2b3fb-ca02-11f0-8975-2f7d6da7cc8d",
+      "name": "Kenneth Faried"
+    },
+    "stats": {
+      "games": 4,
+      "minutesAvg": 24.433333,
+      "points": 56,
+      "pointsAvg": 14,
+      "reboundsTotal": 41,
+      "reboundsTotalAvg": 10.25,
+      "assists": 8,
+      "assistsAvg": 2,
+      "stealsAvg": 0.5,
+      "blocksAvg": 1.5,
+      "turnoversAvg": 0.5,
+      "fieldGoalsPercentage": 0.575,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "a3c6be42-ca02-11f0-8be8-2f7d6da7cc8d",
+      "name": "Ryan Pearson"
+    },
+    "stats": {
+      "games": 4,
+      "minutesAvg": 11.683333,
+      "points": 32,
+      "pointsAvg": 8,
+      "reboundsTotal": 17,
+      "reboundsTotalAvg": 4.25,
+      "assists": 3,
+      "assistsAvg": 0.75,
+      "stealsAvg": 0.25,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.25,
+      "fieldGoalsPercentage": 0.65,
+      "threePointersPercentage": 0.666667,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "a031b4ab-5a06-11f1-9657-f3a3ea200250",
+      "name": "Elijah Hughes"
+    },
+    "stats": {
+      "games": 4,
+      "minutesAvg": 11.1,
+      "points": 19,
+      "pointsAvg": 4.75,
+      "reboundsTotal": 4,
+      "reboundsTotalAvg": 1,
+      "assists": 2,
+      "assistsAvg": 0.5,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.5,
+      "fieldGoalsPercentage": 0.375,
+      "threePointersPercentage": 0.307692,
+      "freeThrowsPercentage": 1
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "fc720026-ca01-11f0-baec-f7854434301d",
+      "name": "Chinanu Onuaku"
+    },
+    "stats": {
+      "games": 4,
+      "minutesAvg": 23.566667,
+      "points": 30,
+      "pointsAvg": 7.5,
+      "reboundsTotal": 21,
+      "reboundsTotalAvg": 5.25,
+      "assists": 15,
+      "assistsAvg": 3.75,
+      "stealsAvg": 1.5,
+      "blocksAvg": 1.5,
+      "turnoversAvg": 2.25,
+      "fieldGoalsPercentage": 0.423077,
+      "threePointersPercentage": 0.333333,
+      "freeThrowsPercentage": 0.625
+    }
+  },
+  {
+    "team": {
+      "code": "GBO"
+    },
+    "player": {
+      "providerId": "bf39260d-ca02-11f0-9fb4-21515a92fdd7",
+      "name": "Bryan Gonzalez Colon"
+    },
+    "stats": {
+      "games": 4,
+      "minutesAvg": 3.25,
+      "points": 3,
+      "pointsAvg": 0.75,
+      "reboundsTotal": 2,
+      "reboundsTotalAvg": 0.5,
+      "assists": 2,
+      "assistsAvg": 0.5,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0.25,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "7dc65cd0-ca02-11f0-9c93-71bd8dec4466",
+      "name": "Davon Jefferson"
+    },
+    "stats": {
+      "games": 4,
+      "minutesAvg": 35.216667,
+      "points": 62,
+      "pointsAvg": 15.5,
+      "reboundsTotal": 37,
+      "reboundsTotalAvg": 9.25,
+      "assists": 9,
+      "assistsAvg": 2.25,
+      "stealsAvg": 0.75,
+      "blocksAvg": 0.25,
+      "turnoversAvg": 0.75,
+      "fieldGoalsPercentage": 0.567568,
+      "threePointersPercentage": 0.25,
+      "freeThrowsPercentage": 0.826087
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "bce7db21-ca02-11f0-a4a9-21515a92fdd7",
+      "name": "Luis Henriquez"
+    },
+    "stats": {
+      "games": 4,
+      "minutesAvg": 1.283333,
+      "points": 2,
+      "pointsAvg": 0.5,
+      "reboundsTotal": 0,
+      "reboundsTotalAvg": 0,
+      "assists": 0,
+      "assistsAvg": 0,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 1,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "CAR"
+    },
+    "player": {
+      "providerId": "ee9181e9-ca01-11f0-abe5-a99038a1fbbd",
+      "name": "Chris Gaston"
+    },
+    "stats": {
+      "games": 3,
+      "minutesAvg": 7.183333,
+      "points": 2,
+      "pointsAvg": 0.67,
+      "reboundsTotal": 3,
+      "reboundsTotalAvg": 1,
+      "assists": 1,
+      "assistsAvg": 0.33,
+      "stealsAvg": 0,
+      "blocksAvg": 0.67,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 0.333333,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "fa46e2f8-2461-11f1-9339-e3ac38336c08",
+      "name": "Yahir Cordero Melendez"
+    },
+    "stats": {
+      "games": 3,
+      "minutesAvg": 1.133333,
+      "points": 0,
+      "pointsAvg": 0,
+      "reboundsTotal": 2,
+      "reboundsTotalAvg": 0.67,
+      "assists": 0,
+      "assistsAvg": 0,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "a384cf85-ca02-11f0-8abb-2f7d6da7cc8d",
+      "name": "Thomas Robinson"
+    },
+    "stats": {
+      "games": 2,
+      "minutesAvg": 26.95,
+      "points": 30,
+      "pointsAvg": 15,
+      "reboundsTotal": 15,
+      "reboundsTotalAvg": 7.5,
+      "assists": 4,
+      "assistsAvg": 2,
+      "stealsAvg": 0,
+      "blocksAvg": 0.5,
+      "turnoversAvg": 2,
+      "fieldGoalsPercentage": 0.590909,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.8
+    }
+  },
+  {
+    "team": {
+      "code": "ARE"
+    },
+    "player": {
+      "providerId": "d455b3f8-ca02-11f0-b7cd-3585e5df5da0",
+      "name": "Daniel Rosado"
+    },
+    "stats": {
+      "games": 2,
+      "minutesAvg": 2.183333,
+      "points": 0,
+      "pointsAvg": 0,
+      "reboundsTotal": 0,
+      "reboundsTotalAvg": 0,
+      "assists": 0,
+      "assistsAvg": 0,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 0,
+      "fieldGoalsPercentage": 0,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0
+    }
+  },
+  {
+    "team": {
+      "code": "QUE"
+    },
+    "player": {
+      "providerId": "db29179a-262c-11f1-8682-99b2b26de602",
+      "name": "Ibrahima Sylla"
+    },
+    "stats": {
+      "games": 2,
+      "minutesAvg": 13.916667,
+      "points": 1,
+      "pointsAvg": 0.5,
+      "reboundsTotal": 6,
+      "reboundsTotalAvg": 3,
+      "assists": 0,
+      "assistsAvg": 0,
+      "stealsAvg": 0,
+      "blocksAvg": 1,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 0,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.5
+    }
+  },
+  {
+    "team": {
+      "code": "MAY"
+    },
+    "player": {
+      "providerId": "c1ecb63f-2461-11f1-90d8-f1b0284c7d77",
+      "name": "Kevin Allen"
+    },
+    "stats": {
+      "games": 2,
+      "minutesAvg": 14.533333,
+      "points": 18,
+      "pointsAvg": 9,
+      "reboundsTotal": 5,
+      "reboundsTotalAvg": 2.5,
+      "assists": 2,
+      "assistsAvg": 1,
+      "stealsAvg": 0.5,
+      "blocksAvg": 0,
+      "turnoversAvg": 0.5,
+      "fieldGoalsPercentage": 0.75,
+      "threePointersPercentage": 0,
+      "freeThrowsPercentage": 0.75
+    }
+  },
+  {
+    "team": {
+      "code": "SCE"
+    },
+    "player": {
+      "providerId": "bf83443e-ca02-11f0-9037-21515a92fdd7",
+      "name": "Carlos A Colon"
+    },
+    "stats": {
+      "games": 1,
+      "minutesAvg": 6.733333,
+      "points": 3,
+      "pointsAvg": 3,
+      "reboundsTotal": 1,
+      "reboundsTotalAvg": 1,
+      "assists": 0,
+      "assistsAvg": 0,
+      "stealsAvg": 0,
+      "blocksAvg": 0,
+      "turnoversAvg": 1,
+      "fieldGoalsPercentage": 1,
+      "threePointersPercentage": 1,
+      "freeThrowsPercentage": 0
+    }
+  }
+]
