@@ -11,17 +11,19 @@ export const dynamic = 'force-static';
 export function GET() {
   const results = getSeason(2026)?.results;
   const activeByArchiveId = new Map<string, string>();
+  const avatarByProviderId = new Map<string, string | null>();
   const unlinked: UnifiedIndexEntry[] = [];
   for (const r of results?.rosters ?? []) {
     const id = r.playerId ?? linkLiveName(r.name)?.entry.id;
+    avatarByProviderId.set(r.playerProviderId, r.avatarUrl);
     if (id) activeByArchiveId.set(id, r.playerProviderId);
     else if (!unlinked.some((u) => u.providerId === r.playerProviderId)) {
-      unlinked.push({ id: r.playerProviderId, slug: r.playerProviderId, name: r.name, aliases: [], fy: 2026, ly: 2026, franchiseSlugs: r.franchiseSlug ? [r.franchiseSlug] : [], g: null, pts: null, isMvp: false, mvpYears: [], isActive: true, providerId: r.playerProviderId });
+      unlinked.push({ id: r.playerProviderId, slug: r.playerProviderId, name: r.name, aliases: [], fy: 2026, ly: 2026, franchiseSlugs: r.franchiseSlug ? [r.franchiseSlug] : [], g: null, pts: null, isMvp: false, mvpYears: [], isActive: true, providerId: r.playerProviderId, avatarUrl: r.avatarUrl });
     }
   }
   const archive: UnifiedIndexEntry[] = getPlayerIndex().map((p) => {
     const providerId = activeByArchiveId.get(p.id) ?? null;
-    return { ...p, isActive: providerId !== null, providerId, ly: providerId ? 2026 : p.ly };
+    return { ...p, isActive: providerId !== null, providerId, ly: providerId ? 2026 : p.ly, avatarUrl: providerId ? (avatarByProviderId.get(providerId) ?? null) : null };
   });
   return Response.json([...archive, ...unlinked], { headers: { 'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800' } });
 }

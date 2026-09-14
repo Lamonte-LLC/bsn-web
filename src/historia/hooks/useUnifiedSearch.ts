@@ -43,6 +43,9 @@ export function useUnifiedSearch(query: string, limit = 8) {
     };
   }, []);
 
+  /** Every player, A to Z by name, for the browsable list of the picker. */
+  const all = useMemo(() => (index ? [...index].sort((a, b) => a.full.localeCompare(b.full)).map((i) => i.entry) : []), [index]);
+
   const results = useMemo(() => {
     const q = normalizeSearch(query);
     if (!index || !q) return [];
@@ -60,5 +63,5 @@ export function useUnifiedSearch(query: string, limit = 8) {
       .map((h) => h.entry);
   }, [index, query, limit]);
 
-  return { results, ready: index !== null };
+  return { results, all, ready: index !== null };
 }

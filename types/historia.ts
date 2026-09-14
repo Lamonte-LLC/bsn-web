@@ -28,4 +28,6 @@ export interface FranchiseContext {
 export interface UnifiedIndexEntry extends PlayerIndexEntry {
   isActive: boolean;
   providerId: string | null;
+  /** Live photo of an active player; null for the archive. */
+  avatarUrl: string | null;
 }

@@ -179,6 +179,22 @@ export function defaultScope(players: ComparePlayerData[]): CompareScope {
   return common.length ? common[0] : 'career';
 }
 
+/** Seasons of one player, newest first, for its own scope menu. */
+export function playerSeasons(p: ComparePlayerData): number[] {
+  return Object.keys(p.seasons).map(Number).sort((a, b) => b - a);
+}
+
+/**
+ * Scope of one player: what the user chose for it, else the newest season everyone shares, else the career.
+ * Choosing per player is what lets an active player be compared against a legend of another era.
+ */
+export function scopeFor(p: ComparePlayerData, players: ComparePlayerData[], chosen: Record<string, CompareScope | undefined>): CompareScope {
+  const c = chosen[p.key];
+  if (c === 'career' || (typeof c === 'number' && c in p.seasons === false)) return 'career';
+  if (typeof c === 'number') return c;
+  return defaultScope(players);
+}
+
 export function valuesFor(p: ComparePlayerData, scope: CompareScope): CompareValues {
   return scope === 'career' ? p.career : (p.seasons[String(scope)] ?? EMPTY_VALUES);
 }
@@ -208,8 +224,8 @@ export function winningIndexes(values: Array<number | null>, higherIsBetter: boo
 }
 
 /** Rows where nobody has data are hidden, so a 1970s pair never shows an empty "Bloqueos" line. */
-export function visibleStats(section: PlayerCompareSection, players: ComparePlayerData[], scope: CompareScope): PlayerCompareStat[] {
-  return section.stats.filter((s) => players.some((p) => valuesFor(p, scope)[s.key] !== null));
+export function visibleStats(section: PlayerCompareSection, players: ComparePlayerData[], scopeOf: (p: ComparePlayerData) => CompareScope): PlayerCompareStat[] {
+  return section.stats.filter((s) => players.some((p) => valuesFor(p, scopeOf(p))[s.key] !== null));
 }
 
 /** Parses `?p=a,b,c` into at most four distinct keys. */

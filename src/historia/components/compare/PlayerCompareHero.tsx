@@ -3,10 +3,10 @@
 import cx from 'classnames';
 import Link from 'next/link';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { commonSeasons, defaultScope, MAX_COMPARE_PLAYERS, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
+import { MAX_COMPARE_PLAYERS, playerSeasons, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
 import PlayerMark from './PlayerMark';
 import PlayerPickerDialog, { type SuggestedPlayer } from './PlayerPickerDialog';
-import { setCompareScope, setPickerOpen, useCompareNavigation, useCompareState } from './useCompareState';
+import { setAllScopes, setCompareScope, setPickerOpen, useCompareNavigation, useCompareState } from './useCompareState';
 
 type Props = {
   players: ComparePlayerData[];
@@ -14,6 +14,37 @@ type Props = {
 };
 
 const profileHref = (p: ComparePlayerData) => `/jugadores/${p.slug ?? p.providerId}`;
+
+const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-colors hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-none lg:px-[13px] lg:py-[5px] lg:text-[12px]';
+
+/** Season or career of one player, chosen per player so eras can be mixed (2026 vs 1990, or both careers). */
+function ScopeMenu({ p, scope, others }: { p: ComparePlayerData; scope: CompareScope; others: string[] }) {
+  const options: CompareScope[] = [...playerSeasons(p), 'career'];
+  return (
+    <Menu>
+      <MenuButton className={PILL} aria-label={`Alcance de ${p.name}`}>
+        {scopeLabel(scope)}
+        <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
+      </MenuButton>
+      <MenuItems transition anchor="bottom" className="z-[999] mt-[8px] max-h-[320px] overflow-y-auto rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0">
+        {options.map((o) => (
+          <MenuItem key={String(o)}>
+            <button type="button" onClick={() => setCompareScope(p.key, o)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', o === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
+              {scopeLabel(o)}
+            </button>
+          </MenuItem>
+        ))}
+        {others.length ? (
+          <MenuItem>
+            <button type="button" onClick={() => setAllScopes([p.key, ...others], 'career')} className="mt-[4px] block w-full cursor-pointer rounded-[8px] border-t border-[rgba(15,23,31,0.08)] px-[14px] pb-[6px] pt-[9px] text-left font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] data-focus:bg-[#F4F4F4]">
+              Carrera para todos
+            </button>
+          </MenuItem>
+        ) : null}
+      </MenuItems>
+    </Menu>
+  );
+}
 
 /** Empty slot: same anatomy as a real player, circle towards the VS. */
 function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => void }) {
@@ -26,13 +57,18 @@ function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => v
 }
 
 /** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
-function SlotHorizontal({ p, side, onRemove }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void }) {
+function SlotHorizontal({ p, side, onRemove, scope, others }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void; scope: CompareScope; others: string[] }) {
   return (
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
-      <Link href={profileHref(p)} title="Ver perfil" className={cx('transition-opacity hover:opacity-85', side === 'left' ? 'text-right' : 'text-left')}>
-        <span className="block text-[22px] leading-[1.05] text-white lg:text-[32px]">{p.name}</span>
-        <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.line}</span>
-      </Link>
+      <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
+        <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
+          <span className="block text-[22px] leading-[1.05] text-white lg:text-[32px]">{p.name}</span>
+          <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.line}</span>
+        </Link>
+        <span className="mt-[8px]">
+          <ScopeMenu p={p} scope={scope} others={others} />
+        </span>
+      </div>
       <span className="lg:hidden">
         <PlayerMark player={p} size={62} onDark onRemove={onRemove} />
       </span>
@@ -44,7 +80,7 @@ function SlotHorizontal({ p, side, onRemove }: { p: ComparePlayerData; side: 'le
 }
 
 /** Stacked slot (mobile with 2, and 3–4 players everywhere). */
-function SlotStacked({ p, count, onRemove }: { p: ComparePlayerData; count: number; onRemove: () => void }) {
+function SlotStacked({ p, count, onRemove, scope, others }: { p: ComparePlayerData; count: number; onRemove: () => void; scope: CompareScope; others: string[] }) {
   const size = count === 4 ? 44 : 50;
   const sizeLg = count === 4 ? 62 : 70;
   return (
@@ -59,20 +95,21 @@ function SlotStacked({ p, count, onRemove }: { p: ComparePlayerData; count: numb
         <span className={cx('mt-[5px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')}>{p.name}</span>
         <span className="mt-[2px] block font-barlow font-medium text-[10px] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line}</span>
       </Link>
+      <span className="mt-[6px]">
+        <ScopeMenu p={p} scope={scope} others={others} />
+      </span>
     </div>
   );
 }
 
 export default function PlayerCompareHero({ players, suggested }: Props) {
-  const { pickerOpen, scope: chosen } = useCompareState();
+  const { pickerOpen, scopes } = useCompareState();
   const keys = players.map((p) => p.key);
   const { add, remove } = useCompareNavigation(keys);
   const count = players.length;
   const isEmpty = count < 2;
-  const seasons = commonSeasons(players);
-  const scope: CompareScope = chosen ?? defaultScope(players);
-  const options: CompareScope[] = [...seasons, 'career'];
   const openPicker = () => setPickerOpen(true);
+  const slotProps = (p: ComparePlayerData) => ({ p, scope: scopeFor(p, players, scopes), others: keys.filter((k) => k !== p.key), onRemove: () => remove(p.key) });
 
   return (
     <>
@@ -82,54 +119,36 @@ export default function PlayerCompareHero({ players, suggested }: Props) {
 
           {isEmpty ? (
             <div className="mt-[30px] flex items-center justify-center gap-[20px] lg:gap-[48px]">
-              {players[0] ? <SlotHorizontal p={players[0]} side="left" onRemove={() => remove(players[0].key)} /> : <EmptySlot side="left" onClick={openPicker} />}
+              {players[0] ? <SlotHorizontal {...slotProps(players[0])} side="left" /> : <EmptySlot side="left" onClick={openPicker} />}
               <span className="text-[20px] text-[rgba(255,255,255,0.3)] lg:text-[26px]">VS</span>
               <EmptySlot side="right" onClick={openPicker} />
             </div>
           ) : count === 2 ? (
             <>
-              <div className="mx-auto mt-[30px] grid max-w-[420px] grid-cols-[1fr_auto_1fr] items-center gap-[14px] lg:hidden">
+              <div className="mx-auto mt-[30px] grid max-w-[420px] grid-cols-[1fr_auto_1fr] items-start gap-[14px] lg:hidden">
                 <div className="flex justify-center">
-                  <SlotStacked p={players[0]} count={2} onRemove={() => remove(players[0].key)} />
+                  <SlotStacked {...slotProps(players[0])} count={2} />
                 </div>
-                <span className="px-[6px] text-[18px] text-[rgba(255,255,255,0.35)]">VS</span>
+                <span className="self-center px-[6px] text-[18px] text-[rgba(255,255,255,0.35)]">VS</span>
                 <div className="flex justify-center">
-                  <SlotStacked p={players[1]} count={2} onRemove={() => remove(players[1].key)} />
+                  <SlotStacked {...slotProps(players[1])} count={2} />
                 </div>
               </div>
               <div className="mx-auto mt-[30px] hidden max-w-[980px] grid-cols-[1fr_auto_1fr] items-center gap-[48px] lg:grid">
-                <SlotHorizontal p={players[0]} side="left" onRemove={() => remove(players[0].key)} />
+                <SlotHorizontal {...slotProps(players[0])} side="left" />
                 <span className="px-[36px] text-[24px] text-[rgba(255,255,255,0.35)]">VS</span>
-                <SlotHorizontal p={players[1]} side="right" onRemove={() => remove(players[1].key)} />
+                <SlotHorizontal {...slotProps(players[1])} side="right" />
               </div>
             </>
           ) : (
             <div className={cx('mx-auto mt-[30px] grid items-start', count === 3 ? 'max-w-[760px] grid-cols-3 gap-[8px] lg:gap-[20px]' : 'max-w-[900px] grid-cols-4 gap-[6px] lg:gap-[16px]')}>
               {players.map((p) => (
-                <SlotStacked key={p.key} p={p} count={count} onRemove={() => remove(p.key)} />
+                <SlotStacked key={p.key} {...slotProps(p)} count={count} />
               ))}
             </div>
           )}
 
           <div className="mb-[10px] mt-[18px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
-            {!isEmpty ? (
-              <Menu>
-                <MenuButton className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-colors hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-none lg:px-[16px] lg:py-[7px] lg:text-[13px]">
-                  {scopeLabel(scope)}
-                  <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
-                </MenuButton>
-                <MenuItems transition anchor="bottom" className="z-[999] mt-[8px] rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0">
-                  {options.map((o) => (
-                    <MenuItem key={String(o)}>
-                      <button type="button" onClick={() => setCompareScope(o)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', o === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
-                        {scopeLabel(o)}
-                      </button>
-                    </MenuItem>
-                  ))}
-                  {!seasons.length ? <p className="max-w-[240px] px-[14px] pb-[6px] pt-[4px] font-barlow text-[11px] text-[rgba(15,23,31,0.45)]">No coincidieron en ninguna temporada; se compara la carrera.</p> : null}
-                </MenuItems>
-              </Menu>
-            ) : null}
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
               <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.28)] px-[13px] py-[5px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.6)] transition-colors hover:border-[rgba(255,255,255,0.5)] hover:text-[rgba(255,255,255,0.85)] lg:px-[15px] lg:py-[6px] lg:text-[12px]">
                 + Añadir jugador

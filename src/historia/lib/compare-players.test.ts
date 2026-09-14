@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { commonSeasons, compareHref, defaultScope, EMPTY_VALUES, formatCompareValue, parseCompareKeys, PLAYER_COMPARE_SECTIONS, valuesFor, visibleStats, winningIndexes, type ComparePlayerData } from './compare-players.ts';
+import { commonSeasons, compareHref, defaultScope, EMPTY_VALUES, formatCompareValue, parseCompareKeys, PLAYER_COMPARE_SECTIONS, playerSeasons, scopeFor, valuesFor, visibleStats, winningIndexes, type ComparePlayerData } from './compare-players.ts';
 
 const player = (key: string, years: number[], patch: Partial<ComparePlayerData> = {}): ComparePlayerData => ({
   key,
@@ -61,7 +61,7 @@ describe('visibleStats', () => {
     const b = player('b', [1975]);
     const promedio = PLAYER_COMPARE_SECTIONS[0];
     assert.deepEqual(
-      visibleStats(promedio, [a, b], 1975).map((s) => s.code),
+      visibleStats(promedio, [a, b], () => 1975).map((s) => s.code),
       ['PPJ'],
     );
   });
@@ -73,5 +73,18 @@ describe('parseCompareKeys / compareHref', () => {
     assert.deepEqual(parseCompareKeys(undefined), []);
     assert.equal(compareHref(['a', 'b']), '/jugadores/comparar?p=a,b');
     assert.equal(compareHref([]), '/jugadores/comparar');
+  });
+});
+
+describe('scopeFor / playerSeasons', () => {
+  it('mixes eras: each player keeps its own choice, the rest follow the default', () => {
+    const active = player('active', [2025, 2026]);
+    const legend = player('legend', [1988, 1990]);
+    assert.deepEqual(playerSeasons(legend), [1990, 1988]);
+    assert.equal(scopeFor(active, [active, legend], {}), 'career');
+    assert.equal(scopeFor(active, [active, legend], { active: 2026 }), 2026);
+    assert.equal(scopeFor(legend, [active, legend], { active: 2026 }), 'career');
+    assert.equal(scopeFor(legend, [active, legend], { legend: 1990 }), 1990);
+    assert.equal(scopeFor(legend, [active, legend], { legend: 2026 }), 'career', 'a season the player never played falls back');
   });
 });
