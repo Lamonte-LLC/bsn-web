@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
@@ -201,7 +202,9 @@ export default async function TemporadaPage({ params }: Params) {
               {NO_SEASON_DATA}
             </Callout>
           ) : tabs.length ? (
-            <SeasonTabs tabs={tabs} />
+            <Suspense fallback={null}>
+              <SeasonTabs tabs={tabs} />
+            </Suspense>
           ) : (
             <Callout icon="info" title="Solo campeón y MVP">
               La liga conserva el campeón y el jugador más valioso de {year}, pero no las posiciones, los líderes ni los rosters.

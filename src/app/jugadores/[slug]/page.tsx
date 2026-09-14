@@ -316,8 +316,8 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
           {isActive && unified.providerId ? (
             <section id="juego-por-juego" className="mt-[44px] lg:mt-[56px]">
               <div className="mb-[16px] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-[6px]">
-                <h2 className="text-[22px] leading-[1.1] text-[#0F171F]">Juego por juego</h2>
-                <span className={`${cls.meta} ${cls.tabular}`}>{current ? `Temporada ${current.year} · ${fmtInt(current.g)} juegos` : `Temporada ${HISTORY_SEASON}`}</span>
+                <h2 className={`text-[22px] leading-[1.1] text-[#0F171F] ${cls.tabular}`}>Juego por juego · Temporada {current?.year ?? HISTORY_SEASON}</h2>
+                <span className={`${cls.meta} ${cls.tabular}`}>{current ? `Temporada en curso · serie regular · ${fmtInt(current.g)} juegos` : 'Temporada en curso'}</span>
               </div>
               <PlayerMatchesWidget playerProviderId={unified.providerId} />
             </section>

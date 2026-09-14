@@ -120,7 +120,7 @@ export default function PlayerSeasonTable({ regular, playoffs, others, career, c
           </span>
         );
         return f ? (
-          <Link href={f.status === 'active' && f.code ? `/equipos/${f.code}` : `/equipos/historicos/${f.slug}`} className={`${cls.dataLink} rounded-[4px] ${cls.focus}`}>
+          <Link href={`/temporadas/${r.year}?equipo=${f.slug}`} title={`Roster de ${f.nickname} en ${r.year}`} className={`${cls.dataLink} rounded-[4px] ${cls.focus}`}>
             {inner}
           </Link>
         ) : (

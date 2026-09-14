@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import StatsTable, { type StatsColumn } from '@/archivo/components/StatsTable';
 import { fmt, fmtInt, fmtPct } from '@/archivo/lib/format';
@@ -84,7 +85,9 @@ function RosterPanel({ team, year, franchise }: { team: TeamCard; year: number; 
  * four on desktop), so the panel never lands far from what was tapped. One panel at a time.
  */
 export default function SeasonTeams({ year, teams, franchises }: Props) {
-  const [selected, setSelected] = useState<string | null>(null);
+  const wanted = useSearchParams().get('equipo');
+  const initial = wanted ? (teams.find((t) => t.slug === wanted || t.code === wanted.toUpperCase()) ?? null) : null;
+  const [selected, setSelected] = useState<string | null>(initial ? (initial.slug ?? initial.code ?? initial.name) : null);
   const idx = teams.findIndex((t) => (t.slug ?? t.code ?? t.name) === selected);
   const team = idx >= 0 ? teams[idx] : null;
   const rowEnd = (per: number) => (idx < 0 ? -1 : Math.ceil((idx + 1) / per) * per - 1);
