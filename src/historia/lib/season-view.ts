@@ -125,9 +125,10 @@ export function standingsView(season: SeasonFile, franchises: Franchises): Stand
   });
 }
 
-export function seriesView(season: SeasonFile, franchises: Franchises): SeriesRow[] {
+/** Series rows; FPO placeholder series are skipped unless `includeFpo` is set (the page then labels them). */
+export function seriesView(season: SeasonFile, franchises: Franchises, opts: { includeFpo?: boolean } = {}): SeriesRow[] {
   const r = season.results;
-  if (!r || r.source !== 'bsn-graphql' || r.fpo.series) return [];
+  if (!r || r.source !== 'bsn-graphql' || (r.fpo.series && !opts.includeFpo)) return [];
   const out: SeriesRow[] = [];
   for (const s of r.series) {
     if (s.competitors.length < 2) continue;

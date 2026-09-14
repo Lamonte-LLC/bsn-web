@@ -15,13 +15,15 @@ interface Props {
   currentHref: string;
   onDark?: boolean;
   className?: string;
+  /** Grouped control for the season page: previous year · trigger · next year, one bordered pill. */
+  group?: { prev: number | null; next: number | null };
 }
 
 /**
  * Season selector, 1930 to today, with decades as tabs so 97 years never become an endless list. Persists in the
  * URL because it navigates: the current season stays in the section, any other year opens /temporadas/[year].
  */
-export default function SeasonSelector({ years, current, selected, currentHref, onDark = false, className = '' }: Props) {
+export default function SeasonSelector({ years, current, selected, currentHref, onDark = false, className = '', group }: Props) {
   const decades = useMemo(() => [...new Set(years.map((y) => Math.floor(y / 10) * 10))].sort((a, b) => b - a), [years]);
   const [decade, setDecade] = useState(Math.floor(selected / 10) * 10);
   const inDecade = years.filter((y) => Math.floor(y / 10) * 10 === decade).sort((a, b) => a - b);
@@ -31,13 +33,35 @@ export default function SeasonSelector({ years, current, selected, currentHref, 
     ? 'border border-white/30 text-white hover:border-white/60 hover:bg-white/5'
     : 'border border-[rgba(0,0,0,0.16)] bg-white text-[#0F171F] hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]';
 
+  const arrow = `inline-flex h-[38px] items-center px-[12px] font-barlow text-[13px] font-semibold transition-colors duration-150 ${cls.tabular} ${onDark ? `text-white/70 hover:bg-white/5 hover:text-white ${cls.focusOnDark}` : `text-[rgba(0,0,0,0.55)] hover:bg-[#FAFAFA] hover:text-[#0F171F] ${cls.focus}`}`;
+  const divider = onDark ? 'border-white/30' : 'border-[rgba(0,0,0,0.16)]';
+
   return (
     <Popover className={`relative ${className}`}>
-      <PopoverButton className={`inline-flex h-[38px] cursor-pointer items-center gap-[8px] rounded-[99px] px-[16px] text-[15px] leading-[1] transition-colors duration-150 ${cls.tabular} ${trigger} ${onDark ? cls.focusOnDark : cls.focus}`}>
-        <span className="font-barlow text-[11px] font-semibold uppercase tracking-[1.2px] opacity-60">Temporada</span>
-        {selected}
-        <Chevron direction="down" size={12} className="opacity-60" />
-      </PopoverButton>
+      {group ? (
+        <span className={`inline-flex overflow-hidden rounded-[8px] border ${divider}`}>
+          {group.prev !== null ? (
+            <Link href={hrefFor(group.prev)} className={`${arrow} border-r ${divider}`} aria-label={`Temporada ${group.prev}`}>
+              <Chevron size={12} className="rotate-180" /> <span className="ml-[4px]">{group.prev}</span>
+            </Link>
+          ) : null}
+          <PopoverButton className={`inline-flex h-[38px] cursor-pointer items-center gap-[8px] px-[14px] text-[16px] leading-[1] transition-colors duration-150 ${cls.tabular} ${onDark ? `text-white hover:bg-white/5 ${cls.focusOnDark}` : `text-[#0F171F] hover:bg-[#FAFAFA] ${cls.focus}`}`}>
+            Temporada {selected}
+            <Chevron direction="down" size={12} className="opacity-60" />
+          </PopoverButton>
+          {group.next !== null ? (
+            <Link href={hrefFor(group.next)} className={`${arrow} border-l ${divider}`} aria-label={`Temporada ${group.next}`}>
+              <span className="mr-[4px]">{group.next}</span> <Chevron size={12} />
+            </Link>
+          ) : null}
+        </span>
+      ) : (
+        <PopoverButton className={`inline-flex h-[38px] cursor-pointer items-center gap-[8px] rounded-[99px] px-[16px] text-[15px] leading-[1] transition-colors duration-150 ${cls.tabular} ${trigger} ${onDark ? cls.focusOnDark : cls.focus}`}>
+          <span className="font-barlow text-[11px] font-semibold uppercase tracking-[1.2px] opacity-60">Temporada</span>
+          {selected}
+          <Chevron direction="down" size={12} className="opacity-60" />
+        </PopoverButton>
+      )}
       <PopoverPanel anchor="bottom start" transition className="z-50 mt-[8px] w-[min(92vw,360px)] rounded-[12px] border border-[rgba(0,0,0,0.1)] bg-white p-[14px] shadow-[0_8px_28px_rgba(15,23,31,0.12)] transition duration-150 data-closed:opacity-0">
         {({ close }) => (
           <div>
