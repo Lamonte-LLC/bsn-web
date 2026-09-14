@@ -1,7 +1,18 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs",
-  "buildCommand": "next build",
-  "installCommand": "npm install --legacy-peer-deps",
-  "regions": ["iad1"]
+  "services": {
+    "web": {
+      "root": ".",
+      "framework": "nextjs",
+      "entrypoint": "."
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "web"
+      }
+    }
+  ]
 }
