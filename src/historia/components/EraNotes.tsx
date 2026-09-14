@@ -1,4 +1,4 @@
-import { Note } from '@/archivo/components/ui';
+import Callout from './Callout';
 import { eraNotes } from '../lib/copy';
 
 interface Props {
@@ -8,17 +8,15 @@ interface Props {
   className?: string;
 }
 
-/** The era notes that apply, one line each, under a table or a comparison. Renders nothing when none apply. */
+/** The era notes that apply, as one friendly box with a clock icon. Renders nothing when none apply. */
 export default function EraNotes({ debutYears, reboundsGapIn2000s = false, className = '' }: Props) {
   const notes = eraNotes({ debutYears, reboundsGapIn2000s });
   if (!notes.length) return null;
   return (
-    <div className={`flex flex-col gap-[4px] ${className}`}>
+    <Callout icon="clock" title="Estadísticas de la época" className={className}>
       {notes.map((n) => (
-        <Note key={n} className="!max-w-none">
-          {n}
-        </Note>
+        <p key={n}>{n}</p>
       ))}
-    </div>
+    </Callout>
   );
 }

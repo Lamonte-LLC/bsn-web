@@ -117,3 +117,38 @@ export function dynasties(years: number[]): Array<[number, number]> {
 }
 
 export { nextTitleLabel as _nextTitleLabel };
+
+/** Position codes of the live roster in Spanish, as the site's hero shows them. */
+export const POSITION_LABEL: Record<string, string> = { PG: 'Base', G: 'Guardia', SG: 'Escolta', SF: 'Alero', F: 'Alero', GF: 'Alero', PF: 'Ala-pívot', FC: 'Ala-pívot', C: 'Pívot' };
+
+export function positionLabel(code: string | null | undefined): string | null {
+  if (!code) return null;
+  return POSITION_LABEL[code.toUpperCase()] ?? code;
+}
+
+/** Country codes of the live roster; unknown codes fall through unchanged. */
+export const NATIONALITY_LABEL: Record<string, string> = { PUR: 'Puerto Rico', USA: 'Estados Unidos', DOM: 'República Dominicana', ESP: 'España', CAN: 'Canadá', ARG: 'Argentina', VEN: 'Venezuela', MEX: 'México', BRA: 'Brasil', GBR: 'Reino Unido', AUS: 'Australia', ITA: 'Italia', FRA: 'Francia', PAN: 'Panamá', CUB: 'Cuba', COL: 'Colombia', JAM: 'Jamaica', NGR: 'Nigeria', SEN: 'Senegal', LTU: 'Lituania', SRB: 'Serbia' };
+
+export function nationalityLabel(code: string | null | undefined): string | null {
+  if (!code) return null;
+  return NATIONALITY_LABEL[code.toUpperCase()] ?? code;
+}
+
+const MONTHS_ES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+
+/** "26 jul 1997 · 29 años" from an ISO date; null when the date is missing or invalid. */
+export function birthLine(iso: string | null | undefined, today = new Date()): string | null {
+  if (!iso) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+  if (!m) return null;
+  const [y, mo, d] = [Number(m[1]), Number(m[2]), Number(m[3])];
+  if (!y || mo < 1 || mo > 12 || !d) return null;
+  let age = today.getFullYear() - y;
+  if (today.getMonth() + 1 < mo || (today.getMonth() + 1 === mo && today.getDate() < d)) age -= 1;
+  return `${d} ${MONTHS_ES[mo - 1]} ${y} · ${age} años`;
+}
+
+/** "2.08 m" from centimeters. */
+export function heightLine(cm: number | null | undefined): string | null {
+  return cm && cm > 0 ? `${(cm / 100).toFixed(2)} m` : null;
+}

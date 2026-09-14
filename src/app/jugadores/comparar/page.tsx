@@ -11,15 +11,13 @@ import PlayerComparePanel from '@/historia/components/compare/PlayerComparePanel
 import type { SuggestedPlayer } from '@/historia/components/compare/PlayerPickerDialog';
 import { totalsFromLines } from '@/historia/lib/compare';
 import { MIN_COMPARE_PLAYERS, parseCompareKeys, valuesFrom, type ComparePlayerData } from '@/historia/lib/compare-players';
-import { yearsActive } from '@/historia/lib/copy';
+import { positionLabel, yearsActive } from '@/historia/lib/copy';
 import { CURRENT_SEASON } from '@/historia/lib/data';
 import { liveRoster, resolveUnifiedPlayer } from '@/historia/lib/identity';
 import { liveMinutesByYear, liveSeasonLines } from '@/historia/lib/live';
 import { getCompareTeam } from '@/team/components/compare/teams';
 
 type SearchParams = Promise<{ p?: string | string[] }>;
-
-const POSITION: Record<string, string> = { PG: 'Base', G: 'Guardia', SG: 'Escolta', SF: 'Alero', F: 'Alero', GF: 'Alero', PF: 'Ala-pívot', FC: 'Ala-pívot', C: 'Pívot' };
 
 function franchiseView(slug: string | null | undefined): FranchiseView | null {
   const f = slug ? getFranchiseMap().get(slug) : null;
@@ -55,7 +53,7 @@ function load(key: string): ComparePlayerData | null {
   const ly = u.providerId ? CURRENT_SEASON : (a?.ly ?? CURRENT_SEASON);
   const teams = [...new Set(regularLines.map((l) => franchiseView(l.franchiseSlug)?.nickname ?? l.teamName))];
   const line = live
-    ? [team?.nickname ?? franchise?.nickname, live.position ? (POSITION[live.position] ?? live.position) : null, live.jerseyNumber ? `#${live.jerseyNumber}` : null].filter(Boolean).join(' · ')
+    ? [team?.nickname ?? franchise?.nickname, positionLabel(live.position), live.jerseyNumber ? `#${live.jerseyNumber}` : null].filter(Boolean).join(' · ')
     : `${yearsActive(fy, ly)} · ${teams.slice(0, 3).join(', ')}${teams.length > 3 ? ` y ${teams.length - 3} más` : ''}`;
 
   return {

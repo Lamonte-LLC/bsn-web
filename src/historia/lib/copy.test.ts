@@ -60,3 +60,17 @@ describe('dynasties', () => {
     assert.deepEqual(dynasties([1967, 1969, 1971, 1972, 1973, 1974, 1975, 1981, 1995, 1996, 2009]), [[1971, 1975]]);
   });
 });
+
+describe('profile facts', () => {
+  it('formats birth, height and position', async () => {
+    const { birthLine, heightLine, positionLabel, nationalityLabel } = await import('./copy.ts');
+    assert.equal(birthLine('1997-07-26', new Date('2026-09-14')), '26 jul 1997 · 29 años');
+    assert.equal(birthLine('1997-09-20', new Date('2026-09-14')), '20 sep 1997 · 28 años');
+    assert.equal(birthLine(null), null);
+    assert.equal(heightLine(208), '2.08 m');
+    assert.equal(heightLine(0), null);
+    assert.equal(positionLabel('PF'), 'Ala-pívot');
+    assert.equal(nationalityLabel('PUR'), 'Puerto Rico');
+    assert.equal(nationalityLabel('XYZ'), 'XYZ');
+  });
+});
