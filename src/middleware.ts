@@ -30,6 +30,8 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // Node runtime: the Vercel "services" build target does not accept Edge Functions.
+  runtime: 'nodejs',
   // Skip Next internals and static files; the archive's own assets are handled by ALLOWED_PREFIXES.
   matcher: ['/((?!_next/static|_next/image|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|mp4|json|txt|xml)$).*)'],
 };
