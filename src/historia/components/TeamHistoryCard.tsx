@@ -11,29 +11,42 @@ type Props = {
 };
 
 /**
- * Sidebar card of the team's Resumen tab: three counters, the last title in one line, the legends of the
- * franchise (as "Jugadores destacados") and a button to the Historia tab. All ink, no team color; teams without titles say so in one line.
+ * Sidebar card of the team's Resumen tab, "ficha de club": six facts every franchise has in a lined grid,
+ * the standout players with the franchise color on their avatars, and a button to the Historia tab. Teams
+ * without titles read "Ninguno", never an empty block.
  */
 export default function TeamHistoryCard({ slug, code }: Props) {
   const f = franchiseFileWithColors(slug);
   if (!f) return null;
   const titles = [...f.titles].sort((a, b) => b.year - a.year);
   const last = titles[0] ?? null;
+  const primary = f.colors.primary ?? '#0F171F';
   const mvp = [...f.mvps].sort((a, b) => b.year - a.year)[0] ?? null;
   const scorer = f.leaders.pts[0] ?? null;
   const rebounder = f.leaders.reb[0] ?? null;
-  const assister = f.leaders.ast[0] ?? null;
+  const most = [...f.players].sort((a, b) => b.seasons - a.seasons || a.name.localeCompare(b.name))[0] ?? null;
+  const best = f.seasonRecords
+    .filter((r) => !r.fpo && r.won + r.lost > 0)
+    .sort((a, b) => b.won / (b.won + b.lost) - a.won / (a.won + a.lost) || b.year - a.year)[0] ?? null;
 
-  type Legend = { key: string; slug: string | null; name: string; sub: string };
-  const legends: Legend[] = [];
-  const push = (l: Legend | null) => {
-    if (l && !legends.some((x) => x.slug === l.slug && x.name === l.name) && legends.length < 4) legends.push(l);
+  const facts: Array<[string, string]> = [
+    ['Fundación', f.firstYear ? String(f.firstYear) : '–'],
+    ['Temporadas', String(f.activeYears.length)],
+    ['Campeonatos', titles.length ? `${titles.length} · último ${last!.year}` : 'Ninguno'],
+    ['MVPs', f.mvps.length ? String(f.mvps.length) : 'Ninguno'],
+    ['Mejor temporada', best ? `${best.year} · ${best.won}-${best.lost}` : '–'],
+    ['Jugadores', `${fmtInt(f.players.length)} en su historia`],
+  ];
+
+  type Person = { key: string; slug: string | null; name: string; sub: string };
+  const people: Person[] = [];
+  const push = (x: Person | null) => {
+    if (x && !people.some((y) => y.name === x.name) && people.length < 3) people.push(x);
   };
-  push(scorer ? { key: 'pts', slug: scorer.slug, name: scorer.name, sub: `Máximo anotador · ${fmtInt(scorer.value)} pts · ${scorer.seasons} temporada${scorer.seasons === 1 ? '' : 's'}` } : null);
+  push(scorer ? { key: 'pts', slug: scorer.slug, name: scorer.name, sub: `Máximo anotador · ${fmtInt(scorer.value)} pts` } : null);
   push(mvp ? { key: 'mvp', slug: mvp.slug, name: mvp.name, sub: `Jugador más valioso · ${mvp.year}` } : null);
   push(rebounder ? { key: 'reb', slug: rebounder.slug, name: rebounder.name, sub: `Máximo reboteador · ${fmtInt(rebounder.value)} reb` } : null);
-  push(assister ? { key: 'ast', slug: assister.slug, name: assister.name, sub: `Máximo asistente · ${fmtInt(assister.value)} ast` } : null);
-  const legendsShown = legends.slice(0, 3);
+  push(most ? { key: 'most', slug: most.slug, name: most.name, sub: `Más temporadas · ${most.seasons}` } : null);
 
   return (
     <div className="flex-1 rounded-[12px] md:border md:border-[#EAEAEA] md:bg-white md:shadow-[0px_1px_3px_0px_#14181F0A]">
@@ -42,53 +55,38 @@ export default function TeamHistoryCard({ slug, code }: Props) {
         <p className="font-barlow text-[13px] text-[rgba(15,23,31,0.7)]">{f.firstYear ? `Desde ${f.firstYear}` : ''}</p>
       </div>
       <div className="pb-[24px] pt-[16px] md:px-[30px] md:pb-[30px]">
-        <div className="grid grid-cols-3 gap-[10px]">
-          <div>
-            <p className={`text-[30px] leading-[1] text-[#0F171F] ${cls.tabular}`}>{titles.length}</p>
-            <p className={`mt-[5px] ${cls.label}`}>Campeonatos</p>
-          </div>
-          <div>
-            <p className={`text-[30px] leading-[1] text-[#0F171F] ${cls.tabular}`}>{f.mvps.length}</p>
-            <p className={`mt-[5px] ${cls.label}`}>MVPs</p>
-          </div>
-          <div>
-            <p className={`text-[30px] leading-[1] text-[#0F171F] ${cls.tabular}`}>{f.activeYears.length}</p>
-            <p className={`mt-[5px] ${cls.label}`}>Temporadas</p>
-          </div>
+        <div className="grid grid-cols-2 border-l border-t border-[rgba(0,0,0,0.1)]">
+          {facts.map(([l, v]) => (
+            <div key={l} className="border-b border-r border-[rgba(0,0,0,0.1)] px-[12px] py-[9px]">
+              <p className="font-barlow-condensed text-[13px] text-[rgba(15,23,31,0.55)]">{l}</p>
+              <p className={`mt-[2px] font-barlow text-[14px] font-semibold text-[#0F171F] ${cls.tabular}`}>{v}</p>
+            </div>
+          ))}
         </div>
 
-        {last ? (
-          <p className={`mt-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.6)] ${cls.tabular}`}>
-            Último título {last.year}
-            {last.series ? ` · Final ${last.series}` : ''}
-            {last.coach ? ` · ${last.coach}` : ''}
-          </p>
-        ) : (
-          <p className="mt-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.6)]">Sin campeonatos en su historia{f.firstYear ? ` · en la liga desde ${f.firstYear}` : ''}.</p>
-        )}
-
-        {legendsShown.length ? (
+        {people.length ? (
           <div className="mt-[18px]">
             <p className={cls.label}>Jugadores destacados</p>
-            <ul className="mt-[6px] divide-y divide-[rgba(0,0,0,0.07)]">
-              {legendsShown.map((l) => {
+            <ul className="mt-[4px]">
+              {people.map((l, i) => {
                 const inner = (
                   <>
-                    <PlayerAvatar name={l.name} sizePx={34} />
+                    <PlayerAvatar name={l.name} color={primary} sizePx={34} />
                     <span className="min-w-0">
                       <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">{l.name}</span>
                       <span className={`block truncate font-barlow text-[12px] text-[rgba(15,23,31,0.6)] ${cls.tabular}`}>{l.sub}</span>
                     </span>
                   </>
                 );
+                const row = `flex items-center gap-[12px] py-[9px] ${i ? 'border-t border-[rgba(0,0,0,0.07)]' : ''}`;
                 return (
                   <li key={l.key}>
                     {l.slug ? (
-                      <Link href={`/jugadores/${l.slug}`} className={`flex items-center gap-[12px] py-[9px] rounded-[4px] transition-colors hover:bg-[#FAFAFA] ${cls.focus}`}>
+                      <Link href={`/jugadores/${l.slug}`} className={`${row} rounded-[4px] transition-colors hover:bg-[#FAFAFA] ${cls.focus}`}>
                         {inner}
                       </Link>
                     ) : (
-                      <div className="flex items-center gap-[12px] py-[9px]">{inner}</div>
+                      <div className={row}>{inner}</div>
                     )}
                   </li>
                 );
