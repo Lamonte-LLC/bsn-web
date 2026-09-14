@@ -26,8 +26,8 @@ import { getFirstWord } from '@/utils/text';
 import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import { SeasonType } from '@/season/types';
 import { CURRENT_SEASON, LAST_SEASON } from '@/graphql/season';
-import FranchiseContextRibbon from '@/historia/components/FranchiseContextRibbon';
 import FranchiseHistory from '@/historia/components/FranchiseHistory';
+import TeamHistoryCard from '@/historia/components/TeamHistoryCard';
 import { franchiseByCode } from '@/historia/lib/data';
 
 type TeamPageResponse = {
@@ -206,7 +206,6 @@ export default async function DetalleEquipoPage({
                 )}{' '}
                 lugar en Grupo {data.team.group}
               </p>
-              <FranchiseContextRibbon code={data.team.code} onDark align="center" className="mt-[8px]" />
             </div>
           </div>
         </div>
@@ -357,6 +356,11 @@ export default async function DetalleEquipoPage({
                   <div className="mb-5">
                     <TeamLeadersCard teamCode={data.team.code} />
                   </div>
+                  {franchise ? (
+                    <div className="mb-5">
+                      <TeamHistoryCard slug={franchise.slug} code={data.team.code} />
+                    </div>
+                  ) : null}
                   <div className="mb-5">
                     <TeamExternalLinksCard
                       instagramLink={data.team.socialInstagramUrl}
