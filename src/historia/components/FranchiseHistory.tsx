@@ -53,7 +53,7 @@ function ChampionshipMosaic({ titles, primary }: { titles: FranchiseTitle[]; pri
             for (let k = run[0]; k <= run[1]; k++) seen.add(k);
             const coaches = [...new Set(Array.from({ length: span }, (_, i) => shortCoach(byYear.get(run[0] + i)?.coach ?? null)).filter(Boolean))];
             items.push(
-              <Link key={`run-${run[0]}`} href={`/temporadas/${run[1]}`} className={`${tile} bg-[#0F171F] text-white ${cls.focus}`} style={{ width: Math.min(span, 5) * 92 + (Math.min(span, 5) - 1) * 6 }}>
+              <Link key={`run-${run[0]}`} href={`/temporadas/${run[1]}`} title={`${span} campeonatos seguidos, ${run[0]} a ${run[1]}`} className={`${tile} bg-[#0F171F] text-white ${cls.focus}`} style={{ width: Math.min(span, 5) * 92 + (Math.min(span, 5) - 1) * 6 }}>
                 <span className={`text-[26px] leading-[1] ${cls.tabular}`}>
                   {run[0]} a {run[1]} <span className="text-[14px] opacity-65">· {WORDS[span] ?? `${span} seguidos`}</span>
                 </span>
@@ -64,7 +64,7 @@ function ChampionshipMosaic({ titles, primary }: { titles: FranchiseTitle[]; pri
             seen.add(y);
             const t = byYear.get(y)!;
             items.push(
-              <Link key={y} href={`/temporadas/${y}`} className={`${tile} w-[92px] ${cls.focus}`} style={{ background: primary, color: ink }}>
+              <Link key={y} href={`/temporadas/${y}`} title={`Campeonato ${y}${t.coach ? ` · ${t.coach}` : ''}${t.series ? ` · Final ${t.series}` : ''}`} className={`${tile} w-[92px] ${cls.focus}`} style={{ background: primary, color: ink }}>
                 <span className={`text-[26px] leading-[1] ${cls.tabular}`}>{y}</span>
                 <span className="truncate font-barlow text-[11px] font-medium opacity-85">{[shortCoach(t.coach), t.series].filter(Boolean).join(' · ') || 'Título'}</span>
               </Link>,

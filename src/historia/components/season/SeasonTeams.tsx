@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
@@ -19,7 +19,7 @@ interface Props {
 const PER_MOBILE = 2;
 const PER_DESKTOP = 4;
 
-function RosterPanel({ team, year, franchise }: { team: TeamCard; year: number; franchise: FranchiseView | null }) {
+function RosterPanel({ team, year, franchise, onClose }: { team: TeamCard; year: number; franchise: FranchiseView | null; onClose: () => void }) {
   const has = (pick: (p: TeamPlayerRow) => number | string | null) => team.players.some((p) => pick(p) !== null);
   const num = (key: string, label: string, title: string, pick: (p: TeamPlayerRow) => number | null, kind: 'int' | 'avg' | 'pct', strong = false): StatsColumn<TeamPlayerRow> | null =>
     has(pick) ? { key, label, title, align: 'right', strong, sortValue: pick, render: (p) => (kind === 'int' ? fmtInt(pick(p)) : kind === 'pct' ? fmtPct(pick(p)) : fmt(pick(p))) } : null;
@@ -67,6 +67,11 @@ function RosterPanel({ team, year, franchise }: { team: TeamCard; year: number; 
             Historia de la franquicia
           </Link>
         ) : null}
+        <button type="button" onClick={onClose} aria-label="Cerrar roster" title="Cerrar" className={`flex h-[32px] w-[32px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#EAEAEA] transition-colors duration-150 hover:border-[rgba(47,47,47,1)] ${cls.focus}`}>
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden>
+            <path d="M1 1L13 13M13 1L1 13" stroke="#0F171F" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
       <StatsTable columns={columns} rows={team.players} rowKey={(p) => p.key} caption={`Roster de ${team.name} ${year}`} maxHeight="60vh" className="!rounded-none !border-0" zebra={team.players.length > 12} />
       {historyHref ? (
@@ -88,6 +93,17 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
   const wanted = useSearchParams().get('equipo');
   const initial = wanted ? (teams.find((t) => t.slug === wanted || t.code === wanted.toUpperCase()) ?? null) : null;
   const [selected, setSelected] = useState<string | null>(initial ? (initial.slug ?? initial.code ?? initial.name) : null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const openedAt = useRef<string | null>(null);
+  // Bring the roster into view when it opens below the fold (phones), without stealing focus.
+  useEffect(() => {
+    if (!selected || openedAt.current === selected) return;
+    openedAt.current = selected;
+    const el = panelRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > window.innerHeight) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, [selected]);
   const idx = teams.findIndex((t) => (t.slug ?? t.code ?? t.name) === selected);
   const team = idx >= 0 ? teams[idx] : null;
   const rowEnd = (per: number) => (idx < 0 ? -1 : Math.ceil((idx + 1) / per) * per - 1);
@@ -105,8 +121,10 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
             <button
               type="button"
               aria-expanded={on}
+              aria-controls={on ? 'roster-panel' : undefined}
+              title={on ? 'Cerrar roster' : `Ver el roster de ${t.nickname} en ${year}`}
               onClick={() => setSelected(on ? null : key)}
-              className={`relative flex cursor-pointer items-center gap-[10px] rounded-[10px] border px-[12px] py-[12px] text-left transition-colors md:gap-[12px] md:px-[14px] ${cls.focus} ${on ? 'border-[#0F171F] bg-[#0F171F] text-white' : 'border-[rgba(0,0,0,0.08)] bg-white hover:border-[rgba(0,0,0,0.3)]'}`}
+              className={`relative flex cursor-pointer items-center gap-[10px] rounded-[10px] border px-[12px] py-[12px] text-left transition-colors duration-150 md:gap-[12px] md:px-[14px] ${cls.focus} ${on ? 'border-[#0F171F] bg-[#0F171F] text-white' : 'border-[rgba(0,0,0,0.08)] bg-white hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]'}`}
             >
               <FranchiseLogo franchise={franchiseOf(t)} fallbackName={t.name} sizePx={32} />
               <span className="min-w-0">
@@ -119,13 +137,13 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
               {on ? <span aria-hidden className="absolute -bottom-[10px] left-1/2 h-[14px] w-[14px] -translate-x-1/2 rotate-45 rounded-[2px] bg-[#0F171F]" /> : null}
             </button>
             {team && i === endMobile ? (
-              <div className="col-span-full md:hidden">
-                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} />
+              <div id="roster-panel" ref={panelRef} className="col-span-full md:hidden">
+                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
               </div>
             ) : null}
             {team && i === endDesktop ? (
               <div className="col-span-full hidden md:block">
-                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} />
+                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
               </div>
             ) : null}
           </div>
@@ -135,12 +153,12 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
         <>
           {endMobile >= teams.length ? (
             <div className="col-span-full md:hidden">
-              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} />
+              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
             </div>
           ) : null}
           {endDesktop >= teams.length ? (
             <div className="col-span-full hidden md:block">
-              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} />
+              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
             </div>
           ) : null}
         </>

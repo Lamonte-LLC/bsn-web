@@ -73,7 +73,7 @@ export function SeriesPanel({ series, franchises }: { series: SeriesRow[]; franc
         <span>Eliminado</span>
       </div>
       {series.map((s, i) => (
-        <div key={s.id} className={`grid grid-cols-[1fr_56px_1fr] items-center gap-x-[8px] px-[14px] py-[10px] md:grid-cols-[150px_1fr_72px_1fr] md:px-[20px] md:py-0 md:h-[48px] ${i ? 'border-t border-[rgba(0,0,0,0.06)]' : ''} ${s.final ? 'bg-[#F9F9F9]' : ''}`}>
+        <div key={s.id} className={`grid grid-cols-[1fr_56px_1fr] items-center gap-x-[8px] px-[14px] py-[10px] transition-colors duration-150 hover:bg-[#FAFAFA] md:grid-cols-[150px_1fr_72px_1fr] md:px-[20px] md:py-0 md:h-[48px] ${i ? 'border-t border-[rgba(0,0,0,0.06)]' : ''} ${s.final ? 'bg-[#F9F9F9]' : ''}`}>
           <span className={`col-span-3 mb-[6px] inline-flex items-center gap-[6px] ${cls.label} md:col-span-1 md:mb-0`}>
             {s.final ? <span aria-hidden className="text-[12px] text-[#FEC200]">★</span> : null}
             {s.label}
@@ -107,7 +107,7 @@ export function LeadersPanel({ leaders, franchises, year }: { leaders: LeaderRow
           {col.map((l, i) => {
             const f = l.slug ? (franchises[l.slug] ?? null) : null;
             return (
-              <div key={l.category} className={`grid h-[52px] grid-cols-[92px_1fr_auto] items-center gap-[10px] md:grid-cols-[128px_1fr_64px_64px] ${i ? 'border-t border-[rgba(0,0,0,0.06)]' : ''}`}>
+              <div key={l.category} className={`grid h-[52px] grid-cols-[92px_1fr_auto] items-center gap-[10px] md:grid-cols-[128px_1fr_72px] ${i ? 'border-t border-[rgba(0,0,0,0.06)]' : ''}`}>
                 <span className={`${cls.label} !text-[10px]`}>{l.label}</span>
                 <span className="flex min-w-0 items-center gap-[8px]">
                   <FranchiseLogo franchise={f} fallbackName={l.name} sizePx={22} />
@@ -116,10 +116,7 @@ export function LeadersPanel({ leaders, franchises, year }: { leaders: LeaderRow
                   </Link>
                   <span className={`hidden whitespace-nowrap ${cls.meta} md:inline`}>{l.nickname}</span>
                 </span>
-                <span className={`text-right text-[20px] text-[#0F171F] ${cls.tabular}`}>{l.value}</span>
-                <Link href={`/estadisticas?vista=historico&temporada=${year}&categoria=${l.category}`} className={`hidden text-right ${cls.textLink} !text-[12.5px] md:inline`}>
-                  Top 10 ›
-                </Link>
+                <span className={`text-right text-[20px] text-[#0F171F] ${cls.tabular}`} title={`${l.label} por juego, temporada ${year}`}>{l.value}</span>
               </div>
             );
           })}

@@ -118,7 +118,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
             <span className="tabular-nums">{ready ? `${list.length}` : ''}</span>
           </div>
 
-          <ul role="listbox" aria-label={typing ? 'Resultados' : 'Todos los jugadores'} className="mt-[6px] min-h-0 flex-1 overflow-y-auto rounded-[10px] border border-[rgba(15,23,31,0.08)]">
+          <ul role="listbox" aria-busy={!ready} aria-label={typing ? 'Resultados' : 'Todos los jugadores'} className="mt-[6px] min-h-0 flex-1 overflow-y-auto rounded-[10px] border border-[rgba(15,23,31,0.08)]">
             {!ready ? (
               <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Cargando jugadores…</li>
             ) : !shown.length ? (
