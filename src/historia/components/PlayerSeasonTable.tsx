@@ -165,7 +165,7 @@ export default function PlayerSeasonTable({ regular, playoffs, others, career, c
 
   return (
     <section>
-      <div className="mb-[16px] flex flex-col gap-[10px] md:flex-row md:items-center md:justify-between">
+      <div className="mb-[24px] flex flex-col gap-[10px] md:mb-[28px] md:flex-row md:items-center md:justify-between">
         <div role="radiogroup" aria-label="Unidad" className="flex gap-[8px]">
           {(
             [
@@ -189,7 +189,7 @@ export default function PlayerSeasonTable({ regular, playoffs, others, career, c
         ) : null}
       </div>
 
-      <div className="mb-[12px] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-[6px]">
+      <div className="mb-[16px] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-[6px]">
         <h2 className="text-[22px] leading-[1.1] text-[#0F171F]">Temporada por temporada</h2>
         <span className={`${cls.meta} ${cls.tabular}`}>
           {view === 'avg' ? 'Promedios' : 'Totales'} · {phase === 'regular' ? 'serie regular' : 'postemporada'} · {lines.length} temporada{lines.length === 1 ? '' : 's'}
@@ -198,10 +198,10 @@ export default function PlayerSeasonTable({ regular, playoffs, others, career, c
 
       <StatsTable columns={[...base, ...(view === 'avg' ? avgCols : totalCols)]} rows={rows} rowKey={(r) => (isCareer(r) ? 'career' : `${r.year}-${r.phase}-${r.teamIndex}-${r.teamName}`)} emphasize={isCareer} caption="Temporada por temporada" zebra={rows.length > 12} emptyMessage="Sin temporadas registradas en esta fase." />
 
-      {notes ? <div className="mt-[12px] flex flex-col gap-[8px]">{notes}</div> : null}
+      {notes ? <div className="mt-[20px] flex flex-col gap-[10px]">{notes}</div> : null}
 
       {others.length ? (
-        <details className="group mt-[16px]">
+        <details className="group mt-[20px]">
           <summary className={`inline-flex cursor-pointer list-none items-center gap-[6px] rounded-[4px] ${cls.textLink} ${cls.focus} [&::-webkit-details-marker]:hidden`}>
             All-Star y otros eventos ({others.length})
           </summary>

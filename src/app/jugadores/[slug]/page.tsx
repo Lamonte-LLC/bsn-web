@@ -20,7 +20,9 @@ import Callout from '@/historia/components/Callout';
 import EraNotes from '@/historia/components/EraNotes';
 import PlayerSeasonTable, { type CareerRow, type SeasonRow } from '@/historia/components/PlayerSeasonTable';
 import { totalsFromLines } from '@/historia/lib/compare';
-import { birthLine, hasReboundsGapIn2000s, heightLine, nationalityLabel, positionLabel, UNLINKED_CAREER, yearsActive } from '@/historia/lib/copy';
+import { birthLine, hasReboundsGapIn2000s, nationalityLabel, positionLabel, UNLINKED_CAREER, yearsActive } from '@/historia/lib/copy';
+import { centimeterToInches } from '@/utils/unit-converter';
+import { formatInches } from '@/utils/unit-formater';
 import { bestSeason, CURRENT_SEASON as HISTORY_SEASON } from '@/historia/lib/data';
 import { liveRoster, resolveUnifiedPlayer } from '@/historia/lib/identity';
 import { liveMinutesByYear, liveSeasonLines } from '@/historia/lib/live';
@@ -49,6 +51,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const years = a ? yearsActive(a.fy, u.providerId ? HISTORY_SEASON : a.ly) : String(HISTORY_SEASON);
   const bit = totals?.pts ? `${fmtInt(totals.pts)} puntos y ${fmt(totals.ppg)} por juego en el BSN.` : 'Perfil en el Baloncesto Superior Nacional.';
   return { title: `${u.name} · Jugador · BSN`, description: `${u.name}, ${years}. ${bit}` };
+}
+
+/** Height in feet and inches, as the live hero shows it (e.g. 6'10"), plus the metric value. */
+function heightFt(cm: number | null | undefined): string | null {
+  if (!cm || cm <= 0) return null;
+  const inches = centimeterToInches(cm);
+  return inches > 0 ? `${formatInches(inches)} · ${(cm / 100).toFixed(2)} m` : null;
 }
 
 type Published = { pts: number | null; reb: number | null; ast: number | null; fgm: number | null; fga: number | null; fg3m: number | null; fg3a: number | null; ftm: number | null; fta: number | null } | null;
@@ -139,14 +148,14 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
   // Strip: the current season for actives, the career for everyone else.
   const current = liveLines.find((l) => l.current) ?? null;
   const strip = isActive && current
-    ? { label: `Temporada ${current.year} · serie regular · ${fmtInt(current.g)} juegos`, ppg: current.ppg, rpg: current.rpg, apg: current.apg }
-    : { label: `Carrera · serie regular · ${fmtInt(career?.g ?? null)} juegos · ${yearsActive(fy, ly)}`, ppg: career?.ppg ?? null, rpg: career?.rpg ?? null, apg: career?.apg ?? null };
+    ? { title: `Temporada ${current.year}`, sub: `Serie regular · ${fmtInt(current.g)} juegos`, ppg: current.ppg, rpg: current.rpg, apg: current.apg }
+    : { title: 'Carrera', sub: `Serie regular · ${fmtInt(career?.g ?? null)} juegos · ${yearsActive(fy, ly)}`, ppg: career?.ppg ?? null, rpg: career?.rpg ?? null, apg: career?.apg ?? null };
 
   const best = archive ? bestSeason(archive) : null;
   const bestLine = best?.line ?? [...liveLines].filter((l) => l.g >= 10).sort((a, b) => (b.ppg ?? 0) - (a.ppg ?? 0))[0] ?? null;
   const facts: Array<[string, string | null]> = isActive
     ? [
-        ['Altura', heightLine(live?.height ?? roster?.height ?? null)],
+        ['Altura', heightFt(live?.height ?? roster?.height ?? null)],
         ['País', nationalityLabel(live?.nationality ?? roster?.nationality ?? null)],
         ['Nacimiento', birthLine(live?.dob ?? roster?.dob ?? null)],
         ['Debut BSN', firstLine ? `${firstLine.year} · ${nicknameOf(firstLine.franchiseSlug, firstLine.teamName)}` : null],
@@ -178,8 +187,13 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
         <section className="pt-[20px] md:pt-[36px]">
           <div className="container">
             <div className="flex items-center gap-[14px] md:gap-[24px]">
-              <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 72, height: 72 }}>
-                {avatarUrl ? <PlayerPhotoAvatar photoUrl={avatarUrl} size={72} name={unified.name} /> : <PlayerAvatar name={unified.name} color={mainColor} sizePx={72} onDark />}
+              <div className="shrink-0">
+                <div className="hidden overflow-hidden rounded-full md:block" style={{ width: 140, height: 140 }}>
+                  {avatarUrl ? <PlayerPhotoAvatar photoUrl={avatarUrl} size={140} name={unified.name} /> : <PlayerAvatar name={unified.name} color={mainColor} sizePx={140} onDark />}
+                </div>
+                <div className="overflow-hidden rounded-full md:hidden" style={{ width: 96, height: 96 }}>
+                  {avatarUrl ? <PlayerPhotoAvatar photoUrl={avatarUrl} size={96} name={unified.name} /> : <PlayerAvatar name={unified.name} color={mainColor} sizePx={96} onDark />}
+                </div>
               </div>
               <div className="min-w-0 flex-1">
                 <h1 className="text-[30px] leading-[1] text-white md:text-[48px]">{unified.name}</h1>
@@ -233,6 +247,12 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
 
           {/* Strip: three numbers and the facts, one row on desktop, stacked on mobile. */}
           <div className="mt-[18px] border-t border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] md:mt-[28px]">
+            <div className="container border-b border-[rgba(255,255,255,0.12)] py-[9px] md:py-[10px]">
+              <p className={`font-barlow text-[13px] font-semibold text-white md:text-[14px] ${cls.tabular}`}>
+                {strip.title}
+                <span className="font-medium text-white/60"> · {strip.sub}</span>
+              </p>
+            </div>
             <div className="container flex flex-col md:flex-row md:items-stretch">
               <div className="grid grid-cols-3 md:flex md:shrink-0">
                 {(
@@ -248,7 +268,6 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
                   </div>
                 ))}
               </div>
-              <div className="border-t border-[rgba(255,255,255,0.12)] px-[20px] py-[6px] font-barlow text-[9px] font-semibold uppercase tracking-[1.3px] text-white/40 md:hidden">{strip.label}</div>
               {shownFacts.length ? (
                 <div className="grid grid-cols-2 border-t border-[rgba(255,255,255,0.12)] md:flex-1 md:grid-cols-3 md:border-t-0">
                   {shownFacts.map(([l, v]) => (
@@ -257,7 +276,6 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
                 </div>
               ) : null}
             </div>
-            <div className="container hidden py-[8px] font-barlow text-[9.5px] font-semibold uppercase tracking-[1.3px] text-white/40 md:block">{strip.label}</div>
           </div>
           <div className="container py-[12px] md:hidden">
             <Button href={compareHref} onDark className="w-full">
@@ -301,8 +319,8 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
           {/* Reservado: "Jugadores parecidos" (backlog 8) y "Arco de carrera" (backlog 9) van aquí. */}
 
           {isActive && unified.providerId ? (
-            <section id="juego-por-juego" className="mt-[36px] lg:mt-[44px]">
-              <div className="mb-[12px] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-[6px]">
+            <section id="juego-por-juego" className="mt-[44px] lg:mt-[56px]">
+              <div className="mb-[16px] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-[6px]">
                 <h2 className="text-[22px] leading-[1.1] text-[#0F171F]">Juego por juego</h2>
                 <span className={`${cls.meta} ${cls.tabular}`}>{current ? `Temporada ${current.year} · ${fmtInt(current.g)} juegos` : `Temporada ${HISTORY_SEASON}`}</span>
               </div>
