@@ -26,6 +26,9 @@ import { getFirstWord } from '@/utils/text';
 import { DEFAULT_MEDIA_PROVIDER } from '@/constants';
 import { SeasonType } from '@/season/types';
 import { CURRENT_SEASON, LAST_SEASON } from '@/graphql/season';
+import FranchiseContextRibbon from '@/historia/components/FranchiseContextRibbon';
+import FranchiseHistory from '@/historia/components/FranchiseHistory';
+import { franchiseByCode } from '@/historia/lib/data';
 
 type TeamPageResponse = {
   team: TeamType;
@@ -152,11 +155,18 @@ const PLAYOFFS_TEAM_CODES = [
   'SGE',
 ];
 
+const TAB_INDEX: Record<string, number> = { resumen: 0, calendario: 1, jugadores: 2, estadisticas: 3, lideres: 4, historia: 5 };
+
 export default async function DetalleEquipoPage({
   params,
+  searchParams,
 }: PageProps<'/equipos/[slug]'>) {
   const { slug } = await params;
+  const sp = await searchParams;
+  const tabParam = Array.isArray(sp?.tab) ? sp.tab[0] : sp?.tab;
+  const defaultTab = tabParam && TAB_INDEX[tabParam] !== undefined ? TAB_INDEX[tabParam] : 0;
   const data: TeamPageResponse = await fetchTeam(slug);
+  const franchise = franchiseByCode(data.team.code);
   const currentSeason: SeasonType | null = await fetchCurrentSeason();
   const lastSeason: SeasonType | null = await fetchLastSeason();
 
@@ -196,13 +206,14 @@ export default async function DetalleEquipoPage({
                 )}{' '}
                 lugar en Grupo {data.team.group}
               </p>
+              <FranchiseContextRibbon code={data.team.code} onDark align="center" className="mt-[8px]" />
             </div>
           </div>
         </div>
       }
     >
       <WSCBlazeSDK apiKey={process.env.NEXT_PUBLIC_WSC_API_KEY || ''} />
-      <TabGroup>
+      <TabGroup defaultIndex={defaultTab}>
         <TabList className="bg-[#0F171F] pb-[17px] md:pb-[28px]">
           <div className="container text-center space-x-[20px] md:space-x-[30px]">
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-base tracking-[1%] md:text-[22px] data-selected:text-white data-selected:border-b data-selected:border-b-white">
@@ -219,6 +230,9 @@ export default async function DetalleEquipoPage({
             </Tab>
             <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-base tracking-[1%] md:text-[22px] data-selected:text-white data-selected:border-b data-selected:border-b-white">
               Líderes
+            </Tab>
+            <Tab className="cursor-pointer outline-none py-[8px] text-[rgba(255,255,255,0.5)] text-base tracking-[1%] md:text-[22px] data-selected:text-white data-selected:border-b data-selected:border-b-white">
+              Historia
             </Tab>
           </div>
         </TabList>
@@ -448,6 +462,22 @@ export default async function DetalleEquipoPage({
                 <div>
                   <TeamLeadersWidget teamCode={data.team.code} />
                 </div>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="container">
+              <div className="mt-6 md:mt-[30px] lg:mt-[60px]">
+                {franchise ? (
+                  <FranchiseHistory slug={franchise.slug} />
+                ) : (
+                  <p className="font-barlow text-[15px] text-[rgba(0,0,0,0.6)]">Este equipo no tiene registro histórico en el archivo.</p>
+                )}
+                <p className="mt-[24px] font-barlow text-[13px] text-[rgba(0,0,0,0.55)]">
+                  <Link href="/equipos/historicos" className="font-medium text-[#1772D9] hover:text-[#1257A8]">
+                    Ver las franquicias que ya no compiten
+                  </Link>
+                </p>
               </div>
             </div>
           </TabPanel>

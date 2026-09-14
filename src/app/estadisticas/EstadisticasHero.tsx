@@ -1,7 +1,9 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import PrintableViewButton from './PrintableViewButton';
+import VistaToggle from './VistaToggle';
 import { useEstadisticasTab, type EstadisticasTab } from './useEstadisticasTab';
 
 const TABS: EstadisticasTab[] = ['jugadores', 'equipos'];
@@ -40,6 +42,11 @@ export default function EstadisticasHero() {
               )}
             </button>
           ))}
+        </div>
+        <div className="mt-4">
+          <Suspense fallback={null}>
+            <VistaToggle />
+          </Suspense>
         </div>
       </div>
 
@@ -80,6 +87,11 @@ export default function EstadisticasHero() {
           <div className="col-start-3 mr-[7px] mb-2 justify-self-end">
             <PrintableViewButton scope={activeTab} />
           </div>
+        </div>
+        <div className="mt-5 flex justify-center">
+          <Suspense fallback={null}>
+            <VistaToggle />
+          </Suspense>
         </div>
       </div>
     </div>

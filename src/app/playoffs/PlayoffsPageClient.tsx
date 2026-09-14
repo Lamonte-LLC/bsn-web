@@ -613,12 +613,51 @@ function GameRow({
 }
 
 // ─── Series card ──────────────────────────────────────────────────────────────
+// ─── Historical context per team (one line each, from the archive) ────────────
+function SeriesContextRow({
+  t1Code,
+  t2Code,
+  contextByCode,
+}: {
+  t1Code: string;
+  t2Code: string;
+  contextByCode: Record<string, SeriesContext>;
+}) {
+  const a = contextByCode[t1Code];
+  const b = contextByCode[t2Code];
+  if (!a && !b) return null;
+  const cell = 'min-w-0 truncate font-barlow text-[11.5px] text-[rgba(15,23,31,0.55)] transition-colors duration-150 hover:text-[#0F171F] [font-variant-numeric:tabular-nums]';
+  return (
+    <div
+      className="grid grid-cols-2 gap-[12px] border-b px-[18px] py-[7px]"
+      style={{ borderBottomColor: C.divider, background: '#FAFAFA' }}
+    >
+      {a ? (
+        <Link href={a.href} className={cell} title="Historia de la franquicia">
+          {a.line}
+        </Link>
+      ) : (
+        <span />
+      )}
+      {b ? (
+        <Link href={b.href} className={`${cell} text-right`} title="Historia de la franquicia">
+          {b.line}
+        </Link>
+      ) : (
+        <span />
+      )}
+    </div>
+  );
+}
+
 function SeriesCard({
   node,
   fullWidth = false,
+  contextByCode = {},
 }: {
   node: PlayoffsSeriesNode;
   fullWidth?: boolean;
+  contextByCode?: Record<string, SeriesContext>;
 }) {
   const isFinal = node.round === 3;
   const isFinalPending =
@@ -686,6 +725,7 @@ function SeriesCard({
       style={cardOuter}
     >
       <CardHeaderBar node={node} isFinal={isFinal} />
+      <SeriesContextRow t1Code={t1Code} t2Code={t2Code} contextByCode={contextByCode} />
 
       {isFinal && fullWidth ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:flex-1">
@@ -866,7 +906,9 @@ function PlayoffsLeadersSection() {
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-export default function PlayoffsPageClient() {
+export type SeriesContext = { line: string; href: string };
+
+export default function PlayoffsPageClient({ contextByCode = {} }: { contextByCode?: Record<string, SeriesContext> }) {
   const { nodes } = usePlayoffsSeries();
 
   const final = nodes.find((s) => s.round === 3);
@@ -889,12 +931,12 @@ export default function PlayoffsPageClient() {
             className="mt-7 lg:mt-10 grid grid-cols-1 lg:grid-cols-2"
             style={{ columnGap: 20, rowGap: 24 }}
           >
-            {final && <SeriesCard node={final} fullWidth />}
+            {final && <SeriesCard contextByCode={contextByCode} node={final} fullWidth />}
             {semifinals.map((s) => (
-              <SeriesCard key={s.providerId} node={s} />
+              <SeriesCard contextByCode={contextByCode} key={s.providerId} node={s} />
             ))}
             {cuartos.map((s) => (
-              <SeriesCard key={s.providerId} node={s} />
+              <SeriesCard contextByCode={contextByCode} key={s.providerId} node={s} />
             ))}
           </div>
         </div>

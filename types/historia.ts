@@ -23,3 +23,9 @@ export interface FranchiseContext {
   franchise: Pick<Franchise, 'slug' | 'nickname' | 'fullName' | 'firstYear' | 'status'>;
   titles: FranchiseFile['titles'];
 }
+
+/** Archive index entry extended with the live identity, served by /api/historia/players. */
+export interface UnifiedIndexEntry extends PlayerIndexEntry {
+  isActive: boolean;
+  providerId: string | null;
+}

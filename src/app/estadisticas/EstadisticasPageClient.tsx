@@ -6,6 +6,11 @@ import SportRadarStatisticsPersonsWidget from '@/stats/client/widgets/SportRadar
 import SportRadarStatisticsEntitiesWidget from '@/stats/client/widgets/SportRadarStatisticsEntitiesWidget';
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { useEstadisticasTab, initEstadisticasTabFromParam } from './useEstadisticasTab';
+import AllTimeLeaders from '@/historia/components/AllTimeLeaders';
+import type { CareerLeader, CareerLeaderKey } from '@/historia/lib/data';
+import type { FranchiseView } from '@/archivo/lib/franchise-view';
+
+export type AllTimeData = { leaders: Record<CareerLeaderKey, CareerLeader[]>; active: Record<string, string>; franchises: Record<string, FranchiseView> };
 
 /**
  * El link del tab en el menú de header apunta a la misma ruta con distinto
@@ -24,8 +29,18 @@ function EstadisticasTabSync() {
   return null;
 }
 
-function EstadisticasContent() {
+function EstadisticasContent({ allTime }: { allTime: AllTimeData }) {
   const [activeTab] = useEstadisticasTab();
+  const vista = useSearchParams().get('vista');
+
+  if (vista === 'historico') {
+    return (
+      <>
+        <EstadisticasTabSync />
+        <AllTimeLeaders leaders={allTime.leaders} active={allTime.active} franchises={allTime.franchises} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -39,12 +54,12 @@ function EstadisticasContent() {
   );
 }
 
-export default function EstadisticasPageClient() {
+export default function EstadisticasPageClient({ allTime }: { allTime: AllTimeData }) {
   return (
     <div className="bg-[#fdfdfd]">
       <div className="container pt-[22px] pb-8 lg:pt-[30px] lg:pb-12">
         <Suspense fallback={<ShimmerLine height="480px" />}>
-          <EstadisticasContent />
+          <EstadisticasContent allTime={allTime} />
         </Suspense>
       </div>
     </div>

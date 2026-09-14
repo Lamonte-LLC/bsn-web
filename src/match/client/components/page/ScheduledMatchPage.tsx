@@ -31,6 +31,8 @@ type ScheduledMatchTeamBoxProps = {
 };
 
 type Props = {
+  homeContextLine?: string | null;
+  visitorContextLine?: string | null;
   match: MatchType;
   homeTeamBoxScore?: ScheduledMatchTeamBoxProps;
   visitorTeamBoxScore?: ScheduledMatchTeamBoxProps;
@@ -46,6 +48,8 @@ type Props = {
 };
 
 export default function ScheduledMatchPage({
+  homeContextLine = null,
+  visitorContextLine = null,
   match,
   homeTeamBoxScore,
   visitorTeamBoxScore,
@@ -77,6 +81,7 @@ export default function ScheduledMatchPage({
                     won: match.homeTeam.competitionStandings?.won ?? 0,
                     lost: match.homeTeam.competitionStandings?.lost ?? 0,
                   },
+                  contextLine: homeContextLine,
                 }}
                 visitorTeam={{
                   code: match.visitorTeam.code,
@@ -87,6 +92,7 @@ export default function ScheduledMatchPage({
                     won: match.visitorTeam.competitionStandings?.won ?? 0,
                     lost: match.visitorTeam.competitionStandings?.lost ?? 0,
                   },
+                  contextLine: visitorContextLine,
                 }}
                 venue={{ name: match.venue?.name ?? '' }}
               />

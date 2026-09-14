@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getClient } from '@/apollo-client';
 import { SEASON_PLAYERS_CONNECTION } from '@/graphql/season';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
@@ -99,6 +100,11 @@ export default async function JugadoresPage() {
             <h1 className="font-special-gothic-condensed-one text-white text-center text-[42px] tracking-[0.4px] mb-0">
               Jugadores
             </h1>
+            <p className="mt-4 text-center">
+              <Link href="/jugadores/comparar" className="inline-flex h-[36px] items-center rounded-[99px] border border-white/30 px-[16px] text-[15px] text-white transition-colors duration-150 hover:border-white/60 hover:bg-white/5">
+                Comparar jugadores
+              </Link>
+            </p>
           </div>
         </section>
       }

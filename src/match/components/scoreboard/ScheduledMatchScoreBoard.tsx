@@ -20,6 +20,8 @@ type Props = {
       won: number;
       lost: number;
     };
+    /** One line of historical context (titles, drought); omitted when there is no trustworthy data. */
+    contextLine?: string | null;
   };
   visitorTeam: {
     code: string;
@@ -30,6 +32,7 @@ type Props = {
       won: number;
       lost: number;
     };
+    contextLine?: string | null;
   };
   venue: {
     name: string;
@@ -55,6 +58,9 @@ export default function ScheduledMatchScoreBoard({
               {visitorTeam.competitionStandings?.won ?? 0}-
               {visitorTeam.competitionStandings?.lost ?? 0}
             </p>
+            {visitorTeam.contextLine ? (
+              <p className="mt-[4px] font-barlow text-[12px] text-[rgba(255,255,255,0.6)] [font-variant-numeric:tabular-nums]">{visitorTeam.contextLine}</p>
+            ) : null}
           </div>
           <div
             className="flex flex-row items-center justify-center border-2 rounded-full  h-[60px] w-[60px] md:h-[100px] md:w-[100px]"
@@ -74,6 +80,9 @@ export default function ScheduledMatchScoreBoard({
               {visitorTeam.competitionStandings?.won ?? 0}-
               {visitorTeam.competitionStandings?.lost ?? 0}
             </p>
+            {visitorTeam.contextLine ? (
+              <p className="mt-[4px] font-barlow text-[12px] text-[rgba(255,255,255,0.6)] [font-variant-numeric:tabular-nums]">{visitorTeam.contextLine}</p>
+            ) : null}
           </div>
         </Link>
         <div className="grow">
@@ -122,12 +131,18 @@ export default function ScheduledMatchScoreBoard({
               {homeTeam.competitionStandings?.won ?? 0}-
               {homeTeam.competitionStandings?.lost ?? 0}
             </p>
+            {homeTeam.contextLine ? (
+              <p className="mt-[4px] font-barlow text-[12px] text-[rgba(255,255,255,0.6)] [font-variant-numeric:tabular-nums]">{homeTeam.contextLine}</p>
+            ) : null}
           </div>
           <div className="md:hidden">
             <p className="font-barlow text-xs text-[rgba(255,255,255,0.5)]">
               {homeTeam.competitionStandings?.won ?? 0}-
               {homeTeam.competitionStandings?.lost ?? 0}
             </p>
+            {homeTeam.contextLine ? (
+              <p className="mt-[4px] font-barlow text-[12px] text-[rgba(255,255,255,0.6)] [font-variant-numeric:tabular-nums]">{homeTeam.contextLine}</p>
+            ) : null}
           </div>
         </Link>
       </div>

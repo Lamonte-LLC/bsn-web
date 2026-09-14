@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "BSN-react-native-master", "bsn-main", "docs", ".claude", "scripts/archivo/design"]
+  "exclude": ["node_modules", "**/*.test.ts", "BSN-react-native-master", "bsn-main", "docs", ".claude", "scripts/archivo/design"]
 }

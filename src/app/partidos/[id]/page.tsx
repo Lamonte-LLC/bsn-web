@@ -31,6 +31,9 @@ import {
 } from '@/constants';
 import SportsRadarMatchPage from '@/match/client/components/page/SportsRadarMatchPage';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
+import MatchContextStrip from '@/historia/components/MatchContextStrip';
+import { franchiseContextLineShort } from '@/historia/lib/copy';
+import { CURRENT_SEASON as HISTORY_SEASON, franchiseContextByCode } from '@/historia/lib/data';
 
 /*
  * Página de detalle de partido: el layout (live / finalizado / programado) y los datos extra
@@ -758,12 +761,18 @@ export default async function PartidoPage({
 }: PageProps<'/partidos/[id]'>) {
   const { id } = await params;
   const data: MatchResponse = await fetchMatch(id);
+  const homeContextLine = franchiseContextLineShort(franchiseContextByCode(data.match.homeTeam.code), HISTORY_SEASON);
+  const visitorContextLine = franchiseContextLineShort(franchiseContextByCode(data.match.visitorTeam.code), HISTORY_SEASON);
+  const strip = (
+    <MatchContextStrip homeCode={data.match.homeTeam.code} visitorCode={data.match.visitorTeam.code} homeName={data.match.homeTeam.nickname} visitorName={data.match.visitorTeam.nickname} />
+  );
 
   return (
     <>
       {/* Layout “En vivo” solo según estado del partido (no según streamUrl). */}
       {shouldUseLiveMatchPageLayout(data.match) && (
         <FullWidthLayout>
+          {strip}
           <SportsRadarMatchPage
             matchProviderId={id}
             matchStreamUrl={
@@ -781,6 +790,7 @@ export default async function PartidoPage({
           data.match.providerFixtureStatus,
         ) && (
         <FullWidthLayout>
+          {strip}
           <SportsRadarMatchPage matchProviderId={id} />
         </FullWidthLayout>
       )}
@@ -792,6 +802,8 @@ export default async function PartidoPage({
         ) && (
         <ScheduledMatchPage
           match={data.match}
+          homeContextLine={homeContextLine}
+          visitorContextLine={visitorContextLine}
           homeTeamBoxScore={data.homeTeamBoxScore as { points: number; rebounds: number; assists: number; steals: number; blocks: number; turnovers: number }}
           visitorTeamBoxScore={data.visitorTeamBoxScore as { points: number; rebounds: number; assists: number; steals: number; blocks: number; turnovers: number }}
           headToHeadMatches={data.headToHeadMatches}
@@ -808,6 +820,8 @@ export default async function PartidoPage({
       {shouldRenderScheduledMatchPageFallback(data.match) && (
         <ScheduledMatchPage
           match={data.match}
+          homeContextLine={homeContextLine}
+          visitorContextLine={visitorContextLine}
           headToHeadMatches={data.headToHeadMatches}
           homeTeamWon={data.homeTeamWon ?? 0}
           visitorTeamWon={data.visitorTeamWon ?? 0}

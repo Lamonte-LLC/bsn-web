@@ -162,6 +162,11 @@ export default function JugadoresPageClient({ players }: Props) {
             <h1 className="font-special-gothic-condensed-one text-white text-center text-[38px] tracking-[0.4px] mb-6">
               Jugadores
             </h1>
+            <p className="-mt-2 mb-6 text-center">
+              <Link href="/jugadores/comparar" className="inline-flex h-[36px] items-center rounded-[99px] border border-white/30 px-[16px] text-[15px] text-white">
+                Comparar jugadores
+              </Link>
+            </p>
             <div className="flex flex-col gap-3">
               {searchInput(true)}
               {teamDropdown(true)}
