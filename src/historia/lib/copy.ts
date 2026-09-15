@@ -152,3 +152,11 @@ export function birthLine(iso: string | null | undefined, today = new Date()): s
 export function heightLine(cm: number | null | undefined): string | null {
   return cm && cm > 0 ? `${(cm / 100).toFixed(2)} m` : null;
 }
+
+/** "26/7/97" from an ISO date, as the profile facts show it; null when missing or invalid. */
+export function birthShort(iso: string | null | undefined): string | null {
+  if (!iso) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+  if (!m) return null;
+  return `${Number(m[3])}/${Number(m[2])}/${m[1].slice(2)}`;
+}

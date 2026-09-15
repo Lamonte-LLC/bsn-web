@@ -20,7 +20,7 @@ import Callout from '@/historia/components/Callout';
 import EraNotes from '@/historia/components/EraNotes';
 import PlayerSeasonTable, { type CareerRow, type SeasonRow } from '@/historia/components/PlayerSeasonTable';
 import { totalsFromLines } from '@/historia/lib/compare';
-import { birthLine, hasReboundsGapIn2000s, nationalityLabel, positionLabel, UNLINKED_CAREER, yearsActive } from '@/historia/lib/copy';
+import { birthShort, hasReboundsGapIn2000s, nationalityLabel, positionLabel, UNLINKED_CAREER, yearsActive } from '@/historia/lib/copy';
 import { centimeterToInches } from '@/utils/unit-converter';
 import { formatInches } from '@/utils/unit-formater';
 import { bestSeason, CURRENT_SEASON as HISTORY_SEASON } from '@/historia/lib/data';
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 function heightFt(cm: number | null | undefined): string | null {
   if (!cm || cm <= 0) return null;
   const inches = centimeterToInches(cm);
-  return inches > 0 ? `${formatInches(inches)} · ${(cm / 100).toFixed(2)} m` : null;
+  return inches > 0 ? formatInches(inches) : null;
 }
 
 type Published = { pts: number | null; reb: number | null; ast: number | null; fgm: number | null; fga: number | null; fg3m: number | null; fg3a: number | null; ftm: number | null; fta: number | null } | null;
@@ -135,28 +135,32 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
   const position = positionLabel(live?.seasonRoster?.playingPosition ?? roster?.position ?? null);
   const teams = [...new Set(regularLines.map((l) => nicknameOf(l.franchiseSlug, l.teamName)))];
   const compareHref = `/jugadores/comparar?p=${archive?.slug ?? unified.providerId}`;
+  const longName = unified.name.length > 20;
+  const teamNickname = live?.seasonRoster?.team?.nickname ?? mainFranchise?.nickname ?? teamName;
+  const ringColor = live?.seasonRoster?.team?.colorPrimary || mainColor || 'rgba(255,255,255,0.5)';
 
   // Strip: the current season for actives, the career for everyone else.
   const current = liveLines.find((l) => l.current) ?? null;
   const strip = isActive && current
-    ? { title: `Temporada ${current.year}`, sub: `Serie regular · ${fmtInt(current.g)} juegos`, ppg: current.ppg, rpg: current.rpg, apg: current.apg, fg: current.fgPct }
-    : { title: 'Carrera', sub: `Serie regular · ${fmtInt(career?.g ?? null)} juegos · ${yearsActive(fy, ly)}`, ppg: career?.ppg ?? null, rpg: career?.rpg ?? null, apg: career?.apg ?? null, fg: career?.fgPct ?? null };
+    ? { title: `Temporada ${current.year}`, sub: `${fmtInt(current.g)} juegos`, ppg: current.ppg, rpg: current.rpg, apg: current.apg, fg: current.fgPct }
+    : { title: 'Carrera', sub: `${career?.seasons ?? 0} temporadas · ${fmtInt(career?.g ?? null)} juegos`, ppg: career?.ppg ?? null, rpg: career?.rpg ?? null, apg: career?.apg ?? null, fg: career?.fgPct ?? null };
 
   const best = archive ? bestSeason(archive) : null;
   const bestLine = best?.line ?? [...liveLines].filter((l) => l.g >= 10).sort((a, b) => (b.ppg ?? 0) - (a.ppg ?? 0))[0] ?? null;
+  const seasonsFact = career ? `${career.seasons} · ${yearsActive(fy, ly)}` : null;
   const facts: Array<[string, string | null]> = isActive
     ? [
+        ['Posición', position],
         ['Altura', heightFt(live?.height ?? roster?.height ?? null)],
-        ['País', nationalityLabel(live?.nationality ?? roster?.nationality ?? null)],
-        ['Nacimiento', birthLine(live?.dob ?? roster?.dob ?? null)],
+        ['Nacimiento', birthShort(live?.dob ?? roster?.dob ?? null)],
+        ['Lugar de origen', nationalityLabel(live?.nationality ?? roster?.nationality ?? null)],
         ['Debut BSN', firstLine ? `${firstLine.year} · ${nicknameOf(firstLine.franchiseSlug, firstLine.teamName)}` : null],
-        ['Temporadas', career ? String(career.seasons) : null],
-        ['Mejor temporada', bestLine ? `${bestLine.year} · ${fmt(bestLine.ppg)} PPJ` : null],
+        ['Temporadas', seasonsFact],
       ]
     : [
         ['Debut BSN', firstLine ? `${firstLine.year} · ${nicknameOf(firstLine.franchiseSlug, firstLine.teamName)}` : null],
         ['Última temporada', lastLine ? `${lastLine.year} · ${nicknameOf(lastLine.franchiseSlug, lastLine.teamName)}` : null],
-        ['Temporadas', career ? String(career.seasons) : null],
+        ['Temporadas', seasonsFact],
         ['Mejor temporada', bestLine ? `${bestLine.year} · ${fmt(bestLine.ppg)} PPJ` : null],
         ['Campeonatos', archive?.championships.length ? `${archive.championships.length} · ${archive.championships.map((c) => c.year).join(', ')}` : null],
         ['Jugador más valioso', archive?.mvpYears.length ? `${archive.mvpYears.length} · ${archive.mvpYears.join(', ')}` : null],
@@ -175,107 +179,100 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
     <FullWidthLayout
       divider
       subheader={
-        <section className="pt-[20px] md:pt-[36px]">
+        <section className="pt-[25px] md:pt-[30px] lg:pt-[50px]">
           <div className="container">
-            <div className="flex items-center gap-[14px] md:gap-[24px]">
-              <div className="shrink-0">
-                <div className="hidden overflow-hidden rounded-full md:block" style={{ width: 140, height: 140 }}>
-                  {avatarUrl ? <PlayerPhotoAvatar photoUrl={avatarUrl} size={140} name={unified.name} /> : <PlayerAvatar name={unified.name} color={mainColor} sizePx={140} onDark />}
-                </div>
-                <div className="overflow-hidden rounded-full md:hidden" style={{ width: 96, height: 96 }}>
-                  {avatarUrl ? <PlayerPhotoAvatar photoUrl={avatarUrl} size={96} name={unified.name} /> : <PlayerAvatar name={unified.name} color={mainColor} sizePx={96} onDark />}
-                </div>
-              </div>
-              <div className="min-w-0 flex-1">
-                <h1 className="text-[30px] leading-[1] text-white md:text-[48px]">{unified.name}</h1>
-                <div className={`mt-[7px] flex flex-wrap items-center gap-x-[8px] gap-y-[4px] font-barlow text-[12.5px] font-medium text-white/75 md:mt-[10px] md:text-[14px] ${cls.tabular}`}>
-                  {isActive && teamCode ? (
-                    <Link href={`/equipos/${teamCode}`} className={`inline-flex items-center gap-[6px] rounded-[4px] ${cls.focusOnDark}`}>
-                      <span className="inline-flex h-[20px] w-[20px] items-center justify-center rounded-full bg-white md:h-[22px] md:w-[22px]">
-                        <TeamLogoAvatar teamCode={teamCode} size={16} />
-                      </span>
-                      {teamName}
-                    </Link>
-                  ) : mainFranchise ? (
-                    <Link href={mainFranchise.status === 'active' && mainFranchise.code ? `/equipos/${mainFranchise.code}?tab=historia` : `/equipos/historicos/${mainFranchise.slug}`} className={`inline-flex items-center gap-[6px] rounded-[4px] ${cls.focusOnDark}`}>
-                      <FranchiseLogo franchise={mainFranchise} sizePx={20} />
-                      {yearsActive(fy, ly)}
-                    </Link>
-                  ) : (
-                    <span>{yearsActive(fy, ly)}</span>
-                  )}
-                  {isActive ? (
-                    <>
-                      {jersey ? (
-                        <>
-                          <span className="text-white/35">|</span>
-                          <span>#{jersey}</span>
-                        </>
-                      ) : null}
-                      {position ? (
-                        <>
-                          <span className="text-white/35">|</span>
-                          <span>{position}</span>
-                        </>
-                      ) : null}
-                    </>
-                  ) : teams.length ? (
-                    <>
-                      <span className="text-white/35">|</span>
-                      <span>
-                        {teams.slice(0, 4).join(', ')}
-                        {teams.length > 4 ? ` y ${teams.length - 4} más` : ''}
-                      </span>
-                    </>
-                  ) : null}
-                </div>
-              </div>
-              <Button href={compareHref} onDark className="hidden shrink-0 md:inline-flex">
-                Comparar
-              </Button>
-            </div>
-          </div>
-
-          {/* Production-style stat boxes for the season (or career) and the facts in a lined grid. */}
-          <div className="container mt-[22px] grid grid-cols-1 items-start gap-[22px] pb-[28px] md:mt-[32px] md:grid-cols-[7fr_5fr] md:gap-[48px] md:pb-[40px]">
-            <div>
-              <h4 className={`mb-[12px] text-[14px] uppercase tracking-[1px] text-[rgba(255,255,255,0.5)] md:text-[16px] ${cls.tabular}`}>
-                {strip.title} · {strip.sub}
-              </h4>
-              <div className="grid grid-cols-2 gap-[10px] md:grid-cols-4">
-                {(
-                  [
-                    ['Puntos por juego', strip.ppg, 'avg'],
-                    ['Rebotes por juego', strip.rpg, 'avg'],
-                    ['Asistencias por juego', strip.apg, 'avg'],
-                    ['% Tiros de campo', strip.fg, 'pct'],
-                  ] as const
-                ).map(([label, value, kind]) => (
-                  <div key={label} className="rounded-[12px] border border-[rgba(255,255,255,0.2)] px-[14px] py-[12px]">
-                    <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">{label}</h5>
-                    <p className={`text-[22px] text-white md:text-[27px] ${cls.tabular}`}>{value === null ? '–' : kind === 'pct' ? `${fmt(value)}%` : fmt(value)}</p>
+            <div className="grid grid-cols-1 items-center gap-[24px] md:grid-cols-12 md:gap-[32px]">
+              <div className="col-span-1 min-w-0 md:col-span-12 lg:col-span-5">
+                <div className="flex flex-row items-start gap-[16px] md:items-center md:gap-[20px]">
+                  <div className="relative shrink-0">
+                    <figure className="hidden h-[190px] w-[190px] items-center justify-center overflow-hidden rounded-full border-4 md:flex" style={{ borderColor: ringColor }}>
+                      {avatarUrl ? <PlayerPhotoAvatar photoUrl={avatarUrl} size={182} name={unified.name} /> : <PlayerAvatar name={unified.name} color={mainColor} sizePx={182} onDark />}
+                    </figure>
+                    <figure className="flex h-[125px] w-[125px] items-center justify-center overflow-hidden rounded-full border-[3px] md:hidden" style={{ borderColor: ringColor }}>
+                      {avatarUrl ? <PlayerPhotoAvatar photoUrl={avatarUrl} size={119} name={unified.name} /> : <PlayerAvatar name={unified.name} color={mainColor} sizePx={119} onDark />}
+                    </figure>
+                    {jersey ? (
+                      <div className="absolute -bottom-2 left-0 right-0 text-center">
+                        <p className="inline min-w-[32px] rounded-[100px] border border-[rgba(125,125,125,0.23)] bg-[#232323] px-2 md:min-w-auto md:py-0.5">
+                          <span className={`font-barlow text-xs font-semibold text-white md:text-[15px] ${cls.tabular}`}>#{jersey}</span>
+                        </p>
+                      </div>
+                    ) : null}
                   </div>
-                ))}
+                  <div className="min-w-0 flex-1">
+                    <h1 className={`text-white ${longName ? 'text-[22px] md:text-[30px]' : 'text-[26px] md:text-[36px]'} leading-[1.05] [overflow-wrap:anywhere]`}>{unified.name}</h1>
+                    <div className="mt-[8px] flex min-w-0 items-center gap-[8px]">
+                      {isActive && teamCode ? (
+                        <>
+                          <span className="hidden shrink-0 md:block">
+                            <TeamLogoAvatar teamCode={teamCode} size={24} />
+                          </span>
+                          <span className="shrink-0 md:hidden">
+                            <TeamLogoAvatar teamCode={teamCode} size={20} />
+                          </span>
+                          <Link href={`/equipos/${teamCode}`} className={`truncate font-barlow text-[13px] font-medium text-[rgba(255,255,255,0.7)] rounded-[4px] md:text-[15px] ${cls.focusOnDark}`}>
+                            {teamNickname}
+                            {position ? ` · ${position}` : ''}
+                          </Link>
+                        </>
+                      ) : mainFranchise ? (
+                        <>
+                          <FranchiseLogo franchise={mainFranchise} sizePx={22} className="shrink-0" />
+                          <Link href={mainFranchise.status === 'active' && mainFranchise.code ? `/equipos/${mainFranchise.code}?tab=historia` : `/equipos/historicos/${mainFranchise.slug}`} className={`truncate font-barlow text-[13px] font-medium text-[rgba(255,255,255,0.7)] rounded-[4px] md:text-[15px] ${cls.focusOnDark}`} title={teams.join(', ')}>
+                            {teams.slice(0, 3).join(', ')}
+                            {teams.length > 3 ? ` y ${teams.length - 3} más` : ''}
+                          </Link>
+                        </>
+                      ) : (
+                        <span className="font-barlow text-[13px] font-medium text-[rgba(255,255,255,0.7)] md:text-[15px]">{yearsActive(fy, ly)}</span>
+                      )}
+                    </div>
+                    <Button href={compareHref} onDark className="mt-[14px]">
+                      Comparar
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </div>
-            {shownFacts.length ? (
-              <div>
-                <h4 className="mb-[12px] text-[14px] uppercase tracking-[1px] text-[rgba(255,255,255,0.5)] md:text-[16px]">Ficha</h4>
-                <div className="grid grid-cols-2 border-l border-t border-[rgba(255,255,255,0.14)] md:grid-cols-3">
-                  {shownFacts.map(([l, v]) => (
-                    <div key={l} className="border-b border-r border-[rgba(255,255,255,0.14)] px-[14px] py-[10px]">
-                      <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-[15px]">{l}</h5>
-                      <p className={`mt-[2px] font-barlow text-[15px] text-white md:text-[17px] ${cls.tabular}`}>{v}</p>
+
+              <div className="col-span-1 md:col-span-12 lg:col-span-7">
+                <h4 className={`mb-3 text-[14px] uppercase tracking-[1px] text-[rgba(255,255,255,0.5)] md:text-[16px] ${cls.tabular}`}>{strip.title} · {strip.sub}</h4>
+                <div className="grid grid-cols-2 gap-[10px] md:grid-cols-4">
+                  {(
+                    [
+                      ['Puntos por juego', strip.ppg, 'avg'],
+                      ['Rebotes por juego', strip.rpg, 'avg'],
+                      ['Asistencias por juego', strip.apg, 'avg'],
+                      ['% Tiros de campo', strip.fg, 'pct'],
+                    ] as const
+                  ).map(([label, value, kind]) => (
+                    <div key={label} className="rounded-[12px] border border-[rgba(255,255,255,0.2)] px-[14px] py-[12px]">
+                      <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">{label}</h5>
+                      <p className={`text-[22px] text-white md:text-[27px] ${cls.tabular}`}>{value === null ? '–' : kind === 'pct' ? `${fmt(value)}%` : fmt(value)}</p>
                     </div>
                   ))}
                 </div>
               </div>
-            ) : null}
-          </div>
-          <div className="container pb-[20px] md:hidden">
-            <Button href={compareHref} onDark className="w-full">
-              Comparar
-            </Button>
+            </div>
+
+            {shownFacts.length ? (
+              <>
+                <div className="md:mt-[40px]">
+                  <div className="border-b border-transparent md:border-[rgba(255,255,255,0.07)]" />
+                </div>
+                <div className="py-[24px] md:py-[40px] lg:w-7/12">
+                  <div className="grid grid-cols-3 gap-x-3 gap-y-[24px] md:grid-cols-6">
+                    {shownFacts.map(([label, value]) => (
+                      <div key={label} className="min-w-0">
+                        <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">{label}</h5>
+                        <p className={`truncate text-base text-white md:text-[18px] ${cls.tabular}`} title={value}>{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="pb-[28px] md:pb-[36px]" />
+            )}
           </div>
         </section>
       }
