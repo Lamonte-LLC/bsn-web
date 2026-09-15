@@ -316,7 +316,9 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
                 <h2 className={`text-[22px] leading-[1.1] text-[#0F171F] ${cls.tabular}`}>Juego por juego · Temporada {current?.year ?? HISTORY_SEASON}</h2>
                 <span className={`${cls.meta} ${cls.tabular}`}>{current ? `Temporada en curso · serie regular · ${fmtInt(current.g)} juegos` : 'Temporada en curso'}</span>
               </div>
-              <PlayerMatchesWidget playerProviderId={unified.providerId} />
+              <div className={`${cls.card} overflow-hidden px-[6px] md:px-[14px] [&_.player-stats-table]:!mx-0 [&_table]:text-[13.5px] [&_td]:!px-[10px] [&_td]:!py-[10px] [&_th]:!px-[10px] [&_th]:!py-[9px] [&_th_span]:!text-[10.5px] [&_th_span]:!font-semibold [&_th_span]:!tracking-[0.8px] [&_th_span]:!text-[rgba(0,0,0,0.45)] md:[&_th_span]:!text-[11px]`}>
+                <PlayerMatchesWidget playerProviderId={unified.providerId} />
+              </div>
             </section>
           ) : null}
           <Note className="sr-only">Perfil de jugador del BSN.</Note>

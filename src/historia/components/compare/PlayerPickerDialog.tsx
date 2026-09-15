@@ -5,6 +5,7 @@ import cx from 'classnames';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import { normalizeSearch, yearsLabel } from '@/archivo/lib/format';
+import { cls } from '@/archivo/lib/tokens';
 import { useUnifiedSearch } from '@/historia/hooks/useUnifiedSearch';
 import { MAX_COMPARE_PLAYERS, MIN_COMPARE_PLAYERS } from '@/historia/lib/compare-players';
 import type { UnifiedIndexEntry } from '../../../../types/historia';
@@ -130,7 +131,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                 const alias = typing ? matchedAlias(r, query) : null;
                 return (
                   <li key={r.id} role="option" aria-selected={taken} className={i ? 'border-t border-[rgba(15,23,31,0.05)]' : ''}>
-                    <button type="button" disabled={taken || isFull} onClick={() => pick(key)} className={cx('flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors', taken || isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5]')}>
+                    <button type="button" disabled={taken || isFull} onClick={() => pick(key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken || isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                       {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[#E5E5E5] object-cover" /> : <PlayerAvatar name={r.name} sizePx={36} />}
                       <span className="min-w-0 flex-1">
                         <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">

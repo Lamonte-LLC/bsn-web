@@ -16,9 +16,9 @@ Cada componente: qué hace, qué data consume, dónde se monta, cómo se comport
 
 **AllTimeLeaders.tsx** · Líderes de carrera por categoría con los activos resaltados y "Ver los 50". Consume `careerLeaders()` y `activePlayerIds()` pasados desde `/estadisticas`. Se monta cuando `?vista=historico`. Las categorías sin data histórica no existen en la lista. Extiende `StatsTable`.
 
-**FranchiseHistory.tsx** · Historia completa de una franquicia: cuatro contadores (títulos en el color del equipo), mosaico de campeonatos por década (piezas en el primario, rachas de dos o más fundidas en tinta), MVPs, líderes históricos, temporadas recientes y todos sus jugadores. Consume `franchises/{slug}.json` con colores del archivo. Se monta como pestaña Historia del equipo activo y como página de franquicia extinta. Los bloques sin data no aparecen; el timeline de reubicaciones se omitió por falta de data estructurada. Reutiliza la página de franquicia del archivo.
+**FranchiseHistory.tsx** · Historia de una franquicia, apilada y toda en tinta: fila de cuatro contadores, campeonatos en tabla (Año · Dirigente · Final) con las rachas como filas de grupo, líderes históricos con píldoras y números grandes, MVPs en tabla, temporadas resumidas por década y todos los jugadores. Las columnas numéricas comparten un ancho fijo para que el ritmo sea el mismo en todas las tablas. Se monta como pestaña Historia del equipo activo y como página de franquicia extinta.
 
-**FranchisePlayersList.tsx** · Lista de todos los que vistieron la camiseta con búsqueda y carga progresiva. Consume `FranchisePlayer[]`. Se monta dentro de `FranchiseHistory`. Sin resultados dice "Sin resultados para X". Nuevo.
+**FranchisePlayersList.tsx** · Todos los que vistieron la camiseta como tabla (Jugador · Años · Temporadas) con buscador, filtro Todos | Activos y Cargar 20 más. Sin resultados dice "Sin resultados para X".
 
 **SeasonSelector.tsx** · Selector de temporada 1930 a 2026 con décadas como tabs, que navega a `/temporadas/[year]` o a la sección actual. Consume la lista de años. Se monta en el hero de la página de temporada; los heros de Calendario, Estadísticas y Playoffs lo montan por la misma ruta cuando se decida (ver backlog). Siempre tiene data. Nuevo, basado en el `Menu` de Comparar equipos.
 

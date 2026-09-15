@@ -53,7 +53,7 @@ function load(key: string): ComparePlayerData | null {
   const ly = u.providerId ? CURRENT_SEASON : (a?.ly ?? CURRENT_SEASON);
   const teams = [...new Set(regularLines.map((l) => franchiseView(l.franchiseSlug)?.nickname ?? l.teamName))];
   const line = live
-    ? [team?.nickname ?? franchise?.nickname, positionLabel(live.position), live.jerseyNumber ? `#${live.jerseyNumber}` : null].filter(Boolean).join(' · ')
+    ? [team?.nickname ?? franchise?.nickname, positionLabel(live.position)].filter(Boolean).join(' · ')
     : `${yearsActive(fy, ly)} · ${teams.slice(0, 3).join(', ')}${teams.length > 3 ? ` y ${teams.length - 3} más` : ''}`;
 
   return {

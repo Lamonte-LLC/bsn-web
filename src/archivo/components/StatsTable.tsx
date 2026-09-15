@@ -82,7 +82,7 @@ export default function StatsTable<Row>({ columns, rows, rowKey, emphasize, empt
                     c.sticky ? 'sticky left-0 z-30 shadow-[inset_-1px_0_0_rgba(0,0,0,0.1),inset_0_-1px_0_rgba(0,0,0,0.12)] md:shadow-none' : ''
                   } ${c.sortValue ? `cursor-pointer select-none transition-colors duration-150 hover:text-[rgba(0,0,0,0.75)] data-sorted:text-[#0F171F] ${cls.focus}` : ''}`}
                 >
-                  <span className="inline-flex items-center gap-[4px]">
+                  <span className={`inline-flex items-center gap-[4px] ${c.align === 'right' ? 'flex-row-reverse' : ''}`}>
                     {c.label}
                     {c.sortValue ? <span aria-hidden data-sort-icon className="inline-block min-w-[8px] text-[11px] text-[#E51F1F]">{c.initialSort ? (c.initialSort === 'asc' ? '↑' : '↓') : ''}</span> : null}
                   </span>

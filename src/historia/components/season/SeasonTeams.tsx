@@ -19,7 +19,7 @@ interface Props {
 const PER_MOBILE = 2;
 const PER_DESKTOP = 4;
 
-function RosterPanel({ team, year, franchise, onClose }: { team: TeamCard; year: number; franchise: FranchiseView | null; onClose: () => void }) {
+function RosterPanel({ team, year, franchise, onClose, color }: { team: TeamCard; year: number; franchise: FranchiseView | null; onClose: () => void; color: string }) {
   const has = (pick: (p: TeamPlayerRow) => number | string | null) => team.players.some((p) => pick(p) !== null);
   const num = (key: string, label: string, title: string, pick: (p: TeamPlayerRow) => number | null, kind: 'int' | 'avg' | 'pct', strong = false): StatsColumn<TeamPlayerRow> | null =>
     has(pick) ? { key, label, title, align: 'right', strong, sortValue: pick, render: (p) => (kind === 'int' ? fmtInt(pick(p)) : kind === 'pct' ? fmtPct(pick(p)) : fmt(pick(p))) } : null;
@@ -49,7 +49,7 @@ function RosterPanel({ team, year, franchise, onClose }: { team: TeamCard; year:
   const historyHref = franchise ? (franchise.status === 'active' && franchise.code ? `/equipos/${franchise.code}?tab=historia` : `/equipos/historicos/${franchise.slug}`) : null;
 
   return (
-    <div className={`${cls.card} col-span-full overflow-hidden border-[rgba(15,23,31,0.18)]`}>
+    <div className={`${cls.card} col-span-full overflow-hidden`} style={{ borderColor: color }}>
       <div className="flex items-center gap-[14px] border-b border-[rgba(0,0,0,0.06)] px-[14px] py-[14px] md:px-[20px] md:py-[16px]">
         <FranchiseLogo franchise={franchise} fallbackName={team.name} sizePx={44} />
         <div className="min-w-0 flex-1">
@@ -102,7 +102,8 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
     const el = panelRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    if (r.top < 0 || r.bottom > window.innerHeight) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (r.top < 0 || r.bottom > window.innerHeight) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
   }, [selected]);
   const idx = teams.findIndex((t) => (t.slug ?? t.code ?? t.name) === selected);
   const team = idx >= 0 ? teams[idx] : null;
@@ -110,6 +111,7 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
   const endMobile = rowEnd(PER_MOBILE);
   const endDesktop = rowEnd(PER_DESKTOP);
   const franchiseOf = (t: TeamCard) => (t.slug ? (franchises[t.slug] ?? null) : null);
+  const colorOf = (t: TeamCard) => franchiseOf(t)?.colors.primary ?? '#0F171F';
 
   return (
     <div className="grid grid-cols-2 gap-[8px] md:grid-cols-4 md:gap-[10px]">
@@ -124,7 +126,8 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
               aria-controls={on ? 'roster-panel' : undefined}
               title={on ? 'Cerrar roster' : `Ver el roster de ${t.nickname} en ${year}`}
               onClick={() => setSelected(on ? null : key)}
-              className={`relative flex cursor-pointer items-center gap-[10px] rounded-[10px] border px-[12px] py-[12px] text-left transition-colors duration-150 md:gap-[12px] md:px-[14px] ${cls.focus} ${on ? 'border-[#0F171F] bg-[#0F171F] text-white' : 'border-[rgba(0,0,0,0.08)] bg-white hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]'}`}
+              style={on ? { borderColor: colorOf(t) } : undefined}
+              className={`relative flex cursor-pointer items-center gap-[10px] rounded-[12px] border px-[12px] py-[12px] text-left text-[#0F171F] transition-[background-color,border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 md:gap-[12px] md:px-[14px] ${cls.focus} ${on ? 'bg-[#F4F4F4]' : 'border-[rgba(0,0,0,0.08)] bg-white hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]'}`}
             >
               <FranchiseLogo franchise={franchiseOf(t)} fallbackName={t.name} sizePx={32} />
               <span className="min-w-0">
@@ -132,18 +135,18 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
                   <span className="md:hidden">{t.nickname}</span>
                   <span className="hidden md:inline">{t.name}</span>
                 </span>
-                <span className={`block font-barlow text-[12px] font-medium ${cls.tabular} ${on ? 'text-white/60' : 'text-[rgba(0,0,0,0.5)]'}`}>{t.meta}</span>
+                <span className={`block font-barlow text-[12px] font-medium text-[rgba(0,0,0,0.5)] ${cls.tabular}`}>{t.meta}</span>
               </span>
-              {on ? <span aria-hidden className="absolute -bottom-[10px] left-1/2 h-[14px] w-[14px] -translate-x-1/2 rotate-45 rounded-[2px] bg-[#0F171F]" /> : null}
+              {on ? <span aria-hidden className="absolute -bottom-[8px] left-1/2 z-[1] h-[14px] w-[14px] -translate-x-1/2 rotate-45 border-b border-r bg-[#F4F4F4]" style={{ borderColor: colorOf(t) }} /> : null}
             </button>
             {team && i === endMobile ? (
               <div id="roster-panel" ref={panelRef} className="col-span-full md:hidden">
-                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
+                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} color={colorOf(team)} onClose={() => setSelected(null)} />
               </div>
             ) : null}
             {team && i === endDesktop ? (
               <div className="col-span-full hidden md:block">
-                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
+                <RosterPanel team={team} year={year} franchise={franchiseOf(team)} color={colorOf(team)} onClose={() => setSelected(null)} />
               </div>
             ) : null}
           </div>
@@ -153,12 +156,12 @@ export default function SeasonTeams({ year, teams, franchises }: Props) {
         <>
           {endMobile >= teams.length ? (
             <div className="col-span-full md:hidden">
-              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
+              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} color={colorOf(team)} onClose={() => setSelected(null)} />
             </div>
           ) : null}
           {endDesktop >= teams.length ? (
             <div className="col-span-full hidden md:block">
-              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} onClose={() => setSelected(null)} />
+              <RosterPanel team={team} year={year} franchise={franchiseOf(team)} color={colorOf(team)} onClose={() => setSelected(null)} />
             </div>
           ) : null}
         </>

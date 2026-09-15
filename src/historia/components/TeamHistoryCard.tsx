@@ -95,7 +95,7 @@ export default function TeamHistoryCard({ slug, code }: Props) {
           </div>
         ) : null}
 
-        <Link href={`/equipos/${code}?tab=historia`} className={`mt-[18px] inline-flex h-[38px] w-full items-center justify-center rounded-[100px] bg-[#0F171F] px-[18px] text-[15px] text-white transition-opacity hover:opacity-90 ${cls.focus}`}>
+        <Link href={`/equipos/${code}?tab=historia`} className={`mt-[18px] inline-flex h-[38px] w-full items-center justify-center rounded-[100px] bg-[#0F171F] px-[18px] text-[15px] text-white transition-[opacity,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:opacity-90 ${cls.focus}`}>
           Ver la historia completa
         </Link>
       </div>

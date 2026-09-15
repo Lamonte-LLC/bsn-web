@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { MAX_COMPARE_PLAYERS, playerSeasons, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
+import { initialName } from '@/archivo/lib/names';
 import PlayerMark from './PlayerMark';
 import PlayerPickerDialog, { type SuggestedPlayer } from './PlayerPickerDialog';
 import { setAllScopes, setCompareScope, setPickerOpen, useCompareNavigation, useCompareState } from './useCompareState';
@@ -15,7 +16,7 @@ type Props = {
 
 const profileHref = (p: ComparePlayerData) => `/jugadores/${p.slug ?? p.providerId}`;
 
-const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-colors hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-none lg:px-[13px] lg:py-[5px] lg:text-[12px]';
+const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[13px] lg:py-[5px] lg:text-[12px]';
 
 /** Season or career of one player, chosen per player so eras can be mixed (2026 vs 1990, or both careers). */
 function ScopeMenu({ p, scope, others }: { p: ComparePlayerData; scope: CompareScope; others: string[] }) {
@@ -23,7 +24,8 @@ function ScopeMenu({ p, scope, others }: { p: ComparePlayerData; scope: CompareS
   return (
     <Menu>
       <MenuButton className={PILL} aria-label={`Alcance de ${p.name}`}>
-        {scopeLabel(scope)}
+        <span className="lg:hidden">{scopeLabel(scope, true)}</span>
+        <span className="hidden lg:inline">{scopeLabel(scope)}</span>
         <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
       </MenuButton>
       <MenuItems transition anchor="bottom" className="z-[999] mt-[8px] max-h-[320px] overflow-y-auto rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0">
@@ -92,7 +94,10 @@ function SlotStacked({ p, count, onRemove, scope, others }: { p: ComparePlayerDa
         <PlayerMark player={p} size={sizeLg} onDark onRemove={onRemove} />
       </span>
       <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
-        <span className={cx('mt-[5px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')}>{p.name}</span>
+        <span className={cx('mt-[5px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')} title={p.name}>
+          <span className="lg:hidden">{initialName(p.name)}</span>
+          <span className="hidden lg:inline">{p.name}</span>
+        </span>
         <span className="mt-[2px] block font-barlow font-medium text-[10px] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line}</span>
       </Link>
       <span className="mt-[6px]">
@@ -150,7 +155,7 @@ export default function PlayerCompareHero({ players, suggested }: Props) {
 
           <div className="mb-[10px] mt-[18px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
-              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.28)] px-[13px] py-[5px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.6)] transition-colors hover:border-[rgba(255,255,255,0.5)] hover:text-[rgba(255,255,255,0.85)] lg:px-[15px] lg:py-[6px] lg:text-[12px]">
+              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.28)] px-[13px] py-[5px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.6)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.5)] hover:text-[rgba(255,255,255,0.85)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[15px] lg:py-[6px] lg:text-[12px]">
                 + Añadir jugador
               </button>
             ) : null}

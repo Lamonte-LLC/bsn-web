@@ -53,7 +53,7 @@ type Phase = 'regular' | 'playoffs';
 type Row = (SeasonRow & { kind: 'season' }) | (CareerRow & { kind: 'career'; year: number; phase: Phase; teamName: string; franchiseSlug: null; g: number; current?: false; live?: false });
 
 /* Design-system secondary pill (equipos/[slug]) and select (PlayerStatsFilter). */
-const PILL = 'flex h-[35px] min-w-0 flex-1 cursor-pointer items-center justify-center rounded-[100px] border border-[#d5d5d5] bg-white px-[14px] font-special-gothic-condensed-one text-[15px] leading-[1.4] tracking-[0.3px] text-[rgba(0,0,0,0.65)] outline-none transition-colors hover:border-[rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(23,114,217,0.5)] data-selected:border-[#0f171f] data-selected:bg-[#0f171f] data-selected:text-white md:flex-none md:min-w-[150px]';
+const PILL = 'flex h-[35px] min-w-0 flex-1 cursor-pointer items-center justify-center rounded-[100px] border border-[#d5d5d5] bg-white px-[14px] font-special-gothic-condensed-one text-[15px] leading-[1.4] tracking-[0.3px] text-[rgba(0,0,0,0.65)] outline-none transition-[background-color,border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(0,0,0,0.3)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(23,114,217,0.5)] data-selected:border-[#0f171f] data-selected:bg-[#0f171f] data-selected:text-white md:flex-none md:min-w-[150px]';
 const SELECT = 'h-[40px] w-full cursor-pointer rounded-[6px] border border-[#D4D4D4] bg-[#fafafa] px-[16px] font-barlow text-sm font-medium text-[rgba(0,0,0,0.8)] outline-none focus-visible:border-[#0F171F] md:w-auto md:min-w-[190px]';
 
 const total = (avg: number | null, g: number): number | null => (avg === null ? null : Math.round(avg * g));
@@ -101,9 +101,8 @@ export default function PlayerSeasonTable({ regular, playoffs, others, career, c
         isCareer(r) ? (
           <span className="font-semibold">Carrera</span>
         ) : (
-          <span className="inline-flex items-center gap-[6px] font-semibold">
+          <span className={r.current ? 'font-bold' : 'font-medium'} title={r.current ? 'Temporada en curso' : undefined}>
             {r.year}
-            {r.current ? <span className={`${cls.label} !text-[9px] !tracking-[0.6px]`}>en curso</span> : null}
           </span>
         ),
     },
@@ -113,18 +112,16 @@ export default function PlayerSeasonTable({ regular, playoffs, others, career, c
       render: (r) => {
         if (isCareer(r)) return <span className="text-[rgba(0,0,0,0.5)]">{r.teamName}</span>;
         const f = r.franchiseSlug ? (franchises[r.franchiseSlug] ?? null) : null;
-        const inner = (
-          <span className="inline-flex items-center gap-[7px] font-medium">
-            <FranchiseLogo franchise={f} fallbackName={r.teamName} sizePx={20} />
-            {f?.nickname ?? r.teamName}
-          </span>
-        );
         return f ? (
-          <Link href={`/temporadas/${r.year}?equipo=${f.slug}`} title={`Roster de ${f.nickname} en ${r.year}`} className={`${cls.dataLink} rounded-[4px] ${cls.focus}`}>
-            {inner}
+          <Link href={`/temporadas/${r.year}?equipo=${f.slug}`} title={`Roster de ${f.nickname} en ${r.year}`} className={`group inline-flex items-center gap-[7px] font-medium ${cls.focus}`}>
+            <FranchiseLogo franchise={f} fallbackName={r.teamName} sizePx={20} />
+            <span className="border-b border-[rgba(0,0,0,0.18)] leading-[1.35] transition-colors duration-150 group-hover:border-[rgba(0,0,0,0.45)]">{f.nickname}</span>
           </Link>
         ) : (
-          inner
+          <span className="inline-flex items-center gap-[7px] font-medium">
+            <FranchiseLogo franchise={null} fallbackName={r.teamName} sizePx={20} />
+            {r.teamName}
+          </span>
         );
       },
     },

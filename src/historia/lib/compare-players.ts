@@ -199,8 +199,9 @@ export function valuesFor(p: ComparePlayerData, scope: CompareScope): CompareVal
   return scope === 'career' ? p.career : (p.seasons[String(scope)] ?? EMPTY_VALUES);
 }
 
-export function scopeLabel(scope: CompareScope): string {
-  return scope === 'career' ? 'Carrera' : `Temporada ${scope}`;
+export function scopeLabel(scope: CompareScope, short = false): string {
+  if (scope === 'career') return 'Carrera';
+  return short ? String(scope) : `Temporada ${scope}`;
 }
 
 /** Same display rules as the team comparison; percentages already come as 0–100 from the archive. */

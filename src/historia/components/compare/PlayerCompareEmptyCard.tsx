@@ -23,7 +23,7 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested }: Prop
           <circle cx="7" cy="7" r="4.5" />
           <path d="M10.5 10.5L14 14" />
         </svg>
-        Busca por nombre, por ejemplo Piculín o Kappos
+        Buscar jugador
       </button>
 
       {suggested.length ? (

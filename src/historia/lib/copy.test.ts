@@ -74,3 +74,13 @@ describe('profile facts', () => {
     assert.equal(nationalityLabel('XYZ'), 'XYZ');
   });
 });
+
+describe('initialName', () => {
+  it('keeps the first initial and the first surname', async () => {
+    const { initialName } = await import('../../archivo/lib/names.ts');
+    assert.equal(initialName('Alexander Kappos'), 'A. Kappos');
+    assert.equal(initialName('George Torres Dougherty'), 'G. Torres');
+    assert.equal(initialName("Jose Rafael 'Piculín' Ortiz Rijos"), 'J. Ortiz');
+    assert.equal(initialName('Piculín'), 'Piculín');
+  });
+});
