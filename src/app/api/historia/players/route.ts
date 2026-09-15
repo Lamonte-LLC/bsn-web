@@ -24,12 +24,17 @@ export function GET() {
   }
   // Players with 2026 stats but off today's roster (traded, released): still active this season.
   for (const st of results?.playerStats ?? []) {
-    if (avatarByProviderId.has(st.playerProviderId)) continue;
+    const photo = st.avatarUrl ?? null;
+    if (avatarByProviderId.has(st.playerProviderId)) {
+      // Roster row without a photo but the stats row has one: keep the photo.
+      if (photo && !avatarByProviderId.get(st.playerProviderId)) avatarByProviderId.set(st.playerProviderId, photo);
+      continue;
+    }
     const id = st.playerId ?? linkLiveName(st.name)?.entry.id;
-    avatarByProviderId.set(st.playerProviderId, null);
+    avatarByProviderId.set(st.playerProviderId, photo);
     if (id) activeByArchiveId.set(id, st.playerProviderId);
     else if (!unlinked.some((u) => u.providerId === st.playerProviderId)) {
-      unlinked.push({ id: st.playerProviderId, slug: st.playerProviderId, name: st.name, aliases: [], fy: 2026, ly: 2026, franchiseSlugs: st.franchiseSlug ? [st.franchiseSlug] : [], g: st.g, pts: st.pts, isMvp: false, mvpYears: [], isActive: true, providerId: st.playerProviderId, avatarUrl: null });
+      unlinked.push({ id: st.playerProviderId, slug: st.playerProviderId, name: st.name, aliases: [], fy: 2026, ly: 2026, franchiseSlugs: st.franchiseSlug ? [st.franchiseSlug] : [], g: st.g, pts: st.pts, isMvp: false, mvpYears: [], isActive: true, providerId: st.playerProviderId, avatarUrl: photo });
     }
   }
   const archive: UnifiedIndexEntry[] = getPlayerIndex().map((p) => {

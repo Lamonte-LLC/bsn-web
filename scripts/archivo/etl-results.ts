@@ -195,7 +195,7 @@ interface GqlRoster {
 }
 interface GqlPlayerStats {
   team: { code: string };
-  player: { providerId: string; name: string };
+  player: { providerId: string; name: string; avatarUrl: string | null };
   stats: {
     games: number | null;
     minutesAvg: number | null;
@@ -339,6 +339,7 @@ function toPlayerStats(p: GqlPlayerStats): LivePlayerStats {
     playerProviderId: p.player.providerId,
     ...matchPlayer(p.player.name),
     name: p.player.name,
+    avatarUrl: p.player.avatarUrl || null,
     g: num(s.games) ?? 0,
     minutesAvg: num(s.minutesAvg),
     ppg: num(s.pointsAvg),
@@ -402,7 +403,7 @@ async function fetchRealSeason(regular: GqlSeason, playoffs: GqlSeason | null): 
       { seasonProviderId: regular.providerId },
     ),
   );
-  const statsQuery = `query($seasonProviderId:String,$playoffs:Boolean,$first:Int,$after:String){ seasonPlayerStatsExtendedConnection(seasonProviderId:$seasonProviderId,playoffs:$playoffs,first:$first,after:$after){ pageInfo{ hasNextPage endCursor } edges{ node{ team{ code } player{ providerId name } stats{ games minutesAvg points pointsAvg reboundsTotal reboundsTotalAvg assists assistsAvg stealsAvg blocksAvg turnoversAvg fieldGoalsPercentage threePointersPercentage freeThrowsPercentage } } } } }`;
+  const statsQuery = `query($seasonProviderId:String,$playoffs:Boolean,$first:Int,$after:String){ seasonPlayerStatsExtendedConnection(seasonProviderId:$seasonProviderId,playoffs:$playoffs,first:$first,after:$after){ pageInfo{ hasNextPage endCursor } edges{ node{ team{ code } player{ providerId name avatarUrl } stats{ games minutesAvg points pointsAvg reboundsTotal reboundsTotalAvg assists assistsAvg stealsAvg blocksAvg turnoversAvg fieldGoalsPercentage threePointersPercentage freeThrowsPercentage } } } } }`;
   const statsRegular = await cached(`${year}-player-stats`, () => paginate<GqlPlayerStats>('seasonPlayerStatsExtendedConnection', statsQuery, { seasonProviderId: regular.providerId, playoffs: false }));
   const statsPlayoffsRaw = await cached(`${year}-player-stats-playoffs`, () => paginate<GqlPlayerStats>('seasonPlayerStatsExtendedConnection', statsQuery, { seasonProviderId: regular.providerId, playoffs: true }));
   // The backend ignores `playoffs` for some seasons and returns the regular-season rows again; drop those.

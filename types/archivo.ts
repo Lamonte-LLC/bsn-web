@@ -265,6 +265,8 @@ export interface LivePlayerStats {
   playerId: string | null;
   slug: string | null;
   name: string;
+  /** Photo from the live API, when it has one (players off today's roster still have it). */
+  avatarUrl: string | null;
   g: number;
   minutesAvg: number | null;
   ppg: number | null;
