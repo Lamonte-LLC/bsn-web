@@ -10,7 +10,9 @@ import type { UnifiedPlayer } from '../../../types/historia';
  *   1. exact normalized full name, unique in the index;
  *   2. an alias of the index entry, unique;
  *   3. first name + first surname, unique among players active in 2015 or later (keeps "D J Wilson" from
- *      matching a 1990s "D.J. Strawberry").
+ *      matching a 1990s "D.J. Strawberry");
+ *   4. first name + any later word, unique among recent players, so "Carlos Yao Lopez" meets
+ *      "Carlos 'Yao' López Sosa" and "Christian Pizarro Rios" meets "Christian Jomar Pizarro Ríos".
  * Anything else is the explicit "sin enlazar" state, never an error.
  */
 
@@ -21,6 +23,7 @@ interface NameIndex {
   exact: Map<string, string | null>;
   alias: Map<string, string | null>;
   short: Map<string, string | null>;
+  loose: Map<string, string | null>;
 }
 
 let cache: NameIndex | null = null;
@@ -37,17 +40,35 @@ export function shortKey(name: string): string {
   return words.length >= 2 ? `${words[0]} ${words[1]}` : words.join(' ');
 }
 
+/** Words of a name without nicknames, suffixes or one-letter initials, accents removed. */
+function nameWords(name: string): string[] {
+  const clean = name.replace(/["'‘’“”][^"'‘’“”]*["'‘’“”]/g, ' ');
+  return normalizeSearch(clean)
+    .split(' ')
+    .filter((w) => w.length > 1 && !/^(jr|sr|ii|iii|iv)$/.test(w));
+}
+
+/** "carlos yao lopez" → ["carlos yao", "carlos lopez"]: first name paired with every later word. */
+export function looseKeys(name: string): string[] {
+  const words = nameWords(name);
+  return words.slice(1).map((w) => `${words[0]} ${w}`);
+}
+
 function index(): NameIndex {
   if (cache) return cache;
   const exact = new Map<string, string | null>();
   const alias = new Map<string, string | null>();
   const short = new Map<string, string | null>();
+  const loose = new Map<string, string | null>();
   for (const p of getPlayerIndex()) {
     put(exact, normalizeSearch(p.name), p.id);
     for (const a of p.aliases) put(alias, normalizeSearch(a), p.id);
-    if (p.ly >= RECENT_FROM) put(short, shortKey(p.name), p.id);
+    if (p.ly >= RECENT_FROM) {
+      put(short, shortKey(p.name), p.id);
+      for (const k of looseKeys(p.name)) put(loose, k, p.id);
+    }
   }
-  cache = { exact, alias, short };
+  cache = { exact, alias, short, loose };
   return cache;
 }
 
@@ -61,6 +82,7 @@ export function linkLiveName(name: string): { entry: PlayerIndexEntry; link: Lin
     ['exact', ix.exact.get(key)],
     ['alias', ix.alias.get(key)],
     ['surname', ix.short.get(shortKey(name))],
+    ['loose', looseKeys(name).map((k) => ix.loose.get(k)).find((id) => id)],
   ];
   for (const [link, id] of tries) {
     if (!id) continue;
@@ -115,7 +137,7 @@ export function activePlayerIds(): Map<string, string> {
 /** Summary printed by the validation step: how many of the live roster link, and by which pass. */
 export function linkReport(): { total: number; linked: number; byPass: Record<string, number>; unlinked: string[] } {
   const results = getSeason(CURRENT_YEAR)?.results;
-  const byPass: Record<string, number> = { exact: 0, alias: 0, surname: 0 };
+  const byPass: Record<string, number> = { exact: 0, alias: 0, surname: 0, loose: 0 };
   const unlinked: string[] = [];
   let linked = 0;
   for (const r of results?.rosters ?? []) {

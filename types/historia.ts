@@ -16,7 +16,7 @@ export interface UnifiedPlayer {
   index: PlayerIndexEntry | null;
   name: string;
   /** How the two identities were joined; "none" = active player without a historical record. */
-  link: 'exact' | 'alias' | 'surname' | 'archive-only' | 'none';
+  link: 'exact' | 'alias' | 'surname' | 'loose' | 'archive-only' | 'none';
 }
 
 export interface FranchiseContext {

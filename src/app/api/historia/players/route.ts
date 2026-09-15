@@ -5,8 +5,9 @@ import type { UnifiedIndexEntry } from '../../../../../types/historia';
 export const dynamic = 'force-static';
 
 /**
- * Search index for the comparison: every archive player plus the 2026 roster players that have no historical
- * record yet (they get their providerId as slug and a single season). Active players carry `isActive`.
+ * Search index for the comparison: every archive player plus the 2026 players (roster and stats) that have no
+ * historical record yet (they get their providerId as slug and a single season). Active players carry
+ * `isActive` and, when the live roster has one, their photo.
  */
 export function GET() {
   const results = getSeason(2026)?.results;
@@ -19,6 +20,16 @@ export function GET() {
     if (id) activeByArchiveId.set(id, r.playerProviderId);
     else if (!unlinked.some((u) => u.providerId === r.playerProviderId)) {
       unlinked.push({ id: r.playerProviderId, slug: r.playerProviderId, name: r.name, aliases: [], fy: 2026, ly: 2026, franchiseSlugs: r.franchiseSlug ? [r.franchiseSlug] : [], g: null, pts: null, isMvp: false, mvpYears: [], isActive: true, providerId: r.playerProviderId, avatarUrl: r.avatarUrl });
+    }
+  }
+  // Players with 2026 stats but off today's roster (traded, released): still active this season.
+  for (const st of results?.playerStats ?? []) {
+    if (avatarByProviderId.has(st.playerProviderId)) continue;
+    const id = st.playerId ?? linkLiveName(st.name)?.entry.id;
+    avatarByProviderId.set(st.playerProviderId, null);
+    if (id) activeByArchiveId.set(id, st.playerProviderId);
+    else if (!unlinked.some((u) => u.providerId === st.playerProviderId)) {
+      unlinked.push({ id: st.playerProviderId, slug: st.playerProviderId, name: st.name, aliases: [], fy: 2026, ly: 2026, franchiseSlugs: st.franchiseSlug ? [st.franchiseSlug] : [], g: st.g, pts: st.pts, isMvp: false, mvpYears: [], isActive: true, providerId: st.playerProviderId, avatarUrl: null });
     }
   }
   const archive: UnifiedIndexEntry[] = getPlayerIndex().map((p) => {
