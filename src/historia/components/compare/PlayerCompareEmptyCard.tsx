@@ -1,13 +1,13 @@
 'use client';
 
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
+import type { SeasonLeaderSuggestionEdge } from '@/historia/lib/season-leader-suggestion';
 import { MAX_COMPARE_PLAYERS, MIN_COMPARE_PLAYERS } from '@/historia/lib/compare-players';
-import type { SuggestedPlayer } from './PlayerPickerDialog';
 import { setPickerOpen, useCompareNavigation } from './useCompareState';
 
 type Props = {
   selectedKeys: string[];
-  suggested: SuggestedPlayer[];
+  suggested: SeasonLeaderSuggestionEdge[];
 };
 
 /** Initial card, like CompareEmptyCard: a search box that opens the picker and the season leaders as shortcuts. */
@@ -30,15 +30,15 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested }: Prop
         <>
           <p className="mt-[14px] text-left font-barlow text-[10px] font-semibold uppercase tracking-[1.4px] text-[rgba(15,23,31,0.4)]">Sugeridos · líderes de la temporada</p>
           <div className="mt-[10px] grid grid-cols-3 gap-[7px] md:grid-cols-6 md:gap-[10px]">
-            {suggested.map((s) => {
-              const taken = selectedKeys.includes(s.key);
+            {suggested.map(({ node: { player } }) => {
+              const taken = selectedKeys.includes(player.providerId);
               return (
-                <button key={s.key} type="button" disabled={taken} aria-pressed={taken} onClick={() => add(s.key)} className={`flex aspect-square flex-col items-center justify-center gap-[6px] rounded-[10px] border bg-white px-[6px] text-center transition-colors ${taken ? 'border-[#0F171F] bg-[rgba(15,23,31,0.03)]' : 'cursor-pointer border-[#EAEAEA] hover:border-[rgba(47,47,47,1)]'}`}>
-                  <span className="flex items-center justify-center overflow-hidden rounded-full border-2" style={{ width: 48, height: 48, borderColor: s.color }}>
-                    {s.avatarUrl ? <img src={`${s.avatarUrl}?size=200`} alt="" className="h-full w-full object-cover" /> : <PlayerAvatar name={s.name} color={s.color} sizePx={44} />}
+                <button key={player.providerId} type="button" disabled={taken} aria-pressed={taken} onClick={() => add(player.providerId)} className={`flex aspect-square flex-col items-center justify-center gap-[6px] rounded-[10px] border bg-white px-[6px] text-center transition-colors ${taken ? 'border-[#0F171F] bg-[rgba(15,23,31,0.03)]' : 'cursor-pointer border-[#EAEAEA] hover:border-[rgba(47,47,47,1)]'}`}>
+                  <span className="flex items-center justify-center overflow-hidden rounded-full border-2" style={{ width: 48, height: 48, borderColor: player.teamColor }}>
+                    {player.avatarUrl ? <img src={`${player.avatarUrl}?size=200`} alt="" className="h-full w-full object-cover" /> : <PlayerAvatar name={player.name} color={player.teamColor} sizePx={44} />}
                   </span>
-                  <span className="text-[15px] leading-[1.15] text-[rgba(15,23,31,0.9)] md:text-[16px]">{s.name.split(' ').slice(-1)[0]}</span>
-                  <span className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.5)]">{s.team}</span>
+                  <span className="text-[15px] leading-[1.15] text-[rgba(15,23,31,0.9)] md:text-[16px]">{player.name.split(' ').slice(-1)[0]}</span>
+                  <span className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.5)]">{player.teamName}</span>
                 </button>
               );
             })}

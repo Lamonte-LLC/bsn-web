@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import { formatCompareValue, PLAYER_COMPARE_SECTIONS, scopeFor, scopeLabel, valuesFor, visibleStats, winningIndexes, type ComparePlayerData, type CompareScope, type PlayerCompareStat } from '@/historia/lib/compare-players';
+import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
+import { useSeasons } from '@/historia/hooks/useSeasons';
+import { EMPTY_VALUES, formatCompareValue, PLAYER_COMPARE_SECTIONS, scopeFor, scopeLabel, visibleStats, winningIndexes, type ComparePlayerData, type CompareScope, type CompareValues, type PlayerCompareStat } from '@/historia/lib/compare-players';
 import { eraNotes } from '@/historia/lib/copy';
 import { initialName } from '@/archivo/lib/names';
 import { cls } from '@/archivo/lib/tokens';
@@ -56,16 +58,18 @@ function Value({ text, winner, color, side, size }: { text: string; winner: bool
 }
 
 type ScopeOf = (p: ComparePlayerData) => CompareScope;
+type ScopeNameOf = (p: ComparePlayerData) => string;
+type ValuesOf = (p: ComparePlayerData) => CompareValues;
 
-function useRow(stat: PlayerCompareStat, players: ComparePlayerData[], scope: ScopeOf) {
-  const values = players.map((p) => valuesFor(p, scope(p))[stat.key]);
+function useRow(stat: PlayerCompareStat, players: ComparePlayerData[], valuesOf: ValuesOf) {
+  const values = players.map((p) => valuesOf(p)[stat.key]);
   const winners = winningIndexes(values, stat.higherIsBetter);
   return { texts: values.map((v) => formatCompareValue(v, stat.format)), winners };
 }
 
 /** Mirror row (2 players): value · centered label · value. */
-function RowTwo({ stat, players, scope }: { stat: PlayerCompareStat; players: ComparePlayerData[]; scope: ScopeOf }) {
-  const { texts, winners } = useRow(stat, players, scope);
+function RowTwo({ stat, players, valuesOf }: { stat: PlayerCompareStat; players: ComparePlayerData[]; valuesOf: ValuesOf }) {
+  const { texts, winners } = useRow(stat, players, valuesOf);
   return (
     <div className={cx('grid items-center py-[12px] last:border-b-0 lg:py-[13px]', GRID_TWO, ROW_DIVIDER)}>
       <div className="text-right">
@@ -80,8 +84,8 @@ function RowTwo({ stat, players, scope }: { stat: PlayerCompareStat; players: Co
 }
 
 /** Three players: label on the left, one column per player. */
-function RowLeft({ stat, players, scope }: { stat: PlayerCompareStat; players: ComparePlayerData[]; scope: ScopeOf }) {
-  const { texts, winners } = useRow(stat, players, scope);
+function RowLeft({ stat, players, valuesOf }: { stat: PlayerCompareStat; players: ComparePlayerData[]; valuesOf: ValuesOf }) {
+  const { texts, winners } = useRow(stat, players, valuesOf);
   return (
     <div className={cx('grid items-center py-[12px] last:border-b-0 lg:py-[14px]', GRID_LEFT_3, ROW_DIVIDER)}>
       <StatLabel stat={stat} align="left" />
@@ -95,8 +99,8 @@ function RowLeft({ stat, players, scope }: { stat: PlayerCompareStat; players: C
 }
 
 /** Four players: two values · centered label · two values. */
-function RowFour({ stat, players, scope }: { stat: PlayerCompareStat; players: ComparePlayerData[]; scope: ScopeOf }) {
-  const { texts, winners } = useRow(stat, players, scope);
+function RowFour({ stat, players, valuesOf }: { stat: PlayerCompareStat; players: ComparePlayerData[]; valuesOf: ValuesOf }) {
+  const { texts, winners } = useRow(stat, players, valuesOf);
   const cell = (i: number) => (
     <div key={players[i].key} className="text-center">
       <Value text={texts[i]} winner={winners.includes(i)} color={players[i].color} side="right" size="text-[16px] lg:text-[26px]" />
@@ -132,7 +136,7 @@ function PlayerLogo({ p, size }: { p: ComparePlayerData; size: number }) {
  * Player tab: logo + name with a 2.5px underline in the player's team color, exactly as wide as the logo and
  * the name (the abbreviated name on phones), sitting on the row's rule.
  */
-function PlayerTab({ p, scope, justify, compact = false, hideLogoOnMobile = false }: { p: ComparePlayerData; scope: CompareScope; justify: 'start' | 'center' | 'end'; compact?: boolean; hideLogoOnMobile?: boolean }) {
+function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = false }: { p: ComparePlayerData; scopeName: string; justify: 'start' | 'center' | 'end'; compact?: boolean; hideLogoOnMobile?: boolean }) {
   return (
     <div className={cx('flex min-w-0 items-stretch self-stretch', { 'justify-start': justify === 'start', 'justify-center': justify === 'center', 'justify-end': justify === 'end' })}>
       <span className="relative flex min-w-0 items-center gap-[6px] pb-[9px] pt-[10px] lg:gap-[8px]">
@@ -149,10 +153,7 @@ function PlayerTab({ p, scope, justify, compact = false, hideLogoOnMobile = fals
             <span className="lg:hidden">{initialName(p.name)}</span>
             <span className="hidden lg:inline">{p.name}</span>
           </span>
-          <span className="block truncate font-barlow text-[10px] font-medium text-[rgba(15,23,31,0.5)] lg:text-[11px]">
-            <span className="lg:hidden">{scopeLabel(scope, true)}</span>
-            <span className="hidden lg:inline">{scopeLabel(scope)}</span>
-          </span>
+          <span className="block truncate font-barlow text-[10px] font-medium text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
         </span>
         <span className="absolute -bottom-[1px] left-0 right-0 h-[2.5px]" style={{ backgroundColor: p.color }} aria-hidden />
       </span>
@@ -161,7 +162,7 @@ function PlayerTab({ p, scope, justify, compact = false, hideLogoOnMobile = fals
 }
 
 /** Sticky row of the selected players; a subtle shadow appears once it sticks. */
-function PlayerTabsRow({ players, scope }: { players: ComparePlayerData[]; scope: ScopeOf }) {
+function PlayerTabsRow({ players, scopeName }: { players: ComparePlayerData[]; scopeName: ScopeNameOf }) {
   const count = players.length;
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [stuck, setStuck] = useState(false);
@@ -182,23 +183,23 @@ function PlayerTabsRow({ players, scope }: { players: ComparePlayerData[]; scope
       <div ref={sentinelRef} aria-hidden className="mt-[14px] h-px lg:mt-[22px]" />
       {count === 2 ? (
         <div className={row}>
-          <PlayerTab p={players[0]} scope={scope(players[0])} justify="end" />
+          <PlayerTab p={players[0]} scopeName={scopeName(players[0])} justify="end" />
           {label}
-          <PlayerTab p={players[1]} scope={scope(players[1])} justify="start" />
+          <PlayerTab p={players[1]} scopeName={scopeName(players[1])} justify="start" />
         </div>
       ) : count === 4 ? (
         <div className={row}>
-          <PlayerTab p={players[0]} scope={scope(players[0])} justify="center" compact hideLogoOnMobile />
-          <PlayerTab p={players[1]} scope={scope(players[1])} justify="center" compact hideLogoOnMobile />
+          <PlayerTab p={players[0]} scopeName={scopeName(players[0])} justify="center" compact hideLogoOnMobile />
+          <PlayerTab p={players[1]} scopeName={scopeName(players[1])} justify="center" compact hideLogoOnMobile />
           {label}
-          <PlayerTab p={players[2]} scope={scope(players[2])} justify="center" compact hideLogoOnMobile />
-          <PlayerTab p={players[3]} scope={scope(players[3])} justify="center" compact hideLogoOnMobile />
+          <PlayerTab p={players[2]} scopeName={scopeName(players[2])} justify="center" compact hideLogoOnMobile />
+          <PlayerTab p={players[3]} scopeName={scopeName(players[3])} justify="center" compact hideLogoOnMobile />
         </div>
       ) : (
         <div className={row}>
           <div className={cx('self-center text-left', TABS_LABEL_CLASS)}>ESTADÍSTICA</div>
           {players.map((p) => (
-            <PlayerTab key={p.key} p={p} scope={scope(p)} justify="center" compact hideLogoOnMobile />
+            <PlayerTab key={p.key} p={p} scopeName={scopeName(p)} justify="center" compact hideLogoOnMobile />
           ))}
         </div>
       )}
@@ -209,20 +210,35 @@ function PlayerTabsRow({ players, scope }: { players: ComparePlayerData[]; scope
 export default function PlayerComparePanel({ players }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>('promedio');
   const { scopes } = useCompareState();
-  const scope: ScopeOf = (p) => scopeFor(p, players, scopes);
+  const { data: seasons } = useSeasons();
+  const currentSeasonProviderId = (seasons.find((s) => s.current) ?? seasons[0])?.providerId ?? '';
+  const scope: ScopeOf = (p) => scopeFor(p, scopes, currentSeasonProviderId);
+  const seasonOf = (providerId: string) => seasons.find((s) => s.providerId === providerId) ?? null;
+  const scopeName: ScopeNameOf = (p) => scopeLabel(seasonOf(scope(p))?.name ?? '');
+
+  // Fixed slots (MAX_COMPARE_PLAYERS): hooks must run the same number of times every render.
+  const slots = [players[0] ?? null, players[1] ?? null, players[2] ?? null, players[3] ?? null];
+  const comparisons = [
+    usePlayerComparison(slots[0]?.providerId ?? null, slots[0] ? scope(slots[0]) : null),
+    usePlayerComparison(slots[1]?.providerId ?? null, slots[1] ? scope(slots[1]) : null),
+    usePlayerComparison(slots[2]?.providerId ?? null, slots[2] ? scope(slots[2]) : null),
+    usePlayerComparison(slots[3]?.providerId ?? null, slots[3] ? scope(slots[3]) : null),
+  ];
+  const valuesOf: ValuesOf = (p) => comparisons[players.indexOf(p)]?.values ?? EMPTY_VALUES;
+
   const count = players.length;
   const sections = PLAYER_COMPARE_SECTIONS.filter((s) => s.id === activeTab)
-    .map((s) => ({ ...s, stats: visibleStats(s, players, scope) }))
+    .map((s) => ({ ...s, stats: visibleStats(s, players, valuesOf) }))
     .filter((s) => s.stats.length);
-  const notes = eraNotes({ debutYears: players.map((p) => (scope(p) === 'career' ? p.fy : (scope(p) as number))) });
+  const notes = eraNotes({ debutYears: players.map((p) => seasonOf(scope(p))?.year).filter((y): y is number => y !== undefined) });
   const unlinked = players.filter((p) => p.isActive && !p.slug);
-  const scopeLine = players.map((p) => `${p.name.split(' ').slice(-1)[0]}: ${scopeLabel(scope(p)).toLowerCase()}`).join(' · ');
+  const scopeLine = players.map((p) => `${p.name.split(' ').slice(-1)[0]}: ${scopeName(p).toLowerCase()}`).join(' · ');
 
   const renderRow = (stat: PlayerCompareStat) => {
     const key = stat.code + stat.label;
-    if (count === 2) return <RowTwo key={key} stat={stat} players={players} scope={scope} />;
-    if (count === 4) return <RowFour key={key} stat={stat} players={players} scope={scope} />;
-    return <RowLeft key={key} stat={stat} players={players} scope={scope} />;
+    if (count === 2) return <RowTwo key={key} stat={stat} players={players} valuesOf={valuesOf} />;
+    if (count === 4) return <RowFour key={key} stat={stat} players={players} valuesOf={valuesOf} />;
+    return <RowLeft key={key} stat={stat} players={players} valuesOf={valuesOf} />;
   };
 
   return (
@@ -235,7 +251,7 @@ export default function PlayerComparePanel({ players }: Props) {
         ))}
       </div>
 
-      <PlayerTabsRow players={players} scope={scope} />
+      <PlayerTabsRow players={players} scopeName={scopeName} />
 
       {sections.length ? (
         sections.map((section) => (

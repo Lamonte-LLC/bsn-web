@@ -4,8 +4,6 @@
  * the same value formatting, so both pages read identically. No data access here; everything is testable.
  */
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
-import type { ComparableStats } from '@/archivo/lib/stats';
-import type { TotalStats } from './compare';
 
 /** Every number the comparison can show for one player in one scope. Null = not recorded in that era. */
 export interface CompareValues {
@@ -35,32 +33,23 @@ export interface CompareValues {
 
 export type CompareValueKey = keyof CompareValues;
 
-/** 'career' or a season year. */
-export type CompareScope = 'career' | number;
+/** A season's providerId — lo que PLAYER_COMPARISON necesita para traer las estadísticas de esa temporada. */
+export type CompareScope = string;
 
 /** A player as the comparison renders it. Serializable: it crosses the server/client boundary. */
 export interface ComparePlayerData {
-  /** Slug or providerId, as used in the URL. */
   key: string;
   name: string;
   slug: string | null;
   providerId: string | null;
   isActive: boolean;
   avatarUrl: string | null;
-  /** Live team code (BAY) when active; drives TeamLogoAvatar and the team color of /comparar-equipos. */
   teamCode: string | null;
-  /** Main franchise (current for actives, last for retired) for logos and colors of the archive. */
   franchise: FranchiseView | null;
-  /** Ring/underline color: the live team color when active, the franchise primary otherwise. */
   color: string;
-  /** "Criollos · Ala-pívot · #14" or "1968 a 1985 · Vaqueros, Leones". */
   line: string;
   fy: number;
   ly: number;
-  /** Regular-season values by year (string keys so JSON round-trips keep them). */
-  seasons: Record<string, CompareValues>;
-  /** Regular-season career values. */
-  career: CompareValues;
 }
 
 export type CompareFormat = 'avg' | 'int' | 'pct';
@@ -135,73 +124,18 @@ export const EMPTY_VALUES: CompareValues = {
   fgm: null, fga: null, fg3m: null, fg3a: null, ftm: null, fta: null,
 };
 
-/** Joins the archive's comparable stats and totals into one value set. */
-export function valuesFrom(stats: ComparableStats, totals: TotalStats, min: number | null): CompareValues {
-  return {
-    g: stats.g,
-    min,
-    ppg: stats.ppg,
-    rpg: stats.rpg,
-    apg: stats.apg,
-    spg: stats.spg,
-    bpg: stats.bpg,
-    topg: stats.topg,
-    fgPct: stats.fgPct,
-    fg3Pct: stats.fg3Pct,
-    ftPct: stats.ftPct,
-    pts: stats.pts ?? totals.pts,
-    reb: totals.reb,
-    ast: totals.ast,
-    stl: totals.stl,
-    blk: totals.blk,
-    fgm: totals.fgm,
-    fga: totals.fga,
-    fg3m: totals.fg3m,
-    fg3a: totals.fg3a,
-    ftm: totals.ftm,
-    fta: totals.fta,
-  };
+/** Cada jugador cae en la temporada actual (por providerId) salvo que haya elegido otra explícitamente. */
+export function defaultScope(currentSeasonProviderId: string): CompareScope {
+  return currentSeasonProviderId;
 }
 
-/** Seasons every selected player played, newest first. Empty when they never coincided. */
-export function commonSeasons(players: ComparePlayerData[]): number[] {
-  if (!players.length) return [];
-  const [first, ...rest] = players;
-  return Object.keys(first.seasons)
-    .map(Number)
-    .filter((y) => rest.every((p) => y in p.seasons))
-    .sort((a, b) => b - a);
+export function scopeFor(p: ComparePlayerData, chosen: Record<string, CompareScope | undefined>, currentSeasonProviderId: string): CompareScope {
+  return chosen[p.key] ?? defaultScope(currentSeasonProviderId);
 }
 
-/** The newest season they share, or the career when they never coincided. */
-export function defaultScope(players: ComparePlayerData[]): CompareScope {
-  const common = commonSeasons(players);
-  return common.length ? common[0] : 'career';
-}
-
-/** Seasons of one player, newest first, for its own scope menu. */
-export function playerSeasons(p: ComparePlayerData): number[] {
-  return Object.keys(p.seasons).map(Number).sort((a, b) => b - a);
-}
-
-/**
- * Scope of one player: what the user chose for it, else the newest season everyone shares, else the career.
- * Choosing per player is what lets an active player be compared against a legend of another era.
- */
-export function scopeFor(p: ComparePlayerData, players: ComparePlayerData[], chosen: Record<string, CompareScope | undefined>): CompareScope {
-  const c = chosen[p.key];
-  if (c === 'career' || (typeof c === 'number' && c in p.seasons === false)) return 'career';
-  if (typeof c === 'number') return c;
-  return defaultScope(players);
-}
-
-export function valuesFor(p: ComparePlayerData, scope: CompareScope): CompareValues {
-  return scope === 'career' ? p.career : (p.seasons[String(scope)] ?? EMPTY_VALUES);
-}
-
-export function scopeLabel(scope: CompareScope, short = false): string {
-  if (scope === 'career') return 'Carrera';
-  return short ? String(scope) : `Temporada ${scope}`;
+/** Recibe el name ya resuelto (no el scope/providerId) — quien llama hace el lookup en useSeasons(). */
+export function scopeLabel(seasonName: string): string {
+  return seasonName;
 }
 
 /** Same display rules as the team comparison; percentages already come as 0–100 from the archive. */
@@ -225,8 +159,8 @@ export function winningIndexes(values: Array<number | null>, higherIsBetter: boo
 }
 
 /** Rows where nobody has data are hidden, so a 1970s pair never shows an empty "Bloqueos" line. */
-export function visibleStats(section: PlayerCompareSection, players: ComparePlayerData[], scopeOf: (p: ComparePlayerData) => CompareScope): PlayerCompareStat[] {
-  return section.stats.filter((s) => players.some((p) => valuesFor(p, scopeOf(p))[s.key] !== null));
+export function visibleStats(section: PlayerCompareSection, players: ComparePlayerData[], valuesOf: (p: ComparePlayerData) => CompareValues): PlayerCompareStat[] {
+  return section.stats.filter((s) => players.some((p) => valuesOf(p)[s.key] !== null));
 }
 
 /** Parses `?p=a,b,c` into at most four distinct keys. */

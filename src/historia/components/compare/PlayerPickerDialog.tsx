@@ -1,75 +1,49 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import cx from 'classnames';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
-import { normalizeSearch, yearsLabel } from '@/archivo/lib/format';
 import { cls } from '@/archivo/lib/tokens';
-import { useUnifiedSearch } from '@/historia/hooks/useUnifiedSearch';
+import { useDebouncedValue } from '@/historia/hooks/useDebouncedValue';
+import { usePlayerSuggestions } from '@/historia/hooks/usePlayerSuggestions';
 import { MAX_COMPARE_PLAYERS, MIN_COMPARE_PLAYERS } from '@/historia/lib/compare-players';
-import type { UnifiedIndexEntry } from '../../../../types/historia';
+import { positionLabel } from '@/historia/lib/copy';
 
-/** A player offered as a shortcut on the empty card: the season leaders, resolved on the server. */
-export interface SuggestedPlayer {
-  key: string;
-  name: string;
-  /** "Piratas" */
-  team: string;
-  color: string;
-  avatarUrl: string | null;
-}
+const RESULTS_LIMIT = 50;
 
 type Props = {
   open: boolean;
   onClose: () => void;
   selectedKeys: string[];
-  suggested?: SuggestedPlayer[];
   onPick: (key: string) => void;
 };
 
-/** URL key of an index entry: the providerId for unlinked actives, the archive slug otherwise. */
-export function keyOf(entry: UnifiedIndexEntry): string {
-  return entry.providerId && !entry.slug.includes('-') ? entry.providerId : entry.slug;
-}
-
-function matchedAlias(p: UnifiedIndexEntry, query: string): string | null {
-  const q = normalizeSearch(query);
-  if (!q || normalizeSearch(p.name).includes(q)) return null;
-  return p.aliases.find((a) => normalizeSearch(a).includes(q)) ?? null;
-}
-
-const PAGE = 80;
+type Row = {
+  key: string;
+  name: string;
+  subtitle: string | null;
+  avatarUrl: string | null;
+};
 
 /**
- * Picker of the player comparison: one A-to-Z list of every player, active or historical, with the photo when
- * there is one, scrollable and searchable. Same dialog chrome as CompareTeamPickerDialog. Picking adds and closes.
+ * Picker of the player comparison: first 50 players when it opens, server search results once the user types
+ * (debounced). Same dialog chrome as CompareTeamPickerDialog. Picking adds and closes.
  */
 export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick }: Props) {
   const [query, setQuery] = useState('');
-  const [limit, setLimit] = useState(PAGE);
-  const { results, all, ready } = useUnifiedSearch(query, 60);
+  const debouncedQuery = useDebouncedValue(query.trim(), 300);
   const inputRef = useRef<HTMLInputElement>(null);
-  const sentinelRef = useRef<HTMLLIElement>(null);
   const isFull = selectedKeys.length >= MAX_COMPARE_PLAYERS;
   const typing = query.trim().length > 0;
-  const list = useMemo(() => (typing ? results : all), [typing, results, all]);
-  const shown = typing ? list : list.slice(0, limit);
+  const { data: players, loading } = usePlayerSuggestions(debouncedQuery, RESULTS_LIMIT);
+  const pending = query.trim() !== debouncedQuery;
+  const busy = pending || loading;
 
-  // Grow the A-to-Z list as the user scrolls; no button to press.
-  useEffect(() => {
-    const el = sentinelRef.current;
-    if (!el || typing) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) setLimit((n) => Math.min(n + PAGE, all.length));
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [typing, all.length, shown.length]);
+  const shown: Row[] = players.map((p) => ({ key: p.providerId, name: p.name, subtitle: p.nickname ? `apodo: ${p.nickname}` : positionLabel(p.playingPosition), avatarUrl: p.avatarUrl }));
 
   const close = () => {
     setQuery('');
-    setLimit(PAGE);
     onClose();
   };
   const pick = (key: string) => {
@@ -115,32 +89,26 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
           </div>
 
           <div className="mt-[10px] flex items-center justify-between font-barlow text-[11px] font-semibold uppercase tracking-[1.2px] text-[rgba(15,23,31,0.4)]">
-            <span>{typing ? 'Resultados' : 'Todos los jugadores · A a Z'}</span>
-            <span className="tabular-nums">{ready ? `${list.length}` : ''}</span>
+            <span>{typing ? 'Resultados' : 'Jugadores'}</span>
+            <span className="tabular-nums">{busy ? '' : `${shown.length}`}</span>
           </div>
 
-          <ul role="listbox" aria-busy={!ready} aria-label={typing ? 'Resultados' : 'Todos los jugadores'} className="mt-[6px] min-h-0 flex-1 overflow-y-auto rounded-[10px] border border-[rgba(15,23,31,0.08)]">
-            {!ready ? (
-              <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Cargando jugadores…</li>
+          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[6px] min-h-[500px] flex-1 overflow-y-auto rounded-[10px] border border-[rgba(15,23,31,0.08)]">
+            {busy ? (
+              <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</li>
             ) : !shown.length ? (
-              <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Sin resultados para “{query.trim()}”. Prueba sin acentos o con el apellido.</li>
+              <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">{typing ? `Sin resultados para “${query.trim()}”. Prueba sin acentos o con el apellido.` : 'Sin jugadores por ahora.'}</li>
             ) : (
               shown.map((r, i) => {
-                const key = keyOf(r);
-                const taken = selectedKeys.includes(key);
-                const alias = typing ? matchedAlias(r, query) : null;
+                const taken = selectedKeys.includes(r.key);
                 return (
-                  <li key={r.id} role="option" aria-selected={taken} className={i ? 'border-t border-[rgba(15,23,31,0.05)]' : ''}>
-                    <button type="button" disabled={taken || isFull} onClick={() => pick(key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken || isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
+                  <li key={r.key} role="option" aria-selected={taken} className={i ? 'border-t border-[rgba(15,23,31,0.05)]' : ''}>
+                    <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken || isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                       {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[#E5E5E5] object-cover" /> : <PlayerAvatar name={r.name} sizePx={36} />}
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
-                          {r.name}
-                          {alias ? <span className="font-normal text-[12px] text-[rgba(15,23,31,0.45)]"> · apodo: {alias}</span> : null}
-                        </span>
-                        <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)] tabular-nums">
-                          {yearsLabel(r.fy, r.ly)}
-                          {r.isActive ? <span className="ml-[6px] font-semibold uppercase tracking-[0.8px] text-[#0F171F]">Activo</span> : null}
+                        <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">{r.name}</span>
+                        <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">
+                          {r.subtitle}
                           {taken ? <span className="ml-[6px]">· ya está en la comparación</span> : null}
                         </span>
                       </span>
@@ -149,7 +117,6 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                 );
               })
             )}
-            {!typing && ready && shown.length < list.length ? <li ref={sentinelRef} aria-hidden className="h-[40px]" /> : null}
           </ul>
 
           <div className="mt-[14px] flex items-center justify-between gap-4">

@@ -36,12 +36,16 @@ export const PLAYER_PROFILE = gql`
         assistsAvg
         fieldGoalsPercentage
       }
-  }
+    }
   }
 `;
 
 export const PLAYER_SEASON_AVG_STATS = gql`
-  query getPlayerSeasonStats($geniusId: Int!, $providerId: String, $seasonProviderId: String) {
+  query getPlayerSeasonStats(
+    $geniusId: Int!
+    $providerId: String
+    $seasonProviderId: String
+  ) {
     player(geniusId: $geniusId, providerId: $providerId) {
       providerId
       seasonStats(seasonProviderId: $seasonProviderId) {
@@ -72,7 +76,11 @@ export const PLAYER_SEASON_AVG_STATS = gql`
 `;
 
 export const PLAYER_SEASON_TOTAL_STATS = gql`
-  query getPlayerSeasonStats($geniusId: Int!, $providerId: String, $seasonProviderId: String) {
+  query getPlayerSeasonStats(
+    $geniusId: Int!
+    $providerId: String
+    $seasonProviderId: String
+  ) {
     player(geniusId: $geniusId, providerId: $providerId) {
       providerId
       seasonStats(seasonProviderId: $seasonProviderId) {
@@ -90,8 +98,16 @@ export const PLAYER_SEASON_TOTAL_STATS = gql`
 `;
 
 export const PLAYER_MATCHES = gql`
-  query getPlayerMatches($playerProviderId: String!, $first: Int, $after: String) {
-    playerMatchesConnection(playerProviderId: $playerProviderId, first: $first, after: $after) {
+  query getPlayerMatches(
+    $playerProviderId: String!
+    $first: Int
+    $after: String
+  ) {
+    playerMatchesConnection(
+      playerProviderId: $playerProviderId
+      first: $first
+      after: $after
+    ) {
       pageInfo {
         endCursor
         hasNextPage
@@ -137,10 +153,17 @@ export const PLAYER_MATCHES = gql`
   }
 `;
 
-
 export const PLAYER_ALL_SEASONS_AVG_STATS = gql`
-  query getPlayerAllSeasonsAvgStatsConnection($playerProviderId: String!, $first: Int, $after: String) {
-    playerStatsConnection(playerProviderId: $playerProviderId, first: $first, after: $after) {
+  query getPlayerAllSeasonsAvgStatsConnection(
+    $playerProviderId: String!
+    $first: Int
+    $after: String
+  ) {
+    playerStatsConnection(
+      playerProviderId: $playerProviderId
+      first: $first
+      after: $after
+    ) {
       edges {
         node {
           season {
@@ -187,8 +210,16 @@ export const PLAYER_ALL_SEASONS_AVG_STATS = gql`
 `;
 
 export const PLAYER_ALL_SEASONS_TOTAL_STATS = gql`
-  query getPlayerAllSeasonsTotalStatsConnection($playerProviderId: String!, $first: Int, $after: String) {
-    playerStatsConnection(playerProviderId: $playerProviderId, first: $first, after: $after) {
+  query getPlayerAllSeasonsTotalStatsConnection(
+    $playerProviderId: String!
+    $first: Int
+    $after: String
+  ) {
+    playerStatsConnection(
+      playerProviderId: $playerProviderId
+      first: $first
+      after: $after
+    ) {
       edges {
         node {
           season {
@@ -228,6 +259,143 @@ export const PLAYER_ALL_SEASONS_TOTAL_STATS = gql`
             foulsPersonal
           }
         }
+      }
+    }
+  }
+`;
+
+export const SEASON_LEADER_SUGGESTIONS = gql`
+  query getSeasonLeaderSuggestions(
+    $teamCode: String
+    $first: Int
+    $after: String
+  ) {
+    seasonPlayerStatsConnection(
+      statsCode: "POINTS_AVG"
+      teamCode: $teamCode
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          player {
+            providerId
+            avatarUrl
+            name
+            playingPosition
+            teamCode
+            teamName
+            teamColor
+          }
+          value
+        }
+      }
+    }
+  }
+`;
+
+export const PLAYER_SUGGESTIONS = gql`
+  query getPlayerSuggestions($search: String, $first: Int, $after: String) {
+    playersConnection(search: $search, first: $first, after: $after) {
+      edges {
+        node {
+          providerId
+          avatarUrl
+          name
+          nickname
+          playingPosition
+          height
+          weight
+          dob
+          nationality
+        }
+      }
+    }
+  }
+`;
+
+export const PLAYER_COMPARISON = gql`
+  query getPlayerComparison($providerId: String, $seasonProviderId: String) {
+    player(geniusId: 0, providerId: $providerId) {
+      providerId
+      name
+      avatarUrl
+      seasonRoster(seasonProviderId: $seasonProviderId) {
+        jerseyNumber
+        playingPosition
+        team {
+          providerId
+          code
+          name
+          nickname
+          colorPrimary
+        }
+      }
+      seasonStats(seasonProviderId: $seasonProviderId) {
+        games
+        gamesAvg
+        minutes
+        minutesAvg
+        points
+        pointsAvg
+        pointsInThePaint
+        pointsInThePaintMade
+        pointsInThePaintAttempted
+        pointsSecondChance
+        pointsSecondChanceMade
+        pointsSecondChanceAttempted
+        pointsFastBreak
+        pointsFastBreakMade
+        pointsFastBreakAttempted
+        fieldGoalsMade
+        fieldGoalsMadeAvg
+        fieldGoalsAttempted
+        fieldGoalsAttemptedAvg
+        fieldGoalsPercentage
+        twoPointsMade
+        twoPointsMadeAvg
+        twoPointsAttempted
+        twoPointsAttemptedAvg
+        twoPointsPercentage
+        threePointersMade
+        threePointersMadeAvg
+        threePointersAttempted
+        threePointersAttemptedAvg
+        threePointersPercentage
+        freeThrowsMade
+        freeThrowsMadeAvg
+        freeThrowsAttempted
+        freeThrowsAttemptedAvg
+        freeThrowsPercentage
+        offensiveRebounds
+        offensiveReboundsAvg
+        defensiveRebounds
+        defensiveReboundsAvg
+        reboundsTotal
+        reboundsTotalAvg
+        assists
+        assistsAvg
+        assistsTurnoverRatio
+        turnovers
+        turnoversAvg
+        steals
+        stealsAvg
+        blocks
+        blocksAvg
+        foulsTotal
+        foulsTechnical
+        foulsUnsportsmanlike
+        foulsDrawn
+        foulsDrawnAvg
+        foulsPersonal
+        foulsPersonalAvg
+        plusMinusPointsAvg
+        efficiency
+        indexOfSuccess
+        doubleDouble
+        draws
+        dunks
+        pir
       }
     }
   }

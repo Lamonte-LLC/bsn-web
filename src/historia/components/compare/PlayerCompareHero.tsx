@@ -3,43 +3,43 @@
 import cx from 'classnames';
 import Link from 'next/link';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { MAX_COMPARE_PLAYERS, playerSeasons, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
+import { useSeasons } from '@/historia/hooks/useSeasons';
+import { MAX_COMPARE_PLAYERS, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
 import { initialName } from '@/archivo/lib/names';
 import PlayerMark from './PlayerMark';
-import PlayerPickerDialog, { type SuggestedPlayer } from './PlayerPickerDialog';
+import PlayerPickerDialog from './PlayerPickerDialog';
 import { setAllScopes, setCompareScope, setPickerOpen, useCompareNavigation, useCompareState } from './useCompareState';
 
 type Props = {
   players: ComparePlayerData[];
-  suggested: SuggestedPlayer[];
 };
 
 const profileHref = (p: ComparePlayerData) => `/jugadores/${p.slug ?? p.providerId}`;
 
 const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[13px] lg:py-[5px] lg:text-[12px]';
 
-/** Season or career of one player, chosen per player so eras can be mixed (2026 vs 1990, or both careers). */
-function ScopeMenu({ p, scope, others }: { p: ComparePlayerData; scope: CompareScope; others: string[] }) {
-  const options: CompareScope[] = [...playerSeasons(p), 'career'];
+type SeasonOption = { providerId: string; name: string };
+
+/** Season of one player, chosen per player so eras can be mixed (2026 vs 1990). */
+function ScopeMenu({ p, scope, scopeName, others, seasons, currentSeasonProviderId }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; others: string[]; seasons: SeasonOption[]; currentSeasonProviderId: string }) {
   return (
     <Menu>
       <MenuButton className={PILL} aria-label={`Alcance de ${p.name}`}>
-        <span className="lg:hidden">{scopeLabel(scope, true)}</span>
-        <span className="hidden lg:inline">{scopeLabel(scope)}</span>
+        <span>{scopeName}</span>
         <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
       </MenuButton>
       <MenuItems transition anchor="bottom" className="z-[999] mt-[8px] max-h-[320px] overflow-y-auto rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0">
-        {options.map((o) => (
-          <MenuItem key={String(o)}>
-            <button type="button" onClick={() => setCompareScope(p.key, o)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', o === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
-              {scopeLabel(o)}
+        {seasons.map((season) => (
+          <MenuItem key={season.providerId}>
+            <button type="button" onClick={() => setCompareScope(p.key, season.providerId)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', season.providerId === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
+              {scopeLabel(season.name)}
             </button>
           </MenuItem>
         ))}
         {others.length ? (
           <MenuItem>
-            <button type="button" onClick={() => setAllScopes([p.key, ...others], 'career')} className="mt-[4px] block w-full cursor-pointer rounded-[8px] border-t border-[rgba(15,23,31,0.08)] px-[14px] pb-[6px] pt-[9px] text-left font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] data-focus:bg-[#F4F4F4]">
-              Carrera para todos
+            <button type="button" onClick={() => setAllScopes([p.key, ...others], currentSeasonProviderId)} className="mt-[4px] block w-full cursor-pointer rounded-[8px] border-t border-[rgba(15,23,31,0.08)] px-[14px] pb-[6px] pt-[9px] text-left font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] data-focus:bg-[#F4F4F4]">
+              Temporada actual para todos
             </button>
           </MenuItem>
         ) : null}
@@ -58,8 +58,10 @@ function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => v
   );
 }
 
+type ScopeMenuProps = { scope: CompareScope; scopeName: string; others: string[]; seasons: SeasonOption[]; currentSeasonProviderId: string };
+
 /** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
-function SlotHorizontal({ p, side, onRemove, scope, others }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void; scope: CompareScope; others: string[] }) {
+function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
   return (
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
@@ -68,7 +70,7 @@ function SlotHorizontal({ p, side, onRemove, scope, others }: { p: ComparePlayer
           <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.line}</span>
         </Link>
         <span className="mt-[8px]">
-          <ScopeMenu p={p} scope={scope} others={others} />
+          <ScopeMenu p={p} scope={scope} scopeName={scopeName} others={others} seasons={seasons} currentSeasonProviderId={currentSeasonProviderId} />
         </span>
       </div>
       <span className="lg:hidden">
@@ -82,7 +84,7 @@ function SlotHorizontal({ p, side, onRemove, scope, others }: { p: ComparePlayer
 }
 
 /** Stacked slot (mobile with 2, and 3–4 players everywhere). */
-function SlotStacked({ p, count, onRemove, scope, others }: { p: ComparePlayerData; count: number; onRemove: () => void; scope: CompareScope; others: string[] }) {
+function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
   const size = count === 4 ? 44 : 50;
   const sizeLg = count === 4 ? 62 : 70;
   return (
@@ -101,20 +103,27 @@ function SlotStacked({ p, count, onRemove, scope, others }: { p: ComparePlayerDa
         <span className="mt-[2px] block font-barlow font-medium text-[10px] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line}</span>
       </Link>
       <span className="mt-[6px]">
-        <ScopeMenu p={p} scope={scope} others={others} />
+        <ScopeMenu p={p} scope={scope} scopeName={scopeName} others={others} seasons={seasons} currentSeasonProviderId={currentSeasonProviderId} />
       </span>
     </div>
   );
 }
 
-export default function PlayerCompareHero({ players, suggested }: Props) {
+export default function PlayerCompareHero({ players }: Props) {
   const { pickerOpen, scopes } = useCompareState();
+  const { data: seasons } = useSeasons();
+  const currentSeasonProviderId = (seasons.find((s) => s.current) ?? seasons[0])?.providerId ?? '';
+  const seasonOptions: SeasonOption[] = seasons.map((s) => ({ providerId: s.providerId, name: s.name }));
+  const nameFor = (providerId: string) => seasons.find((s) => s.providerId === providerId)?.name ?? '';
   const keys = players.map((p) => p.key);
   const { add, remove } = useCompareNavigation(keys);
   const count = players.length;
   const isEmpty = count < 2;
   const openPicker = () => setPickerOpen(true);
-  const slotProps = (p: ComparePlayerData) => ({ p, scope: scopeFor(p, players, scopes), others: keys.filter((k) => k !== p.key), onRemove: () => remove(p.key) });
+  const slotProps = (p: ComparePlayerData) => {
+    const scope = scopeFor(p, scopes, currentSeasonProviderId);
+    return { p, scope, scopeName: scopeLabel(nameFor(scope)), others: keys.filter((k) => k !== p.key), onRemove: () => remove(p.key), seasons: seasonOptions, currentSeasonProviderId };
+  };
 
   return (
     <>
@@ -162,7 +171,7 @@ export default function PlayerCompareHero({ players, suggested }: Props) {
           </div>
         </div>
       </section>
-      <PlayerPickerDialog open={pickerOpen} onClose={() => setPickerOpen(false)} selectedKeys={keys} suggested={suggested} onPick={add} />
+      <PlayerPickerDialog open={pickerOpen} onClose={() => setPickerOpen(false)} selectedKeys={keys} onPick={add} />
     </>
   );
 }
