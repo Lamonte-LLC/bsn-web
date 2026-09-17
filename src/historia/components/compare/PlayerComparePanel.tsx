@@ -129,7 +129,7 @@ function SectionTitle({ title, align = 'center' }: { title: string; align?: 'cen
 
 function PlayerLogo({ p, size }: { p: ComparePlayerData; size: number }) {
   if (p.teamCode) return <TeamLogoAvatar teamCode={p.teamCode} size={size} />;
-  return <FranchiseLogo franchise={p.franchise} fallbackName={p.name} sizePx={size} />;
+  return <FranchiseLogo franchise={null} fallbackName={p.name} sizePx={size} />;
 }
 
 /**
@@ -231,7 +231,6 @@ export default function PlayerComparePanel({ players }: Props) {
     .map((s) => ({ ...s, stats: visibleStats(s, players, valuesOf) }))
     .filter((s) => s.stats.length);
   const notes = eraNotes({ debutYears: players.map((p) => seasonOf(scope(p))?.year).filter((y): y is number => y !== undefined) });
-  const unlinked = players.filter((p) => p.isActive && !p.slug);
   const scopeLine = players.map((p) => `${p.name.split(' ').slice(-1)[0]}: ${scopeName(p).toLowerCase()}`).join(' · ');
 
   const renderRow = (stat: PlayerCompareStat) => {
@@ -268,9 +267,6 @@ export default function PlayerComparePanel({ players }: Props) {
         <p>{scopeLine} · serie regular</p>
         {notes.map((n) => (
           <p key={n}>{n}</p>
-        ))}
-        {unlinked.map((p) => (
-          <p key={p.key}>{p.name}: carrera histórica en proceso de vinculación; se comparan solo sus temporadas en vivo.</p>
         ))}
       </div>
     </div>

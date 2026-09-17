@@ -3,7 +3,6 @@
  * (src/team/components/compare/compareStats.ts): the same section/stat catalog shape, the same winner rule and
  * the same value formatting, so both pages read identically. No data access here; everything is testable.
  */
-import type { FranchiseView } from '@/archivo/lib/franchise-view';
 
 /** Every number the comparison can show for one player in one scope. Null = not recorded in that era. */
 export interface CompareValues {
@@ -40,16 +39,11 @@ export type CompareScope = string;
 export interface ComparePlayerData {
   key: string;
   name: string;
-  slug: string | null;
-  providerId: string | null;
-  isActive: boolean;
+  providerId: string;
   avatarUrl: string | null;
   teamCode: string | null;
-  franchise: FranchiseView | null;
   color: string;
   line: string;
-  fy: number;
-  ly: number;
 }
 
 export type CompareFormat = 'avg' | 'int' | 'pct';

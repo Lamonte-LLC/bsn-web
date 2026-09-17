@@ -14,7 +14,7 @@ type Props = {
   players: ComparePlayerData[];
 };
 
-const profileHref = (p: ComparePlayerData) => `/jugadores/${p.slug ?? p.providerId}`;
+const profileHref = (p: ComparePlayerData) => `/jugadores/${p.providerId}`;
 
 const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[13px] lg:py-[5px] lg:text-[12px]';
 
