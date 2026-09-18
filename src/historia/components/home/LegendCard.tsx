@@ -1,12 +1,15 @@
 import Link from 'next/link';
+import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import { fmt, fmtInt, yearsLabel } from '@/archivo/lib/format';
 import { cls, INK } from '@/archivo/lib/tokens';
-import type { PlayerFile } from '@/archivo/lib/types';
+import type { Franchise, PlayerFile } from '@/archivo/lib/types';
 import { BUTTON_PRIMARY, BUTTON_SECONDARY, HOME_CARD } from './styles';
 
 type Props = {
   player: PlayerFile;
+  /** The franchises the player wore, in career order; real logos for active ones. */
+  franchises: Franchise[];
   /** Primary color of the last franchise; goes on the avatar ring only, never on text. */
   color: string | null;
   /** Historical rank in points, when known. */
@@ -22,7 +25,7 @@ const CHIP = `inline-flex h-[22px] items-center rounded-[4px] border border-[rgb
  * team-color ring, name in the display face, span, three chips, the reason line) and the career in four big
  * numbers on an ink plate on the right. Retired players have no photo, so the avatar is always initials.
  */
-export default function LegendCard({ player, color, ptsRank, reason }: Props) {
+export default function LegendCard({ player, franchises, color, ptsRank, reason }: Props) {
   const career = player.career ?? player.computed.regular;
   const ring = color ?? INK;
   const [first, ...rest] = player.name.replace(/["'‘’“”][^"'‘’“”]*["'‘’“”]/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
@@ -30,8 +33,8 @@ export default function LegendCard({ player, color, ptsRank, reason }: Props) {
   const chips = [
     player.mvpYears.length ? `MVP${player.mvpYears.length > 1 ? ` ×${player.mvpYears.length}` : ''}` : null,
     player.championships.length ? `${player.championships.length} ${player.championships.length === 1 ? 'título' : 'títulos'}` : null,
-    `${player.franchiseSlugs.length} ${player.franchiseSlugs.length === 1 ? 'equipo' : 'equipos'}`,
   ].filter((c): c is string => c !== null);
+  const shownFranchises = franchises.slice(0, 5);
   const numbers: Array<[string, string]> = [
     [fmtInt(career.pts), ptsRank ? `Puntos · #${ptsRank} histórico` : 'Puntos'],
     [fmt(career.ppg), 'Por juego'],
@@ -57,12 +60,20 @@ export default function LegendCard({ player, color, ptsRank, reason }: Props) {
               <p className={`mt-[8px] ${cls.meta} ${cls.tabular}`}>
                 {yearsLabel(player.fy, player.ly)} · {player.seasons} temporadas
               </p>
-              <div className="mt-[8px] flex flex-wrap gap-[6px]">
+              <div className="mt-[8px] flex flex-wrap items-center gap-[6px]">
                 {chips.map((c) => (
                   <span key={c} className={CHIP}>
                     {c}
                   </span>
                 ))}
+                {shownFranchises.length ? (
+                  <span className="inline-flex items-center gap-[3px]" title={franchises.map((f) => f.nickname).join(', ')}>
+                    {shownFranchises.map((f) => (
+                      <FranchiseLogo key={f.slug} franchise={f} sizePx={22} />
+                    ))}
+                    {franchises.length > 5 ? <span className={`ml-[2px] ${cls.meta} ${cls.tabular}`}>+{franchises.length - 5}</span> : null}
+                  </span>
+                ) : null}
               </div>
             </div>
           </div>

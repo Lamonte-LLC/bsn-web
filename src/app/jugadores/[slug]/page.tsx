@@ -103,6 +103,28 @@ function careerRow(lines: SeasonRow[], published: Published): CareerRow | null {
  * of the current season (or the career) and the facts; the white area carries the full table by season and,
  * for actives, the game log. No controls in the band.
  */
+/** Small line icon for each fact of the hero, 14px, white at 55%. */
+function FactIcon({ label }: { label: string }) {
+  const paths: Record<string, string> = {
+    Posición: 'M8 14.5s5-4.2 5-8a5 5 0 0 0-10 0c0 3.8 5 8 5 8zM8 8.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+    Altura: 'M5 1.5v13M11 1.5v13M5 4h2M5 7h3M5 10h2M5 13h3',
+    Nacimiento: 'M2.5 4.5h11v9h-11zM2.5 7.5h11M5.5 2.5v3M10.5 2.5v3',
+    'Lugar de origen': 'M3.5 14.5v-12h8l-1.5 3 1.5 3h-8',
+    'Debut BSN': 'M8 1.5v13M3.5 5.5 8 1.5l4.5 4',
+    'Última temporada': 'M8 14.5v-13M3.5 10.5 8 14.5l4.5-4',
+    Temporadas: 'M2.5 4.5h11v9h-11zM2.5 7.5h11M5.5 2.5v3M10.5 2.5v3M5.5 10.5h2',
+    'Mejor temporada': 'M8 1.5l2 4.2 4.5.6-3.3 3.1.9 4.6L8 11.8 3.9 14l.9-4.6L1.5 6.3 6 5.7z',
+    Campeonatos: 'M4 2h8v3a4 4 0 0 1-8 0V2zM4 3H2v1.5A2.5 2.5 0 0 0 4.5 7M12 3h2v1.5A2.5 2.5 0 0 1 11.5 7M8 9v3M5.5 14h5',
+    'Jugador más valioso': 'M8 1.5l2 4.2 4.5.6-3.3 3.1.9 4.6L8 11.8 3.9 14l.9-4.6L1.5 6.3 6 5.7z',
+  };
+  const d = paths[label] ?? 'M2.5 8h11';
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="shrink-0 text-[rgba(255,255,255,0.55)]">
+      <path d={d} />
+    </svg>
+  );
+}
+
 export default async function DetalleJugadorPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const unified = resolveUnifiedPlayer(slug);
@@ -262,15 +284,25 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
                 <div className="md:mt-[40px]">
                   <div className="border-b border-transparent md:border-[rgba(255,255,255,0.07)]" />
                 </div>
-                <div className="py-[24px] md:py-[40px] lg:w-7/12">
-                  <div className="grid grid-cols-3 gap-x-3 gap-y-[24px] md:grid-cols-6">
-                    {shownFacts.map(([label, value]) => (
-                      <div key={label} className="min-w-0">
-                        <h5 className="font-barlow-condensed text-sm text-[rgba(255,255,255,0.7)] md:text-base">{label}</h5>
-                        <p className={`truncate text-base text-white md:text-[18px] ${cls.tabular}`} title={value}>{value}</p>
-                      </div>
-                    ))}
-                  </div>
+                <div className="py-[22px] md:py-[34px]">
+                  <dl className="grid grid-cols-2 gap-y-[20px] sm:grid-cols-3 md:flex md:flex-wrap md:gap-y-[22px]">
+                    {shownFacts.map(([label, value]) => {
+                      const [main, ...rest] = value.split(' · ');
+                      const sub = rest.join(' · ');
+                      return (
+                        <div key={label} className="min-w-0 pr-[14px] md:border-l md:border-[rgba(255,255,255,0.1)] md:px-[22px] md:first:border-l-0 md:first:pl-0">
+                          <dt className="flex items-center gap-[6px] font-barlow text-[11px] font-semibold uppercase tracking-[0.8px] text-[rgba(255,255,255,0.55)]">
+                            <FactIcon label={label} />
+                            {label}
+                          </dt>
+                          <dd className="mt-[6px] flex flex-wrap items-baseline gap-x-[8px]">
+                            <span className={`text-[22px] leading-[1] text-white md:text-[24px] ${cls.tabular}`}>{main}</span>
+                            {sub ? <span className={`font-barlow text-[12.5px] font-medium text-[rgba(255,255,255,0.6)] ${cls.tabular}`}>{sub}</span> : null}
+                          </dd>
+                        </div>
+                      );
+                    })}
+                  </dl>
                 </div>
               </>
             ) : (

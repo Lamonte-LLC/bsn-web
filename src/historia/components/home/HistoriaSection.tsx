@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getChampions, getCoaches, getFranchiseMap, getMultiMvps, getMvps, getPlayer, getPlayerIndex, getPlayerIndexById, getRecords } from '@/archivo/lib/data';
+import type { Franchise } from '@/archivo/lib/types';
 import { cls } from '@/archivo/lib/tokens';
 import { CURRENT_SEASON } from '@/historia/lib/data';
 import {
@@ -33,6 +34,7 @@ export default function HistoriaSection() {
   const legendEntry = pickLegend(legendPool(index), now);
   const legend = legendEntry ? getPlayer(legendEntry.id) : null;
   const lastFranchise = legend ? franchises.get(legend.franchiseSlugs[legend.franchiseSlugs.length - 1] ?? '') : null;
+  const legendFranchises: Franchise[] = legend ? legend.franchiseSlugs.map((slug) => franchises.get(slug)).filter((f): f is Franchise => Boolean(f)) : [];
   // The plate already prints the points rank, so the reason line only leads with it for the all-time top scorer.
   const legendRank = legend ? ptsRank(index, legend.id) : null;
   const legendReasonLine = legend
@@ -73,7 +75,9 @@ export default function HistoriaSection() {
   return (
     <section className="container mb-[60px] lg:mb-[100px]">
       <div className="flex flex-row items-center justify-between mb-[20px] md:mb-[32px]">
-        <h2 className="text-[22px] text-[#0F171F] md:text-[32px]">Historia BSN</h2>
+        <h2 className={`inline-flex items-baseline gap-[5px] text-[22px] leading-[1] text-[#0F171F] md:text-[32px] ${cls.wordmark}`}>
+          ARCHIVO <span className="text-[#E51F1F]">BSN</span>
+        </h2>
         <Link href="/estadisticas?vista=historico" className={`shrink-0 ${cls.textLink} ${cls.focus}`}>
           Explorar el archivo →
         </Link>
@@ -81,7 +85,7 @@ export default function HistoriaSection() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         {legend ? (
           <div className="lg:col-span-7">
-            <LegendCard player={legend} color={lastFranchise?.colors.primary ?? null} ptsRank={legendRank} reason={legendReasonLine} />
+            <LegendCard player={legend} franchises={legendFranchises} color={lastFranchise?.colors.primary ?? null} ptsRank={legendRank} reason={legendReasonLine} />
           </div>
         ) : null}
         {rows.length ? (

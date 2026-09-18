@@ -16,6 +16,15 @@ const barlow = Barlow({
   weight: ['400', '500', '600', '700'],
 });
 
+/** Heavy italic for the Archivo BSN wordmark, used on the home and the archive alike. */
+const barlowCondensedHeavy = Barlow_Condensed({
+  variable: '--font-bc-heavy',
+  subsets: ['latin'],
+  weight: ['800'],
+  style: ['italic'],
+  display: 'swap',
+});
+
 const barlowCondensed = Barlow_Condensed({
   variable: '--font-barlow-condensed',
   subsets: ['latin'],
@@ -91,7 +100,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${barlow.variable} ${barlowCondensed.variable} ${specialGothicCondensedOne.variable}  antialiased`}
+        className={`${barlow.variable} ${barlowCondensed.variable} ${barlowCondensedHeavy.variable} ${specialGothicCondensedOne.variable} antialiased`}
       >
         <ApolloWrapper>{children}</ApolloWrapper>
         <AdManager />
