@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
-import { useSeasons } from '@/historia/hooks/useSeasons';
+import { usePlayerComparison, type SeasonTeam } from '@/historia/hooks/usePlayerComparison';
 import { EMPTY_VALUES, formatCompareValue, PLAYER_COMPARE_SECTIONS, scopeFor, scopeLabel, visibleStats, winningIndexes, type ComparePlayerData, type CompareScope, type CompareValues, type PlayerCompareStat } from '@/historia/lib/compare-players';
 import { eraNotes } from '@/historia/lib/copy';
 import { initialName } from '@/archivo/lib/names';
@@ -60,6 +59,10 @@ function Value({ text, winner, color, side, size }: { text: string; winner: bool
 type ScopeOf = (p: ComparePlayerData) => CompareScope;
 type ScopeNameOf = (p: ComparePlayerData) => string;
 type ValuesOf = (p: ComparePlayerData) => CompareValues;
+
+/** A player as PlayerTab renders it: the equipo(s) of the currently selected season, and a color derived
+ * from the first of those (instead of the fixed color of the player's current team). */
+type DisplayPlayer = ComparePlayerData & { teams: SeasonTeam[] };
 
 function useRow(stat: PlayerCompareStat, players: ComparePlayerData[], valuesOf: ValuesOf) {
   const values = players.map((p) => valuesOf(p)[stat.key]);
@@ -127,16 +130,25 @@ function SectionTitle({ title, align = 'center' }: { title: string; align?: 'cen
   );
 }
 
-function PlayerLogo({ p, size }: { p: ComparePlayerData; size: number }) {
-  if (p.teamCode) return <TeamLogoAvatar teamCode={p.teamCode} size={size} />;
+/** One logo per equipo the player had that season (side by side — mid-season trades show every team). */
+function PlayerLogo({ p, size }: { p: DisplayPlayer; size: number }) {
+  if (p.teams.length) {
+    return (
+      <span className="inline-flex items-center -space-x-1">
+        {p.teams.map((team) => (
+          <TeamLogoAvatar key={team.providerId} teamCode={team.code} size={size} />
+        ))}
+      </span>
+    );
+  }
   return <FranchiseLogo franchise={null} fallbackName={p.name} sizePx={size} />;
 }
 
 /**
- * Player tab: logo + name with a 2.5px underline in the player's team color, exactly as wide as the logo and
+ * Player tab: logo(s) + name with a 2.5px underline in the player's team color, exactly as wide as the logo and
  * the name (the abbreviated name on phones), sitting on the row's rule.
  */
-function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = false }: { p: ComparePlayerData; scopeName: string; justify: 'start' | 'center' | 'end'; compact?: boolean; hideLogoOnMobile?: boolean }) {
+function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = false }: { p: DisplayPlayer; scopeName: string; justify: 'start' | 'center' | 'end'; compact?: boolean; hideLogoOnMobile?: boolean }) {
   return (
     <div className={cx('flex min-w-0 items-stretch self-stretch', { 'justify-start': justify === 'start', 'justify-center': justify === 'center', 'justify-end': justify === 'end' })}>
       <span className="relative flex min-w-0 items-center gap-[6px] pb-[9px] pt-[10px] lg:gap-[8px]">
@@ -162,7 +174,7 @@ function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = 
 }
 
 /** Sticky row of the selected players; a subtle shadow appears once it sticks. */
-function PlayerTabsRow({ players, scopeName }: { players: ComparePlayerData[]; scopeName: ScopeNameOf }) {
+function PlayerTabsRow({ players, scopeName }: { players: DisplayPlayer[]; scopeName: ScopeNameOf }) {
   const count = players.length;
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [stuck, setStuck] = useState(false);
@@ -210,34 +222,38 @@ function PlayerTabsRow({ players, scopeName }: { players: ComparePlayerData[]; s
 export default function PlayerComparePanel({ players }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>('promedio');
   const { scopes } = useCompareState();
-  const { data: seasons } = useSeasons();
-  const currentSeasonProviderId = (seasons.find((s) => s.current) ?? seasons[0])?.providerId ?? '';
-  const scope: ScopeOf = (p) => scopeFor(p, scopes, currentSeasonProviderId);
-  const seasonOf = (providerId: string) => seasons.find((s) => s.providerId === providerId) ?? null;
-  const scopeName: ScopeNameOf = (p) => scopeLabel(seasonOf(scope(p))?.name ?? '');
 
   // Fixed slots (MAX_COMPARE_PLAYERS): hooks must run the same number of times every render.
   const slots = [players[0] ?? null, players[1] ?? null, players[2] ?? null, players[3] ?? null];
   const comparisons = [
-    usePlayerComparison(slots[0]?.providerId ?? null, slots[0] ? scope(slots[0]) : null),
-    usePlayerComparison(slots[1]?.providerId ?? null, slots[1] ? scope(slots[1]) : null),
-    usePlayerComparison(slots[2]?.providerId ?? null, slots[2] ? scope(slots[2]) : null),
-    usePlayerComparison(slots[3]?.providerId ?? null, slots[3] ? scope(slots[3]) : null),
+    usePlayerComparison(slots[0]?.providerId ?? null),
+    usePlayerComparison(slots[1]?.providerId ?? null),
+    usePlayerComparison(slots[2]?.providerId ?? null),
+    usePlayerComparison(slots[3]?.providerId ?? null),
   ];
-  const valuesOf: ValuesOf = (p) => comparisons[players.indexOf(p)]?.values ?? EMPTY_VALUES;
+  // Matched by key (not object identity/indexOf): displayPlayers below are spread copies of `players`.
+  const comparisonOf = (p: ComparePlayerData) => comparisons[players.findIndex((pl) => pl.key === p.key)];
+
+  const scope: ScopeOf = (p) => scopeFor(p, scopes, comparisonOf(p)?.currentSeasonProviderId ?? '');
+  const scopeName: ScopeNameOf = (p) => scopeLabel(comparisonOf(p)?.nameFor(scope(p)) ?? '');
+  const valuesOf: ValuesOf = (p) => comparisonOf(p)?.valuesFor(scope(p)) ?? EMPTY_VALUES;
+  const displayPlayers: DisplayPlayer[] = players.map((p) => {
+    const teams = comparisonOf(p)?.teamsFor(scope(p)) ?? [];
+    return { ...p, teams, color: teams[0]?.colorPrimary ?? p.color };
+  });
 
   const count = players.length;
   const sections = PLAYER_COMPARE_SECTIONS.filter((s) => s.id === activeTab)
     .map((s) => ({ ...s, stats: visibleStats(s, players, valuesOf) }))
     .filter((s) => s.stats.length);
-  const notes = eraNotes({ debutYears: players.map((p) => seasonOf(scope(p))?.year).filter((y): y is number => y !== undefined) });
+  const notes = eraNotes({ debutYears: players.map((p) => comparisonOf(p)?.seasonFor(scope(p))?.year).filter((y): y is number => y !== undefined) });
   const scopeLine = players.map((p) => `${p.name.split(' ').slice(-1)[0]}: ${scopeName(p).toLowerCase()}`).join(' · ');
 
   const renderRow = (stat: PlayerCompareStat) => {
     const key = stat.code + stat.label;
-    if (count === 2) return <RowTwo key={key} stat={stat} players={players} valuesOf={valuesOf} />;
-    if (count === 4) return <RowFour key={key} stat={stat} players={players} valuesOf={valuesOf} />;
-    return <RowLeft key={key} stat={stat} players={players} valuesOf={valuesOf} />;
+    if (count === 2) return <RowTwo key={key} stat={stat} players={displayPlayers} valuesOf={valuesOf} />;
+    if (count === 4) return <RowFour key={key} stat={stat} players={displayPlayers} valuesOf={valuesOf} />;
+    return <RowLeft key={key} stat={stat} players={displayPlayers} valuesOf={valuesOf} />;
   };
 
   return (
@@ -250,7 +266,7 @@ export default function PlayerComparePanel({ players }: Props) {
         ))}
       </div>
 
-      <PlayerTabsRow players={players} scopeName={scopeName} />
+      <PlayerTabsRow players={displayPlayers} scopeName={scopeName} />
 
       {sections.length ? (
         sections.map((section) => (

@@ -315,87 +315,97 @@ export const PLAYER_SUGGESTIONS = gql`
 `;
 
 export const PLAYER_COMPARISON = gql`
-  query getPlayerComparison($providerId: String, $seasonProviderId: String) {
+  query getPlayerComparison($providerId: String) {
     player(geniusId: 0, providerId: $providerId) {
       providerId
       name
       avatarUrl
-      seasonRoster(seasonProviderId: $seasonProviderId) {
-        jerseyNumber
-        playingPosition
-        team {
-          providerId
-          code
-          name
-          nickname
-          colorPrimary
+      statsBySeasonConnection {
+        edges {
+          node {
+            season {
+              providerId
+              name
+              year
+              current
+              isActive
+              isPlayoffs
+            }
+            teams {
+              providerId
+              code
+              name
+              nickname
+              colorPrimary
+            }
+            stats {
+              games
+              gamesAvg
+              minutes
+              minutesAvg
+              points
+              pointsAvg
+              pointsInThePaint
+              pointsInThePaintMade
+              pointsInThePaintAttempted
+              pointsSecondChance
+              pointsSecondChanceMade
+              pointsSecondChanceAttempted
+              pointsFastBreak
+              pointsFastBreakMade
+              pointsFastBreakAttempted
+              fieldGoalsMade
+              fieldGoalsMadeAvg
+              fieldGoalsAttempted
+              fieldGoalsAttemptedAvg
+              fieldGoalsPercentage
+              twoPointsMade
+              twoPointsMadeAvg
+              twoPointsAttempted
+              twoPointsAttemptedAvg
+              twoPointsPercentage
+              threePointersMade
+              threePointersMadeAvg
+              threePointersAttempted
+              threePointersAttemptedAvg
+              threePointersPercentage
+              freeThrowsMade
+              freeThrowsMadeAvg
+              freeThrowsAttempted
+              freeThrowsAttemptedAvg
+              freeThrowsPercentage
+              offensiveRebounds
+              offensiveReboundsAvg
+              defensiveRebounds
+              defensiveReboundsAvg
+              reboundsTotal
+              reboundsTotalAvg
+              assists
+              assistsAvg
+              assistsTurnoverRatio
+              turnovers
+              turnoversAvg
+              steals
+              stealsAvg
+              blocks
+              blocksAvg
+              foulsTotal
+              foulsTechnical
+              foulsUnsportsmanlike
+              foulsDrawn
+              foulsDrawnAvg
+              foulsPersonal
+              foulsPersonalAvg
+              plusMinusPointsAvg
+              efficiency
+              indexOfSuccess
+              doubleDouble
+              draws
+              dunks
+              pir
+            }
+          }
         }
-      }
-      seasonStats(seasonProviderId: $seasonProviderId) {
-        games
-        gamesAvg
-        minutes
-        minutesAvg
-        points
-        pointsAvg
-        pointsInThePaint
-        pointsInThePaintMade
-        pointsInThePaintAttempted
-        pointsSecondChance
-        pointsSecondChanceMade
-        pointsSecondChanceAttempted
-        pointsFastBreak
-        pointsFastBreakMade
-        pointsFastBreakAttempted
-        fieldGoalsMade
-        fieldGoalsMadeAvg
-        fieldGoalsAttempted
-        fieldGoalsAttemptedAvg
-        fieldGoalsPercentage
-        twoPointsMade
-        twoPointsMadeAvg
-        twoPointsAttempted
-        twoPointsAttemptedAvg
-        twoPointsPercentage
-        threePointersMade
-        threePointersMadeAvg
-        threePointersAttempted
-        threePointersAttemptedAvg
-        threePointersPercentage
-        freeThrowsMade
-        freeThrowsMadeAvg
-        freeThrowsAttempted
-        freeThrowsAttemptedAvg
-        freeThrowsPercentage
-        offensiveRebounds
-        offensiveReboundsAvg
-        defensiveRebounds
-        defensiveReboundsAvg
-        reboundsTotal
-        reboundsTotalAvg
-        assists
-        assistsAvg
-        assistsTurnoverRatio
-        turnovers
-        turnoversAvg
-        steals
-        stealsAvg
-        blocks
-        blocksAvg
-        foulsTotal
-        foulsTechnical
-        foulsUnsportsmanlike
-        foulsDrawn
-        foulsDrawnAvg
-        foulsPersonal
-        foulsPersonalAvg
-        plusMinusPointsAvg
-        efficiency
-        indexOfSuccess
-        doubleDouble
-        draws
-        dunks
-        pir
       }
     }
   }

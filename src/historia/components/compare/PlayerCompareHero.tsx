@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { useSeasons } from '@/historia/hooks/useSeasons';
+import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
 import { MAX_COMPARE_PLAYERS, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
 import { initialName } from '@/archivo/lib/names';
 import PlayerMark from './PlayerMark';
@@ -58,10 +59,10 @@ function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => v
   );
 }
 
-type ScopeMenuProps = { scope: CompareScope; scopeName: string; others: string[]; seasons: SeasonOption[]; currentSeasonProviderId: string };
+type ScopeMenuProps = { scope: CompareScope; scopeName: string; others: string[]; seasons: SeasonOption[]; currentSeasonProviderId: string; color: string };
 
 /** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
-function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
+function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId, color }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
   return (
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
@@ -74,26 +75,26 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, 
         </span>
       </div>
       <span className="lg:hidden">
-        <PlayerMark player={p} size={62} onDark onRemove={onRemove} />
+        <PlayerMark player={{ ...p, color }} size={62} onDark onRemove={onRemove} />
       </span>
       <span className="hidden lg:inline-flex">
-        <PlayerMark player={p} size={96} onDark onRemove={onRemove} />
+        <PlayerMark player={{ ...p, color }} size={96} onDark onRemove={onRemove} />
       </span>
     </div>
   );
 }
 
 /** Stacked slot (mobile with 2, and 3–4 players everywhere). */
-function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
+function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId, color }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
   const size = count === 4 ? 44 : 50;
   const sizeLg = count === 4 ? 62 : 70;
   return (
     <div className="flex flex-col items-center text-center">
       <span className="lg:hidden">
-        <PlayerMark player={p} size={size} onDark onRemove={onRemove} />
+        <PlayerMark player={{ ...p, color }} size={size} onDark onRemove={onRemove} />
       </span>
       <span className="hidden lg:inline-flex">
-        <PlayerMark player={p} size={sizeLg} onDark onRemove={onRemove} />
+        <PlayerMark player={{ ...p, color }} size={sizeLg} onDark onRemove={onRemove} />
       </span>
       <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
         <span className={cx('mt-[5px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')} title={p.name}>
@@ -111,18 +112,41 @@ function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, cu
 
 export default function PlayerCompareHero({ players }: Props) {
   const { pickerOpen, scopes } = useCompareState();
-  const { data: seasons } = useSeasons(200);
-  const currentSeasonProviderId = (seasons.find((s) => s.current) ?? seasons[0])?.providerId ?? '';
-  const seasonOptions: SeasonOption[] = seasons.map((s) => ({ providerId: s.providerId, name: s.name }));
-  const nameFor = (providerId: string) => seasons.find((s) => s.providerId === providerId)?.name ?? '';
+  /* Solo para el atajo "temporada actual para todos" — la lista de temporadas de cada jugador sale de su propio
+   * usePlayerComparison, no de todas las temporadas de la liga. */
+  const { data: leagueSeasons } = useSeasons();
+  const currentLeagueSeasonProviderId = (leagueSeasons.find((s) => s.current) ?? leagueSeasons[0])?.providerId ?? '';
   const keys = players.map((p) => p.key);
   const { add, remove } = useCompareNavigation(keys);
   const count = players.length;
   const isEmpty = count < 2;
   const openPicker = () => setPickerOpen(true);
+
+  // Fixed slots (MAX_COMPARE_PLAYERS): hooks must run the same number of times every render.
+  const slots = [players[0] ?? null, players[1] ?? null, players[2] ?? null, players[3] ?? null];
+  const comparisons = [
+    usePlayerComparison(slots[0]?.providerId ?? null),
+    usePlayerComparison(slots[1]?.providerId ?? null),
+    usePlayerComparison(slots[2]?.providerId ?? null),
+    usePlayerComparison(slots[3]?.providerId ?? null),
+  ];
+  const comparisonOf = (p: ComparePlayerData) => comparisons[players.findIndex((pl) => pl.key === p.key)];
+
   const slotProps = (p: ComparePlayerData) => {
-    const scope = scopeFor(p, scopes, currentSeasonProviderId);
-    return { p, scope, scopeName: scopeLabel(nameFor(scope)), others: keys.filter((k) => k !== p.key), onRemove: () => remove(p.key), seasons: seasonOptions, currentSeasonProviderId };
+    const cmp = comparisonOf(p);
+    const scope = scopeFor(p, scopes, cmp.currentSeasonProviderId ?? '');
+    const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({ providerId: s.providerId, name: s.name }));
+    const color = cmp.teamsFor(scope)[0]?.colorPrimary ?? p.color;
+    return {
+      p,
+      scope,
+      scopeName: scopeLabel(cmp.nameFor(scope)),
+      others: keys.filter((k) => k !== p.key),
+      onRemove: () => remove(p.key),
+      seasons: seasonOptions,
+      currentSeasonProviderId: currentLeagueSeasonProviderId,
+      color,
+    };
   };
 
   return (

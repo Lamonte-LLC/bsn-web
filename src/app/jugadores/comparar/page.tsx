@@ -47,7 +47,7 @@ async function load(key: string): Promise<ComparePlayerData | null> {
     avatarUrl: p.avatarUrl,
     teamCode: p.team?.code ?? null,
     color: p.team?.colorPrimary ?? '#7D7D7D',
-    line: [p.team?.nickname, positionLabel(p.playingPosition)].filter(Boolean).join(' · '),
+    line: positionLabel(p.playingPosition) ?? '',
   };
 }
 

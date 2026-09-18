@@ -27,12 +27,22 @@ type SeasonStats = {
   blocksAvg: number | null;
 };
 
+export type SeasonPlayed = { providerId: string; name: string; year: number; current: boolean };
+
+export type SeasonTeam = { providerId: string; code: string; name: string; nickname: string; colorPrimary: string };
+
+type StatsBySeasonNode = {
+  season: SeasonPlayed & { isActive: boolean; isPlayoffs: boolean };
+  teams: SeasonTeam[];
+  stats: SeasonStats;
+};
+
 type PlayerComparisonResponse = {
   player: {
     providerId: string;
     name: string;
     avatarUrl: string | null;
-    seasonStats: SeasonStats | null;
+    statsBySeasonConnection: { edges: { node: StatsBySeasonNode }[] };
   } | null;
 };
 
@@ -63,11 +73,15 @@ function toCompareValues(stats: SeasonStats): CompareValues {
   };
 }
 
-/** Skips the request entirely while either id is missing (empty slot, or season not resolved yet). */
-export function usePlayerComparison(providerId: string | null, seasonProviderId: string | null) {
+/**
+ * One player's stats across every regular-season edition they played (playoff editions are excluded — the
+ * comparison only shows "serie regular"). Fetched once per player (no season filter); the caller picks the
+ * edition for the currently selected scope client-side.
+ */
+export function usePlayerComparison(providerId: string | null) {
   const { data, loading, error } = useQuery<PlayerComparisonResponse>(PLAYER_COMPARISON, {
-    variables: { providerId, seasonProviderId },
-    skip: !providerId || !seasonProviderId,
+    variables: { providerId },
+    skip: !providerId,
     fetchPolicy: 'network-only',
     context: { fetchOptions: { cache: 'no-store' } },
   });
@@ -76,6 +90,26 @@ export function usePlayerComparison(providerId: string | null, seasonProviderId:
     console.error(error);
   }
 
-  const stats = data?.player?.seasonStats;
-  return { values: stats ? toCompareValues(stats) : EMPTY_VALUES, loading, error };
+  const editions = (data?.player?.statsBySeasonConnection.edges ?? [])
+    .map((edge) => edge.node)
+    .filter((node) => !node.season.isPlayoffs)
+    .sort((a, b) => b.season.year - a.season.year);
+
+  const seasons: SeasonPlayed[] = editions.map((e) => e.season);
+  const currentSeasonProviderId = seasons.find((s) => s.current)?.providerId ?? seasons[0]?.providerId ?? null;
+
+  const editionFor = (seasonProviderId: string | null) => editions.find((e) => e.season.providerId === seasonProviderId) ?? null;
+
+  const valuesFor = (seasonProviderId: string | null): CompareValues => {
+    const edition = editionFor(seasonProviderId);
+    return edition ? toCompareValues(edition.stats) : EMPTY_VALUES;
+  };
+
+  const teamsFor = (seasonProviderId: string | null): SeasonTeam[] => editionFor(seasonProviderId)?.teams ?? [];
+
+  const seasonFor = (seasonProviderId: string | null): SeasonPlayed | null => editionFor(seasonProviderId)?.season ?? null;
+
+  const nameFor = (seasonProviderId: string | null): string => seasonFor(seasonProviderId)?.name ?? '';
+
+  return { seasons, currentSeasonProviderId, valuesFor, teamsFor, seasonFor, nameFor, loading, error };
 }
