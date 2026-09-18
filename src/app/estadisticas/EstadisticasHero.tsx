@@ -4,10 +4,24 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import HistoriaSubnav from '@/historia/components/HistoriaSubnav';
 import { Suspense } from 'react';
 import PrintableViewButton from './PrintableViewButton';
-import VistaToggle from './VistaToggle';
 import { useEstadisticasTab, type EstadisticasTab } from './useEstadisticasTab';
 
-const TABS: EstadisticasTab[] = ['jugadores', 'equipos'];
+type HeroTab = EstadisticasTab | 'historicos';
+/** Three tabs: today's players, the all-time players (the archive) and the teams. The all-time tab is `?vista=historico`. */
+const TABS: Array<{ key: HeroTab; label: string }> = [
+  { key: 'jugadores', label: 'Jugadores activos' },
+  { key: 'historicos', label: 'Jugadores históricos' },
+  { key: 'equipos', label: 'Equipos' },
+];
+const TAB = 'relative cursor-pointer whitespace-nowrap pb-2 transition-colors outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40';
+const TAB_ON = 'text-white';
+const TAB_OFF = 'text-white/50 hover:text-white/75 active:text-white/60';
+
+/** Which tab is lit: the all-time one whenever the URL says so, else the stored players/teams tab. */
+function useHeroTab(activeTab: EstadisticasTab): HeroTab {
+  const historico = useSearchParams().get('vista') === 'historico';
+  return historico ? 'historicos' : activeTab;
+}
 
 /** All-time view: the historical sections under the toggle, plus the band the leaders panel overlaps. */
 function HistoricoBand({ className = '' }: { className?: string }) {
@@ -21,15 +35,38 @@ function HistoricoBand({ className = '' }: { className?: string }) {
   );
 }
 
-export default function EstadisticasHero() {
+function HeroTabs({ size }: { size: 'sm' | 'lg' }) {
   const [activeTab, setActiveTab] = useEstadisticasTab();
+  const current = useHeroTab(activeTab);
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleTabClick = (tab: EstadisticasTab) => {
+  const go = (tab: HeroTab) => {
+    if (tab === 'historicos') {
+      router.replace(`${pathname}?vista=historico`, { scroll: false });
+      return;
+    }
     setActiveTab(tab);
     router.replace(`${pathname}?tab=${tab}`, { scroll: false });
   };
+
+  return (
+    <div role="tablist" aria-label="Estadísticas" className={size === 'sm' ? 'flex gap-[18px]' : 'flex justify-center gap-[26px]'}>
+      {TABS.map((t) => {
+        const on = current === t.key;
+        return (
+          <button key={t.key} type="button" role="tab" aria-selected={on} onClick={() => go(t.key)} className={`${TAB} ${size === 'sm' ? 'text-[17px]' : 'text-[22px]'} ${on ? TAB_ON : TAB_OFF}`}>
+            {t.label}
+            {on ? <span className="absolute bottom-0 left-0 h-[1.5px] w-full rounded-full bg-white" /> : null}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function EstadisticasHero() {
+  const [activeTab] = useEstadisticasTab();
 
   return (
     <div className="container">
@@ -38,31 +75,11 @@ export default function EstadisticasHero() {
         <h1 className="font-special-gothic-condensed-one text-white text-[38px] tracking-[0.4px] mb-4">
           Estadísticas
         </h1>
-        <div className="flex gap-6">
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => handleTabClick(tab)}
-              className={`relative font-special-gothic-condensed-one text-[20px] pb-2 capitalize transition-colors ${
-                activeTab === tab
-                  ? 'text-white'
-                  : 'text-white/50 hover:text-white/75 active:text-white/60'
-              }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              {activeTab === tab && (
-                <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-white rounded-full" />
-              )}
-            </button>
-          ))}
-        </div>
-        <div className="mt-4">
-          <Suspense fallback={null}>
-            <VistaToggle />
-          </Suspense>
-        </div>
         <Suspense fallback={null}>
-          <HistoricoBand className="mt-[16px] w-full" />
+          <HeroTabs size="sm" />
+        </Suspense>
+        <Suspense fallback={null}>
+          <HistoricoBand className="mt-[18px] w-full" />
         </Suspense>
       </div>
 
@@ -76,23 +93,10 @@ export default function EstadisticasHero() {
           contenedor y el botón se ancla a la derecha sin desplazarlos.
         */}
         <div className="grid grid-cols-[1fr_auto_1fr] items-center">
-          <div className="col-start-2 flex justify-center gap-[22px]">
-            {TABS.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => handleTabClick(tab)}
-                className={`relative font-special-gothic-condensed-one text-[22px] pb-2 capitalize transition-colors ${
-                  activeTab === tab
-                    ? 'text-white'
-                    : 'text-white/50 hover:text-white/75 active:text-white/60'
-                }`}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                {activeTab === tab && (
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-white rounded-full" />
-                )}
-              </button>
-            ))}
+          <div className="col-start-2">
+            <Suspense fallback={null}>
+              <HeroTabs size="lg" />
+            </Suspense>
           </div>
           {/*
             mr-[7px]: el último ícono social del header mide 18px dentro de un
@@ -104,13 +108,8 @@ export default function EstadisticasHero() {
             <PrintableViewButton scope={activeTab} />
           </div>
         </div>
-        <div className="mt-5 flex justify-center">
-          <Suspense fallback={null}>
-            <VistaToggle />
-          </Suspense>
-        </div>
         <Suspense fallback={null}>
-          <HistoricoBand className="mt-[20px]" />
+          <HistoricoBand className="mt-[22px]" />
         </Suspense>
       </div>
     </div>
