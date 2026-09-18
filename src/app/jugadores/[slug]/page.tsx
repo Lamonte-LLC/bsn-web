@@ -19,6 +19,9 @@ import { cls } from '@/archivo/lib/tokens';
 import Callout from '@/historia/components/Callout';
 import EraNotes from '@/historia/components/EraNotes';
 import PlayerSeasonTable, { type CareerRow, type SeasonRow } from '@/historia/components/PlayerSeasonTable';
+import CareerArc from '@/historia/components/profile/CareerArc';
+import RecordsWatch from '@/historia/components/profile/RecordsWatch';
+import SimilarPlayers from '@/historia/components/profile/SimilarPlayers';
 import { totalsFromLines } from '@/historia/lib/compare';
 import { birthShort, hasReboundsGapIn2000s, nationalityLabel, positionLabel, UNLINKED_CAREER, yearsActive } from '@/historia/lib/copy';
 import { centimeterToInches } from '@/utils/unit-converter';
@@ -308,7 +311,13 @@ export default async function DetalleJugadorPage({ params }: { params: Promise<{
             </section>
           )}
 
-          {/* Reservado: "Jugadores parecidos" (backlog 8) y "Arco de carrera" (backlog 9) van aquí. */}
+          {archive ? (
+            <div className="mt-[44px] empty:hidden lg:mt-[56px]">
+              {isActive && unified.providerId ? <RecordsWatch playerId={archive.id} /> : null}
+              <CareerArc playerId={archive.id} name={unified.name} color={mainColor} isActive={isActive} />
+              <SimilarPlayers playerId={archive.id} playerSlug={archive.slug} />
+            </div>
+          ) : null}
 
           {isActive && unified.providerId ? (
             <section id="juego-por-juego" className="mt-[44px] lg:mt-[56px]">
