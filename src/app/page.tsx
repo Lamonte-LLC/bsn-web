@@ -12,6 +12,7 @@ import AdSlot from '@/shared/client/components/gtm/AdSlot';
 import BsnTvWidget from '@/highlights/widgets/BsnTvWidget';
 import SponsorsSection from '@/shared/components/sponsors/SponsorsSection';
 import { SEASON_IN_PROGRESS } from '@/shared/constants/season';
+import HistoriaSection from '@/historia/components/home/HistoriaSection';
 
 export default async function Home() {
   const homeNews = await loadLatestNewsForHome();
@@ -154,6 +155,7 @@ export default async function Home() {
           />
         </div>
       </section>
+      <HistoriaSection />
       <div className="mb-[100px]">
         <SeasonLeadersSection />
       </div>
