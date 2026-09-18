@@ -4,8 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import FranchiseLogo from '@/archivo/components/FranchiseLogo';
 import StatsTable, { type StatsColumn } from '@/archivo/components/StatsTable';
-import { TAB_PILL } from '@/archivo/components/Tabs';
-import { Button, Note } from '@/archivo/components/ui';
+import { Button } from '@/archivo/components/ui';
 import { fmtInt, yearsLabel } from '@/archivo/lib/format';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
 import { cls } from '@/archivo/lib/tokens';
@@ -72,38 +71,44 @@ export default function AllTimeLeaders({ leaders, active, franchises }: Props) {
     { key: 'value', label: current.unit, align: 'right', strong: true, sortValue: (r) => r.value, initialSort: 'desc', render: (r) => fmtInt(r.value) },
   ];
 
+  const meta = activeCount ? `${activeCount} activo${activeCount === 1 ? '' : 's'} en el top ${all.length}` : `Top ${all.length}`;
+
   return (
-    <div>
-      <div className="mb-[14px] flex flex-wrap items-center justify-between gap-[10px] md:mb-[16px]">
-        <div role="radiogroup" aria-label="Categoría" className="flex flex-wrap gap-[8px]">
-          {CATEGORIES.map((c) => (
+    <div className="rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[18px] pt-[2px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[34px] lg:pt-[4px]">
+      {/* Categories as the comparator's tab row: text with a straight ink underline, sticky while the list scrolls. */}
+      <div role="radiogroup" aria-label="Categoría" className="no-scrollbar sticky top-0 z-[3] -mx-[16px] flex gap-[18px] overflow-x-auto border-b border-[rgba(15,23,31,0.08)] bg-white px-[16px] [scrollbar-width:none] lg:-mx-[44px] lg:justify-center lg:gap-[34px] lg:px-[44px]">
+        {CATEGORIES.map((c) => {
+          const on = cat === c.key;
+          return (
             <button
               key={c.key}
               type="button"
               role="radio"
-              aria-checked={cat === c.key}
-              data-selected={cat === c.key ? '' : undefined}
+              aria-checked={on}
               onClick={() => {
                 setCat(c.key);
                 setExpanded(false);
               }}
-              className={TAB_PILL}
+              className={`relative shrink-0 cursor-pointer whitespace-nowrap pb-[11px] pt-[14px] text-[15px] tracking-[0.3px] transition-colors duration-150 outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[rgba(23,114,217,0.5)] lg:pb-[12px] lg:pt-[18px] lg:text-[17px] ${on ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.45)] hover:text-[rgba(15,23,31,0.75)]'}`}
             >
               {c.label}
+              {on ? <span className="absolute -bottom-[1px] left-0 right-0 h-[2.5px] bg-[#0F171F]" aria-hidden /> : null}
             </button>
-          ))}
-        </div>
-        <span className={`${cls.meta} ${cls.tabular}`}>{activeCount ? `${activeCount} activo${activeCount === 1 ? '' : 's'} en el top ${all.length}` : `Top ${all.length}`}</span>
+          );
+        })}
       </div>
-      <StatsTable columns={cols} rows={rows} rowKey={(r) => r.playerId} caption={`Líderes de todos los tiempos en ${current.label.toLowerCase()}`} zebra />
+      <StatsTable columns={cols} rows={rows} rowKey={(r) => r.playerId} caption={`Líderes de todos los tiempos en ${current.label.toLowerCase()}`} className="!rounded-none !border-0" />
       {!expanded && all.length > FIRST ? (
-        <div className="flex justify-center pt-[14px]">
+        <div className="flex justify-center pt-[16px]">
           <Button variant="secondary" onClick={() => setExpanded(true)}>
             Ver los {all.length}
           </Button>
         </div>
       ) : null}
-      <Note className="mt-[12px] !max-w-none">Totales de carrera publicados por la liga, Serie Regular, hasta 2023 para los retirados. Los activos siguen sumando y su total se actualiza al cierre de cada temporada.</Note>
+      <div className={`mt-[18px] flex flex-col items-center gap-[6px] border-t border-[rgba(15,23,31,0.06)] pt-[14px] text-center font-barlow text-[12px] text-[rgba(15,23,31,0.5)] lg:mt-[26px] lg:text-[13px] ${cls.tabular}`}>
+        <p className="font-medium text-[rgba(15,23,31,0.7)]">{meta} · serie regular</p>
+        <p>Totales de carrera publicados por la liga hasta 2023 para los retirados. Los activos siguen sumando y su total se actualiza al cierre de cada temporada.</p>
+      </div>
     </div>
   );
 }

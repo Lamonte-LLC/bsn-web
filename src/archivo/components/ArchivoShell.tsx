@@ -53,14 +53,12 @@ export default function ArchivoShell({ children, hero, overlap = false, site }: 
             <p className="font-barlow text-[11px] font-semibold uppercase tracking-[1.6px] text-[rgba(255,255,255,0.5)]">Estadísticas · Historia</p>
             <h1 className="mt-[8px] text-[30px] leading-[1] tracking-[0.4px] text-white lg:text-[42px]">{site.title}</h1>
             {site.meta ? <p className="mt-[8px] font-barlow text-[14px] font-medium text-[rgba(255,255,255,0.6)]">{site.meta}</p> : null}
+            <HistoriaSubnav active={site.nav} className="mt-[18px] lg:mt-[22px]" />
           </div>
         }
       >
         <div className="bg-[#FDFDFD]">
-          <div className="container pb-[48px] pt-[20px] lg:pb-[64px] lg:pt-[26px]">
-            <HistoriaSubnav active={site.nav} />
-            <div className="mt-[22px] lg:mt-[28px]">{children}</div>
-          </div>
+          <div className="container pb-[48px] pt-[24px] lg:pb-[64px] lg:pt-[32px]">{children}</div>
         </div>
       </FullWidthLayout>
     );

@@ -1,12 +1,25 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import HistoriaSubnav from '@/historia/components/HistoriaSubnav';
 import { Suspense } from 'react';
 import PrintableViewButton from './PrintableViewButton';
 import VistaToggle from './VistaToggle';
 import { useEstadisticasTab, type EstadisticasTab } from './useEstadisticasTab';
 
 const TABS: EstadisticasTab[] = ['jugadores', 'equipos'];
+
+/** All-time view: the historical sections under the toggle, plus the band the leaders panel overlaps. */
+function HistoricoBand({ className = '' }: { className?: string }) {
+  const historico = useSearchParams().get('vista') === 'historico';
+  if (!historico) return null;
+  return (
+    <div className={className}>
+      <HistoriaSubnav active="todos" />
+      <div className="h-[52px] lg:h-[66px]" aria-hidden />
+    </div>
+  );
+}
 
 export default function EstadisticasHero() {
   const [activeTab, setActiveTab] = useEstadisticasTab();
@@ -48,6 +61,9 @@ export default function EstadisticasHero() {
             <VistaToggle />
           </Suspense>
         </div>
+        <Suspense fallback={null}>
+          <HistoricoBand className="mt-[16px] w-full" />
+        </Suspense>
       </div>
 
       {/* Desktop: centered title with tabs underneath */}
@@ -93,6 +109,9 @@ export default function EstadisticasHero() {
             <VistaToggle />
           </Suspense>
         </div>
+        <Suspense fallback={null}>
+          <HistoricoBand className="mt-[20px]" />
+        </Suspense>
       </div>
     </div>
   );

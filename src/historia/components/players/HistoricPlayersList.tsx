@@ -149,7 +149,7 @@ function LetterChip({ letter, active, disabled, onClick }: { letter: string; act
 /** "1975 a 2001 · MVP ×3 · Activo": the line under the name. */
 function metaLine(p: UnifiedIndexEntry): string {
   const mvp = p.isMvp ? (p.mvpYears.length > 1 ? `MVP ×${p.mvpYears.length}` : 'MVP') : null;
-  return [yearsLabel(p.fy, p.ly), mvp, p.isActive ? 'Activo' : null].filter(Boolean).join(' · ');
+  return [yearsLabel(p.fy, p.ly), mvp].filter(Boolean).join(' · ');
 }
 
 function Avatar({ p, color, px }: { p: UnifiedIndexEntry; color: string | null; px: number }) {
@@ -188,14 +188,18 @@ export default function HistoricPlayersList({ franchises, firstYear, season }: P
   const [only, setOnly] = useState<HistoricOnly>('all');
   const [letter, setLetter] = useState('');
   const [visible, setVisible] = useState(HISTORIC_PAGE);
-  const { results, all, ready } = useUnifiedSearch(query, 600);
+  const { results, all: everyone, ready } = useUnifiedSearch(query, 600);
   const typing = query.trim().length > 0;
+  // Históricos means retired: the players of today live under Activos.
+  const all = useMemo(() => everyone.filter((p) => !p.isActive), [everyone]);
+  const lastYear = useMemo(() => all.reduce((m, p) => Math.max(m, p.ly), 0), [all]);
+  const retiredResults = useMemo(() => results.filter((p) => !p.isActive), [results]);
 
-  const withoutLetter = useMemo(() => filterHistoric(typing ? results : all, { franchise, decade, only, letter: '' }), [typing, results, all, franchise, decade, only]);
+  const withoutLetter = useMemo(() => filterHistoric(typing ? retiredResults : all, { franchise, decade, only, letter: '' }), [typing, retiredResults, all, franchise, decade, only]);
   const letters = useMemo(() => lettersWith(withoutLetter), [withoutLetter]);
   const list = useMemo(() => {
     const f = letter ? filterHistoric(withoutLetter, { franchise: '', decade: 0, only: 'all', letter }) : withoutLetter;
-    // Search results keep the hook's relevance order (actives first); the browse list goes by surname.
+    // Search results keep the hook's relevance order; the browse list goes by surname.
     return typing ? f : sortBySurname(f);
   }, [withoutLetter, letter, typing]);
   const shown = list.slice(0, visible);
@@ -347,7 +351,7 @@ export default function HistoricPlayersList({ franchises, firstYear, season }: P
           </div>
         </FiltersCard>
         <CountCard count={ready ? all.length : null}>
-          jugadores en el archivo, de {firstYear} a {season}. Los activos también están aquí.
+          jugadores retirados en el archivo, de {firstYear} a {lastYear || season}. Los de hoy están en Activos.
         </CountCard>
       </aside>
     </>

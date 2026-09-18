@@ -7,7 +7,6 @@ import SportRadarStatisticsEntitiesWidget from '@/stats/client/widgets/SportRada
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { useEstadisticasTab, initEstadisticasTabFromParam } from './useEstadisticasTab';
 import AllTimeLeaders from '@/historia/components/AllTimeLeaders';
-import HistoriaSubnav from '@/historia/components/HistoriaSubnav';
 import type { CareerLeader, CareerLeaderKey } from '@/historia/lib/data';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
 
@@ -36,34 +35,39 @@ function EstadisticasContent({ allTime }: { allTime: AllTimeData }) {
 
   if (vista === 'historico') {
     return (
-      <>
+      <section className="container -mt-[62px] mb-[24px] lg:-mt-[86px] lg:mb-[44px]">
         <EstadisticasTabSync />
-        <HistoriaSubnav active="todos" className="mb-[22px] lg:mb-[28px]" />
-        <AllTimeLeaders leaders={allTime.leaders} active={allTime.active} franchises={allTime.franchises} />
-      </>
+        <div className="mx-auto max-w-[1040px]">
+          <AllTimeLeaders leaders={allTime.leaders} active={allTime.active} franchises={allTime.franchises} />
+        </div>
+      </section>
     );
   }
 
   return (
-    <>
+    <div className="container pt-[22px] pb-8 lg:pt-[30px] lg:pb-12">
       <EstadisticasTabSync />
       {activeTab === 'jugadores' ? (
         <SportRadarStatisticsPersonsWidget />
       ) : (
         <SportRadarStatisticsEntitiesWidget />
       )}
-    </>
+    </div>
   );
 }
 
 export default function EstadisticasPageClient({ allTime }: { allTime: AllTimeData }) {
   return (
     <div className="bg-[#fdfdfd]">
-      <div className="container pt-[22px] pb-8 lg:pt-[30px] lg:pb-12">
-        <Suspense fallback={<ShimmerLine height="480px" />}>
-          <EstadisticasContent allTime={allTime} />
-        </Suspense>
-      </div>
+      <Suspense
+        fallback={
+          <div className="container pt-[22px] pb-8 lg:pt-[30px] lg:pb-12">
+            <ShimmerLine height="480px" />
+          </div>
+        }
+      >
+        <EstadisticasContent allTime={allTime} />
+      </Suspense>
     </div>
   );
 }
