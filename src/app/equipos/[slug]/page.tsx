@@ -478,7 +478,7 @@ export default async function DetalleEquipoPage({
                   <p className="font-barlow text-[15px] text-[rgba(0,0,0,0.6)]">Este equipo no tiene registro histórico en el archivo.</p>
                   <p className="mt-[24px] font-barlow text-[13px] text-[rgba(0,0,0,0.55)]">
                     <Link href="/equipos/historicos" className="font-medium text-[#1772D9] hover:text-[#1257A8]">
-                      Ver las franquicias que ya no compiten
+                      Ver todas las franquicias
                     </Link>
                   </p>
                 </div>

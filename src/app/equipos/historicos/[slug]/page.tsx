@@ -31,7 +31,7 @@ export default async function FranquiciaHistoricaPage({ params }: Params) {
     <FullWidthLayout
       divider
       subheader={
-        <div className="container pb-[80px] pt-[24px] lg:pb-[112px] lg:pt-[28px]">
+        <div className="container pb-[28px] pt-[24px] lg:pb-[32px] lg:pt-[28px]">
           <div className="flex flex-col gap-[18px] md:flex-row md:items-center md:gap-[28px]">
             <FranchiseLogo franchise={f} sizePx={96} className="md:!h-[120px] md:!w-[120px]" />
             <div className="min-w-0">
@@ -47,8 +47,8 @@ export default async function FranquiciaHistoricaPage({ params }: Params) {
         </div>
       }
     >
-      <div className="bg-[#FDFDFD] pb-[24px] lg:pb-[32px]">
-        <FranchiseHistory slug={f.slug} band={false} />
+      <div className="bg-[#FDFDFD]">
+        <FranchiseHistory slug={f.slug} />
       </div>
     </FullWidthLayout>
   );

@@ -1,21 +1,32 @@
 import type { Metadata } from 'next';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
-import FranchiseLogo from '@/archivo/components/FranchiseLogo';
-import { CardLink, HeroEyebrow, HeroTitle, Note, PaperCard, SectionTitle } from '@/archivo/components/ui';
-import { getChampions, getFranchiseFile } from '@/archivo/lib/data';
+import { HeroEyebrow, HeroTitle, Note, PaperCard, SectionTitle } from '@/archivo/components/ui';
+import { getChampions, getFranchises } from '@/archivo/lib/data';
+import { toFranchiseView } from '@/archivo/lib/franchise-view';
 import { cls } from '@/archivo/lib/tokens';
+import FranchisesGrid, { type FranchiseCard } from '@/historia/components/FranchisesGrid';
 import { PRE_FRANCHISE_NOTE } from '@/historia/lib/copy';
-import { extinctFranchises, preFranchiseChampions } from '@/historia/lib/data';
+import { CURRENT_SEASON, preFranchiseChampions } from '@/historia/lib/data';
 
-export const metadata: Metadata = { title: 'Franquicias históricas · Equipos · BSN', description: 'Las 16 franquicias que ya no compiten en el BSN y los clubes campeones anteriores al sistema de franquicias.' };
+export const metadata: Metadata = { title: 'Franquicias · Equipos · BSN', description: 'Las 28 franquicias del BSN, las que siguen y las que ya no compiten, con sus títulos, sus MVPs y todos los que vistieron la camiseta.' };
 
-/** The 16 extinct franchises, each with its own page, plus the pre-1946 champion clubs without a modern franchise. */
-export default function EquiposHistoricosPage() {
-  const extinct = extinctFranchises();
+/** Every franchise of the league (active and extinct) as one grid, plus the pre-1946 champion clubs without a modern franchise. */
+export default function FranquiciasPage() {
+  const all = getFranchises();
   const titles = new Map<string, number>();
   for (const c of getChampions()) if (c.franchiseSlug) titles.set(c.franchiseSlug, (titles.get(c.franchiseSlug) ?? 0) + 1);
-  const sorted = [...extinct].sort((a, b) => (titles.get(b.slug) ?? 0) - (titles.get(a.slug) ?? 0) || (a.firstYear ?? 0) - (b.firstYear ?? 0));
+  const cards: FranchiseCard[] = all
+    .map((f) => ({ ...toFranchiseView(f), city: f.city, firstYear: f.firstYear, lastYear: f.lastYear, titles: titles.get(f.slug) ?? 0 }))
+    .sort((a, b) => Number(b.status === 'active') - Number(a.status === 'active') || b.titles - a.titles || (a.firstYear ?? 0) - (b.firstYear ?? 0));
+  const active = cards.filter((c) => c.status === 'active').length;
+  const firstYear = Math.min(...all.map((f) => f.firstYear ?? 9999));
+  const years = CURRENT_SEASON - firstYear + 1;
   const preFranchise = preFranchiseChampions();
+  const counters: Array<[number, string]> = [
+    [cards.length, 'Franquicias'],
+    [active, 'Activas'],
+    [cards.length - active, 'Extintas'],
+  ];
 
   return (
     <FullWidthLayout
@@ -23,35 +34,28 @@ export default function EquiposHistoricosPage() {
       subheader={
         <div className="container pb-[28px] pt-[24px] lg:pb-[32px] lg:pt-[28px]">
           <HeroEyebrow>Equipos</HeroEyebrow>
-          <HeroTitle>Franquicias históricas</HeroTitle>
-          <p className="mt-[12px] max-w-[62ch] font-barlow text-[15px] leading-[1.5] text-white/75">
-            {extinct.length} franquicias que ya no compiten, con sus títulos, sus MVPs y todos los que vistieron la camiseta.
-          </p>
+          <HeroTitle>Franquicias</HeroTitle>
         </div>
       }
     >
       <div className="bg-[#FDFDFD]">
         <div className="container pb-[48px] pt-[24px] lg:pb-[64px] lg:pt-[32px]">
-          <section className="mb-[36px] lg:mb-[44px]">
-            <div className="grid grid-cols-1 gap-[12px] sm:grid-cols-2 md:gap-[16px] lg:grid-cols-4">
-              {sorted.map((f) => {
-                const n = titles.get(f.slug) ?? 0;
-                const players = getFranchiseFile(f.slug)?.players.length ?? 0;
-                return (
-                  <CardLink key={f.slug} href={`/equipos/historicos/${f.slug}`} className="flex items-center gap-[14px] px-[16px] py-[14px]">
-                    <FranchiseLogo franchise={f} sizePx={48} />
-                    <span className="min-w-0">
-                      <span className="block truncate font-barlow text-[15px] font-semibold text-[#0F171F]">{f.fullName}</span>
-                      <span className={`block truncate ${cls.meta} !text-[12px] ${cls.tabular}`}>
-                        {f.firstYear && f.lastYear ? `${f.firstYear} a ${f.lastYear}` : 'Años por confirmar'}
-                        {n ? ` · ${n} título${n === 1 ? '' : 's'}` : ''}
-                      </span>
-                      <span className={`block ${cls.meta} !text-[12px] ${cls.tabular}`}>{players ? `${players} jugadores` : f.city ?? 'Ciudad por confirmar'}</span>
-                    </span>
-                  </CardLink>
-                );
-              })}
+          <section className={`${cls.card} mb-[20px] flex flex-col gap-[20px] px-[22px] py-[22px] md:mb-[28px] md:flex-row md:items-center md:justify-between md:px-[36px] md:py-[30px]`}>
+            <div>
+              <h2 className="text-[26px] leading-[1] text-[#0F171F] md:text-[32px]">{years} años de clubes</h2>
+              <p className="mt-[8px] font-barlow text-[15px] text-[rgba(15,23,31,0.6)]">Los que siguen y los que ya no están</p>
             </div>
+            <dl className="flex gap-[28px] md:gap-[44px]">
+              {counters.map(([v, l]) => (
+                <div key={l} className="flex flex-col-reverse text-center">
+                  <dt className={`mt-[6px] ${cls.label}`}>{l}</dt>
+                  <dd className={`text-[36px] leading-[1] text-[#0F171F] md:text-[44px] ${cls.tabular}`}>{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+          <section className="mb-[36px] lg:mb-[44px]">
+            <FranchisesGrid franchises={cards} />
           </section>
 
           {preFranchise.length ? (

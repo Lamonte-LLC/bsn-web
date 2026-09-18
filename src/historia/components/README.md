@@ -18,7 +18,7 @@ Cada componente: qué hace, qué data consume, dónde se monta, cómo se comport
 
 **FranchiseHistory.tsx** · Historia de una franquicia, apilada y toda en tinta: fila de cuatro contadores, campeonatos en tabla (Año · Dirigente · Final) con las rachas como filas de grupo, líderes históricos con píldoras y números grandes, MVPs en tabla, temporadas resumidas por década y todos los jugadores. Las columnas numéricas comparten un ancho fijo para que el ritmo sea el mismo en todas las tablas. Se monta como pestaña Historia del equipo activo y como página de franquicia extinta.
 
-**FranchisePlayersList.tsx** · Todos los que vistieron la camiseta como tabla (Jugador · Años · Temporadas) con buscador, filtro Todos | Activos y Cargar 20 más. Sin resultados dice "Sin resultados para X".
+**FranchiseFullTable.tsx** · Todos los que vistieron la camiseta como tabla (Jugador · Años · Temporadas) con buscador, filtro Todos | Activos y Cargar 20 más. Sin resultados dice "Sin resultados para X".
 
 **SeasonSelector.tsx** · Selector de temporada 1930 a 2026 con décadas como tabs, que navega a `/temporadas/[year]` o a la sección actual. Consume la lista de años. Se monta en el hero de la página de temporada; los heros de Calendario, Estadísticas y Playoffs lo montan por la misma ruta cuando se decida (ver backlog). Siempre tiene data. Nuevo, basado en el `Menu` de Comparar equipos.
 

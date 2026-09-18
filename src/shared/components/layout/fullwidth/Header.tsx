@@ -353,8 +353,8 @@ export default function HeaderBoxLayout() {
                           ))}
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className="block text-[14px] leading-[1.2] text-[#0F171F]">Franquicias históricas</span>
-                          <span className="block font-barlow text-[11.5px] text-[rgba(15,23,31,0.55)]">Cardenales, Cariduros, Brujos y las que ya no compiten</span>
+                          <span className="block text-[14px] leading-[1.2] text-[#0F171F]">Todas las franquicias</span>
+                          <span className="block font-barlow text-[11.5px] text-[rgba(15,23,31,0.55)]">Las activas y las que ya no compiten, con su historia</span>
                         </span>
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="transition-transform duration-200 ease-out group-hover:translate-x-[2px] motion-reduce:transition-none">
                           <path d="M3 8h10M9 4l4 4-4 4" />
@@ -838,8 +838,8 @@ export default function HeaderBoxLayout() {
                         ))}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block text-[20px] leading-[1.1] text-white">Franquicias históricas</span>
-                        <span className="block font-barlow text-[12px] text-white/55">Las que ya no compiten</span>
+                        <span className="block text-[20px] leading-[1.1] text-white">Todas las franquicias</span>
+                        <span className="block font-barlow text-[12px] text-white/55">Activas y las que ya no compiten</span>
                       </span>
                     </Link>
                         </DisclosurePanel>
