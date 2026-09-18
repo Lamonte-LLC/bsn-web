@@ -1,8 +1,13 @@
-import Link from 'next/link';
 import { getClient } from '@/apollo-client';
+import { getFranchises, getPlayerIndex, getSeason } from '@/archivo/lib/data';
+import { franchiseViewMap } from '@/archivo/lib/franchise-view';
 import { SEASON_PLAYERS_CONNECTION } from '@/graphql/season';
+import { CURRENT_SEASON } from '@/historia/lib/data';
+import { sortBySurname } from '@/historia/lib/players-list';
 import FullWidthLayout from '@/shared/components/layout/fullwidth/FullWidthLayout';
-import JugadoresPageClient, { JugadorItem } from './JugadoresPageClient';
+import JugadoresPageClient, { JugadoresHeroControls, type JugadorItem, type JugadoresView } from './JugadoresPageClient';
+
+type SearchParams = Promise<{ vista?: string | string[] }>;
 
 const TEAM_CODES = [
   'AGU',
@@ -49,6 +54,9 @@ async function fetchPlayers(): Promise<JugadorItem[]> {
     fetchPolicy: 'network-only',
   });
 
+  // Points per game of the season, from the archive's live stats (no extra API call).
+  const ppgById = new Map((getSeason(CURRENT_SEASON)?.results?.playerStats ?? []).map((st) => [st.playerProviderId, st.ppg]));
+
   const seen = new Set<string>();
   const players: JugadorItem[] = [];
 
@@ -67,29 +75,20 @@ async function fetchPlayers(): Promise<JugadorItem[]> {
       height: player.height ?? 0,
       weight: player.weight ?? 0,
       dob: player.dob ?? '',
+      ppg: ppgById.get(player.providerId) ?? null,
     });
   }
 
-  // Sort by last name. Spanish naming: "First LastName1 LastName2" → sort key is LastName1.
-  // For two-word names "First Last" → sort key is Last.
-  // If parts[1] looks like a middle initial (≤2 chars), fall back to first name.
-  const lastName = (name: string) => {
-    const parts = name.trim().split(/\s+/);
-    if (parts.length <= 1) return parts[0];
-    if (parts.length === 2) return parts[1];
-    // 3+ words: check if parts[1] is a middle initial
-    const second = parts[1].replace('.', '');
-    if (second.length <= 2) return parts[0];
-    return parts[1];
-  };
-
-  return players.sort((a, b) =>
-    lastName(a.name).localeCompare(lastName(b.name), 'es'),
-  );
+  // Sort by last name (Spanish naming: "First LastName1 LastName2" → LastName1); see surnameOf in players-list.
+  return sortBySurname(players);
 }
 
-export default async function JugadoresPage() {
+export default async function JugadoresPage({ searchParams }: { searchParams: SearchParams }) {
+  const { vista } = await searchParams;
+  const view: JugadoresView = vista === 'historicos' ? 'historicos' : 'activos';
   const players = await fetchPlayers();
+  const franchises = franchiseViewMap(getFranchises());
+  const firstYear = getPlayerIndex().reduce((min, p) => Math.min(min, p.fy), CURRENT_SEASON);
 
   return (
     <FullWidthLayout
@@ -100,16 +99,12 @@ export default async function JugadoresPage() {
             <h1 className="font-special-gothic-condensed-one text-white text-center text-[42px] tracking-[0.4px] mb-0">
               Jugadores
             </h1>
-            <p className="mt-4 text-center">
-              <Link href="/jugadores/comparar" className="inline-flex h-[36px] items-center rounded-[99px] border border-white/30 px-[16px] text-[15px] text-white transition-colors duration-150 hover:border-white/60 hover:bg-white/5">
-                Comparar jugadores
-              </Link>
-            </p>
+            <JugadoresHeroControls vista={view} />
           </div>
         </section>
       }
     >
-      <JugadoresPageClient players={players} />
+      <JugadoresPageClient players={players} vista={view} franchises={franchises} firstYear={firstYear} season={CURRENT_SEASON} />
     </FullWidthLayout>
   );
 }

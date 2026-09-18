@@ -50,6 +50,32 @@ Todo lo histórico se lee de `data/archivo/` por `src/archivo/lib/data.ts` y `sr
 - `/temporadas` sin año no existe; el selector y los enlaces siempre llevan año.
 - Los dos errores de lint del repo (`RecentCalendarSlider.tsx`, `LeagueCalendarWidget.tsx`) ya existían en `main`.
 
+
+## Segunda entrega · 18 de septiembre de 2026 (demo para la liga)
+
+| # | Componente | Dónde vive | Estado |
+|---|---|---|---|
+| 7 | Récords a la vista | Perfil de activos con archivo: puesto histórico en puntos y juegos, distancia al siguiente y al top 50 (solo índice del archivo) | Hecho |
+| 8 | Jugadores parecidos | Perfil: tres parecidos por perfil de carrera, enlace al comparador | Hecho |
+| 9 | Arco de carrera | Perfil: gráfico del archivo, cifra pico en tinta | Hecho |
+| 10 | Salón de MVPs | `/estadisticas/mvps` | Hecho |
+| 11 | Récords | `/estadisticas/records` | Hecho |
+| 12 | Timeline de campeones | `/playoffs`, franja "Campeones anteriores" bajo el bracket | Hecho |
+| 13 | Cabeza a cabeza histórico | `/comparar-equipos`: títulos, último título, MVP, temporadas, debut y series reales desde 2025 | Hecho (sin finales históricas: falta el finalista en `champions.json`) |
+| 14 | Dynasty Tracker | `/estadisticas/campeones`, bloque "Dinastías" | Hecho |
+| 15 | Historias con data | `/estadisticas/en-numeros` y sus ocho vistas | Hecho (las páginas de `/archivo` se extrajeron a componentes de contenido con `hrefs(site)`) |
+| 16 | Un día como hoy | Home, sección "Historia BSN": Leyenda BSN (rotación diaria), Aniversarios (campeones y MVP de hace 50 y 25 años) y tres cifras | Hecho como "Aniversarios"; "Un día como hoy" exacto sigue bloqueado por fechas |
+| 17 | Buscador tipo pregunta | Global | Pendiente (falta definir el catálogo) |
+
+Además: pestaña Historia de equipo rehecha como panel continuo (contadores, sub-navegación fija, tablas centradas al mismo ancho); acceso a franquicias históricas en el menú Equipos; `/jugadores` con las vistas Activos (por defecto) e Históricos (todo el archivo, A a Z, búsqueda sin acentos, filtros por franquicia, época y MVP) y la columna PPJ en activos.
+
+Lienzo de diseño de esta entrega: https://claude.ai/artifact/NPEEsgC3DGSBg3v9M3iMnu (Historia de equipo A/B/C, módulos del home 1 a 4, listado A/B).
+
+### Nombres y decisiones de copy
+- "Leyenda BSN" sustituye a "jugador histórico del día". Pool: retirados (última temporada 2023 o antes) con MVP o 6,000+ puntos; rotación por día civil de Puerto Rico.
+- "Aniversarios" en vez de "Un día como hoy": la data solo trae el año de cada final, no la fecha.
+- Las cifras del home rotan a diario entre dirigente más ganador, máximo anotador, empate en MVP y franquicia con más títulos.
+
 ## Backlog (componentes 7 a 17)
 
 | # | Componente | Dónde vive | Data que consume | Reutiliza | Le falta | Estimado |

@@ -1,8 +1,14 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import type { FranchiseView } from '@/archivo/lib/franchise-view';
+import { fmt, normalizeSearch } from '@/archivo/lib/format';
+import { cls } from '@/archivo/lib/tokens';
+import HistoricPlayersList, { CountCard, CountLine, EmptyRows, FiltersCard, LoadMore, PillGroup, ROW, SearchField, SelectField, TH } from '@/historia/components/players/HistoricPlayersList';
+import { ACTIVE_PAGE, filterActive, type PositionGroup } from '@/historia/lib/players-list';
 import PlayerPhotoAvatar from '@/player/components/avatar/PlayerPhotoAvatar';
+
 const TEAM_LOGO_MAP: Record<string, string> = {
   AGU: 'Aguada',
   ARE: 'Arecibo',
@@ -64,7 +70,14 @@ const TEAM_DISPLAY_NAMES: Record<string, string> = {
   SCE: 'Santurce',
 };
 
-const PAGE_SIZE = 25;
+const TEAM_OPTIONS = Object.entries(TEAM_DISPLAY_NAMES).sort(([, a], [, b]) => a.localeCompare(b, 'es'));
+const POSITION_OPTIONS: Array<[PositionGroup | '', string]> = [
+  ['', 'Todas'],
+  ['G', 'G'],
+  ['F', 'F'],
+  ['C', 'C'],
+];
+const COLS = 'grid-cols-[minmax(0,1fr)_84px_30px_44px] gap-x-[12px] px-[8px] lg:grid-cols-[minmax(0,1fr)_220px_64px_80px] lg:gap-x-[16px] lg:px-[10px]';
 
 export type JugadorItem = {
   providerId: string;
@@ -75,261 +88,200 @@ export type JugadorItem = {
   height: number;
   weight: number;
   dob: string;
+  /** Points per game this season, from the archive's live stats; null when the player has not played. */
+  ppg: number | null;
 };
+
+export type JugadoresView = 'activos' | 'historicos';
+
+export const HISTORICOS_HREF = '/jugadores?vista=historicos';
+
+/* ---------- Hero controls (same content on the desktop band and the phone band) ---------- */
+
+const HERO_PILL = `inline-flex h-[35px] flex-[1_1_auto] items-center justify-center whitespace-nowrap rounded-[100px] border px-[18px] font-special-gothic-condensed-one text-[15px] leading-[1.4] tracking-[0.3px] transition-[background-color,border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 lg:flex-none lg:min-w-[150px] ${cls.focusOnDark}`;
+const HERO_PILL_ON = 'border-white bg-white text-[#0F171F]';
+const HERO_PILL_OFF = 'border-white/30 bg-transparent text-[rgba(255,255,255,0.85)] hover:border-white/60 hover:bg-white/5';
+
+/**
+ * Activos | Históricos pills (the view lives in the URL) and the link to the comparison, three identical pills
+ * in one row. On narrow phones the third one wraps to its own full-width line.
+ */
+export function JugadoresHeroControls({ vista }: { vista: JugadoresView }) {
+  const views: Array<[JugadoresView, string, string]> = [
+    ['activos', 'Activos', '/jugadores'],
+    ['historicos', 'Históricos', HISTORICOS_HREF],
+  ];
+  return (
+    <div className="mt-[20px] flex flex-wrap justify-center gap-[8px] lg:mt-[16px] lg:flex-nowrap">
+      <div role="radiogroup" aria-label="Vista" className="flex flex-[2_1_auto] gap-[8px] lg:flex-none">
+        {views.map(([key, label, href]) => (
+          <Link key={key} href={href} replace scroll={false} role="radio" aria-checked={vista === key} className={`${HERO_PILL} ${vista === key ? HERO_PILL_ON : HERO_PILL_OFF}`}>
+            {label}
+          </Link>
+        ))}
+      </div>
+      <Link href="/jugadores/comparar" className={`${HERO_PILL} ${HERO_PILL_OFF}`}>
+        Comparar jugadores
+      </Link>
+    </div>
+  );
+}
+
+/* ---------- Page ---------- */
 
 type Props = {
   players: JugadorItem[];
+  vista: JugadoresView;
+  franchises: Record<string, FranchiseView>;
+  /** Earliest debut year of the archive. */
+  firstYear: number;
+  season: number;
 };
 
-export default function JugadoresPageClient({ players }: Props) {
-  const [search, setSearch] = useState('');
-  const [teamFilter, setTeamFilter] = useState('');
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-
-  const filtered = useMemo(() => {
-    const q = search.toLowerCase().trim();
-    return players.filter((p) => {
-      const matchesSearch = !q || p.name.toLowerCase().includes(q);
-      const matchesTeam = !teamFilter || p.teamCode === teamFilter;
-      return matchesSearch && matchesTeam;
-    });
-  }, [players, search, teamFilter]);
-
-  const visible = filtered.slice(0, visibleCount);
-  const hasMore = visibleCount < filtered.length;
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    setVisibleCount(PAGE_SIZE);
-  };
-
-  const handleTeamFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTeamFilter(e.target.value);
-    setVisibleCount(PAGE_SIZE);
-  };
-
-  const searchInput = (dark?: boolean) => (
-    <div className="relative">
-      <div className="absolute left-[11px] top-1/2 -translate-y-1/2 pointer-events-none">
-        <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-          <circle cx="7.5" cy="7.5" r="5.5" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" />
-          <path d="M11.5 11.5L14.5 14.5" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      </div>
-      <input
-        type="text"
-        value={search}
-        onChange={handleSearch}
-        placeholder="Buscar jugador..."
-        className="w-full h-[41px] pl-[36px] pr-3 bg-[#f6f6f6] border border-white/80 rounded-[6px] font-barlow font-medium text-[14px] text-[rgba(15,23,31,0.9)] placeholder:text-[rgba(15,23,31,0.5)] outline-none focus:border-[rgba(15,23,31,0.2)] tracking-[-0.14px]"
-      />
-    </div>
-  );
-
-  const teamDropdown = (dark?: boolean) => (
-    <div>
-      <p className={`font-barlow font-semibold text-[13px] tracking-[-0.13px] mb-1.5 ${dark ? 'text-[rgba(255,255,255,0.9)]' : 'text-[rgba(15,23,31,0.5)]'}`}>
-        Filtrar por equipo
-      </p>
-      <div className="relative">
-        <select
-          value={teamFilter}
-          onChange={handleTeamFilter}
-          className="w-full h-[41px] pl-3 pr-8 bg-[#fafafa] border border-white/80 rounded-[6px] font-barlow font-medium text-[14px] text-[rgba(15,23,31,0.9)] appearance-none outline-none cursor-pointer focus:border-[rgba(15,23,31,0.2)] tracking-[-0.14px]"
-        >
-          <option value="">Todos los equipos</option>
-          {Object.entries(TEAM_DISPLAY_NAMES)
-            .sort(([, a], [, b]) => a.localeCompare(b, 'es'))
-            .map(([code, name]) => (
-              <option key={code} value={code}>{name}</option>
-            ))}
-        </select>
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M4 6l4 4 4-4" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-
+export default function JugadoresPageClient({ players, vista, franchises, firstYear, season }: Props) {
   return (
     <>
       {/* Mobile hero — flat #0F171F continues seamlessly from the navbar's bg-bsn gradient end */}
-      <div className="bg-[#0F171F] border-b border-white/10 lg:hidden">
+      <div className="border-b border-white/10 bg-[#0F171F] lg:hidden">
         <div className="container">
-          <div className="pt-8 pb-6">
-            <h1 className="font-special-gothic-condensed-one text-white text-center text-[38px] tracking-[0.4px] mb-6">
-              Jugadores
-            </h1>
-            <p className="-mt-2 mb-6 text-center">
-              <Link href="/jugadores/comparar" className="inline-flex h-[36px] items-center rounded-[99px] border border-white/30 px-[16px] text-[15px] text-white">
-                Comparar jugadores
-              </Link>
-            </p>
-            <div className="flex flex-col gap-3">
-              {searchInput(true)}
-              {teamDropdown(true)}
-            </div>
+          <div className="pb-[24px] pt-[32px]">
+            <h1 className="mb-0 text-center font-special-gothic-condensed-one text-[38px] tracking-[0.4px] text-white">Jugadores</h1>
+            <JugadoresHeroControls vista={vista} />
           </div>
         </div>
       </div>
 
-      {/* Main content */}
       <div className="bg-[#fdfdfd]">
-        <div className="container py-6 lg:pt-[50px] lg:pb-12">
-          <div className="flex flex-col lg:flex-row lg:gap-[50px] lg:items-start">
-
-            {/* Player table */}
-            <div className="flex-1 min-w-0">
-
-              {/* Count */}
-              <p className="font-barlow font-medium text-[14px] text-[rgba(15,23,31,0.7)] mb-[30px] lg:mb-[35px]">
-                Mostrando {visible.length} de {filtered.length} jugadores
-              </p>
-
-              {/* Table header */}
-              <div className="grid grid-cols-[1fr_110px_52px] lg:grid-cols-[1fr_200px_64px] items-center py-2 border-b border-[rgba(0,0,0,0.08)]">
-                <span className="font-special-gothic-condensed-one text-[13px] text-[rgba(0,0,0,0.6)] tracking-[1.17px] uppercase pl-1">
-                  JUGADOR
-                </span>
-                <span className="font-special-gothic-condensed-one text-[13px] text-[rgba(0,0,0,0.6)] tracking-[1.17px] uppercase">
-                  EQUIPO
-                </span>
-                <span className="font-special-gothic-condensed-one text-[13px] text-[rgba(0,0,0,0.6)] tracking-[1.17px] uppercase text-center">
-                  POS
-                </span>
-              </div>
-
-              {/* Player rows */}
-              {visible.map((p, index) => (
-                <Link
-                  key={p.providerId}
-                  href={`/jugadores/${p.providerId}`}
-                  className={`grid grid-cols-[1fr_110px_52px] lg:grid-cols-[1fr_200px_64px] items-center py-[9px] -mx-2 px-2 rounded transition-colors duration-150 ${
-                    index % 2 === 1 ? 'bg-[#f9f9f9] hover:bg-[#efefef]' : 'hover:bg-[#f5f5f5]'
-                  } active:brightness-95`}
-                >
-                  <div className="flex items-center gap-2.5 pl-1 min-w-0">
-                    <div
-                      className="rounded-full overflow-hidden shrink-0"
-                      style={{ width: 32, height: 32, outline: '0.5px solid rgba(81,81,81,0.25)' }}
-                    >
-                      <PlayerPhotoAvatar
-                        photoUrl={p.avatarUrl ?? ''}
-                        size={32}
-                        name={p.name}
-                      />
-                    </div>
-                    <span className="font-special-gothic-condensed-one text-[15px] text-[rgba(15,23,31,0.9)] tracking-[0.15px] leading-[1.4] truncate">
-                      {p.name}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-start gap-1.5 pl-2 lg:pl-0">
-                    {TEAM_LOGO_MAP[p.teamCode] && (
-                      <img
-                        src={`/assets/images/teams/${TEAM_LOGO_MAP[p.teamCode]}.png`}
-                        alt={p.teamCode}
-                        width={18}
-                        height={18}
-                        className="object-contain shrink-0"
-                      />
-                    )}
-                    <span className="font-barlow font-medium text-[13px] text-[rgba(15,23,31,0.6)] truncate">
-                      <span className="lg:hidden">{TEAM_SHORT_NAME[p.teamCode] ?? p.teamCode}</span>
-                      <span className="hidden lg:inline">{TEAM_FULL_NAME[p.teamCode] ?? p.teamCode}</span>
-                    </span>
-                  </div>
-                  <span className="font-barlow font-medium text-[13px] text-[#0f171f] text-center">
-                    {p.playingPosition || '—'}
-                  </span>
-                </Link>
-              ))}
-
-              {/* Empty state */}
-              {filtered.length === 0 && (
-                <div className="py-12 text-center font-barlow text-sm text-[rgba(0,0,0,0.4)]">
-                  No se encontraron jugadores.
-                </div>
-              )}
-
-              {/* Load more */}
-              {hasMore && (
-                <div className="mt-4">
-                  <button
-                    onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                    className="bg-[#fcfcfc] border border-[#d9d3d3] cursor-pointer px-4 py-2.5 rounded-[12px] w-full transition-all duration-150 hover:bg-[#f4f4f4] hover:border-[#c5bfbf] active:scale-[0.97]"
-                  >
-                    <span className="font-special-gothic-condensed-one text-[16px] text-black tracking-[0.32px]">
-                      Cargar más jugadores
-                    </span>
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Desktop sticky sidebar */}
-            <div className="hidden lg:block w-[360px] shrink-0 sticky top-6">
-              <div className="bg-white border border-[#EAEAEA] rounded-[12px] shadow-[0px_1px_3px_0px_rgba(20,24,31,0.04)]">
-                <div className="px-[30px] pt-6 pb-0">
-                  <h3 className="font-special-gothic-condensed-one text-2xl text-[rgba(15,23,31,0.9)] tracking-[0.24px]">
-                    Filtros
-                  </h3>
-                </div>
-                <div className="px-[30px] pt-5 pb-6 space-y-5">
-                  {/* Search */}
-                  <div className="space-y-[5px]">
-                    <label className="block font-barlow font-semibold text-[13px] text-[rgba(94,94,94,0.9)] tracking-[-0.13px]">
-                      Buscar
-                    </label>
-                    <div className="relative">
-                      <div className="absolute left-[11px] top-1/2 -translate-y-1/2 pointer-events-none">
-                        <svg width="16" height="16" viewBox="0 0 17 17" fill="none">
-                          <circle cx="7.5" cy="7.5" r="5.5" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" />
-                          <path d="M11.5 11.5L14.5 14.5" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" strokeLinecap="round" />
-                        </svg>
-                      </div>
-                      <input
-                        type="text"
-                        value={search}
-                        onChange={handleSearch}
-                        placeholder="Buscar jugador..."
-                        className="border border-[#D4D4D4] bg-[#fafafa] h-[40px] pl-[34px] pr-4 rounded-[6px] text-sm font-barlow font-medium text-[rgba(15,23,31,0.9)] tracking-[-0.14px] w-full outline-none focus:border-[rgba(15,23,31,0.2)] placeholder:text-[rgba(15,23,31,0.4)]"
-                      />
-                    </div>
-                  </div>
-                  {/* Team */}
-                  <div className="space-y-[5px]">
-                    <label className="block font-barlow font-semibold text-[13px] text-[rgba(94,94,94,0.9)] tracking-[-0.13px]">
-                      Por equipo
-                    </label>
-                    <div className="relative">
-                      <select
-                        value={teamFilter}
-                        onChange={handleTeamFilter}
-                        className="border border-[#D4D4D4] bg-[#fafafa] h-[40px] pl-4 pr-10 rounded-[6px] text-sm font-barlow font-medium text-[rgba(15,23,31,0.9)] tracking-[-0.14px] w-full appearance-none cursor-pointer outline-none"
-                      >
-                        <option value="">Todos los equipos</option>
-                        {Object.entries(TEAM_DISPLAY_NAMES)
-                          .sort(([, a], [, b]) => a.localeCompare(b, 'es'))
-                          .map(([code, name]) => (
-                            <option key={code} value={code}>{name}</option>
-                          ))}
-                      </select>
-                      <img
-                        src="/assets/images/icons/icon-chevron-down.png"
-                        alt=""
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <div className="container py-6 lg:pb-12 lg:pt-[50px]">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-[50px]">{vista === 'historicos' ? <HistoricPlayersList franchises={franchises} firstYear={firstYear} season={season} /> : <ActivePlayersList players={players} season={season} />}</div>
         </div>
       </div>
+    </>
+  );
+}
+
+/* ---------- Active view ---------- */
+
+function ActivePlayersList({ players, season }: { players: JugadorItem[]; season: number }) {
+  const [search, setSearch] = useState('');
+  const [team, setTeam] = useState('');
+  const [position, setPosition] = useState<PositionGroup | ''>('');
+  const [visibleCount, setVisibleCount] = useState(ACTIVE_PAGE);
+
+  const filtered = useMemo(() => {
+    const q = normalizeSearch(search);
+    const base = filterActive(players, { team, position });
+    return q ? base.filter((p) => normalizeSearch(p.name).includes(q)) : base;
+  }, [players, search, team, position]);
+  const visible = filtered.slice(0, visibleCount);
+
+  const change = <T,>(set: (v: T) => void) => (v: T) => {
+    set(v);
+    setVisibleCount(ACTIVE_PAGE);
+  };
+  const reset = () => {
+    setSearch('');
+    setTeam('');
+    setPosition('');
+    setVisibleCount(ACTIVE_PAGE);
+  };
+
+  const searchField = (showLabel: boolean) => <SearchField value={search} onChange={change(setSearch)} placeholder="Buscar jugador" label="Buscar" showLabel={showLabel} />;
+  const teamField = (showLabel: boolean) => (
+    <SelectField label="Por equipo" value={team} onChange={change(setTeam)} showLabel={showLabel}>
+      <option value="">Todos los equipos</option>
+      {TEAM_OPTIONS.map(([code, name]) => (
+        <option key={code} value={code}>
+          {name}
+        </option>
+      ))}
+    </SelectField>
+  );
+  const positionField = <PillGroup label="Posición" value={position} options={POSITION_OPTIONS} onChange={change(setPosition)} />;
+
+  return (
+    <>
+      <div className="min-w-0 flex-1">
+        {/* Phone filters */}
+        <div className="mb-[20px] flex flex-col gap-[10px] lg:hidden">
+          {searchField(false)}
+          {positionField}
+          {teamField(false)}
+        </div>
+
+        <CountLine shown={visible.length} total={filtered.length} order="orden alfabético" />
+
+        <div className={`${cls.card} px-[12px] pb-[4px] pt-[12px]`}>
+          <div role="table" aria-label="Jugadores activos">
+            <div role="row" className={`grid ${COLS} items-center pb-[9px] pt-[2px]`}>
+              <span role="columnheader" className={TH}>
+                Jugador
+              </span>
+              <span role="columnheader" className={TH}>
+                Equipo
+              </span>
+              <span role="columnheader" className={`${TH} text-center`}>
+                Pos
+              </span>
+              <span role="columnheader" className={`${TH} text-right`}>
+                <abbr title="Puntos por juego" className="no-underline">
+                  PPJ
+                </abbr>
+              </span>
+            </div>
+
+            {visible.map((p) => (
+              <Link key={p.providerId} href={`/jugadores/${p.providerId}`} role="row" className={`${ROW} ${COLS}`}>
+                <span role="cell" className="flex min-w-0 items-center gap-[8px] lg:gap-[10px]">
+                  <span className="shrink-0 overflow-hidden rounded-full lg:hidden" style={{ width: 32, height: 32, outline: '0.5px solid rgba(81,81,81,0.25)' }}>
+                    <PlayerPhotoAvatar photoUrl={p.avatarUrl ?? ''} size={32} name={p.name} />
+                  </span>
+                  <span className="hidden shrink-0 overflow-hidden rounded-full lg:block" style={{ width: 36, height: 36, outline: '0.5px solid rgba(81,81,81,0.25)' }}>
+                    <PlayerPhotoAvatar photoUrl={p.avatarUrl ?? ''} size={36} name={p.name} />
+                  </span>
+                  <span className="truncate text-[16px] leading-[1.3] tracking-[0.15px] text-[rgba(15,23,31,0.9)]">{p.name}</span>
+                </span>
+                <span role="cell" className="flex min-w-0 items-center gap-[6px]">
+                  {TEAM_LOGO_MAP[p.teamCode] ? <img src={`/assets/images/teams/${TEAM_LOGO_MAP[p.teamCode]}.png`} alt="" width={18} height={18} loading="lazy" className="shrink-0 object-contain" /> : null}
+                  <span className="truncate font-barlow text-[13px] font-medium text-[rgba(15,23,31,0.6)]">
+                    <span className="lg:hidden">{TEAM_SHORT_NAME[p.teamCode] ?? p.teamCode}</span>
+                    <span className="hidden lg:inline">{TEAM_FULL_NAME[p.teamCode] ?? p.teamCode}</span>
+                  </span>
+                </span>
+                <span role="cell" className="whitespace-nowrap text-center font-barlow text-[13px] font-medium text-[#0F171F]">
+                  {p.playingPosition || '–'}
+                </span>
+                <span role="cell" className={`whitespace-nowrap text-right font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.6)] ${cls.tabular}`}>
+                  {fmt(p.ppg)}
+                </span>
+              </Link>
+            ))}
+
+            {!filtered.length ? <EmptyRows onReset={reset}>{search.trim() ? `Sin resultados para “${search.trim()}”. Prueba sin acentos o con el apellido.` : 'Ningún jugador con esos filtros.'}</EmptyRows> : null}
+          </div>
+        </div>
+
+        <LoadMore page={ACTIVE_PAGE} remaining={filtered.length - visible.length} onClick={() => setVisibleCount((c) => c + ACTIVE_PAGE)} />
+      </div>
+
+      {/* Desktop sidebar */}
+      <aside className="sticky top-6 hidden w-[360px] shrink-0 lg:block">
+        <FiltersCard>
+          {searchField(true)}
+          {teamField(true)}
+          <div className="space-y-[5px]">
+            <span className="block font-barlow text-[13px] font-semibold tracking-[-0.13px] text-[rgba(94,94,94,0.9)]">Posición</span>
+            {positionField}
+          </div>
+        </FiltersCard>
+        <CountCard count={players.length}>
+          jugadores activos en BSN {season}. Los retirados viven en{' '}
+          <Link href={HISTORICOS_HREF} replace scroll={false} className={`${cls.textLink} ${cls.focus} rounded-[2px]`}>
+            Históricos
+          </Link>
+          .
+        </CountCard>
+      </aside>
     </>
   );
 }
