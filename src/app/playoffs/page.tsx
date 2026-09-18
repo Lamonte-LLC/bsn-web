@@ -4,6 +4,7 @@ import { franchiseContextLineShort } from '@/historia/lib/copy';
 import { CURRENT_SEASON, franchiseContextByCode } from '@/historia/lib/data';
 import PlayoffsPageClient, { type SeriesContext } from './PlayoffsPageClient';
 import PlayoffsHero from './PlayoffsHero';
+import ChampionsTimeline from '@/historia/components/ChampionsTimeline';
 
 /** One line of historical context per active franchise, keyed by live team code, for the series cards. */
 function seriesContext(): Record<string, SeriesContext> {
@@ -20,6 +21,7 @@ export default function PlayoffsPage() {
   return (
     <FullWidthLayout divider subheader={<PlayoffsHero />}>
       <PlayoffsPageClient contextByCode={seriesContext()} />
+      <ChampionsTimeline className="mb-[60px] mt-[10px] lg:mb-[100px]" />
     </FullWidthLayout>
   );
 }

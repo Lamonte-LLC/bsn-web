@@ -11,12 +11,13 @@ import { CURRENT_SEASON, franchiseFileWithColors } from '../lib/data';
 import Callout from './Callout';
 import EraNotes from './EraNotes';
 import FranchisePlayersList from './FranchisePlayersList';
+import HistorySubnav from './HistorySubnav';
 
 /* Table typography shared by every block, so all columns read the same. */
 const TH = 'whitespace-nowrap px-[10px] pb-[9px] pt-[10px] font-barlow text-[12.5px] font-normal uppercase text-[rgba(0,0,0,0.6)]';
 const TD = 'h-[48px] whitespace-nowrap px-[10px] font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.9)]';
 /* Numeric columns share one width so gaps between them stay identical from table to table. */
-const NUM_COL = 'w-[96px] md:w-[110px]';
+const NUM_COL = 'w-[78px] md:w-[110px]';
 
 const RUN_WORDS: Record<number, string> = { 2: 'Bicampeones', 3: 'Tricampeones', 4: 'Cuatro seguidos', 5: 'Cinco seguidos', 6: 'Seis seguidos', 7: 'Siete seguidos' };
 
@@ -34,17 +35,27 @@ function consecutiveRuns(years: number[]): Array<[number, number]> {
   return out;
 }
 
-function SectionHead({ title, right }: { title: string; right?: string }) {
+/** Centered title between hairlines, as the comparator names its sections; the id anchors the sub-nav. */
+/** Centered title between hairlines, as the comparator names its sections; the id anchors the sub-nav. */
+function SectionHead({ id, title }: { id: string; title: string }) {
   return (
-    <div className="mb-[14px] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-[6px]">
-      <h2 className="text-[22px] leading-[1.1] text-[#0F171F]">{title}</h2>
-      {right ? <span className={`${cls.meta} ${cls.tabular}`}>{right}</span> : null}
+    <div id={id} className="flex scroll-mt-[72px] items-center gap-[12px] pb-[12px] pt-[22px] md:gap-[14px] md:pb-[14px] md:pt-[30px]">
+      <span className="h-px flex-1 bg-[rgba(15,23,31,0.08)]" aria-hidden />
+      <h2 className="text-center text-[19px] leading-[1.1] tracking-[0.3px] text-[#0F171F] md:text-[22px]">{title}</h2>
+      <span className="h-px flex-1 bg-[rgba(15,23,31,0.08)]" aria-hidden />
     </div>
   );
 }
 
+/** Every table in the panel shares one width and sits centered, so columns keep the same rhythm block after block. */
+const TABLE_W = 'mx-auto w-full max-w-[760px]';
+
+function Footline({ children }: { children: React.ReactNode }) {
+  return <p className={`${TABLE_W} mt-[10px] px-[10px] ${cls.meta} ${cls.tabular}`}>{children}</p>;
+}
+
 function EmptyLine({ children }: { children: React.ReactNode }) {
-  return <div className={`${cls.card} px-[18px] py-[16px] font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.6)]`}>{children}</div>;
+  return <div className={`${TABLE_W} ${cls.card} px-[18px] py-[16px] font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.6)]`}>{children}</div>;
 }
 
 /** Championships as a table, newest first; back-to-back titles get a small group row above their years. */
@@ -53,7 +64,7 @@ function ChampionshipsTable({ titles }: { titles: FranchiseTitle[] }) {
   const sorted = [...titles].sort((a, b) => b.year - a.year);
   const started = new Set<number>();
   return (
-    <div className={`${cls.card} overflow-hidden px-[4px] md:px-[12px]`}>
+    <div className={`${TABLE_W} overflow-hidden`}>
       <table className={`w-full border-collapse ${cls.tabular}`}>
         <caption className="sr-only">Campeonatos de la franquicia</caption>
         <thead>
@@ -107,7 +118,19 @@ function FragmentRow({ group, children }: { group: string | null; children: Reac
  * MVPs, seasons by decade and every player, each as one table with the same column rhythm. All ink; the
  * team color never carries text, since weak primaries would not contrast.
  */
-export default function FranchiseHistory({ slug }: { slug: string }) {
+const SECTIONS = [
+  { id: 'campeonatos', label: 'Campeonatos' },
+  { id: 'lideres', label: 'Líderes históricos' },
+  { id: 'mvps', label: 'Más valiosos' },
+  { id: 'temporadas', label: 'Temporadas' },
+  { id: 'jugadores', label: 'Jugadores' },
+];
+
+/**
+ * @param band  Paint the ink strip the panel overlaps (team page: the tab row ends flat). The extinct
+ *              franchise page pads its own hero instead and passes false.
+ */
+export default function FranchiseHistory({ slug, band = true }: { slug: string; band?: boolean }) {
   const f = franchiseFileWithColors(slug);
   if (!f) return null;
   const titleYears = f.titles.map((t) => t.year).sort((a, b) => a - b);
@@ -131,8 +154,8 @@ export default function FranchiseHistory({ slug }: { slug: string }) {
         </Link>
       ),
     },
-    { key: 'seasons', label: 'Temporadas', title: 'Temporadas con la franquicia', align: 'right', width: 110, sortValue: (l) => l.seasons, render: (l) => String(l.seasons) },
-    { key: 'g', label: 'Juegos', align: 'right', width: 110, sortValue: (l) => l.g, render: (l) => fmtInt(l.g) },
+    { key: 'seasons', label: 'Temporadas', title: 'Temporadas con la franquicia', align: 'right', width: 110, hideBelowMd: true, sortValue: (l) => l.seasons, render: (l) => String(l.seasons) },
+    { key: 'g', label: 'Juegos', align: 'right', width: 110, hideBelowMd: true, sortValue: (l) => l.g, render: (l) => fmtInt(l.g) },
     { key: 'value', label, align: 'right', width: 110, sortValue: (l) => l.value, initialSort: 'desc', render: (l) => <span className="text-[22px] leading-none md:text-[24px]">{fmtInt(l.value)}</span> },
   ];
   const withRank = (list: FranchiseLeaderEntry[]): Ranked[] => list.map((l, i) => ({ ...l, rank: i + 1 }));
@@ -155,131 +178,155 @@ export default function FranchiseHistory({ slug }: { slug: string }) {
     }));
   const dash = <span className="text-[rgba(0,0,0,0.3)]">–</span>;
 
+  const counters = [
+    [String(f.titles.length), lastTitle ? `Campeonatos · último ${lastTitle.year}` : 'Campeonatos'],
+    [String(f.mvps.length), 'Jugadores más valiosos'],
+    [String(f.activeYears.length), `Temporadas · ${f.activeYears[0]} a ${f.activeYears[f.activeYears.length - 1]}`],
+    [fmtInt(f.players.length), 'Jugadores en su historia'],
+  ] as const;
+  const sections = SECTIONS.filter((sct) => (sct.id === 'lideres' ? leaderTabs.length > 0 : sct.id === 'jugadores' ? f.players.length > 0 : true));
+
   return (
     <div>
-      {/* Counters: plain typography, all ink. */}
-      <div className="mb-[28px] grid grid-cols-2 gap-x-[12px] gap-y-[16px] border-b border-[rgba(0,0,0,0.08)] pb-[22px] md:mb-[36px] md:grid-cols-4 md:pb-[28px]">
-        {(
-          [
-            [String(f.titles.length), 'Campeonatos'],
-            [String(f.mvps.length), 'Jugadores más valiosos'],
-            [String(f.activeYears.length), `Temporadas · desde ${debut}`],
-            [fmtInt(f.players.length), 'Jugadores en su historia'],
-          ] as const
-        ).map(([v, l]) => (
-          <div key={l}>
-            <p className={`text-[30px] leading-[1] text-[#0F171F] md:text-[36px] ${cls.tabular}`}>{v}</p>
-            <p className={`mt-[6px] ${cls.label}`}>{l}</p>
+      {band ? <div className="h-[62px] bg-[#0F171F] lg:h-[86px]" aria-hidden /> : null}
+      <div className="container -mt-[62px] mb-[24px] lg:-mt-[86px] lg:mb-[44px]">
+        <div className="mx-auto max-w-[1040px] rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[18px] pt-[6px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[34px] lg:pt-[10px]">
+          {/* Counters: the panel opens with the franchise in four numbers, all ink. */}
+          <div className="grid grid-cols-2 gap-x-[12px] gap-y-[16px] px-[4px] pb-[16px] pt-[16px] md:flex md:flex-wrap md:justify-center md:gap-x-[64px] md:pb-[18px] md:pt-[20px]">
+            {counters.map(([v, l]) => (
+              <div key={l} className="text-center">
+                <p className={`text-[30px] leading-[1] text-[#0F171F] md:text-[36px] ${cls.tabular}`}>{v}</p>
+                <p className={`mt-[6px] ${cls.label}`}>{l}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {f.notes ? (
-        <Callout icon="info" title="Sobre esta franquicia" className="mb-[28px] md:mb-[36px]">
-          {f.notes}
-        </Callout>
-      ) : null}
+          <HistorySubnav items={sections} />
+          {f.notes ? (
+            <Callout icon="info" title="Sobre esta franquicia" className="mt-[20px]">
+              {f.notes}
+            </Callout>
+          ) : null}
 
-      <section className="mb-[32px] md:mb-[40px]">
-        <SectionHead title="Campeonatos" right={lastTitle ? `Último título ${lastTitle.year}${lastTitle.series ? ` · Final ${lastTitle.series}` : ''}` : undefined} />
-        {f.titles.length ? <ChampionshipsTable titles={f.titles} /> : <EmptyLine>Sin campeonatos en su historia. En la liga desde {debut}.</EmptyLine>}
-      </section>
+          <section>
+            <SectionHead id="campeonatos" title="Campeonatos" />
+            {f.titles.length ? <ChampionshipsTable titles={f.titles} /> : <EmptyLine>Sin campeonatos en su historia. En la liga desde {debut}.</EmptyLine>}
+            {lastTitle ? <Footline>Último título {lastTitle.year}{lastTitle.series ? ` · Final ${lastTitle.series}` : ''}{lastTitle.coach ? ` · ${lastTitle.coach}` : ''}</Footline> : null}
+          </section>
 
-      {leaderTabs.length ? (
-        <section className="mb-[32px] md:mb-[40px]">
-          <SectionHead title="Líderes históricos" right="Serie regular con la franquicia" />
-          <Tabs small tabs={leaderTabs.map(([label, list]) => ({ label, panel: <StatsTable columns={leaderCols(label)} rows={withRank(list)} rowKey={(l) => l.playerId} /> }))} />
-          <EraNotes debutYears={[debut]} className="mt-[20px]" />
-        </section>
-      ) : null}
+          {leaderTabs.length ? (
+            <section>
+              <SectionHead id="lideres" title="Líderes históricos" />
+              <Tabs small className="[&>div:first-child]:mb-[10px] [&>div:first-child]:justify-center" tabs={leaderTabs.map(([label, list]) => ({ label, panel: <StatsTable columns={leaderCols(label)} rows={withRank(list)} rowKey={(l) => l.playerId} className={`${TABLE_W} !rounded-none !border-0`} /> }))} />
+              <Footline>Serie regular con la franquicia · líderes por totales</Footline>
+              <EraNotes debutYears={[debut]} className={`${TABLE_W} mt-[16px]`} />
+            </section>
+          ) : null}
 
-      <section className="mb-[32px] md:mb-[40px]">
-        <SectionHead title="Jugadores más valiosos" right={mvps.length ? `${mvps.length} en total` : undefined} />
-        {mvps.length ? (
-          <div className={`${cls.card} overflow-hidden px-[4px] md:px-[12px]`}>
-            <table className={`w-full border-collapse ${cls.tabular}`}>
-              <caption className="sr-only">Jugadores más valiosos de la franquicia</caption>
-              <thead>
-                <tr className="border-b border-[rgba(0,0,0,0.08)]">
-                  <th scope="col" className={`${TH} w-[72px] text-left`}>Año</th>
-                  <th scope="col" className={`${TH} text-left`}>Jugador</th>
-                  <th scope="col" className={`${TH} ${NUM_COL} text-right`}>Posición</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mvps.map((m) => (
-                  <tr key={m.year} className="border-t border-[rgba(0,0,0,0.06)] transition-colors duration-150 hover:bg-[#FAFAFA]">
-                    <td className={`${TD} text-left font-bold`}>
-                      <Link href={`/temporadas/${m.year}`} className={`rounded-[4px] ${cls.focus}`} title={`Temporada ${m.year}`}>
-                        {m.year}
-                      </Link>
-                    </td>
-                    <td className={`${TD} text-left`}>
-                      {m.slug ? (
-                        <Link href={`/jugadores/${m.slug}`} className={`inline-flex items-center gap-[10px] rounded-[4px] font-semibold ${cls.focus}`}>
-                          <PlayerAvatar name={m.name} sizePx={30} />
-                          {m.name}
-                        </Link>
-                      ) : (
-                        <span className="inline-flex items-center gap-[10px] font-semibold">
-                          <PlayerAvatar name={m.name} sizePx={30} />
-                          {m.name}
-                        </span>
-                      )}
-                    </td>
-                    <td className={`${TD} text-right text-[rgba(0,0,0,0.55)]`}>{mvpPosition.get(m.year) ?? dash}</td>
+          <section>
+            <SectionHead id="mvps" title="Jugadores más valiosos" />
+            {mvps.length ? (
+              <div className={`${TABLE_W} overflow-hidden`}>
+                <table className={`w-full border-collapse ${cls.tabular}`}>
+                  <caption className="sr-only">Jugadores más valiosos de la franquicia</caption>
+                  <thead>
+                    <tr className="border-b border-[rgba(0,0,0,0.08)]">
+                      <th scope="col" className={`${TH} w-[72px] text-left`}>Año</th>
+                      <th scope="col" className={`${TH} text-left`}>Jugador</th>
+                      <th scope="col" className={`${TH} ${NUM_COL} text-right`}>Posición</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {mvps.map((m) => (
+                      <tr key={m.year} className="border-t border-[rgba(0,0,0,0.06)] transition-colors duration-150 hover:bg-[#FAFAFA]">
+                        <td className={`${TD} text-left font-bold`}>
+                          <Link href={`/temporadas/${m.year}`} className={`rounded-[4px] ${cls.focus}`} title={`Temporada ${m.year}`}>
+                            {m.year}
+                          </Link>
+                        </td>
+                        <td className={`${TD} text-left`}>
+                          {m.slug ? (
+                            <Link href={`/jugadores/${m.slug}`} className={`inline-flex items-center gap-[10px] rounded-[4px] font-semibold ${cls.focus}`}>
+                              <PlayerAvatar name={m.name} sizePx={30} />
+                              {m.name}
+                            </Link>
+                          ) : (
+                            <span className="inline-flex items-center gap-[10px] font-semibold">
+                              <PlayerAvatar name={m.name} sizePx={30} />
+                              {m.name}
+                            </span>
+                          )}
+                        </td>
+                        <td className={`${TD} text-right text-[rgba(0,0,0,0.55)]`}>{mvpPosition.get(m.year) ?? dash}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <EmptyLine>Ningún jugador de la franquicia ha sido nombrado jugador más valioso.</EmptyLine>
+            )}
+          </section>
+
+          <section>
+            <SectionHead id="temporadas" title="Temporadas" />
+            <div className={`${TABLE_W} overflow-hidden`}>
+              <table className={`w-full border-collapse ${cls.tabular}`}>
+                <caption className="sr-only">Temporadas por década</caption>
+                <thead>
+                  <tr className="border-b border-[rgba(0,0,0,0.08)]">
+                    <th scope="col" className={`${TH} text-left`}>Década</th>
+                    <th scope="col" className={`${TH} ${NUM_COL} text-right`}>
+                      <span className="md:hidden">Temp.</span>
+                      <span className="hidden md:inline">Temporadas</span>
+                    </th>
+                    <th scope="col" className={`${TH} ${NUM_COL} text-right`}>
+                      <span className="md:hidden">Títulos</span>
+                      <span className="hidden md:inline">Campeonatos</span>
+                    </th>
+                    <th scope="col" className={`${TH} ${NUM_COL} text-right`}>MVPs</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {decades.map((d) => (
+                    <tr key={d.label} className="border-t border-[rgba(0,0,0,0.06)]">
+                      <td className={`${TD} text-left font-bold`}>{d.label}</td>
+                      <td className={`${TD} text-right`}>{d.seasons}</td>
+                      <td className={`${TD} text-right ${d.titles ? 'font-bold' : ''}`}>{d.titles || dash}</td>
+                      <td className={`${TD} text-right`}>{d.mvps || dash}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {latest ? (
+              <Footline>
+                Última temporada {latest.year} · {latest.won}-{latest.lost}
+                {latest.position ? ` · ${latest.position}º${latest.group ? ` del Grupo ${latest.group}` : ''}` : ''}
+                {latest.year === CURRENT_SEASON ? ' · en curso' : ''}
+              </Footline>
+            ) : null}
+          </section>
+
+          {f.players.length ? (
+            <section>
+              <SectionHead id="jugadores" title="Todos los que vistieron la camiseta" />
+              <div className={TABLE_W}>
+                <FranchisePlayersList players={f.players} currentSeason={CURRENT_SEASON} bare />
+              </div>
+            </section>
+          ) : null}
+
+          <div className="mt-[22px] flex flex-col items-center gap-[6px] border-t border-[rgba(15,23,31,0.06)] pt-[16px] text-center font-barlow text-[12px] text-[rgba(15,23,31,0.5)] lg:mt-[30px] lg:text-[13px]">
+            <p>Archivo histórico del BSN · serie regular desde 1930 · campeones desde 1930</p>
+            <Link href="/equipos/historicos" className={cls.textLink}>
+              Ver las franquicias que ya no compiten
+            </Link>
           </div>
-        ) : (
-          <EmptyLine>Ningún jugador de la franquicia ha sido nombrado jugador más valioso.</EmptyLine>
-        )}
-      </section>
-
-      <section className="mb-[32px] md:mb-[40px]">
-        <SectionHead title="Temporadas" right={`${f.activeYears.length} · ${f.activeYears[0]} a ${f.activeYears[f.activeYears.length - 1]}`} />
-        <div className={`${cls.card} overflow-hidden px-[4px] md:px-[12px]`}>
-          <table className={`w-full border-collapse ${cls.tabular}`}>
-            <caption className="sr-only">Temporadas por década</caption>
-            <thead>
-              <tr className="border-b border-[rgba(0,0,0,0.08)]">
-                <th scope="col" className={`${TH} text-left`}>Década</th>
-                <th scope="col" className={`${TH} ${NUM_COL} text-right`}>Temporadas</th>
-                <th scope="col" className={`${TH} ${NUM_COL} text-right`}>Campeonatos</th>
-                <th scope="col" className={`${TH} ${NUM_COL} text-right`}>MVPs</th>
-              </tr>
-            </thead>
-            <tbody>
-              {decades.map((d) => (
-                <tr key={d.label} className="border-t border-[rgba(0,0,0,0.06)]">
-                  <td className={`${TD} text-left font-bold`}>{d.label}</td>
-                  <td className={`${TD} text-right`}>{d.seasons}</td>
-                  <td className={`${TD} text-right ${d.titles ? 'font-bold' : ''}`}>{d.titles || dash}</td>
-                  <td className={`${TD} text-right`}>{d.mvps || dash}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <span className="sr-only">
+            <FranchiseLogo franchise={f} sizePx={1} />
+          </span>
         </div>
-        {latest ? (
-          <p className={`mt-[10px] ${cls.meta} ${cls.tabular}`}>
-            Última temporada {latest.year} · {latest.won}-{latest.lost}
-            {latest.position ? ` · ${latest.position}º${latest.group ? ` del Grupo ${latest.group}` : ''}` : ''}
-            {latest.year === CURRENT_SEASON ? ' · en curso' : ''}
-          </p>
-        ) : null}
-      </section>
-
-      {f.players.length ? (
-        <section>
-          <SectionHead title="Todos los que vistieron la camiseta" right={`${fmtInt(f.players.length)} jugadores`} />
-          <FranchisePlayersList players={f.players} currentSeason={CURRENT_SEASON} />
-        </section>
-      ) : null}
-      <span className="sr-only">
-        <FranchiseLogo franchise={f} sizePx={1} />
-      </span>
+      </div>
     </div>
   );
 }

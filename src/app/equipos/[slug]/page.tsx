@@ -470,20 +470,20 @@ export default async function DetalleEquipoPage({
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="container">
-              <div className="mt-6 md:mt-[30px] lg:mt-[60px]">
-                {franchise ? (
-                  <FranchiseHistory slug={franchise.slug} />
-                ) : (
+            {franchise ? (
+              <FranchiseHistory slug={franchise.slug} />
+            ) : (
+              <div className="container">
+                <div className="mt-6 md:mt-[30px] lg:mt-[60px]">
                   <p className="font-barlow text-[15px] text-[rgba(0,0,0,0.6)]">Este equipo no tiene registro histórico en el archivo.</p>
-                )}
-                <p className="mt-[24px] font-barlow text-[13px] text-[rgba(0,0,0,0.55)]">
-                  <Link href="/equipos/historicos" className="font-medium text-[#1772D9] hover:text-[#1257A8]">
-                    Ver las franquicias que ya no compiten
-                  </Link>
-                </p>
+                  <p className="mt-[24px] font-barlow text-[13px] text-[rgba(0,0,0,0.55)]">
+                    <Link href="/equipos/historicos" className="font-medium text-[#1772D9] hover:text-[#1257A8]">
+                      Ver las franquicias que ya no compiten
+                    </Link>
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </TabPanel>
         </TabPanels>
       </TabGroup>

@@ -21,6 +21,8 @@ export interface StatsColumn<Row> {
   strong?: boolean;
   /** Mark this column as sorted on first paint (the rows must already come in that order). */
   initialSort?: 'asc' | 'desc';
+  /** Secondary column: hidden on phones, shown from md up. */
+  hideBelowMd?: boolean;
 }
 
 interface Props<Row> {
@@ -78,7 +80,7 @@ export default function StatsTable<Row>({ columns, rows, rowKey, emphasize, empt
                   data-sort-key={c.sortValue ? c.key : undefined}
                   data-sort-initial={c.initialSort}
                   aria-sort={c.sortValue ? (c.initialSort ? (c.initialSort === 'asc' ? 'ascending' : 'descending') : 'none') : undefined}
-                  className={`group h-[36px] whitespace-nowrap bg-white pb-[9px] pt-[10px] align-bottom text-[10.5px] font-semibold uppercase tracking-[0.8px] text-[rgba(0,0,0,0.45)] md:text-[11px] ${CELL_X} ${align(c)} ${
+                  className={`group h-[36px] whitespace-nowrap bg-white pb-[9px] pt-[10px] align-bottom text-[10.5px] font-semibold uppercase tracking-[0.8px] text-[rgba(0,0,0,0.45)] md:text-[11px] ${CELL_X} ${align(c)} ${c.hideBelowMd ? 'hidden md:table-cell' : ''} ${
                     c.sticky ? 'sticky left-0 z-30 shadow-[inset_-1px_0_0_rgba(0,0,0,0.1),inset_0_-1px_0_rgba(0,0,0,0.12)] md:shadow-none' : ''
                   } ${c.sortValue ? `cursor-pointer select-none transition-colors duration-150 hover:text-[rgba(0,0,0,0.75)] data-sorted:text-[#0F171F] ${cls.focus}` : ''}`}
                 >
@@ -109,7 +111,7 @@ export default function StatsTable<Row>({ columns, rows, rowKey, emphasize, empt
                         key={c.key}
                         data-sort-value={sv === undefined ? undefined : sv === null ? '' : String(sv)}
                         data-sort-type={sv === undefined ? undefined : typeof sv === 'number' ? 'n' : 's'}
-                        className={`h-[44px] whitespace-nowrap py-0 ${CELL_X} ${align(c)} ${c.sticky ? `sticky left-0 z-10 ${rowBg} shadow-[inset_-1px_0_0_rgba(0,0,0,0.1)] md:shadow-none` : ''} ${
+                        className={`h-[44px] whitespace-nowrap py-0 ${CELL_X} ${align(c)} ${c.hideBelowMd ? 'hidden md:table-cell' : ''} ${c.sticky ? `sticky left-0 z-10 ${rowBg} shadow-[inset_-1px_0_0_rgba(0,0,0,0.1)] md:shadow-none` : ''} ${
                           isNull ? 'font-normal text-[rgba(0,0,0,0.35)]' : c.strong && !total ? 'font-semibold' : ''
                         }`}
                       >

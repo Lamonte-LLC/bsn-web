@@ -8,14 +8,20 @@ import type {
   CompareTeamData,
   TeamRecord,
 } from '@/team/components/compare/types';
+import TeamHistoryHeadToHead from '@/historia/components/compare/TeamHistoryHeadToHead';
+import type { SeriesBetween, TeamHistoryFacts } from '@/historia/lib/head-to-head';
 import { toggleCompareTeam, useCompareSelection } from './useCompareSelection';
 
 type Props = {
   /** Récords (G-P, grupo) resueltos en el servidor desde standings. */
   records: Record<string, TeamRecord>;
+  /** Historia de cada franquicia (títulos, MVP, temporadas), por código. */
+  historyFacts: Record<string, TeamHistoryFacts>;
+  /** Series reales de playoffs entre equipos activos desde 2025. */
+  playoffSeries: SeriesBetween[];
 };
 
-export default function CompararEquiposPageClient({ records }: Props) {
+export default function CompararEquiposPageClient({ records, historyFacts, playoffSeries }: Props) {
   const { selected, seasonProviderId } = useCompareSelection();
   const hasComparison = selected.length >= MIN_COMPARE_TEAMS;
 
@@ -35,7 +41,10 @@ export default function CompararEquiposPageClient({ records }: Props) {
     <section className="container -mt-[62px] mb-[24px] lg:-mt-[86px] lg:mb-[44px]">
       <div className="mx-auto max-w-[1120px]">
         {hasComparison ? (
-          <CompareStatsPanel teams={teams} seasonProviderId={seasonProviderId} />
+          <>
+            <CompareStatsPanel teams={teams} seasonProviderId={seasonProviderId} />
+            <TeamHistoryHeadToHead codes={selected} facts={historyFacts} series={playoffSeries.filter((s) => selected.includes(s.a.code) && selected.includes(s.b.code))} />
+          </>
         ) : (
           <CompareEmptyCard selected={selected} onToggle={toggleCompareTeam} />
         )}

@@ -20,7 +20,7 @@ const TD = 'h-[48px] whitespace-nowrap px-[10px] font-barlow text-[14px] font-me
  * Every player who wore the jersey, as one table: search, a Todos | Activos filter, and "Cargar 20 más" so
  * the list grows in place. Avatars are neutral initials (no team color, so weak primaries never fail).
  */
-export default function FranchisePlayersList({ players, currentSeason }: { players: FranchisePlayer[]; currentSeason: number }) {
+export default function FranchisePlayersList({ players, currentSeason, bare = false }: { players: FranchisePlayer[]; currentSeason: number; /** Inside a panel: no card around the table. */ bare?: boolean }) {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<Filter>('todos');
   const [visible, setVisible] = useState(PAGE);
@@ -80,7 +80,7 @@ export default function FranchisePlayersList({ players, currentSeason }: { playe
       </div>
 
       {shown.length ? (
-        <div className={`${cls.card} overflow-hidden px-[4px] md:px-[12px]`}>
+        <div className={bare ? '' : `${cls.card} overflow-hidden px-[4px] md:px-[12px]`}>
           <table className={`w-full border-collapse ${cls.tabular}`}>
             <caption className="sr-only">Jugadores de la franquicia</caption>
             <thead>

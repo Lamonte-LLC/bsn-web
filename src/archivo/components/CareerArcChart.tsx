@@ -92,7 +92,7 @@ export default function CareerArcChart({ players, franchises, stat: initialStat 
         return (
           <g key={`${playerIndex}-${cx}`}>
             <circle cx={cx} cy={cy} r={5.5} fill={p.color} />
-            <text x={cx} y={cy - 11} textAnchor="middle" fontSize={11.5} fontFamily="var(--font-barlow)" fontWeight={600} fill={p.color}>
+            <text x={cx} y={cy - 11} textAnchor="middle" fontSize={11.5} fontFamily="var(--font-barlow)" fontWeight={600} fill="#0F171F">
               {fmt(value)}
             </text>
           </g>

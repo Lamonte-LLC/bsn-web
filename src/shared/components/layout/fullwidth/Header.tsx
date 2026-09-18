@@ -344,6 +344,22 @@ export default function HeaderBoxLayout() {
                           </div>
                         </Link>
                       </div>
+                      <Link href="/equipos/historicos" className="group flex items-center gap-[12px] border-t border-[rgba(0,0,0,0.08)] px-[16px] py-[12px] transition-colors duration-150 hover:bg-[#FAFAFA]">
+                        <span className="flex items-center" aria-hidden>
+                          {[['RP', '#8A2A33'], ['FAJ', '#C2542B'], ['GUA', '#5B4E8C']].map(([abbr, color], i) => (
+                            <span key={abbr} className={`inline-flex h-[22px] w-[22px] items-center justify-center rounded-full font-barlow-condensed text-[8px] font-bold italic text-white ring-2 ring-white ${i ? '-ml-[6px]' : ''}`} style={{ backgroundColor: color }}>
+                              {abbr}
+                            </span>
+                          ))}
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-[14px] leading-[1.2] text-[#0F171F]">Franquicias históricas</span>
+                          <span className="block font-barlow text-[11.5px] text-[rgba(15,23,31,0.55)]">Cardenales, Cariduros, Brujos y las que ya no compiten</span>
+                        </span>
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="transition-transform duration-200 ease-out group-hover:translate-x-[2px] motion-reduce:transition-none">
+                          <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
+                      </Link>
                     </PopoverPanel>
                     </div>
                     )}
@@ -813,6 +829,19 @@ export default function HeaderBoxLayout() {
                         </div>
                       </Link>
                     </div>
+                    <Link href="/equipos/historicos" onClick={() => setIsOpen(false)} className="-mx-[12px] mb-[12px] flex items-center gap-[12px] rounded-[8px] px-[12px] py-[10px] transition-colors duration-150 active:opacity-45">
+                      <span className="flex items-center" aria-hidden>
+                        {[['RP', '#8A2A33'], ['FAJ', '#C2542B'], ['GUA', '#5B4E8C']].map(([abbr, color], i) => (
+                          <span key={abbr} className={`inline-flex h-[26px] w-[26px] items-center justify-center rounded-full font-barlow-condensed text-[9px] font-bold italic text-white ring-2 ring-[#0F171F] ${i ? '-ml-[7px]' : ''}`} style={{ backgroundColor: color }}>
+                            {abbr}
+                          </span>
+                        ))}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[20px] leading-[1.1] text-white">Franquicias históricas</span>
+                        <span className="block font-barlow text-[12px] text-white/55">Las que ya no compiten</span>
+                      </span>
+                    </Link>
                         </DisclosurePanel>
                       </>
                     )}

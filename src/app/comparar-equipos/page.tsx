@@ -5,6 +5,10 @@ import { STANDINGS_TABLE_BASIC } from '@/graphql/stats';
 import type { TeamRecord } from '@/team/components/compare/types';
 import CompararEquiposHero from './CompararEquiposHero';
 import CompararEquiposPageClient from './CompararEquiposPageClient';
+import { getFranchiseFile, getSeason } from '@/archivo/lib/data';
+import { franchiseByCode } from '@/historia/lib/data';
+import { seriesBetween, teamHistoryFacts, type TeamHistoryFacts } from '@/historia/lib/head-to-head';
+import { COMPARE_TEAMS } from '@/team/components/compare/teams';
 
 /**
  * Los récords (G-P) vienen de standings en el servidor; sin esto la página se
@@ -66,12 +70,25 @@ async function fetchTeamRecords(): Promise<Record<string, TeamRecord>> {
   }
 }
 
+/** Historical facts per live code and the real playoff series of the last seasons, for the head-to-head block. */
+function history(): { facts: Record<string, TeamHistoryFacts>; seasons: ReturnType<typeof getSeason>[] } {
+  const facts: Record<string, TeamHistoryFacts> = {};
+  for (const t of COMPARE_TEAMS) {
+    const f = franchiseByCode(t.code);
+    const file = f ? getFranchiseFile(f.slug) : null;
+    if (file) facts[t.code] = teamHistoryFacts(t.code, file);
+  }
+  return { facts, seasons: [2025, 2026].map((y) => getSeason(y)) };
+}
+
 export default async function CompararEquiposPage() {
   const records = await fetchTeamRecords();
+  const { facts, seasons } = history();
+  const series = seriesBetween(seasons.filter((s): s is NonNullable<typeof s> => s !== null), COMPARE_TEAMS.map((t) => t.code));
 
   return (
     <FullWidthLayout divider subheader={<CompararEquiposHero />}>
-      <CompararEquiposPageClient records={records} />
+      <CompararEquiposPageClient records={records} historyFacts={facts} playoffSeries={series} />
     </FullWidthLayout>
   );
 }
