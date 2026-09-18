@@ -7,6 +7,7 @@ import SportRadarStatisticsEntitiesWidget from '@/stats/client/widgets/SportRada
 import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { useEstadisticasTab, initEstadisticasTabFromParam } from './useEstadisticasTab';
 import AllTimeLeaders from '@/historia/components/AllTimeLeaders';
+import HistoriaSubnav from '@/historia/components/HistoriaSubnav';
 import type { CareerLeader, CareerLeaderKey } from '@/historia/lib/data';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
 
@@ -37,6 +38,7 @@ function EstadisticasContent({ allTime }: { allTime: AllTimeData }) {
     return (
       <>
         <EstadisticasTabSync />
+        <HistoriaSubnav active="todos" className="mb-[22px] lg:mb-[28px]" />
         <AllTimeLeaders leaders={allTime.leaders} active={allTime.active} franchises={allTime.franchises} />
       </>
     );

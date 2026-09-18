@@ -7,12 +7,15 @@ import { TAB_PILL } from '@/archivo/components/Tabs';
 import { PaperCard } from '@/archivo/components/ui';
 import { fmt } from '@/archivo/lib/format';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
+import { hrefs } from '@/archivo/lib/hrefs';
 import { cls } from '@/archivo/lib/tokens';
 import type { ScoringClubFile } from '@/archivo/lib/types';
 
 const PAGE = 40;
 
-export default function ScoringClubClient({ data, franchises }: { data: ScoringClubFile; franchises: Record<string, FranchiseView> }) {
+/** `site` points the links at the public site (/jugadores, /temporadas, /equipos) instead of /archivo. */
+export default function ScoringClubClient({ data, franchises, site = false }: { data: ScoringClubFile; franchises: Record<string, FranchiseView>; site?: boolean }) {
+  const h = hrefs(site);
   const [threshold, setThreshold] = useState('20');
   const [visible, setVisible] = useState(PAGE);
   const list = data.byThreshold[threshold] ?? [];
@@ -72,17 +75,17 @@ export default function ScoringClubClient({ data, franchises }: { data: ScoringC
               <li key={`${s.playerId}-${s.year}`} className="grid min-h-[46px] grid-cols-[1fr_56px_44px] items-center gap-x-[10px] border-t border-[rgba(0,0,0,0.05)] px-[16px] py-[5px] md:grid-cols-[28px_1fr_130px_56px_44px] md:px-[24px]">
                 <span className="hidden font-barlow-condensed text-[13px] text-[rgba(0,0,0,0.45)] md:block">{i + 1}</span>
                 <span className="flex min-w-0 items-baseline gap-[8px]">
-                  <Link href={`/archivo/jugadores/${s.slug}`} className={`min-w-0 truncate font-barlow text-[14px] font-semibold text-[#0F171F] rounded-[4px] ${cls.focus}`}>
+                  <Link href={h.player(s.slug)} className={`min-w-0 truncate font-barlow text-[14px] font-semibold text-[#0F171F] rounded-[4px] ${cls.focus}`}>
                     {s.name}
                   </Link>
-                  <Link href={`/archivo/temporadas/${s.year}`} className={`shrink-0 font-barlow text-[12.5px] text-[rgba(0,0,0,0.5)] hover:text-[#0F171F] ${cls.tabular} rounded-[4px] ${cls.focus}`}>
+                  <Link href={h.season(s.year)} className={`shrink-0 font-barlow text-[12.5px] text-[rgba(0,0,0,0.5)] hover:text-[#0F171F] ${cls.tabular} rounded-[4px] ${cls.focus}`}>
                     {s.year}
                   </Link>
                 </span>
                 <span className="hidden min-w-0 items-center gap-[6px] md:flex">
                   <FranchiseLogo franchise={f} fallbackName={s.franchiseSlug ?? ''} sizePx={18} />
                   {f ? (
-                    <Link href={`/archivo/franquicias/${f.slug}`} className={`truncate font-barlow text-[13px] text-[rgba(0,0,0,0.65)] hover:text-[#0F171F] rounded-[4px] ${cls.focus}`}>
+                    <Link href={h.franchise(f)} className={`truncate font-barlow text-[13px] text-[rgba(0,0,0,0.65)] hover:text-[#0F171F] rounded-[4px] ${cls.focus}`}>
                       {f.nickname}
                     </Link>
                   ) : null}

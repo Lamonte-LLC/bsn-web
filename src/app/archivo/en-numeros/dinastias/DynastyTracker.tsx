@@ -7,6 +7,7 @@ import ShareButton from '@/archivo/components/ShareButton';
 import { Button, PaperCard } from '@/archivo/components/ui';
 import { textOn } from '@/archivo/lib/color';
 import type { FranchiseView } from '@/archivo/lib/franchise-view';
+import { hrefs } from '@/archivo/lib/hrefs';
 import { cls, EASE, NEUTRAL_CLUB, RED } from '@/archivo/lib/tokens';
 
 export interface DynastyTitle {
@@ -30,6 +31,8 @@ const BASE_MS = 700;
 interface Props {
   titles: DynastyTitle[];
   franchises: Record<string, FranchiseView>;
+  /** Point the franchise links at the public site (/equipos) instead of /archivo/franquicias. */
+  site?: boolean;
 }
 
 /**
@@ -37,7 +40,8 @@ interface Props {
  * animate (250ms, system curve). Paused at the final year on load. With reduced motion there is no playback:
  * a year selector jumps without transition and the year is announced politely.
  */
-export default function DynastyTracker({ titles, franchises }: Props) {
+export default function DynastyTracker({ titles, franchises, site = false }: Props) {
+  const h = hrefs(site);
   const years = useMemo(() => titles.map((t) => t.year), [titles]);
   const minYear = years[0];
   const maxYear = years[years.length - 1];
@@ -172,7 +176,7 @@ export default function DynastyTracker({ titles, franchises }: Props) {
             <p className="font-barlow text-[11px] font-bold uppercase tracking-[1.1px] text-[#0F171F] md:text-[12px]">Campeón {year}</p>
             {champion ? (
               championF ? (
-                <Link href={`/archivo/franquicias/${championF.slug}`} className={`mt-[3px] block truncate font-barlow text-[14.5px] font-semibold text-[#0F171F] md:text-[16px] rounded-[4px] ${cls.focus}`}>
+                <Link href={h.franchise(championF)} className={`mt-[3px] block truncate font-barlow text-[14.5px] font-semibold text-[#0F171F] md:text-[16px] rounded-[4px] ${cls.focus}`}>
                   {champion.name}
                 </Link>
               ) : (
@@ -211,7 +215,7 @@ export default function DynastyTracker({ titles, franchises }: Props) {
             const base = 'absolute inset-x-0 flex items-center gap-[12px]';
             const style = { height: rowH, transform: `translateY(${y}px)`, opacity: visible ? 1 : 0, transition, pointerEvents: visible && !playing ? 'auto' : 'none' } as const;
             return f ? (
-              <Link key={key} href={`/archivo/franquicias/${f.slug}`} className={`${base} rounded-[6px] ${cls.focus}`} style={style} aria-hidden={!visible} tabIndex={visible && !playing ? 0 : -1}>
+              <Link key={key} href={h.franchise(f)} className={`${base} rounded-[6px] ${cls.focus}`} style={style} aria-hidden={!visible} tabIndex={visible && !playing ? 0 : -1}>
                 {inner}
               </Link>
             ) : (
