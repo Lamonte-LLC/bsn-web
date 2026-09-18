@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getChampions, getCoaches, getFranchiseMap, getMultiMvps, getMvps, getPlayer, getPlayerIndex, getPlayerIndexById, getRecords } from '@/archivo/lib/data';
 import type { Franchise } from '@/archivo/lib/types';
+import type { NumberFact } from '@/historia/lib/home';
 import { cls } from '@/archivo/lib/tokens';
 import { CURRENT_SEASON } from '@/historia/lib/data';
 import {
@@ -18,7 +19,7 @@ import {
 } from '@/historia/lib/home';
 import AnniversariesCard, { type AnniversaryRow } from './AnniversariesCard';
 import LegendCard from './LegendCard';
-import NumberTiles from './NumberTiles';
+import NumberTiles, { type TileMark } from './NumberTiles';
 
 /**
  * "Historia BSN" on the home page: the legend of the day (A), the seasons 50 and 25 years back (B) and one
@@ -49,7 +50,7 @@ export default function HistoriaSection() {
     const c = championByYear.get(a.year);
     if (!c) return [];
     const mvp = mvpByYear.get(a.year) ?? null;
-    return [{ ago: a.ago, year: a.year, champion: c.fullName, championLine: championLine(c), mvpName: mvp?.name ?? null, mvpTeam: mvp ? teamNickname(mvp.teamName) : null }];
+    return [{ ago: a.ago, year: a.year, champion: c.fullName, franchise: c.franchiseSlug ? (franchises.get(c.franchiseSlug) ?? null) : null, championLine: championLine(c), mvpName: mvp?.name ?? null, mvpTeam: mvp ? teamNickname(mvp.teamName) : null }];
   });
 
   // C · one number of the league
@@ -69,6 +70,14 @@ export default function HistoriaSection() {
     now,
     3,
   );
+
+  // Marks next to the tile numbers: the scorer's tinted initials, one logo per tied MVP, the club's logo.
+  const scorerEntry = scorer ? getPlayerIndexById(scorer.playerId) : null;
+  const marks: Partial<Record<NumberFact['key'], TileMark>> = {
+    scorer: scorer ? { avatar: { name: scorer.name, color: franchises.get(scorerEntry?.franchiseSlugs[scorerEntry.franchiseSlugs.length - 1] ?? '')?.colors.primary ?? null } } : undefined,
+    mvps: { franchises: tiedMvps.map((e) => franchises.get(e.mvps[0]?.franchiseSlug ?? '')).filter((f): f is Franchise => Boolean(f)) },
+    titles: topFranchise ? { franchises: [franchises.get(topFranchise.slug)].filter((f): f is Franchise => Boolean(f)) } : undefined,
+  };
 
   if (!legend && !rows.length && !facts.length) return null;
 
@@ -95,7 +104,7 @@ export default function HistoriaSection() {
         ) : null}
         {facts.length ? (
           <div className="lg:col-span-12">
-            <NumberTiles facts={facts} />
+            <NumberTiles facts={facts} marks={marks} />
           </div>
         ) : null}
       </div>
