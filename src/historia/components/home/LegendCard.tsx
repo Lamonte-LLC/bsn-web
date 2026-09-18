@@ -57,7 +57,7 @@ export default function LegendCard({ player, franchises, color, ptsRank, reason 
           <p className={`mt-[10px] font-barlow text-[14px] text-[rgba(15,23,31,0.6)] md:text-[15px] ${cls.tabular}`}>{line.join(' · ')}</p>
           {shown.length ? (
             <div className="mt-[12px] flex flex-wrap items-center gap-x-[10px] gap-y-[6px]">
-              <span className="inline-flex items-center gap-[6px]" title={franchises.map((f) => f.nickname).join(', ')}>
+              <span className="inline-flex flex-wrap items-center gap-[6px]" title={franchises.map((f) => f.nickname).join(', ')}>
                 {shown.map((f) => (
                   <span key={f.slug} className="inline-flex h-[36px] w-[36px] items-center justify-center rounded-full border-2 bg-white" style={{ borderColor: f.colors.primary ?? 'rgba(0,0,0,0.12)' }}>
                     <FranchiseLogo franchise={f} sizePx={26} />
