@@ -111,7 +111,7 @@ function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, cu
 
 export default function PlayerCompareHero({ players }: Props) {
   const { pickerOpen, scopes } = useCompareState();
-  const { data: seasons } = useSeasons(100);
+  const { data: seasons } = useSeasons(200);
   const currentSeasonProviderId = (seasons.find((s) => s.current) ?? seasons[0])?.providerId ?? '';
   const seasonOptions: SeasonOption[] = seasons.map((s) => ({ providerId: s.providerId, name: s.name }));
   const nameFor = (providerId: string) => seasons.find((s) => s.providerId === providerId)?.name ?? '';
