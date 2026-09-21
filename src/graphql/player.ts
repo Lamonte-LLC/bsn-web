@@ -319,8 +319,9 @@ export const PLAYER_COMPARISON = gql`
     player(geniusId: 0, providerId: $providerId) {
       providerId
       name
+      nickname
       avatarUrl
-      statsBySeasonConnection {
+      statsBySeasonConnection(first: 99) {
         edges {
           node {
             season {

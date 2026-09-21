@@ -68,7 +68,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, 
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
         <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
           <span className="block text-[22px] leading-[1.05] text-white lg:text-[32px]">{p.name}</span>
-          <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.line}</span>
+          <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.nickname}</span>
         </Link>
         <span className="mt-[8px]">
           <ScopeMenu p={p} scope={scope} scopeName={scopeName} others={others} seasons={seasons} currentSeasonProviderId={currentSeasonProviderId} />

@@ -39,6 +39,7 @@ export type CompareScope = string;
 export interface ComparePlayerData {
   key: string;
   name: string;
+  nickname: string | null;
   providerId: string;
   avatarUrl: string | null;
   teamCode: string | null;

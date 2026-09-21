@@ -167,7 +167,13 @@ function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = 
           </span>
           <span className="block truncate font-barlow text-[10px] font-medium text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
         </span>
-        <span className="absolute -bottom-[1px] left-0 right-0 h-[2.5px]" style={{ backgroundColor: p.color }} aria-hidden />
+        <span className="absolute -bottom-[1px] left-0 right-0 flex h-[2.5px] overflow-hidden" aria-hidden>
+          {p.teams.length ? (
+            p.teams.map((team) => <span key={team.providerId} className="h-full flex-1" style={{ backgroundColor: team.colorPrimary || '#7D7D7D' }} />)
+          ) : (
+            <span className="h-full flex-1" style={{ backgroundColor: p.color }} />
+          )}
+        </span>
       </span>
     </div>
   );

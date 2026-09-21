@@ -26,6 +26,51 @@ type Row = {
   avatarUrl: string | null;
 };
 
+// Lista fija mostrada cuando el buscador está vacío. `key` es el providerId (synergy_player_id) real del
+// jugador — el comparador lo usa para buscar sus estadísticas vía GraphQL.
+const FEATURED_PLAYERS: Row[] = [
+  { key: 'ee18f61d-ca01-11f0-b7ec-a99038a1fbbd', name: 'Alejandro Carmona', subtitle: 'apodo: Bimbo', avatarUrl: null },
+  { key: 'fb389a5a-ca01-11f0-8b4d-f7854434301d', name: 'Ángel L. Figueroa', subtitle: 'apodo: Buster', avatarUrl: null },
+  { key: '094709e4-ca02-11f0-8e57-2947a4531972', name: 'Ángel Santiago', subtitle: 'apodo: Cachorro', avatarUrl: null },
+  { key: '1584fdd8-ca02-11f0-a8a7-0156807f34ad', name: 'Carlos Escalera', subtitle: null, avatarUrl: null },
+  { key: 'ee5090d1-ca01-11f0-8d23-a99038a1fbbd', name: 'Christian Dalmau', subtitle: null, avatarUrl: null },
+  { key: '2101dcad-ca02-11f0-b3e2-6f0b73cc7b14', name: 'Danny Vassallo', subtitle: null, avatarUrl: null },
+  { key: 'fae38fa0-ca01-11f0-a2c0-f7854434301d', name: 'Eddie Casiano', subtitle: null, avatarUrl: null },
+  { key: '221c056b-ca02-11f0-9ba3-6f0b73cc7b14', name: 'Edgar León', subtitle: null, avatarUrl: null },
+  { key: '22b70005-ca02-11f0-ac2f-6f0b73cc7b14', name: 'Edwin Pellot', subtitle: null, avatarUrl: null },
+  { key: '966cbbac-ca02-11f0-a0dc-3d891f4e2262', name: 'Elías Ayuso', subtitle: 'apodo: Larry', avatarUrl: null },
+  { key: '2da3fbb3-ca02-11f0-8d97-650b8c4fa4ab', name: 'Federico López', subtitle: 'apodo: Fico', avatarUrl: null },
+  { key: '2e1e326d-ca02-11f0-a5b9-650b8c4fa4ab', name: 'Ferdinand Morales-Martínez', subtitle: null, avatarUrl: null },
+  { key: '3020d449-ca02-11f0-9932-650b8c4fa4ab', name: 'George Torres', subtitle: 'apodo: Georgie', avatarUrl: null },
+  { key: '318b97e5-ca02-11f0-89fd-650b8c4fa4ab', name: 'Héctor Olivencia', subtitle: null, avatarUrl: null },
+  { key: 'e0bdb52a-0e6d-472d-a189-093ab0772996', name: 'James Carter Gaudino', subtitle: 'apodo: El Presidente', avatarUrl: null },
+  { key: '3d1d177a-ca02-11f0-a341-3df4b613eaf5', name: 'Javier Antonio Colón', subtitle: 'apodo: Toñito', avatarUrl: null },
+  { key: 'ef2a4aba-ca01-11f0-aa76-a99038a1fbbd', name: 'Javier Mojica', subtitle: null, avatarUrl: 'https://images.dc.connect.sportradar.com/b12pt/c0a6dcfbdf9049159898b354f470db98' },
+  { key: '3d7baed3-ca02-11f0-a9cf-3df4b613eaf5', name: 'Jerome Alfred Mincy', subtitle: null, avatarUrl: null },
+  { key: '47ef5694-ca02-11f0-8c80-2510103012e8', name: 'José Quiñonez', subtitle: 'apodo: Willie', avatarUrl: null },
+  { key: '4a7ab576-ca02-11f0-929b-2510103012e8', name: 'José Rafael Ortiz', subtitle: 'apodo: Piculín', avatarUrl: null },
+  { key: '48286087-ca02-11f0-87b1-2510103012e8', name: 'José Sosa', subtitle: 'apodo: El Galgo', avatarUrl: null },
+  { key: '543c2288-ca02-11f0-86e0-8d3aaf62361d', name: 'Juan Trinidad', subtitle: null, avatarUrl: null },
+  { key: '62272e4f-ca02-11f0-bf87-6f0b73cc7b14', name: 'Mario Alberto Butler', subtitle: null, avatarUrl: null },
+  { key: '200c54cd-3863-479e-9d4c-6d13cf4b63c2', name: 'Mario Morales Micheo', subtitle: 'apodo: Quijote', avatarUrl: null },
+  { key: '63fe15e7-ca02-11f0-8b44-6f0b73cc7b14', name: 'Neftali Rivera', subtitle: null, avatarUrl: null },
+  { key: '6e118128-ca02-11f0-9f90-2787a1800dda', name: 'Orlando Santiago', subtitle: 'apodo: Guayacán', avatarUrl: null },
+  { key: '6e0ad816-ca02-11f0-85c9-2787a1800dda', name: 'Orlando Vega', subtitle: null, avatarUrl: null },
+  { key: '8bd648fc-86eb-4ce1-a952-f1461f9e454a', name: 'Pablo Alicea Rodríguez', subtitle: 'apodo: Pablito', avatarUrl: null },
+  { key: 'efb4581a-ca01-11f0-a8b8-a99038a1fbbd', name: 'Peter John Ramos', subtitle: null, avatarUrl: null },
+  { key: '7155b13b-ca02-11f0-b374-2787a1800dda', name: 'Raymond Dalmau', subtitle: null, avatarUrl: null },
+  { key: '86bb53f4-5ee5-4f49-b0b7-2500cce981ba', name: 'Raymond Dalmau Santana', subtitle: 'apodo: Richie', avatarUrl: null },
+  { key: '7a8ba2a1-ca02-11f0-891e-71bd8dec4466', name: 'Ricardo Dalmau', subtitle: null, avatarUrl: null },
+  { key: '7be98cc0-ca02-11f0-8f35-71bd8dec4466', name: 'Roberto José Hatton', subtitle: 'apodo: Bobby Joe', avatarUrl: null },
+  { key: '7bf28e41-ca02-11f0-aaee-71bd8dec4466', name: 'Roberto Ríos', subtitle: 'apodo: Bobby', avatarUrl: null },
+  { key: '7c32b641-ca02-11f0-b842-71bd8dec4466', name: 'Rolando Frazer', subtitle: null, avatarUrl: null },
+  { key: '7ca87a74-ca02-11f0-a540-71bd8dec4466', name: 'Rubén Rodríguez', subtitle: null, avatarUrl: null },
+  { key: '87d15c8c-ca02-11f0-ac10-09a696a15fdb', name: 'Teofilo Cruz', subtitle: 'apodo: Teo', avatarUrl: null },
+  { key: '8934c428-ca02-11f0-b9f5-09a696a15fdb', name: 'Wesley Correa', subtitle: 'apodo: Wes', avatarUrl: null },
+  { key: '895b79a1-ca02-11f0-8d8d-09a696a15fdb', name: 'Wilfredo Meléndez', subtitle: 'apodo: Willito', avatarUrl: null },
+  { key: 'ef8529a9-ca01-11f0-b1a5-a99038a1fbbd', name: 'Wilfredo Pagán', subtitle: null, avatarUrl: null },
+];
+
 /**
  * Picker of the player comparison: first 50 players when it opens, server search results once the user types
  * (debounced). Same dialog chrome as CompareTeamPickerDialog. Picking adds and closes.
@@ -38,9 +83,11 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
   const typing = query.trim().length > 0;
   const { data: players, loading } = usePlayerSuggestions(debouncedQuery, RESULTS_LIMIT);
   const pending = query.trim() !== debouncedQuery;
-  const busy = pending || loading;
+  const busy = typing && (pending || loading);
 
-  const shown: Row[] = players.map((p) => ({ key: p.providerId, name: p.name, subtitle: p.nickname ? `apodo: ${p.nickname}` : positionLabel(p.playingPosition), avatarUrl: p.avatarUrl }));
+  const shown: Row[] = typing
+    ? players.map((p) => ({ key: p.providerId, name: p.name, subtitle: p.nickname ? `apodo: ${p.nickname}` : positionLabel(p.playingPosition), avatarUrl: p.avatarUrl }))
+    : FEATURED_PLAYERS;
 
   const close = () => {
     setQuery('');
@@ -93,7 +140,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
             <span className="tabular-nums">{busy ? '' : `${shown.length}`}</span>
           </div>
 
-          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[6px] min-h-[500px] flex-1 overflow-y-auto rounded-[10px] border border-[rgba(15,23,31,0.08)]">
+          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[6px] h-[500px] flex-1 overflow-y-auto rounded-[10px] border border-[rgba(15,23,31,0.08)]">
             {busy ? (
               <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</li>
             ) : !shown.length ? (

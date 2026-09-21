@@ -18,6 +18,7 @@ type PlayerProfileResponse = {
   player: {
     providerId: string;
     name: string;
+    nickname: string | null;
     avatarUrl: string | null;
     playingPosition: string;
     team: { code: string; nickname: string; colorPrimary: string } | null;
@@ -43,6 +44,7 @@ async function load(key: string): Promise<ComparePlayerData | null> {
   return {
     key,
     name: p.name,
+    nickname: p.nickname ?? null,
     providerId: p.providerId,
     avatarUrl: p.avatarUrl,
     teamCode: p.team?.code ?? null,
