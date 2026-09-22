@@ -318,11 +318,11 @@ export default function PlayerCompareHero({ players }: Props) {
                 Añadir jugador
               </button>
             ) : null}
-            {/* Reset: a quiet text button, no border, so it never competes with «Añadir jugador». */}
+            {/* Reset: same box as «Añadir jugador» but filled and borderless, a step quieter, so the pair sits balanced. */}
             {count >= 1 ? (
-              <button type="button" onClick={clear} className="inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] px-[10px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.45)] transition-colors duration-200 ease-out hover:text-[rgba(255,255,255,0.85)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[12px] lg:py-[7px] lg:text-[13px]">
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="shrink-0" aria-hidden>
-                  <path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v3h3" />
+              <button type="button" onClick={clear} className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-transparent bg-[rgba(255,255,255,0.08)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.6)] transition-[background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:bg-[rgba(255,255,255,0.14)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="-ml-[2px] shrink-0" aria-hidden>
+                  <path d="M2 2l8 8M10 2l-8 8" />
                 </svg>
                 Limpiar
               </button>
