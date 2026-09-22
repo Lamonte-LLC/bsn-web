@@ -135,7 +135,8 @@ function SectionTitle({ title, align = 'center' }: { title: string; align?: 'cen
  * white disc with a hairline and a white ring so they read apart, overlapping left to right, and the latest club
  * (the last of the season's list) on top and fully visible.
  */
-function PlayerLogo({ p, size }: { p: DisplayPlayer; size: number }) {
+function PlayerLogo({ p, size, stack = true }: { p: DisplayPlayer; size: number; /** Two clubs as stacked logos; on phones (false) the player's own photo stands in, there's no room for the pair. */ stack?: boolean }) {
+  if (p.teams.length > 1 && !stack) return <PlayerPhoto p={p} size={size} />;
   if (p.teams.length > 1) {
     const disc = size + 4;
     return (
@@ -154,6 +155,10 @@ function PlayerLogo({ p, size }: { p: DisplayPlayer; size: number }) {
   }
   if (p.teams.length) return <TeamLogoAvatar teamCode={p.teams[0].code} size={size} />;
   // Career scope belongs to no club: the player's own photo, or the initials placeholder.
+  return <PlayerPhoto p={p} size={size} />;
+}
+
+function PlayerPhoto({ p, size }: { p: DisplayPlayer; size: number }) {
   return <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} color={p.color} sizePx={size} />;
 }
 
@@ -168,7 +173,7 @@ function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = 
         {/* The mark is as tall as the two text lines; the career photo runs a step larger than a club logo. */}
         <span className={cx('shrink-0', hideLogoOnMobile ? 'hidden lg:inline-flex' : 'inline-flex')}>
           <span className="lg:hidden">
-            <PlayerLogo p={p} size={p.teams.length ? 24 : 28} />
+            <PlayerLogo p={p} size={p.teams.length === 1 ? 24 : 28} stack={false} />
           </span>
           <span className="hidden lg:inline-flex">
             <PlayerLogo p={p} size={p.teams.length ? (compact ? 22 : 26) : compact ? 26 : 30} />
@@ -291,7 +296,7 @@ export default function PlayerComparePanel({ players }: Props) {
     <div className="rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[18px] pt-[6px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[34px] lg:pt-[10px]">
       <div className="mt-[14px] flex flex-wrap justify-center gap-x-[14px] gap-y-[6px] lg:mt-[20px] lg:gap-x-[30px]">
         {TABS.map((tab) => (
-          <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={cx(`cursor-pointer pb-[5px] text-[16px] transition-colors duration-200 ease-out ${cls.focus} lg:pb-[6px] lg:text-[18px]`, activeTab === tab.id ? 'border-b-2 border-[#0F171F] text-[#0F171F]' : 'text-[rgba(15,23,31,0.4)] hover:text-[rgba(15,23,31,0.65)]')}>
+          <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={cx(`cursor-pointer pb-[5px] text-[17px] transition-colors duration-200 ease-out ${cls.focus} lg:pb-[6px] lg:text-[19px]`, activeTab === tab.id ? 'border-b-2 border-[#0F171F] text-[#0F171F]' : 'text-[rgba(15,23,31,0.4)] hover:text-[rgba(15,23,31,0.65)]')}>
             {tab.label}
           </button>
         ))}
