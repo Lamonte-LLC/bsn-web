@@ -33,6 +33,18 @@ export const EXTINCT_COLORS: Record<string, string> = {
 };
 export const EXTINCT_FALLBACK = '#6B7280';
 
+/** The same provisional palette keyed by the live API's team code, for clubs the API returns without a color. */
+export const EXTINCT_CODE_COLORS: Record<string, string> = {
+  FAJ: EXTINCT_COLORS.cariduros,
+  CAR: EXTINCT_COLORS.cardenales,
+  ISA: EXTINCT_COLORS.gallitos,
+  RPI: EXTINCT_COLORS['gallitos-upr'],
+  POL: EXTINCT_COLORS.polluelos,
+  TIT: EXTINCT_COLORS.titanes,
+  GMA: EXTINCT_COLORS.brujos,
+  SAN: EXTINCT_COLORS.santos,
+};
+
 /** Class presets. Display face is the body default (Special Gothic Condensed One), so it needs no class. */
 export const cls = {
   /** Unit or column label: Barlow 600, caps, 45% ink. */

@@ -124,8 +124,9 @@ export const EMPTY_VALUES: CompareValues = {
 };
 
 /** Cada jugador cae en la temporada actual (por providerId) salvo que haya elegido otra explícitamente. */
-export function defaultScope(currentSeasonProviderId: string): CompareScope {
-  return currentSeasonProviderId;
+/** The comparison opens on the whole career; a season is a choice the fan makes. */
+export function defaultScope(_currentSeasonProviderId: string): CompareScope {
+  return CAREER_SCOPE;
 }
 
 export function scopeFor(p: ComparePlayerData, chosen: Record<string, CompareScope | undefined>, currentSeasonProviderId: string): CompareScope {
@@ -135,6 +136,36 @@ export function scopeFor(p: ComparePlayerData, chosen: Record<string, CompareSco
 /** Recibe el name ya resuelto (no el scope/providerId) — quien llama hace el lookup en useSeasons(). */
 export function scopeLabel(seasonName: string): string {
   return seasonName;
+}
+
+/** "2006 - ARE"; two clubs in one season read "1990 - POL/GMA". Without a club, the year alone. */
+export function editionLabel(year: number, codes: readonly string[]): string {
+  const clean = codes.filter(Boolean);
+  return clean.length ? `${year} - ${clean.join('/')}` : String(year);
+}
+
+export interface EditionTeam {
+  code: string;
+  colorPrimary: string | null;
+}
+
+/**
+ * The club the player is identified with: the one with the most seasons, the most recent one on a tie. The
+ * color falls back to the archive's provisional palette for extinct clubs (the live API has none for them).
+ */
+export function dominantTeam<T extends EditionTeam>(editions: ReadonlyArray<{ year: number; teams: readonly T[] }>): T | null {
+  const tally = new Map<string, { team: T; seasons: number; latest: number }>();
+  for (const e of editions) {
+    for (const t of e.teams) {
+      const cur = tally.get(t.code);
+      if (cur) {
+        cur.seasons += 1;
+        cur.latest = Math.max(cur.latest, e.year);
+      } else tally.set(t.code, { team: t, seasons: 1, latest: e.year });
+    }
+  }
+  const best = [...tally.values()].sort((a, b) => b.seasons - a.seasons || b.latest - a.latest)[0];
+  return best?.team ?? null;
 }
 
 /** Same display rules as the team comparison; percentages already come as 0–100 from the archive. */

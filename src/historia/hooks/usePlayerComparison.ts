@@ -1,6 +1,7 @@
 import { PLAYER_COMPARISON } from '@/graphql/player';
 import { useQuery } from '@apollo/client/react';
-import { CAREER_SCOPE, EMPTY_VALUES, type CompareValues } from '@/historia/lib/compare-players';
+import { CAREER_SCOPE, EMPTY_VALUES, dominantTeam, editionLabel, type CompareValues } from '@/historia/lib/compare-players';
+import { EXTINCT_CODE_COLORS } from '@/archivo/lib/tokens';
 
 type SeasonStats = {
   games: number | null;
@@ -113,7 +114,17 @@ export function usePlayerComparison(providerId: string | null) {
 
   const seasonFor = (seasonProviderId: string | null): SeasonPlayed | null => (seasonProviderId === CAREER_SCOPE ? null : (editionFor(seasonProviderId)?.season ?? null));
 
-  const nameFor = (seasonProviderId: string | null): string => (seasonProviderId === CAREER_SCOPE ? 'Carrera' : (seasonFor(seasonProviderId)?.name ?? ''));
+  // "2006 - ARE": the year and the club's code, the way the season menu and the tabs name an edition.
+  const nameFor = (seasonProviderId: string | null): string => {
+    if (seasonProviderId === CAREER_SCOPE) return 'Carrera';
+    const edition = editionFor(seasonProviderId);
+    return edition ? editionLabel(edition.season.year, edition.teams.map((t) => t.code)) : '';
+  };
+  const labelFor = (seasonProviderId: string): string => nameFor(seasonProviderId);
 
-  return { seasons, currentSeasonProviderId, valuesFor, teamsFor, seasonFor, nameFor, loading, error };
+  // The club the player is identified with across the comparison: most seasons, most recent on a tie.
+  const main = dominantTeam(editions.map((e) => ({ year: e.season.year, teams: e.teams })));
+  const mainColor: string | null = main ? (main.colorPrimary || EXTINCT_CODE_COLORS[main.code] || null) : null;
+
+  return { seasons, currentSeasonProviderId, valuesFor, teamsFor, seasonFor, nameFor, labelFor, mainTeam: main, mainColor, loading, error };
 }

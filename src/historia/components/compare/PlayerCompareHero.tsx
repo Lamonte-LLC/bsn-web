@@ -29,18 +29,20 @@ function ScopeMenu({ p, scope, scopeName, seasons }: { p: ComparePlayerData; sco
         <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
       </MenuButton>
       <MenuItems transition anchor="bottom" className="z-[999] mt-[8px] max-h-[320px] overflow-y-auto rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0">
+        <MenuItem>
+          <button type="button" onClick={() => setCompareScope(p.key, CAREER_SCOPE)} className={cx('mb-[4px] flex w-full cursor-pointer items-center justify-between gap-[12px] rounded-[8px] px-[14px] py-[8px] text-left font-barlow text-[13px] font-semibold data-focus:bg-[#F4F4F4]', scope === CAREER_SCOPE ? 'bg-[#0F171F] text-white data-focus:bg-[#0F171F]' : 'text-[#0F171F]')}>
+            Carrera
+            <span className={cx('font-normal text-[11px]', scope === CAREER_SCOPE ? 'text-white/60' : 'text-[rgba(15,23,31,0.45)]')}>{seasons.length} temporadas</span>
+          </button>
+        </MenuItem>
+        <div className="mx-[8px] mb-[4px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
         {seasons.map((season) => (
           <MenuItem key={season.providerId}>
-            <button type="button" onClick={() => setCompareScope(p.key, season.providerId)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', season.providerId === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
-              {scopeLabel(season.name)}
+            <button type="button" onClick={() => setCompareScope(p.key, season.providerId)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] tabular-nums data-focus:bg-[#F4F4F4]', season.providerId === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
+              {season.name}
             </button>
           </MenuItem>
         ))}
-        <MenuItem>
-          <button type="button" onClick={() => setCompareScope(p.key, CAREER_SCOPE)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', scope === CAREER_SCOPE ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
-            Carrera
-          </button>
-        </MenuItem>
       </MenuItems>
     </Menu>
   );
@@ -128,8 +130,8 @@ export default function PlayerCompareHero({ players }: Props) {
   const slotProps = (p: ComparePlayerData) => {
     const cmp = comparisonOf(p);
     const scope = scopeFor(p, scopes, cmp.currentSeasonProviderId ?? '');
-    const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({ providerId: s.providerId, name: s.name }));
-    const color = cmp.teamsFor(scope)[0]?.colorPrimary ?? p.color;
+    const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({ providerId: s.providerId, name: cmp.labelFor(s.providerId) }));
+    const color = cmp.mainColor ?? p.color;
     return {
       p,
       scope,

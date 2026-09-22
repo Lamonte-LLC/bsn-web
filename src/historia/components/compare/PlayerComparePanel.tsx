@@ -26,7 +26,7 @@ const TABS: Array<{ id: TabId; label: string }> = [
   { id: 'promedio', label: 'Promedio' },
   { id: 'totales', label: 'Totales' },
 ];
-const TABS_LABEL_CLASS = 'font-barlow text-[8px] font-semibold tracking-[1.2px] text-[rgba(15,23,31,0.4)] lg:text-[10px] lg:tracking-[1.6px]';
+const TABS_LABEL_CLASS = 'font-barlow text-[9px] font-semibold tracking-[1.2px] text-[rgba(15,23,31,0.4)] lg:text-[11px] lg:tracking-[1.6px]';
 
 function gridFor(count: number): string {
   if (count === 2) return GRID_TWO;
@@ -167,13 +167,7 @@ function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = 
           </span>
           <span className="block truncate font-barlow text-[10px] font-medium text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
         </span>
-        <span className="absolute -bottom-[1px] left-0 right-0 flex h-[2.5px] overflow-hidden" aria-hidden>
-          {p.teams.length ? (
-            p.teams.map((team) => <span key={team.providerId} className="h-full flex-1" style={{ backgroundColor: team.colorPrimary || '#7D7D7D' }} />)
-          ) : (
-            <span className="h-full flex-1" style={{ backgroundColor: p.color }} />
-          )}
-        </span>
+        <span className="absolute -bottom-[1px] left-0 right-0 h-[2.5px]" style={{ backgroundColor: p.color }} aria-hidden />
       </span>
     </div>
   );
@@ -244,8 +238,10 @@ export default function PlayerComparePanel({ players }: Props) {
   const scopeName: ScopeNameOf = (p) => scopeLabel(comparisonOf(p)?.nameFor(scope(p)) ?? '');
   const valuesOf: ValuesOf = (p) => comparisonOf(p)?.valuesFor(scope(p)) ?? EMPTY_VALUES;
   const displayPlayers: DisplayPlayer[] = players.map((p) => {
-    const teams = comparisonOf(p)?.teamsFor(scope(p)) ?? [];
-    return { ...p, teams, color: teams[0]?.colorPrimary ?? p.color };
+    const cmp = comparisonOf(p);
+    const teams = cmp?.teamsFor(scope(p)) ?? [];
+    // One color per player across the panel: the club they are identified with (most seasons; latest on a tie).
+    return { ...p, teams, color: cmp?.mainColor ?? p.color };
   });
 
   const count = players.length;
@@ -253,7 +249,7 @@ export default function PlayerComparePanel({ players }: Props) {
     .map((s) => ({ ...s, stats: visibleStats(s, players, valuesOf) }))
     .filter((s) => s.stats.length);
   const notes = eraNotes({ debutYears: players.map((p) => comparisonOf(p)?.seasonFor(scope(p))?.year).filter((y): y is number => y !== undefined) });
-  const scopeLine = players.map((p) => `${p.name.split(' ').slice(-1)[0]}: ${scopeName(p).toLowerCase()}`).join(' · ');
+  const scopeLine = players.map((p) => `${p.name.split(' ').slice(-1)[0]}: ${scopeName(p) === 'Carrera' ? 'carrera' : scopeName(p)}`).join(' · ');
 
   const renderRow = (stat: PlayerCompareStat) => {
     const key = stat.code + stat.label;
