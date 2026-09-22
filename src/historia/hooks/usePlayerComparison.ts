@@ -126,5 +126,13 @@ export function usePlayerComparison(providerId: string | null) {
   const main = dominantTeam(editions.map((e) => ({ year: e.season.year, teams: e.teams })));
   const mainColor: string | null = main ? (main.colorPrimary || EXTINCT_CODE_COLORS[main.code] || null) : null;
 
-  return { seasons, currentSeasonProviderId, valuesFor, teamsFor, seasonFor, nameFor, labelFor, mainTeam: main, mainColor, loading, error };
+  // Colors of the scope: the dominant club for the career, the club(s) of that season otherwise.
+  const teamColor = (t: SeasonTeam): string | null => t.colorPrimary || EXTINCT_CODE_COLORS[t.code] || null;
+  const colorsFor = (seasonProviderId: string | null, fallback: string): string[] => {
+    if (seasonProviderId === CAREER_SCOPE) return [mainColor ?? fallback];
+    const colors = teamsFor(seasonProviderId).map((t) => teamColor(t) ?? fallback);
+    return colors.length ? colors : [mainColor ?? fallback];
+  };
+
+  return { seasons, currentSeasonProviderId, valuesFor, teamsFor, seasonFor, nameFor, labelFor, colorsFor, mainTeam: main, mainColor, loading, error };
 }

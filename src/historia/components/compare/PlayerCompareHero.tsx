@@ -131,7 +131,7 @@ export default function PlayerCompareHero({ players }: Props) {
     const cmp = comparisonOf(p);
     const scope = scopeFor(p, scopes, cmp.currentSeasonProviderId ?? '');
     const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({ providerId: s.providerId, name: cmp.labelFor(s.providerId) }));
-    const color = cmp.mainColor ?? p.color;
+    const color = cmp.colorsFor(scope, p.color)[0];
     return {
       p,
       scope,

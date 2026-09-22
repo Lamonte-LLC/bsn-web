@@ -62,7 +62,7 @@ type ValuesOf = (p: ComparePlayerData) => CompareValues;
 
 /** A player as PlayerTab renders it: the equipo(s) of the currently selected season, and a color derived
  * from the first of those (instead of the fixed color of the player's current team). */
-type DisplayPlayer = ComparePlayerData & { teams: SeasonTeam[] };
+type DisplayPlayer = ComparePlayerData & { teams: SeasonTeam[]; colors: string[] };
 
 function useRow(stat: PlayerCompareStat, players: ComparePlayerData[], valuesOf: ValuesOf) {
   const values = players.map((p) => valuesOf(p)[stat.key]);
@@ -169,7 +169,12 @@ function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = 
           </span>
           <span className="-mt-[1px] block truncate font-barlow text-[10px] font-medium leading-[1.2] text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
         </span>
-        <span className="absolute -bottom-[1px] left-0 right-0 h-[2.5px]" style={{ backgroundColor: p.color }} aria-hidden />
+        {/* One color per club of the scope: a season with two clubs splits the rule 50/50. */}
+        <span className="absolute -bottom-[1px] left-0 right-0 flex h-[2.5px] overflow-hidden" aria-hidden>
+          {p.colors.map((c, i) => (
+            <span key={`${c}-${i}`} className="h-full flex-1" style={{ backgroundColor: c }} />
+          ))}
+        </span>
       </span>
     </div>
   );
@@ -242,8 +247,9 @@ export default function PlayerComparePanel({ players }: Props) {
   const displayPlayers: DisplayPlayer[] = players.map((p) => {
     const cmp = comparisonOf(p);
     const teams = cmp?.teamsFor(scope(p)) ?? [];
-    // One color per player across the panel: the club they are identified with (most seasons; latest on a tie).
-    return { ...p, teams, color: cmp?.mainColor ?? p.color };
+    // Career: the club the player is identified with (most seasons; latest on a tie). A season: its club(s).
+    const colors = cmp?.colorsFor(scope(p), p.color) ?? [p.color];
+    return { ...p, teams, colors, color: colors[0] };
   });
 
   const count = players.length;
