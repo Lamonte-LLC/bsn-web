@@ -1,8 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import cx from 'classnames';
 import Link from 'next/link';
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+import PlayerAvatar from '@/archivo/components/PlayerAvatar';
+import { cls, EXTINCT_CODE_COLORS } from '@/archivo/lib/tokens';
+import TeamLogoAvatar, { TEAM_LOGOS } from '@/team/components/avatar/TeamLogoAvatar';
 import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
 import { CAREER_SCOPE, MAX_COMPARE_PLAYERS, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
 import { initialName } from '@/archivo/lib/names';
@@ -18,33 +22,115 @@ const profileHref = (p: ComparePlayerData) => `/jugadores/${p.providerId}`;
 
 const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[13px] lg:py-[5px] lg:text-[12px]';
 
-type SeasonOption = { providerId: string; name: string };
+type SeasonOption = { providerId: string; year: number; teams: Array<{ code: string; name: string; color: string }> };
 
-/** Season of one player, chosen per player so eras can be mixed (2026 vs 1990). */
-function ScopeMenu({ p, scope, scopeName, seasons }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[] }) {
+/** Club mark of a season row: the real logo when the site has it, else a disc in the archive's provisional color. */
+function ClubMark({ code, color }: { code: string; color: string }) {
+  if (code in TEAM_LOGOS) return <TeamLogoAvatar teamCode={code} size={20} />;
   return (
-    <Menu>
-      <MenuButton className={PILL} aria-label={`Alcance de ${p.name}`}>
+    <span className="inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-full font-barlow-condensed text-[8px] font-bold italic text-white" style={{ backgroundColor: color }} aria-hidden>
+      {code}
+    </span>
+  );
+}
+
+function CheckIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className={className}>
+      <path d="M3 8.5l3 3 7-7" />
+    </svg>
+  );
+}
+
+/**
+ * Scope of one player: the whole career or a single season, chosen per player so eras can be mixed. A centered
+ * dialog with the player's own mark on top, "Toda la carrera" as a card and the seasons as a flat list (year,
+ * club logo, code) with a fade that hints at more rows below.
+ */
+function ScopeMenu({ p, scope, scopeName, seasons, color, teamCount }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number }) {
+  const [open, setOpen] = useState(false);
+  const pick = (next: CompareScope) => {
+    setCompareScope(p.key, next);
+    setOpen(false);
+  };
+  const isCareer = scope === CAREER_SCOPE;
+  const ROW = `relative flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
+
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)} className={PILL} aria-label={`Alcance de ${p.name}`} aria-haspopup="dialog">
         <span>{scopeName}</span>
         <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
-      </MenuButton>
-      <MenuItems transition anchor="bottom" className="z-[999] mt-[8px] max-h-[320px] overflow-y-auto rounded-[12px] border border-[#E2E2E2] bg-white p-[6px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0">
-        <MenuItem>
-          <button type="button" onClick={() => setCompareScope(p.key, CAREER_SCOPE)} className={cx('mb-[4px] flex w-full cursor-pointer items-center justify-between gap-[12px] rounded-[8px] px-[14px] py-[8px] text-left font-barlow text-[13px] font-semibold data-focus:bg-[#F4F4F4]', scope === CAREER_SCOPE ? 'bg-[#0F171F] text-white data-focus:bg-[#0F171F]' : 'text-[#0F171F]')}>
-            Carrera
-            <span className={cx('font-normal text-[11px]', scope === CAREER_SCOPE ? 'text-white/60' : 'text-[rgba(15,23,31,0.45)]')}>{seasons.length} temporadas</span>
-          </button>
-        </MenuItem>
-        <div className="mx-[8px] mb-[4px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
-        {seasons.map((season) => (
-          <MenuItem key={season.providerId}>
-            <button type="button" onClick={() => setCompareScope(p.key, season.providerId)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] tabular-nums data-focus:bg-[#F4F4F4]', season.providerId === scope ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
-              {season.name}
+      </button>
+      <Dialog open={open} onClose={() => setOpen(false)} className="relative z-[999]">
+        <div className="fixed inset-0 bg-[rgba(15,23,31,0.45)] transition-opacity duration-150" aria-hidden />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <DialogPanel className="relative flex w-[300px] max-h-[86vh] flex-col rounded-[14px] border border-[#E2E2E2] bg-white px-[10px] pb-[10px] pt-[12px] shadow-[0_8px_30px_rgba(15,23,31,0.16)] lg:w-[320px]">
+            <button type="button" onClick={() => setOpen(false)} aria-label="Cerrar" className={`absolute right-[10px] top-[10px] flex h-[28px] w-[28px] cursor-pointer items-center justify-center rounded-full border border-[#EAEAEA] bg-white transition-colors hover:border-[rgba(47,47,47,1)] ${cls.focus}`}>
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
+                <path d="M2 2l12 12M14 2L2 14" />
+              </svg>
             </button>
-          </MenuItem>
-        ))}
-      </MenuItems>
-    </Menu>
+
+            <DialogTitle className="flex items-center gap-[10px] px-[4px] pb-[12px] pt-[2px]">
+              <span className="inline-flex shrink-0 rounded-full border-2" style={{ borderColor: color }}>
+                <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} color={color} sizePx={34} />
+              </span>
+              <span className="min-w-0 truncate pr-[32px] text-[18px] leading-[1] text-[#0F171F]">{p.name}</span>
+            </DialogTitle>
+
+            <button
+              type="button"
+              onClick={() => pick(CAREER_SCOPE)}
+              aria-pressed={isCareer}
+              className={cx('flex h-[52px] w-full cursor-pointer items-center gap-[12px] rounded-[10px] border bg-white px-[12px] text-left transition-[border-color,background-color] duration-150', isCareer ? 'border-[#0F171F]' : 'border-[rgba(0,0,0,0.12)] hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]', cls.focus)}
+            >
+              <span className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#F4F4F4]">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M2 12l3.5-4 3 2.5L14 4" />
+                </svg>
+              </span>
+              <span className="flex min-w-0 flex-col gap-[2px]">
+                <span className="text-[17px] leading-[1] tracking-[0.2px] text-[#0F171F]">Toda la carrera</span>
+                <span className={`font-barlow text-[11.5px] text-[rgba(15,23,31,0.5)] ${cls.tabular}`}>
+                  {teamCount} {teamCount === 1 ? 'equipo' : 'equipos'}
+                </span>
+              </span>
+              {isCareer ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
+            </button>
+
+            <p className={`px-[6px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
+              {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
+            </p>
+            <div className="relative min-h-0 flex-1">
+              <ul className="max-h-[330px] overflow-y-auto pb-[40px] [scrollbar-width:none] lg:max-h-[300px] [&::-webkit-scrollbar]:hidden" role="listbox" aria-label={`Temporadas de ${p.name}`}>
+                {seasons.map((season, i) => {
+                  const on = season.providerId === scope;
+                  return (
+                    <li key={season.providerId} role="option" aria-selected={on}>
+                      <button type="button" onClick={() => pick(season.providerId)} className={cx(ROW, on ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
+                        <span className={`w-[40px] text-[17px] text-[#0F171F] ${cls.tabular}`}>{season.year}</span>
+                        <span className="inline-flex items-center -space-x-[4px]">
+                          {season.teams.map((t) => (
+                            <ClubMark key={t.code} code={t.code} color={t.color} />
+                          ))}
+                        </span>
+                        <span className="min-w-0 truncate font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.6)]" title={season.teams.map((t) => t.name).join(' / ')}>
+                          {season.teams.map((t) => t.name).join(' / ')}
+                        </span>
+                        {on ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
+                        {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[8px] right-[8px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[56px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden />
+            </div>
+          </DialogPanel>
+        </div>
+      </Dialog>
+    </>
   );
 }
 
@@ -58,10 +144,10 @@ function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => v
   );
 }
 
-type ScopeMenuProps = { scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string };
+type ScopeMenuProps = { scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number };
 
 /** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
-function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
+function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, teamCount }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
   return (
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
@@ -70,7 +156,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color }:
           <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.nickname}</span>
         </Link>
         <span className="mt-[8px]">
-          <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} />
+          <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} teamCount={teamCount} />
         </span>
       </div>
       <span className="lg:hidden">
@@ -84,7 +170,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color }:
 }
 
 /** Stacked slot (mobile with 2, and 3–4 players everywhere). */
-function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
+function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color, teamCount }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
   const size = count === 4 ? 44 : 50;
   const sizeLg = count === 4 ? 62 : 70;
   return (
@@ -103,7 +189,7 @@ function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color }: {
         <span className="mt-[2px] block font-barlow font-medium text-[10px] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line}</span>
       </Link>
       <span className="mt-[6px]">
-        <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} />
+        <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} teamCount={teamCount} />
       </span>
     </div>
   );
@@ -130,7 +216,12 @@ export default function PlayerCompareHero({ players }: Props) {
   const slotProps = (p: ComparePlayerData) => {
     const cmp = comparisonOf(p);
     const scope = scopeFor(p, scopes, cmp.currentSeasonProviderId ?? '');
-    const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({ providerId: s.providerId, name: cmp.labelFor(s.providerId) }));
+    const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({
+      providerId: s.providerId,
+      year: s.year,
+      teams: cmp.teamsFor(s.providerId).map((t) => ({ code: t.code, name: t.name || t.nickname || t.code, color: t.colorPrimary || EXTINCT_CODE_COLORS[t.code] || '#6B7280' })),
+    }));
+    const teamCount = new Set(seasonOptions.flatMap((s) => s.teams.map((t) => t.code))).size;
     const color = cmp.colorsFor(scope, p.color)[0];
     return {
       p,
@@ -139,6 +230,7 @@ export default function PlayerCompareHero({ players }: Props) {
       onRemove: () => remove(p.key),
       seasons: seasonOptions,
       color,
+      teamCount,
     };
   };
 
