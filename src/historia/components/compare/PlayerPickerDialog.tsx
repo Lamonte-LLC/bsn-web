@@ -49,10 +49,10 @@ export function NameWithNickname({ name, nickname }: { name: string; nickname: s
   const nick = nickname?.trim();
   if (!nick || name.toLowerCase().includes(nick.toLowerCase())) return <>{name}</>;
   const [given, surname] = splitForNickname(name);
-  if (!surname) return <>{name} <span className="font-normal">“{nick}”</span></>;
+  if (!surname) return <>{name} “{nick}”</>;
   return (
     <>
-      {given} <span className="font-normal">“{nick}”</span> {surname}
+      {given} “{nick}” {surname}
     </>
   );
 }

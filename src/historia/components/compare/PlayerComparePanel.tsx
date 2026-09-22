@@ -130,17 +130,29 @@ function SectionTitle({ title, align = 'center' }: { title: string; align?: 'cen
   );
 }
 
-/** One logo per equipo the player had that season (side by side — mid-season trades show every team). */
+/**
+ * The club(s) of the scope. A season with more than one club (a mid-season trade) stacks the logos: each one on a
+ * white disc with a hairline and a white ring so they read apart, overlapping left to right, and the latest club
+ * (the last of the season's list) on top and fully visible.
+ */
 function PlayerLogo({ p, size }: { p: DisplayPlayer; size: number }) {
-  if (p.teams.length) {
+  if (p.teams.length > 1) {
+    const disc = size + 4;
     return (
-      <span className="inline-flex items-center -space-x-1">
-        {p.teams.map((team) => (
-          <TeamLogoAvatar key={team.providerId} teamCode={team.code} size={size} />
+      <span className="inline-flex items-center" style={{ paddingRight: 2 }} aria-hidden>
+        {p.teams.map((team, i) => (
+          <span
+            key={team.providerId}
+            className="relative inline-flex shrink-0 items-center justify-center rounded-full border border-[rgba(15,23,31,0.1)] bg-white ring-2 ring-white"
+            style={{ width: disc, height: disc, marginLeft: i ? -Math.round(disc * 0.36) : 0, zIndex: i + 1 }}
+          >
+            <TeamLogoAvatar teamCode={team.code} size={size - 2} />
+          </span>
         ))}
       </span>
     );
   }
+  if (p.teams.length) return <TeamLogoAvatar teamCode={p.teams[0].code} size={size} />;
   // Career scope belongs to no club: the player's own photo, or the initials placeholder.
   return <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} color={p.color} sizePx={size} />;
 }

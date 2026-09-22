@@ -72,7 +72,7 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested, season
                         </svg>
                       </span>
                     ) : null}
-                    <span className="flex h-[56px] w-[56px] items-center justify-center overflow-hidden rounded-full border-[3px] md:h-[64px] md:w-[64px]" style={{ borderColor: color }}>
+                    <span className="flex h-[56px] w-[56px] items-center justify-center overflow-hidden rounded-full border-[2px] md:h-[64px] md:w-[64px]" style={{ borderColor: color }}>
                       {player.avatarUrl ? <img src={`${player.avatarUrl}?size=200`} alt="" className="h-full w-full object-cover" /> : <PlayerAvatar name={player.name} color={color} sizePx={58} />}
                     </span>
                     <span className="block w-full truncate text-[14px] leading-[1.15] text-[#0F171F] md:text-[16px]">{displayName(player.name)}</span>
