@@ -305,7 +305,7 @@ export default function PlayerCompareHero({ players }: Props) {
             </div>
           )}
 
-          <div className="mb-[10px] mt-[23px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
+          <div className="mb-[10px] mt-[27px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
             {/* Same box as the scope pill (padding, type size, icon slot) so both controls read as one family. */}
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
               <button type="button" onClick={openPicker} className="group/add inline-flex cursor-pointer items-center gap-[8px] rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.7)] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">

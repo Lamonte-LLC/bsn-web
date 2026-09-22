@@ -33,6 +33,17 @@ type Row = {
 };
 
 /** Sticky gray band that names a section of the list and stays in view while it scrolls (design H3). */
+/** A player already in the comparison: the row reads as selected (ink-tinted fill, full-contrast name) and ends in an ink check. */
+function TakenCheck() {
+  return (
+    <span className="inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-full bg-[#0F171F]" aria-hidden>
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 8.5l3 3 7-7" />
+      </svg>
+    </span>
+  );
+}
+
 function SectionBand({ children, first = false }: { children: React.ReactNode; first?: boolean }) {
   return (
     <li className={cx('sticky top-0 z-[1] bg-[#F4F4F4] px-[14px] py-[9px] text-[15px] tracking-[0.3px] text-[#0F171F] shadow-[inset_0_-1px_0_rgba(15,23,31,0.06)]', !first && 'border-t border-[rgba(15,23,31,0.06)]')} aria-hidden>
@@ -187,19 +198,15 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                 const taken = selectedKeys.includes(r.key);
                 return (
                   <li key={r.key} role="option" aria-selected={taken} className={i ? 'border-t border-[rgba(15,23,31,0.05)]' : ''}>
-                    <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken || isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
+                    <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[rgba(15,23,31,0.06)]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                       {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[#E5E5E5] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                       <span className="min-w-0 flex-1">
                         <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
                           <NameWithNickname name={r.name} nickname={r.nickname} />
                         </span>
-                        {r.subtitle || taken ? (
-                          <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">
-                            {r.subtitle}
-                            {taken ? <span className={r.subtitle ? 'ml-[6px]' : ''}>{r.subtitle ? '· ' : ''}ya está en la comparación</span> : null}
-                          </span>
-                        ) : null}
+                        {r.subtitle ? <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">{r.subtitle}</span> : null}
                       </span>
+                      {taken ? <TakenCheck /> : null}
                     </button>
                   </li>
                 );
@@ -212,19 +219,15 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                   const taken = selectedKeys.includes(r.key);
                   return (
                     <li key={r.key} role="option" aria-selected={taken} className={everyone[0]?.key === r.key ? '' : 'border-t border-[rgba(15,23,31,0.05)]'}>
-                      <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken || isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
+                      <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[rgba(15,23,31,0.06)]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                         {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[#E5E5E5] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                         <span className="min-w-0 flex-1">
                           <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
                             <NameWithNickname name={r.name} nickname={r.nickname} />
                           </span>
-                          {r.subtitle || taken ? (
-                            <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">
-                              {r.subtitle}
-                              {taken ? <span className={r.subtitle ? 'ml-[6px]' : ''}>{r.subtitle ? '· ' : ''}ya está en la comparación</span> : null}
-                            </span>
-                          ) : null}
+                          {r.subtitle ? <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">{r.subtitle}</span> : null}
                         </span>
+                        {taken ? <TakenCheck /> : null}
                       </button>
                     </li>
                   );
