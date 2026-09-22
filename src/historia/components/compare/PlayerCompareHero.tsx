@@ -32,6 +32,15 @@ function ClubMark({ code, color }: { code: string; color: string }) {
   );
 }
 
+/** Selection mark of every row: empty ring at rest, darker ring on hover, ink disc with a check when chosen. */
+function Radio({ on }: { on: boolean }) {
+  return (
+    <span className={cx('ml-auto inline-flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-full border-[1.5px] transition-colors duration-150', on ? 'border-[#0F171F] bg-[#0F171F]' : 'border-[rgba(15,23,31,0.2)] group-hover:border-[rgba(15,23,31,0.45)]')} aria-hidden>
+      {on ? <CheckIcon className="h-[10px] w-[10px] text-white" /> : null}
+    </span>
+  );
+}
+
 function CheckIcon({ className = '' }: { className?: string }) {
   return (
     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className={className}>
@@ -47,7 +56,7 @@ function CheckIcon({ className = '' }: { className?: string }) {
  */
 function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number }) {
   const isCareer = scope === CAREER_SCOPE;
-  const ROW = `relative flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
+  const ROW = `group relative flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
 
   return (
     <Popover className="relative">
@@ -67,46 +76,34 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
               anchor={{ to: 'bottom', gap: 8, padding: 12 }}
               className="z-[999] flex w-[300px] flex-col rounded-[14px] border border-[#E2E2E2] bg-white px-[10px] pb-[10px] pt-[10px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 lg:w-[320px]"
             >
-              <button
-                type="button"
-                onClick={() => pick(CAREER_SCOPE)}
-                aria-pressed={isCareer}
-                className={cx('flex h-[52px] w-full cursor-pointer items-center gap-[12px] rounded-[10px] border bg-white px-[12px] text-left transition-[border-color,background-color] duration-150', isCareer ? 'border-[#0F171F]' : 'border-[rgba(0,0,0,0.12)] hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]', cls.focus)}
-              >
-                <span className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#F4F4F4]">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                    <path d="M2 12l3.5-4 3 2.5L14 4" />
-                  </svg>
+              <button type="button" onClick={() => pick(CAREER_SCOPE)} role="radio" aria-checked={isCareer} className={cx(ROW, 'h-[40px]', isCareer ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
+                <span className="text-[17px] leading-[1] text-[#0F171F]">Toda su carrera</span>
+                <span className={cx('font-barlow text-[12.5px] transition-colors duration-150', cls.tabular, isCareer ? 'font-semibold text-[#0F171F]' : 'font-medium text-[rgba(15,23,31,0.6)] group-hover:font-semibold group-hover:text-[#0F171F]')}>
+                  {teamCount} {teamCount === 1 ? 'equipo' : 'equipos'}
                 </span>
-                <span className="flex min-w-0 flex-col gap-[2px]">
-                  <span className="text-[17px] leading-[1] tracking-[0.2px] text-[#0F171F]">Toda la carrera</span>
-                  <span className={`font-barlow text-[11.5px] text-[rgba(15,23,31,0.5)] ${cls.tabular}`}>
-                    {teamCount} {teamCount === 1 ? 'equipo' : 'equipos'}
-                  </span>
-                </span>
-                {isCareer ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
+                <Radio on={isCareer} />
               </button>
-
+              <div className="mx-[2px] mt-[6px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
               <p className={`px-[6px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
                 {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
               </p>
               <div className="relative min-h-0">
-                <ul className="max-h-[300px] overflow-y-auto pb-[40px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="listbox" aria-label={`Temporadas de ${p.name}`}>
+                <ul className="max-h-[300px] overflow-y-auto pb-[40px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="radiogroup" aria-label={`Temporadas de ${p.name}`}>
                   {seasons.map((season, i) => {
                     const on = season.providerId === scope;
                     return (
-                      <li key={season.providerId} role="option" aria-selected={on}>
-                        <button type="button" onClick={() => pick(season.providerId)} className={cx(ROW, on ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
+                      <li key={season.providerId}>
+                        <button type="button" role="radio" aria-checked={on} onClick={() => pick(season.providerId)} className={cx(ROW, 'group', on ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
                           <span className={`w-[40px] text-[17px] text-[#0F171F] ${cls.tabular}`}>{season.year}</span>
                           <span className="inline-flex items-center -space-x-[4px]">
                             {season.teams.map((t) => (
                               <ClubMark key={t.code} code={t.code} color={t.color} />
                             ))}
                           </span>
-                          <span className="min-w-0 truncate font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.6)]" title={season.teams.map((t) => t.name).join(' / ')}>
+                          <span className={cx('min-w-0 truncate font-barlow text-[12.5px] transition-colors duration-150', on ? 'font-semibold text-[#0F171F]' : 'font-medium text-[rgba(15,23,31,0.6)] group-hover:font-semibold group-hover:text-[#0F171F]')} title={season.teams.map((t) => t.name).join(' / ')}>
                             {season.teams.map((t) => t.name).join(' / ')}
                           </span>
-                          {on ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
+                          <Radio on={on} />
                           {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[8px] right-[8px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
                         </button>
                       </li>
@@ -208,7 +205,7 @@ export default function PlayerCompareHero({ players }: Props) {
     const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({
       providerId: s.providerId,
       year: s.year,
-      teams: cmp.teamsFor(s.providerId).map((t) => ({ code: t.code, name: t.name || t.nickname || t.code, color: t.colorPrimary || EXTINCT_CODE_COLORS[t.code] || '#6B7280' })),
+      teams: cmp.teamsFor(s.providerId).map((t) => ({ code: t.code, name: t.nickname || t.name || t.code, color: t.colorPrimary || EXTINCT_CODE_COLORS[t.code] || '#6B7280' })),
     }));
     const teamCount = new Set(seasonOptions.flatMap((s) => s.teams.map((t) => t.code))).size;
     const color = cmp.colorsFor(scope, p.color)[0];
