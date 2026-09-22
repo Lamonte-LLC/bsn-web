@@ -145,7 +145,6 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, c
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
         <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
           <span className="block text-[23px] leading-[1.05] text-white lg:text-[33px]">{p.name}</span>
-          <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.nickname}</span>
         </Link>
         <span className="mt-[8px]">
           <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
@@ -236,7 +235,7 @@ export default function PlayerCompareHero({ players }: Props) {
           <h1 className="text-[30px] tracking-[0.4px] text-white lg:text-[42px]">Comparación de jugadores</h1>
 
           {isEmpty ? (
-            <div className="mt-[30px] flex items-start justify-center gap-[20px] lg:gap-[48px]">
+            <div className="mt-[30px] flex items-center justify-center gap-[20px] lg:gap-[48px]">
               {players[0] ? <SlotHorizontal {...slotProps(players[0])} side="left" /> : <EmptySlot side="left" onClick={openPicker} />}
               <span className="text-[20px] text-[rgba(255,255,255,0.3)] lg:text-[26px]">VS</span>
               <EmptySlot side="right" onClick={openPicker} />

@@ -9,7 +9,7 @@ import PlayerComparePanel from '@/historia/components/compare/PlayerComparePanel
 import { MIN_COMPARE_PLAYERS, parseCompareKeys, type ComparePlayerData } from '@/historia/lib/compare-players';
 import { positionLabel } from '@/historia/lib/copy';
 import type { SeasonLeaderSuggestionEdge } from '@/historia/lib/season-leader-suggestion';
-const SUGGESTIONS_COUNT = 6;
+const SUGGESTIONS_COUNT = 12;
 
 
 type SearchParams = Promise<{ p?: string | string[] }>;
@@ -72,7 +72,20 @@ export async function fetchSeasonLeaderSuggestions(): Promise<SeasonLeaderSugges
     return [];
   }
 
-  return data?.seasonPlayerStatsConnection.edges ?? [];
+  // The leaders endpoint abbreviates names ("K. Davis"); the tiles show the given name and a surname, so each
+  // leader's full name is resolved from the profile query.
+  const edges = data?.seasonPlayerStatsConnection.edges ?? [];
+  const full = await Promise.all(
+    edges.map(async (edge) => {
+      try {
+        const res = await getClient().query<PlayerProfileResponse>({ query: PLAYER_PROFILE, variables: { geniusId: 0, providerId: edge.node.player.providerId }, fetchPolicy: 'network-only', context: { fetchOptions: { cache: 'no-store' } } });
+        return res.data?.player?.name ?? null;
+      } catch {
+        return null;
+      }
+    }),
+  );
+  return edges.map((edge, i) => (full[i] ? { ...edge, node: { ...edge.node, player: { ...edge.node.player, name: full[i]! } } } : edge));
 }
 
 export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
