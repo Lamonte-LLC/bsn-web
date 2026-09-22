@@ -62,7 +62,7 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested, season
                     onClick={() => add(player.providerId)}
                     title={player.name}
                     className={cx(
-                      `relative flex w-full flex-col items-center gap-[6px] rounded-[12px] border px-[6px] pb-[10px] pt-[12px] text-center transition-[border-color,background-color,transform] duration-150 md:gap-[8px] md:pb-[14px] md:pt-[16px] ${cls.focus}`,
+                      `relative flex w-full flex-col items-center rounded-[12px] border px-[6px] pb-[10px] pt-[12px] text-center transition-[border-color,background-color,transform] duration-150 md:pb-[14px] md:pt-[16px] ${cls.focus}`,
                       taken ? 'border-[rgba(15,23,31,0.12)] bg-[#F4F4F4]' : 'cursor-pointer border-[#EAEAEA] bg-white hover:border-[rgba(15,23,31,0.3)] hover:bg-[#FAFAFA] active:scale-[0.98] motion-reduce:active:scale-100',
                     )}
                   >
@@ -76,8 +76,8 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested, season
                     <span className="flex h-[56px] w-[56px] items-center justify-center overflow-hidden rounded-full border-[2px] md:h-[64px] md:w-[64px]" style={{ borderColor: color }}>
                       {player.avatarUrl ? <img src={`${player.avatarUrl}?size=200`} alt="" className="h-full w-full object-cover" /> : <PlayerAvatar name={player.name} color={color} sizePx={58} />}
                     </span>
-                    <span className="block w-full truncate text-[14px] leading-[1.15] text-[#0F171F] md:text-[16px]">{displayName(player.name)}</span>
-                    <span className="block w-full truncate font-barlow text-[11px] font-medium text-[rgba(15,23,31,0.55)] md:text-[12px]">{clubShortName(player.teamName)}</span>
+                    <span className="mt-[9px] block w-full truncate text-[14px] leading-[1.15] text-[#0F171F] md:mt-[11px] md:text-[16px]">{displayName(player.name)}</span>
+                    <span className="mt-[3px] block w-full truncate font-barlow text-[12px] font-medium text-[rgba(15,23,31,0.55)] md:mt-[5px] md:text-[13px]">{clubShortName(player.teamName)}</span>
                   </button>
                 </li>
               );
