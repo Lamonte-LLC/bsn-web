@@ -55,8 +55,9 @@ function CheckIcon({ className = '' }: { className?: string }) {
 }
 
 /**
- * A 3px scrollbar of our own at the right edge of the season list: track in ink at 6%, thumb at 32%, always
- * visible and proportional to what's left, so the list says both that it scrolls and how much remains.
+ * A 3px scrollbar of our own at the right edge of the season list: track in ink at 6%, thumb at 32% (a step
+ * darker on phones, where a hairline this thin fades), always visible and proportional to what's left, so the
+ * list says both that it scrolls and how much remains.
  */
 function ScrollRail({ target }: { target: React.RefObject<HTMLElement | null> }) {
   const [thumb, setThumb] = useState<{ top: number; height: number } | null>(null);
@@ -79,8 +80,8 @@ function ScrollRail({ target }: { target: React.RefObject<HTMLElement | null> })
   }, [target]);
   if (!thumb) return null;
   return (
-    <span className="pointer-events-none absolute -right-[4px] bottom-[4px] top-[4px] w-[3px] rounded-full bg-[rgba(15,23,31,0.06)]" aria-hidden>
-      <span className="absolute inset-x-0 rounded-full bg-[rgba(15,23,31,0.32)]" style={{ top: `${thumb.top}%`, height: `${thumb.height}%` }} />
+    <span className="pointer-events-none absolute -right-[4px] bottom-[4px] top-[4px] w-[3px] rounded-full bg-[rgba(15,23,31,0.1)] lg:bg-[rgba(15,23,31,0.06)]" aria-hidden>
+      <span className="absolute inset-x-0 rounded-full bg-[rgba(15,23,31,0.45)] lg:bg-[rgba(15,23,31,0.32)]" style={{ top: `${thumb.top}%`, height: `${thumb.height}%` }} />
     </span>
   );
 }
@@ -215,7 +216,7 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
         </span>
         {p.line || reserveLine ? <span className="mt-[2px] block font-barlow font-medium text-[10px] leading-[1.4] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line || '\u00a0'}</span> : null}
       </Link>
-      <span className="mt-[20px]">
+      <span className="mt-[14px] lg:mt-[20px]">
         <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
       </span>
     </div>
