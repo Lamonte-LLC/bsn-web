@@ -1,12 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import { splitForNickname } from '@/archivo/lib/names';
 import { cls } from '@/archivo/lib/tokens';
 import { useDebouncedValue } from '@/historia/hooks/useDebouncedValue';
+import { useAllPlayers } from '@/historia/hooks/useAllPlayers';
 import { usePlayerSuggestions } from '@/historia/hooks/usePlayerSuggestions';
 import { MAX_COMPARE_PLAYERS, MIN_COMPARE_PLAYERS } from '@/historia/lib/compare-players';
 import { positionLabel } from '@/historia/lib/copy';
@@ -104,9 +105,22 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
   const pending = query.trim() !== debouncedQuery;
   const busy = typing && (pending || loading);
 
-  const shown: Row[] = typing
-    ? players.map((p) => ({ key: p.providerId, name: p.name, nickname: p.nickname, subtitle: positionLabel(p.playingPosition), avatarUrl: p.avatarUrl }))
-    : FEATURED_PLAYERS;
+  // Under the featured list, every player of the API from A to Z, a page at a time as the fan scrolls.
+  const all = useAllPlayers(!open || typing);
+  const featuredKeys = new Set(FEATURED_PLAYERS.map((r) => r.key));
+  const everyone: Row[] = all.players.filter((p) => !featuredKeys.has(p.providerId)).map((p) => ({ key: p.providerId, name: p.name, nickname: p.nickname, subtitle: positionLabel(p.playingPosition), avatarUrl: p.avatarUrl }));
+  const shown: Row[] = typing ? players.map((p) => ({ key: p.providerId, name: p.name, nickname: p.nickname, subtitle: positionLabel(p.playingPosition), avatarUrl: p.avatarUrl })) : FEATURED_PLAYERS;
+  const sentinelRef = useRef<HTMLLIElement>(null);
+  const { hasMore, loadMore } = all;
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el || typing || !hasMore) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) loadMore();
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [typing, hasMore, loadMore, everyone.length]);
 
   const close = () => {
     setQuery('');
@@ -187,6 +201,39 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                 );
               })
             )}
+            {!typing && !busy ? (
+              <>
+                <li className="sticky top-0 z-[1] border-t border-[rgba(15,23,31,0.08)] bg-white px-[14px] pb-[6px] pt-[10px] font-barlow text-[11px] font-semibold uppercase tracking-[1.2px] text-[rgba(15,23,31,0.4)]" aria-hidden>
+                  Todos los jugadores · A a Z
+                </li>
+                {everyone.map((r) => {
+                  const taken = selectedKeys.includes(r.key);
+                  return (
+                    <li key={r.key} role="option" aria-selected={taken} className="border-t border-[rgba(15,23,31,0.05)]">
+                      <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken || isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
+                        {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[#E5E5E5] object-cover" /> : <PlayerAvatar name={r.name} sizePx={36} />}
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
+                            <NameWithNickname name={r.name} nickname={r.nickname} />
+                          </span>
+                          {r.subtitle || taken ? (
+                            <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">
+                              {r.subtitle}
+                              {taken ? <span className={r.subtitle ? 'ml-[6px]' : ''}>{r.subtitle ? '· ' : ''}ya está en la comparación</span> : null}
+                            </span>
+                          ) : null}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+                {hasMore || all.loading ? (
+                  <li ref={sentinelRef} aria-hidden className="px-[16px] py-[14px] font-barlow text-[12px] text-[rgba(15,23,31,0.45)]">
+                    Cargando más jugadores…
+                  </li>
+                ) : null}
+              </>
+            ) : null}
           </ul>
 
           <div className="mt-[14px] flex items-center justify-between gap-4">

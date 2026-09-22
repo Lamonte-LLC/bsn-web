@@ -22,7 +22,7 @@ const profileHref = (p: ComparePlayerData) => `/jugadores/${p.providerId}`;
 const clubShortName = (name: string) => name.replace(/\s+de\s+.+$/i, '');
 
 /** Scope pill on the band: hairline at rest, brighter on hover, inverted (white on ink text) while its menu is open. */
-const PILL = 'group/pill inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.32)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.55)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[rgba(255,255,255,0.5)] data-open:border-white data-open:bg-white data-open:text-[#0F171F] data-open:focus-visible:outline-0 lg:px-[13px] lg:py-[5px] lg:text-[12px]';
+const PILL = 'group/pill inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.32)] px-[11px] py-[4px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.55)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[rgba(255,255,255,0.5)] data-open:border-white data-open:bg-white data-open:text-[#0F171F] data-open:focus-visible:outline-0 lg:px-[13px] lg:py-[5px] lg:text-[13px]';
 
 type SeasonOption = { providerId: string; year: number; teams: Array<{ code: string; name: string; color: string }> };
 
@@ -144,7 +144,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, c
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
         <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
-          <span className="block text-[22px] leading-[1.05] text-white lg:text-[32px]">{p.name}</span>
+          <span className="block text-[23px] leading-[1.05] text-white lg:text-[33px]">{p.name}</span>
           <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.nickname}</span>
         </Link>
         <span className="mt-[8px]">
@@ -174,7 +174,7 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
         <PlayerMark player={{ ...p, color }} size={sizeLg} onDark onRemove={onRemove} />
       </span>
       <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
-        <span className={cx('mt-[9px] block leading-[1.1] text-white lg:mt-[14px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')} title={p.name}>
+        <span className={cx('mt-[9px] block leading-[1.1] text-white lg:mt-[14px]', count === 4 ? 'text-[14px] lg:text-[21px]' : 'text-[16px] lg:text-[23px]')} title={p.name}>
           <span className="lg:hidden">{initialName(p.name)}</span>
           <span className="hidden lg:inline">{p.name}</span>
         </span>
@@ -266,9 +266,9 @@ export default function PlayerCompareHero({ players }: Props) {
             </div>
           )}
 
-          <div className="mb-[10px] mt-[18px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
+          <div className="mb-[10px] mt-[23px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
-              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[13px] py-[5px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.7)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.65)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[15px] lg:py-[6px] lg:text-[12px]">
+              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[13px] py-[5px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.7)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.65)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[15px] lg:py-[6px] lg:text-[13px]">
                 + Añadir jugador
               </button>
             ) : null}

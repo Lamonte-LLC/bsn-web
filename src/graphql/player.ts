@@ -297,6 +297,10 @@ export const SEASON_LEADER_SUGGESTIONS = gql`
 export const PLAYER_SUGGESTIONS = gql`
   query getPlayerSuggestions($search: String, $first: Int, $after: String) {
     playersConnection(search: $search, first: $first, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           providerId
