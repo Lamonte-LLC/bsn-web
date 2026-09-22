@@ -57,7 +57,8 @@ function CheckIcon({ className = '' }: { className?: string }) {
 /**
  * A scrollbar of our own at the right edge of the season list: 3px, track in ink at 6%, thumb at 32% on desktop;
  * 4px and darker on phones, where a hairline fades. Always visible and proportional to what's left, so the list
- * says both that it scrolls and how much remains. It renders from the first paint, before any measurement.
+ * says both that it scrolls and how much remains. It renders from the first paint, before any measurement, and
+ * hugs the panel's edge (inside its 10px gutter) like a native overlay scrollbar, clear of the rows and the card.
  */
 function ScrollRail({ target, initialHeight }: { target: React.RefObject<HTMLElement | null>; /** Thumb height (%) before the first measurement, so the rail shows from the first paint. */ initialHeight: number }) {
   const [thumb, setThumb] = useState<{ top: number; height: number }>({ top: 0, height: initialHeight });
@@ -79,7 +80,7 @@ function ScrollRail({ target, initialHeight }: { target: React.RefObject<HTMLEle
     };
   }, [target]);
   return (
-    <span className="pointer-events-none absolute -right-[5px] bottom-[4px] top-[4px] w-[4px] rounded-full bg-[rgba(15,23,31,0.1)] lg:-right-[4px] lg:w-[3px] lg:bg-[rgba(15,23,31,0.06)]" aria-hidden>
+    <span className="pointer-events-none absolute -right-[7px] bottom-[4px] top-[4px] w-[4px] rounded-full bg-[rgba(15,23,31,0.1)] lg:-right-[8px] lg:w-[3px] lg:bg-[rgba(15,23,31,0.06)]" aria-hidden>
       <span className="absolute inset-x-0 rounded-full bg-[rgba(15,23,31,0.5)] lg:bg-[rgba(15,23,31,0.32)]" style={{ top: `${thumb.top}%`, height: `${thumb.height}%` }} />
     </span>
   );
