@@ -229,7 +229,7 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
 export default function PlayerCompareHero({ players }: Props) {
   const { pickerOpen, scopes } = useCompareState();
   const keys = players.map((p) => p.key);
-  const { add, remove } = useCompareNavigation(keys);
+  const { add, remove, clear } = useCompareNavigation(keys);
   const count = players.length;
   const isEmpty = count < 2;
   const openPicker = () => setPickerOpen(true);
@@ -308,11 +308,23 @@ export default function PlayerCompareHero({ players }: Props) {
           <div className="mb-[10px] mt-[23px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
             {/* Same box as the scope pill (padding, type size, icon slot) so both controls read as one family. */}
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
-              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.7)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.65)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
-                <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="-ml-[2px] shrink-0 text-white" aria-hidden>
-                  <path d="M6 1.5v9M1.5 6h9" />
-                </svg>
+              <button type="button" onClick={openPicker} className="group/add inline-flex cursor-pointer items-center gap-[8px] rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.7)] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
+                {/* The plus lives in its own disc: the disc carries the weight, the glyph stays light, and on hover the disc turns white with the plus in ink. */}
+                <span className="-ml-[4px] inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[rgba(255,255,255,0.14)] text-white transition-colors duration-200 ease-out group-hover/add:bg-white group-hover/add:text-[#0F171F]" aria-hidden>
+                  <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <path d="M6 1.5v9M1.5 6h9" />
+                  </svg>
+                </span>
                 Añadir jugador
+              </button>
+            ) : null}
+            {/* Reset: a quiet text button, no border, so it never competes with «Añadir jugador». */}
+            {count >= 1 ? (
+              <button type="button" onClick={clear} className="inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] px-[10px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.45)] transition-colors duration-200 ease-out hover:text-[rgba(255,255,255,0.85)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[12px] lg:py-[7px] lg:text-[13px]">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="shrink-0" aria-hidden>
+                  <path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v3h3" />
+                </svg>
+                Limpiar
               </button>
             ) : null}
           </div>

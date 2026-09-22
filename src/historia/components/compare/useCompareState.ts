@@ -73,5 +73,10 @@ export function useCompareNavigation(keys: string[]) {
     },
     [keys, go],
   );
-  return { add, remove };
+  /** Empties the comparison: every player out, every chosen scope forgotten. */
+  const clear = useCallback(() => {
+    keys.forEach((key) => setCompareScope(key, null));
+    go([]);
+  }, [keys, go]);
+  return { add, remove, clear };
 }
