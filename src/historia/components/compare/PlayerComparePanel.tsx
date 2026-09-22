@@ -153,20 +153,21 @@ function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = 
   return (
     <div className={cx('flex min-w-0 items-stretch self-stretch', { 'justify-start': justify === 'start', 'justify-center': justify === 'center', 'justify-end': justify === 'end' })}>
       <span className="relative flex min-w-0 items-center gap-[6px] pb-[9px] pt-[10px] lg:gap-[8px]">
+        {/* Career scope shows the player's photo, a fifth larger than a club logo. */}
         <span className={cx('shrink-0', hideLogoOnMobile ? 'hidden lg:inline-flex' : 'inline-flex')}>
           <span className="lg:hidden">
-            <PlayerLogo p={p} size={20} />
+            <PlayerLogo p={p} size={p.teams.length ? 20 : 24} />
           </span>
           <span className="hidden lg:inline-flex">
-            <PlayerLogo p={p} size={compact ? 20 : 24} />
+            <PlayerLogo p={p} size={p.teams.length ? (compact ? 20 : 24) : compact ? 24 : 29} />
           </span>
         </span>
         <span className="min-w-0">
-          <span className={cx('block truncate text-[rgba(15,23,31,0.9)]', compact ? 'text-[13px] lg:text-[16px]' : 'text-[14px] lg:text-[17px]')} title={p.name}>
+          <span className={cx('block truncate leading-[1.05] text-[rgba(15,23,31,0.9)]', compact ? 'text-[13px] lg:text-[16px]' : 'text-[14px] lg:text-[17px]')} title={p.name}>
             <span className="lg:hidden">{initialName(p.name)}</span>
             <span className="hidden lg:inline">{p.name}</span>
           </span>
-          <span className="block truncate font-barlow text-[10px] font-medium text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
+          <span className="-mt-[1px] block truncate font-barlow text-[10px] font-medium leading-[1.2] text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
         </span>
         <span className="absolute -bottom-[1px] left-0 right-0 h-[2.5px]" style={{ backgroundColor: p.color }} aria-hidden />
       </span>
