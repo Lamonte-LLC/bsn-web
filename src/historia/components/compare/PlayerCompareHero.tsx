@@ -61,7 +61,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
   const isCareer = scope === CAREER_SCOPE;
   // The list scrolls past ~7 rows (300px at 38px each); only then it needs the fade and the room under it.
   const overflows = seasons.length * 38 > 300;
-  const ROW = `group relative flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
+  const ROW = `group relative flex h-[38px] w-[calc(100%+12px)] -mx-[6px] cursor-pointer items-center gap-[10px] rounded-[6px] px-[14px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
 
   return (
     <Popover className="relative">
@@ -88,8 +88,8 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
                 </span>
                 <Radio on={isCareer} />
               </button>
-              <div className="mx-[2px] mt-[6px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
-              <p className={`px-[6px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
+              <div className="mx-[4px] mt-[6px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
+              <p className={`px-[8px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
                 {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
               </p>
               <div className="relative min-h-0">
@@ -109,7 +109,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
                             {season.teams.map((t) => t.name).join(' / ')}
                           </span>
                           <Radio on={on} />
-                          {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[8px] right-[8px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
+                          {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[14px] right-[14px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
                         </button>
                       </li>
                     );
@@ -177,7 +177,7 @@ function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color, tea
           <span className="lg:hidden">{initialName(p.name)}</span>
           <span className="hidden lg:inline">{p.name}</span>
         </span>
-        <span className="mt-[2px] block font-barlow font-medium text-[10px] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line}</span>
+        <span className="mt-[2px] block min-h-[14px] font-barlow font-medium text-[10px] leading-[1.4] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:min-h-[17px] lg:text-[12px]">{p.line || '\u00a0'}</span>
       </Link>
       <span className="mt-[6px]">
         <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} teamCount={teamCount} />
@@ -232,7 +232,7 @@ export default function PlayerCompareHero({ players }: Props) {
           <h1 className="text-[30px] tracking-[0.4px] text-white lg:text-[42px]">Comparación de jugadores</h1>
 
           {isEmpty ? (
-            <div className="mt-[30px] flex items-center justify-center gap-[20px] lg:gap-[48px]">
+            <div className="mt-[30px] flex items-start justify-center gap-[20px] lg:gap-[48px]">
               {players[0] ? <SlotHorizontal {...slotProps(players[0])} side="left" /> : <EmptySlot side="left" onClick={openPicker} />}
               <span className="text-[20px] text-[rgba(255,255,255,0.3)] lg:text-[26px]">VS</span>
               <EmptySlot side="right" onClick={openPicker} />
