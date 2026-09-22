@@ -18,6 +18,9 @@ type Props = {
 
 const profileHref = (p: ComparePlayerData) => `/jugadores/${p.providerId}`;
 
+/** "Brujos de Guayama" → "Brujos": the live API keeps the city in some extinct clubs' nicknames. */
+const clubShortName = (name: string) => name.replace(/\s+de\s+.+$/i, '');
+
 const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[13px] lg:py-[5px] lg:text-[12px]';
 
 type SeasonOption = { providerId: string; year: number; teams: Array<{ code: string; name: string; color: string }> };
@@ -205,7 +208,7 @@ export default function PlayerCompareHero({ players }: Props) {
     const seasonOptions: SeasonOption[] = cmp.seasons.map((s) => ({
       providerId: s.providerId,
       year: s.year,
-      teams: cmp.teamsFor(s.providerId).map((t) => ({ code: t.code, name: t.nickname || t.name || t.code, color: t.colorPrimary || EXTINCT_CODE_COLORS[t.code] || '#6B7280' })),
+      teams: cmp.teamsFor(s.providerId).map((t) => ({ code: t.code, name: clubShortName(t.nickname || t.name || t.code), color: t.colorPrimary || EXTINCT_CODE_COLORS[t.code] || '#6B7280' })),
     }));
     const teamCount = new Set(seasonOptions.flatMap((s) => s.teams.map((t) => t.code))).size;
     const color = cmp.colorsFor(scope, p.color)[0];
