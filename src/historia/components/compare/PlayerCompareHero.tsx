@@ -35,24 +35,6 @@ function ClubMark({ code, color, size = 20 }: { code: string; color: string; siz
   );
 }
 
-const CLUBS_SHOWN = 5;
-
-/** The clubs of a career as stacked marks, up to five and a "+N" for the rest. */
-function ClubStack({ clubs }: { clubs: Array<{ code: string; name: string; color: string }> }) {
-  const shown = clubs.slice(0, CLUBS_SHOWN);
-  const rest = clubs.length - shown.length;
-  return (
-    <span className="ml-auto inline-flex items-center" title={clubs.map((c) => c.name).join(', ')} aria-label={`${clubs.length} ${clubs.length === 1 ? 'equipo' : 'equipos'}`}>
-      {shown.map((c, i) => (
-        <span key={c.code} className={cx('inline-flex h-[22px] w-[22px] items-center justify-center rounded-full border-[1.5px] border-white bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)]', i ? '-ml-[7px]' : '')}>
-          <ClubMark code={c.code} color={c.color} size={16} />
-        </span>
-      ))}
-      {rest > 0 ? <span className={`-ml-[7px] inline-flex h-[22px] w-[22px] items-center justify-center rounded-full border-[1.5px] border-white bg-[#F1F1F1] font-barlow text-[10px] font-semibold text-[rgba(15,23,31,0.6)] ${cls.tabular}`}>+{rest}</span> : null}
-    </span>
-  );
-}
-
 /** Selection mark of every row: empty ring at rest, darker ring on hover, ink disc with a check when chosen. */
 function Radio({ on, className = '' }: { on: boolean; className?: string }) {
   return (
@@ -79,7 +61,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
   const isCareer = scope === CAREER_SCOPE;
   // The list scrolls past ~7 rows (300px at 38px each); only then it needs the fade and the room under it.
   const overflows = seasons.length * 38 > 300;
-  const ROW = `group relative flex h-[38px] w-[calc(100%+12px)] -mx-[6px] cursor-pointer items-center gap-[10px] rounded-[6px] px-[14px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
+  const ROW = `group relative flex h-[40px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[12px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
 
   return (
     <Popover className="relative">
@@ -99,13 +81,15 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
               anchor={{ to: 'bottom', gap: 8, padding: 12 }}
               className="z-[999] flex w-[300px] flex-col rounded-[14px] border border-[#E2E2E2] bg-white px-[10px] pb-[10px] pt-[10px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 lg:w-[320px]"
             >
-              <button type="button" onClick={() => pick(CAREER_SCOPE)} role="radio" aria-checked={isCareer} className={cx(ROW, 'h-[40px]', isCareer ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
+              <button type="button" onClick={() => pick(CAREER_SCOPE)} role="radio" aria-checked={isCareer} className={cx(ROW, isCareer ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
                 <span className="text-[17px] leading-[1] text-[#0F171F]">Toda su carrera</span>
-                <ClubStack clubs={clubs} />
+                <span className={cx('ml-auto font-barlow text-[12.5px] transition-colors duration-150', cls.tabular, isCareer ? 'font-semibold text-[#0F171F]' : 'font-medium text-[rgba(15,23,31,0.6)] group-hover:font-semibold group-hover:text-[#0F171F]')} title={clubs.map((c) => c.name).join(', ')}>
+                  {clubs.length} {clubs.length === 1 ? 'equipo' : 'equipos'}
+                </span>
                 <Radio on={isCareer} />
               </button>
-              <div className="mx-[4px] mt-[6px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
-              <p className={`px-[8px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
+              <div className="mx-[12px] mt-[6px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
+              <p className={`px-[12px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
                 {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
               </p>
               <div className="relative min-h-0">
@@ -125,7 +109,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
                             {season.teams.map((t) => t.name).join(' / ')}
                           </span>
                           <Radio on={on} className="ml-auto" />
-                          {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[14px] right-[14px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
+                          {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[12px] right-[12px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
                         </button>
                       </li>
                     );

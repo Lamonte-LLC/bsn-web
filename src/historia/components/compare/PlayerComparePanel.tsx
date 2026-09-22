@@ -167,7 +167,7 @@ function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = 
             <span className="lg:hidden">{initialName(p.name)}</span>
             <span className="hidden lg:inline">{p.name}</span>
           </span>
-          <span className="-mt-[1px] block truncate font-barlow text-[10px] font-medium leading-[1.2] text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
+          <span className="mt-[2px] block truncate font-barlow text-[10px] font-medium leading-[1.2] text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
         </span>
         {/* One color per club of the scope: a season with two clubs splits the rule 50/50. */}
         <span className="absolute -bottom-[1px] left-0 right-0 flex h-[2.5px] overflow-hidden" aria-hidden>
