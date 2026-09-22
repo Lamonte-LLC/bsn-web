@@ -317,7 +317,7 @@ export default function PlayerComparePanel({ players }: Props) {
         ))}
         <p>
           ¿Ves una discrepancia o falta algún dato?{' '}
-          <a href="mailto:media@bsnpr.com?subject=Corrección%20de%20datos%20·%20Comparación%20de%20jugadores" className={`not-italic font-medium text-[rgba(15,23,31,0.6)] underline decoration-[rgba(15,23,31,0.25)] underline-offset-[3px] transition-colors duration-150 hover:text-[#0F171F] hover:decoration-[rgba(15,23,31,0.5)] ${cls.focus} rounded-[3px]`}>
+          <a href="mailto:media@bsnpr.com?subject=Corrección%20de%20datos%20·%20Comparación%20de%20jugadores" className={`ml-[4px] not-italic font-medium text-[rgba(15,23,31,0.6)] underline decoration-[rgba(15,23,31,0.25)] underline-offset-[3px] transition-colors duration-150 hover:text-[#0F171F] hover:decoration-[rgba(15,23,31,0.5)] ${cls.focus} rounded-[3px]`}>
             Escríbenos a media@bsnpr.com
           </a>
         </p>

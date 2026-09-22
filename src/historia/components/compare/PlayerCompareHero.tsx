@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import Link from 'next/link';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
@@ -54,14 +55,46 @@ function CheckIcon({ className = '' }: { className?: string }) {
 }
 
 /**
+ * A 3px scrollbar of our own at the right edge of the season list: track in ink at 6%, thumb at 32%, always
+ * visible and proportional to what's left, so the list says both that it scrolls and how much remains.
+ */
+function ScrollRail({ target }: { target: React.RefObject<HTMLElement | null> }) {
+  const [thumb, setThumb] = useState<{ top: number; height: number } | null>(null);
+  useEffect(() => {
+    const el = target.current;
+    if (!el) return;
+    const update = () => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      if (scrollHeight <= clientHeight) return setThumb(null);
+      setThumb({ top: (scrollTop / scrollHeight) * 100, height: (clientHeight / scrollHeight) * 100 });
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener('scroll', update);
+      ro.disconnect();
+    };
+  }, [target]);
+  if (!thumb) return null;
+  return (
+    <span className="pointer-events-none absolute -right-[4px] bottom-[4px] top-[4px] w-[3px] rounded-full bg-[rgba(15,23,31,0.06)]" aria-hidden>
+      <span className="absolute inset-x-0 rounded-full bg-[rgba(15,23,31,0.32)]" style={{ top: `${thumb.top}%`, height: `${thumb.height}%` }} />
+    </span>
+  );
+}
+
+/**
  * Scope of one player: the whole career or a single season, chosen per player so eras can be mixed. A dropdown
  * anchored under the player's pill: "Toda la carrera" as a card and the seasons as a flat list (year, club logo,
- * club name) with a fade that hints at more rows below.
+ * club name) with a fade and a thin rail that hint at more rows below.
  */
 function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; clubs: SeasonOption['teams'] }) {
   const isCareer = scope === CAREER_SCOPE;
   // The list scrolls past ~7 rows (300px at 38px each); only then it needs the fade and the room under it.
   const overflows = seasons.length * 38 > 300;
+  const listRef = useRef<HTMLUListElement>(null);
   const ROW = `group relative flex h-[40px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[12px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
 
   return (
@@ -96,7 +129,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
                 {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
               </p>
               <div className="relative min-h-0">
-                <ul className={cx('max-h-[300px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden', overflows && 'pb-[40px]')} role="radiogroup" aria-label={`Temporadas de ${p.name}`}>
+                <ul ref={listRef} className={cx('max-h-[300px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden', overflows && 'pb-[40px]')} role="radiogroup" aria-label={`Temporadas de ${p.name}`}>
                   {seasons.map((season, i) => {
                     const on = season.providerId === scope;
                     return (
@@ -118,7 +151,8 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
                     );
                   })}
                 </ul>
-                {overflows ? <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[56px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden /> : null}
+                {overflows ? <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[40px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden /> : null}
+                {overflows ? <ScrollRail target={listRef} /> : null}
               </div>
             </PopoverPanel>
           </>
