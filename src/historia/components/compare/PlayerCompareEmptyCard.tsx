@@ -61,10 +61,17 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested, season
                     onClick={() => add(player.providerId)}
                     title={player.name}
                     className={cx(
-                      `flex w-full flex-col items-center gap-[6px] rounded-[12px] border bg-white px-[6px] pb-[10px] pt-[12px] text-center transition-[border-color,transform] duration-150 md:gap-[8px] md:pb-[14px] md:pt-[16px] ${cls.focus}`,
-                      taken ? 'border-[#0F171F] bg-[rgba(15,23,31,0.03)]' : 'cursor-pointer border-[#EAEAEA] hover:border-[rgba(47,47,47,1)] active:scale-[0.98] motion-reduce:active:scale-100',
+                      `relative flex w-full flex-col items-center gap-[6px] rounded-[12px] border px-[6px] pb-[10px] pt-[12px] text-center transition-[border-color,background-color,transform] duration-150 md:gap-[8px] md:pb-[14px] md:pt-[16px] ${cls.focus}`,
+                      taken ? 'border-[rgba(15,23,31,0.12)] bg-[#F4F4F4]' : 'cursor-pointer border-[#EAEAEA] bg-white hover:border-[rgba(15,23,31,0.3)] hover:bg-[#FAFAFA] active:scale-[0.98] motion-reduce:active:scale-100',
                     )}
                   >
+                    {taken ? (
+                      <span className="absolute right-[8px] top-[8px] inline-flex h-[20px] w-[20px] items-center justify-center rounded-full bg-[#0F171F]" aria-hidden>
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M3 8.5l3 3 7-7" />
+                        </svg>
+                      </span>
+                    ) : null}
                     <span className="flex h-[56px] w-[56px] items-center justify-center overflow-hidden rounded-full border-[3px] md:h-[64px] md:w-[64px]" style={{ borderColor: color }}>
                       {player.avatarUrl ? <img src={`${player.avatarUrl}?size=200`} alt="" className="h-full w-full object-cover" /> : <PlayerAvatar name={player.name} color={color} sizePx={58} />}
                     </span>
