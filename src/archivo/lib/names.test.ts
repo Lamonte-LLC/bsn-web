@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { splitForNickname } from './names.ts';
+import { initialName, splitForNickname } from './names.ts';
 
 describe('splitForNickname', () => {
   it('puts the nickname before the surname', () => {
@@ -10,5 +10,15 @@ describe('splitForNickname', () => {
     assert.deepEqual(splitForNickname('Ángel Santiago'), ['Ángel', 'Santiago']);
     assert.deepEqual(splitForNickname('Roberto José Hatton'), ['Roberto José', 'Hatton']);
     assert.deepEqual(splitForNickname('Piculín'), ['Piculín', '']);
+  });
+});
+
+describe('initialName', () => {
+  it('abbreviates to the initial and the first surname', () => {
+    assert.equal(initialName('José Rafael Ortiz'), 'J. Ortiz');
+    assert.equal(initialName('Mario Morales Micheo'), 'M. Morales');
+    assert.equal(initialName('Ángel L. Figueroa'), 'Á. Figueroa');
+    assert.equal(initialName("Mario 'Quijote' Morales Micheo"), 'M. Morales');
+    assert.equal(initialName('Piculín'), 'Piculín');
   });
 });

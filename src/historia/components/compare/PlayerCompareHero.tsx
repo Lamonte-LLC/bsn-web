@@ -21,7 +21,8 @@ const profileHref = (p: ComparePlayerData) => `/jugadores/${p.providerId}`;
 /** "Brujos de Guayama" → "Brujos": the live API keeps the city in some extinct clubs' nicknames. */
 const clubShortName = (name: string) => name.replace(/\s+de\s+.+$/i, '');
 
-const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.2)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[13px] lg:py-[5px] lg:text-[12px]';
+/** Scope pill on the band: hairline at rest, brighter on hover, inverted (white on ink text) while its menu is open. */
+const PILL = 'group/pill inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] border border-[rgba(255,255,255,0.32)] px-[11px] py-[4px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.85)] transition-[border-color,background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.55)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[rgba(255,255,255,0.5)] data-open:border-white data-open:bg-white data-open:text-[#0F171F] data-open:focus-visible:outline-0 lg:px-[13px] lg:py-[5px] lg:text-[12px]';
 
 type SeasonOption = { providerId: string; year: number; teams: Array<{ code: string; name: string; color: string }> };
 
@@ -74,7 +75,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
           <>
             <PopoverButton className={PILL} aria-label={`Alcance de ${p.name}`}>
               <span>{scopeName}</span>
-              <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
+              <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)] transition-transform duration-200 group-data-open/pill:rotate-180 group-data-open/pill:border-t-[rgba(15,23,31,0.6)] motion-reduce:transition-none" aria-hidden />
             </PopoverButton>
             <PopoverPanel
               transition
@@ -161,25 +162,25 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, c
 }
 
 /** Stacked slot (mobile with 2, and 3–4 players everywhere). */
-function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color, clubs }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
+function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, seasons, color, clubs }: { p: ComparePlayerData; count: number; onRemove: () => void; /** Keep the position line's height even when this player has none, so every slot in the row aligns. */ reserveLine: boolean } & ScopeMenuProps) {
   const size = count === 4 ? 44 : 50;
   const sizeLg = count === 4 ? 62 : 70;
   return (
     <div className="flex flex-col items-center text-center">
-      <span className="lg:hidden">
+      <span className="inline-flex lg:hidden">
         <PlayerMark player={{ ...p, color }} size={size} onDark onRemove={onRemove} />
       </span>
       <span className="hidden lg:inline-flex">
         <PlayerMark player={{ ...p, color }} size={sizeLg} onDark onRemove={onRemove} />
       </span>
       <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
-        <span className={cx('mt-[5px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')} title={p.name}>
+        <span className={cx('mt-[9px] block leading-[1.1] text-white lg:mt-[14px]', count === 4 ? 'text-[13px] lg:text-[20px]' : 'text-[15px] lg:text-[22px]')} title={p.name}>
           <span className="lg:hidden">{initialName(p.name)}</span>
           <span className="hidden lg:inline">{p.name}</span>
         </span>
-        <span className="mt-[2px] block min-h-[14px] font-barlow font-medium text-[10px] leading-[1.4] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:min-h-[17px] lg:text-[12px]">{p.line || '\u00a0'}</span>
+        {p.line || reserveLine ? <span className="mt-[2px] block font-barlow font-medium text-[10px] leading-[1.4] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line || '\u00a0'}</span> : null}
       </Link>
-      <span className="mt-[6px]">
+      <span className="mt-[9px] lg:mt-[10px]">
         <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
       </span>
     </div>
@@ -193,6 +194,8 @@ export default function PlayerCompareHero({ players }: Props) {
   const count = players.length;
   const isEmpty = count < 2;
   const openPicker = () => setPickerOpen(true);
+  // Slots share the row: the position line is reserved for everyone only when someone has one.
+  const anyLine = players.some((p) => Boolean(p.line));
 
   // Fixed slots (MAX_COMPARE_PLAYERS): hooks must run the same number of times every render.
   const slots = [players[0] ?? null, players[1] ?? null, players[2] ?? null, players[3] ?? null];
@@ -242,11 +245,11 @@ export default function PlayerCompareHero({ players }: Props) {
             <>
               <div className="mx-auto mt-[30px] grid max-w-[420px] grid-cols-[1fr_auto_1fr] items-start gap-[14px] lg:hidden">
                 <div className="flex justify-center">
-                  <SlotStacked {...slotProps(players[0])} count={2} />
+                  <SlotStacked {...slotProps(players[0])} count={2} reserveLine={anyLine} />
                 </div>
                 <span className="self-center px-[6px] text-[18px] text-[rgba(255,255,255,0.35)]">VS</span>
                 <div className="flex justify-center">
-                  <SlotStacked {...slotProps(players[1])} count={2} />
+                  <SlotStacked {...slotProps(players[1])} count={2} reserveLine={anyLine} />
                 </div>
               </div>
               <div className="mx-auto mt-[30px] hidden max-w-[980px] grid-cols-[1fr_auto_1fr] items-center gap-[48px] lg:grid">
@@ -258,14 +261,14 @@ export default function PlayerCompareHero({ players }: Props) {
           ) : (
             <div className={cx('mx-auto mt-[30px] grid items-start', count === 3 ? 'max-w-[760px] grid-cols-3 gap-[8px] lg:gap-[20px]' : 'max-w-[900px] grid-cols-4 gap-[6px] lg:gap-[16px]')}>
               {players.map((p) => (
-                <SlotStacked key={p.key} {...slotProps(p)} count={count} />
+                <SlotStacked key={p.key} {...slotProps(p)} count={count} reserveLine={anyLine} />
               ))}
             </div>
           )}
 
           <div className="mb-[10px] mt-[18px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
-              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.28)] px-[13px] py-[5px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.6)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.5)] hover:text-[rgba(255,255,255,0.85)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[15px] lg:py-[6px] lg:text-[12px]">
+              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[13px] py-[5px] font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.7)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.65)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[15px] lg:py-[6px] lg:text-[12px]">
                 + Añadir jugador
               </button>
             ) : null}
