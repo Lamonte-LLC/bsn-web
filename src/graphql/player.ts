@@ -408,6 +408,72 @@ export const PLAYER_COMPARISON = gql`
           }
         }
       }
+      careerStats {
+        games
+        gamesAvg
+        minutes
+        minutesAvg
+        points
+        pointsAvg
+        pointsInThePaint
+        pointsInThePaintMade
+        pointsInThePaintAttempted
+        pointsSecondChance
+        pointsSecondChanceMade
+        pointsSecondChanceAttempted
+        pointsFastBreak
+        pointsFastBreakMade
+        pointsFastBreakAttempted
+        fieldGoalsMade
+        fieldGoalsMadeAvg
+        fieldGoalsAttempted
+        fieldGoalsAttemptedAvg
+        fieldGoalsPercentage
+        twoPointsMade
+        twoPointsMadeAvg
+        twoPointsAttempted
+        twoPointsAttemptedAvg
+        twoPointsPercentage
+        threePointersMade
+        threePointersMadeAvg
+        threePointersAttempted
+        threePointersAttemptedAvg
+        threePointersPercentage
+        freeThrowsMade
+        freeThrowsMadeAvg
+        freeThrowsAttempted
+        freeThrowsAttemptedAvg
+        freeThrowsPercentage
+        offensiveRebounds
+        offensiveReboundsAvg
+        defensiveRebounds
+        defensiveReboundsAvg
+        reboundsTotal
+        reboundsTotalAvg
+        assists
+        assistsAvg
+        assistsTurnoverRatio
+        turnovers
+        turnoversAvg
+        steals
+        stealsAvg
+        blocks
+        blocksAvg
+        foulsTotal
+        foulsTechnical
+        foulsUnsportsmanlike
+        foulsDrawn
+        foulsDrawnAvg
+        foulsPersonal
+        foulsPersonalAvg
+        plusMinusPointsAvg
+        efficiency
+        indexOfSuccess
+        doubleDouble
+        draws
+        dunks
+        pir
+      }
     }
   }
 `;

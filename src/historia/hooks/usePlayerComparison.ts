@@ -1,6 +1,6 @@
 import { PLAYER_COMPARISON } from '@/graphql/player';
 import { useQuery } from '@apollo/client/react';
-import { EMPTY_VALUES, type CompareValues } from '@/historia/lib/compare-players';
+import { CAREER_SCOPE, EMPTY_VALUES, type CompareValues } from '@/historia/lib/compare-players';
 
 type SeasonStats = {
   games: number | null;
@@ -43,6 +43,7 @@ type PlayerComparisonResponse = {
     name: string;
     avatarUrl: string | null;
     statsBySeasonConnection: { edges: { node: StatsBySeasonNode }[] };
+    careerStats: SeasonStats;
   } | null;
 };
 
@@ -101,15 +102,18 @@ export function usePlayerComparison(providerId: string | null) {
   const editionFor = (seasonProviderId: string | null) => editions.find((e) => e.season.providerId === seasonProviderId) ?? null;
 
   const valuesFor = (seasonProviderId: string | null): CompareValues => {
+    if (seasonProviderId === CAREER_SCOPE) return data?.player ? toCompareValues(data.player.careerStats) : EMPTY_VALUES;
     const edition = editionFor(seasonProviderId);
     return edition ? toCompareValues(edition.stats) : EMPTY_VALUES;
   };
 
-  const teamsFor = (seasonProviderId: string | null): SeasonTeam[] => editionFor(seasonProviderId)?.teams ?? [];
+  // La carrera no tiene un equipo fijo (el jugador pudo pasar por varios) — sin equipos, el color cae al
+  // fallback del jugador en quien consume teamsFor.
+  const teamsFor = (seasonProviderId: string | null): SeasonTeam[] => (seasonProviderId === CAREER_SCOPE ? [] : (editionFor(seasonProviderId)?.teams ?? []));
 
-  const seasonFor = (seasonProviderId: string | null): SeasonPlayed | null => editionFor(seasonProviderId)?.season ?? null;
+  const seasonFor = (seasonProviderId: string | null): SeasonPlayed | null => (seasonProviderId === CAREER_SCOPE ? null : (editionFor(seasonProviderId)?.season ?? null));
 
-  const nameFor = (seasonProviderId: string | null): string => seasonFor(seasonProviderId)?.name ?? '';
+  const nameFor = (seasonProviderId: string | null): string => (seasonProviderId === CAREER_SCOPE ? 'Carrera' : (seasonFor(seasonProviderId)?.name ?? ''));
 
   return { seasons, currentSeasonProviderId, valuesFor, teamsFor, seasonFor, nameFor, loading, error };
 }

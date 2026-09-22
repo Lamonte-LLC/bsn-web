@@ -32,8 +32,12 @@ export interface CompareValues {
 
 export type CompareValueKey = keyof CompareValues;
 
-/** A season's providerId — lo que PLAYER_COMPARISON necesita para traer las estadísticas de esa temporada. */
+/** A season's providerId, o CAREER_SCOPE — lo que PLAYER_COMPARISON necesita para traer las estadísticas de esa
+ * temporada, o el acumulado de toda la carrera. */
 export type CompareScope = string;
+
+/** Scope especial: estadísticas de toda la carrera (careerStats), no de una temporada puntual. */
+export const CAREER_SCOPE: CompareScope = '__career__';
 
 /** A player as the comparison renders it. Serializable: it crosses the server/client boundary. */
 export interface ComparePlayerData {

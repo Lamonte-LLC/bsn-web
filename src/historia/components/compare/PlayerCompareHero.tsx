@@ -3,13 +3,12 @@
 import cx from 'classnames';
 import Link from 'next/link';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { useSeasons } from '@/historia/hooks/useSeasons';
 import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
-import { MAX_COMPARE_PLAYERS, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
+import { CAREER_SCOPE, MAX_COMPARE_PLAYERS, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
 import { initialName } from '@/archivo/lib/names';
 import PlayerMark from './PlayerMark';
 import PlayerPickerDialog from './PlayerPickerDialog';
-import { setAllScopes, setCompareScope, setPickerOpen, useCompareNavigation, useCompareState } from './useCompareState';
+import { setCompareScope, setPickerOpen, useCompareNavigation, useCompareState } from './useCompareState';
 
 type Props = {
   players: ComparePlayerData[];
@@ -22,7 +21,7 @@ const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] 
 type SeasonOption = { providerId: string; name: string };
 
 /** Season of one player, chosen per player so eras can be mixed (2026 vs 1990). */
-function ScopeMenu({ p, scope, scopeName, others, seasons, currentSeasonProviderId }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; others: string[]; seasons: SeasonOption[]; currentSeasonProviderId: string }) {
+function ScopeMenu({ p, scope, scopeName, seasons }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[] }) {
   return (
     <Menu>
       <MenuButton className={PILL} aria-label={`Alcance de ${p.name}`}>
@@ -37,13 +36,11 @@ function ScopeMenu({ p, scope, scopeName, others, seasons, currentSeasonProvider
             </button>
           </MenuItem>
         ))}
-        {others.length ? (
-          <MenuItem>
-            <button type="button" onClick={() => setAllScopes([p.key, ...others], currentSeasonProviderId)} className="mt-[4px] block w-full cursor-pointer rounded-[8px] border-t border-[rgba(15,23,31,0.08)] px-[14px] pb-[6px] pt-[9px] text-left font-barlow font-medium text-[12px] text-[rgba(15,23,31,0.6)] data-focus:bg-[#F4F4F4]">
-              Temporada actual para todos
-            </button>
-          </MenuItem>
-        ) : null}
+        <MenuItem>
+          <button type="button" onClick={() => setCompareScope(p.key, CAREER_SCOPE)} className={cx('block w-full cursor-pointer rounded-[8px] px-[14px] py-[7px] text-left font-barlow font-medium text-[13px] data-focus:bg-[#F4F4F4]', scope === CAREER_SCOPE ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.6)]')}>
+            Carrera
+          </button>
+        </MenuItem>
       </MenuItems>
     </Menu>
   );
@@ -59,10 +56,10 @@ function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => v
   );
 }
 
-type ScopeMenuProps = { scope: CompareScope; scopeName: string; others: string[]; seasons: SeasonOption[]; currentSeasonProviderId: string; color: string };
+type ScopeMenuProps = { scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string };
 
 /** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
-function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId, color }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
+function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
   return (
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
@@ -71,7 +68,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, 
           <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.nickname}</span>
         </Link>
         <span className="mt-[8px]">
-          <ScopeMenu p={p} scope={scope} scopeName={scopeName} others={others} seasons={seasons} currentSeasonProviderId={currentSeasonProviderId} />
+          <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} />
         </span>
       </div>
       <span className="lg:hidden">
@@ -85,7 +82,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, others, seasons, 
 }
 
 /** Stacked slot (mobile with 2, and 3–4 players everywhere). */
-function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, currentSeasonProviderId, color }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
+function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
   const size = count === 4 ? 44 : 50;
   const sizeLg = count === 4 ? 62 : 70;
   return (
@@ -104,7 +101,7 @@ function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, cu
         <span className="mt-[2px] block font-barlow font-medium text-[10px] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line}</span>
       </Link>
       <span className="mt-[6px]">
-        <ScopeMenu p={p} scope={scope} scopeName={scopeName} others={others} seasons={seasons} currentSeasonProviderId={currentSeasonProviderId} />
+        <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} />
       </span>
     </div>
   );
@@ -112,10 +109,6 @@ function SlotStacked({ p, count, onRemove, scope, scopeName, others, seasons, cu
 
 export default function PlayerCompareHero({ players }: Props) {
   const { pickerOpen, scopes } = useCompareState();
-  /* Solo para el atajo "temporada actual para todos" — la lista de temporadas de cada jugador sale de su propio
-   * usePlayerComparison, no de todas las temporadas de la liga. */
-  const { data: leagueSeasons } = useSeasons();
-  const currentLeagueSeasonProviderId = (leagueSeasons.find((s) => s.current) ?? leagueSeasons[0])?.providerId ?? '';
   const keys = players.map((p) => p.key);
   const { add, remove } = useCompareNavigation(keys);
   const count = players.length;
@@ -141,10 +134,8 @@ export default function PlayerCompareHero({ players }: Props) {
       p,
       scope,
       scopeName: scopeLabel(cmp.nameFor(scope)),
-      others: keys.filter((k) => k !== p.key),
       onRemove: () => remove(p.key),
       seasons: seasonOptions,
-      currentSeasonProviderId: currentLeagueSeasonProviderId,
       color,
     };
   };

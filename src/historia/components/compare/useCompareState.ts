@@ -44,13 +44,6 @@ export function setCompareScope(key: string, scope: CompareScope | null) {
   emit({ ...state, scopes });
 }
 
-/** Sets every player to the same scope (the "todos" shortcut of the menu). */
-export function setAllScopes(keys: string[], scope: CompareScope | null) {
-  const scopes: Record<string, CompareScope | undefined> = {};
-  if (scope !== null) for (const k of keys) scopes[k] = scope;
-  emit({ ...state, scopes });
-}
-
 export function useCompareState(): CompareState {
   return useSyncExternalStore(subscribe, () => state, () => SERVER_SNAPSHOT);
 }
