@@ -272,7 +272,7 @@ export default function PlayerCompareHero({ players }: Props) {
     <>
       <section className="pb-[76px] pt-[10px] text-center lg:pb-[110px] lg:pt-[26px]">
         <div className="container">
-          <h1 className="text-[30px] tracking-[0.4px] text-white lg:text-[42px]">Comparación de jugadores</h1>
+          <h1 className="text-[30px] tracking-[0.4px] text-white lg:text-[42px]">Comparar jugadores</h1>
 
           {isEmpty ? (
             <div className="mt-[30px] flex items-center justify-center gap-[20px] lg:gap-[48px]">
@@ -306,9 +306,13 @@ export default function PlayerCompareHero({ players }: Props) {
           )}
 
           <div className="mb-[10px] mt-[23px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
+            {/* Same box as the scope pill (padding, type size, icon slot) so both controls read as one family. */}
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
-              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.7)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.65)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
-                + Añadir jugador
+              <button type="button" onClick={openPicker} className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.7)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.65)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
+                <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="-ml-[2px] shrink-0 text-white" aria-hidden>
+                  <path d="M6 1.5v9M1.5 6h9" />
+                </svg>
+                Añadir jugador
               </button>
             ) : null}
           </div>
