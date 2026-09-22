@@ -118,19 +118,22 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
               anchor={{ to: 'bottom', gap: 8, padding: 12 }}
               className="z-[999] flex w-[300px] flex-col rounded-[14px] border border-[#E2E2E2] bg-white px-[10px] pb-[10px] pt-[10px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 lg:w-[320px]"
             >
-              <button type="button" onClick={() => pick(CAREER_SCOPE)} role="radio" aria-checked={isCareer} className={cx(ROW, isCareer ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
+              <button type="button" onClick={() => pick(CAREER_SCOPE)} role="radio" aria-checked={isCareer} className={cx(ROW, 'shrink-0', isCareer ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
                 <span className="text-[17px] leading-[1] text-[#0F171F]">Toda su carrera</span>
                 <span className={cx('ml-auto font-barlow text-[12.5px] transition-colors duration-150', cls.tabular, isCareer ? 'font-semibold text-[#0F171F]' : 'font-medium text-[rgba(15,23,31,0.6)] group-hover:font-semibold group-hover:text-[#0F171F]')} title={clubs.map((c) => c.name).join(', ')}>
                   {clubs.length} {clubs.length === 1 ? 'equipo' : 'equipos'}
                 </span>
                 <Radio on={isCareer} />
               </button>
-              <div className="mx-[12px] mt-[6px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
-              <p className={`px-[12px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
+              <div className="mx-[12px] mt-[6px] shrink-0 border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
+              <p className={`shrink-0 px-[12px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
                 {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
               </p>
-              <div className="relative min-h-0">
-                <ul ref={listRef} className={cx('max-h-[300px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden', overflows && 'pb-[40px]')} role="radiogroup" aria-label={`Temporadas de ${p.name}`}>
+              {/* Headless UI caps the panel at the room left under the pill (max-height + overflow auto). The list, not
+                  the panel, absorbs that cap, so the fade and the rail stay on the visible edge instead of scrolling
+                  away with the content. */}
+              <div className="relative flex min-h-0 flex-col">
+                <ul ref={listRef} className={cx('min-h-0 max-h-[300px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden', overflows && 'pb-[40px]')} role="radiogroup" aria-label={`Temporadas de ${p.name}`}>
                   {seasons.map((season, i) => {
                     const on = season.providerId === scope;
                     return (
