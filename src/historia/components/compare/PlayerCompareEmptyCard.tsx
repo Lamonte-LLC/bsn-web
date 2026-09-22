@@ -26,8 +26,9 @@ const clubShortName = (name: string) => name.replace(/\s+de\s+.+$/i, '');
  */
 export default function PlayerCompareEmptyCard({ selectedKeys, suggested, seasonName }: Props) {
   const { add } = useCompareNavigation(selectedKeys);
-  // "BSN 2026" → "Líderes Temporada 2026"; until the page passes the season, "Líderes de la temporada".
-  const seasonLabel = seasonName ? `Temporada ${seasonName.replace(/^BSN\s+/i, '')}` : 'de la temporada';
+  // "BSN 2026" → "Líderes Temporada 2026". The page doesn't pass the season yet, so the current year is fixed
+  // here; bump it each season (or pass seasonName from the page) until CURRENT_SEASON feeds it.
+  const seasonLabel = `Temporada ${seasonName ? seasonName.replace(/^BSN\s+/i, '') : '2026'}`;
   return (
     <div className="rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[20px] pt-[22px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[30px] lg:pt-[34px]">
       <div className="text-center">
