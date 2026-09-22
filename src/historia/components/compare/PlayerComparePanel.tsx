@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
-import FranchiseLogo from '@/archivo/components/FranchiseLogo';
+import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import { usePlayerComparison, type SeasonTeam } from '@/historia/hooks/usePlayerComparison';
 import { EMPTY_VALUES, formatCompareValue, PLAYER_COMPARE_SECTIONS, scopeFor, scopeLabel, visibleStats, winningIndexes, type ComparePlayerData, type CompareScope, type CompareValues, type PlayerCompareStat } from '@/historia/lib/compare-players';
@@ -141,7 +141,8 @@ function PlayerLogo({ p, size }: { p: DisplayPlayer; size: number }) {
       </span>
     );
   }
-  return <FranchiseLogo franchise={null} fallbackName={p.name} sizePx={size} />;
+  // Career scope belongs to no club: the player's own photo, or the initials placeholder.
+  return <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} color={p.color} sizePx={size} />;
 }
 
 /**
