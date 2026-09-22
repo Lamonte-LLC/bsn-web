@@ -4,6 +4,8 @@
  * the same value formatting, so both pages read identically. No data access here; everything is testable.
  */
 
+import { fmtInt } from '@/archivo/lib/format';
+
 /** Every number the comparison can show for one player in one scope. Null = not recorded in that era. */
 export interface CompareValues {
   g: number | null;
@@ -172,7 +174,7 @@ export function dominantTeam<T extends EditionTeam>(editions: ReadonlyArray<{ ye
 export function formatCompareValue(value: number | null, format: CompareFormat): string {
   if (value === null || !Number.isFinite(value)) return '—';
   if (format === 'pct') return `${value.toFixed(1)}%`;
-  if (format === 'int') return String(Math.round(value));
+  if (format === 'int') return fmtInt(Math.round(value)); // thousands with a comma: 7,586
   return value.toFixed(1);
 }
 
