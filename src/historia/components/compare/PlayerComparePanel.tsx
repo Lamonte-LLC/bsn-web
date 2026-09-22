@@ -20,7 +20,7 @@ const ROW_DIVIDER = 'border-b border-[rgba(15,23,31,0.035)]';
 const GRID_TWO = 'grid-cols-[1fr_140px_1fr] lg:grid-cols-[1fr_260px_1fr]';
 const GRID_LEFT_3 = 'grid-cols-[96px_repeat(3,1fr)] lg:grid-cols-[240px_repeat(3,1fr)]';
 const GRID_FOUR = 'grid-cols-[1fr_1fr_92px_1fr_1fr] lg:grid-cols-[1fr_1fr_200px_1fr_1fr]';
-const SECTION_STICKY_TOP = 'top-[50px] lg:top-[58px]';
+const SECTION_STICKY_TOP = 'top-[46px] lg:top-[52px]';
 /* Two views: averages and totals. Shooting splits stay in the season tables. */
 const TABS: Array<{ id: TabId; label: string }> = [
   { id: 'promedio', label: 'Promedio' },
@@ -164,23 +164,23 @@ function PlayerLogo({ p, size }: { p: DisplayPlayer; size: number }) {
 function PlayerTab({ p, scopeName, justify, compact = false, hideLogoOnMobile = false }: { p: DisplayPlayer; scopeName: string; justify: 'start' | 'center' | 'end'; compact?: boolean; hideLogoOnMobile?: boolean }) {
   return (
     <div className={cx('flex min-w-0 items-stretch self-stretch', { 'justify-start': justify === 'start', 'justify-center': justify === 'center', 'justify-end': justify === 'end' })}>
-      <span className="relative flex min-w-0 items-center gap-[6px] pb-[9px] pt-[10px] lg:gap-[8px]">
-        {/* Career scope shows the player's photo, a fifth larger than a club logo. */}
+      <span className="relative flex min-w-0 items-center gap-[6px] py-[8px] lg:gap-[7px]">
+        {/* The mark is as tall as the two text lines; the career photo runs a step larger than a club logo. */}
         <span className={cx('shrink-0', hideLogoOnMobile ? 'hidden lg:inline-flex' : 'inline-flex')}>
           <span className="lg:hidden">
-            <PlayerLogo p={p} size={p.teams.length ? 20 : 24} />
+            <PlayerLogo p={p} size={p.teams.length ? 24 : 28} />
           </span>
           <span className="hidden lg:inline-flex">
-            <PlayerLogo p={p} size={p.teams.length ? (compact ? 20 : 24) : compact ? 24 : 29} />
+            <PlayerLogo p={p} size={p.teams.length ? (compact ? 22 : 26) : compact ? 26 : 30} />
           </span>
         </span>
         <span className="min-w-0">
-          <span className={cx('block truncate leading-[1.05] text-[rgba(15,23,31,0.9)]', compact ? 'text-[14px] lg:text-[16px]' : 'text-[15px] lg:text-[17px]')} title={p.name}>
+          <span className={cx('block truncate leading-[1] text-[rgba(15,23,31,0.9)]', compact ? 'text-[14px] lg:text-[16px]' : 'text-[15px] lg:text-[17px]')} title={p.name}>
             <span className="lg:hidden">{initialName(p.name)}</span>
             <span className="hidden lg:inline">{p.name}</span>
           </span>
           {/* Barlow's ink sits ~0.5px to the right of the display face's at these sizes; nudge so both lines start on the same pixel. */}
-          <span className="-ml-[0.5px] mt-[2px] block truncate font-barlow text-[11px] font-medium leading-[1.2] text-[rgba(15,23,31,0.5)] lg:text-[11px]">{scopeName}</span>
+          <span className="-ml-[0.5px] mt-[2px] block truncate font-barlow text-[11px] font-medium leading-[1] text-[rgba(15,23,31,0.5)]">{scopeName}</span>
         </span>
         {/* One color per club of the scope: a season with two clubs splits the rule 50/50. */}
         <span className="absolute -bottom-[1px] left-0 right-0 flex h-[2.5px] overflow-hidden" aria-hidden>
@@ -207,7 +207,7 @@ function PlayerTabsRow({ players, scopeName }: { players: DisplayPlayer[]; scope
     return () => observer.disconnect();
   }, []);
 
-  const row = cx('sticky top-0 z-[3] grid min-h-[50px] items-center border-b border-[rgba(15,23,31,0.08)] bg-white transition-shadow lg:min-h-[58px]', gridFor(count), stuck && 'shadow-[0_10px_14px_-10px_rgba(15,23,31,0.15)]');
+  const row = cx('sticky top-0 z-[3] grid min-h-[46px] items-center border-b border-[rgba(15,23,31,0.08)] bg-white transition-shadow lg:min-h-[52px]', gridFor(count), stuck && 'shadow-[0_10px_14px_-10px_rgba(15,23,31,0.15)]');
   const label = <div className={cx('self-center pb-[12px] pt-[10px] text-center', TABS_LABEL_CLASS)}>ESTADÍSTICA</div>;
 
   return (
