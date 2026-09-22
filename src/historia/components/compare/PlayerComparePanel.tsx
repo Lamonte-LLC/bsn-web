@@ -312,12 +312,15 @@ export default function PlayerComparePanel({ players }: Props) {
 
       {/* Fine print: only the caveats of the data, never a repeat of what is being compared, plus a quiet way to report a discrepancy. */}
       <div className="mt-[22px] flex flex-col items-center gap-[4px] border-t border-[rgba(15,23,31,0.06)] pt-[14px] text-center font-barlow text-[11.5px] italic leading-[1.5] text-[rgba(15,23,31,0.45)] lg:mt-[30px] lg:text-[12.5px]">
+        {/* Balanced wrapping so a two-line note breaks evenly; on phones the mail link takes its own line. */}
         {notes.map((n) => (
-          <p key={n}>{n}</p>
+          <p key={n} className="max-w-[340px] [text-wrap:balance] lg:max-w-none">
+            {n}
+          </p>
         ))}
-        <p>
+        <p className="max-w-[340px] [text-wrap:balance] lg:max-w-none">
           ¿Ves una discrepancia o falta algún dato?{' '}
-          <a href="mailto:media@bsnpr.com?subject=Corrección%20de%20datos%20·%20Comparación%20de%20jugadores" className={`ml-[4px] not-italic font-medium text-[rgba(15,23,31,0.6)] underline decoration-[rgba(15,23,31,0.25)] underline-offset-[3px] transition-colors duration-150 hover:text-[#0F171F] hover:decoration-[rgba(15,23,31,0.5)] ${cls.focus} rounded-[3px]`}>
+          <a href="mailto:media@bsnpr.com?subject=Corrección%20de%20datos%20·%20Comparación%20de%20jugadores" className={`mt-[2px] block not-italic font-medium lg:ml-[4px] lg:mt-0 lg:inline text-[rgba(15,23,31,0.6)] underline decoration-[rgba(15,23,31,0.25)] underline-offset-[3px] transition-colors duration-150 hover:text-[#0F171F] hover:decoration-[rgba(15,23,31,0.5)] ${cls.focus} rounded-[3px]`}>
             Escríbenos a media@bsnpr.com
           </a>
         </p>
