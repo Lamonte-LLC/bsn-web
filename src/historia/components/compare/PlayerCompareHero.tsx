@@ -1,10 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import cx from 'classnames';
 import Link from 'next/link';
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
-import PlayerAvatar from '@/archivo/components/PlayerAvatar';
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import { cls, EXTINCT_CODE_COLORS } from '@/archivo/lib/tokens';
 import TeamLogoAvatar, { TEAM_LOGOS } from '@/team/components/avatar/TeamLogoAvatar';
 import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
@@ -43,94 +41,85 @@ function CheckIcon({ className = '' }: { className?: string }) {
 }
 
 /**
- * Scope of one player: the whole career or a single season, chosen per player so eras can be mixed. A centered
- * dialog with the player's own mark on top, "Toda la carrera" as a card and the seasons as a flat list (year,
- * club logo, code) with a fade that hints at more rows below.
+ * Scope of one player: the whole career or a single season, chosen per player so eras can be mixed. A dropdown
+ * anchored under the player's pill: "Toda la carrera" as a card and the seasons as a flat list (year, club logo,
+ * club name) with a fade that hints at more rows below.
  */
-function ScopeMenu({ p, scope, scopeName, seasons, color, teamCount }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number }) {
-  const [open, setOpen] = useState(false);
-  const pick = (next: CompareScope) => {
-    setCompareScope(p.key, next);
-    setOpen(false);
-  };
+function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number }) {
   const isCareer = scope === CAREER_SCOPE;
   const ROW = `relative flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
 
   return (
-    <>
-      <button type="button" onClick={() => setOpen(true)} className={PILL} aria-label={`Alcance de ${p.name}`} aria-haspopup="dialog">
-        <span>{scopeName}</span>
-        <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
-      </button>
-      <Dialog open={open} onClose={() => setOpen(false)} className="relative z-[999]">
-        <div className="fixed inset-0 bg-[rgba(15,23,31,0.45)] transition-opacity duration-150" aria-hidden />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="relative flex w-[300px] max-h-[86vh] flex-col rounded-[14px] border border-[#E2E2E2] bg-white px-[10px] pb-[10px] pt-[12px] shadow-[0_8px_30px_rgba(15,23,31,0.16)] lg:w-[320px]">
-            <button type="button" onClick={() => setOpen(false)} aria-label="Cerrar" className={`absolute right-[10px] top-[10px] flex h-[28px] w-[28px] cursor-pointer items-center justify-center rounded-full border border-[#EAEAEA] bg-white transition-colors hover:border-[rgba(47,47,47,1)] ${cls.focus}`}>
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
-                <path d="M2 2l12 12M14 2L2 14" />
-              </svg>
-            </button>
-
-            <DialogTitle className="flex items-center gap-[10px] px-[4px] pb-[12px] pt-[2px]">
-              <span className="inline-flex shrink-0 rounded-full border-2" style={{ borderColor: color }}>
-                <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} color={color} sizePx={34} />
-              </span>
-              <span className="min-w-0 truncate pr-[32px] text-[18px] leading-[1] text-[#0F171F]">{p.name}</span>
-            </DialogTitle>
-
-            <button
-              type="button"
-              onClick={() => pick(CAREER_SCOPE)}
-              aria-pressed={isCareer}
-              className={cx('flex h-[52px] w-full cursor-pointer items-center gap-[12px] rounded-[10px] border bg-white px-[12px] text-left transition-[border-color,background-color] duration-150', isCareer ? 'border-[#0F171F]' : 'border-[rgba(0,0,0,0.12)] hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]', cls.focus)}
+    <Popover className="relative">
+      {({ close }) => {
+        const pick = (next: CompareScope) => {
+          setCompareScope(p.key, next);
+          close();
+        };
+        return (
+          <>
+            <PopoverButton className={PILL} aria-label={`Alcance de ${p.name}`}>
+              <span>{scopeName}</span>
+              <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)]" aria-hidden />
+            </PopoverButton>
+            <PopoverPanel
+              transition
+              anchor={{ to: 'bottom', gap: 8, padding: 12 }}
+              className="z-[999] flex w-[300px] flex-col rounded-[14px] border border-[#E2E2E2] bg-white px-[10px] pb-[10px] pt-[10px] shadow-[0px_1px_15px_0px_#5858581A] transition duration-200 ease-in-out data-closed:-translate-y-1 data-closed:opacity-0 lg:w-[320px]"
             >
-              <span className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#F4F4F4]">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <path d="M2 12l3.5-4 3 2.5L14 4" />
-                </svg>
-              </span>
-              <span className="flex min-w-0 flex-col gap-[2px]">
-                <span className="text-[17px] leading-[1] tracking-[0.2px] text-[#0F171F]">Toda la carrera</span>
-                <span className={`font-barlow text-[11.5px] text-[rgba(15,23,31,0.5)] ${cls.tabular}`}>
-                  {teamCount} {teamCount === 1 ? 'equipo' : 'equipos'}
+              <button
+                type="button"
+                onClick={() => pick(CAREER_SCOPE)}
+                aria-pressed={isCareer}
+                className={cx('flex h-[52px] w-full cursor-pointer items-center gap-[12px] rounded-[10px] border bg-white px-[12px] text-left transition-[border-color,background-color] duration-150', isCareer ? 'border-[#0F171F]' : 'border-[rgba(0,0,0,0.12)] hover:border-[rgba(0,0,0,0.3)] hover:bg-[#FAFAFA]', cls.focus)}
+              >
+                <span className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#F4F4F4]">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#0F171F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M2 12l3.5-4 3 2.5L14 4" />
+                  </svg>
                 </span>
-              </span>
-              {isCareer ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
-            </button>
+                <span className="flex min-w-0 flex-col gap-[2px]">
+                  <span className="text-[17px] leading-[1] tracking-[0.2px] text-[#0F171F]">Toda la carrera</span>
+                  <span className={`font-barlow text-[11.5px] text-[rgba(15,23,31,0.5)] ${cls.tabular}`}>
+                    {teamCount} {teamCount === 1 ? 'equipo' : 'equipos'}
+                  </span>
+                </span>
+                {isCareer ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
+              </button>
 
-            <p className={`px-[6px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
-              {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
-            </p>
-            <div className="relative min-h-0 flex-1">
-              <ul className="max-h-[330px] overflow-y-auto pb-[40px] [scrollbar-width:none] lg:max-h-[300px] [&::-webkit-scrollbar]:hidden" role="listbox" aria-label={`Temporadas de ${p.name}`}>
-                {seasons.map((season, i) => {
-                  const on = season.providerId === scope;
-                  return (
-                    <li key={season.providerId} role="option" aria-selected={on}>
-                      <button type="button" onClick={() => pick(season.providerId)} className={cx(ROW, on ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
-                        <span className={`w-[40px] text-[17px] text-[#0F171F] ${cls.tabular}`}>{season.year}</span>
-                        <span className="inline-flex items-center -space-x-[4px]">
-                          {season.teams.map((t) => (
-                            <ClubMark key={t.code} code={t.code} color={t.color} />
-                          ))}
-                        </span>
-                        <span className="min-w-0 truncate font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.6)]" title={season.teams.map((t) => t.name).join(' / ')}>
-                          {season.teams.map((t) => t.name).join(' / ')}
-                        </span>
-                        {on ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
-                        {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[8px] right-[8px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[56px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden />
-            </div>
-          </DialogPanel>
-        </div>
-      </Dialog>
-    </>
+              <p className={`px-[6px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
+                {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
+              </p>
+              <div className="relative min-h-0">
+                <ul className="max-h-[300px] overflow-y-auto pb-[40px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="listbox" aria-label={`Temporadas de ${p.name}`}>
+                  {seasons.map((season, i) => {
+                    const on = season.providerId === scope;
+                    return (
+                      <li key={season.providerId} role="option" aria-selected={on}>
+                        <button type="button" onClick={() => pick(season.providerId)} className={cx(ROW, on ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
+                          <span className={`w-[40px] text-[17px] text-[#0F171F] ${cls.tabular}`}>{season.year}</span>
+                          <span className="inline-flex items-center -space-x-[4px]">
+                            {season.teams.map((t) => (
+                              <ClubMark key={t.code} code={t.code} color={t.color} />
+                            ))}
+                          </span>
+                          <span className="min-w-0 truncate font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.6)]" title={season.teams.map((t) => t.name).join(' / ')}>
+                            {season.teams.map((t) => t.name).join(' / ')}
+                          </span>
+                          {on ? <CheckIcon className="ml-auto shrink-0 text-[#0F171F]" /> : null}
+                          {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[8px] right-[8px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[56px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden />
+              </div>
+            </PopoverPanel>
+          </>
+        );
+      }}
+    </Popover>
   );
 }
 
