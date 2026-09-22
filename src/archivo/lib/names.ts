@@ -16,7 +16,10 @@ export function initialName(name: string): string {
   const clean = name.replace(/["'‘’“”][^"'‘’“”]*["'‘’“”]/g, ' ').replace(/\s+/g, ' ').trim();
   const [given, surname] = splitForNickname(clean);
   if (!surname) return clean;
-  return `${given[0]}. ${surname.split(' ')[0]}`;
+  const words = clean.split(' ');
+  const last = words[words.length - 1];
+  const suffix = words.length > 2 && SUFFIXES.has(last.toLowerCase()) ? ` ${last}` : '';
+  return `${given[0]}. ${surname.split(' ')[0]}${suffix}`;
 }
 
 /** Second words that are given names (or initials), so the nickname lands before the surname: José Rafael "Piculín" Ortiz. */

@@ -20,6 +20,7 @@ describe('initialName', () => {
     assert.equal(initialName('Ángel L. Figueroa'), 'Á. Figueroa');
     assert.equal(initialName("Mario 'Quijote' Morales Micheo"), 'M. Morales');
     assert.equal(initialName('Piculín'), 'Piculín');
+    assert.equal(initialName('Jameer Nelson Jr.'), 'J. Nelson Jr.');
   });
 });
 
