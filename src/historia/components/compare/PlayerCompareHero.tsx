@@ -55,18 +55,18 @@ function CheckIcon({ className = '' }: { className?: string }) {
 }
 
 /**
- * A 3px scrollbar of our own at the right edge of the season list: track in ink at 6%, thumb at 32% (a step
- * darker on phones, where a hairline this thin fades), always visible and proportional to what's left, so the
- * list says both that it scrolls and how much remains.
+ * A scrollbar of our own at the right edge of the season list: 3px, track in ink at 6%, thumb at 32% on desktop;
+ * 4px and darker on phones, where a hairline fades. Always visible and proportional to what's left, so the list
+ * says both that it scrolls and how much remains. It renders from the first paint, before any measurement.
  */
-function ScrollRail({ target }: { target: React.RefObject<HTMLElement | null> }) {
-  const [thumb, setThumb] = useState<{ top: number; height: number } | null>(null);
+function ScrollRail({ target, initialHeight }: { target: React.RefObject<HTMLElement | null>; /** Thumb height (%) before the first measurement, so the rail shows from the first paint. */ initialHeight: number }) {
+  const [thumb, setThumb] = useState<{ top: number; height: number }>({ top: 0, height: initialHeight });
   useEffect(() => {
     const el = target.current;
     if (!el) return;
     const update = () => {
       const { scrollTop, scrollHeight, clientHeight } = el;
-      if (scrollHeight <= clientHeight) return setThumb(null);
+      if (scrollHeight <= clientHeight) return setThumb({ top: 0, height: 100 });
       setThumb({ top: (scrollTop / scrollHeight) * 100, height: (clientHeight / scrollHeight) * 100 });
     };
     update();
@@ -78,10 +78,9 @@ function ScrollRail({ target }: { target: React.RefObject<HTMLElement | null> })
       ro.disconnect();
     };
   }, [target]);
-  if (!thumb) return null;
   return (
-    <span className="pointer-events-none absolute -right-[4px] bottom-[4px] top-[4px] w-[3px] rounded-full bg-[rgba(15,23,31,0.1)] lg:bg-[rgba(15,23,31,0.06)]" aria-hidden>
-      <span className="absolute inset-x-0 rounded-full bg-[rgba(15,23,31,0.45)] lg:bg-[rgba(15,23,31,0.32)]" style={{ top: `${thumb.top}%`, height: `${thumb.height}%` }} />
+    <span className="pointer-events-none absolute -right-[5px] bottom-[4px] top-[4px] w-[4px] rounded-full bg-[rgba(15,23,31,0.1)] lg:-right-[4px] lg:w-[3px] lg:bg-[rgba(15,23,31,0.06)]" aria-hidden>
+      <span className="absolute inset-x-0 rounded-full bg-[rgba(15,23,31,0.5)] lg:bg-[rgba(15,23,31,0.32)]" style={{ top: `${thumb.top}%`, height: `${thumb.height}%` }} />
     </span>
   );
 }
@@ -156,7 +155,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
                   })}
                 </ul>
                 {overflows ? <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[40px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden /> : null}
-                {overflows ? <ScrollRail target={listRef} /> : null}
+                {overflows ? <ScrollRail target={listRef} initialHeight={(300 / (seasons.length * 38 + 40)) * 100} /> : null}
               </div>
             </PopoverPanel>
           </>
