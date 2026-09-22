@@ -59,6 +59,8 @@ function CheckIcon({ className = '' }: { className?: string }) {
  */
 function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number }) {
   const isCareer = scope === CAREER_SCOPE;
+  // The list scrolls past ~7 rows (300px at 38px each); only then it needs the fade and the room under it.
+  const overflows = seasons.length * 38 > 300;
   const ROW = `group relative flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-[8px] px-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`;
 
   return (
@@ -91,7 +93,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
                 {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
               </p>
               <div className="relative min-h-0">
-                <ul className="max-h-[300px] overflow-y-auto pb-[40px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="radiogroup" aria-label={`Temporadas de ${p.name}`}>
+                <ul className={cx('max-h-[300px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden', overflows && 'pb-[40px]')} role="radiogroup" aria-label={`Temporadas de ${p.name}`}>
                   {seasons.map((season, i) => {
                     const on = season.providerId === scope;
                     return (
@@ -113,7 +115,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
                     );
                   })}
                 </ul>
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[56px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden />
+                {overflows ? <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[56px] rounded-b-[10px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white" aria-hidden /> : null}
               </div>
             </PopoverPanel>
           </>
