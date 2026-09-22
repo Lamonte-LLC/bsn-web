@@ -75,7 +75,9 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
           <>
             <PopoverButton className={PILL} aria-label={`Alcance de ${p.name}`}>
               <span>{scopeName}</span>
-              <span className="h-0 w-0 border-l-[3px] border-r-[3px] border-t-[4px] border-l-transparent border-r-transparent border-t-[rgba(255,255,255,0.5)] transition-transform duration-200 group-data-open/pill:rotate-180 group-data-open/pill:border-t-[rgba(15,23,31,0.6)] motion-reduce:transition-none" aria-hidden />
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="-mr-[2px] shrink-0 text-[rgba(255,255,255,0.8)] transition-transform duration-200 group-data-open/pill:rotate-180 group-data-open/pill:text-[rgba(15,23,31,0.7)] motion-reduce:transition-none" aria-hidden>
+                <path d="M2.5 4.5L6 8l3.5-3.5" />
+              </svg>
             </PopoverButton>
             <PopoverPanel
               transition
@@ -146,7 +148,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, c
         <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
           <span className="block text-[23px] leading-[1.05] text-white lg:text-[33px]">{p.name}</span>
         </Link>
-        <span className="mt-[8px]">
+        <span className="mt-[10px]">
           <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
         </span>
       </div>
@@ -173,13 +175,13 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
         <PlayerMark player={{ ...p, color }} size={sizeLg} onDark onRemove={onRemove} />
       </span>
       <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
-        <span className={cx('mt-[5px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[14px] lg:text-[21px]' : 'text-[16px] lg:text-[23px]')} title={p.name}>
+        <span className={cx('mt-[7px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[14px] lg:text-[21px]' : 'text-[16px] lg:text-[23px]')} title={p.name}>
           <span className="lg:hidden">{initialName(p.name)}</span>
           <span className="hidden lg:inline">{p.name}</span>
         </span>
         {p.line || reserveLine ? <span className="mt-[2px] block font-barlow font-medium text-[10px] leading-[1.4] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line || '\u00a0'}</span> : null}
       </Link>
-      <span className="mt-[18px]">
+      <span className="mt-[20px]">
         <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
       </span>
     </div>
