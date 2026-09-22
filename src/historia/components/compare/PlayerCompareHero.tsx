@@ -125,7 +125,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
                 </span>
                 <Radio on={isCareer} />
               </button>
-              <div className="mx-[12px] mt-[6px] shrink-0 border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
+              <div className="mt-[10px] shrink-0 border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
               <p className={`shrink-0 px-[12px] pb-[6px] pt-[14px] ${cls.label} ${cls.tabular}`}>
                 {seasons.length} {seasons.length === 1 ? 'temporada' : 'temporadas'}
               </p>
