@@ -26,19 +26,37 @@ const PILL = 'inline-flex cursor-pointer items-center gap-[6px] rounded-[100px] 
 type SeasonOption = { providerId: string; year: number; teams: Array<{ code: string; name: string; color: string }> };
 
 /** Club mark of a season row: the real logo when the site has it, else a disc in the archive's provisional color. */
-function ClubMark({ code, color }: { code: string; color: string }) {
-  if (code in TEAM_LOGOS) return <TeamLogoAvatar teamCode={code} size={20} />;
+function ClubMark({ code, color, size = 20 }: { code: string; color: string; size?: number }) {
+  if (code in TEAM_LOGOS) return <TeamLogoAvatar teamCode={code} size={size} />;
   return (
-    <span className="inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-full font-barlow-condensed text-[8px] font-bold italic text-white" style={{ backgroundColor: color }} aria-hidden>
+    <span className="inline-flex shrink-0 items-center justify-center rounded-full font-barlow-condensed font-bold italic text-white" style={{ backgroundColor: color, width: size, height: size, fontSize: Math.round(size * 0.4) }} aria-hidden>
       {code}
     </span>
   );
 }
 
-/** Selection mark of every row: empty ring at rest, darker ring on hover, ink disc with a check when chosen. */
-function Radio({ on }: { on: boolean }) {
+const CLUBS_SHOWN = 5;
+
+/** The clubs of a career as stacked marks, up to five and a "+N" for the rest. */
+function ClubStack({ clubs }: { clubs: Array<{ code: string; name: string; color: string }> }) {
+  const shown = clubs.slice(0, CLUBS_SHOWN);
+  const rest = clubs.length - shown.length;
   return (
-    <span className={cx('ml-auto inline-flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-full border-[1.5px] transition-colors duration-150', on ? 'border-[#0F171F] bg-[#0F171F]' : 'border-[rgba(15,23,31,0.2)] group-hover:border-[rgba(15,23,31,0.45)]')} aria-hidden>
+    <span className="ml-auto inline-flex items-center" title={clubs.map((c) => c.name).join(', ')} aria-label={`${clubs.length} ${clubs.length === 1 ? 'equipo' : 'equipos'}`}>
+      {shown.map((c, i) => (
+        <span key={c.code} className={cx('inline-flex h-[22px] w-[22px] items-center justify-center rounded-full border-[1.5px] border-white bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)]', i ? '-ml-[7px]' : '')}>
+          <ClubMark code={c.code} color={c.color} size={16} />
+        </span>
+      ))}
+      {rest > 0 ? <span className={`-ml-[7px] inline-flex h-[22px] w-[22px] items-center justify-center rounded-full border-[1.5px] border-white bg-[#F1F1F1] font-barlow text-[10px] font-semibold text-[rgba(15,23,31,0.6)] ${cls.tabular}`}>+{rest}</span> : null}
+    </span>
+  );
+}
+
+/** Selection mark of every row: empty ring at rest, darker ring on hover, ink disc with a check when chosen. */
+function Radio({ on, className = '' }: { on: boolean; className?: string }) {
+  return (
+    <span className={cx('inline-flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-full border-[1.5px] transition-colors duration-150', className, on ? 'border-[#0F171F] bg-[#0F171F]' : 'border-[rgba(15,23,31,0.2)] group-hover:border-[rgba(15,23,31,0.45)]')} aria-hidden>
       {on ? <CheckIcon className="h-[10px] w-[10px] text-white" /> : null}
     </span>
   );
@@ -57,7 +75,7 @@ function CheckIcon({ className = '' }: { className?: string }) {
  * anchored under the player's pill: "Toda la carrera" as a card and the seasons as a flat list (year, club logo,
  * club name) with a fade that hints at more rows below.
  */
-function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number }) {
+function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; clubs: SeasonOption['teams'] }) {
   const isCareer = scope === CAREER_SCOPE;
   // The list scrolls past ~7 rows (300px at 38px each); only then it needs the fade and the room under it.
   const overflows = seasons.length * 38 > 300;
@@ -83,9 +101,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
             >
               <button type="button" onClick={() => pick(CAREER_SCOPE)} role="radio" aria-checked={isCareer} className={cx(ROW, 'h-[40px]', isCareer ? 'bg-[#F4F4F4]' : 'hover:bg-[#FAFAFA]')}>
                 <span className="text-[17px] leading-[1] text-[#0F171F]">Toda su carrera</span>
-                <span className={cx('font-barlow text-[12.5px] transition-colors duration-150', cls.tabular, isCareer ? 'font-semibold text-[#0F171F]' : 'font-medium text-[rgba(15,23,31,0.6)] group-hover:font-semibold group-hover:text-[#0F171F]')}>
-                  {teamCount} {teamCount === 1 ? 'equipo' : 'equipos'}
-                </span>
+                <ClubStack clubs={clubs} />
                 <Radio on={isCareer} />
               </button>
               <div className="mx-[4px] mt-[6px] border-t border-[rgba(0,0,0,0.08)]" aria-hidden />
@@ -108,7 +124,7 @@ function ScopeMenu({ p, scope, scopeName, seasons, teamCount }: { p: ComparePlay
                           <span className={cx('min-w-0 truncate font-barlow text-[12.5px] transition-colors duration-150', on ? 'font-semibold text-[#0F171F]' : 'font-medium text-[rgba(15,23,31,0.6)] group-hover:font-semibold group-hover:text-[#0F171F]')} title={season.teams.map((t) => t.name).join(' / ')}>
                             {season.teams.map((t) => t.name).join(' / ')}
                           </span>
-                          <Radio on={on} />
+                          <Radio on={on} className="ml-auto" />
                           {!on && i < seasons.length - 1 ? <span className="absolute bottom-0 left-[14px] right-[14px] h-px bg-[rgba(0,0,0,0.06)]" aria-hidden /> : null}
                         </button>
                       </li>
@@ -135,10 +151,10 @@ function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => v
   );
 }
 
-type ScopeMenuProps = { scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; teamCount: number };
+type ScopeMenuProps = { scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; clubs: SeasonOption['teams'] };
 
 /** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
-function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, teamCount }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
+function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, clubs }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
   return (
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
@@ -147,7 +163,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, t
           <span className="mt-[4px] block font-barlow font-medium text-[11px] text-[rgba(255,255,255,0.5)] lg:mt-[6px] lg:text-[13px]">{p.nickname}</span>
         </Link>
         <span className="mt-[8px]">
-          <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} teamCount={teamCount} />
+          <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
         </span>
       </div>
       <span className="lg:hidden">
@@ -161,7 +177,7 @@ function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, t
 }
 
 /** Stacked slot (mobile with 2, and 3–4 players everywhere). */
-function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color, teamCount }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
+function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color, clubs }: { p: ComparePlayerData; count: number; onRemove: () => void } & ScopeMenuProps) {
   const size = count === 4 ? 44 : 50;
   const sizeLg = count === 4 ? 62 : 70;
   return (
@@ -180,7 +196,7 @@ function SlotStacked({ p, count, onRemove, scope, scopeName, seasons, color, tea
         <span className="mt-[2px] block min-h-[14px] font-barlow font-medium text-[10px] leading-[1.4] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:min-h-[17px] lg:text-[12px]">{p.line || '\u00a0'}</span>
       </Link>
       <span className="mt-[6px]">
-        <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} teamCount={teamCount} />
+        <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
       </span>
     </div>
   );
@@ -212,7 +228,8 @@ export default function PlayerCompareHero({ players }: Props) {
       year: s.year,
       teams: cmp.teamsFor(s.providerId).map((t) => ({ code: t.code, name: clubShortName(t.nickname || t.name || t.code), color: t.colorPrimary || EXTINCT_CODE_COLORS[t.code] || '#6B7280' })),
     }));
-    const teamCount = new Set(seasonOptions.flatMap((s) => s.teams.map((t) => t.code))).size;
+    // Distinct clubs of the career, in order of appearance (most recent first), for the career row.
+    const clubs = seasonOptions.flatMap((s) => s.teams).filter((t, i, all) => all.findIndex((x) => x.code === t.code) === i);
     const color = cmp.colorsFor(scope, p.color)[0];
     return {
       p,
@@ -221,7 +238,7 @@ export default function PlayerCompareHero({ players }: Props) {
       onRemove: () => remove(p.key),
       seasons: seasonOptions,
       color,
-      teamCount,
+      clubs,
     };
   };
 
