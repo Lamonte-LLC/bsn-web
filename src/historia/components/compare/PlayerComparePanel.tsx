@@ -250,8 +250,16 @@ export default function PlayerComparePanel({ players }: Props) {
   const sections = PLAYER_COMPARE_SECTIONS.filter((s) => s.id === activeTab)
     .map((s) => ({ ...s, stats: visibleStats(s, players, valuesOf) }))
     .filter((s) => s.stats.length);
-  const notes = eraNotes({ debutYears: players.map((p) => comparisonOf(p)?.seasonFor(scope(p))?.year).filter((y): y is number => y !== undefined) });
-  const scopeLine = players.map((p) => `${p.name.split(' ').slice(-1)[0]}: ${scopeName(p) === 'Carrera' ? 'carrera' : scopeName(p)}`).join(' · ');
+  // Era caveats: the selected season's year, or the debut year when the whole career is on the table.
+  const notes = eraNotes({
+    debutYears: players
+      .map((p) => {
+        const cmp = comparisonOf(p);
+        const sel = cmp?.seasonFor(scope(p))?.year;
+        return sel ?? cmp?.seasons.reduce<number | undefined>((m, s) => (m === undefined || s.year < m ? s.year : m), undefined);
+      })
+      .filter((y): y is number => y !== undefined),
+  });
 
   const renderRow = (stat: PlayerCompareStat) => {
     const key = stat.code + stat.label;
@@ -283,11 +291,17 @@ export default function PlayerComparePanel({ players }: Props) {
         <p className="py-[26px] text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.55)]">No hay datos para esta vista con los alcances elegidos.</p>
       )}
 
-      <div className="mt-[22px] flex flex-col items-center gap-[6px] border-t border-[rgba(15,23,31,0.06)] pt-[16px] text-center font-barlow text-[12px] text-[rgba(15,23,31,0.5)] lg:mt-[30px] lg:text-[13px]">
-        <p>{scopeLine} · serie regular</p>
+      {/* Fine print: only the caveats of the data, never a repeat of what is being compared, plus a quiet way to report a discrepancy. */}
+      <div className="mt-[22px] flex flex-col items-center gap-[4px] border-t border-[rgba(15,23,31,0.06)] pt-[14px] text-center font-barlow text-[11.5px] italic leading-[1.5] text-[rgba(15,23,31,0.45)] lg:mt-[30px] lg:text-[12.5px]">
         {notes.map((n) => (
           <p key={n}>{n}</p>
         ))}
+        <p>
+          ¿Ves una discrepancia o falta algún dato?{' '}
+          <a href="mailto:media@bsnpr.com?subject=Corrección%20de%20datos%20·%20Comparación%20de%20jugadores" className={`not-italic font-medium text-[rgba(15,23,31,0.6)] underline decoration-[rgba(15,23,31,0.25)] underline-offset-[3px] transition-colors duration-150 hover:text-[#0F171F] hover:decoration-[rgba(15,23,31,0.5)] ${cls.focus} rounded-[3px]`}>
+            Escríbenos a media@bsnpr.com
+          </a>
+        </p>
       </div>
     </div>
   );
