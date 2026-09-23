@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
@@ -135,7 +135,7 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
 
   const onSort = (k: SortKey) => setSort((s) => (s.key === k ? { key: k, dir: s.dir === 'asc' ? 'desc' : 'asc' } : { key: k, dir: k === 'name' || k === 'team' || k === 'pos' ? 'asc' : 'desc' }));
   const visible = rows.slice(0, limit);
-  const num = (n: number | null, strong = false) => <span className={cx('text-center font-barlow text-[14px] tabular-nums', strong ? 'font-semibold text-[#0F171F]' : 'text-[rgba(15,23,31,0.7)]', n === null && 'text-[rgba(15,23,31,0.3)]')}>{n === null ? '–' : fmt(n)}</span>;
+  const num = (n: number | null, strong = false) => <span className={cx('block text-center font-barlow text-[14px] tabular-nums', strong ? 'font-semibold text-[#0F171F]' : 'text-[rgba(15,23,31,0.7)]', n === null && 'text-[rgba(15,23,31,0.3)]')}>{n === null ? '–' : fmt(n)}</span>;
 
   return (
     <>
@@ -186,9 +186,9 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
           <span className="hidden text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.7)] md:block">{p.playingPosition || '–'}</span>
           <span className="hidden text-center font-barlow text-[14px] tabular-nums text-[rgba(15,23,31,0.7)] md:block">{p.jerseyNumber ?? '–'}</span>
           <span className="hidden text-center font-barlow text-[14px] tabular-nums text-[rgba(15,23,31,0.7)] md:block">{p.age ?? '–'}</span>
-          <span className="hidden md:block">{num(p.ppg, true)}</span>
-          <span className="hidden md:block">{num(p.rpg)}</span>
-          <span className="hidden md:block">{num(p.apg)}</span>
+          <span className="hidden text-center md:block">{num(p.ppg, true)}</span>
+          <span className="hidden text-center md:block">{num(p.rpg)}</span>
+          <span className="hidden text-center md:block">{num(p.apg)}</span>
           <Chevron />
         </Link>
       ))}
@@ -217,18 +217,7 @@ function HistoricosTable({ total }: { total: number }) {
   const all = useAllPlayers(typing);
   const rows: HistoricoItem[] = (typing ? found : all.players).map((p) => ({ providerId: p.providerId, name: p.name, nickname: p.nickname, avatarUrl: p.avatarUrl }));
 
-  // Pages itself as the page scrolls: the next page starts while the end of the list is still a screen away.
-  const endRef = useRef<HTMLDivElement>(null);
   const { hasMore, loadMore, loading } = all;
-  useEffect(() => {
-    const el = endRef.current;
-    if (!el || typing || !hasMore) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) loadMore();
-    }, { rootMargin: '800px 0px' });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [typing, hasMore, loadMore, rows.length]);
 
   const th = (label: string, opts: { left?: boolean; desktopOnly?: boolean; title?: string } = {}) => <span title={opts.title} className={cx(opts.desktopOnly ? 'hidden md:inline-flex' : 'inline-flex', 'h-[40px] items-center whitespace-nowrap', opts.left ? 'justify-start' : 'justify-center', TH)}>{label}</span>;
 
@@ -247,10 +236,13 @@ function HistoricosTable({ total }: { total: number }) {
       {rows.map((p, i) => <HistoricoRow key={p.providerId} p={p} first={i === 0} />)}
       {typing && searching ? <p className="px-[16px] py-[18px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</p> : null}
       {typing && !searching && !rows.length ? <p className="px-[16px] py-[28px] text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.55)]">Sin resultados para “{query}”. Prueba sin acentos o con el apellido.</p> : null}
-      <div ref={endRef} aria-hidden />
       <div className="flex flex-col items-center gap-[12px] border-t border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:flex-row md:justify-between md:px-[24px]">
         <span className="font-barlow text-[12.5px] tabular-nums text-[rgba(15,23,31,0.5)]">{typing ? `${fmtInt(rows.length)} resultados` : `Mostrando ${fmtInt(rows.length)} de ${fmtInt(total)} jugadores · A-Z`}</span>
-        {!typing && hasMore ? <span className="font-barlow text-[12px] text-[rgba(15,23,31,0.45)]">{loading ? 'Cargando más jugadores…' : 'Sigue bajando para ver más'}</span> : null}
+        {!typing && hasMore ? (
+          <button type="button" onClick={loadMore} disabled={loading} className={`inline-flex h-[40px] cursor-pointer items-center justify-center rounded-[10px] border border-[rgba(15,23,31,0.14)] px-[18px] font-barlow text-[13px] font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] disabled:cursor-default disabled:opacity-60 ${cls.focus}`}>
+            {loading ? 'Cargando…' : 'Cargar 50 más'}
+          </button>
+        ) : null}
       </div>
     </>
   );

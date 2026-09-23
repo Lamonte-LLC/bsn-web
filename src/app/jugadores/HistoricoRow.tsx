@@ -47,7 +47,7 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
   const clubs = cmp.seasons.flatMap((s) => cmp.teamsFor(s.providerId)).filter((t, i, all) => all.findIndex((x) => x.code === t.code) === i).slice(0, 4);
   const v = cmp.valuesFor(CAREER_SCOPE);
   const num = (n: number | null | undefined, d = 1) => (n === null || n === undefined ? '–' : d === 0 ? fmtInt(n) : fmt(n, d));
-  const cell = (content: React.ReactNode, w: string, extra = '') => <span className={cx('text-center font-barlow text-[14px] tabular-nums', extra)}>{ready ? content : seen && !cmp.loading && !cmp.seasons.length ? <span className="text-[rgba(15,23,31,0.3)]">–</span> : <Shimmer className={cx('h-[14px]', w)} />}</span>;
+  const cell = (content: React.ReactNode, w: string, extra = '') => <span className={cx('block text-center font-barlow text-[14px] tabular-nums', extra)}>{ready ? content : seen && !cmp.loading && !cmp.seasons.length ? <span className="text-[rgba(15,23,31,0.3)]">–</span> : <Shimmer className={cx('h-[14px]', w)} />}</span>;
 
   return (
     <Link
