@@ -3203,6 +3203,16 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   }
 }
 
+/* Comparador de jugadores: barra de progreso indeterminada de 2px (ComparePendingBar). */
+@keyframes compare-sweep {
+  from {
+    left: -40%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
 @keyframes drawer-fade-in {
   from {
     opacity: 0;

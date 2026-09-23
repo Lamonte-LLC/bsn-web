@@ -10,6 +10,7 @@ import { eraNotes } from '@/historia/lib/copy';
 import { initialName } from '@/archivo/lib/names';
 import { cls } from '@/archivo/lib/tokens';
 import { useCompareState } from './useCompareState';
+import ComparePendingBar from './ComparePendingBar';
 
 type Props = { players: ComparePlayerData[] };
 type TabId = 'promedio' | 'totales';
@@ -246,7 +247,7 @@ function PlayerTabsRow({ players, scopeName }: { players: DisplayPlayer[]; scope
 
 export default function PlayerComparePanel({ players }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>('promedio');
-  const { scopes } = useCompareState();
+  const { scopes, pending } = useCompareState();
 
   // Fixed slots (MAX_COMPARE_PLAYERS): hooks must run the same number of times every render.
   const slots = [players[0] ?? null, players[1] ?? null, players[2] ?? null, players[3] ?? null];
@@ -292,8 +293,14 @@ export default function PlayerComparePanel({ players }: Props) {
     return <RowLeft key={key} stat={stat} players={displayPlayers} valuesOf={valuesOf} />;
   };
 
+  // Waiting on the server (a player added or removed) or on any player's stats: a sweep on the top edge and the
+  // content a step dimmer, so the wait reads as work and not as a frozen page.
+  const busy = pending || comparisons.some((c) => c.loading);
+
   return (
-    <div className="rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[18px] pt-[6px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[34px] lg:pt-[10px]">
+    <div className="relative rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[18px] pt-[6px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[34px] lg:pt-[10px]">
+      <ComparePendingBar active={busy} />
+      <div className={cx('transition-opacity duration-200', busy && 'opacity-[0.55] delay-150')}>
       <div className="mt-[14px] flex flex-wrap justify-center gap-x-[14px] gap-y-[6px] lg:mt-[20px] lg:gap-x-[30px]">
         {TABS.map((tab) => (
           <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={cx(`relative before:absolute before:-inset-x-[4px] before:-inset-y-[6px] before:content-[''] cursor-pointer pb-[5px] text-[17px] transition-colors duration-200 ease-out ${cls.focus} lg:pb-[6px] lg:text-[20px]`, activeTab === tab.id ? 'border-b-2 border-[#0F171F] text-[#0F171F]' : 'text-[rgba(15,23,31,0.4)] hover:text-[rgba(15,23,31,0.65)]')}>
@@ -330,6 +337,7 @@ export default function PlayerComparePanel({ players }: Props) {
             Escríbenos a media@bsnpr.com
           </a>
         </p>
+      </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect, useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSyncExternalStore } from 'react';
 import { compareHref, MAX_COMPARE_PLAYERS, type CompareScope } from '@/historia/lib/compare-players';
@@ -14,10 +14,12 @@ type CompareState = {
   pickerOpen: boolean;
   /** Scope chosen per player key; a missing key uses the default computed from the players. */
   scopes: Record<string, CompareScope | undefined>;
+  /** True while the server resolves a new `?p=` after adding, removing or clearing players. */
+  pending: boolean;
 };
 
-let state: CompareState = { pickerOpen: false, scopes: {} };
-const SERVER_SNAPSHOT: CompareState = { pickerOpen: false, scopes: {} };
+let state: CompareState = { pickerOpen: false, scopes: {}, pending: false };
+const SERVER_SNAPSHOT: CompareState = { pickerOpen: false, scopes: {}, pending: false };
 const listeners = new Set<() => void>();
 
 function subscribe(listener: () => void) {
@@ -44,6 +46,11 @@ export function setCompareScope(key: string, scope: CompareScope | null) {
   emit({ ...state, scopes });
 }
 
+export function setComparePending(pending: boolean) {
+  if (state.pending === pending) return;
+  emit({ ...state, pending });
+}
+
 export function useCompareState(): CompareState {
   return useSyncExternalStore(subscribe, () => state, () => SERVER_SNAPSHOT);
 }
@@ -52,10 +59,15 @@ export function useCompareState(): CompareState {
 export function useCompareNavigation(keys: string[]) {
   const router = useRouter();
   const pathname = usePathname();
+  // The navigation runs as a transition so the page knows it's waiting on the server and can show it.
+  const [isPending, startTransition] = useTransition();
+  useEffect(() => {
+    setComparePending(isPending);
+  }, [isPending]);
   const go = useCallback(
     (next: string[]) => {
       const href = compareHref(next);
-      router.replace(href.startsWith(pathname) ? href : href, { scroll: false });
+      startTransition(() => router.replace(href.startsWith(pathname) ? href : href, { scroll: false }));
     },
     [router, pathname],
   );

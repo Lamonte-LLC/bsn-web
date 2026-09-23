@@ -228,7 +228,7 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
 }
 
 export default function PlayerCompareHero({ players }: Props) {
-  const { pickerOpen, scopes } = useCompareState();
+  const { pickerOpen, scopes, pending } = useCompareState();
   const keys = players.map((p) => p.key);
   const { add, remove, clear } = useCompareNavigation(keys);
   const count = players.length;
@@ -275,6 +275,8 @@ export default function PlayerCompareHero({ players }: Props) {
         <div className="container">
           <h1 className="text-[30px] tracking-[0.4px] text-white lg:text-[42px]">Comparar jugadores</h1>
 
+          {/* While the server resolves a new set, the slots dim a step (after a beat) instead of sitting still. */}
+          <div className={cx('transition-opacity duration-200', pending && 'pointer-events-none opacity-60 delay-150')}>
           {isEmpty ? (
             <div className="mt-[30px] flex items-center justify-center gap-[20px] lg:gap-[48px]">
               {players[0] ? <SlotHorizontal {...slotProps(players[0])} side="left" /> : <EmptySlot side="left" onClick={openPicker} />}
@@ -328,6 +330,7 @@ export default function PlayerCompareHero({ players }: Props) {
                 Limpiar
               </button>
             ) : null}
+          </div>
           </div>
         </div>
       </section>
