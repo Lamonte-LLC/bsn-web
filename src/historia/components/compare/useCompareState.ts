@@ -16,10 +16,12 @@ type CompareState = {
   scopes: Record<string, CompareScope | undefined>;
   /** True while the server resolves a new `?p=` after adding, removing or clearing players. */
   pending: boolean;
+  /** The player keys being requested while `pending`, so the hero can draw the outcome before it arrives. */
+  pendingKeys: string[] | null;
 };
 
-let state: CompareState = { pickerOpen: false, scopes: {}, pending: false };
-const SERVER_SNAPSHOT: CompareState = { pickerOpen: false, scopes: {}, pending: false };
+let state: CompareState = { pickerOpen: false, scopes: {}, pending: false, pendingKeys: null };
+const SERVER_SNAPSHOT: CompareState = { pickerOpen: false, scopes: {}, pending: false, pendingKeys: null };
 const listeners = new Set<() => void>();
 
 function subscribe(listener: () => void) {
@@ -46,9 +48,9 @@ export function setCompareScope(key: string, scope: CompareScope | null) {
   emit({ ...state, scopes });
 }
 
-export function setComparePending(pending: boolean) {
-  if (state.pending === pending) return;
-  emit({ ...state, pending });
+export function setComparePending(pending: boolean, keys: string[] | null = null) {
+  if (state.pending === pending && state.pendingKeys === keys) return;
+  emit({ ...state, pending, pendingKeys: pending ? keys : null });
 }
 
 export function useCompareState(): CompareState {
@@ -62,11 +64,12 @@ export function useCompareNavigation(keys: string[]) {
   // The navigation runs as a transition so the page knows it's waiting on the server and can show it.
   const [isPending, startTransition] = useTransition();
   useEffect(() => {
-    setComparePending(isPending);
+    if (!isPending) setComparePending(false);
   }, [isPending]);
   const go = useCallback(
     (next: string[]) => {
       const href = compareHref(next);
+      setComparePending(true, next);
       startTransition(() => router.replace(href.startsWith(pathname) ? href : href, { scroll: false }));
     },
     [router, pathname],

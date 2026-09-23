@@ -50,7 +50,7 @@ function StatLabel({ stat, align }: { stat: PlayerCompareStat; align: 'center' |
 
 function Value({ text, winner, color, side, size }: { text: string; winner: boolean; color: string; side: 'left' | 'right'; size: string }) {
   return (
-    <span className={cx('relative leading-none tabular-nums', size, winner ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.45)]')}>
+    <span className={cx('relative leading-none tabular-nums', size, winner ? 'text-[#0F171F]' : 'text-[rgba(15,23,31,0.65)]')}>
       {text}
       {winner ? <WinnerDot color={color} side={side} /> : null}
     </span>

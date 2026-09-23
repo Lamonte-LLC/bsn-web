@@ -235,11 +235,39 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
   );
 }
 
+/**
+ * The slot of a player who is on the way (or the whole row while the set changes): the same anatomy as a real
+ * slot, drawn as a pulsing outline with «Cargando…», so adding or removing reads instantly, before the server.
+ */
+function LoadingSlot({ layout, side = 'right', count = 2 }: { layout: 'stacked' | 'horizontal'; side?: 'left' | 'right'; count?: number }) {
+  const ring = 'rounded-full border-2 border-dashed border-[rgba(255,255,255,0.35)]';
+  if (layout === 'horizontal') {
+    return (
+      <div className="flex animate-pulse flex-col items-center gap-[6px] lg:flex-row lg:gap-[18px]" aria-live="polite" aria-busy>
+        <span className={cx('order-1 h-[52px] w-[52px] lg:h-[62px] lg:w-[62px]', ring, side === 'left' && 'lg:order-2')} />
+        <span className={cx('order-2 whitespace-nowrap text-[15px] leading-[1.1] text-[rgba(255,255,255,0.45)] lg:text-[28px]', side === 'left' && 'lg:order-1')}>Cargando…</span>
+      </div>
+    );
+  }
+  const size = count === 4 ? 'h-[44px] w-[44px] lg:h-[62px] lg:w-[62px]' : 'h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]';
+  return (
+    <div className="flex animate-pulse flex-col items-center text-center" aria-live="polite" aria-busy>
+      <span className={cx(size, ring)} />
+      <span className={cx('mt-[7px] block leading-[1.1] text-[rgba(255,255,255,0.45)] lg:mt-[8px]', count === 4 ? 'text-[14px] lg:text-[21px]' : 'text-[16px] lg:text-[23px]')}>Cargando…</span>
+      <span className="mt-[14px] h-[32px] w-[84px] rounded-[100px] bg-[rgba(255,255,255,0.08)] lg:mt-[20px] lg:h-[35px]" />
+    </div>
+  );
+}
+
 export default function PlayerCompareHero({ players }: Props) {
-  const { pickerOpen, scopes, pending } = useCompareState();
+  const { pickerOpen, scopes, pending, pendingKeys } = useCompareState();
   const keys = players.map((p) => p.key);
   const { add, remove, clear } = useCompareNavigation(keys);
-  const count = players.length;
+  // Optimistic hero: while the server resolves a change, draw the requested set. A removed player leaves at
+  // once, a requested one shows as a loading slot, and «Limpiar» empties the row on the spot.
+  const shown = pending && pendingKeys ? players.filter((p) => pendingKeys.includes(p.key)) : players;
+  const incoming = pending && pendingKeys ? pendingKeys.filter((k) => !players.some((p) => p.key === k)).length : 0;
+  const count = shown.length + incoming;
   const isEmpty = count < 2;
   const openPicker = () => setPickerOpen(true);
   // Slots share the row: the position line is reserved for everyone only when someone has one.
@@ -283,35 +311,38 @@ export default function PlayerCompareHero({ players }: Props) {
         <div className="container">
           <h1 className="text-[30px] tracking-[0.4px] text-white lg:text-[42px]">Comparar jugadores</h1>
 
-          {/* While the server resolves a new set, the slots dim a step (after a beat) instead of sitting still. */}
-          <div className={cx('transition-opacity duration-200', pending && 'pointer-events-none opacity-60 delay-150')}>
+          {/* While the server resolves a new set, the row shows the outcome already and stops taking taps. */}
+          <div className={cx(pending && 'pointer-events-none')}>
           {isEmpty ? (
             <div className="mt-[30px] flex items-center justify-center gap-[20px] lg:gap-[48px]">
-              {players[0] ? <SlotHorizontal {...slotProps(players[0])} side="left" /> : <EmptySlot side="left" onClick={openPicker} />}
+              {shown[0] ? <SlotHorizontal {...slotProps(shown[0])} side="left" /> : incoming ? <LoadingSlot layout="horizontal" side="left" /> : <EmptySlot side="left" onClick={openPicker} />}
               <span className="text-[20px] text-[rgba(255,255,255,0.3)] lg:text-[26px]">VS</span>
-              <EmptySlot side="right" onClick={openPicker} />
+              {shown[0] && incoming ? <LoadingSlot layout="horizontal" side="right" /> : <EmptySlot side="right" onClick={openPicker} />}
             </div>
           ) : count === 2 ? (
             <>
               <div className="mx-auto mt-[30px] grid max-w-[420px] grid-cols-[1fr_auto_1fr] items-start gap-[14px] lg:hidden">
                 <div className="flex justify-center">
-                  <SlotStacked {...slotProps(players[0])} count={2} reserveLine={anyLine} />
+                  {shown[0] ? <SlotStacked {...slotProps(shown[0])} count={2} reserveLine={anyLine} /> : <LoadingSlot layout="stacked" count={2} />}
                 </div>
                 <span className="self-center px-[6px] text-[18px] text-[rgba(255,255,255,0.35)]">VS</span>
                 <div className="flex justify-center">
-                  <SlotStacked {...slotProps(players[1])} count={2} reserveLine={anyLine} />
+                  {shown[1] ? <SlotStacked {...slotProps(shown[1])} count={2} reserveLine={anyLine} /> : <LoadingSlot layout="stacked" count={2} />}
                 </div>
               </div>
               <div className="mx-auto mt-[30px] hidden max-w-[980px] grid-cols-[1fr_auto_1fr] items-center gap-[48px] lg:grid">
-                <SlotHorizontal {...slotProps(players[0])} side="left" />
+                {shown[0] ? <SlotHorizontal {...slotProps(shown[0])} side="left" /> : <LoadingSlot layout="horizontal" side="left" />}
                 <span className="px-[36px] text-[24px] text-[rgba(255,255,255,0.35)]">VS</span>
-                <SlotHorizontal {...slotProps(players[1])} side="right" />
+                {shown[1] ? <SlotHorizontal {...slotProps(shown[1])} side="right" /> : <LoadingSlot layout="horizontal" side="right" />}
               </div>
             </>
           ) : (
             <div className={cx('mx-auto mt-[30px] grid items-start', count === 3 ? 'max-w-[760px] grid-cols-3 gap-[8px] lg:gap-[20px]' : 'max-w-[900px] grid-cols-4 gap-[6px] lg:gap-[16px]')}>
-              {players.map((p) => (
+              {shown.map((p) => (
                 <SlotStacked key={p.key} {...slotProps(p)} count={count} reserveLine={anyLine} />
+              ))}
+              {Array.from({ length: incoming }, (_, i) => (
+                <LoadingSlot key={`loading-${i}`} layout="stacked" count={count} />
               ))}
             </div>
           )}
