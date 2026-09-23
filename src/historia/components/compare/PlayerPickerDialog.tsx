@@ -44,10 +44,11 @@ function TakenCheck() {
   );
 }
 
-function SectionBand({ children, first = false }: { children: React.ReactNode; first?: boolean }) {
+function SectionBand({ children, context, first = false }: { children: React.ReactNode; /** One line of context under the title, Barlow 12px at 50%. */ context?: string; first?: boolean }) {
   return (
-    <li className={cx('sticky top-0 z-[1] bg-[#F4F4F4] px-[14px] py-[9px] text-[15px] tracking-[0.3px] text-[#0F171F] shadow-[inset_0_-1px_0_rgba(15,23,31,0.06)]', !first && 'border-t border-[rgba(15,23,31,0.06)]')} aria-hidden>
+    <li className={cx('sticky top-0 z-[1] bg-[#F4F4F4] px-[14px] text-[15px] tracking-[0.3px] text-[#0F171F] shadow-[inset_0_-1px_0_rgba(15,23,31,0.06)]', context ? 'py-[10px]' : 'py-[9px]', !first && 'border-t border-[rgba(15,23,31,0.06)]')} aria-hidden>
       {children}
+      {context ? <span className="mt-[2px] block font-barlow text-[12px] tracking-normal text-[rgba(15,23,31,0.5)]">{context}</span> : null}
     </li>
   );
 }
@@ -195,7 +196,11 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
           </div>
 
           <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[12px] min-h-0 flex-1 overflow-y-auto overscroll-contain rounded-[10px] border border-[rgba(15,23,31,0.08)] md:h-[500px]">
-            {!busy && shown.length ? <SectionBand first>{typing ? 'Resultados' : 'Top 40 anotadores'}</SectionBand> : null}
+            {!busy && shown.length ? (
+              <SectionBand first context={typing ? undefined : 'Por puntos, rebotes y asistencias'}>
+                {typing ? 'Resultados' : 'Top 40 histórico'}
+              </SectionBand>
+            ) : null}
             {busy ? (
               <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</li>
             ) : !shown.length ? (
