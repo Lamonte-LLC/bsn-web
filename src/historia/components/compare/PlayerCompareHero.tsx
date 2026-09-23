@@ -91,7 +91,7 @@ function ScrollRail({ target, initialHeight }: { target: React.RefObject<HTMLEle
  * anchored under the player's pill: "Toda la carrera" as a card and the seasons as a flat list (year, club logo,
  * club name) with a fade and a thin rail that hint at more rows below.
  */
-function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; clubs: SeasonOption['teams'] }) {
+function ScopeMenu({ p, scope, scopeName, shortName, seasons, clubs }: { p: ComparePlayerData; scope: CompareScope; scopeName: string; /** Phone label when the full one wouldn't fit the column: the year alone. */ shortName?: string; seasons: SeasonOption[]; color: string; clubs: SeasonOption['teams'] }) {
   const isCareer = scope === CAREER_SCOPE;
   // The list scrolls past ~7 rows (300px at 38px each); only then it needs the fade and the room under it.
   const overflows = seasons.length * 38 > 300;
@@ -108,7 +108,14 @@ function ScopeMenu({ p, scope, scopeName, seasons, clubs }: { p: ComparePlayerDa
         return (
           <>
             <PopoverButton className={PILL} aria-label={`Alcance de ${p.name}`}>
-              <span>{scopeName}</span>
+              {shortName ? (
+                <>
+                  <span className="lg:hidden">{shortName}</span>
+                  <span className="hidden lg:inline">{scopeName}</span>
+                </>
+              ) : (
+                <span>{scopeName}</span>
+              )}
               <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="-mr-[2px] shrink-0 text-[rgba(255,255,255,0.8)] transition-transform duration-200 group-data-open/pill:rotate-180 group-data-open/pill:text-[rgba(15,23,31,0.7)] motion-reduce:transition-none" aria-hidden>
                 <path d="M2.5 4.5L6 8l3.5-3.5" />
               </svg>
@@ -221,7 +228,8 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
         {p.line || reserveLine ? <span className="mt-[2px] block font-barlow font-medium text-[10px] leading-[1.4] text-[rgba(255,255,255,0.5)] lg:mt-[3px] lg:text-[12px]">{p.line || '\u00a0'}</span> : null}
       </Link>
       <span className="mt-[14px] lg:mt-[20px]">
-        <ScopeMenu p={p} scope={scope} scopeName={scopeName} seasons={seasons} color={color} clubs={clubs} />
+        {/* Four columns, or a two-club season, don't fit «2026 - MAN/QUE» on a phone: the year alone, the clubs stay in the menu and the panel. */}
+        <ScopeMenu p={p} scope={scope} scopeName={scopeName} shortName={count === 4 || scopeName.includes('/') ? scopeName.split(' - ')[0] : undefined} seasons={seasons} color={color} clubs={clubs} />
       </span>
     </div>
   );
