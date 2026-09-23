@@ -46,7 +46,7 @@ function TakenCheck() {
 
 function SectionBand({ children, context, first = false }: { children: React.ReactNode; /** One line of context under the title, Barlow 12px at 50%. */ context?: string; first?: boolean }) {
   return (
-    <div className={cx('sticky top-0 z-[1] bg-[#F4F4F4] px-[14px] text-[16px] leading-[1.15] tracking-[0.3px] text-[#0F171F] shadow-[inset_0_-1px_0_rgba(15,23,31,0.06)]', context ? 'py-[10px]' : 'py-[9px]', !first && 'border-t border-[rgba(15,23,31,0.06)]')} aria-hidden>
+    <div className={cx('sticky top-0 z-[1] border-b border-[rgba(15,23,31,0.08)] bg-[#F4F4F4] px-[14px] text-[16px] leading-[1.15] tracking-[0.3px] text-[#0F171F]', context ? 'py-[10px]' : 'py-[9px]')} aria-hidden>
       {children}
       {context ? <span className="block font-barlow text-[12px] leading-[1.3] tracking-normal text-[rgba(15,23,31,0.5)]">{context}</span> : null}
     </div>
@@ -195,7 +195,10 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
             />
           </div>
 
-          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[12px] min-h-0 flex-1 overflow-y-auto overscroll-contain rounded-[10px] border border-[rgba(15,23,31,0.08)] md:h-[500px]">
+          {/* The border and the radius live on the wrapper, which clips; the list scrolls inside it, so a sticky band
+              never draws over the rounded corner or doubles the hairline. */}
+          <div className="mt-[12px] flex min-h-0 flex-1 overflow-hidden rounded-[10px] border border-[rgba(15,23,31,0.08)] md:h-[500px] md:flex-none">
+          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="min-h-0 w-full flex-1 overflow-y-auto overscroll-contain">
             {/* Each section is one li holding its band and its own group of options: the band sticks only while its
                 section is in view and scrolls away with it, so two bands never stack (or peek) at the top. */}
             {busy ? (
@@ -258,6 +261,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
               </li>
             ) : null}
           </ul>
+          </div>
 
           <div className="mt-[14px] flex items-center justify-between gap-4">
             <span className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.45)] md:text-[12px]">

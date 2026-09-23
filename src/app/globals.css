@@ -3203,6 +3203,16 @@ button.sw-sub-tabs-tab:not(.is-active):active {
   }
 }
 
+/* Comparador de jugadores: brillo que recorre los huecos del hero mientras llega un jugador (LoadingSlot). */
+@keyframes compare-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 /* Comparador de jugadores: barra de progreso indeterminada de 2px (ComparePendingBar). */
 @keyframes compare-sweep {
   from {

@@ -236,25 +236,36 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
 }
 
 /**
- * The slot of a player who is on the way (or the whole row while the set changes): the same anatomy as a real
- * slot, drawn as a pulsing outline with «Cargando…», so adding or removing reads instantly, before the server.
+ * The slot of a player who is on the way: the same anatomy as a real slot (avatar, name, scope pill) drawn as
+ * shimmering blocks, so adding reads instantly and the row keeps its shape while the server answers.
  */
+function Shimmer({ className }: { className: string }) {
+  return (
+    <span className={cx('relative overflow-hidden bg-[rgba(255,255,255,0.09)]', className)}>
+      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.16)] to-transparent motion-safe:animate-[compare-shimmer_1.3s_ease-in-out_infinite]" />
+    </span>
+  );
+}
+
 function LoadingSlot({ layout, side = 'right', count = 2 }: { layout: 'stacked' | 'horizontal'; side?: 'left' | 'right'; count?: number }) {
-  const ring = 'rounded-full border-2 border-dashed border-[rgba(255,255,255,0.35)]';
   if (layout === 'horizontal') {
     return (
-      <div className="flex animate-pulse flex-col items-center gap-[6px] lg:flex-row lg:gap-[18px]" aria-live="polite" aria-busy>
-        <span className={cx('order-1 h-[52px] w-[52px] lg:h-[62px] lg:w-[62px]', ring, side === 'left' && 'lg:order-2')} />
-        <span className={cx('order-2 whitespace-nowrap text-[15px] leading-[1.1] text-[rgba(255,255,255,0.45)] lg:text-[28px]', side === 'left' && 'lg:order-1')}>Cargando…</span>
+      <div className="flex flex-col items-center gap-[6px] lg:flex-row lg:gap-[18px]" aria-label="Cargando jugador" aria-live="polite" aria-busy>
+        <Shimmer className={cx('order-1 h-[52px] w-[52px] rounded-full lg:h-[62px] lg:w-[62px]', side === 'left' && 'lg:order-2')} />
+        <span className={cx('order-2 flex flex-col items-center lg:items-stretch', side === 'left' ? 'lg:order-1 lg:items-end' : 'lg:items-start')}>
+          <Shimmer className="h-[17px] w-[92px] rounded-[5px] lg:h-[30px] lg:w-[160px] lg:rounded-[6px]" />
+          <Shimmer className="mt-[10px] h-[32px] w-[84px] rounded-[100px] lg:mt-[10px] lg:h-[35px] lg:w-[96px]" />
+        </span>
       </div>
     );
   }
-  const size = count === 4 ? 'h-[44px] w-[44px] lg:h-[62px] lg:w-[62px]' : 'h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]';
+  const avatar = count === 4 ? 'h-[44px] w-[44px] lg:h-[62px] lg:w-[62px]' : 'h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]';
+  const name = count === 4 ? 'h-[15px] w-[62px] lg:h-[22px] lg:w-[104px]' : 'h-[17px] w-[74px] lg:h-[24px] lg:w-[118px]';
   return (
-    <div className="flex animate-pulse flex-col items-center text-center" aria-live="polite" aria-busy>
-      <span className={cx(size, ring)} />
-      <span className={cx('mt-[7px] block leading-[1.1] text-[rgba(255,255,255,0.45)] lg:mt-[8px]', count === 4 ? 'text-[14px] lg:text-[21px]' : 'text-[16px] lg:text-[23px]')}>Cargando…</span>
-      <span className="mt-[14px] h-[32px] w-[84px] rounded-[100px] bg-[rgba(255,255,255,0.08)] lg:mt-[20px] lg:h-[35px]" />
+    <div className="flex flex-col items-center text-center" aria-label="Cargando jugador" aria-live="polite" aria-busy>
+      <Shimmer className={cx('rounded-full', avatar)} />
+      <Shimmer className={cx('mt-[9px] rounded-[5px] lg:mt-[10px] lg:rounded-[6px]', name)} />
+      <Shimmer className="mt-[14px] h-[32px] w-[84px] rounded-[100px] lg:mt-[20px] lg:h-[35px] lg:w-[96px]" />
     </div>
   );
 }
