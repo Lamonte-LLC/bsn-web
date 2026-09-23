@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSyncExternalStore } from 'react';
 import { compareHref, MAX_COMPARE_PLAYERS, type CompareScope } from '@/historia/lib/compare-players';
@@ -48,9 +48,32 @@ export function setCompareScope(key: string, scope: CompareScope | null) {
   emit({ ...state, scopes });
 }
 
+/** A change resolved faster than this reads as a flash; the skeleton stays up to here so the wait is legible. */
+const MIN_PENDING_MS = 900;
+let pendingSince = 0;
+let holdTimer: ReturnType<typeof setTimeout> | null = null;
+
 export function setComparePending(pending: boolean, keys: string[] | null = null) {
-  if (state.pending === pending && state.pendingKeys === keys) return;
-  emit({ ...state, pending, pendingKeys: pending ? keys : null });
+  if (holdTimer) {
+    clearTimeout(holdTimer);
+    holdTimer = null;
+  }
+  if (pending) {
+    pendingSince = Date.now();
+    if (state.pending && state.pendingKeys === keys) return;
+    emit({ ...state, pending: true, pendingKeys: keys });
+    return;
+  }
+  if (!state.pending) return;
+  const left = MIN_PENDING_MS - (Date.now() - pendingSince);
+  if (left <= 0) {
+    emit({ ...state, pending: false, pendingKeys: null });
+    return;
+  }
+  holdTimer = setTimeout(() => {
+    holdTimer = null;
+    emit({ ...state, pending: false, pendingKeys: null });
+  }, left);
 }
 
 export function useCompareState(): CompareState {
@@ -63,8 +86,17 @@ export function useCompareNavigation(keys: string[]) {
   const pathname = usePathname();
   // The navigation runs as a transition so the page knows it's waiting on the server and can show it.
   const [isPending, startTransition] = useTransition();
+  // Only the hook instance that started the change clears it: this hook runs in several components at once, and
+  // the others are never pending, so an unguarded effect would clear the flag the moment it is set.
+  const startedHere = useRef(false);
   useEffect(() => {
-    if (!isPending) setComparePending(false);
+    if (isPending) {
+      startedHere.current = true;
+      return;
+    }
+    if (!startedHere.current) return;
+    startedHere.current = false;
+    setComparePending(false);
   }, [isPending]);
   const go = useCallback(
     (next: string[]) => {

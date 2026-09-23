@@ -153,6 +153,8 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
     if (selectedKeys.includes(key) || isFull) return;
     onPick(key);
     close();
+    // The sheet covers the whole phone screen: without this the new player's slot loads out of sight.
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -191,7 +193,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
               inputMode="search"
               enterKeyHint="search"
               aria-label="Buscar jugador"
-              className="h-[46px] w-full rounded-[10px] border border-[#D4D4D4] bg-[#fafafa] pl-[42px] pr-[14px] font-barlow text-[16px] text-[#0F171F] md:text-[15px] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[rgba(15,23,31,0.4)] focus:border-[#0F171F] focus:bg-white [&::-webkit-search-cancel-button]:hidden"
+              className="h-[46px] w-full rounded-[10px] border border-[#D4D4D4] bg-[#fafafa] pl-[42px] pr-[14px] font-barlow text-[16px] text-[#0F171F] placeholder:text-[15px] md:text-[15px] md:placeholder:text-[14px] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[rgba(15,23,31,0.4)] focus:border-[#0F171F] focus:bg-white [&::-webkit-search-cancel-button]:hidden"
             />
           </div>
 

@@ -270,14 +270,27 @@ function LoadingSlot({ layout, side = 'right', count = 2 }: { layout: 'stacked' 
   );
 }
 
+/** Keys of this change that were not on the row when it started: they stay skeletons until `pending` lifts. */
+const requestedKeys = new WeakMap<string[], string[]>();
+function incomingKeys(pendingKeys: string[], players: ComparePlayerData[]): string[] {
+  const seen = requestedKeys.get(pendingKeys);
+  if (seen) return seen;
+  const fresh = pendingKeys.filter((k) => !players.some((p) => p.key === k));
+  requestedKeys.set(pendingKeys, fresh);
+  return fresh;
+}
+
 export default function PlayerCompareHero({ players }: Props) {
   const { pickerOpen, scopes, pending, pendingKeys } = useCompareState();
   const keys = players.map((p) => p.key);
   const { add, remove, clear } = useCompareNavigation(keys);
   // Optimistic hero: while the server resolves a change, draw the requested set. A removed player leaves at
-  // once, a requested one shows as a loading slot, and «Limpiar» empties the row on the spot.
-  const shown = pending && pendingKeys ? players.filter((p) => pendingKeys.includes(p.key)) : players;
-  const incoming = pending && pendingKeys ? pendingKeys.filter((k) => !players.some((p) => p.key === k)).length : 0;
+  // once, a requested one shows as a loading slot, and «Limpiar» empties the row on the spot. The slot keeps its
+  // skeleton until the store lifts `pending` (it holds a minimum), even if the player's data already arrived:
+  // otherwise a fast answer swaps it in after a couple of frames and the wait never reads.
+  const known = pending && pendingKeys ? players.filter((p) => pendingKeys.includes(p.key)) : players;
+  const shown = pending && pendingKeys ? known.filter((p) => !incomingKeys(pendingKeys, players).includes(p.key)) : known;
+  const incoming = pending && pendingKeys ? incomingKeys(pendingKeys, players).length : 0;
   const count = shown.length + incoming;
   const isEmpty = count < 2;
   const openPicker = () => setPickerOpen(true);
