@@ -296,7 +296,7 @@ export default function PlayerComparePanel({ players }: Props) {
     <div className="rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[18px] pt-[6px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[34px] lg:pt-[10px]">
       <div className="mt-[14px] flex flex-wrap justify-center gap-x-[14px] gap-y-[6px] lg:mt-[20px] lg:gap-x-[30px]">
         {TABS.map((tab) => (
-          <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={cx(`cursor-pointer pb-[5px] text-[17px] transition-colors duration-200 ease-out ${cls.focus} lg:pb-[6px] lg:text-[20px]`, activeTab === tab.id ? 'border-b-2 border-[#0F171F] text-[#0F171F]' : 'text-[rgba(15,23,31,0.4)] hover:text-[rgba(15,23,31,0.65)]')}>
+          <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={cx(`relative before:absolute before:-inset-x-[4px] before:-inset-y-[6px] before:content-[''] cursor-pointer pb-[5px] text-[17px] transition-colors duration-200 ease-out ${cls.focus} lg:pb-[6px] lg:text-[20px]`, activeTab === tab.id ? 'border-b-2 border-[#0F171F] text-[#0F171F]' : 'text-[rgba(15,23,31,0.4)] hover:text-[rgba(15,23,31,0.65)]')}>
             {tab.label}
           </button>
         ))}

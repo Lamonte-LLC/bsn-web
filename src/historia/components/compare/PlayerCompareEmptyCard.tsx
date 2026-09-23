@@ -32,7 +32,7 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested, season
   return (
     <div className="rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white px-[16px] pb-[20px] pt-[22px] shadow-[0_12px_32px_rgba(15,23,31,0.08)] lg:px-[44px] lg:pb-[30px] lg:pt-[34px]">
       <div className="text-center">
-        <h2 className="text-[21px] leading-[1.1] tracking-[0.3px] text-[#0F171F] lg:text-[26px]">
+        <h2 className="text-[21px] leading-[1.1] tracking-[0.3px] text-[#0F171F] [text-wrap:balance] lg:text-[26px]">
           Compara de {MIN_COMPARE_PLAYERS} a {MAX_COMPARE_PLAYERS} jugadores del BSN
         </h2>
         <p className="mx-auto mt-[6px] max-w-[520px] font-barlow text-[15px] font-normal leading-[1.45] text-[rgba(15,23,31,0.78)] lg:mt-[8px] lg:text-[16px]">Activos o históricos, de cualquier época, lado a lado.</p>

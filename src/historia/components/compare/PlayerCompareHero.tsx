@@ -23,7 +23,7 @@ const profileHref = (p: ComparePlayerData) => `/jugadores/${p.providerId}`;
 const clubShortName = (name: string) => name.replace(/\s+de\s+.+$/i, '');
 
 /** Scope pill on the band: hairline at rest, brighter on hover, inverted (white on ink text) while its menu is open. */
-const PILL = 'group/pill inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-[rgba(255,255,255,0.32)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.55)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[rgba(255,255,255,0.5)] data-open:border-white data-open:bg-white data-open:text-[#0F171F] data-open:focus-visible:outline-0 lg:px-[16px] lg:py-[7px] lg:text-[13px]';
+const PILL = 'group/pill relative before:absolute before:inset-x-0 before:-inset-y-[6px] before:content-[""] inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-[rgba(255,255,255,0.32)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.55)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[rgba(255,255,255,0.5)] data-open:border-white data-open:bg-white data-open:text-[#0F171F] data-open:focus-visible:outline-0 lg:px-[16px] lg:py-[7px] lg:text-[13px]';
 
 type SeasonOption = { providerId: string; year: number; teams: Array<{ code: string; name: string; color: string }> };
 
@@ -178,12 +178,13 @@ function EmptySlot({ side, onClick }: { side: 'left' | 'right'; onClick: () => v
 
 type ScopeMenuProps = { scope: CompareScope; scopeName: string; seasons: SeasonOption[]; color: string; clubs: SeasonOption['teams'] };
 
+/* Touch: every pill and link on the band extends its hit area to ≥44px with a ::before, without growing visually. */
 /** Horizontal slot (2 players, desktop): text outside, circle towards the VS. */
 function SlotHorizontal({ p, side, onRemove, scope, scopeName, seasons, color, clubs }: { p: ComparePlayerData; side: 'left' | 'right'; onRemove: () => void } & ScopeMenuProps) {
   return (
     <div className={cx('flex items-center gap-[16px] lg:gap-[24px]', side === 'left' ? 'flex-row justify-end' : 'flex-row-reverse justify-end')}>
       <div className={cx('flex flex-col', side === 'left' ? 'items-end text-right' : 'items-start text-left')}>
-        <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
+        <Link href={profileHref(p)} title="Ver perfil" className="relative transition-opacity before:absolute before:-inset-x-[4px] before:-inset-y-[10px] before:content-[''] hover:opacity-85">
           <span className="block text-[23px] leading-[1.05] text-white lg:text-[33px]">{p.name}</span>
         </Link>
         <span className="mt-[10px]">
@@ -212,7 +213,7 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
       <span className="hidden lg:inline-flex">
         <PlayerMark player={{ ...p, color }} size={sizeLg} onDark onRemove={onRemove} />
       </span>
-      <Link href={profileHref(p)} title="Ver perfil" className="transition-opacity hover:opacity-85">
+      <Link href={profileHref(p)} title="Ver perfil" className="relative transition-opacity before:absolute before:-inset-x-[4px] before:-inset-y-[10px] before:content-[''] hover:opacity-85">
         <span className={cx('mt-[7px] block leading-[1.1] text-white lg:mt-[8px]', count === 4 ? 'text-[14px] lg:text-[21px]' : 'text-[16px] lg:text-[23px]')} title={p.name}>
           <span className="lg:hidden">{initialName(p.name)}</span>
           <span className="hidden lg:inline">{p.name}</span>
@@ -308,7 +309,7 @@ export default function PlayerCompareHero({ players }: Props) {
           <div className="mb-[10px] mt-[27px] flex flex-wrap items-center justify-center gap-[8px] lg:gap-[10px]">
             {/* Same box as the scope pill (padding, type size, icon slot) so both controls read as one family. */}
             {count >= 1 && count < MAX_COMPARE_PLAYERS ? (
-              <button type="button" onClick={openPicker} className="group/add inline-flex cursor-pointer items-center gap-[8px] rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.7)] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
+              <button type="button" onClick={openPicker} className="group/add relative before:absolute before:inset-x-0 before:-inset-y-[6px] before:content-[''] inline-flex cursor-pointer items-center gap-[8px] rounded-[100px] border border-dashed border-[rgba(255,255,255,0.4)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.7)] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
                 {/* The plus lives in its own disc: the disc carries the weight, the glyph stays light, and on hover the disc turns white with the plus in ink. */}
                 <span className="-ml-[4px] inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[rgba(255,255,255,0.14)] text-white transition-colors duration-200 ease-out group-hover/add:bg-white group-hover/add:text-[#0F171F]" aria-hidden>
                   <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -320,7 +321,7 @@ export default function PlayerCompareHero({ players }: Props) {
             ) : null}
             {/* Reset: same box as «Añadir jugador» but filled and borderless, a step quieter, so the pair sits balanced. */}
             {count >= 1 ? (
-              <button type="button" onClick={clear} className="inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-transparent bg-[rgba(255,255,255,0.08)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.6)] transition-[background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:bg-[rgba(255,255,255,0.14)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
+              <button type="button" onClick={clear} className="relative before:absolute before:inset-x-0 before:-inset-y-[6px] before:content-[''] inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-transparent bg-[rgba(255,255,255,0.08)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.6)] transition-[background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:bg-[rgba(255,255,255,0.14)] hover:text-[rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.5)] lg:px-[16px] lg:py-[7px] lg:text-[13px]">
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="-ml-[2px] shrink-0" aria-hidden>
                   <path d="M2 2l8 8M10 2l-8 8" />
                 </svg>

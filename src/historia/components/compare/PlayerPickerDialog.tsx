@@ -157,13 +157,15 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
   return (
     <Dialog open={open} onClose={close} initialFocus={inputRef} className="relative z-[999]">
       <div className="fixed inset-0 bg-[rgba(15,23,31,0.6)] transition-opacity duration-150" aria-hidden />
-      <div className="fixed inset-0 flex items-end justify-center overflow-y-auto p-0 md:items-center md:p-4">
-        <DialogPanel className="flex max-h-[92vh] w-full max-w-[560px] flex-col rounded-t-[16px] border border-[#E2E2E2] bg-white p-[18px] shadow-[0px_2px_14px_rgba(14,20,32,0.08)] md:max-h-[80vh] md:rounded-[16px] md:p-[24px]">
-          <div className="mb-[14px] flex items-start justify-between gap-4">
+      {/* On phones the picker is a full-height sheet anchored to the top: the search sits at the top of the screen,
+          above the keyboard, and only the list scrolls. On larger screens it's the centered dialog. */}
+      <div className="fixed inset-0 flex items-stretch justify-center md:items-center md:p-4">
+        <DialogPanel className="flex h-[100dvh] w-full max-w-[560px] flex-col bg-white px-[14px] pb-[max(12px,env(safe-area-inset-bottom))] pt-[max(12px,env(safe-area-inset-top))] md:h-auto md:max-h-[80vh] md:rounded-[16px] md:border md:border-[#E2E2E2] md:p-[24px] md:shadow-[0px_2px_14px_rgba(14,20,32,0.08)]">
+          <div className="mb-[12px] flex items-center justify-between gap-4 md:mb-[14px] md:items-start">
             <div>
               <DialogTitle className="text-[20px] text-[#0F171F] md:text-[24px]">Escoge un jugador</DialogTitle>
             </div>
-            <button type="button" onClick={close} aria-label="Cerrar" className="flex h-[32px] w-[32px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#EAEAEA] transition-colors hover:border-[rgba(47,47,47,1)]">
+            <button type="button" onClick={close} aria-label="Cerrar" className="relative flex h-[36px] w-[36px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#EAEAEA] transition-colors before:absolute before:-inset-[4px] before:content-[''] hover:border-[rgba(47,47,47,1)] md:h-[32px] md:w-[32px]">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
                 <path d="M1 1L13 13M13 1L1 13" stroke="#0F171F" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
@@ -182,12 +184,17 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Busca por nombre o apodo"
               autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              inputMode="search"
+              enterKeyHint="search"
               aria-label="Buscar jugador"
-              className="h-[46px] w-full rounded-[10px] border border-[#D4D4D4] bg-[#fafafa] pl-[42px] pr-[14px] font-barlow text-[15px] text-[#0F171F] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[rgba(15,23,31,0.4)] focus:border-[#0F171F] focus:bg-white [&::-webkit-search-cancel-button]:hidden"
+              className="h-[46px] w-full rounded-[10px] border border-[#D4D4D4] bg-[#fafafa] pl-[42px] pr-[14px] font-barlow text-[16px] text-[#0F171F] md:text-[15px] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[rgba(15,23,31,0.4)] focus:border-[#0F171F] focus:bg-white [&::-webkit-search-cancel-button]:hidden"
             />
           </div>
 
-          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[12px] h-[500px] flex-1 overflow-y-auto rounded-[10px] border border-[rgba(15,23,31,0.08)]">
+          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[12px] min-h-0 flex-1 overflow-y-auto overscroll-contain rounded-[10px] border border-[rgba(15,23,31,0.08)] md:h-[500px]">
             {!busy && shown.length ? <SectionBand first>{typing ? 'Resultados' : 'Top 40 anotadores'}</SectionBand> : null}
             {busy ? (
               <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</li>
@@ -199,7 +206,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                 return (
                   <li key={r.key} role="option" aria-selected={taken} className={i ? 'border-t border-[rgba(15,23,31,0.05)]' : ''}>
                     <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[rgba(15,23,31,0.04)]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
-                      {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[#E5E5E5] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
+                      {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[rgba(0,0,0,0.1)] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                       <span className="min-w-0 flex-1">
                         <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
                           <NameWithNickname name={r.name} nickname={r.nickname} />
@@ -220,7 +227,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                   return (
                     <li key={r.key} role="option" aria-selected={taken} className={everyone[0]?.key === r.key ? '' : 'border-t border-[rgba(15,23,31,0.05)]'}>
                       <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[rgba(15,23,31,0.04)]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
-                        {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[#E5E5E5] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
+                        {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[rgba(0,0,0,0.1)] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                         <span className="min-w-0 flex-1">
                           <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
                             <NameWithNickname name={r.name} nickname={r.nickname} />
@@ -245,7 +252,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
             <span className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.45)] md:text-[12px]">
               {selectedKeys.length} de {MAX_COMPARE_PLAYERS} seleccionados
             </span>
-            <button type="button" onClick={close} className="cursor-pointer rounded-[100px] bg-[#0F171F] px-[18px] py-[7px] text-[15px] text-white transition-opacity">
+            <button type="button" onClick={close} className="relative cursor-pointer rounded-[100px] bg-[#0F171F] px-[20px] py-[10px] text-[15px] text-white transition-opacity before:absolute before:inset-x-0 before:-inset-y-[4px] before:content-[''] active:scale-[0.98] motion-reduce:active:scale-100 md:px-[18px] md:py-[7px]">
               {selectedKeys.length >= MIN_COMPARE_PLAYERS ? 'Ver comparación' : 'Cerrar'}
             </button>
           </div>

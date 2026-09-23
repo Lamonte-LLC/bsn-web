@@ -40,9 +40,9 @@ export default function PlayerMark({ player, size, onDark = false, onRemove, cla
             event.stopPropagation();
             onRemove();
           }}
-          className="absolute -right-[3px] -top-[3px] flex h-[16px] w-[16px] cursor-pointer items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)] text-white/45 transition-colors hover:bg-[rgba(255,255,255,0.22)] hover:text-white lg:h-[18px] lg:w-[18px]"
+          className="absolute -right-[4px] -top-[4px] flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)] text-white/45 transition-colors before:absolute before:-inset-[12px] before:content-[''] hover:bg-[rgba(255,255,255,0.22)] hover:text-white lg:-right-[3px] lg:-top-[3px] lg:h-[18px] lg:w-[18px]"
         >
-          <svg width="7" height="7" viewBox="0 0 8 8" fill="none" aria-hidden>
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden>
             <path d="M1 1L7 7M7 1L1 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
         </button>
