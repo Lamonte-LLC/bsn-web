@@ -72,7 +72,7 @@ function SelectField({ label, value, onChange, children, className = '' }: { lab
   return (
     <label className={cx('relative block shrink-0', className)}>
       <span className="sr-only">{label}</span>
-      <select value={value} onChange={(e) => onChange(e.target.value)} className={SELECT}>
+      <select value={value} onChange={(e) => onChange(e.target.value)} className={SELECT} style={{ WebkitAppearance: 'none', MozAppearance: 'none', backgroundImage: 'none' }}>
         {children}
       </select>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(15,23,31,0.5)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="pointer-events-none absolute right-[12px] top-1/2 -translate-y-1/2">
@@ -82,10 +82,10 @@ function SelectField({ label, value, onChange, children, className = '' }: { lab
   );
 }
 
-function SortTh({ label, k, sort, onSort, align = 'center', desktopOnly = false, title }: { label: string; k: SortKey; sort: Sort; onSort: (k: SortKey) => void; align?: 'left' | 'center'; /** Secondary column: hidden on phones. */ desktopOnly?: boolean; title?: string }) {
+function SortTh({ label, k, sort, onSort, align = 'center', desktopOnly = false, phoneOnly = false, title }: { label: string; k: SortKey; sort: Sort; onSort: (k: SortKey) => void; align?: 'left' | 'center'; /** Secondary column: hidden on phones. */ desktopOnly?: boolean; /** A column that sits elsewhere on desktop: shown on phones only. */ phoneOnly?: boolean; title?: string }) {
   const on = sort.key === k;
   return (
-    <button type="button" onClick={() => onSort(k)} title={title} aria-sort={on ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'} className={cx(desktopOnly ? 'hidden md:inline-flex' : 'inline-flex', 'h-[40px] cursor-pointer items-center whitespace-nowrap transition-colors hover:text-[#0F171F]', TH, on && 'text-[#0F171F]', align === 'center' ? 'justify-center' : 'justify-start', cls.focus, 'rounded-[4px] focus-visible:outline-offset-[-2px]')}>
+    <button type="button" onClick={() => onSort(k)} title={title} aria-sort={on ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'} className={cx(desktopOnly ? 'hidden md:inline-flex' : phoneOnly ? 'inline-flex md:hidden' : 'inline-flex', 'h-[40px] cursor-pointer items-center whitespace-nowrap transition-colors hover:text-[#0F171F]', TH, on && 'text-[#0F171F]', align === 'center' ? 'justify-center' : 'justify-start', cls.focus, 'rounded-[4px] focus-visible:outline-offset-[-2px]')}>
       {/* The arrow hangs off the label instead of sitting beside it, so the label stays centered over its column. */}
       <span className="relative">
         {label}
@@ -97,7 +97,9 @@ function SortTh({ label, k, sort, onSort, align = 'center', desktopOnly = false,
 
 /* ---------- Activos ---------- */
 
-const ACT_COLS = 'grid-cols-[minmax(0,1fr)_56px_56px] md:grid-cols-[minmax(0,1fr)_170px_56px_48px_56px_64px_64px_64px]';
+const ACT_COLS = 'grid-cols-[minmax(0,1fr)_40px_64px_14px] md:grid-cols-[minmax(0,1fr)_170px_56px_48px_56px_64px_64px_64px]';
+/** Quiet chevron at the end of a phone row: the row is a link to the profile. */
+const Chevron = () => <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(15,23,31,0.3)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="justify-self-end md:hidden"><path d="M4.5 2.5L8 6l-3.5 3.5" /></svg>;
 
 function ActivosTable({ players }: { players: JugadorItem[] }) {
   const [search, setSearch] = useState('');
@@ -157,36 +159,37 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
       {/* Header: every label sits exactly over its column and shares the cell's alignment. */}
       <div className={cx('grid items-center gap-x-[8px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[10px] md:px-[24px]', ACT_COLS)} role="row">
         <SortTh label="Jugador" k="name" sort={sort} onSort={onSort} align="left" />
-        <SortTh label="Equipo" k="team" sort={sort} onSort={onSort} align="left" desktopOnly />
+        <SortTh label="Pos" k="pos" sort={sort} onSort={onSort} phoneOnly />
+        <SortTh label="Equipo" k="team" sort={sort} onSort={onSort} align="left" />
         <SortTh label="Pos" k="pos" sort={sort} onSort={onSort} desktopOnly />
         <SortTh label="#" k="num" sort={sort} onSort={onSort} desktopOnly title="Número" />
         <SortTh label="Edad" k="age" sort={sort} onSort={onSort} desktopOnly />
-        <SortTh label="PPJ" k="ppg" sort={sort} onSort={onSort} title="Puntos por juego" />
+        <SortTh label="PPJ" k="ppg" sort={sort} onSort={onSort} desktopOnly title="Puntos por juego" />
         <SortTh label="RPJ" k="rpg" sort={sort} onSort={onSort} desktopOnly title="Rebotes por juego" />
-        <SortTh label="APJ" k="apg" sort={sort} onSort={onSort} title="Asistencias por juego" />
+        <SortTh label="APJ" k="apg" sort={sort} onSort={onSort} desktopOnly title="Asistencias por juego" />
+        <span className="md:hidden" aria-hidden />
       </div>
 
       {visible.map((p, i) => (
         <Link key={p.providerId} href={`/jugadores/${p.providerId}`} className={cx('grid h-[56px] items-center gap-x-[8px] px-[14px] transition-colors duration-150 hover:bg-[#FAFAFA] active:bg-[#F3F3F3] motion-reduce:transition-none md:gap-x-[10px] md:px-[24px]', ACT_COLS, i > 0 && 'border-t border-[rgba(15,23,31,0.05)]', cls.focus, 'focus-visible:outline-offset-[-2px]')}>
           <span className="flex min-w-0 items-center gap-[12px]">
             <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} sizePx={34} />
-            <span className="min-w-0">
-              <span className="block truncate text-[16px] leading-[1.1] text-[#0F171F]">{p.name}</span>
-              <span className="mt-[2px] block truncate font-barlow text-[12px] text-[rgba(15,23,31,0.5)] md:hidden">
-                {TEAM_SHORT_NAME[p.teamCode] ?? p.teamCode} · {p.playingPosition || '–'}
-              </span>
-            </span>
+            <span className="block truncate text-[17px] leading-[1.1] text-[#0F171F]">{p.name}</span>
           </span>
-          <span className="hidden min-w-0 items-center gap-[8px] font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.7)] md:flex">
-            <TeamLogoAvatar teamCode={p.teamCode} size={24} />
-            <span className="truncate">{TEAM_SHORT_NAME[p.teamCode] ?? p.teamCode}</span>
+          <span className="text-center font-barlow text-[13px] font-medium text-[rgba(15,23,31,0.7)] md:hidden">{p.playingPosition || '–'}</span>
+          {/* Club: logo and the three-letter code on phones, logo and name on desktop. */}
+          <span className="flex min-w-0 items-center gap-[6px] font-barlow text-[13px] font-semibold text-[rgba(15,23,31,0.7)] md:gap-[8px] md:text-[14px] md:font-medium">
+            <TeamLogoAvatar teamCode={p.teamCode} size={22} />
+            <span className="md:hidden">{p.teamCode}</span>
+            <span className="hidden truncate md:inline">{TEAM_SHORT_NAME[p.teamCode] ?? p.teamCode}</span>
           </span>
           <span className="hidden text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.7)] md:block">{p.playingPosition || '–'}</span>
           <span className="hidden text-center font-barlow text-[14px] tabular-nums text-[rgba(15,23,31,0.7)] md:block">{p.jerseyNumber ?? '–'}</span>
           <span className="hidden text-center font-barlow text-[14px] tabular-nums text-[rgba(15,23,31,0.7)] md:block">{p.age ?? '–'}</span>
-          {num(p.ppg, true)}
+          <span className="hidden md:block">{num(p.ppg, true)}</span>
           <span className="hidden md:block">{num(p.rpg)}</span>
-          {num(p.apg)}
+          <span className="hidden md:block">{num(p.apg)}</span>
+          <Chevron />
         </Link>
       ))}
 
@@ -236,20 +239,17 @@ function HistoricosTable({ total }: { total: number }) {
       </div>
       <div className={cx('grid items-center gap-x-[8px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[10px] md:px-[24px]', HIST_COLS)} role="row">
         {th('Jugador', { left: true })}
-        {th('Equipos', { left: true, desktopOnly: true })}
+        {th('Equipos', { left: true })}
         {th('Temporadas', { desktopOnly: true })}
-        {th('J', { desktopOnly: true, title: 'Juegos' })}
-        {th('PTS', { title: 'Puntos en su carrera' })}
-        {th('PPJ', { title: 'Puntos por juego' })}
-        {th('RPJ', { desktopOnly: true, title: 'Rebotes por juego' })}
-        {th('APJ', { desktopOnly: true, title: 'Asistencias por juego' })}
+        {th('J', { title: 'Juegos' })}
+        <span className="md:hidden" aria-hidden />
       </div>
       {rows.map((p, i) => <HistoricoRow key={p.providerId} p={p} first={i === 0} />)}
       {typing && searching ? <p className="px-[16px] py-[18px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</p> : null}
       {typing && !searching && !rows.length ? <p className="px-[16px] py-[28px] text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.55)]">Sin resultados para “{query}”. Prueba sin acentos o con el apellido.</p> : null}
       <div ref={endRef} aria-hidden />
       <div className="flex flex-col items-center gap-[12px] border-t border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:flex-row md:justify-between md:px-[24px]">
-        <span className="font-barlow text-[12.5px] tabular-nums text-[rgba(15,23,31,0.5)]">{typing ? `${fmtInt(rows.length)} resultados` : `Mostrando ${fmtInt(rows.length)} de ${fmtInt(total)} jugadores · A-Z · promedios de carrera`}</span>
+        <span className="font-barlow text-[12.5px] tabular-nums text-[rgba(15,23,31,0.5)]">{typing ? `${fmtInt(rows.length)} resultados` : `Mostrando ${fmtInt(rows.length)} de ${fmtInt(total)} jugadores · A-Z`}</span>
         {!typing && hasMore ? <span className="font-barlow text-[12px] text-[rgba(15,23,31,0.45)]">{loading ? 'Cargando más jugadores…' : 'Sigue bajando para ver más'}</span> : null}
       </div>
     </>

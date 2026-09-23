@@ -12,8 +12,8 @@ import { CAREER_SCOPE } from '@/historia/lib/compare-players';
 
 export type HistoricoItem = { providerId: string; name: string; nickname: string | null; avatarUrl: string | null };
 
-/** Grid of the historical table: player, clubs, seasons, games, points, PPJ, RPJ, APJ (phones: player, points, PPJ). */
-export const HIST_COLS = 'grid-cols-[minmax(0,1fr)_72px_64px] md:grid-cols-[minmax(0,1fr)_120px_120px_56px_72px_64px_64px_64px]';
+/** Grid of the historical table: player, clubs, seasons, games (phones: player with the seasons under the name, clubs, games, chevron). */
+export const HIST_COLS = 'grid-cols-[minmax(0,1fr)_92px_40px_14px] md:grid-cols-[minmax(0,1fr)_180px_150px_72px]';
 
 function Shimmer({ className }: { className: string }) {
   return <span aria-hidden className={cx('inline-block animate-pulse rounded-[4px] bg-[rgba(15,23,31,0.07)]', className)} />;
@@ -58,7 +58,7 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
       <span className="flex min-w-0 items-center gap-[12px]">
         <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} color={cmp.mainColor} sizePx={34} />
         <span className="min-w-0">
-          <span className="block truncate text-[16px] leading-[1.1] text-[#0F171F]">
+          <span className="block truncate text-[17px] leading-[1.1] text-[#0F171F]">
             {p.name}
             {p.nickname ? <span className="text-[rgba(15,23,31,0.5)]"> “{p.nickname}”</span> : null}
           </span>
@@ -68,7 +68,7 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
           </span>
         </span>
       </span>
-      <span className="hidden items-center md:flex">
+      <span className="flex items-center">
         {ready ? (
           <span className="inline-flex items-center">
             {clubs.map((t, i) => (
@@ -82,11 +82,8 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
         )}
       </span>
       <span className="hidden text-center font-barlow text-[13px] tabular-nums text-[rgba(15,23,31,0.7)] md:block">{ready ? <>{span} <span className="text-[rgba(15,23,31,0.45)]">· {cmp.seasons.length}</span></> : <Shimmer className="h-[13px] w-[72px]" />}</span>
-      <span className="hidden md:block">{cell(num(v.g, 0), 'w-[28px]', 'text-[rgba(15,23,31,0.7)]')}</span>
-      {cell(num(v.pts, 0), 'w-[40px]', 'font-semibold text-[#0F171F]')}
-      {cell(num(v.ppg), 'w-[28px]', 'text-[rgba(15,23,31,0.7)]')}
-      <span className="hidden md:block">{cell(num(v.rpg), 'w-[28px]', 'text-[rgba(15,23,31,0.7)]')}</span>
-      <span className="hidden md:block">{cell(num(v.apg), 'w-[28px]', 'text-[rgba(15,23,31,0.7)]')}</span>
+      {cell(num(v.g, 0), 'w-[28px]', 'text-[rgba(15,23,31,0.7)]')}
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(15,23,31,0.3)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="justify-self-end md:hidden"><path d="M4.5 2.5L8 6l-3.5 3.5" /></svg>
     </Link>
   );
 }
