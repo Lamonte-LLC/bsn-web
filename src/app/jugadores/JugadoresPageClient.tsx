@@ -7,15 +7,13 @@ import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import { fmt, fmtInt } from '@/archivo/lib/format';
 import { cls } from '@/archivo/lib/tokens';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
-import { useAllPlayers } from '@/historia/hooks/useAllPlayers';
-import { useDebouncedValue } from '@/historia/hooks/useDebouncedValue';
-import { usePlayerSuggestions } from '@/historia/hooks/usePlayerSuggestions';
-import HistoricoRow, { HIST_COLS, type HistoricoItem } from './HistoricoRow';
+import HistoricoRow, { HIST_COLS } from './HistoricoRow';
+import { useHistoricosIndex, type HistoricoEntry } from './historicos-index';
 import { useJugadoresTab } from './useJugadoresTab';
 
 const TEAM_SHORT_NAME: Record<string, string> = { AGU: 'Santeros', ARE: 'Capitanes', BAY: 'Vaqueros', CAG: 'Criollos', CAR: 'Gigantes', GBO: 'Mets', MAN: 'Osos', MAY: 'Indios', PON: 'Leones', QUE: 'Piratas', SGE: 'Atléticos', SCE: 'Cangrejeros' };
 const TEAM_CITY: Record<string, string> = { AGU: 'Aguada', ARE: 'Arecibo', BAY: 'Bayamón', CAG: 'Caguas', CAR: 'Carolina', GBO: 'Guaynabo', MAN: 'Manatí', MAY: 'Mayagüez', PON: 'Ponce', QUE: 'Quebradillas', SGE: 'San Germán', SCE: 'Santurce' };
-const POSITIONS: Array<[string, string]> = [['G', 'Guardias'], ['F', 'Aleros'], ['C', 'Pívots']];
+const POSITIONS: Array<[string, string]> = [['G', 'Guards'], ['F', 'Forwards'], ['C', 'Centers']];
 const PAGE_SIZE = 40;
 
 export type JugadorItem = {
@@ -33,7 +31,7 @@ export type JugadorItem = {
 };
 
 type SortKey = 'name' | 'team' | 'pos' | 'num' | 'age' | 'ppg' | 'rpg' | 'apg';
-type Sort = { key: SortKey; dir: 'asc' | 'desc' };
+type Sort<K extends string = SortKey> = { key: K; dir: 'asc' | 'desc' };
 
 const surname = (name: string) => {
   const parts = name.trim().split(/\s+/);
@@ -82,7 +80,7 @@ function SelectField({ label, value, onChange, children, className = '' }: { lab
   );
 }
 
-function SortTh({ label, k, sort, onSort, align = 'center', desktopOnly = false, phoneOnly = false, title }: { label: string; k: SortKey; sort: Sort; onSort: (k: SortKey) => void; align?: 'left' | 'center'; /** Secondary column: hidden on phones. */ desktopOnly?: boolean; /** A column that sits elsewhere on desktop: shown on phones only. */ phoneOnly?: boolean; title?: string }) {
+function SortTh<K extends string>({ label, k, sort, onSort, align = 'center', desktopOnly = false, phoneOnly = false, title }: { label: string; k: K; sort: Sort<K>; onSort: (k: K) => void; align?: 'left' | 'center'; /** Secondary column: hidden on phones. */ desktopOnly?: boolean; /** A column that sits elsewhere on desktop: shown on phones only. */ phoneOnly?: boolean; title?: string }) {
   const on = sort.key === k;
   return (
     <button type="button" onClick={() => onSort(k)} title={title} aria-sort={on ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'} className={cx(desktopOnly ? 'hidden md:inline-flex' : phoneOnly ? 'inline-flex md:hidden' : 'inline-flex', 'h-[40px] cursor-pointer items-center whitespace-nowrap transition-colors hover:text-[#0F171F]', TH, on && 'text-[#0F171F]', align === 'center' ? 'justify-center' : 'justify-start', cls.focus, 'rounded-[4px] focus-visible:outline-offset-[-2px]')}>
@@ -209,38 +207,117 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
 
 /* ---------- Históricos ---------- */
 
+type HistSortKey = 'name' | 'seasons' | 'years' | 'games';
+const HIST_PAGE = 50;
+const DECADES = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020];
+
+function ShimmerRows() {
+  return (
+    <div aria-hidden>
+      {Array.from({ length: 8 }, (_, i) => (
+        <div key={i} className={cx('grid h-[56px] items-center gap-x-[8px] px-[14px] md:gap-x-[12px] md:px-[24px]', HIST_COLS, i > 0 && 'border-t border-[rgba(15,23,31,0.05)]')}>
+          <span className="flex items-center gap-[12px]"><span className="h-[34px] w-[34px] animate-pulse rounded-full bg-[rgba(15,23,31,0.07)]" /><span className="h-[14px] w-[160px] animate-pulse rounded-[4px] bg-[rgba(15,23,31,0.07)]" /></span>
+          <span className="h-[26px] w-[64px] animate-pulse rounded-full bg-[rgba(15,23,31,0.07)]" />
+          <span className="mx-auto hidden h-[14px] w-[24px] animate-pulse rounded-[4px] bg-[rgba(15,23,31,0.07)] md:block" />
+          <span className="mx-auto hidden h-[14px] w-[64px] animate-pulse rounded-[4px] bg-[rgba(15,23,31,0.07)] md:block" />
+          <span className="mx-auto h-[14px] w-[28px] animate-pulse rounded-[4px] bg-[rgba(15,23,31,0.07)]" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Every player in the league's history, from the static index (public/data/jugadores-historicos.json): search
+ * by name or nickname, filters by decade and club, sortable columns, pages of 50. No request per row.
+ */
 function HistoricosTable({ total }: { total: number }) {
+  const { index, loading, error } = useHistoricosIndex();
   const [search, setSearch] = useState('');
-  const query = useDebouncedValue(search.trim(), 300);
-  const typing = query.length > 0;
-  const { data: found, loading: searching } = usePlayerSuggestions(query, 60);
-  const all = useAllPlayers(typing);
-  const rows: HistoricoItem[] = (typing ? found : all.players).map((p) => ({ providerId: p.providerId, name: p.name, nickname: p.nickname, avatarUrl: p.avatarUrl }));
+  const [decade, setDecade] = useState('');
+  const [team, setTeam] = useState('');
+  const [sort, setSort] = useState<Sort<HistSortKey>>({ key: 'name', dir: 'asc' });
+  const [limit, setLimit] = useState(HIST_PAGE);
+  const reset = () => setLimit(HIST_PAGE);
 
-  const { hasMore, loadMore, loading } = all;
+  const onSort = (key: HistSortKey) => {
+    setSort((s) => (s.key === key ? { key, dir: s.dir === 'asc' ? 'desc' : 'asc' } : { key, dir: key === 'name' ? 'asc' : 'desc' }));
+    reset();
+  };
 
-  const th = (label: string, opts: { left?: boolean; desktopOnly?: boolean; title?: string } = {}) => <span title={opts.title} className={cx(opts.desktopOnly ? 'hidden md:inline-flex' : 'inline-flex', 'h-[40px] items-center whitespace-nowrap', opts.left ? 'justify-start' : 'justify-center', TH)}>{label}</span>;
+  const clubs = useMemo(() => index?.teams ?? {}, [index]);
+  const teamOptions = useMemo(() => Object.entries(clubs).sort(([, a], [, b]) => a.name.localeCompare(b.name, 'es')), [clubs]);
+
+  const rows = useMemo(() => {
+    if (!index) return [];
+    const q = fold(search.trim());
+    const dec = decade ? Number(decade) : null;
+    const list = index.players.filter((p) => (!q || fold(p.n).includes(q) || (p.k ? fold(p.k).includes(q) : false)) && (dec === null || p.d.includes(dec)) && (!team || p.t.includes(team)));
+    const dir = sort.dir === 'asc' ? 1 : -1;
+    const val = (p: HistoricoEntry): number | null => {
+      switch (sort.key) {
+        case 'seasons': return p.s || null;
+        case 'years': return p.fy;
+        case 'games': return p.g || null;
+        default: return null;
+      }
+    };
+    return [...list].sort((a, b) => {
+      if (sort.key === 'name') return dir * a.n.localeCompare(b.n, 'es');
+      const av = val(a);
+      const bv = val(b);
+      if (av === null && bv === null) return a.n.localeCompare(b.n, 'es');
+      if (av === null) return 1;
+      if (bv === null) return -1;
+      return av === bv ? a.n.localeCompare(b.n, 'es') : dir * (av - bv);
+    });
+  }, [index, search, decade, team, sort]);
+
+  const filtered = Boolean(search.trim() || decade || team);
+  const shown = rows.slice(0, limit);
+  const count = index ? rows.length : total;
 
   return (
     <>
       <div className="flex gap-[10px] border-b border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:px-[24px] md:py-[18px]">
-        <SearchField value={search} onChange={setSearch} placeholder="Buscar por nombre o apodo" placeholderMobile="Buscar jugador" />
+        <SearchField value={search} onChange={(v) => { setSearch(v); reset(); }} placeholder="Buscar por nombre o apodo" placeholderMobile="Buscar jugador" />
+        <SelectField label="Época" value={decade} onChange={(v) => { setDecade(v); reset(); }} className="w-[96px] md:w-[150px]">
+          <option value="">Épocas</option>
+          {DECADES.map((d) => <option key={d} value={d}>{d}s</option>)}
+        </SelectField>
+        <SelectField label="Equipo" value={team} onChange={(v) => { setTeam(v); reset(); }} className="hidden md:block md:w-[230px]">
+          <option value="">Todos los equipos</option>
+          {teamOptions.map(([code, c]) => <option key={code} value={code}>{c.name}</option>)}
+        </SelectField>
       </div>
+      <div className="border-b border-[rgba(15,23,31,0.06)] px-[14px] py-[10px] md:hidden">
+        <SelectField label="Equipo" value={team} onChange={(v) => { setTeam(v); reset(); }} className="w-full">
+          <option value="">Todos los equipos</option>
+          {teamOptions.map(([code, c]) => <option key={code} value={code}>{c.name}</option>)}
+        </SelectField>
+      </div>
+
       <div className={cx('grid items-center gap-x-[8px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[12px] md:px-[24px]', HIST_COLS)} role="row">
-        {th('Jugador', { left: true })}
-        {th('Equipos', { left: true })}
-        {th('Temporadas', { desktopOnly: true })}
-        {th('Juegos', { title: 'Total de juegos jugados' })}
+        <SortTh label="Jugador" k="name" sort={sort} onSort={onSort} align="left" />
+        <span className={cx('inline-flex h-[40px] items-center whitespace-nowrap', TH)}>Equipos</span>
+        <SortTh label="Temporadas" k="seasons" sort={sort} onSort={onSort} desktopOnly />
+        <SortTh label="Años activo" k="years" sort={sort} onSort={onSort} desktopOnly title="Primera y última temporada" />
+        <SortTh label="Total juegos" k="games" sort={sort} onSort={onSort} title="Total de juegos jugados" />
         <span className="md:hidden" aria-hidden />
       </div>
-      {rows.map((p, i) => <HistoricoRow key={p.providerId} p={p} first={i === 0} />)}
-      {typing && searching ? <p className="px-[16px] py-[18px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</p> : null}
-      {typing && !searching && !rows.length ? <p className="px-[16px] py-[28px] text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.55)]">Sin resultados para “{query}”. Prueba sin acentos o con el apellido.</p> : null}
-      <div className="flex flex-col items-center gap-[12px] border-t border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:flex-row md:justify-between md:px-[24px]">
-        <span className="font-barlow text-[12.5px] tabular-nums text-[rgba(15,23,31,0.5)]">{typing ? `${fmtInt(rows.length)} resultados` : `Mostrando ${fmtInt(rows.length)} de ${fmtInt(total)} jugadores · A-Z`}</span>
-        {!typing && hasMore ? (
-          <button type="button" onClick={loadMore} disabled={loading} className={`inline-flex h-[40px] cursor-pointer items-center justify-center rounded-[10px] border border-[rgba(15,23,31,0.14)] px-[18px] font-barlow text-[13px] font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] disabled:cursor-default disabled:opacity-60 ${cls.focus}`}>
-            {loading ? 'Cargando…' : 'Cargar 50 más'}
+
+      {loading ? <ShimmerRows /> : null}
+      {error ? <p className="px-[16px] py-[28px] text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.55)]">No se pudo cargar el listado. Intenta de nuevo.</p> : null}
+      {shown.map((p, i) => <HistoricoRow key={p.id} p={p} clubs={clubs} first={i === 0} />)}
+      {index && !rows.length ? <p className="px-[16px] py-[28px] text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.55)]">{search.trim() ? <>Sin resultados para “{search.trim()}”. Prueba sin acentos o con el apellido.</> : 'Sin jugadores con esos filtros.'}</p> : null}
+
+      <div className="flex flex-col items-center gap-[14px] border-t border-[rgba(15,23,31,0.06)] px-[14px] py-[20px] md:py-[24px]">
+        <span className="font-barlow text-[13px] tabular-nums text-[rgba(15,23,31,0.5)]">
+          {filtered ? `Mostrando ${fmtInt(shown.length)} de ${fmtInt(count)} jugadores` : `Mostrando ${fmtInt(shown.length)} de ${fmtInt(count)} jugadores · A-Z`}
+        </span>
+        {rows.length > shown.length ? (
+          <button type="button" onClick={() => setLimit((n) => n + HIST_PAGE)} className={`inline-flex h-[48px] w-full max-w-[360px] cursor-pointer items-center justify-center rounded-[12px] border border-[rgba(15,23,31,0.16)] px-[28px] font-barlow text-[15px] font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] ${cls.focus}`}>
+            Cargar {fmtInt(Math.min(HIST_PAGE, rows.length - shown.length))} más
           </button>
         ) : null}
       </div>

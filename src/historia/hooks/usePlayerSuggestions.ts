@@ -23,6 +23,8 @@ type PlayerSuggestionsResponse = {
 export function usePlayerSuggestions(search: string, first = 50) {
   const { data, loading, error } = useQuery<PlayerSuggestionsResponse>(PLAYER_SUGGESTIONS, {
     variables: { search: search || undefined, first },
+    // Without a term this would fetch the unfiltered list and overwrite the paged one in the cache (same key).
+    skip: !search,
     fetchPolicy: 'network-only',
     context: { fetchOptions: { cache: 'no-store' } },
   });
