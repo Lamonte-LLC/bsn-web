@@ -13,7 +13,7 @@ import { CAREER_SCOPE } from '@/historia/lib/compare-players';
 export type HistoricoItem = { providerId: string; name: string; nickname: string | null; avatarUrl: string | null };
 
 /** Grid of the historical table: player, clubs, seasons, games (phones: player with the seasons under the name, clubs, games, chevron). */
-export const HIST_COLS = 'grid-cols-[minmax(0,1fr)_92px_40px_14px] md:grid-cols-[minmax(0,1fr)_180px_150px_72px]';
+export const HIST_COLS = 'grid-cols-[minmax(0,1fr)_84px_44px_16px] md:grid-cols-[minmax(0,1fr)_200px_170px_96px]';
 
 function Shimmer({ className }: { className: string }) {
   return <span aria-hidden className={cx('inline-block animate-pulse rounded-[4px] bg-[rgba(15,23,31,0.07)]', className)} />;
@@ -53,7 +53,7 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
     <Link
       ref={ref}
       href={`/jugadores/${p.providerId}`}
-      className={cx('grid h-[56px] items-center gap-x-[8px] px-[14px] transition-colors duration-150 hover:bg-[#FAFAFA] active:bg-[#F3F3F3] motion-reduce:transition-none md:gap-x-[10px] md:px-[24px]', HIST_COLS, !first && 'border-t border-[rgba(15,23,31,0.05)]', cls.focus, 'focus-visible:outline-offset-[-2px]')}
+      className={cx('grid h-[56px] items-center gap-x-[8px] px-[14px] transition-colors duration-150 hover:bg-[#FAFAFA] active:bg-[#F3F3F3] motion-reduce:transition-none md:gap-x-[12px] md:px-[24px]', HIST_COLS, !first && 'border-t border-[rgba(15,23,31,0.05)]', cls.focus, 'focus-visible:outline-offset-[-2px]')}
     >
       <span className="flex min-w-0 items-center gap-[12px]">
         <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} color={cmp.mainColor} sizePx={34} />
@@ -72,8 +72,9 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
         {ready ? (
           <span className="inline-flex items-center">
             {clubs.map((t, i) => (
-              <span key={t.code} className="relative inline-flex h-[30px] w-[30px] items-center justify-center rounded-full border border-[rgba(15,23,31,0.1)] bg-white ring-2 ring-white" style={{ marginLeft: i ? -10 : 0, zIndex: clubs.length - i }} title={t.name}>
-                <TeamLogoAvatar teamCode={t.code} size={24} />
+              <span key={t.code} className="relative inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[rgba(15,23,31,0.1)] bg-white ring-2 ring-white md:h-[30px] md:w-[30px]" style={{ marginLeft: i ? -9 : 0, zIndex: clubs.length - i }} title={t.name}>
+                <span className="md:hidden"><TeamLogoAvatar teamCode={t.code} size={20} /></span>
+                <span className="hidden md:block"><TeamLogoAvatar teamCode={t.code} size={24} /></span>
               </span>
             ))}
           </span>

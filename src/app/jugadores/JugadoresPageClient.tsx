@@ -97,7 +97,7 @@ function SortTh({ label, k, sort, onSort, align = 'center', desktopOnly = false,
 
 /* ---------- Activos ---------- */
 
-const ACT_COLS = 'grid-cols-[minmax(0,1fr)_40px_64px_14px] md:grid-cols-[minmax(0,1fr)_170px_56px_48px_56px_64px_64px_64px]';
+const ACT_COLS = 'grid-cols-[minmax(0,1fr)_48px_78px_20px] md:grid-cols-[minmax(0,1fr)_180px_64px_56px_64px_72px_72px_72px]';
 /** Quiet chevron at the end of a phone row: the row is a link to the profile. */
 const Chevron = () => <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(15,23,31,0.3)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="justify-self-end md:hidden"><path d="M4.5 2.5L8 6l-3.5 3.5" /></svg>;
 
@@ -157,7 +157,7 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
       </div>
 
       {/* Header: every label sits exactly over its column and shares the cell's alignment. */}
-      <div className={cx('grid items-center gap-x-[8px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[10px] md:px-[24px]', ACT_COLS)} role="row">
+      <div className={cx('grid items-center gap-x-[10px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[12px] md:px-[24px]', ACT_COLS)} role="row">
         <SortTh label="Jugador" k="name" sort={sort} onSort={onSort} align="left" />
         <SortTh label="Pos" k="pos" sort={sort} onSort={onSort} phoneOnly />
         <SortTh label="Equipo" k="team" sort={sort} onSort={onSort} align="left" />
@@ -171,7 +171,7 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
       </div>
 
       {visible.map((p, i) => (
-        <Link key={p.providerId} href={`/jugadores/${p.providerId}`} className={cx('grid h-[56px] items-center gap-x-[8px] px-[14px] transition-colors duration-150 hover:bg-[#FAFAFA] active:bg-[#F3F3F3] motion-reduce:transition-none md:gap-x-[10px] md:px-[24px]', ACT_COLS, i > 0 && 'border-t border-[rgba(15,23,31,0.05)]', cls.focus, 'focus-visible:outline-offset-[-2px]')}>
+        <Link key={p.providerId} href={`/jugadores/${p.providerId}`} className={cx('grid h-[56px] items-center gap-x-[10px] px-[14px] transition-colors duration-150 hover:bg-[#FAFAFA] active:bg-[#F3F3F3] motion-reduce:transition-none md:gap-x-[12px] md:px-[24px]', ACT_COLS, i > 0 && 'border-t border-[rgba(15,23,31,0.05)]', cls.focus, 'focus-visible:outline-offset-[-2px]')}>
           <span className="flex min-w-0 items-center gap-[12px]">
             <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} sizePx={34} />
             <span className="block truncate text-[17px] leading-[1.1] text-[#0F171F]">{p.name}</span>
@@ -237,11 +237,11 @@ function HistoricosTable({ total }: { total: number }) {
       <div className="flex gap-[10px] border-b border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:px-[24px] md:py-[18px]">
         <SearchField value={search} onChange={setSearch} placeholder="Buscar por nombre o apodo" placeholderMobile="Buscar jugador" />
       </div>
-      <div className={cx('grid items-center gap-x-[8px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[10px] md:px-[24px]', HIST_COLS)} role="row">
+      <div className={cx('grid items-center gap-x-[8px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[12px] md:px-[24px]', HIST_COLS)} role="row">
         {th('Jugador', { left: true })}
         {th('Equipos', { left: true })}
         {th('Temporadas', { desktopOnly: true })}
-        {th('J', { title: 'Juegos' })}
+        {th('Juegos', { title: 'Total de juegos jugados' })}
         <span className="md:hidden" aria-hidden />
       </div>
       {rows.map((p, i) => <HistoricoRow key={p.providerId} p={p} first={i === 0} />)}
