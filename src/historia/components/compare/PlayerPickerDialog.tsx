@@ -210,7 +210,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                 const taken = selectedKeys.includes(r.key);
                 return (
                   <li key={r.key} role="option" aria-selected={taken} className={i ? 'border-t border-[rgba(15,23,31,0.05)]' : ''}>
-                    <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[rgba(15,23,31,0.04)]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
+                    <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[#F9F9F9]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                       {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[rgba(0,0,0,0.1)] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                       <span className="min-w-0 flex-1">
                         <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
@@ -226,12 +226,14 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
             )}
             {!typing && !busy ? (
               <>
-                <SectionBand>Todos los jugadores · A-Z</SectionBand>
+                {/* Same two-line height as the Top 40 band: sticky bands stack at the top, and a shorter one would let the
+                    other's context line peek out beneath it. */}
+                <SectionBand context="Activos e históricos, de la A a la Z">Todos los jugadores · A-Z</SectionBand>
                 {everyone.map((r) => {
                   const taken = selectedKeys.includes(r.key);
                   return (
                     <li key={r.key} role="option" aria-selected={taken} className={everyone[0]?.key === r.key ? '' : 'border-t border-[rgba(15,23,31,0.05)]'}>
-                      <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[rgba(15,23,31,0.04)]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
+                      <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[#F9F9F9]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                         {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[rgba(0,0,0,0.1)] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                         <span className="min-w-0 flex-1">
                           <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
