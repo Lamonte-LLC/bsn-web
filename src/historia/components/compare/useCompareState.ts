@@ -49,7 +49,7 @@ export function setCompareScope(key: string, scope: CompareScope | null) {
 }
 
 /** A change resolved faster than this reads as a flash; the skeleton stays up to here so the wait is legible. */
-const MIN_PENDING_MS = 900;
+const MIN_PENDING_MS = 1100;
 let pendingSince = 0;
 let holdTimer: ReturnType<typeof setTimeout> | null = null;
 
