@@ -64,7 +64,7 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
             {p.nickname ? <span className="text-[rgba(15,23,31,0.5)]"> “{p.nickname}”</span> : null}
           </span>
           <span className="mt-[2px] block truncate font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">
-            <span className="md:hidden">{ready ? `${span} · ${cmp.seasons.length} ${cmp.seasons.length === 1 ? 'temporada' : 'temporadas'}` : (nationalityLabel(p.nationality) ?? ' ')}</span>
+            <span className="md:hidden">{ready ? `${span} · ${cmp.seasons.length} temp.` : (nationalityLabel(p.nationality) ?? ' ')}</span>
             <span className="hidden md:inline">{nationalityLabel(p.nationality) ?? ' '}</span>
           </span>
         </span>
