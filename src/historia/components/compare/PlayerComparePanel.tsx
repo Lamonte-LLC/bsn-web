@@ -323,18 +323,15 @@ export default function PlayerComparePanel({ players }: Props) {
       )}
 
       {/* Fine print: only the caveats of the data, never a repeat of what is being compared, plus a quiet way to report a discrepancy. */}
-      <div className="mt-[22px] flex flex-col items-center gap-[4px] border-t border-[rgba(15,23,31,0.06)] pt-[14px] text-center font-barlow text-[11.5px] italic leading-[1.5] text-[rgba(15,23,31,0.45)] lg:mt-[30px] lg:text-[12.5px]">
-        {/* 300px keeps a two-line note breaking evenly even where text-wrap: balance isn't supported (no lone
-            "de 2010."); on phones the mail link takes its own line. */}
-        {notes.map((n) => (
-          <p key={n} className="max-w-[300px] [text-wrap:balance] lg:max-w-none">
-            {n}
-          </p>
-        ))}
-        <p className="max-w-[300px] [text-wrap:balance] lg:max-w-none">
-          ¿Ves una discrepancia o falta algún dato?{' '}
-          <a href="mailto:media@bsnpr.com?subject=Corrección%20de%20datos%20·%20Comparación%20de%20jugadores" className={`mt-[2px] block not-italic font-medium lg:ml-[4px] lg:mt-0 lg:inline text-[rgba(15,23,31,0.6)] underline decoration-[rgba(15,23,31,0.25)] underline-offset-[3px] transition-colors duration-150 hover:text-[#0F171F] hover:decoration-[rgba(15,23,31,0.5)] ${cls.focus} rounded-[3px]`}>
-            Escríbenos a media@bsnpr.com
+      {/* Footer as a grey bar that spans the card and closes its corners: the era notes read as one short
+          paragraph, not a stack of caveats, and the contact link closes the block. Negative margins cancel the
+          card's own padding (16px on phones, 44px on desktop). */}
+      <div className="-mx-[16px] -mb-[18px] mt-[22px] rounded-b-[15px] border-t border-[rgba(15,23,31,0.07)] bg-[#FAFAFA] px-[16px] pb-[16px] pt-[12px] text-center lg:-mx-[44px] lg:-mb-[34px] lg:mt-[30px] lg:px-[44px] lg:pb-[26px] lg:pt-[16px]">
+        <p className={`${cls.label} text-[rgba(15,23,31,0.4)]`}>Sobre estos datos</p>
+        {notes.length ? <p className="mx-auto mt-[6px] max-w-[440px] font-barlow text-[12.5px] leading-[1.5] text-[rgba(15,23,31,0.58)] [text-wrap:pretty] lg:max-w-[620px]">{notes.join(' ')}</p> : null}
+        <p className={cx('font-barlow text-[12.5px] text-[rgba(15,23,31,0.5)]', notes.length ? 'mt-[10px]' : 'mt-[6px]')}>
+          <a href="mailto:media@bsnpr.com?subject=Corrección%20de%20datos%20·%20Comparación%20de%20jugadores" className={`font-semibold text-[#0F171F] underline decoration-[rgba(15,23,31,0.25)] underline-offset-[3px] transition-colors duration-150 hover:decoration-[rgba(15,23,31,0.5)] ${cls.focus} rounded-[3px]`}>
+            Reportar un dato incorrecto
           </a>
         </p>
       </div>
