@@ -46,10 +46,10 @@ function TakenCheck() {
 
 function SectionBand({ children, context, first = false }: { children: React.ReactNode; /** One line of context under the title, Barlow 12px at 50%. */ context?: string; first?: boolean }) {
   return (
-    <li className={cx('sticky top-0 z-[1] bg-[#F4F4F4] px-[14px] text-[15px] tracking-[0.3px] text-[#0F171F] shadow-[inset_0_-1px_0_rgba(15,23,31,0.06)]', context ? 'py-[10px]' : 'py-[9px]', !first && 'border-t border-[rgba(15,23,31,0.06)]')} aria-hidden>
+    <div className={cx('sticky top-0 z-[1] bg-[#F4F4F4] px-[14px] text-[16px] leading-[1.15] tracking-[0.3px] text-[#0F171F] shadow-[inset_0_-1px_0_rgba(15,23,31,0.06)]', context ? 'py-[10px]' : 'py-[9px]', !first && 'border-t border-[rgba(15,23,31,0.06)]')} aria-hidden>
       {children}
-      {context ? <span className="mt-[2px] block font-barlow text-[12px] tracking-normal text-[rgba(15,23,31,0.5)]">{context}</span> : null}
-    </li>
+      {context ? <span className="block font-barlow text-[12px] leading-[1.3] tracking-normal text-[rgba(15,23,31,0.5)]">{context}</span> : null}
+    </div>
   );
 }
 
@@ -196,24 +196,26 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
           </div>
 
           <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="mt-[12px] min-h-0 flex-1 overflow-y-auto overscroll-contain rounded-[10px] border border-[rgba(15,23,31,0.08)] md:h-[500px]">
-            {!busy && shown.length ? (
-              <SectionBand first context={typing ? undefined : 'Por puntos, rebotes y asistencias'}>
-                {typing ? 'Resultados' : 'Top 40 histórico'}
-              </SectionBand>
-            ) : null}
+            {/* Each section is one li holding its band and its own group of options: the band sticks only while its
+                section is in view and scrolls away with it, so two bands never stack (or peek) at the top. */}
             {busy ? (
               <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">Buscando…</li>
             ) : !shown.length ? (
               <li className="px-[16px] py-[14px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)]">{typing ? `Sin resultados para “${query.trim()}”. Prueba sin acentos o con el apellido.` : 'Sin jugadores por ahora.'}</li>
             ) : (
-              shown.map((r, i) => {
+              <li role="presentation">
+              <SectionBand first context={typing ? undefined : 'Por puntos, rebotes y asistencias'}>
+                {typing ? 'Resultados' : 'Top 40 histórico'}
+              </SectionBand>
+              <ul role="group" aria-label={typing ? 'Resultados' : 'Top 40 histórico'}>
+              {shown.map((r, i) => {
                 const taken = selectedKeys.includes(r.key);
                 return (
                   <li key={r.key} role="option" aria-selected={taken} className={i ? 'border-t border-[rgba(15,23,31,0.05)]' : ''}>
                     <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[#F9F9F9]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                       {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[rgba(0,0,0,0.1)] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
+                        <span className={cx('block truncate font-barlow text-[14px] font-semibold', taken ? 'text-[rgba(15,23,31,0.55)]' : 'text-[#0F171F]')}>
                           <NameWithNickname name={r.name} nickname={r.nickname} />
                         </span>
                         {r.subtitle ? <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">{r.subtitle}</span> : null}
@@ -222,13 +224,14 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                     </button>
                   </li>
                 );
-              })
+              })}
+              </ul>
+              </li>
             )}
             {!typing && !busy ? (
-              <>
-                {/* Same two-line height as the Top 40 band: sticky bands stack at the top, and a shorter one would let the
-                    other's context line peek out beneath it. */}
-                <SectionBand context="Activos e históricos, de la A a la Z">Todos los jugadores · A-Z</SectionBand>
+              <li role="presentation">
+                <SectionBand>Todos los jugadores · A-Z</SectionBand>
+                <ul role="group" aria-label="Todos los jugadores">
                 {everyone.map((r) => {
                   const taken = selectedKeys.includes(r.key);
                   return (
@@ -236,7 +239,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                       <button type="button" disabled={taken || isFull} onClick={() => pick(r.key)} className={cx(`flex min-h-[52px] w-full items-center gap-[12px] px-[14px] py-[8px] text-left transition-colors duration-150 ${cls.focus} focus-visible:outline-offset-[-2px]`, taken ? 'cursor-default bg-[#F9F9F9]' : isFull ? 'cursor-not-allowed opacity-40' : 'cursor-pointer hover:bg-[#F5F5F5] active:bg-[#EDEDED] motion-reduce:transition-none')}>
                         {r.avatarUrl ? <img src={`${r.avatarUrl}?size=200`} alt="" width={36} height={36} loading="lazy" className="h-[36px] w-[36px] shrink-0 rounded-full border border-[rgba(0,0,0,0.1)] object-cover" /> : <PlayerAvatar name={r.name} color={r.color} sizePx={36} />}
                         <span className="min-w-0 flex-1">
-                          <span className="block truncate font-barlow text-[14px] font-semibold text-[#0F171F]">
+                          <span className={cx('block truncate font-barlow text-[14px] font-semibold', taken ? 'text-[rgba(15,23,31,0.55)]' : 'text-[#0F171F]')}>
                             <NameWithNickname name={r.name} nickname={r.nickname} />
                           </span>
                           {r.subtitle ? <span className="block font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">{r.subtitle}</span> : null}
@@ -251,7 +254,8 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
                     Cargando más jugadores…
                   </li>
                 ) : null}
-              </>
+                </ul>
+              </li>
             ) : null}
           </ul>
 
