@@ -119,7 +119,8 @@ export function dynasties(years: number[]): Array<[number, number]> {
 export { nextTitleLabel as _nextTitleLabel };
 
 /** Position codes of the live roster in Spanish, as the site's hero shows them. */
-export const POSITION_LABEL: Record<string, string> = { PG: 'Base', G: 'Guardia', SG: 'Escolta', SF: 'Alero', F: 'Alero', GF: 'Alero', PF: 'Ala-pívot', FC: 'Ala-pívot', C: 'Pívot' };
+/** Position codes of the live roster, in English everywhere on the site (Guard, Forward, Center…). */
+export const POSITION_LABEL: Record<string, string> = { PG: 'Point Guard', G: 'Guard', SG: 'Shooting Guard', SF: 'Small Forward', F: 'Forward', GF: 'Guard-Forward', PF: 'Power Forward', FC: 'Forward-Center', C: 'Center' };
 
 export function positionLabel(code: string | null | undefined): string | null {
   if (!code) return null;

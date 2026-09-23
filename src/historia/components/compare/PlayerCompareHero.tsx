@@ -5,7 +5,7 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import { cls, EXTINCT_CODE_COLORS } from '@/archivo/lib/tokens';
-import TeamLogoAvatar, { TEAM_LOGOS } from '@/team/components/avatar/TeamLogoAvatar';
+import ClubMark from '@/historia/components/ClubMark';
 import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
 import { CAREER_SCOPE, MAX_COMPARE_PLAYERS, scopeFor, scopeLabel, type ComparePlayerData, type CompareScope } from '@/historia/lib/compare-players';
 import { initialName } from '@/archivo/lib/names';
@@ -26,16 +26,6 @@ const clubShortName = (name: string) => name.replace(/\s+de\s+.+$/i, '');
 const PILL = 'group/pill relative before:absolute before:inset-x-0 before:-inset-y-[6px] before:content-[""] inline-flex cursor-pointer items-center gap-[7px] rounded-[100px] border border-[rgba(255,255,255,0.32)] px-[14px] py-[6px] font-barlow font-medium text-[12px] text-[rgba(255,255,255,0.85)] transition-[border-color,background-color,color,transform] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 hover:border-[rgba(255,255,255,0.55)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[rgba(255,255,255,0.5)] data-open:border-white data-open:bg-white data-open:text-[#0F171F] data-open:focus-visible:outline-0 lg:px-[16px] lg:py-[7px] lg:text-[13px]';
 
 type SeasonOption = { providerId: string; year: number; teams: Array<{ code: string; name: string; color: string }> };
-
-/** Club mark of a season row: the real logo when the site has it, else a disc in the archive's provisional color. */
-function ClubMark({ code, color, size = 20 }: { code: string; color: string; size?: number }) {
-  if (code in TEAM_LOGOS) return <TeamLogoAvatar teamCode={code} size={size} />;
-  return (
-    <span className="inline-flex shrink-0 items-center justify-center rounded-full font-barlow-condensed font-bold italic text-white" style={{ backgroundColor: color, width: size, height: size, fontSize: Math.round(size * 0.4) }} aria-hidden>
-      {code}
-    </span>
-  );
-}
 
 /** Selection mark of every row: empty ring at rest, darker ring on hover, ink disc with a check when chosen. */
 function Radio({ on, className = '' }: { on: boolean; className?: string }) {
