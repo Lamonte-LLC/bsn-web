@@ -242,7 +242,9 @@ function SlotStacked({ p, count, onRemove, reserveLine, scope, scopeName, season
 function Shimmer({ className }: { className: string }) {
   return (
     <span className={cx('relative overflow-hidden bg-[rgba(255,255,255,0.18)]', className)}>
-      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.45)] to-transparent motion-safe:animate-[compare-shimmer_1s_ease-in-out_infinite]" />
+      {/* Twice as wide as the block and swept across it: a full-width gradient would slide in and out of view
+          without ever crossing, which reads as a plain block. */}
+      <span className="absolute inset-y-0 -left-full w-[200%] bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.55)] to-transparent motion-safe:animate-[compare-shimmer_1.2s_linear_infinite]" />
     </span>
   );
 }

@@ -3206,7 +3206,7 @@ button.sw-sub-tabs-tab:not(.is-active):active {
 /* Comparador de jugadores: brillo que recorre los huecos del hero mientras llega un jugador (LoadingSlot). */
 @keyframes compare-shimmer {
   from {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
   to {
     transform: translateX(100%);

@@ -19,6 +19,24 @@ export function createBsnInMemoryCache() {
   return new InMemoryCache({
     typePolicies: {
       MatchTeamType: { keyFields: false },
+      Query: {
+        fields: {
+          /**
+           * `playersConnection` pagina por cursor (buscador del comparador de jugadores). Sin esta política la
+           * caché guarda cada página bajo la misma clave y conserva el `pageInfo` de la primera, de modo que el
+           * cursor nunca avanza y la lista se detiene tras la página inicial. Las páginas se concatenan y el
+           * `pageInfo` que manda es el de la última. Las búsquedas (`search`) se cachean por separado.
+           */
+          playersConnection: {
+            keyArgs: ['search'],
+            merge(existing: { edges?: unknown[] } | undefined, incoming: { edges?: unknown[] }, { args }: { args: Record<string, unknown> | null }) {
+              // Sin cursor es una primera página (o una búsqueda nueva): reemplaza en vez de concatenar.
+              if (!args?.after) return incoming;
+              return { ...incoming, edges: [...(existing?.edges ?? []), ...(incoming.edges ?? [])] };
+            },
+          },
+        },
+      },
     },
   });
 }

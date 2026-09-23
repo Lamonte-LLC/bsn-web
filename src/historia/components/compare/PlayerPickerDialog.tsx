@@ -135,15 +135,31 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
   const shown: Row[] = typing ? players.map((p) => ({ key: p.providerId, name: p.name, nickname: p.nickname, subtitle: positionLabel(p.playingPosition), avatarUrl: p.avatarUrl, color: null })) : FEATURED_PLAYERS;
   const sentinelRef = useRef<HTMLLIElement>(null);
   const { hasMore, loadMore } = all;
+  // Paging on the list's own scroll position, not on an IntersectionObserver: the sentinel lives in a nested ul
+  // inside a clipped scroller, where the observer reports it far off-screen and the next page never fires. The
+  // scroller arrives through state (not a ref) because the dialog mounts it after the first render, and a ref
+  // read in an effect is still null at that point.
+  const [list, setList] = useState<HTMLUListElement | null>(null);
+  const loadMoreRef = useRef(loadMore);
   useEffect(() => {
-    const el = sentinelRef.current;
-    if (!el || typing || !hasMore) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) loadMore();
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [typing, hasMore, loadMore, everyone.length]);
+    loadMoreRef.current = loadMore;
+  }, [loadMore]);
+  const hasMoreRef = useRef(hasMore);
+  useEffect(() => {
+    hasMoreRef.current = hasMore;
+  }, [hasMore]);
+  useEffect(() => {
+    if (!list || typing) return;
+    const check = () => {
+      // One screen of runway: the next page starts before the fan reaches the end.
+      if (!hasMoreRef.current) return;
+      if (list.scrollHeight - list.scrollTop - list.clientHeight < list.clientHeight) loadMoreRef.current();
+    };
+    // Re-checked whenever a page lands, so a list still short of a screen keeps filling itself without a scroll.
+    check();
+    list.addEventListener('scroll', check, { passive: true });
+    return () => list.removeEventListener('scroll', check);
+  }, [list, typing, everyone.length]);
 
   const close = () => {
     setQuery('');
@@ -200,7 +216,7 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
           {/* The border and the radius live on the wrapper, which clips; the list scrolls inside it, so a sticky band
               never draws over the rounded corner or doubles the hairline. */}
           <div className="mt-[12px] flex min-h-0 flex-1 overflow-hidden rounded-[10px] border border-[rgba(15,23,31,0.08)] md:h-[500px] md:flex-none">
-          <ul role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="min-h-0 w-full flex-1 overflow-y-auto overscroll-contain">
+          <ul ref={setList} role="listbox" aria-busy={busy} aria-label={typing ? 'Resultados' : 'Jugadores'} className="min-h-0 w-full flex-1 overflow-y-auto overscroll-contain">
             {/* Each section is one li holding its band and its own group of options: the band sticks only while its
                 section is in view and scrolls away with it, so two bands never stack (or peek) at the top. */}
             {busy ? (
@@ -266,8 +282,12 @@ export default function PlayerPickerDialog({ open, onClose, selectedKeys, onPick
           </div>
 
           <div className="mt-[14px] flex items-center justify-between gap-4">
-            <span className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.45)] md:text-[12px]">
-              {selectedKeys.length} de {MAX_COMPARE_PLAYERS} seleccionados
+            <span className="font-barlow font-medium text-[11px] text-[rgba(15,23,31,0.6)] md:text-[12px]">
+              {selectedKeys.length === 0
+                ? `Escoge hasta ${MAX_COMPARE_PLAYERS} jugadores`
+                : selectedKeys.length === 1
+                  ? `1 jugador escogido de un máximo de ${MAX_COMPARE_PLAYERS}`
+                  : `${selectedKeys.length} jugadores escogidos de un máximo de ${MAX_COMPARE_PLAYERS}`}
             </span>
             <button type="button" onClick={close} className="relative cursor-pointer rounded-[100px] bg-[#0F171F] px-[20px] py-[10px] text-[15px] text-white transition-opacity before:absolute before:inset-x-0 before:-inset-y-[4px] before:content-[''] active:scale-[0.98] motion-reduce:active:scale-100 md:px-[18px] md:py-[7px]">
               {selectedKeys.length >= MIN_COMPARE_PLAYERS ? 'Ver comparación' : 'Cerrar'}

@@ -19,24 +19,16 @@ export function useAllPlayers(skip: boolean) {
   });
   if (error) console.error(error);
 
+  // Apollo Client 4 dropped `updateQuery` from fetchMore: pages are merged by the cache's field policy for
+  // `playersConnection` (src/apollo/createInMemoryCache.ts), which also keeps the newest pageInfo, so the
+  // cursor read here always points at the end of what is loaded.
   const pageInfo = data?.playersConnection.pageInfo;
   const players: Node[] = data?.playersConnection.edges.map((e) => e.node) ?? [];
   const hasMore = Boolean(pageInfo?.hasNextPage);
 
   const loadMore = useCallback(() => {
     if (!pageInfo?.hasNextPage || !pageInfo.endCursor || loading) return;
-    void fetchMore({
-      variables: { first: PAGE, after: pageInfo.endCursor },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          playersConnection: {
-            ...fetchMoreResult.playersConnection,
-            edges: [...prev.playersConnection.edges, ...fetchMoreResult.playersConnection.edges],
-          },
-        };
-      },
-    });
+    void fetchMore({ variables: { first: PAGE, after: pageInfo.endCursor } });
   }, [fetchMore, loading, pageInfo]);
 
   return { players, loading, hasMore, loadMore };
