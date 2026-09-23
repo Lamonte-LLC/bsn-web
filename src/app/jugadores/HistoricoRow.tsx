@@ -9,9 +9,8 @@ import { cls } from '@/archivo/lib/tokens';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import { usePlayerComparison } from '@/historia/hooks/usePlayerComparison';
 import { CAREER_SCOPE } from '@/historia/lib/compare-players';
-import { nationalityLabel } from '@/historia/lib/copy';
 
-export type HistoricoItem = { providerId: string; name: string; nickname: string | null; avatarUrl: string | null; nationality: string | null };
+export type HistoricoItem = { providerId: string; name: string; nickname: string | null; avatarUrl: string | null };
 
 /** Grid of the historical table: player, clubs, seasons, games, points, PPJ, RPJ, APJ (phones: player, points, PPJ). */
 export const HIST_COLS = 'grid-cols-[minmax(0,1fr)_72px_64px] md:grid-cols-[minmax(0,1fr)_120px_120px_56px_72px_64px_64px_64px]';
@@ -63,9 +62,9 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
             {p.name}
             {p.nickname ? <span className="text-[rgba(15,23,31,0.5)]"> “{p.nickname}”</span> : null}
           </span>
-          <span className="mt-[2px] block truncate font-barlow text-[12px] text-[rgba(15,23,31,0.5)]">
-            <span className="md:hidden">{ready ? `${span} · ${cmp.seasons.length} temp.` : (nationalityLabel(p.nationality) ?? ' ')}</span>
-            <span className="hidden md:inline">{nationalityLabel(p.nationality) ?? ' '}</span>
+          {/* Phones only: the seasons line under the name (the column is hidden there). */}
+          <span className="mt-[2px] block h-[15px] truncate font-barlow text-[12px] text-[rgba(15,23,31,0.5)] md:hidden">
+            {ready ? `${span} · ${cmp.seasons.length} temp.` : <Shimmer className="h-[12px] w-[96px]" />}
           </span>
         </span>
       </span>
@@ -73,13 +72,13 @@ export default function HistoricoRow({ p, first }: { p: HistoricoItem; first: bo
         {ready ? (
           <span className="inline-flex items-center">
             {clubs.map((t, i) => (
-              <span key={t.code} className="relative inline-flex h-[24px] w-[24px] items-center justify-center rounded-full border border-[rgba(15,23,31,0.1)] bg-white ring-2 ring-white" style={{ marginLeft: i ? -8 : 0, zIndex: clubs.length - i }} title={t.name}>
-                <TeamLogoAvatar teamCode={t.code} size={18} />
+              <span key={t.code} className="relative inline-flex h-[30px] w-[30px] items-center justify-center rounded-full border border-[rgba(15,23,31,0.1)] bg-white ring-2 ring-white" style={{ marginLeft: i ? -10 : 0, zIndex: clubs.length - i }} title={t.name}>
+                <TeamLogoAvatar teamCode={t.code} size={24} />
               </span>
             ))}
           </span>
         ) : (
-          <Shimmer className="h-[24px] w-[64px] rounded-full" />
+          <Shimmer className="h-[30px] w-[80px] rounded-full" />
         )}
       </span>
       <span className="hidden text-center font-barlow text-[13px] tabular-nums text-[rgba(15,23,31,0.7)] md:block">{ready ? <>{span} <span className="text-[rgba(15,23,31,0.45)]">· {cmp.seasons.length}</span></> : <Shimmer className="h-[13px] w-[72px]" />}</span>

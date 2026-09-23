@@ -39,7 +39,7 @@ export default function JugadoresHero({ activeCount, historicCount }: Props) {
   ];
 
   return (
-    <section className="pb-[56px] pt-8 text-center lg:pb-[84px] lg:pt-[50px]">
+    <section className="pb-[64px] pt-8 text-center lg:pb-[84px] lg:pt-[50px]">
       <div className="container">
         <h1 className="text-[38px] tracking-[0.4px] text-white lg:text-[42px]">Jugadores</h1>
         <div role="tablist" aria-label="Jugadores activos o históricos" className="mt-4 flex justify-center gap-[24px] lg:mt-5 lg:gap-[28px]">

@@ -85,9 +85,12 @@ function SelectField({ label, value, onChange, children, className = '' }: { lab
 function SortTh({ label, k, sort, onSort, align = 'center', desktopOnly = false, title }: { label: string; k: SortKey; sort: Sort; onSort: (k: SortKey) => void; align?: 'left' | 'center'; /** Secondary column: hidden on phones. */ desktopOnly?: boolean; title?: string }) {
   const on = sort.key === k;
   return (
-    <button type="button" onClick={() => onSort(k)} title={title} aria-sort={on ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'} className={cx(desktopOnly ? 'hidden md:inline-flex' : 'inline-flex', 'h-[40px] cursor-pointer items-center gap-[4px] whitespace-nowrap transition-colors hover:text-[#0F171F]', TH, on && 'text-[#0F171F]', align === 'center' ? 'justify-center' : 'justify-start', cls.focus, 'rounded-[4px] focus-visible:outline-offset-[-2px]')}>
-      {label}
-      <span aria-hidden className={cx('w-[8px] text-[#E51F1F]', !on && 'opacity-0')}>{sort.dir === 'asc' ? '↑' : '↓'}</span>
+    <button type="button" onClick={() => onSort(k)} title={title} aria-sort={on ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'} className={cx(desktopOnly ? 'hidden md:inline-flex' : 'inline-flex', 'h-[40px] cursor-pointer items-center whitespace-nowrap transition-colors hover:text-[#0F171F]', TH, on && 'text-[#0F171F]', align === 'center' ? 'justify-center' : 'justify-start', cls.focus, 'rounded-[4px] focus-visible:outline-offset-[-2px]')}>
+      {/* The arrow hangs off the label instead of sitting beside it, so the label stays centered over its column. */}
+      <span className="relative">
+        {label}
+        {on ? <span aria-hidden className="absolute left-full top-0 ml-[3px] text-[#E51F1F]">{sort.dir === 'asc' ? '↑' : '↓'}</span> : null}
+      </span>
     </button>
   );
 }
@@ -175,7 +178,7 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
             </span>
           </span>
           <span className="hidden min-w-0 items-center gap-[8px] font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.7)] md:flex">
-            <TeamLogoAvatar teamCode={p.teamCode} size={20} />
+            <TeamLogoAvatar teamCode={p.teamCode} size={24} />
             <span className="truncate">{TEAM_SHORT_NAME[p.teamCode] ?? p.teamCode}</span>
           </span>
           <span className="hidden text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.7)] md:block">{p.playingPosition || '–'}</span>
@@ -209,7 +212,7 @@ function HistoricosTable({ total }: { total: number }) {
   const typing = query.length > 0;
   const { data: found, loading: searching } = usePlayerSuggestions(query, 60);
   const all = useAllPlayers(typing);
-  const rows: HistoricoItem[] = (typing ? found : all.players).map((p) => ({ providerId: p.providerId, name: p.name, nickname: p.nickname, avatarUrl: p.avatarUrl, nationality: (p as { nationality?: string | null }).nationality ?? null }));
+  const rows: HistoricoItem[] = (typing ? found : all.players).map((p) => ({ providerId: p.providerId, name: p.name, nickname: p.nickname, avatarUrl: p.avatarUrl }));
 
   // Pages itself as the page scrolls: the next page starts while the end of the list is still a screen away.
   const endRef = useRef<HTMLDivElement>(null);
