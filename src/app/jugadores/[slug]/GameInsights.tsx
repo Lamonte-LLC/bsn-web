@@ -1,6 +1,7 @@
 'use client';
 
 import cx from 'classnames';
+import Link from 'next/link';
 import { cls } from '@/archivo/lib/tokens';
 import ClubMark from '@/historia/components/ClubMark';
 import { usePlayerMatches } from '@/player/client/hooks/player';
@@ -13,7 +14,7 @@ const INK = '#0F171F';
 const LOSS = '#D03535';
 const WIN = '#16A14A';
 
-type Game = { won: boolean; home: boolean; pts: number; reb: number; ast: number; opponent: { code: string; nickname: string }; date: string };
+type Game = { matchId: string; won: boolean; home: boolean; pts: number; reb: number; ast: number; opponent: { code: string; nickname: string }; date: string };
 
 /** One game of the log as the modules read it; the player's side is whichever team is not the opponent. */
 function toGame(m: PlayerMatchType): Game | null {
@@ -24,7 +25,7 @@ function toGame(m: PlayerMatchType): Game | null {
   const a = parseInt(own.score, 10);
   const b = parseInt(other.score, 10);
   if (!Number.isFinite(a) || !Number.isFinite(b) || a === b) return null;
-  return { won: a > b, home, pts: m.stats.points ?? 0, reb: m.stats.reboundsTotal ?? 0, ast: m.stats.assists ?? 0, opponent: m.opponentTeam, date: m.match.startAt };
+  return { matchId: m.match.providerId, won: a > b, home, pts: m.stats.points ?? 0, reb: m.stats.reboundsTotal ?? 0, ast: m.stats.assists ?? 0, opponent: m.opponentTeam, date: m.match.startAt };
 }
 
 const avg = (xs: Game[], k: 'pts' | 'reb' | 'ast') => (xs.length ? xs.reduce((s, g) => s + g[k], 0) / xs.length : 0);
@@ -84,7 +85,7 @@ function SeasonHighs({ games }: { games: Game[] }) {
         {highs.map(([label, k]) => {
           const g = best(k);
           return (
-            <div key={k} className={`${PANEL_CARD} flex items-center gap-[12px] px-[14px] py-[12px] lg:px-[18px] lg:py-[14px]`}>
+            <Link key={k} href={`/partidos/${g.matchId}`} aria-label={`${g[k]} ${label.toLowerCase()} vs ${g.opponent.nickname}, ver el juego`} className={`${PANEL_CARD} group flex items-center gap-[12px] px-[14px] py-[12px] transition-[border-color,box-shadow] duration-150 hover:border-[rgba(15,23,31,0.2)] hover:shadow-[0_2px_10px_rgba(15,23,31,0.06)] active:bg-[#FAFAFA] lg:px-[18px] lg:py-[14px] ${cls.focus}`}>
               <div className="min-w-0 flex-1">
                 <div className="flex items-baseline gap-[8px]">
                   <span className="text-[32px] leading-none text-[#0F171F] tabular-nums lg:text-[36px]">{g[k]}</span>
@@ -99,7 +100,8 @@ function SeasonHighs({ games }: { games: Game[] }) {
               <span className={cx('inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full border text-[15px] leading-none', g.won ? 'border-[rgba(22,161,74,0.15)] bg-[#EBF5ED]' : 'border-[rgba(208,53,53,0.15)] bg-[#FFEDED]')} style={{ color: g.won ? WIN : LOSS }}>
                 {g.won ? 'G' : 'P'}
               </span>
-            </div>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(15,23,31,0.35)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="shrink-0 transition-[stroke,transform] duration-150 group-hover:translate-x-[2px] group-hover:stroke-[#0F171F]"><path d="M4.5 2.5L8 6l-3.5 3.5" /></svg>
+            </Link>
           );
         })}
       </div>
