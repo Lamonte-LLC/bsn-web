@@ -3,50 +3,24 @@ import Link from 'next/link';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import ClubMark from '@/historia/components/ClubMark';
 import { compareHref } from '@/historia/lib/compare-players';
-import { birthShort, nationalityLabel } from '@/historia/lib/copy';
+import { birthShort, NATIONALITY_LABEL, nationalityLabel } from '@/historia/lib/copy';
+
+const NATIONALITY_KNOWN = new Set(Object.keys(NATIONALITY_LABEL));
 import { centimeterToInches, kilogramToPounds } from '@/utils/unit-converter';
 import { formatInches } from '@/utils/unit-formater';
-import { ageFrom, f1, type PlayerProfileData } from './profile-data';
+import * as FLAGS from 'country-flag-icons/react/3x2';
+import { ageFrom, f1, nationalityIso2, type PlayerProfileData } from './profile-data';
 
 type Props = { profile: PlayerProfileData };
 
 const LABEL = 'whitespace-nowrap font-barlow text-[11px] font-semibold uppercase tracking-[0.8px]';
 
-/** Flag of the countries the roster actually has; nothing for the rest, never a placeholder. */
+/** The country's flag (3:2 SVGs from country-flag-icons) for every nationality the API returns; nothing for the rest. */
 function Flag({ code }: { code: string }) {
-  const c = code.toUpperCase();
-  const common = { width: 18, height: 12, viewBox: '0 0 18 12', className: 'shrink-0 rounded-[2px]', 'aria-hidden': true } as const;
-  if (c === 'PUR' || c === 'PR') {
-    return (
-      <svg {...common}>
-        <rect width="18" height="12" fill="#fff" />
-        {[0, 4.8, 9.6].map((y) => <rect key={y} y={y} width="18" height="2.4" fill="#ED0000" />)}
-        <path d="M0 0L9 6 0 12z" fill="#0050F0" />
-        <path d="M3 4.05l.62 1.9h2l-1.62 1.18.62 1.9L3 7.85l-1.62 1.18.62-1.9L.38 5.95h2z" fill="#fff" />
-      </svg>
-    );
-  }
-  if (c === 'USA' || c === 'US') {
-    return (
-      <svg {...common}>
-        <rect width="18" height="12" fill="#B22234" />
-        {[1, 3, 5, 7, 9, 11].map((y) => <rect key={y} y={y - 0.15} width="18" height="0.9" fill="#fff" />)}
-        <rect width="8" height="6.5" fill="#3C3B6E" />
-      </svg>
-    );
-  }
-  if (c === 'DOM' || c === 'DO') {
-    return (
-      <svg {...common}>
-        <rect width="18" height="12" fill="#002D62" />
-        <rect x="9" width="9" height="6" fill="#CE1126" />
-        <rect y="6" width="9" height="6" fill="#CE1126" />
-        <rect x="7.6" width="2.8" height="12" fill="#fff" />
-        <rect y="4.6" width="18" height="2.8" fill="#fff" />
-      </svg>
-    );
-  }
-  return null;
+  const iso = nationalityIso2(code);
+  const Svg = iso ? FLAGS[iso as keyof typeof FLAGS] : undefined;
+  if (!Svg) return null;
+  return <Svg className="h-[12px] w-[18px] shrink-0 rounded-[2px]" aria-hidden />;
 }
 
 /** The jersey number hanging from the bottom of the photo: a narrow dark capsule, the "#" dimmed. */
@@ -151,7 +125,7 @@ export default function PlayerProfileHero({ profile }: Props) {
   if (p.heightCm) facts.push({ label: 'Estatura', value: formatInches(centimeterToInches(p.heightCm)) });
   if (p.weightKg) facts.push({ label: 'Peso', value: `${Math.round(kilogramToPounds(p.weightKg))} lbs` });
   if (born) facts.push({ label: 'Nacimiento', value: born, sub: age !== null ? `${age} años` : null });
-  if (country && p.nationality) facts.push({ label: 'Lugar de origen', value: <><Flag code={p.nationality} />{country}</> });
+  if (country && p.nationality && (nationalityIso2(p.nationality) || NATIONALITY_KNOWN.has(p.nationality.toUpperCase()))) facts.push({ label: 'Lugar de origen', value: <><Flag code={p.nationality} />{country}</> });
   if (p.debut) facts.push({ label: 'Debut en BSN', value: String(p.debut.year), sub: p.debut.club || null });
   if (p.seasonsCount) facts.push({ label: 'Experiencia', value: `${p.seasonsCount} ${p.seasonsCount === 1 ? 'año' : 'años'}` });
   if (!p.active && p.clubs.length) facts.push({ label: 'Equipos', value: <ClubRow clubs={p.clubs} size={20} />, wide: true });
@@ -182,10 +156,10 @@ export default function PlayerProfileHero({ profile }: Props) {
             <div className={cx('flex flex-wrap items-center gap-x-[7px] font-barlow text-[13px] font-medium text-white/72', p.active ? 'mt-[8px]' : 'mt-[5px]')}>
               {p.active ? (
                 p.club ? (
-                  <span className="inline-flex items-center gap-[7px]">
+                  <Link href={`/equipos/${p.club.code}`} className="inline-flex items-center gap-[7px] rounded-[4px] transition-colors duration-150 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
                     <ClubMark code={p.club.code} color={p.club.color} size={18} />
                     {p.club.name}
-                  </span>
+                  </Link>
                 ) : null
               ) : span ? (
                 <Years fy={p.firstYear!} ly={p.lastYear!} small />
@@ -239,10 +213,10 @@ export default function PlayerProfileHero({ profile }: Props) {
               {p.active ? (
                 <>
                   {p.club ? (
-                    <span className="inline-flex items-center gap-[8px]">
+                    <Link href={`/equipos/${p.club.code}`} className="inline-flex items-center gap-[8px] rounded-[4px] transition-colors duration-150 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
                       <ClubMark code={p.club.code} color={p.club.color} size={22} />
                       {p.club.name}
-                    </span>
+                    </Link>
                   ) : null}
                 </>
               ) : (

@@ -128,7 +128,7 @@ export function positionLabel(code: string | null | undefined): string | null {
 }
 
 /** Country codes of the live roster; unknown codes fall through unchanged. */
-export const NATIONALITY_LABEL: Record<string, string> = { PUR: 'Puerto Rico', USA: 'Estados Unidos', DOM: 'República Dominicana', ESP: 'España', CAN: 'Canadá', ARG: 'Argentina', VEN: 'Venezuela', MEX: 'México', BRA: 'Brasil', GBR: 'Reino Unido', AUS: 'Australia', ITA: 'Italia', FRA: 'Francia', PAN: 'Panamá', CUB: 'Cuba', COL: 'Colombia', JAM: 'Jamaica', NGR: 'Nigeria', SEN: 'Senegal', LTU: 'Lituania', SRB: 'Serbia' };
+export const NATIONALITY_LABEL: Record<string, string> = { PUR: 'Puerto Rico', PRI: 'Puerto Rico', USA: 'Estados Unidos', DOM: 'República Dominicana', ESP: 'España', CAN: 'Canadá', ARG: 'Argentina', VEN: 'Venezuela', MEX: 'México', BRA: 'Brasil', GBR: 'Reino Unido', AUS: 'Australia', ITA: 'Italia', FRA: 'Francia', PAN: 'Panamá', CUB: 'Cuba', COL: 'Colombia', JAM: 'Jamaica', NGR: 'Nigeria', SEN: 'Senegal', LTU: 'Lituania', SRB: 'Serbia', NZL: 'Nueva Zelanda', GHA: 'Ghana', KEN: 'Kenia', MLI: 'Malí', COD: 'RD del Congo', LAT: 'Letonia', HAI: 'Haití', RUS: 'Rusia', ENGLAND: 'Inglaterra', MASS: 'Estados Unidos', MICHIGAN: 'Estados Unidos', FL: 'Estados Unidos', 'NORTH CAROLINA': 'Estados Unidos', PENNSILVANIA: 'Estados Unidos', ILLINOIS: 'Estados Unidos', "ST. JOHN'S": 'Estados Unidos' };
 
 export function nationalityLabel(code: string | null | undefined): string | null {
   if (!code) return null;

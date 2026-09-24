@@ -242,6 +242,21 @@ export function minutesSince(lines: SeasonLine[], firstYear: number | null): num
   return firstYear !== null && first > firstYear ? first : null;
 }
 
+/* ---------- Nationality ---------- */
+
+/** IOC codes (and the free text the API sometimes holds) → ISO 3166-1 alpha-2, for the flag. Unknown → null, no flag. */
+const ISO2: Record<string, string> = {
+  PUR: 'PR', PRI: 'PR', USA: 'US', DOM: 'DO', AUS: 'AU', PAN: 'PA', ITA: 'IT', NZL: 'NZ', SRB: 'RS', MEX: 'MX', GBR: 'GB', GHA: 'GH', KEN: 'KE', MLI: 'ML', COD: 'CD', NGR: 'NG', LAT: 'LV', HAI: 'HT', BRA: 'BR', RUS: 'RU', ARG: 'AR', VEN: 'VE', ESP: 'ES', CAN: 'CA', CUB: 'CU', COL: 'CO', JAM: 'JM', SEN: 'SN', LTU: 'LT', FRA: 'FR',
+  ARGENTINA: 'AR', VENEZUELA: 'VE', ENGLAND: 'GB', 'PUERTO RICO': 'PR',
+};
+const US_STATES = new Set(['MASS', 'MICHIGAN', 'FL', 'NORTH CAROLINA', 'PENNSILVANIA', 'PENNSYLVANIA', 'ILLINOIS', "ST. JOHN'S"]);
+
+export function nationalityIso2(code: string | null | undefined): string | null {
+  if (!code) return null;
+  const k = code.trim().toUpperCase();
+  return ISO2[k] ?? (US_STATES.has(k) ? 'US' : null);
+}
+
 /* ---------- Formatting ---------- */
 
 export const DASH = '–';
