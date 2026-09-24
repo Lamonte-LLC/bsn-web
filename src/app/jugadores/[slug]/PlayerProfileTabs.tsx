@@ -19,7 +19,7 @@ type Props = {
 
 const CARD = 'rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white shadow-[0_12px_32px_rgba(15,23,31,0.08)]';
 const PANEL_CARD = 'rounded-[12px] border border-[rgba(15,23,31,0.08)] bg-white';
-const TAB = `relative cursor-pointer whitespace-nowrap pb-[13px] pt-[16px] text-[15px] text-[rgba(15,23,31,0.4)] transition-colors duration-150 after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-[#0F171F] after:opacity-0 after:content-[''] hover:text-[rgba(15,23,31,0.7)] data-selected:text-[#0F171F] data-selected:after:opacity-100 lg:text-[18px] ${cls.focus} focus-visible:outline-offset-[-2px]`;
+const TAB = `relative cursor-pointer whitespace-nowrap pb-[13px] pt-[16px] text-[17px] text-[rgba(15,23,31,0.4)] transition-colors duration-150 after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-[#0F171F] after:opacity-0 after:content-[''] hover:text-[rgba(15,23,31,0.7)] data-selected:text-[#0F171F] data-selected:after:opacity-100 lg:text-[18px] ${cls.focus} focus-visible:outline-offset-[-2px]`;
 const COMPARE = `cursor-pointer items-center justify-center gap-[8px] rounded-full border border-[rgba(15,23,31,0.2)] font-barlow font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] ${cls.focus}`;
 
 function CompareIcon() {
@@ -369,7 +369,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
       <div className={`${CARD} overflow-hidden`}>
         <TabGroup>
           <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
-            <TabList className="flex gap-[18px] overflow-x-auto lg:gap-[28px]">
+            <TabList className="flex w-full justify-center gap-[22px] lg:w-auto lg:justify-start lg:gap-[28px]">
               {tabs.map(([label]) => <Tab key={label} className={TAB}>{label}</Tab>)}
             </TabList>
             <Link href={compare} className={`${COMPARE} ml-auto hidden h-[34px] px-[14px] text-[13px] lg:inline-flex`}>

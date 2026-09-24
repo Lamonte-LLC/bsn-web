@@ -109,12 +109,12 @@ function Facts({ facts }: { facts: Fact[] }) {
 }
 
 /** One of the headline boxes: a hairline, a faint translucent fill and a blur of the band behind it. */
-function DeepBox({ label, short, value }: { label: string; short: string; value: string }) {
+function DeepBox({ label, short, value, boxes4 = false }: { label: string; short: string; value: string; /** Four boxes sit 2×2 on phones, with room for the full label. */ boxes4?: boolean }) {
   return (
     <div className="rounded-[14px] border border-white/[0.12] bg-white/[0.045] p-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.16)] backdrop-blur-[14px] lg:px-[18px] lg:py-[16px]">
       <div className={`${LABEL} text-white/50`}>
-        <span className="lg:hidden">{short}</span>
-        <span className="hidden lg:inline">{label}</span>
+        <span className={boxes4 ? 'hidden' : 'lg:hidden'}>{short}</span>
+        <span className={boxes4 ? '' : 'hidden lg:inline'}>{label}</span>
       </div>
       <div className="mt-[8px] text-[28px] leading-none text-white tabular-nums lg:text-[32px]">{value}</div>
     </div>
@@ -219,8 +219,8 @@ export default function PlayerProfileHero({ profile }: Props) {
           <span className="truncate font-barlow text-[13px] font-semibold text-white tabular-nums lg:text-[14px]">{blockMeta}</span>
           <span className="h-px min-w-[24px] flex-1 bg-white/10" aria-hidden />
         </div>
-        <div className={`grid gap-[8px] lg:gap-[12px] ${boxes.length === 4 ? 'grid-cols-4' : 'grid-cols-3'}`}>
-          {boxes.map((b) => <DeepBox key={b.label} {...b} />)}
+        <div className={`grid gap-[8px] lg:gap-[12px] ${boxes.length === 4 ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-3'}`}>
+          {boxes.map((b) => <DeepBox key={b.label} {...b} boxes4={boxes.length === 4} />)}
         </div>
       </div>
     </section>
