@@ -322,11 +322,17 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
 
 function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
   const [mode, setMode] = useState<Mode>('avg');
-  const meta = profile.active ? null : [profile.seasonsCount ? `${profile.seasonsCount} temporadas` : null, profile.firstYear !== null && profile.lastYear !== null ? `${profile.firstYear}–${profile.lastYear}` : null].filter(Boolean).join(' · ') || null;
+  const pills = <Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />;
   return (
     <div>
-      {meta ? <PanelHead meta={meta} /> : null}
-      <div className={meta ? 'mt-[16px]' : ''}><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
+      {profile.active ? (
+        pills
+      ) : (
+        <div className="flex flex-col gap-[16px] lg:flex-row lg:items-center lg:justify-between">
+          <div className="order-2 lg:order-1">{pills}</div>
+          <div className="order-1 lg:order-2"><CareerFigures seasons={profile.seasonsCount} games={profile.career?.games ?? null} /></div>
+        </div>
+      )}
       <div className="mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
       {!profile.active ? <EraNotes debutYear={profile.firstYear} /> : null}
     </div>
