@@ -18,6 +18,15 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
     usePlayerMatches(playerProviderId);
   const router = useRouter();
 
+  // Empty: one quiet line inside the panel's card, never a headerless table that a phone would clip.
+  if (!loading && playerMatches.length === 0) {
+    return (
+      <p className="py-[16px] text-center font-barlow text-[14px] text-[rgba(15,23,31,0.55)]">
+        No se han encontrado juegos para este jugador.
+      </p>
+    );
+  }
+
   return (
     <div>
       <div className="overflow-x-auto -mx-4 sm:-mx-3 player-stats-table">
