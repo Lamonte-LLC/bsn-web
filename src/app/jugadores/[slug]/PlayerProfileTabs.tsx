@@ -373,11 +373,11 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
     <section className="container -mt-[20px] mb-[28px] lg:-mt-[28px] lg:mb-[40px]">
       <div className={`${CARD} overflow-hidden`}>
         <TabGroup>
-          <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
-            <TabList className={cx('flex w-full justify-center lg:w-auto lg:justify-start lg:gap-[28px]', tabs.length > 2 ? 'gap-[16px]' : 'gap-[22px]')}>
+          <div className="relative flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
+            <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 2 ? 'gap-[16px]' : 'gap-[22px]')}>
               {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 2 ? 'text-[15px] lg:text-[18px]' : 'text-[18px]')}>{label}</Tab>)}
             </TabList>
-            <Link href={compare} className={`${COMPARE} ml-auto hidden h-[34px] px-[14px] text-[13px] lg:inline-flex`}>
+            <Link href={compare} className={`${COMPARE} absolute right-[24px] top-1/2 hidden h-[34px] -translate-y-1/2 px-[14px] text-[13px] lg:inline-flex`}>
               <CompareIcon />
               Comparar
             </Link>
