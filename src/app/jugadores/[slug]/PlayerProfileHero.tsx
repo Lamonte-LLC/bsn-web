@@ -112,8 +112,8 @@ function Facts({ facts, grid = false }: { facts: Fact[]; /** Desktop: a 4-column
 function DeepBox({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-[14px] border border-white/[0.12] bg-white/[0.045] px-[18px] py-[16px] shadow-[0_8px_24px_rgba(0,0,0,0.16)] backdrop-blur-[14px]">
-      <div className={`${LABEL} text-white/50`}>{label}</div>
-      <div className="mt-[8px] text-[32px] leading-none text-white tabular-nums">{value}</div>
+      <div className="text-[32px] leading-none text-white tabular-nums">{value}</div>
+      <div className={`${LABEL} mt-[8px] text-white/50`}>{label}</div>
     </div>
   );
 }
