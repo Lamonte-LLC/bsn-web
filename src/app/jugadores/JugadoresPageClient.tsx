@@ -138,7 +138,7 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
   return (
     <>
       <div className="flex gap-[10px] border-b border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:px-[24px] md:py-[18px]">
-        <SearchField value={search} onChange={(v) => { setSearch(v); setLimit(PAGE_SIZE); }} placeholder="Buscar por nombre o apodo" placeholderMobile="Buscar jugador" />
+        <SearchField value={search} onChange={(v) => { setSearch(v); setLimit(PAGE_SIZE); }} placeholder="Buscar jugador por nombre, apellido o apodo" placeholderMobile="Buscar jugador" />
         {/* Two selects for one filter: the phone's "all" option must be a single short word to fit its width. */}
         <SelectField label="Equipo" value={team} onChange={(v) => { setTeam(v); setLimit(PAGE_SIZE); }} className="w-[104px] md:hidden">
           <option value="">Todos</option>
@@ -280,7 +280,7 @@ function HistoricosTable({ total }: { total: number }) {
   return (
     <>
       <div className="flex gap-[10px] border-b border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:px-[24px] md:py-[18px]">
-        <SearchField value={search} onChange={(v) => { setSearch(v); reset(); }} placeholder="Buscar por nombre o apodo" placeholderMobile="Buscar jugador" />
+        <SearchField value={search} onChange={(v) => { setSearch(v); reset(); }} placeholder="Buscar jugador por nombre, apellido o apodo" placeholderMobile="Buscar jugador" />
         <SelectField label="Época" value={decade} onChange={(v) => { setDecade(v); reset(); }} className="w-[96px] md:w-[150px]">
           <option value="">Épocas</option>
           {DECADES.map((d) => <option key={d} value={d}>{d}s</option>)}
