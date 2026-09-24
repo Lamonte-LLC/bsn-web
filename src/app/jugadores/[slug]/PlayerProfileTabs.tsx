@@ -30,17 +30,6 @@ function CompareIcon() {
   );
 }
 
-/** What the panel covers, under the tab that names it: chips, a line, or the career figures. No repeated title. */
-function PanelHead({ meta, chips, children }: { meta?: string | null; chips?: React.ReactNode; children?: React.ReactNode }) {
-  return (
-    <div>
-      {meta ? <p className="font-barlow text-[13px] text-[rgba(15,23,31,0.5)] tabular-nums">{meta}</p> : null}
-      {chips ? <div className="flex flex-wrap items-center justify-center gap-x-[8px] gap-y-[4px] lg:justify-start">{chips}</div> : null}
-      {children}
-    </div>
-  );
-}
-
 /** The career in three figures: seasons, games and the years, side by side with hairlines between them. */
 function CareerFigures({ seasons, games }: { seasons: number; games: number | null }) {
   const items: Array<[string, string]> = [];
@@ -280,8 +269,8 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
   const teams = s?.teams.length ? s.teams : profile.club ? [profile.club] : [];
   const line = view === 'po' ? po : s;
   // One quiet line: the club with its mark, then the games played in the phase the pills select.
-  const chips = (
-    <>
+  const context = (
+    <div className="flex flex-wrap items-center gap-x-[8px] gap-y-[4px]">
       {teams.map((t) => (
         <span key={t.code} className="inline-flex items-center gap-[8px] font-barlow text-[14px] font-semibold text-[#0F171F]">
           <ClubMark code={t.code} color={t.color} size={22} />
@@ -291,16 +280,20 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
       {line?.stats.games ? (
         <>
           <span className="text-[rgba(15,23,31,0.3)]" aria-hidden>·</span>
-          <span className="font-barlow text-[14px] text-[rgba(15,23,31,0.55)] tabular-nums">{f0(line.stats.games)} juegos</span>
+          <span className="font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.8)] tabular-nums">{f0(line.stats.games)} juegos</span>
         </>
       ) : null}
-    </>
+    </div>
   );
   return (
     <div>
-      <PanelHead chips={chips} />
-      <div className="mt-[16px]"><Pills label="Vista de la temporada" value={view} onChange={setView} options={[['avg', 'Promedios'], ['tot', 'Totales'], ['po', 'Playoffs']]} /></div>
-      <div className="mt-[16px]">
+      {/* Desktop: pills centered with the club and games at the left, like the figures in Carrera; phones: pills, then the club line above the grid. */}
+      <div className="relative flex justify-center">
+        <Pills inline label="Vista de la temporada" value={view} onChange={setView} options={[['avg', 'Promedios'], ['tot', 'Totales'], ['po', 'Playoffs']]} />
+        <div className="hidden lg:absolute lg:left-0 lg:top-1/2 lg:block lg:-translate-y-1/2">{context}</div>
+      </div>
+      <div className="mt-[16px] lg:hidden">{context}</div>
+      <div className="mt-[12px] lg:mt-[16px]">
         {view === 'po' ? (po ? <StatGrid cells={avgCells(po.stats, { games: true })} /> : <Empty text={`Sin juegos de postemporada en ${year ?? 'esta temporada'}.`} />) : s ? <StatGrid cells={view === 'avg' ? avgCells(s.stats) : totalCells(s.stats)} /> : <Empty text="Todavía sin juegos esta temporada." />}
       </div>
     </div>
