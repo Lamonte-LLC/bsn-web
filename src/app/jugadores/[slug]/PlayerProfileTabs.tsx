@@ -169,9 +169,9 @@ function totalCells(s: LineStats): Cell[] {
   if (rec(s.blocks)) cells.push({ label: 'Bloqueos', value: f0(s.blocks) });
   if (rec(s.turnovers)) cells.push({ label: 'Pérdidas', value: f0(s.turnovers) });
   if (rec(s.foulsPersonal)) cells.push({ label: 'Faltas', value: f0(s.foulsPersonal) });
-  if (rec(s.fieldGoalsAttempted)) cells.push({ label: 'Tiros de campo', value: `${f0(s.fieldGoalsMade)}–${f0(s.fieldGoalsAttempted)}` });
-  if (rec(s.threePointersAttempted)) cells.push({ label: 'Triples', value: `${f0(s.threePointersMade)}–${f0(s.threePointersAttempted)}` });
-  if (rec(s.freeThrowsAttempted)) cells.push({ label: 'Tiros libres', value: `${f0(s.freeThrowsMade)}–${f0(s.freeThrowsAttempted)}` });
+  if (rec(s.fieldGoalsMade)) cells.push({ label: 'Tiros de campo', value: f0(s.fieldGoalsMade) });
+  if (rec(s.threePointersMade)) cells.push({ label: 'Triples', value: f0(s.threePointersMade) });
+  if (rec(s.freeThrowsMade)) cells.push({ label: 'Tiros libres', value: f0(s.freeThrowsMade) });
   return cells;
 }
 
@@ -203,9 +203,9 @@ function columns(mode: Mode): Col[] {
     { code: 'ROB', title: 'Robos', get: (s) => s.steals, render: (s) => f0(s.steals) },
     { code: 'BLQ', title: 'Bloqueos', get: (s) => s.blocks, render: (s) => f0(s.blocks) },
     { code: 'PÉR', title: 'Pérdidas', get: (s) => s.turnovers, render: (s) => f0(s.turnovers) },
-    { code: 'TC', title: 'Tiros de campo (convertidos–intentados)', get: (s) => s.fieldGoalsMade, render: (s) => `${f0(s.fieldGoalsMade)}–${f0(s.fieldGoalsAttempted)}` },
-    { code: '3P', title: 'Triples (convertidos–intentados)', get: (s) => s.threePointersMade, render: (s) => `${f0(s.threePointersMade)}–${f0(s.threePointersAttempted)}` },
-    { code: 'TL', title: 'Tiros libres (convertidos–intentados)', get: (s) => s.freeThrowsMade, render: (s) => `${f0(s.freeThrowsMade)}–${f0(s.freeThrowsAttempted)}` },
+    { code: 'TC', title: 'Tiros de campo convertidos', get: (s) => s.fieldGoalsMade, render: (s) => f0(s.fieldGoalsMade) },
+    { code: '3P', title: 'Triples convertidos', get: (s) => s.threePointersMade, render: (s) => f0(s.threePointersMade) },
+    { code: 'TL', title: 'Tiros libres convertidos', get: (s) => s.freeThrowsMade, render: (s) => f0(s.freeThrowsMade) },
   ];
 }
 
