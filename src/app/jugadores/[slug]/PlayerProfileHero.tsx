@@ -62,7 +62,7 @@ function Jersey({ n, small = false }: { n: string; small?: boolean }) {
 function Avatar({ profile, phone = false }: Props & { /** 68px inside the phone panel; 160px on the desktop band. */ phone?: boolean }) {
   const color = profile.club?.color ?? profile.mainClub?.color ?? 'rgba(255,255,255,0.22)';
   const shadow = phone ? '' : 'shadow-[0_10px_26px_rgba(0,0,0,0.26)]';
-  const px = phone ? 96 : 200;
+  const px = phone ? 120 : 200;
   return (
     <span className="relative inline-flex shrink-0">
       {profile.avatarUrl ? (
