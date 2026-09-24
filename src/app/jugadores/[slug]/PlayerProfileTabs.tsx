@@ -239,7 +239,8 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
                 <td className={`${TD} text-[rgba(15,23,31,0.75)]`}>
                   <span className="inline-flex items-center gap-[7px]">
                     {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={20} />)}
-                    <span>{l.teams.map((t) => t.nickname).join(' / ')}</span>
+                    <span className="lg:hidden">{l.teams.map((t) => t.code).join('/')}</span>
+                    <span className="hidden lg:inline">{l.teams.map((t) => t.nickname).join(' / ')}</span>
                   </span>
                 </td>
                 {num(f0(l.stats.games))}
