@@ -292,7 +292,7 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
         <Pills inline label="Vista de la temporada" value={view} onChange={setView} options={[['avg', 'Promedios'], ['tot', 'Totales'], ['po', 'Playoffs']]} />
         <div className="hidden lg:absolute lg:left-0 lg:top-1/2 lg:block lg:-translate-y-1/2">{context}</div>
       </div>
-      <div className="mt-[16px] lg:hidden">{context}</div>
+      <div className="mt-[31px] lg:hidden">{context}</div>
       <div className="mt-[12px] lg:mt-[16px]">
         {view === 'po' ? (po ? <StatGrid cells={avgCells(po.stats, { games: true })} /> : <Empty text={`Sin juegos de postemporada en ${year ?? 'esta temporada'}.`} />) : s ? <StatGrid cells={view === 'avg' ? avgCells(s.stats) : totalCells(s.stats)} /> : <Empty text="Todavía sin juegos esta temporada." />}
       </div>
@@ -309,7 +309,7 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
         <Pills inline label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
         <div className="lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"><CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} /></div>
       </div>
-      <div className="mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
+      <div className="mt-[31px] lg:mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} />
     </div>
   );
@@ -328,7 +328,7 @@ function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
           <div className="lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"><CareerFigures seasons={profile.seasonsCount} games={profile.career?.games ?? null} /></div>
         </div>
       )}
-      <div className="mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
+      <div className="mt-[31px] lg:mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
       {!profile.active ? <EraNotes debutYear={profile.firstYear} /> : null}
     </div>
   );
