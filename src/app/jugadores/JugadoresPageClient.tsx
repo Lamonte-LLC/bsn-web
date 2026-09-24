@@ -171,8 +171,8 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
       {visible.map((p, i) => (
         <Link key={p.providerId} href={`/jugadores/${p.providerId}`} className={cx('grid h-[56px] items-center gap-x-[10px] px-[14px] transition-colors duration-150 hover:bg-[#FAFAFA] active:bg-[#F3F3F3] motion-reduce:transition-none md:gap-x-[12px] md:px-[24px]', ACT_COLS, i > 0 && 'border-t border-[rgba(15,23,31,0.05)]', cls.focus, 'focus-visible:outline-offset-[-2px]')}>
           <span className="flex min-w-0 items-center gap-[12px]">
-            <PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} sizePx={34} />
-            <span className="block truncate text-[17px] leading-[1.1] text-[#0F171F]">{p.name}</span>
+            <span className="hidden md:block"><PlayerAvatar name={p.name} photoUrl={p.avatarUrl ? `${p.avatarUrl}?size=200` : null} sizePx={34} /></span>
+            <span className="block truncate text-[16px] leading-[1.1] text-[#0F171F] md:text-[17px]">{p.name}</span>
           </span>
           <span className="text-center font-barlow text-[13px] font-medium text-[rgba(15,23,31,0.7)] md:hidden">{p.playingPosition || '–'}</span>
           {/* Club: logo and the three-letter code on phones, logo and name on desktop. */}

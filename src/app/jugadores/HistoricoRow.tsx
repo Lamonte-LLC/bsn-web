@@ -23,9 +23,9 @@ export default function HistoricoRow({ p, clubs, first }: { p: HistoricoEntry; c
   return (
     <Link href={`/jugadores/${p.id}`} className={cx('grid h-[56px] items-center gap-x-[8px] px-[14px] transition-colors duration-150 hover:bg-[#FAFAFA] active:bg-[#F3F3F3] motion-reduce:transition-none md:gap-x-[12px] md:px-[24px]', HIST_COLS, !first && 'border-t border-[rgba(15,23,31,0.05)]', cls.focus, 'focus-visible:outline-offset-[-2px]')}>
       <span className="flex min-w-0 items-center gap-[12px]">
-        <PlayerAvatar name={p.n} photoUrl={p.a ? `${p.a}?size=200` : null} color={p.t[0] ? clubColor(p.t[0], clubs[p.t[0]]) : null} sizePx={34} />
+        <span className="hidden md:block"><PlayerAvatar name={p.n} photoUrl={p.a ? `${p.a}?size=200` : null} color={p.t[0] ? clubColor(p.t[0], clubs[p.t[0]]) : null} sizePx={34} /></span>
         <span className="min-w-0">
-          <span className="block truncate text-[17px] leading-[1.1] text-[#0F171F]">
+          <span className="block truncate text-[16px] leading-[1.1] text-[#0F171F] md:text-[17px]">
             {p.n}
             {p.k ? <span className="text-[rgba(15,23,31,0.5)]"> “{p.k}”</span> : null}
           </span>
