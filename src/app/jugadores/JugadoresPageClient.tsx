@@ -193,11 +193,11 @@ function ActivosTable({ players }: { players: JugadorItem[] }) {
 
       {!rows.length ? <p className="px-[16px] py-[28px] text-center font-barlow text-[14px] font-medium text-[rgba(15,23,31,0.55)]">No hay jugadores con ese nombre en las plantillas de esta temporada.</p> : null}
 
-      <div className="flex flex-col items-center gap-[12px] border-t border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:flex-row md:justify-between md:px-[24px]">
-        <span className="font-barlow text-[12.5px] tabular-nums text-[rgba(15,23,31,0.5)]">Mostrando {fmtInt(visible.length)} de {fmtInt(rows.length)} jugadores · Temporada 2026</span>
+      <div className="flex flex-col items-center gap-[14px] border-t border-[rgba(15,23,31,0.06)] px-[14px] py-[20px] md:py-[24px]">
+        <span className="font-barlow text-[13px] tabular-nums text-[rgba(15,23,31,0.5)]">Mostrando {fmtInt(visible.length)} de {fmtInt(rows.length)} jugadores · Temporada 2026</span>
         {visible.length < rows.length ? (
-          <button type="button" onClick={() => setLimit((n) => n + PAGE_SIZE)} className={`inline-flex h-[40px] cursor-pointer items-center justify-center rounded-[10px] border border-[rgba(15,23,31,0.14)] px-[18px] font-barlow text-[13px] font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] ${cls.focus}`}>
-            Cargar {Math.min(PAGE_SIZE, rows.length - visible.length)} más
+          <button type="button" onClick={() => setLimit((n) => n + PAGE_SIZE)} className={`inline-flex h-[48px] w-full max-w-[360px] cursor-pointer items-center justify-center rounded-[12px] border border-[rgba(15,23,31,0.16)] px-[28px] font-barlow text-[15px] font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] ${cls.focus}`}>
+            Cargar {fmtInt(Math.min(PAGE_SIZE, rows.length - visible.length))} más
           </button>
         ) : null}
       </div>
