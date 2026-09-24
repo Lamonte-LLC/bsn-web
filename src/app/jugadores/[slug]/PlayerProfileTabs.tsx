@@ -9,6 +9,8 @@ import ClubMark from '@/historia/components/ClubMark';
 import { compareHref } from '@/historia/lib/compare-players';
 import { eraNotes } from '@/historia/lib/copy';
 import PlayerMatchesWidget from '@/player/client/widgets/PlayerMatchesWidget';
+import GameInsights from './GameInsights';
+import SeasonTrend from './SeasonTrend';
 import { DASH, f0, f1, pct, signed, type LineStats, type PlayerProfileData, type SeasonLine } from './profile-data';
 
 type Props = {
@@ -410,6 +412,7 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
       <Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
       <div className="mt-[31px] lg:mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : [...lead, ...totalCells(c)]} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} minutesSince={profile.minutesSince} />
+      {profile.lines.length >= 2 ? <div className="mt-[22px] lg:mt-[28px]"><SeasonTrend lines={profile.lines} /></div> : null}
     </div>
   );
 }
@@ -430,6 +433,7 @@ function GamesPanel({ profile, year }: { profile: PlayerProfileData; year: numbe
   return (
     <div>
       {year ? <h2 className="text-center text-[22px] leading-none text-[#0F171F] lg:text-left lg:text-[24px]">Temporada {year}</h2> : null}
+      <div className="mt-[16px] empty:hidden"><GameInsights playerProviderId={profile.providerId} /></div>
       <div className={`mt-[16px] ${PANEL_CARD} px-[16px] py-[6px]`}>
         <PlayerMatchesWidget playerProviderId={profile.providerId} />
       </div>
