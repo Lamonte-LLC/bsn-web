@@ -47,11 +47,11 @@ function CareerFigures({ seasons, games }: { seasons: number; games: number | nu
   if (seasons) items.push([String(seasons), seasons === 1 ? 'Temporada' : 'Temporadas']);
   if (games) items.push([f0(games), 'Juegos']);
   return (
-    <div className="flex justify-center gap-[32px] lg:justify-end lg:gap-[26px]">
+    <div className="flex justify-end gap-[16px] lg:gap-[26px]">
       {items.map(([v, l]) => (
-        <div key={l} className="min-w-0 text-center lg:text-right">
-          <div className="text-[24px] leading-none text-[#0F171F] tabular-nums">{v}</div>
-          <div className={`mt-[4px] ${cls.label}`}>{l}</div>
+        <div key={l} className="min-w-0 text-right">
+          <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[24px]">{v}</div>
+          <div className={`mt-[4px] text-[9.5px] lg:text-[11px] ${cls.label}`}>{l}</div>
         </div>
       ))}
     </div>
@@ -98,9 +98,9 @@ function Chip({ children, club }: { children: React.ReactNode; club?: { code: st
 }
 
 /** Secondary choice inside a panel: pills, the chosen one in ink. */
-function Pills<T extends string>({ options, value, onChange, label }: { options: Array<[T, string]>; value: T; onChange: (v: T) => void; label: string }) {
+function Pills<T extends string>({ options, value, onChange, label, inline = false }: { options: Array<[T, string]>; value: T; onChange: (v: T) => void; label: string; /** Shares its row with the figures: stays left on phones too. */ inline?: boolean }) {
   return (
-    <div role="radiogroup" aria-label={label} className="flex flex-wrap justify-center gap-[8px] lg:justify-start">
+    <div role="radiogroup" aria-label={label} className={cx('flex flex-wrap gap-[8px]', inline ? 'justify-start' : 'justify-center lg:justify-start')}>
       {options.map(([k, l]) => {
         const on = k === value;
         return (
@@ -310,9 +310,9 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
   const c = profile.career;
   return (
     <div>
-      <div className="flex flex-col gap-[16px] lg:flex-row lg:items-center lg:justify-between">
-        <div className="order-2 lg:order-1"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
-        <div className="order-1 lg:order-2"><CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} /></div>
+      <div className="flex items-center justify-between gap-[12px]">
+        <Pills inline label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
+        <CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} />
       </div>
       <div className="mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} />
@@ -322,15 +322,15 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
 
 function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
   const [mode, setMode] = useState<Mode>('avg');
-  const pills = <Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />;
+  const pills = <Pills inline={!profile.active} label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />;
   return (
     <div>
       {profile.active ? (
         pills
       ) : (
-        <div className="flex flex-col gap-[16px] lg:flex-row lg:items-center lg:justify-between">
-          <div className="order-2 lg:order-1">{pills}</div>
-          <div className="order-1 lg:order-2"><CareerFigures seasons={profile.seasonsCount} games={profile.career?.games ?? null} /></div>
+        <div className="flex items-center justify-between gap-[12px]">
+          {pills}
+          <CareerFigures seasons={profile.seasonsCount} games={profile.career?.games ?? null} />
         </div>
       )}
       <div className="mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
