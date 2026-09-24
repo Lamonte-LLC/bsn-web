@@ -291,6 +291,8 @@ const STICKY = 'sticky left-0 z-[1] bg-white pl-[16px] pr-[4px] lg:pl-[20px] lg:
 function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine[]; career: LineStats | null; mode: Mode; seasonsCount: number }) {
   // A column nobody recorded (steals before 2010, minutes in the archive) is left out rather than shown as dashes.
   const cols = columns(mode).filter((c) => lines.some((l) => rec(c.get(l.stats))) || (career ? rec(c.get(career)) : false));
+  // A season with two clubs shows two marks and "ARE/PON": the column widens so it never runs into J.
+  const multiClub = lines.some((l) => l.teams.length > 1);
   const num = (v: string, strong = false) => <td className={cx(TD, 'text-center', strong ? 'font-semibold text-[#0F171F]' : 'text-[rgba(15,23,31,0.75)]')}>{v}</td>;
   return (
     <div className={`${PANEL_CARD} overflow-hidden`}>
@@ -300,7 +302,7 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
             <tr>
               <th className={`${TH} ${STICKY} w-[72px] text-left lg:w-[96px]`}>Año</th>
               {/* Desktop: fixed layout; Año, Equipo and J have set widths and the stat columns share the rest equally, so nothing shifts between Promedios and Totales. */}
-              <th className={`${TH} min-w-[88px] pl-[6px] text-left lg:w-[210px] lg:pl-[10px]`}>Equipo</th>
+              <th className={cx(TH, 'pl-[6px] text-left lg:w-[210px] lg:pl-[10px]', multiClub ? 'min-w-[128px]' : 'min-w-[88px]')}>Equipo</th>
               <th className={`${TH} w-[48px] text-center lg:w-[60px]`} title="Juegos">J</th>
               {cols.map((c) => (
                 <th key={c.code} className={`${TH} min-w-[64px] text-center`} title={c.title}>{c.code}</th>
@@ -312,7 +314,7 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
               <tr key={l.providerId}>
                 <td className={`${TD} ${STICKY} font-semibold text-[#0F171F]`}>{l.year}</td>
                 <td className={`${TD} pl-[6px] text-[rgba(15,23,31,0.75)] lg:pl-[10px]`}>
-                  <span className="flex items-center gap-[6px] leading-none">
+                  <span className="flex items-center gap-[5px] whitespace-nowrap leading-none lg:gap-[6px]">
                     {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={18} />)}
                     <span className="font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:hidden">{l.teams.map((t) => t.code).join('/')}</span>
                     <span className="hidden font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:inline">{l.teams.length > 2 ? l.teams.map((t) => t.code).join('/') : l.teams.map((t) => t.nickname).join(' / ')}</span>
