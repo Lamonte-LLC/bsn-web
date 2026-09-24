@@ -30,23 +30,6 @@ function CompareIcon() {
   );
 }
 
-/** The career in three figures: seasons, games and the years, side by side with hairlines between them. */
-function CareerFigures({ seasons, games }: { seasons: number; games: number | null }) {
-  const items: Array<[string, string]> = [];
-  if (seasons) items.push([String(seasons), seasons === 1 ? 'Temporada' : 'Temporadas']);
-  if (games) items.push([f0(games), 'Juegos']);
-  return (
-    <div className="flex justify-end gap-[16px] lg:gap-[26px]">
-      {items.map(([v, l]) => (
-        <div key={l} className="min-w-0 text-right">
-          <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[24px]">{v}</div>
-          <div className={`mt-[2px] text-[9.5px] lg:text-[11px] ${cls.label}`}>{l}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /** Horizontal scroll with a fading edge and a chevron while there is more table to the right. */
 function ScrollHint({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -304,13 +287,11 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
 function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
   const [mode, setMode] = useState<Mode>('avg');
   const c = profile.career;
+  const lead: Cell[] = profile.seasonsCount ? [{ label: profile.seasonsCount === 1 ? 'Temporada' : 'Temporadas', value: String(profile.seasonsCount) }] : [];
   return (
     <div>
-      <div className="relative flex items-center justify-between gap-[12px] lg:justify-center">
-        <Pills inline label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
-        <div className="lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"><CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} /></div>
-      </div>
-      <div className="mt-[31px] lg:mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
+      <Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
+      <div className="mt-[31px] lg:mt-[16px]">{c ? <StatGrid cells={[...lead, ...(mode === 'avg' ? avgCells(c, { games: true }) : totalCells(c))]} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} />
     </div>
   );
@@ -318,17 +299,10 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
 
 function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
   const [mode, setMode] = useState<Mode>('avg');
-  const pills = <Pills inline={!profile.active} label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />;
+  const pills = <Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />;
   return (
     <div>
-      {profile.active ? (
-        pills
-      ) : (
-        <div className="relative flex items-center justify-between gap-[12px] lg:justify-center">
-          {pills}
-          <div className="lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"><CareerFigures seasons={profile.seasonsCount} games={profile.career?.games ?? null} /></div>
-        </div>
-      )}
+      {pills}
       <div className="mt-[31px] lg:mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
       {!profile.active ? <EraNotes debutYear={profile.firstYear} /> : null}
     </div>
@@ -357,6 +331,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
   const tabs: Array<[string, React.ReactNode]> = profile.active
     ? [
         [`Temporada ${year ?? ''}`.trim(), <SeasonPanel key="season" profile={profile} year={year} />],
+        ['Carrera', <CareerGridPanel key="career" profile={profile} />],
         ['Por temporada', <SeasonsPanel key="seasons" profile={profile} />],
         ['Juego por juego', <GamesPanel key="games" profile={profile} year={year} />],
       ]
@@ -370,8 +345,8 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
       <div className={`${CARD} overflow-hidden`}>
         <TabGroup>
           <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
-            <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 2 ? 'gap-[16px]' : 'gap-[22px]')}>
-              {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 2 ? 'text-[17px] lg:text-[18px]' : 'text-[20px] lg:text-[18px]')}>{label}</Tab>)}
+            <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 3 ? 'gap-[14px]' : tabs.length > 2 ? 'gap-[16px]' : 'gap-[22px]')}>
+              {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 3 ? 'text-[15px] lg:text-[18px]' : tabs.length > 2 ? 'text-[17px] lg:text-[18px]' : 'text-[20px] lg:text-[18px]')}>{label}</Tab>)}
             </TabList>
           </div>
           <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[18px] pt-[24px] lg:px-[24px] lg:pb-[24px] lg:pt-[32px]">
