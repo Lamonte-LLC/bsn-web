@@ -216,7 +216,7 @@ export default function PlayerProfileHero({ profile }: Props) {
         {[0, 1].map((col) => (
           <div key={col} className="min-w-0">
             {phoneFacts.filter((_, i) => i % 2 === col).map((f) => (
-              <div key={f.label} className="flex h-[46px] items-center justify-between gap-[10px] border-b border-white/[0.08]">
+              <div key={f.label} className="flex h-[46px] items-center justify-between gap-[10px] border-t border-white/[0.08] first:border-t-0">
                 <dt className={`${LABEL} text-[10.5px] text-white/55`}>{f.label}</dt>
                 <dd className="flex items-baseline gap-[6px] whitespace-nowrap">
                   <span className="inline-flex items-center gap-[6px] text-[16px] leading-none text-white">{f.value}</span>
@@ -228,7 +228,7 @@ export default function PlayerProfileHero({ profile }: Props) {
         ))}
       </dl>
       {!p.active && p.clubs.length ? (
-        <div className="flex min-h-[46px] items-center gap-[14px] border-b border-white/[0.08]">
+        <div className="flex min-h-[46px] items-center gap-[14px] border-t border-white/[0.08]">
           <span className={`${LABEL} text-[10.5px] text-white/55`}>Equipos</span>
           <ClubRow clubs={p.clubs} size={18} />
         </div>

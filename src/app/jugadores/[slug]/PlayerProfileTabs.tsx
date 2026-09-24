@@ -35,7 +35,7 @@ function PanelHead({ meta, chips, children }: { meta?: string | null; chips?: Re
   return (
     <div>
       {meta ? <p className="font-barlow text-[13px] text-[rgba(15,23,31,0.5)] tabular-nums">{meta}</p> : null}
-      {chips ? <div className="flex flex-wrap items-center justify-center gap-[6px] lg:justify-start">{chips}</div> : null}
+      {chips ? <div className="flex flex-wrap items-center justify-center gap-x-[8px] gap-y-[4px] lg:justify-start">{chips}</div> : null}
       {children}
     </div>
   );
@@ -84,16 +84,6 @@ function ScrollHint({ children }: { children: React.ReactNode }) {
         </span>
       </div>
     </div>
-  );
-}
-
-/** A fact of the panel as a chip: the club with its mark, the phase, the games played. */
-function Chip({ children, club }: { children: React.ReactNode; club?: { code: string; color: string } | null }) {
-  return (
-    <span className="inline-flex h-[28px] items-center gap-[7px] rounded-full bg-[#EEF0F3] pl-[6px] pr-[11px] font-barlow text-[13px] font-semibold text-[rgba(15,23,31,0.85)] tabular-nums">
-      {club ? <ClubMark code={club.code} color={club.color} size={18} /> : <span className="w-[4px]" aria-hidden />}
-      {children}
-    </span>
   );
 }
 
@@ -288,11 +278,21 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
   const po = profile.playoffs;
   const teams = s?.teams.length ? s.teams : profile.club ? [profile.club] : [];
   const line = view === 'po' ? po : s;
+  // One quiet line: the club with its mark, then the games played in the phase the pills select.
   const chips = (
     <>
-      {teams.map((t) => <Chip key={t.code} club={t}>{t.name}</Chip>)}
-      <Chip>{view === 'po' ? 'Postemporada' : 'Serie regular'}</Chip>
-      {line?.stats.games ? <Chip>{f0(line.stats.games)} juegos</Chip> : null}
+      {teams.map((t) => (
+        <span key={t.code} className="inline-flex items-center gap-[8px] font-barlow text-[14px] font-semibold text-[#0F171F]">
+          <ClubMark code={t.code} color={t.color} size={22} />
+          {t.name}
+        </span>
+      ))}
+      {line?.stats.games ? (
+        <>
+          <span className="text-[rgba(15,23,31,0.3)]" aria-hidden>·</span>
+          <span className="font-barlow text-[14px] text-[rgba(15,23,31,0.55)] tabular-nums">{f0(line.stats.games)} juegos</span>
+        </>
+      ) : null}
     </>
   );
   return (
