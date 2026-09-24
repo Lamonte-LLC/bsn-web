@@ -100,7 +100,7 @@ function Chip({ children, club }: { children: React.ReactNode; club?: { code: st
 /** Secondary choice inside a panel: pills, the chosen one in ink. */
 function Pills<T extends string>({ options, value, onChange, label, inline = false }: { options: Array<[T, string]>; value: T; onChange: (v: T) => void; label: string; /** Shares its row with the figures: stays left on phones too. */ inline?: boolean }) {
   return (
-    <div role="radiogroup" aria-label={label} className={cx('flex flex-wrap gap-[8px]', inline ? 'justify-start' : 'justify-center lg:justify-start')}>
+    <div role="radiogroup" aria-label={label} className={cx('flex flex-wrap gap-[8px]', inline ? 'justify-start lg:justify-center' : 'justify-center')}>
       {options.map(([k, l]) => {
         const on = k === value;
         return (
@@ -311,9 +311,9 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
   const c = profile.career;
   return (
     <div>
-      <div className="flex items-center justify-between gap-[12px]">
+      <div className="relative flex items-center justify-between gap-[12px] lg:justify-center">
         <Pills inline label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
-        <CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} />
+        <div className="lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"><CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} /></div>
       </div>
       <div className="mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} />
@@ -329,9 +329,9 @@ function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
       {profile.active ? (
         pills
       ) : (
-        <div className="flex items-center justify-between gap-[12px]">
+        <div className="relative flex items-center justify-between gap-[12px] lg:justify-center">
           {pills}
-          <CareerFigures seasons={profile.seasonsCount} games={profile.career?.games ?? null} />
+          <div className="lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2"><CareerFigures seasons={profile.seasonsCount} games={profile.career?.games ?? null} /></div>
         </div>
       )}
       <div className="mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
