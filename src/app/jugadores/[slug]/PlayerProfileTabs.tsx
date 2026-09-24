@@ -9,7 +9,7 @@ import ClubMark from '@/historia/components/ClubMark';
 import { compareHref } from '@/historia/lib/compare-players';
 import { eraNotes } from '@/historia/lib/copy';
 import PlayerMatchesWidget from '@/player/client/widgets/PlayerMatchesWidget';
-import { f0, f1, pct, signed, type LineStats, type PlayerProfileData, type SeasonLine } from './profile-data';
+import { DASH, f0, f1, pct, signed, type LineStats, type PlayerProfileData, type SeasonLine } from './profile-data';
 
 type Props = {
   profile: PlayerProfileData;
@@ -145,7 +145,8 @@ type Col = { code: string; title?: string; get: (s: LineStats) => number | null;
 function columns(mode: Mode): Col[] {
   if (mode === 'avg') {
     return [
-      { code: 'MIN', title: 'Minutos por juego', get: (s) => s.minutesAvg, render: (s) => f1(s.minutesAvg) },
+      // A season with no minutes on record reads as a dash, never as 0.0.
+      { code: 'MIN', title: 'Minutos por juego', get: (s) => s.minutesAvg, render: (s) => (s.minutesAvg ? f1(s.minutesAvg) : DASH) },
       { code: 'PTS', title: 'Puntos por juego', get: (s) => s.pointsAvg, render: (s) => f1(s.pointsAvg) },
       { code: 'REB', title: 'Rebotes por juego', get: (s) => s.reboundsTotalAvg, render: (s) => f1(s.reboundsTotalAvg) },
       { code: 'AST', title: 'Asistencias por juego', get: (s) => s.assistsAvg, render: (s) => f1(s.assistsAvg) },
@@ -158,7 +159,7 @@ function columns(mode: Mode): Col[] {
     ];
   }
   return [
-    { code: 'MIN', title: 'Minutos', get: (s) => s.minutes, render: (s) => f0(s.minutes) },
+    { code: 'MIN', title: 'Minutos', get: (s) => s.minutes, render: (s) => (s.minutes ? f0(s.minutes) : DASH) },
     { code: 'PTS', title: 'Puntos', get: (s) => s.points, render: (s) => f0(s.points) },
     { code: 'REB', title: 'Rebotes', get: (s) => s.reboundsTotal, render: (s) => f0(s.reboundsTotal) },
     { code: 'AST', title: 'Asistencias', get: (s) => s.assists, render: (s) => f0(s.assists) },
@@ -183,15 +184,15 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
   return (
     <div className={`${PANEL_CARD} overflow-hidden`}>
       <ScrollHint>
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse lg:table-fixed">
           <thead>
             <tr>
               <th className={`${TH} ${STICKY} w-[72px] text-left lg:w-[96px]`}>Año</th>
-              {/* Equipo absorbs the leftover width on desktop; every other column is fixed, so nothing shifts between Promedios and Totales. */}
-              <th className={`${TH} min-w-[88px] pl-[6px] text-left lg:w-full lg:pl-[10px]`}>Equipo</th>
+              {/* Desktop: fixed layout; Año, Equipo and J have set widths and the stat columns share the rest equally, so nothing shifts between Promedios and Totales. */}
+              <th className={`${TH} min-w-[88px] pl-[6px] text-left lg:w-[210px] lg:pl-[10px]`}>Equipo</th>
               <th className={`${TH} w-[48px] text-center lg:w-[60px]`} title="Juegos">J</th>
               {cols.map((c) => (
-                <th key={c.code} className={`${TH} min-w-[64px] text-center lg:w-[76px] lg:min-w-[76px]`} title={c.title}>{c.code}</th>
+                <th key={c.code} className={`${TH} min-w-[64px] text-center`} title={c.title}>{c.code}</th>
               ))}
             </tr>
           </thead>
@@ -226,8 +227,9 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
 }
 
 
-function EraNotes({ debutYear }: { debutYear: number | null }) {
+function EraNotes({ debutYear, minutesSince }: { debutYear: number | null; minutesSince?: number | null }) {
   const notes = debutYear === null ? [] : eraNotes({ debutYears: [debutYear] });
+  if (minutesSince) notes.unshift(`Los minutos de este jugador se registran desde ${minutesSince}; el promedio de carrera usa solo esas temporadas.`);
   if (!notes.length) return null;
   return (
     <ul className="mt-[12px] space-y-[4px]">
@@ -292,7 +294,7 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
     <div>
       <Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
       <div className="mt-[31px] lg:mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : [...lead, ...totalCells(c)]} /> : <Empty text="Sin estadísticas de carrera." />}</div>
-      <EraNotes debutYear={profile.firstYear} />
+      <EraNotes debutYear={profile.firstYear} minutesSince={profile.minutesSince} />
     </div>
   );
 }
@@ -304,7 +306,7 @@ function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
     <div>
       {pills}
       <div className="mt-[31px] lg:mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
-      {!profile.active ? <EraNotes debutYear={profile.firstYear} /> : null}
+      {!profile.active ? <EraNotes debutYear={profile.firstYear} minutesSince={profile.minutesSince} /> : null}
     </div>
   );
 }

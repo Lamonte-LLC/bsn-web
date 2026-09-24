@@ -90,6 +90,8 @@ export type PlayerProfileData = {
   /** Regular-season lines, most recent first. */
   lines: SeasonLine[];
   career: LineStats | null;
+  /** First season with minutes on record, when later than the debut: the career minutes average only counts from there. */
+  minutesSince: number | null;
 };
 
 /** Raw shapes of the two queries the page runs (only the fields the profile reads). */
@@ -188,8 +190,56 @@ export function buildProfile(p: ProfileQueryPlayer, c: ComparisonQueryPlayer): P
     season,
     playoffs,
     lines,
-    career: c?.careerStats ?? null,
+    career: c?.careerStats ? repairCareerAverages(c.careerStats, lines) : null,
+    minutesSince: minutesSince(lines, firstYear),
   };
+}
+
+/* ---------- Career averages ---------- */
+
+/** Per-game averages the API derives from career totals, and the total each one divides. */
+const AVERAGED: Array<[keyof LineStats, keyof LineStats]> = [
+  ['minutesAvg', 'minutes'],
+  ['stealsAvg', 'steals'],
+  ['blocksAvg', 'blocks'],
+  ['turnoversAvg', 'turnovers'],
+  ['foulsPersonalAvg', 'foulsPersonal'],
+  ['offensiveReboundsAvg', 'offensiveRebounds'],
+  ['defensiveReboundsAvg', 'defensiveRebounds'],
+  ['reboundsTotalAvg', 'reboundsTotal'],
+  ['assistsAvg', 'assists'],
+  ['threePointersMadeAvg', 'threePointersMade'],
+  ['threePointersAttemptedAvg', 'threePointersAttempted'],
+];
+
+/**
+ * The API divides every career total by every game played, including the seasons where the stat was never
+ * recorded (minutes before 2000, steals before 2010…), so a 22-season career reads "4.3 minutes". Each average
+ * is recomputed over the seasons that actually recorded that stat; when all of them did, nothing changes.
+ */
+export function repairCareerAverages(career: LineStats, lines: SeasonLine[]): LineStats {
+  const out = { ...career };
+  for (const [avgKey, totalKey] of AVERAGED) {
+    let total = 0;
+    let games = 0;
+    for (const l of lines) {
+      const t = l.stats[totalKey];
+      if (t && t > 0 && l.stats.games) {
+        total += t;
+        games += l.stats.games;
+      }
+    }
+    if (games > 0) out[avgKey] = total / games;
+  }
+  return out;
+}
+
+/** First season with minutes on record; null when every season has them (or none does). */
+export function minutesSince(lines: SeasonLine[], firstYear: number | null): number | null {
+  const years = lines.filter((l) => l.stats.minutes && l.stats.minutes > 0).map((l) => l.year);
+  if (!years.length) return null;
+  const first = Math.min(...years);
+  return firstYear !== null && first > firstYear ? first : null;
 }
 
 /* ---------- Formatting ---------- */
