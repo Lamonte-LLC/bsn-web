@@ -83,8 +83,8 @@ function ClubRow({ clubs }: { clubs: PlayerProfileData['clubs'] }) {
     <span className="flex max-w-[300px] flex-wrap items-center justify-center gap-[6px] lg:max-w-none lg:justify-start" role="list" aria-label="Equipos">
       {clubs.map((c) => (
         <span key={c.code} role="listitem" title={c.name} className="inline-flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white/12 bg-[#1A222B] lg:h-[34px] lg:w-[34px]">
-          <span className="lg:hidden"><ClubMark code={c.code} color={c.color} size={20} /></span>
-          <span className="hidden lg:block"><ClubMark code={c.code} color={c.color} size={24} /></span>
+          <span className="flex lg:hidden"><ClubMark code={c.code} color={c.color} size={20} /></span>
+          <span className="hidden lg:flex"><ClubMark code={c.code} color={c.color} size={24} /></span>
         </span>
       ))}
     </span>
@@ -95,7 +95,7 @@ type Fact = { label: string; value: React.ReactNode; sub?: string | null };
 
 function Facts({ facts, grid = false }: { facts: Fact[]; /** Desktop: a 4-column grid at the right of the name block instead of one row. */ grid?: boolean }) {
   return (
-    <dl className={cx('grid grid-cols-2 gap-x-[12px] gap-y-[16px]', grid ? 'lg:grid-cols-4 lg:gap-x-[28px] lg:gap-y-[18px]' : 'lg:flex lg:gap-0')}>
+    <dl className={cx('mx-auto grid max-w-[340px] grid-cols-2 gap-x-[16px] gap-y-[16px] lg:mx-0 lg:max-w-none', grid ? 'lg:grid-cols-4 lg:gap-x-[28px] lg:gap-y-[18px]' : 'lg:flex lg:gap-0')}>
       {facts.map((f, i) => (
         <div key={f.label} className={cx('min-w-0', i && !grid && 'lg:ml-[22px] lg:border-l lg:border-white/12 lg:pl-[22px]')}>
           <dt className={`${LABEL} text-white/55`}>{f.label}</dt>
@@ -160,7 +160,7 @@ function ArchivoMark() {
 function ArchivoStrip() {
   return (
     <div className="container pt-[14px] lg:pt-[18px]">
-      <div className="flex h-[42px] items-center justify-between rounded-[10px] border border-white/[0.1] bg-white/[0.045] px-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_24px_rgba(0,0,0,0.16)] backdrop-blur-[14px] lg:h-[52px] lg:px-[20px]">
+      <div className="flex h-[42px] items-center justify-between rounded-[10px] border border-white/[0.1] bg-white/[0.045] px-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_2px_8px_rgba(0,0,0,0.08)] backdrop-blur-[14px] lg:h-[52px] lg:px-[20px]">
         <ArchivoMark />
         <span className="inline-flex items-baseline gap-[6px] text-[16px] leading-none text-white/85 tabular-nums lg:text-[19px]">
           1930

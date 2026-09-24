@@ -11,7 +11,7 @@ type Props = {
 export default function ClubMark({ code, color, size = 20 }: Props) {
   if (code in TEAM_LOGOS) return <TeamLogoAvatar teamCode={code} size={size} />;
   return (
-    <span className="inline-flex shrink-0 items-center justify-center rounded-full font-barlow-condensed font-bold italic text-white" style={{ backgroundColor: color, width: size, height: size, fontSize: Math.round(size * 0.4) }} aria-hidden>
+    <span className="inline-flex shrink-0 items-center justify-center rounded-full font-barlow-condensed font-bold italic leading-none text-white" style={{ backgroundColor: color, width: size, height: size, fontSize: Math.round(size * 0.4) }} aria-hidden>
       {code}
     </span>
   );

@@ -37,8 +37,8 @@ export default function HistoricoRow({ p, clubs, first }: { p: HistoricoEntry; c
         <span className="inline-flex items-center">
           {stack.map((code, i) => (
             <span key={code} className="relative inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[rgba(15,23,31,0.1)] bg-white ring-2 ring-white md:h-[30px] md:w-[30px]" style={{ marginLeft: i ? -9 : 0, zIndex: stack.length - i }} title={clubs[code]?.name ?? code}>
-              <span className="md:hidden"><ClubMark code={code} color={clubColor(code, clubs[code])} size={20} /></span>
-              <span className="hidden md:block"><ClubMark code={code} color={clubColor(code, clubs[code])} size={24} /></span>
+              <span className="flex md:hidden"><ClubMark code={code} color={clubColor(code, clubs[code])} size={20} /></span>
+              <span className="hidden md:flex"><ClubMark code={code} color={clubColor(code, clubs[code])} size={24} /></span>
             </span>
           ))}
         </span>
