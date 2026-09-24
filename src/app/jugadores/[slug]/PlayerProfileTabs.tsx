@@ -291,7 +291,7 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
   return (
     <div>
       <Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} />
-      <div className="mt-[31px] lg:mt-[16px]">{c ? <StatGrid cells={[...lead, ...(mode === 'avg' ? avgCells(c, { games: true }) : totalCells(c))]} /> : <Empty text="Sin estadísticas de carrera." />}</div>
+      <div className="mt-[31px] lg:mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : [...lead, ...totalCells(c)]} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} />
     </div>
   );
