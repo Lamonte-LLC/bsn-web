@@ -79,7 +79,7 @@ function Avatar({ profile }: Props) {
 /** The clubs of the career as a row of marks under the years, oldest first, each in its own dark disc. */
 function ClubRow({ clubs }: { clubs: PlayerProfileData['clubs'] }) {
   return (
-    <span className="flex flex-wrap items-center gap-[6px]" role="list" aria-label="Equipos">
+    <span className="flex max-w-[300px] flex-wrap items-center justify-center gap-[6px] lg:max-w-none lg:justify-start" role="list" aria-label="Equipos">
       {clubs.map((c) => (
         <span key={c.code} role="listitem" title={c.name} className="inline-flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white/12 bg-[#1A222B] lg:h-[34px] lg:w-[34px]">
           <span className="lg:hidden"><ClubMark code={c.code} color={c.color} size={20} /></span>
@@ -137,14 +137,21 @@ function Years({ fy, ly }: { fy: number; ly: number }) {
   );
 }
 
-/** "ARCHIVO BSN" as type alone: condensed italic, the league's red on the acronym, no plaque around it. */
+/** The Archivo BSN mark: a ball inside a white ring and a blue outer ring, "ARCHIVO" light and tracked, "BSN" heavy. */
 function ArchivoMark() {
   return (
-    <span className="inline-flex shrink-0 items-center gap-[12px]">
-      <span className="whitespace-nowrap font-barlow-condensed text-[14px] font-extrabold italic uppercase leading-none tracking-[0.6px] text-white">
-        Archivo <span className="text-[#E51F1F]">BSN</span>
+    <span className="inline-flex w-full shrink-0 items-center gap-[10px] lg:w-auto" aria-label="Archivo BSN">
+      <svg width="30" height="30" viewBox="0 0 40 40" fill="none" aria-hidden>
+        <circle cx="20" cy="20" r="18.5" stroke="#4A8DF0" strokeWidth="2.2" />
+        <circle cx="20" cy="20" r="14.2" stroke="#fff" strokeWidth="2" />
+        <circle cx="20" cy="20" r="8.6" stroke="#fff" strokeWidth="1.6" />
+        <path d="M20 11.4v17.2M11.4 20h17.2M14.2 13.9c2.4 2 3.6 4 3.6 6.1s-1.2 4.1-3.6 6.1M25.8 13.9c-2.4 2-3.6 4-3.6 6.1s1.2 4.1 3.6 6.1" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+      <span className="inline-flex items-baseline gap-[6px] whitespace-nowrap leading-none">
+        <span className="font-barlow-condensed text-[19px] uppercase tracking-[3px] text-white">Archivo</span>
+        <span className="text-[21px] uppercase tracking-[1px] text-white">BSN</span>
       </span>
-      <span className="h-[12px] w-px bg-white/20" aria-hidden />
+      <span className="ml-[2px] hidden h-[14px] w-px bg-white/20 lg:block" aria-hidden />
     </span>
   );
 }
@@ -161,6 +168,7 @@ export default function PlayerProfileHero({ profile }: Props) {
 
   const span = p.firstYear !== null && p.lastYear !== null ? `${p.firstYear}–${p.lastYear}` : null;
   const facts: Fact[] = [];
+  if (p.position) facts.push({ label: 'Posición', value: p.position });
   if (p.heightCm) facts.push({ label: 'Estatura', value: formatInches(centimeterToInches(p.heightCm)) });
   if (p.weightKg) facts.push({ label: 'Peso', value: `${Math.round(kilogramToPounds(p.weightKg))} lbs` });
   const born = birthShort(p.dob);
@@ -180,19 +188,17 @@ export default function PlayerProfileHero({ profile }: Props) {
 
   return (
     <section className="container pb-[40px] pt-[22px] lg:pb-[56px] lg:pt-[36px]">
-      <div className="flex items-start gap-[16px] lg:items-center lg:gap-[28px]">
+      <div className="flex flex-col items-center gap-[18px] text-center lg:flex-row lg:items-center lg:gap-[28px] lg:text-left">
         <Avatar profile={p} />
-        <div className="min-w-0 flex-1 lg:flex lg:items-center lg:gap-[40px]">
+        <div className="w-full min-w-0 flex-1 lg:flex lg:items-center lg:gap-[40px]">
           <div className="min-w-0 lg:flex-1">
-            <h1 className="text-[27px] leading-[1] text-white lg:text-[42px]">
+            <h1 className="text-[28px] leading-[1] text-white lg:text-[42px]">
               {p.name}
-              {p.nickname ? <span className="mt-[4px] block text-[19px] text-white/45 lg:mt-0 lg:inline lg:text-[42px]"><span className="hidden lg:inline"> </span>“{p.nickname}”</span> : null}
+              {p.nickname ? <span className="mt-[5px] block text-[19px] text-white/45 lg:mt-0 lg:inline lg:text-[42px]"><span className="hidden lg:inline"> </span>“{p.nickname}”</span> : null}
             </h1>
-            <div className="mt-[10px] flex flex-wrap items-center gap-x-[8px] gap-y-[4px] font-barlow text-[13px] font-medium text-white/72 lg:text-[15px]">
-              {p.position ? <span>{p.position}</span> : null}
+            <div className="mt-[12px] flex flex-wrap items-center justify-center gap-x-[8px] gap-y-[4px] font-barlow text-[14px] font-medium text-white/72 lg:mt-[10px] lg:justify-start lg:text-[15px]">
               {p.active ? (
                 <>
-                  {p.position && p.club ? <span className="text-white/30">·</span> : null}
                   {p.club ? (
                     <span className="inline-flex items-center gap-[8px]">
                       <ClubMark code={p.club.code} color={p.club.color} size={22} />
@@ -201,22 +207,19 @@ export default function PlayerProfileHero({ profile }: Props) {
                   ) : null}
                 </>
               ) : (
-                <>
-                  {p.position && span ? <span className="text-white/30">·</span> : null}
-                  {span ? <Years fy={p.firstYear!} ly={p.lastYear!} /> : null}
-                </>
+                <>{span ? <Years fy={p.firstYear!} ly={p.lastYear!} /> : null}</>
               )}
             </div>
-            {!p.active && p.clubs.length ? <div className="mt-[12px] lg:mt-[14px]"><ClubRow clubs={p.clubs} /></div> : null}
+            {!p.active && p.clubs.length ? <div className="mt-[14px] flex justify-center lg:justify-start"><ClubRow clubs={p.clubs} /></div> : null}
             {p.active && facts.length ? <div className="mt-[22px] hidden lg:block"><Facts facts={facts} /></div> : null}
           </div>
           {!p.active && facts.length ? <div className="hidden shrink-0 lg:block"><Facts facts={facts} /></div> : null}
         </div>
       </div>
-      {facts.length ? <div className="mt-[22px] lg:hidden"><Facts facts={facts} /></div> : null}
+      {facts.length ? <div className="mt-[26px] lg:hidden"><Facts facts={facts} /></div> : null}
 
       <div className="mt-[36px] lg:mt-[46px]">
-        <div className="mb-[12px] flex items-center gap-[12px]">
+        <div className="mb-[12px] flex flex-wrap items-center gap-x-[12px] gap-y-[10px]">
           {!p.active ? <ArchivoMark /> : null}
           <span className="truncate font-barlow text-[13px] font-semibold text-white tabular-nums lg:text-[14px]">{blockMeta}</span>
           <span className="h-px min-w-[24px] flex-1 bg-white/10" aria-hidden />

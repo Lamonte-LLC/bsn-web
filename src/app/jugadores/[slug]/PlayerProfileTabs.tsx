@@ -19,7 +19,7 @@ type Props = {
 
 const CARD = 'rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white shadow-[0_12px_32px_rgba(15,23,31,0.08)]';
 const PANEL_CARD = 'rounded-[12px] border border-[rgba(15,23,31,0.08)] bg-white';
-const TAB = `relative cursor-pointer whitespace-nowrap pb-[13px] pt-[16px] text-[18px] text-[rgba(15,23,31,0.4)] transition-colors duration-150 after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-[#0F171F] after:opacity-0 after:content-[''] hover:text-[rgba(15,23,31,0.7)] data-selected:text-[#0F171F] data-selected:after:opacity-100 lg:text-[18px] ${cls.focus} focus-visible:outline-offset-[-2px]`;
+const TAB = `relative cursor-pointer whitespace-nowrap pb-[13px] pt-[16px] text-[rgba(15,23,31,0.4)] transition-colors duration-150 after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-[#0F171F] after:opacity-0 after:content-[''] hover:text-[rgba(15,23,31,0.7)] data-selected:text-[#0F171F] data-selected:after:opacity-100 lg:text-[18px] ${cls.focus} focus-visible:outline-offset-[-2px]`;
 const COMPARE = `cursor-pointer items-center justify-center gap-[8px] rounded-full border border-[rgba(15,23,31,0.2)] font-barlow font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] ${cls.focus}`;
 
 function CompareIcon() {
@@ -35,7 +35,7 @@ function PanelHead({ meta, chips, children }: { meta?: string | null; chips?: Re
   return (
     <div>
       {meta ? <p className="font-barlow text-[13px] text-[rgba(15,23,31,0.5)] tabular-nums">{meta}</p> : null}
-      {chips ? <div className="flex flex-wrap items-center gap-[6px]">{chips}</div> : null}
+      {chips ? <div className="flex flex-wrap items-center justify-center gap-[6px] lg:justify-start">{chips}</div> : null}
       {children}
     </div>
   );
@@ -47,11 +47,11 @@ function CareerFigures({ seasons, games }: { seasons: number; games: number | nu
   if (seasons) items.push([String(seasons), seasons === 1 ? 'Temporada' : 'Temporadas']);
   if (games) items.push([f0(games), 'Juegos']);
   return (
-    <div className="flex items-stretch justify-center lg:justify-start">
-      {items.map(([v, l], i) => (
-        <div key={l} className={cx('min-w-0', i && 'ml-[18px] border-l border-[rgba(15,23,31,0.1)] pl-[18px] lg:ml-[24px] lg:pl-[24px]')}>
-          <div className="text-[24px] leading-none text-[#0F171F] tabular-nums lg:text-[26px]">{v}</div>
-          <div className={`mt-[5px] ${cls.label}`}>{l}</div>
+    <div className="flex justify-center gap-[32px] lg:justify-end lg:gap-[26px]">
+      {items.map(([v, l]) => (
+        <div key={l} className="min-w-0 text-center lg:text-right">
+          <div className="text-[24px] leading-none text-[#0F171F] tabular-nums">{v}</div>
+          <div className={`mt-[4px] ${cls.label}`}>{l}</div>
         </div>
       ))}
     </div>
@@ -310,10 +310,10 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
   const c = profile.career;
   return (
     <div>
-      <PanelHead>
-        <CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} />
-      </PanelHead>
-      <div className="mt-[16px]"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
+      <div className="flex flex-col gap-[16px] lg:flex-row lg:items-center lg:justify-between">
+        <div className="order-2 lg:order-1"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
+        <div className="order-1 lg:order-2"><CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} /></div>
+      </div>
       <div className="mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} />
     </div>
@@ -368,8 +368,8 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
       <div className={`${CARD} overflow-hidden`}>
         <TabGroup>
           <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
-            <TabList className="flex w-full justify-center gap-[22px] lg:w-auto lg:justify-start lg:gap-[28px]">
-              {tabs.map(([label]) => <Tab key={label} className={TAB}>{label}</Tab>)}
+            <TabList className={cx('flex w-full justify-center lg:w-auto lg:justify-start lg:gap-[28px]', tabs.length > 2 ? 'gap-[16px]' : 'gap-[22px]')}>
+              {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 2 ? 'text-[15px] lg:text-[18px]' : 'text-[18px]')}>{label}</Tab>)}
             </TabList>
             <Link href={compare} className={`${COMPARE} ml-auto hidden h-[34px] px-[14px] text-[13px] lg:inline-flex`}>
               <CompareIcon />
