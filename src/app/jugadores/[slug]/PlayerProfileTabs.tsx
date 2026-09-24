@@ -210,14 +210,14 @@ function ImpactGrid({ s }: { s: LineStats }) {
 }
 
 /** Where the points come from (twos, threes, free throws) and the three shooting lines. */
-function ScoringMix({ s }: { s: LineStats }) {
+function ScoringMix({ s, accent }: { s: LineStats; /** The club color the player is identified with: it paints the threes. */ accent: string }) {
   const g = s.games || 0;
   const twos = rec(s.twoPointsMade) ? s.twoPointsMade! * 2 : null;
   const threes = rec(s.threePointersMade) ? s.threePointersMade! * 3 : null;
   const fts = rec(s.freeThrowsMade) ? s.freeThrowsMade! : null;
   const segs = [
     { label: '2 puntos', pts: twos, color: '#0F171F' },
-    { label: 'Triples', pts: threes, color: '#1772D9' },
+    { label: 'Triples', pts: threes, color: accent },
     { label: 'Tiros libres', pts: fts, color: 'rgba(15,23,31,0.35)' },
   ].filter((x): x is { label: string; pts: number; color: string } => x.pts !== null && x.pts > 0);
   const total = segs.reduce((a, x) => a + x.pts, 0);
@@ -227,7 +227,7 @@ function ScoringMix({ s }: { s: LineStats }) {
   const shots = [
     { label: 'Campo', pct: s.fieldGoalsPercentage, made: fgm, att: fga },
     { label: 'Triples', pct: s.threePointersPercentage, made: s.threePointersMadeAvg, att: s.threePointersAttemptedAvg },
-    { label: 'Libres', pct: s.freeThrowsPercentage, made: s.freeThrowsMadeAvg, att: s.freeThrowsAttemptedAvg },
+    { label: 'Tiros libres', pct: s.freeThrowsPercentage, made: s.freeThrowsMadeAvg, att: s.freeThrowsAttemptedAvg },
   ].filter((x) => rec(x.pct));
   const pctNum = (v: number | null) => (v === null ? 0 : v <= 1 ? v * 100 : v);
   const notes: Part[] = [];
@@ -243,14 +243,14 @@ function ScoringMix({ s }: { s: LineStats }) {
           <div className="flex h-[12px] gap-[2px] overflow-hidden rounded-[6px] lg:h-[14px]" role="img" aria-label={segs.map((x) => `${x.label} ${Math.round((x.pts / total) * 100)}%`).join(', ')}>
             {segs.map((x) => <div key={x.label} style={{ width: `${(x.pts / total) * 100}%`, background: x.color }} />)}
           </div>
-          <div className="mt-[14px] grid grid-cols-1 gap-[10px] lg:grid-cols-3 lg:gap-[12px]">
+          <div className="mt-[14px] grid grid-cols-1 gap-[10px] lg:mb-[16px] lg:grid-cols-3 lg:gap-[12px]">
             {segs.map((x) => (
               <div key={x.label} className="flex items-center gap-[10px] lg:flex-col lg:items-start lg:gap-[6px]">
                 <span className="inline-flex items-center gap-[7px]">
                   <span className="h-[10px] w-[10px] shrink-0 rounded-[3px]" style={{ background: x.color }} aria-hidden />
                   <span className="font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.7)]">{x.label}</span>
                 </span>
-                <span className="inline-flex items-baseline gap-[8px]">
+                <span className="inline-flex items-center gap-[8px]">
                   <span className="text-[22px] leading-none text-[#0F171F] tabular-nums">{Math.round((x.pts / total) * 100)}%</span>
                   <span className="inline-flex h-[22px] items-center rounded-[6px] bg-[#F1F2F4] px-[7px] text-[13px] leading-none text-[#0F171F] tabular-nums">{f0(x.pts)} <span className="ml-[4px] font-barlow text-[10.5px] font-medium text-[rgba(15,23,31,0.6)]">pts</span></span>
                 </span>
@@ -258,7 +258,7 @@ function ScoringMix({ s }: { s: LineStats }) {
             ))}
           </div>
           {notes.length ? (
-            <div className="mt-[14px] grid grid-cols-3 gap-[10px] border-t border-[rgba(15,23,31,0.08)] pt-[12px] lg:mt-auto lg:pt-[14px]">
+            <div className="mt-[16px] grid grid-cols-3 gap-[10px] border-t border-[rgba(15,23,31,0.08)] pt-[16px] lg:mt-auto">
               {notes.map(([n, t]) => (
                 <div key={t} className="min-w-0">
                   <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{n}</div>
@@ -277,7 +277,7 @@ function ScoringMix({ s }: { s: LineStats }) {
               <div key={x.label} className="min-w-0">
                 <div className={`mb-[8px] ${cls.label}`}>{x.label}</div>
                 <div className="h-[8px] rounded-[4px] bg-[#EEF0F3] lg:h-[10px]">
-                  <div className="h-full rounded-[4px] bg-[#0F171F]" style={{ width: `${Math.min(100, pctNum(x.pct))}%` }} />
+                  <div className="h-full rounded-[4px]" style={{ width: `${Math.min(100, pctNum(x.pct))}%`, background: accent }} />
                 </div>
                 <div className="mt-[8px] text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{pct(x.pct)}</div>
                 {rec(x.made) && rec(x.att) ? (
@@ -451,7 +451,7 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
       </div>
       {line && view !== 'tot' ? (
         <>
-          <div className="mt-[22px] lg:mt-[28px]"><ScoringMix s={line.stats} /></div>
+          <div className="mt-[22px] lg:mt-[28px]"><ScoringMix s={line.stats} accent={profile.club?.color ?? profile.mainClub?.color ?? '#E51F1F'} /></div>
           <div className="mt-[22px] lg:mt-[28px]"><ImpactGrid s={line.stats} /></div>
         </>
       ) : null}
