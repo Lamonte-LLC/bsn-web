@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import ClubMark from '@/historia/components/ClubMark';
 import { birthShort, nationalityLabel } from '@/historia/lib/copy';
@@ -92,11 +93,11 @@ function ClubRow({ clubs }: { clubs: PlayerProfileData['clubs'] }) {
 
 type Fact = { label: string; value: React.ReactNode; sub?: string | null };
 
-function Facts({ facts }: { facts: Fact[] }) {
+function Facts({ facts, grid = false }: { facts: Fact[]; /** Desktop: a 4-column grid at the right of the name block instead of one row. */ grid?: boolean }) {
   return (
-    <dl className="grid grid-cols-2 gap-x-[12px] gap-y-[16px] lg:flex lg:gap-0">
+    <dl className={cx('grid grid-cols-2 gap-x-[12px] gap-y-[16px]', grid ? 'lg:grid-cols-4 lg:gap-x-[28px] lg:gap-y-[18px]' : 'lg:flex lg:gap-0')}>
       {facts.map((f, i) => (
-        <div key={f.label} className={i ? 'min-w-0 lg:ml-[22px] lg:border-l lg:border-white/12 lg:pl-[22px]' : 'min-w-0'}>
+        <div key={f.label} className={cx('min-w-0', i && !grid && 'lg:ml-[22px] lg:border-l lg:border-white/12 lg:pl-[22px]')}>
           <dt className={`${LABEL} text-white/55`}>{f.label}</dt>
           <dd className="mt-[6px] flex items-baseline gap-[7px] whitespace-nowrap">
             <span className="inline-flex items-center gap-[7px] text-[19px] leading-none text-white">{f.value}</span>
@@ -148,7 +149,7 @@ function ArchivoMark() {
         <path d="M20 11.4v17.2M11.4 20h17.2M14.2 13.9c2.4 2 3.6 4 3.6 6.1s-1.2 4.1-3.6 6.1M25.8 13.9c-2.4 2-3.6 4-3.6 6.1s1.2 4.1 3.6 6.1" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
       </svg>
       <span className="inline-flex items-baseline gap-[5px] whitespace-nowrap leading-none lg:gap-[6px]">
-        <span className="font-barlow-condensed text-[15px] uppercase tracking-[2.5px] text-white lg:text-[18px] lg:tracking-[3px]">Archivo</span>
+        <span className="font-barlow-condensed text-[17px] uppercase tracking-[2.5px] text-white lg:text-[20px] lg:tracking-[3px]">Archivo</span>
         <span className="text-[17px] uppercase tracking-[1px] text-white lg:text-[20px]">BSN</span>
       </span>
     </span>
@@ -158,10 +159,14 @@ function ArchivoMark() {
 /** Full-width strip under the nav that says the player belongs to the archive: the mark at the left, the span of the archive at the right. */
 function ArchivoStrip() {
   return (
-    <div className="border-b border-white/[0.08] bg-white/[0.045] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]">
-      <div className="container flex h-[40px] items-center justify-between lg:h-[50px]">
+    <div className="container pt-[14px] lg:pt-[18px]">
+      <div className="flex h-[42px] items-center justify-between rounded-[10px] border border-white/[0.1] bg-white/[0.045] px-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_24px_rgba(0,0,0,0.16)] backdrop-blur-[14px] lg:h-[52px] lg:px-[20px]">
         <ArchivoMark />
-        <span className="font-barlow text-[12px] font-medium tracking-[0.3px] text-white/60 tabular-nums lg:text-[13px]">1930 — hasta hoy</span>
+        <span className="inline-flex items-baseline gap-[6px] text-[16px] leading-none text-white/85 tabular-nums lg:text-[19px]">
+          1930
+          <span className="text-[12px] text-white/35 lg:text-[14px]">—</span>
+          hasta hoy
+        </span>
       </div>
     </div>
   );
@@ -178,15 +183,17 @@ export default function PlayerProfileHero({ profile }: Props) {
   const country = nationalityLabel(p.nationality);
 
   const span = p.firstYear !== null && p.lastYear !== null ? `${p.firstYear}–${p.lastYear}` : null;
-  const facts: Fact[] = [];
-  if (p.position) facts.push({ label: 'Posición', value: p.position });
-  if (p.heightCm) facts.push({ label: 'Estatura', value: formatInches(centimeterToInches(p.heightCm)) });
-  if (p.weightKg) facts.push({ label: 'Peso', value: `${Math.round(kilogramToPounds(p.weightKg))} lbs` });
+  const dash = <span className="text-white/35">–</span>;
   const born = birthShort(p.dob);
-  if (born) facts.push({ label: 'Nacimiento', value: born, sub: age !== null ? `${age} años` : null });
-  if (country && p.nationality) facts.push({ label: 'Lugar de origen', value: <><Flag code={p.nationality} />{country}</> });
-  if (p.debut) facts.push({ label: 'Debut en BSN', value: String(p.debut.year), sub: p.debut.club || null });
-  if (p.active && p.seasonsCount) facts.push({ label: 'Experiencia', value: `${p.seasonsCount} ${p.seasonsCount === 1 ? 'año' : 'años'}` });
+  const facts: Fact[] = [
+    { label: 'Posición', value: p.position ?? dash },
+    { label: 'Estatura', value: p.heightCm ? formatInches(centimeterToInches(p.heightCm)) : dash },
+    { label: 'Peso', value: p.weightKg ? `${Math.round(kilogramToPounds(p.weightKg))} lbs` : dash },
+    { label: 'Nacimiento', value: born ?? dash, sub: born && age !== null ? `${age} años` : null },
+    { label: 'Lugar de origen', value: country && p.nationality ? <><Flag code={p.nationality} />{country}</> : dash },
+    { label: 'Debut en BSN', value: p.debut ? String(p.debut.year) : dash, sub: p.debut?.club || null },
+    { label: 'Experiencia', value: p.seasonsCount ? `${p.seasonsCount} ${p.seasonsCount === 1 ? 'año' : 'años'}` : dash },
+  ];
 
   const s = p.active ? p.season?.stats ?? null : p.career;
   const boxes = [
@@ -200,7 +207,7 @@ export default function PlayerProfileHero({ profile }: Props) {
   return (
     <>
     {!p.active ? <ArchivoStrip /> : null}
-    <section className="container pb-[40px] pt-[22px] lg:pb-[56px] lg:pt-[36px]">
+    <section className={`container pb-[40px] lg:pb-[56px] ${p.active ? 'pt-[22px] lg:pt-[36px]' : 'pt-[24px] lg:pt-[34px]'}`}>
       <div className="flex flex-col items-center gap-[18px] text-center lg:flex-row lg:items-center lg:gap-[28px] lg:text-left">
         <Avatar profile={p} />
         <div className="w-full min-w-0 flex-1 lg:flex lg:items-center lg:gap-[40px]">
@@ -224,12 +231,12 @@ export default function PlayerProfileHero({ profile }: Props) {
               )}
             </div>
             {!p.active && p.clubs.length ? <div className="mt-[14px] flex justify-center lg:justify-start"><ClubRow clubs={p.clubs} /></div> : null}
-            {p.active && facts.length ? <div className="mt-[22px] hidden lg:block"><Facts facts={facts} /></div> : null}
+            {p.active ? <div className="mt-[22px] hidden lg:block"><Facts facts={facts} /></div> : null}
           </div>
-          {!p.active && facts.length ? <div className="hidden shrink-0 lg:block"><Facts facts={facts} /></div> : null}
+          {!p.active ? <div className="hidden shrink-0 lg:block"><Facts facts={facts} grid /></div> : null}
         </div>
       </div>
-      {facts.length ? <div className="mt-[26px] lg:hidden"><Facts facts={facts} /></div> : null}
+      <div className="mt-[26px] lg:hidden"><Facts facts={facts} /></div>
 
       <div className="mt-[36px] lg:mt-[46px]">
         <div className="mb-[12px] flex items-center gap-[12px]">
