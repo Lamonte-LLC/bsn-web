@@ -119,7 +119,7 @@ function DeepBox({ label, value }: { label: string; value: string }) {
 /** The span of a retired player's career, in the display face: the years carry the weight, the dash steps back. */
 function Years({ fy, ly, small = false }: { fy: number; ly: number; small?: boolean }) {
   return (
-    <span className={cx('inline-flex items-baseline gap-[5px] font-special-gothic-condensed-one leading-none text-white tabular-nums', small ? 'text-[17px]' : 'text-[20px]')}>
+    <span className={cx('inline-flex items-baseline gap-[5px] font-special-gothic-condensed-one leading-none text-white tabular-nums', small ? 'text-[15px]' : 'text-[18px]')}>
       <span className={cx(LABEL, 'mr-[3px] text-white/55', small && 'text-[10px]')}>Años activo</span>
       {fy}
       {fy !== ly ? (
@@ -132,30 +132,13 @@ function Years({ fy, ly, small = false }: { fy: number; ly: number; small?: bool
   );
 }
 
-/** The Archivo BSN mark: a ball inside a white ring and a blue outer ring, "ARCHIVO" light and tracked, "BSN" heavy. */
-function ArchivoMark() {
+/** Archivo BSN as a small frosted tag above the name: "ARCHIVO" light and tracked, "BSN" heavy in the archive's blue. */
+function ArchivoTag() {
   return (
-    <span className="inline-flex shrink-0 items-center gap-[8px] lg:gap-[10px]" aria-label="Archivo BSN">
-      <svg viewBox="0 0 40 40" fill="none" aria-hidden className="h-[22px] w-[22px] lg:h-[28px] lg:w-[28px]">
-        <circle cx="20" cy="20" r="18.5" stroke="#4A8DF0" strokeWidth="2.2" />
-        <circle cx="20" cy="20" r="14.2" stroke="#fff" strokeWidth="2" />
-        <circle cx="20" cy="20" r="8.6" stroke="#fff" strokeWidth="1.6" />
-        <path d="M20 11.4v17.2M11.4 20h17.2M14.2 13.9c2.4 2 3.6 4 3.6 6.1s-1.2 4.1-3.6 6.1M25.8 13.9c-2.4 2-3.6 4-3.6 6.1s1.2 4.1 3.6 6.1" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
-      </svg>
-      <span className="inline-flex items-baseline gap-[5px] whitespace-nowrap leading-none lg:gap-[6px]">
-        <span className="font-barlow-condensed text-[17px] uppercase tracking-[2.5px] text-white lg:text-[20px] lg:tracking-[3px]">Archivo</span>
-        <span className="text-[17px] uppercase tracking-[1px] text-white lg:text-[20px]">BSN</span>
-      </span>
+    <span className="inline-flex h-[24px] items-center rounded-full border border-white/[0.14] bg-white/[0.06] px-[10px] leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[10px]" aria-label="Archivo BSN">
+      <span className="font-barlow-condensed text-[12px] uppercase tracking-[1.8px] text-white/90">Archivo</span>
+      <span className="text-[13px] uppercase tracking-[0.6px] text-[#4A8DF0]">BSN</span>
     </span>
-  );
-}
-
-/** Under the nav, the mark alone on a hairline: the player belongs to the archive. */
-function ArchivoStrip() {
-  return (
-    <div className="container flex h-[40px] items-end lg:h-[52px]">
-      <ArchivoMark />
-    </div>
   );
 }
 
@@ -196,12 +179,12 @@ export default function PlayerProfileHero({ profile }: Props) {
 
   return (
     <>
-    {!p.active ? <ArchivoStrip /> : null}
     {/* Phones: one translucent panel with the identity, the facts and the figures; only the panel has a border. */}
-    <section className={cx('container pb-[36px] lg:hidden', p.active ? 'pt-[16px]' : 'pt-[12px]')}>
+    <section className="container pb-[36px] pt-[18px] lg:hidden">
       <div className="flex items-center gap-[12px] px-[2px]">
           <Avatar profile={p} phone />
           <div className="min-w-0 flex-1">
+            {!p.active ? <div className="mb-[8px]"><ArchivoTag /></div> : null}
             <h1 className="text-[26px] leading-[1] text-white">
               {p.name}
               {p.nickname ? <span className="text-white/45"> “{p.nickname}”</span> : null}
@@ -243,11 +226,12 @@ export default function PlayerProfileHero({ profile }: Props) {
         </div>
       </div>
     </section>
-    <section className={`container hidden pb-[56px] lg:block ${p.active ? 'pt-[36px]' : 'pt-[28px]'}`}>
+    <section className="container hidden pb-[56px] pt-[36px] lg:block">
       <div className="flex items-center gap-[28px]">
         <Avatar profile={p} />
         <div className="flex min-w-0 flex-1 items-center gap-[40px]">
           <div className="min-w-0 flex-1">
+            {!p.active ? <div className="mb-[10px]"><ArchivoTag /></div> : null}
             <h1 className="text-[42px] leading-[1] text-white">
               {p.name}
               {p.nickname ? <span className="text-white/45"> “{p.nickname}”</span> : null}
