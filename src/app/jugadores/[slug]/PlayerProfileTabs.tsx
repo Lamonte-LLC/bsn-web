@@ -322,11 +322,11 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
 
 function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
   const [mode, setMode] = useState<Mode>('avg');
-  const meta = ['Serie regular', profile.seasonsCount ? `${profile.seasonsCount} temporadas` : null, profile.firstYear !== null && profile.lastYear !== null ? `${profile.firstYear}–${profile.lastYear}` : null].filter(Boolean).join(' · ');
+  const meta = profile.active ? null : [profile.seasonsCount ? `${profile.seasonsCount} temporadas` : null, profile.firstYear !== null && profile.lastYear !== null ? `${profile.firstYear}–${profile.lastYear}` : null].filter(Boolean).join(' · ') || null;
   return (
     <div>
-      <PanelHead meta={meta} />
-      <div className="mt-[16px]"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
+      {meta ? <PanelHead meta={meta} /> : null}
+      <div className={meta ? 'mt-[16px]' : ''}><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
       <div className="mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
       {!profile.active ? <EraNotes debutYear={profile.firstYear} /> : null}
     </div>
@@ -336,8 +336,8 @@ function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
 function GamesPanel({ profile, year }: { profile: PlayerProfileData; year: number | null }) {
   return (
     <div>
-      {year ? <PanelHead meta={`Temporada ${year}`} /> : null}
-      <div className={`mt-[14px] ${PANEL_CARD} px-[16px] py-[6px]`}>
+      {year ? <h2 className="text-center text-[22px] leading-none text-[#0F171F] lg:text-left lg:text-[24px]">Temporada {year}</h2> : null}
+      <div className={`mt-[16px] ${PANEL_CARD} px-[16px] py-[6px]`}>
         <PlayerMatchesWidget playerProviderId={profile.providerId} />
       </div>
     </div>

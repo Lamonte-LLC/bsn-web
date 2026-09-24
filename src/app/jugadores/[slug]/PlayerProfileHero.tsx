@@ -124,8 +124,8 @@ function DeepBox({ label, short, value, boxes4 = false }: { label: string; short
 /** The span of a retired player's career, in the display face: the years carry the weight, the dash steps back. */
 function Years({ fy, ly }: { fy: number; ly: number }) {
   return (
-    <span className="inline-flex items-baseline gap-[6px] text-[18px] leading-none text-white tabular-nums lg:text-[20px]">
-      <span className={`${LABEL} mr-[4px] text-white/55`}>Activo</span>
+    <span className="inline-flex items-baseline gap-[6px] font-special-gothic-condensed-one text-[20px] leading-none text-white tabular-nums lg:text-[22px]">
+      <span className={`${LABEL} mr-[4px] text-white/55`}>Años activo</span>
       {fy}
       {fy !== ly ? (
         <>
@@ -140,19 +140,30 @@ function Years({ fy, ly }: { fy: number; ly: number }) {
 /** The Archivo BSN mark: a ball inside a white ring and a blue outer ring, "ARCHIVO" light and tracked, "BSN" heavy. */
 function ArchivoMark() {
   return (
-    <span className="inline-flex w-full shrink-0 items-center gap-[10px] lg:w-auto" aria-label="Archivo BSN">
-      <svg width="30" height="30" viewBox="0 0 40 40" fill="none" aria-hidden>
+    <span className="inline-flex shrink-0 items-center gap-[8px] lg:gap-[10px]" aria-label="Archivo BSN">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden className="h-[22px] w-[22px] lg:h-[28px] lg:w-[28px]">
         <circle cx="20" cy="20" r="18.5" stroke="#4A8DF0" strokeWidth="2.2" />
         <circle cx="20" cy="20" r="14.2" stroke="#fff" strokeWidth="2" />
         <circle cx="20" cy="20" r="8.6" stroke="#fff" strokeWidth="1.6" />
         <path d="M20 11.4v17.2M11.4 20h17.2M14.2 13.9c2.4 2 3.6 4 3.6 6.1s-1.2 4.1-3.6 6.1M25.8 13.9c-2.4 2-3.6 4-3.6 6.1s1.2 4.1 3.6 6.1" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
       </svg>
-      <span className="inline-flex items-baseline gap-[6px] whitespace-nowrap leading-none">
-        <span className="font-barlow-condensed text-[19px] uppercase tracking-[3px] text-white">Archivo</span>
-        <span className="text-[21px] uppercase tracking-[1px] text-white">BSN</span>
+      <span className="inline-flex items-baseline gap-[5px] whitespace-nowrap leading-none lg:gap-[6px]">
+        <span className="font-barlow-condensed text-[15px] uppercase tracking-[2.5px] text-white lg:text-[18px] lg:tracking-[3px]">Archivo</span>
+        <span className="text-[17px] uppercase tracking-[1px] text-white lg:text-[20px]">BSN</span>
       </span>
-      <span className="ml-[2px] hidden h-[14px] w-px bg-white/20 lg:block" aria-hidden />
     </span>
+  );
+}
+
+/** Full-width strip under the nav that says the player belongs to the archive: the mark at the left, the span of the archive at the right. */
+function ArchivoStrip() {
+  return (
+    <div className="border-b border-white/[0.08] bg-white/[0.045] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]">
+      <div className="container flex h-[40px] items-center justify-between lg:h-[50px]">
+        <ArchivoMark />
+        <span className="font-barlow text-[12px] font-medium tracking-[0.3px] text-white/60 tabular-nums lg:text-[13px]">1930 — hasta hoy</span>
+      </div>
+    </div>
   );
 }
 
@@ -187,6 +198,8 @@ export default function PlayerProfileHero({ profile }: Props) {
   const blockMeta = p.active ? `Promedios · Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios de carrera', span].filter(Boolean).join(' · ');
 
   return (
+    <>
+    {!p.active ? <ArchivoStrip /> : null}
     <section className="container pb-[40px] pt-[22px] lg:pb-[56px] lg:pt-[36px]">
       <div className="flex flex-col items-center gap-[18px] text-center lg:flex-row lg:items-center lg:gap-[28px] lg:text-left">
         <Avatar profile={p} />
@@ -219,8 +232,7 @@ export default function PlayerProfileHero({ profile }: Props) {
       {facts.length ? <div className="mt-[26px] lg:hidden"><Facts facts={facts} /></div> : null}
 
       <div className="mt-[36px] lg:mt-[46px]">
-        <div className="mb-[12px] flex flex-wrap items-center gap-x-[12px] gap-y-[10px]">
-          {!p.active ? <ArchivoMark /> : null}
+        <div className="mb-[12px] flex items-center gap-[12px]">
           <span className="truncate font-barlow text-[13px] font-semibold text-white tabular-nums lg:text-[14px]">{blockMeta}</span>
           <span className="h-px min-w-[24px] flex-1 bg-white/10" aria-hidden />
         </div>
@@ -229,5 +241,6 @@ export default function PlayerProfileHero({ profile }: Props) {
         </div>
       </div>
     </section>
+    </>
   );
 }
