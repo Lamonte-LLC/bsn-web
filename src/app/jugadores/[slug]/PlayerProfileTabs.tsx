@@ -141,18 +141,28 @@ function totalCells(s: LineStats): Cell[] {
 
 /* ---------- Season modules: impact, scoring mix, shooting ---------- */
 
+type Part = [string, string];
+
 /** Title of a module inside a panel: display face, the meta beside it in Barlow. */
-function ModuleTitle({ title, meta }: { title: string; meta?: string | null }) {
+function ModuleTitle({ title, meta }: { title: string; /** Figures at the right of the title, e.g. [["580", "puntos"], ["29", "juegos"]]. */ meta?: Part[] | null }) {
   return (
-    <div className="mb-[12px] flex flex-wrap items-baseline gap-x-[10px] gap-y-[2px]">
-      <span className="text-[18px] leading-[1.1] text-[#0F171F]">{title}</span>
-      {meta ? <span className="font-barlow text-[12.5px] text-[rgba(15,23,31,0.5)] tabular-nums">{meta}</span> : null}
+    <div className="mb-[14px] flex items-baseline justify-between gap-[12px]">
+      <span className="text-[21px] leading-[1.1] text-[#0F171F] lg:text-[22px]">{title}</span>
+      {meta?.length ? (
+        <span className="flex shrink-0 items-baseline gap-[10px] whitespace-nowrap">
+          {meta.map(([n, t]) => (
+            <span key={t} className="inline-flex items-baseline gap-[4px]">
+              <span className="text-[16px] leading-none text-[#0F171F] tabular-nums">{n}</span>
+              <span className="font-barlow text-[11.5px] font-medium text-[rgba(15,23,31,0.55)]">{t}</span>
+            </span>
+          ))}
+        </span>
+      ) : null}
     </div>
   );
 }
 
 /** A secondary line where the figures read in ink and the words step back, instead of one grey sentence. */
-type Part = [string, string];
 function Detail({ parts, className = '' }: { parts: Part[]; className?: string }) {
   return (
     <div className={cx('flex flex-wrap gap-[5px]', className)}>
@@ -180,7 +190,7 @@ function ImpactGrid({ s }: { s: LineStats }) {
   if (cells.length < 3) return null;
   return (
     <div>
-      <ModuleTitle title="Impacto" meta="más allá del promedio" />
+      <ModuleTitle title="Impacto en cancha" />
       <div className={`${PANEL_CARD} overflow-hidden`}>
         <div className="-mb-px -mr-px grid grid-cols-2 lg:grid-cols-3">
           {cells.map((c) => (
@@ -226,25 +236,29 @@ function ScoringMix({ s }: { s: LineStats }) {
   if (rec(s.pointsSecondChance)) notes.push([f0(s.pointsSecondChance), 'de segunda oportunidad']);
   if (!segs.length && !shots.length) return null;
   return (
-    <div className="grid grid-cols-1 gap-[14px] lg:grid-cols-[7fr_5fr] lg:items-start">
+    <div className="grid grid-cols-1 gap-[14px] lg:grid-cols-[7fr_5fr] lg:items-stretch">
       {segs.length && total > 0 ? (
-        <div className={`${PANEL_CARD} px-[14px] py-[14px] lg:px-[20px] lg:py-[18px]`}>
-          <ModuleTitle title="Cómo anota" meta={`${f0(total)} puntos${g ? ` en ${f0(g)} juegos` : ''}`} />
+        <div className={`${PANEL_CARD} flex flex-col px-[14px] py-[14px] lg:px-[20px] lg:py-[18px]`}>
+          <ModuleTitle title="Cómo anota" meta={g ? [[f0(total), 'puntos'], [f0(g), 'juegos']] : [[f0(total), 'puntos']]} />
           <div className="flex h-[12px] gap-[2px] overflow-hidden rounded-[6px] lg:h-[14px]" role="img" aria-label={segs.map((x) => `${x.label} ${Math.round((x.pts / total) * 100)}%`).join(', ')}>
             {segs.map((x) => <div key={x.label} style={{ width: `${(x.pts / total) * 100}%`, background: x.color }} />)}
           </div>
-          <div className="mt-[12px] grid grid-cols-1 gap-[8px] lg:flex lg:flex-wrap lg:gap-x-[22px]">
+          <div className="mt-[14px] grid grid-cols-1 gap-[10px] lg:grid-cols-3 lg:gap-[12px]">
             {segs.map((x) => (
-              <div key={x.label} className="flex items-center gap-[8px]">
-                <span className="h-[10px] w-[10px] shrink-0 rounded-[3px]" style={{ background: x.color }} aria-hidden />
-                <span className="text-[20px] leading-none text-[#0F171F] tabular-nums">{Math.round((x.pts / total) * 100)}%</span>
-                <span className="font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.7)]">{x.label}</span>
-                <span className="inline-flex h-[22px] items-center rounded-[6px] bg-[#F1F2F4] px-[7px] text-[13px] leading-none text-[#0F171F] tabular-nums">{f0(x.pts)} <span className="ml-[4px] font-barlow text-[10.5px] font-medium text-[rgba(15,23,31,0.6)]">pts</span></span>
+              <div key={x.label} className="flex items-center gap-[10px] lg:flex-col lg:items-start lg:gap-[6px]">
+                <span className="inline-flex items-center gap-[7px]">
+                  <span className="h-[10px] w-[10px] shrink-0 rounded-[3px]" style={{ background: x.color }} aria-hidden />
+                  <span className="font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.7)]">{x.label}</span>
+                </span>
+                <span className="inline-flex items-baseline gap-[8px]">
+                  <span className="text-[22px] leading-none text-[#0F171F] tabular-nums">{Math.round((x.pts / total) * 100)}%</span>
+                  <span className="inline-flex h-[22px] items-center rounded-[6px] bg-[#F1F2F4] px-[7px] text-[13px] leading-none text-[#0F171F] tabular-nums">{f0(x.pts)} <span className="ml-[4px] font-barlow text-[10.5px] font-medium text-[rgba(15,23,31,0.6)]">pts</span></span>
+                </span>
               </div>
             ))}
           </div>
           {notes.length ? (
-            <div className="mt-[14px] grid grid-cols-3 gap-[10px] border-t border-[rgba(15,23,31,0.08)] pt-[12px]">
+            <div className="mt-[14px] grid grid-cols-3 gap-[10px] border-t border-[rgba(15,23,31,0.08)] pt-[12px] lg:mt-auto lg:pt-[14px]">
               {notes.map(([n, t]) => (
                 <div key={t} className="min-w-0">
                   <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{n}</div>
@@ -256,7 +270,7 @@ function ScoringMix({ s }: { s: LineStats }) {
         </div>
       ) : null}
       {shots.length ? (
-        <div className={`${PANEL_CARD} px-[14px] py-[14px] lg:px-[20px] lg:py-[18px]`}>
+        <div className={`${PANEL_CARD} flex flex-col px-[14px] py-[14px] lg:px-[20px] lg:py-[18px]`}>
           <ModuleTitle title="Tiros" />
           <div className="grid grid-cols-3 gap-[12px] lg:gap-[18px]">
             {shots.map((x) => (
