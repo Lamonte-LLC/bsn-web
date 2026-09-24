@@ -94,7 +94,7 @@ function Pills<T extends string>({ options, value, onChange, label, inline = fal
       {options.map(([k, l]) => {
         const on = k === value;
         return (
-          <button key={k} type="button" role="radio" aria-checked={on} onClick={() => onChange(k)} className={cx('inline-flex h-[34px] cursor-pointer items-center rounded-full border px-[16px] text-[15px] transition-colors duration-150', on ? 'border-[#0F171F] bg-[#0F171F] text-white' : 'border-[#D5D5D5] bg-white text-[rgba(15,23,31,0.7)] hover:border-[rgba(15,23,31,0.45)] hover:text-[#0F171F]', cls.focus)}>
+          <button key={k} type="button" role="radio" aria-checked={on} onClick={() => onChange(k)} className={cx('inline-flex h-[34px] cursor-pointer items-center rounded-full border px-[16px] text-[15px] transition-colors duration-150', on ? 'border-[#0F171F] bg-[#0F171F] text-white' : 'border-[rgba(15,23,31,0.12)] bg-white text-[rgba(15,23,31,0.7)] hover:border-[rgba(15,23,31,0.35)] hover:text-[#0F171F]', cls.focus)}>
             {l}
           </button>
         );
@@ -214,11 +214,12 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
         <table className="w-full border-collapse">
           <thead>
             <tr>
-              <th className={`${TH} ${STICKY} text-left`}>Año</th>
-              <th className={`${TH} pl-[6px] text-left lg:pl-[10px]`}>Equipo</th>
-              <th className={`${TH} text-center`} title="Juegos">J</th>
+              <th className={`${TH} ${STICKY} w-[72px] text-left lg:w-[96px]`}>Año</th>
+              {/* Equipo absorbs the leftover width on desktop; every other column is fixed, so nothing shifts between Promedios and Totales. */}
+              <th className={`${TH} min-w-[88px] pl-[6px] text-left lg:w-full lg:pl-[10px]`}>Equipo</th>
+              <th className={`${TH} w-[48px] text-center lg:w-[60px]`} title="Juegos">J</th>
               {cols.map((c) => (
-                <th key={c.code} className={`${TH} text-center`} title={c.title}>{c.code}</th>
+                <th key={c.code} className={`${TH} min-w-[64px] text-center lg:w-[76px] lg:min-w-[76px]`} title={c.title}>{c.code}</th>
               ))}
             </tr>
           </thead>
@@ -374,14 +375,10 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
     <section className="container -mt-[20px] mb-[28px] lg:-mt-[28px] lg:mb-[40px]">
       <div className={`${CARD} overflow-hidden`}>
         <TabGroup>
-          <div className="relative flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
+          <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
             <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 2 ? 'gap-[16px]' : 'gap-[22px]')}>
               {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 2 ? 'text-[15px] lg:text-[18px]' : 'text-[18px]')}>{label}</Tab>)}
             </TabList>
-            <Link href={compare} className={`${COMPARE} absolute right-[24px] top-1/2 hidden h-[34px] -translate-y-1/2 px-[14px] text-[13px] lg:inline-flex`}>
-              <CompareIcon />
-              Comparar
-            </Link>
           </div>
           <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[18px] pt-[16px] lg:px-[24px] lg:pb-[24px] lg:pt-[22px]">
             {tabs.map(([label, panel]) => <TabPanel key={label} className={cls.focus}>{panel}</TabPanel>)}
