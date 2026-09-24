@@ -250,9 +250,9 @@ export default function PlayerProfileHero({ profile }: Props) {
               )}
             </div>
             {p.active ? <div className="mt-[22px]"><Facts facts={facts} /></div> : null}
-            <Link href={compareHref([p.providerId])} className="mt-[18px] inline-flex h-[34px] items-center gap-[8px] rounded-full border border-white/30 px-[14px] font-barlow text-[13px] font-semibold text-white transition-colors duration-150 hover:border-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
+            <Link href={compareHref([p.providerId])} className="mt-[30px] inline-flex h-[34px] items-center gap-[8px] rounded-full border border-white/30 px-[14px] font-barlow text-[13px] font-semibold text-white transition-colors duration-150 hover:border-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M3 13V7M8 13V3M13 13V9" /></svg>
-              Comparar
+              Comparar jugador
             </Link>
           </div>
           {!p.active ? <div className="shrink-0"><Facts facts={facts} grid /></div> : null}
