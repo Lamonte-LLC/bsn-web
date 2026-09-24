@@ -151,17 +151,33 @@ function ModuleTitle({ title, meta }: { title: string; meta?: string | null }) {
   );
 }
 
+/** A secondary line where the figures read in ink and the words step back, instead of one grey sentence. */
+type Part = [string, string];
+function Detail({ parts, className = '' }: { parts: Part[]; className?: string }) {
+  return (
+    <div className={cx('flex flex-wrap items-baseline gap-x-[6px] font-barlow text-[12px] text-[rgba(15,23,31,0.5)] tabular-nums lg:text-[12.5px]', className)}>
+      {parts.map(([n, t], i) => (
+        <span key={t} className="inline-flex items-baseline gap-[4px] whitespace-nowrap">
+          {i ? <span className="mr-[2px] text-[rgba(15,23,31,0.25)]" aria-hidden>·</span> : null}
+          <span className="text-[13px] font-semibold text-[#0F171F] lg:text-[13.5px]">{n}</span>
+          {t}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 /** What the averages don't show: efficiency, ball security, fouls drawn, where the points come from. All per game. */
 function ImpactGrid({ s }: { s: LineStats }) {
   const g = s.games || 0;
   const per = (v: number | null | undefined) => (rec(v) && g ? v! / g : null);
-  const cells: Array<{ value: string; label: string; short?: string; sub: string | null }> = [];
-  if (rec(s.pir) && g) cells.push({ value: f1(s.pir! / g), label: 'Eficiencia por juego', short: 'Eficiencia', sub: `PIR ${f0(s.pir)} en ${f0(g)} juegos` });
-  if (rec(s.assistsTurnoverRatio)) cells.push({ value: f1(s.assistsTurnoverRatio), label: 'Asistencias por pérdida', sub: rec(s.assistsAvg) && rec(s.turnoversAvg) ? `${f1(s.assistsAvg)} asistencias · ${f1(s.turnoversAvg)} pérdidas` : null });
-  if (rec(s.foulsDrawnAvg)) cells.push({ value: f1(s.foulsDrawnAvg), label: 'Faltas recibidas por juego', short: 'Faltas recibidas', sub: rec(s.foulsDrawn) ? `${f0(s.foulsDrawn)} en la temporada` : null });
-  if (per(s.pointsInThePaint) !== null) cells.push({ value: f1(per(s.pointsInThePaint)), label: 'Puntos en la pintura por juego', short: 'En la pintura', sub: `${f0(s.pointsInThePaint)} en la temporada` });
-  if (per(s.pointsFastBreak) !== null) cells.push({ value: f1(per(s.pointsFastBreak)), label: 'Puntos en contraataque por juego', short: 'En contraataque', sub: `${f0(s.pointsFastBreak)} en la temporada` });
-  if (rec(s.plusMinusPointsAvg) && g) cells.push({ value: signed(s.plusMinusPointsAvg! / g).replace(/^([+-])(\d+)$/, '$1$2'), label: 'Más/menos por juego', short: 'Más/menos', sub: `${signed(s.plusMinusPointsAvg)} acumulado` });
+  const cells: Array<{ value: string; label: string; short?: string; sub: Part[] | null }> = [];
+  if (rec(s.pir) && g) cells.push({ value: f1(s.pir! / g), label: 'Eficiencia por juego', short: 'Eficiencia', sub: [[f0(s.pir), 'PIR'], [f0(g), 'juegos']] });
+  if (rec(s.assistsTurnoverRatio)) cells.push({ value: f1(s.assistsTurnoverRatio), label: 'Asistencias por pérdida', sub: rec(s.assistsAvg) && rec(s.turnoversAvg) ? [[f1(s.assistsAvg), 'asistencias'], [f1(s.turnoversAvg), 'pérdidas']] : null });
+  if (rec(s.foulsDrawnAvg)) cells.push({ value: f1(s.foulsDrawnAvg), label: 'Faltas recibidas por juego', short: 'Faltas recibidas', sub: rec(s.foulsDrawn) ? [[f0(s.foulsDrawn), 'en la temporada']] : null });
+  if (per(s.pointsInThePaint) !== null) cells.push({ value: f1(per(s.pointsInThePaint)), label: 'Puntos en la pintura por juego', short: 'En la pintura', sub: [[f0(s.pointsInThePaint), 'en la temporada']] });
+  if (per(s.pointsFastBreak) !== null) cells.push({ value: f1(per(s.pointsFastBreak)), label: 'Puntos en contraataque por juego', short: 'En contraataque', sub: [[f0(s.pointsFastBreak), 'en la temporada']] });
+  if (rec(s.plusMinusPointsAvg) && g) cells.push({ value: signed(s.plusMinusPointsAvg! / g).replace(/^([+-])(\d+)$/, '$1$2'), label: 'Más/menos por juego', short: 'Más/menos', sub: [[signed(s.plusMinusPointsAvg), 'acumulado']] });
   if (cells.length < 3) return null;
   return (
     <div>
@@ -175,7 +191,7 @@ function ImpactGrid({ s }: { s: LineStats }) {
                 <span className="lg:hidden">{c.short ?? c.label}</span>
                 <span className="hidden lg:inline">{c.label}</span>
               </div>
-              {c.sub ? <div className="mt-[4px] font-barlow text-[11.5px] leading-[1.3] text-[rgba(15,23,31,0.5)] tabular-nums lg:text-[12px]">{c.sub}</div> : null}
+              {c.sub ? <Detail parts={c.sub} className="mt-[6px]" /> : null}
             </div>
           ))}
         </div>
@@ -205,7 +221,10 @@ function ScoringMix({ s }: { s: LineStats }) {
     { label: 'Libres', pct: s.freeThrowsPercentage, made: s.freeThrowsMadeAvg, att: s.freeThrowsAttemptedAvg },
   ].filter((x) => rec(x.pct));
   const pctNum = (v: number | null) => (v === null ? 0 : v <= 1 ? v * 100 : v);
-  const notes = [rec(s.pointsInThePaint) ? `${f0(s.pointsInThePaint)} puntos en la pintura` : null, rec(s.pointsFastBreak) ? `${f0(s.pointsFastBreak)} en contraataque` : null, rec(s.pointsSecondChance) ? `${f0(s.pointsSecondChance)} de segunda oportunidad` : null].filter(Boolean);
+  const notes: Part[] = [];
+  if (rec(s.pointsInThePaint)) notes.push([f0(s.pointsInThePaint), 'en la pintura']);
+  if (rec(s.pointsFastBreak)) notes.push([f0(s.pointsFastBreak), 'en contraataque']);
+  if (rec(s.pointsSecondChance)) notes.push([f0(s.pointsSecondChance), 'de segunda oportunidad']);
   if (!segs.length && !shots.length) return null;
   return (
     <div className="grid grid-cols-1 gap-[14px] lg:grid-cols-[7fr_5fr] lg:items-start">
@@ -224,7 +243,16 @@ function ScoringMix({ s }: { s: LineStats }) {
               </div>
             ))}
           </div>
-          {notes.length ? <p className="mt-[12px] font-barlow text-[12.5px] leading-[1.5] text-[rgba(15,23,31,0.6)] tabular-nums">{notes.join(' · ')}</p> : null}
+          {notes.length ? (
+            <div className="mt-[14px] grid grid-cols-3 gap-[10px] border-t border-[rgba(15,23,31,0.08)] pt-[12px]">
+              {notes.map(([n, t]) => (
+                <div key={t} className="min-w-0">
+                  <div className="text-[18px] leading-none text-[#0F171F] tabular-nums lg:text-[20px]">{n}</div>
+                  <div className="mt-[4px] font-barlow text-[11px] leading-[1.3] text-[rgba(15,23,31,0.55)] lg:text-[12px]">{t}</div>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       ) : null}
       {shots.length ? (
@@ -238,7 +266,12 @@ function ScoringMix({ s }: { s: LineStats }) {
                   <div className="h-full rounded-[4px] bg-[#0F171F]" style={{ width: `${Math.min(100, pctNum(x.pct))}%` }} />
                 </div>
                 <div className="mt-[8px] text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{pct(x.pct)}</div>
-                {rec(x.made) && rec(x.att) ? <div className="mt-[4px] font-barlow text-[11.5px] leading-[1.3] text-[rgba(15,23,31,0.55)] tabular-nums lg:text-[12px]">{f1(x.made)} de {f1(x.att)} por juego</div> : null}
+                {rec(x.made) && rec(x.att) ? (
+                  <div className="mt-[5px] font-barlow text-[11.5px] leading-[1.3] text-[rgba(15,23,31,0.5)] tabular-nums lg:text-[12.5px]">
+                    <span className="text-[13px] font-semibold text-[#0F171F] lg:text-[13.5px]">{f1(x.made)}</span> de {f1(x.att)}
+                    <span className="block lg:inline"> por juego</span>
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
@@ -475,7 +508,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
       <div className={`${CARD} overflow-hidden`}>
         <TabGroup>
           <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
-            <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 3 ? 'gap-[14px]' : tabs.length > 2 ? 'gap-[16px]' : 'gap-[22px]')}>
+            <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 3 ? 'gap-[18px]' : tabs.length > 2 ? 'gap-[22px]' : 'gap-[28px]')}>
               {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 3 ? 'text-[16px] lg:text-[18px]' : tabs.length > 2 ? 'text-[18px]' : 'text-[21px] lg:text-[18px]')}>{label}</Tab>)}
             </TabList>
           </div>
