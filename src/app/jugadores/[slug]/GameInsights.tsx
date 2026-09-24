@@ -96,7 +96,7 @@ function SeasonHighs({ games }: { games: Game[] }) {
                   <span className="text-[rgba(15,23,31,0.5)] tabular-nums">· {formatDate(g.date, 'D MMM')}</span>
                 </div>
               </div>
-              <span className={cx('inline-flex h-[24px] shrink-0 items-center rounded-full border px-[9px] font-barlow text-[12px] font-semibold', g.won ? 'border-[rgba(22,161,74,0.15)] bg-[#EBF5ED]' : 'border-[rgba(208,53,53,0.15)] bg-[#FFEDED]')} style={{ color: g.won ? WIN : LOSS }}>
+              <span className={cx('inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full border text-[15px] leading-none', g.won ? 'border-[rgba(22,161,74,0.15)] bg-[#EBF5ED]' : 'border-[rgba(208,53,53,0.15)] bg-[#FFEDED]')} style={{ color: g.won ? WIN : LOSS }}>
                 {g.won ? 'G' : 'P'}
               </span>
             </div>
