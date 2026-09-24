@@ -8,6 +8,7 @@ import { cls } from '@/archivo/lib/tokens';
 import ClubMark from '@/historia/components/ClubMark';
 import { compareHref } from '@/historia/lib/compare-players';
 import { eraNotes } from '@/historia/lib/copy';
+import ScrollHint from '@/shared/client/components/ui/ScrollHint';
 import PlayerMatchesWidget from '@/player/client/widgets/PlayerMatchesWidget';
 import GameInsights from './GameInsights';
 import SeasonTrend from './SeasonTrend';
@@ -29,35 +30,6 @@ function CompareIcon() {
     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
       <path d="M3 13V7M8 13V3M13 13V9" />
     </svg>
-  );
-}
-
-/** Horizontal scroll with a fading edge and a chevron while there is more table to the right. */
-function ScrollHint({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [more, setMore] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const update = () => setMore(el.scrollWidth - el.clientWidth - el.scrollLeft > 4);
-    update();
-    el.addEventListener('scroll', update, { passive: true });
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener('scroll', update);
-      ro.disconnect();
-    };
-  }, []);
-  return (
-    <div className="relative">
-      <div ref={ref} className="overflow-x-auto overflow-y-hidden overscroll-x-contain">{children}</div>
-      <div aria-hidden className={cx('pointer-events-none absolute inset-y-0 right-0 flex w-[72px] items-center justify-end bg-gradient-to-l from-white via-white/85 to-transparent pr-[10px] transition-opacity duration-200', more ? 'opacity-100' : 'opacity-0')}>
-        <span className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[rgba(15,23,31,0.12)] bg-white text-[#0F171F] shadow-[0_2px_8px_rgba(15,23,31,0.1)]">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 2.5L8 6l-3.5 3.5" /></svg>
-        </span>
-      </div>
-    </div>
   );
 }
 

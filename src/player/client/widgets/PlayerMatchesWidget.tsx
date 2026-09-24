@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import ScrollHint from '@/shared/client/components/ui/ScrollHint';
 import { useRouter } from 'next/navigation';
 import numeral from 'numeral';
+import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { usePlayerMatches } from '../hooks/player';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import { formatDate } from '@/utils/date-formatter';
@@ -16,12 +18,23 @@ type Props = {
 };
 
 export default function PlayerMatchesWidget({ playerProviderId, pageSize = 10 }: Props) {
-  const { playerMatches, loading, hasNextPage, loadMore } =
+  const { playerMatches, loading, loaded, hasNextPage, loadMore } =
     usePlayerMatches(playerProviderId, pageSize);
   const router = useRouter();
 
+  // Before the first response: a few shimmering rows, never the empty message.
+  if (!loaded) {
+    return (
+      <div className="space-y-[10px] py-[10px]">
+        <ShimmerLine height="20px" />
+        <ShimmerLine height="20px" />
+        <ShimmerLine height="20px" />
+      </div>
+    );
+  }
+
   // Empty: one quiet line inside the panel's card, never a headerless table that a phone would clip.
-  if (!loading && playerMatches.length === 0) {
+  if (playerMatches.length === 0) {
     return (
       <p className="py-[16px] text-center font-barlow text-[14px] text-[rgba(15,23,31,0.55)]">
         No se han encontrado juegos para este jugador.
@@ -31,11 +44,12 @@ export default function PlayerMatchesWidget({ playerProviderId, pageSize = 10 }:
 
   return (
     <div>
-      <div className="overflow-x-auto -mx-4 sm:-mx-3 player-stats-table">
+      {/* Phones: the table scrolls sideways with a fading edge; the date column stays put. */}
+      <ScrollHint className="-mx-4 sm:-mx-3" innerClassName="player-stats-table">
         <table className="w-full text-left lg:table-fixed">
           <thead>
             <tr>
-              <th className="lg:w-[128px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
+              <th className="sticky left-0 z-[1] bg-white lg:static lg:w-[128px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Fecha
                 </span>
@@ -114,7 +128,7 @@ export default function PlayerMatchesWidget({ playerProviderId, pageSize = 10 }:
                       index % 2 === 0 ? 'transparent' : '#F9F9F9',
                   }}
                 >
-                  <td className="px-3 py-4.5 whitespace-nowrap">
+                  <td className="sticky left-0 z-[1] px-3 py-4.5 whitespace-nowrap lg:static">
                     <span className="font-barlow font-medium text-[13px] text-[rgba(15,23,31,0.9)] md:text-sm">
                       {formatDate(
                         playerMatch.match.startAt,
@@ -227,7 +241,7 @@ export default function PlayerMatchesWidget({ playerProviderId, pageSize = 10 }:
             )}
           </tbody>
         </table>
-      </div>
+      </ScrollHint>
       {hasNextPage && (
         <div className="flex justify-center py-[14px]">
           <button
