@@ -188,9 +188,9 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                     <Link
                       href={`/partidos/${playerMatch.match.providerId}`}
                       onClick={(e) => e.stopPropagation()}
-                      className="flex flex-row items-center gap-1 transition-[gap] duration-150 group-hover:gap-2"
+                      className="flex flex-row items-center gap-1"
                     >
-                      <span className="text-[15px] text-black underline decoration-transparent decoration-1 underline-offset-4 transition-[text-decoration-color] duration-150 group-hover:decoration-black md:text-[16px]">
+                      <span className="text-[15px] text-black underline decoration-transparent decoration-1 underline-offset-4 transition-[text-decoration-color] duration-150 group-hover:decoration-[rgba(15,23,31,0.3)] md:text-[16px]">
                         Ver resultado
                       </span>
                       <img
