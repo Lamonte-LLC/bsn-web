@@ -2,6 +2,7 @@ import cx from 'classnames';
 import Link from 'next/link';
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import ClubMark from '@/historia/components/ClubMark';
+import ClubRow from './ClubRow';
 import { compareHref } from '@/historia/lib/compare-players';
 import { birthShort, NATIONALITY_LABEL, nationalityLabel } from '@/historia/lib/copy';
 
@@ -47,19 +48,6 @@ function Avatar({ profile, phone = false }: Props & { /** 68px inside the phone 
         <PlayerAvatar name={profile.name} color={color} sizePx={px} onDark className={shadow} />
       )}
       {profile.jersey ? <Jersey n={profile.jersey} small={phone} /> : null}
-    </span>
-  );
-}
-
-/** The clubs of the career as a row of marks under the years, oldest first, each in its own dark disc. */
-function ClubRow({ clubs, size = 24 }: { clubs: PlayerProfileData['clubs']; /** Mark size; the disc adds 10px. */ size?: number }) {
-  return (
-    <span className="flex flex-wrap items-center gap-[5px]" role="list" aria-label="Equipos">
-      {clubs.map((c) => (
-        <span key={c.code} role="listitem" title={c.name} className="flex items-center justify-center rounded-full border border-white/12 bg-[#1A222B]" style={{ width: size + 10, height: size + 10 }}>
-          <ClubMark code={c.code} color={c.color} size={size} />
-        </span>
-      ))}
     </span>
   );
 }
