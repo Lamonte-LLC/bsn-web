@@ -379,7 +379,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
           </TabPanels>
         </TabGroup>
       </div>
-      <Link href={compare} className={`${COMPARE} mt-[14px] flex h-[48px] w-full border-[#0F171F] bg-white text-[14px] shadow-[0_6px_18px_rgba(15,23,31,0.10)] lg:hidden`}>
+      <Link href={compare} className={`${COMPARE} mt-[14px] flex h-[48px] w-full border-[#0F171F] bg-white text-[14px] shadow-[0_2px_6px_rgba(15,23,31,0.06)] lg:hidden`}>
         <CompareIcon />
         Comparar con otros jugadores
       </Link>
