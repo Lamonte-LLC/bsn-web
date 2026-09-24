@@ -315,7 +315,7 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
                   <span className="flex items-center gap-[6px] leading-none">
                     {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={18} />)}
                     <span className="font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:hidden">{l.teams.map((t) => t.code).join('/')}</span>
-                    <span className="hidden font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:inline">{l.teams.map((t) => t.nickname).join(' / ')}</span>
+                    <span className="hidden font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:inline">{l.teams.length > 2 ? l.teams.map((t) => t.code).join('/') : l.teams.map((t) => t.nickname).join(' / ')}</span>
                   </span>
                 </td>
                 {num(f0(l.stats.games))}
@@ -367,11 +367,18 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
   // One quiet line: the club with its mark, then the games played in the phase the pills select.
   const context = (
     <div className="flex flex-wrap items-center gap-x-[8px] gap-y-[4px]">
+      {/* Several clubs in one season (a player traded twice or more) read as marks with their three-letter codes. */}
       {teams.map((t) => (
         <span key={t.code} className="inline-flex items-center gap-[8px] font-barlow text-[14px] font-semibold text-[#0F171F]">
           <ClubMark code={t.code} color={t.color} size={22} />
-          <span className="lg:hidden">{t.nickname}</span>
-          <span className="hidden lg:inline">{t.name}</span>
+          {teams.length > 1 ? (
+            <span className="tabular-nums">{t.code}</span>
+          ) : (
+            <>
+              <span className="lg:hidden">{t.nickname}</span>
+              <span className="hidden lg:inline">{t.name}</span>
+            </>
+          )}
         </span>
       ))}
       {line?.stats.games ? (
