@@ -39,13 +39,14 @@ export default function SeasonTrend({ lines }: { lines: SeasonLine[] }) {
   const path = rows.map((r, i) => `${i ? 'L' : 'M'}${(i * step).toFixed(1)} ${y(r.v).toFixed(1)}`).join(' ');
   return (
     <div className="rounded-[12px] border border-[rgba(15,23,31,0.08)] bg-white px-[14px] py-[14px] lg:px-[20px] lg:py-[18px]">
-      <div className="mb-[14px] flex flex-wrap items-center gap-x-[10px] gap-y-[8px]">
-        <span className="mr-[4px] text-[18px] leading-[1.1] text-[#0F171F]">Temporada a temporada</span>
-        <div role="radiogroup" aria-label="Estadística" className="flex flex-wrap gap-[6px]">
+      <div className="mb-[16px] flex flex-col gap-[10px] lg:flex-row lg:items-baseline lg:justify-between lg:gap-[16px]">
+        <span className="text-[18px] leading-[1.1] text-[#0F171F]">Temporada a temporada</span>
+        {/* Third-level choice: words in a row, the chosen one in ink with a red underline. No borders, so it never reads like the pills above. */}
+        <div role="radiogroup" aria-label="Estadística" className="flex gap-[14px] lg:gap-[18px]">
           {OPTIONS.map(([k, l]) => {
             const on = k === key;
             return (
-              <button key={k} type="button" role="radio" aria-checked={on} onClick={() => setKey(k)} className={cx('inline-flex h-[28px] cursor-pointer items-center rounded-full border px-[11px] text-[13px] transition-colors duration-150', on ? 'border-[#0F171F] bg-[#0F171F] text-white' : 'border-[rgba(15,23,31,0.12)] bg-white text-[rgba(15,23,31,0.7)] hover:border-[rgba(15,23,31,0.35)]', cls.focus)}>
+              <button key={k} type="button" role="radio" aria-checked={on} onClick={() => setKey(k)} className={cx('relative cursor-pointer whitespace-nowrap pb-[6px] font-barlow text-[13px] transition-colors duration-150 after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:rounded-full after:bg-[#E51F1F] after:transition-opacity after:duration-150 after:content-[""] lg:text-[14px]', on ? 'font-bold text-[#0F171F] after:opacity-100' : 'font-medium text-[rgba(15,23,31,0.5)] after:opacity-0 hover:text-[#0F171F]', cls.focus, 'rounded-[3px] focus-visible:outline-offset-[3px]')}>
                 {l}
               </button>
             );

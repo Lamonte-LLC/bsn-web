@@ -155,12 +155,11 @@ function ModuleTitle({ title, meta }: { title: string; meta?: string | null }) {
 type Part = [string, string];
 function Detail({ parts, className = '' }: { parts: Part[]; className?: string }) {
   return (
-    <div className={cx('flex flex-wrap items-baseline gap-x-[6px] font-barlow text-[12px] text-[rgba(15,23,31,0.5)] tabular-nums lg:text-[12.5px]', className)}>
-      {parts.map(([n, t], i) => (
-        <span key={t} className="inline-flex items-baseline gap-[4px] whitespace-nowrap">
-          {i ? <span className="mr-[2px] text-[rgba(15,23,31,0.25)]" aria-hidden>·</span> : null}
-          <span className="text-[13px] font-semibold text-[#0F171F] lg:text-[13.5px]">{n}</span>
-          {t}
+    <div className={cx('flex flex-wrap gap-[5px]', className)}>
+      {parts.map(([n, t]) => (
+        <span key={t} className="inline-flex h-[24px] items-baseline gap-[5px] rounded-[6px] bg-[#F1F2F4] px-[8px] leading-[24px] whitespace-nowrap">
+          <span className="text-[14px] leading-[24px] text-[#0F171F] tabular-nums">{n}</span>
+          <span className="font-barlow text-[11px] font-medium leading-[24px] text-[rgba(15,23,31,0.6)]">{t}</span>
         </span>
       ))}
     </div>
@@ -239,7 +238,8 @@ function ScoringMix({ s }: { s: LineStats }) {
               <div key={x.label} className="flex items-center gap-[8px]">
                 <span className="h-[10px] w-[10px] shrink-0 rounded-[3px]" style={{ background: x.color }} aria-hidden />
                 <span className="text-[20px] leading-none text-[#0F171F] tabular-nums">{Math.round((x.pts / total) * 100)}%</span>
-                <span className="font-barlow text-[12.5px] text-[rgba(15,23,31,0.6)] tabular-nums">{x.label} · {f0(x.pts)} pts</span>
+                <span className="font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.7)]">{x.label}</span>
+                <span className="inline-flex h-[22px] items-center rounded-[6px] bg-[#F1F2F4] px-[7px] text-[13px] leading-none text-[#0F171F] tabular-nums">{f0(x.pts)} <span className="ml-[4px] font-barlow text-[10.5px] font-medium text-[rgba(15,23,31,0.6)]">pts</span></span>
               </div>
             ))}
           </div>
@@ -247,8 +247,8 @@ function ScoringMix({ s }: { s: LineStats }) {
             <div className="mt-[14px] grid grid-cols-3 gap-[10px] border-t border-[rgba(15,23,31,0.08)] pt-[12px]">
               {notes.map(([n, t]) => (
                 <div key={t} className="min-w-0">
-                  <div className="text-[18px] leading-none text-[#0F171F] tabular-nums lg:text-[20px]">{n}</div>
-                  <div className="mt-[4px] font-barlow text-[11px] leading-[1.3] text-[rgba(15,23,31,0.55)] lg:text-[12px]">{t}</div>
+                  <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{n}</div>
+                  <div className="mt-[4px] font-barlow text-[11px] font-medium leading-[1.3] text-[rgba(15,23,31,0.6)] lg:text-[12px]">{t}</div>
                 </div>
               ))}
             </div>
@@ -267,9 +267,9 @@ function ScoringMix({ s }: { s: LineStats }) {
                 </div>
                 <div className="mt-[8px] text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{pct(x.pct)}</div>
                 {rec(x.made) && rec(x.att) ? (
-                  <div className="mt-[5px] font-barlow text-[11.5px] leading-[1.3] text-[rgba(15,23,31,0.5)] tabular-nums lg:text-[12.5px]">
-                    <span className="text-[13px] font-semibold text-[#0F171F] lg:text-[13.5px]">{f1(x.made)}</span> de {f1(x.att)}
-                    <span className="block lg:inline"> por juego</span>
+                  <div className="mt-[7px] inline-flex h-[24px] items-baseline gap-[5px] rounded-[6px] bg-[#F1F2F4] px-[8px] whitespace-nowrap">
+                    <span className="text-[14px] leading-[24px] text-[#0F171F] tabular-nums">{f1(x.made)}<span className="text-[rgba(15,23,31,0.35)]">/</span>{f1(x.att)}</span>
+                    <span className="font-barlow text-[11px] font-medium leading-[24px] text-[rgba(15,23,31,0.6)]">por juego</span>
                   </div>
                 ) : null}
               </div>
