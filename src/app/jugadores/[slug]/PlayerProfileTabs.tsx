@@ -51,7 +51,7 @@ function CareerFigures({ seasons, games }: { seasons: number; games: number | nu
       {items.map(([v, l]) => (
         <div key={l} className="min-w-0 text-right">
           <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[24px]">{v}</div>
-          <div className={`mt-[4px] text-[9.5px] lg:text-[11px] ${cls.label}`}>{l}</div>
+          <div className={`mt-[2px] text-[9.5px] lg:text-[11px] ${cls.label}`}>{l}</div>
         </div>
       ))}
     </div>
@@ -268,7 +268,7 @@ function EraNotes({ debutYear }: { debutYear: number | null }) {
   return (
     <ul className="mt-[12px] space-y-[4px]">
       {notes.map((n) => (
-        <li key={n} className="flex items-start gap-[8px] font-barlow text-[13px] leading-[1.5] text-[rgba(15,23,31,0.6)]">
+        <li key={n} className="flex items-start gap-[8px] font-barlow text-[12px] leading-[1.5] text-[rgba(15,23,31,0.6)] lg:text-[13px]">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" strokeLinecap="round" className="mt-[3px] shrink-0" aria-hidden><path d="M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 7.5v4M8 5h.01" /></svg>
           {n}
         </li>
@@ -387,7 +387,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
           </TabPanels>
         </TabGroup>
       </div>
-      <Link href={compare} className={`${COMPARE} mt-[14px] flex h-[44px] w-full text-[15px] lg:hidden`}>
+      <Link href={compare} className={`${COMPARE} mt-[14px] flex h-[48px] w-full border-[#0F171F] bg-white text-[16px] shadow-[0_6px_18px_rgba(15,23,31,0.10)] lg:hidden`}>
         <CompareIcon />
         Comparar con otros jugadores
       </Link>
