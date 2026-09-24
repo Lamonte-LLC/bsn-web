@@ -115,7 +115,7 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                           size={24}
                         />
                       </div>
-                      <span className="text-[15px] text-black">
+                      <span className="text-[16px] text-black">
                         {getFirstWord(playerMatch.opponentTeam.nickname)}
                       </span>
                     </div>
