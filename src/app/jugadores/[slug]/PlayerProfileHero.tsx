@@ -1,7 +1,9 @@
 import PlayerAvatar from '@/archivo/components/PlayerAvatar';
 import ClubMark from '@/historia/components/ClubMark';
-import { birthShort, heightLine, nationalityLabel } from '@/historia/lib/copy';
-import { ageFrom, f1, tenureLine, type PlayerProfileData } from './profile-data';
+import { birthShort, nationalityLabel } from '@/historia/lib/copy';
+import { centimeterToInches, kilogramToPounds } from '@/utils/unit-converter';
+import { formatInches } from '@/utils/unit-formater';
+import { ageFrom, f1, type PlayerProfileData } from './profile-data';
 
 type Props = { profile: PlayerProfileData };
 
@@ -106,16 +108,31 @@ function Facts({ facts }: { facts: Fact[] }) {
   );
 }
 
-/** One of the three headline boxes: deep charcoal, a soft inner highlight and a long shadow. */
+/** One of the headline boxes: a hairline, a faint translucent fill and a blur of the band behind it. */
 function DeepBox({ label, short, value }: { label: string; short: string; value: string }) {
   return (
-    <div className="rounded-[14px] border border-white/9 bg-gradient-to-b from-[#232C36] to-[#1B232C] p-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_10px_28px_rgba(0,0,0,0.28)] lg:px-[18px] lg:py-[16px]">
+    <div className="rounded-[14px] border border-white/[0.12] bg-white/[0.045] p-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.16)] backdrop-blur-[14px] lg:px-[18px] lg:py-[16px]">
       <div className={`${LABEL} text-white/50`}>
         <span className="lg:hidden">{short}</span>
         <span className="hidden lg:inline">{label}</span>
       </div>
       <div className="mt-[8px] text-[28px] leading-none text-white tabular-nums lg:text-[32px]">{value}</div>
     </div>
+  );
+}
+
+/** The span of a retired player's career, in the display face: the years carry the weight, the dash steps back. */
+function Years({ fy, ly }: { fy: number; ly: number }) {
+  return (
+    <span className="inline-flex items-baseline gap-[6px] text-[18px] leading-none text-white tabular-nums lg:text-[20px]">
+      {fy}
+      {fy !== ly ? (
+        <>
+          <span className="text-[14px] text-white/35">—</span>
+          {ly}
+        </>
+      ) : null}
+    </span>
   );
 }
 
@@ -140,16 +157,15 @@ export default function PlayerProfileHero({ profile }: Props) {
   const p = profile;
   const age = ageFrom(p.dob);
   const country = nationalityLabel(p.nationality);
-  const tenure = tenureLine(p.seasonsCount, p.firstYear, p.lastYear);
 
+  const span = p.firstYear !== null && p.lastYear !== null ? `${p.firstYear}–${p.lastYear}` : null;
   const facts: Fact[] = [];
-  const height = heightLine(p.heightCm);
-  if (height) facts.push({ label: 'Estatura', value: height });
-  if (p.weightKg) facts.push({ label: 'Peso', value: `${Math.round(p.weightKg)} kg` });
+  if (p.heightCm) facts.push({ label: 'Estatura', value: formatInches(centimeterToInches(p.heightCm)) });
+  if (p.weightKg) facts.push({ label: 'Peso', value: `${Math.round(kilogramToPounds(p.weightKg))} lbs` });
   const born = birthShort(p.dob);
   if (born) facts.push({ label: 'Nacimiento', value: born, sub: age !== null ? `${age} años` : null });
   if (country && p.nationality) facts.push({ label: 'Lugar de origen', value: <><Flag code={p.nationality} />{country}</> });
-  if (p.debut) facts.push({ label: 'Debut BSN', value: String(p.debut.year), sub: p.debut.club || null });
+  if (p.debut) facts.push({ label: 'Debut en BSN', value: String(p.debut.year), sub: p.debut.club || null });
   if (p.active && p.seasonsCount) facts.push({ label: 'Experiencia', value: `${p.seasonsCount} ${p.seasonsCount === 1 ? 'año' : 'años'}` });
 
   const s = p.active ? p.season?.stats ?? null : p.career;
@@ -158,7 +174,7 @@ export default function PlayerProfileHero({ profile }: Props) {
     { label: 'Rebotes por juego', short: 'RPJ', value: f1(s?.reboundsTotalAvg) },
     { label: 'Asistencias por juego', short: 'APJ', value: f1(s?.assistsAvg) },
   ];
-  const span = p.firstYear !== null && p.lastYear !== null ? `${p.firstYear}–${p.lastYear}` : null;
+  if (!p.active) boxes.push({ label: 'Temporadas en BSN', short: 'Temp.', value: p.seasonsCount ? String(p.seasonsCount) : '–' });
   const blockMeta = p.active ? `Promedios · Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios de carrera', span].filter(Boolean).join(' · ');
 
   return (
@@ -185,8 +201,8 @@ export default function PlayerProfileHero({ profile }: Props) {
             ) : (
               <>
                 {p.position ? <span>{p.position}</span> : null}
-                {p.position && tenure ? <span className="text-white/30">·</span> : null}
-                {tenure ? <span className="whitespace-nowrap tabular-nums">{tenure}</span> : null}
+                {p.position && span ? <span className="text-white/30">·</span> : null}
+                {span ? <Years fy={p.firstYear!} ly={p.lastYear!} /> : null}
               </>
             )}
           </div>
@@ -197,13 +213,13 @@ export default function PlayerProfileHero({ profile }: Props) {
       {!p.active && p.clubs.length ? <div className="mt-[18px] lg:hidden"><ClubStack clubs={p.clubs} size={28} /></div> : null}
       {facts.length ? <div className="mt-[22px] lg:hidden"><Facts facts={facts} /></div> : null}
 
-      <div className="mt-[26px] lg:mt-[34px]">
+      <div className="mt-[36px] lg:mt-[46px]">
         <div className="mb-[12px] flex items-center gap-[12px]">
           {!p.active ? <ArchivoMark /> : null}
           <span className="truncate font-barlow text-[13px] font-semibold text-white tabular-nums lg:text-[14px]">{blockMeta}</span>
           <span className="h-px min-w-[24px] flex-1 bg-white/10" aria-hidden />
         </div>
-        <div className="grid grid-cols-3 gap-[8px] lg:gap-[12px]">
+        <div className={`grid gap-[8px] lg:gap-[12px] ${boxes.length === 4 ? 'grid-cols-4' : 'grid-cols-3'}`}>
           {boxes.map((b) => <DeepBox key={b.label} {...b} />)}
         </div>
       </div>

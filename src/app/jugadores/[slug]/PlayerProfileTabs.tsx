@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
@@ -30,13 +30,60 @@ function CompareIcon() {
   );
 }
 
-/** Title of a panel with its subtitle under it, never beside it. */
-function PanelHead({ title, meta, chips }: { title: string; meta?: string | null; chips?: React.ReactNode }) {
+/** What the panel covers, under the tab that names it: chips, a line, or the career figures. No repeated title. */
+function PanelHead({ meta, chips, children }: { meta?: string | null; chips?: React.ReactNode; children?: React.ReactNode }) {
   return (
     <div>
-      <h2 className="text-[20px] leading-[1.1] text-[#0F171F] lg:text-[22px]">{title}</h2>
-      {meta ? <p className="mt-[5px] font-barlow text-[13px] text-[rgba(15,23,31,0.5)] tabular-nums">{meta}</p> : null}
-      {chips ? <div className="mt-[10px] flex flex-wrap items-center gap-[6px]">{chips}</div> : null}
+      {meta ? <p className="font-barlow text-[13px] text-[rgba(15,23,31,0.5)] tabular-nums">{meta}</p> : null}
+      {chips ? <div className="flex flex-wrap items-center gap-[6px]">{chips}</div> : null}
+      {children}
+    </div>
+  );
+}
+
+/** The career in three figures: seasons, games and the years, side by side with hairlines between them. */
+function CareerFigures({ seasons, games, fy, ly }: { seasons: number; games: number | null; fy: number | null; ly: number | null }) {
+  const items: Array<[string, string]> = [];
+  if (seasons) items.push([String(seasons), seasons === 1 ? 'Temporada' : 'Temporadas']);
+  if (games) items.push([f0(games), 'Juegos']);
+  if (fy !== null && ly !== null) items.push([fy === ly ? String(fy) : `${fy}–${ly}`, 'Años']);
+  return (
+    <div className="flex items-stretch">
+      {items.map(([v, l], i) => (
+        <div key={l} className={cx('min-w-0', i && 'ml-[18px] border-l border-[rgba(15,23,31,0.1)] pl-[18px] lg:ml-[24px] lg:pl-[24px]')}>
+          <div className="text-[24px] leading-none text-[#0F171F] tabular-nums lg:text-[26px]">{v}</div>
+          <div className={`mt-[5px] ${cls.label}`}>{l}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Horizontal scroll with a fading edge and a chevron while there is more table to the right. */
+function ScrollHint({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [more, setMore] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setMore(el.scrollWidth - el.clientWidth - el.scrollLeft > 4);
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener('scroll', update);
+      ro.disconnect();
+    };
+  }, []);
+  return (
+    <div className="relative">
+      <div ref={ref} className="overflow-x-auto overflow-y-hidden overscroll-x-contain">{children}</div>
+      <div aria-hidden className={cx('pointer-events-none absolute inset-y-0 right-0 flex w-[72px] items-center justify-end bg-gradient-to-l from-white via-white/85 to-transparent pr-[10px] transition-opacity duration-200', more ? 'opacity-100' : 'opacity-0')}>
+        <span className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[rgba(15,23,31,0.12)] bg-white text-[#0F171F] shadow-[0_2px_8px_rgba(15,23,31,0.1)]">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 2.5L8 6l-3.5 3.5" /></svg>
+        </span>
+      </div>
     </div>
   );
 }
@@ -132,15 +179,15 @@ function totalCells(s: LineStats): Cell[] {
 /* ---------- Season by season ---------- */
 
 type Mode = 'avg' | 'tot';
-type Col = { code: string; title?: string; get: (s: LineStats) => number | null; render: (s: LineStats) => string; phone?: boolean };
+type Col = { code: string; title?: string; get: (s: LineStats) => number | null; render: (s: LineStats) => string };
 
 function columns(mode: Mode): Col[] {
   if (mode === 'avg') {
     return [
       { code: 'MIN', title: 'Minutos por juego', get: (s) => s.minutesAvg, render: (s) => f1(s.minutesAvg) },
-      { code: 'PTS', title: 'Puntos por juego', get: (s) => s.pointsAvg, render: (s) => f1(s.pointsAvg), phone: true },
-      { code: 'REB', title: 'Rebotes por juego', get: (s) => s.reboundsTotalAvg, render: (s) => f1(s.reboundsTotalAvg), phone: true },
-      { code: 'AST', title: 'Asistencias por juego', get: (s) => s.assistsAvg, render: (s) => f1(s.assistsAvg), phone: true },
+      { code: 'PTS', title: 'Puntos por juego', get: (s) => s.pointsAvg, render: (s) => f1(s.pointsAvg) },
+      { code: 'REB', title: 'Rebotes por juego', get: (s) => s.reboundsTotalAvg, render: (s) => f1(s.reboundsTotalAvg) },
+      { code: 'AST', title: 'Asistencias por juego', get: (s) => s.assistsAvg, render: (s) => f1(s.assistsAvg) },
       { code: 'ROB', title: 'Robos por juego', get: (s) => s.stealsAvg, render: (s) => f1(s.stealsAvg) },
       { code: 'BLQ', title: 'Bloqueos por juego', get: (s) => s.blocksAvg, render: (s) => f1(s.blocksAvg) },
       { code: 'PÉR', title: 'Pérdidas por juego', get: (s) => s.turnoversAvg, render: (s) => f1(s.turnoversAvg) },
@@ -151,9 +198,9 @@ function columns(mode: Mode): Col[] {
   }
   return [
     { code: 'MIN', title: 'Minutos', get: (s) => s.minutes, render: (s) => f0(s.minutes) },
-    { code: 'PTS', title: 'Puntos', get: (s) => s.points, render: (s) => f0(s.points), phone: true },
-    { code: 'REB', title: 'Rebotes', get: (s) => s.reboundsTotal, render: (s) => f0(s.reboundsTotal), phone: true },
-    { code: 'AST', title: 'Asistencias', get: (s) => s.assists, render: (s) => f0(s.assists), phone: true },
+    { code: 'PTS', title: 'Puntos', get: (s) => s.points, render: (s) => f0(s.points) },
+    { code: 'REB', title: 'Rebotes', get: (s) => s.reboundsTotal, render: (s) => f0(s.reboundsTotal) },
+    { code: 'AST', title: 'Asistencias', get: (s) => s.assists, render: (s) => f0(s.assists) },
     { code: 'ROB', title: 'Robos', get: (s) => s.steals, render: (s) => f0(s.steals) },
     { code: 'BLQ', title: 'Bloqueos', get: (s) => s.blocks, render: (s) => f0(s.blocks) },
     { code: 'PÉR', title: 'Pérdidas', get: (s) => s.turnovers, render: (s) => f0(s.turnovers) },
@@ -163,55 +210,54 @@ function columns(mode: Mode): Col[] {
   ];
 }
 
-const TH = `px-[10px] py-[10px] ${cls.label}`;
+const TH = `whitespace-nowrap px-[10px] py-[10px] ${cls.label}`;
 const TD = 'h-[44px] whitespace-nowrap border-t border-[rgba(15,23,31,0.06)] px-[10px] font-barlow text-[14px] tabular-nums';
+/** The year column stays put while the rest scrolls on a phone. */
+const STICKY = 'sticky left-0 z-[1] bg-white pl-[16px] pr-[12px] lg:pl-[20px]';
 
 function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine[]; career: LineStats | null; mode: Mode; seasonsCount: number }) {
   // A column nobody recorded (steals before 2010, minutes in the archive) is left out rather than shown as dashes.
   const cols = columns(mode).filter((c) => lines.some((l) => rec(c.get(l.stats))) || (career ? rec(c.get(career)) : false));
-  const num = (v: string, strong = false, phone = false) => <td className={cx(TD, 'text-center', strong ? 'font-semibold text-[#0F171F]' : 'text-[rgba(15,23,31,0.75)]', !phone && 'hidden md:table-cell')}>{v}</td>;
+  const num = (v: string, strong = false) => <td className={cx(TD, 'text-center', strong ? 'font-semibold text-[#0F171F]' : 'text-[rgba(15,23,31,0.75)]')}>{v}</td>;
   return (
     <div className={`${PANEL_CARD} overflow-hidden`}>
-      <div className="overflow-x-auto">
+      <ScrollHint>
         <table className="w-full border-collapse">
           <thead>
             <tr>
-              <th className={`${TH} text-left`}>Año</th>
-              <th className={`${TH} text-left`}>
-                <span className="md:hidden">Eq</span>
-                <span className="hidden md:inline">Equipo</span>
-              </th>
+              <th className={`${TH} ${STICKY} text-left`}>Año</th>
+              <th className={`${TH} text-left`}>Equipo</th>
               <th className={`${TH} text-center`} title="Juegos">J</th>
               {cols.map((c) => (
-                <th key={c.code} className={cx(TH, 'text-center', !c.phone && 'hidden md:table-cell')} title={c.title}>{c.code}</th>
+                <th key={c.code} className={`${TH} text-center`} title={c.title}>{c.code}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {lines.map((l) => (
               <tr key={l.providerId}>
-                <td className={`${TD} font-semibold text-[#0F171F]`}>{l.year}</td>
+                <td className={`${TD} ${STICKY} font-semibold text-[#0F171F]`}>{l.year}</td>
                 <td className={`${TD} text-[rgba(15,23,31,0.75)]`}>
                   <span className="inline-flex items-center gap-[7px]">
                     {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={20} />)}
-                    <span className="hidden md:inline">{l.teams.map((t) => t.nickname).join(' / ')}</span>
+                    <span>{l.teams.map((t) => t.nickname).join(' / ')}</span>
                   </span>
                 </td>
-                {num(f0(l.stats.games), false, true)}
-                {cols.map((c) => <Fragment key={c.code}>{num(c.render(l.stats), c.code === 'PTS', Boolean(c.phone))}</Fragment>)}
+                {num(f0(l.stats.games))}
+                {cols.map((c) => <Fragment key={c.code}>{num(c.render(l.stats), c.code === 'PTS')}</Fragment>)}
               </tr>
             ))}
             {career ? (
               <tr className="bg-[#FAFAFA]">
-                <td className={`${TD} font-semibold text-[#0F171F]`}>Carrera</td>
+                <td className={`${TD} ${STICKY} bg-[#FAFAFA] font-semibold text-[#0F171F]`}>Carrera</td>
                 <td className={`${TD} text-[rgba(15,23,31,0.75)]`}>{seasonsCount} temp.</td>
-                {num(f0(career.games), true, true)}
-                {cols.map((c) => <Fragment key={c.code}>{num(c.render(career), true, Boolean(c.phone))}</Fragment>)}
+                {num(f0(career.games), true)}
+                {cols.map((c) => <Fragment key={c.code}>{num(c.render(career), true)}</Fragment>)}
               </tr>
             ) : null}
           </tbody>
         </table>
-      </div>
+      </ScrollHint>
     </div>
   );
 }
@@ -251,8 +297,8 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
   );
   return (
     <div>
-      <PanelHead title={`Temporada ${year ?? ''}`.trim()} chips={chips} />
-      <div className="mt-[18px]"><Pills label="Vista de la temporada" value={view} onChange={setView} options={[['avg', 'Promedios'], ['tot', 'Totales'], ['po', 'Playoffs']]} /></div>
+      <PanelHead chips={chips} />
+      <div className="mt-[16px]"><Pills label="Vista de la temporada" value={view} onChange={setView} options={[['avg', 'Promedios'], ['tot', 'Totales'], ['po', 'Playoffs']]} /></div>
       <div className="mt-[16px]">
         {view === 'po' ? (po ? <StatGrid cells={avgCells(po.stats, { games: true })} /> : <Empty text={`Sin juegos de postemporada en ${year ?? 'esta temporada'}.`} />) : s ? <StatGrid cells={view === 'avg' ? avgCells(s.stats) : totalCells(s.stats)} /> : <Empty text="Todavía sin juegos esta temporada." />}
       </div>
@@ -263,24 +309,25 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
 function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
   const [mode, setMode] = useState<Mode>('avg');
   const c = profile.career;
-  const meta = ['Serie regular', profile.seasonsCount ? `${profile.seasonsCount} temporadas` : null, c?.games ? `${f0(c.games)} juegos` : null, profile.firstYear !== null && profile.lastYear !== null ? `${profile.firstYear}–${profile.lastYear}` : null].filter(Boolean).join(' · ');
   return (
     <div>
-      <PanelHead title="Carrera" meta={meta} />
-      <div className="mt-[18px]"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
+      <PanelHead>
+        <CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} fy={profile.firstYear} ly={profile.lastYear} />
+      </PanelHead>
+      <div className="mt-[16px]"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
       <div className="mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
       <EraNotes debutYear={profile.firstYear} />
     </div>
   );
 }
 
-function SeasonsPanel({ profile, title }: { profile: PlayerProfileData; title: string }) {
+function SeasonsPanel({ profile }: { profile: PlayerProfileData }) {
   const [mode, setMode] = useState<Mode>('avg');
   const meta = ['Serie regular', profile.seasonsCount ? `${profile.seasonsCount} temporadas` : null, profile.firstYear !== null && profile.lastYear !== null ? `${profile.firstYear}–${profile.lastYear}` : null].filter(Boolean).join(' · ');
   return (
     <div>
-      <PanelHead title={title} meta={meta} />
-      <div className="mt-[18px]"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
+      <PanelHead meta={meta} />
+      <div className="mt-[16px]"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
       <div className="mt-[16px]">{profile.lines.length ? <SeasonsTable lines={profile.lines} career={profile.career} mode={mode} seasonsCount={profile.seasonsCount} /> : <Empty text="Sin temporadas registradas." />}</div>
       {!profile.active ? <EraNotes debutYear={profile.firstYear} /> : null}
     </div>
@@ -290,8 +337,8 @@ function SeasonsPanel({ profile, title }: { profile: PlayerProfileData; title: s
 function GamesPanel({ profile, year }: { profile: PlayerProfileData; year: number | null }) {
   return (
     <div>
-      <PanelHead title="Juego por juego" meta={year ? `Temporada ${year}` : null} />
-      <div className={`mt-[18px] ${PANEL_CARD} px-[16px] py-[6px]`}>
+      {year ? <PanelHead meta={`Temporada ${year}`} /> : null}
+      <div className={`mt-[14px] ${PANEL_CARD} px-[16px] py-[6px]`}>
         <PlayerMatchesWidget playerProviderId={profile.providerId} />
       </div>
     </div>
@@ -309,12 +356,12 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
   const tabs: Array<[string, React.ReactNode]> = profile.active
     ? [
         [`Temporada ${year ?? ''}`.trim(), <SeasonPanel key="season" profile={profile} year={year} />],
-        ['Carrera', <SeasonsPanel key="seasons" profile={profile} title="Carrera" />],
+        ['Por temporada', <SeasonsPanel key="seasons" profile={profile} />],
         ['Juego por juego', <GamesPanel key="games" profile={profile} year={year} />],
       ]
     : [
         ['Carrera', <CareerGridPanel key="career" profile={profile} />],
-        ['Temporada por temporada', <SeasonsPanel key="seasons" profile={profile} title="Temporada por temporada" />],
+        ['Por temporada', <SeasonsPanel key="seasons" profile={profile} />],
       ];
 
   return (
