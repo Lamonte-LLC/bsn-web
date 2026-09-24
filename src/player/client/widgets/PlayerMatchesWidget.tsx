@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import numeral from 'numeral';
 import { usePlayerMatches } from '../hooks/player';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
@@ -15,6 +16,7 @@ type Props = {
 export default function PlayerMatchesWidget({ playerProviderId }: Props) {
   const { playerMatches, loading, hasNextPage, loadMore } =
     usePlayerMatches(playerProviderId);
+  const router = useRouter();
 
   return (
     <div>
@@ -94,6 +96,8 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
               return (
                 <tr
                   key={playerMatch.match.providerId}
+                  onClick={() => router.push(`/partidos/${playerMatch.match.providerId}`)}
+                  className="group cursor-pointer transition-colors duration-150 hover:[&>td]:!bg-[#F3F4F6]"
                   style={{
                     backgroundColor:
                       index % 2 === 0 ? 'transparent' : '#F9F9F9',
@@ -183,9 +187,10 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                   <td className="py-4.5 pl-6 pr-4 text-center whitespace-nowrap">
                     <Link
                       href={`/partidos/${playerMatch.match.providerId}`}
-                      className="flex flex-row items-center gap-1"
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex flex-row items-center gap-1 transition-[gap] duration-150 group-hover:gap-2"
                     >
-                      <span className="text-[15px] text-black">
+                      <span className="text-[15px] text-black underline decoration-transparent decoration-1 underline-offset-4 transition-[text-decoration-color] duration-150 group-hover:decoration-black md:text-[16px]">
                         Ver resultado
                       </span>
                       <img

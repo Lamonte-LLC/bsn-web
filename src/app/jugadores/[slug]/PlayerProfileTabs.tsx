@@ -374,7 +374,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
               {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 2 ? 'text-[17px] lg:text-[18px]' : 'text-[20px] lg:text-[18px]')}>{label}</Tab>)}
             </TabList>
           </div>
-          <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[18px] pt-[16px] lg:px-[24px] lg:pb-[24px] lg:pt-[22px]">
+          <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[18px] pt-[24px] lg:px-[24px] lg:pb-[24px] lg:pt-[32px]">
             {tabs.map(([label, panel]) => <TabPanel key={label} className={cls.focus}>{panel}</TabPanel>)}
           </TabPanels>
         </TabGroup>
