@@ -47,7 +47,7 @@ const family = (pos: string) => (pos.endsWith('C') && pos !== 'SC' ? 'C' : pos.i
 
 const CARD = 'rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white shadow-[0_12px_32px_rgba(15,23,31,0.08)]';
 const INPUT = 'h-[44px] w-full rounded-[10px] border border-[#D4D4D4] bg-[#fafafa] font-barlow text-[15px] font-medium text-[#0F171F] outline-none transition-[border-color,background-color] duration-150 placeholder:text-[rgba(15,23,31,0.4)] focus:border-[#0F171F] focus:bg-white';
-const SELECT = `${INPUT} cursor-pointer appearance-none pl-[14px] pr-[36px] text-[14px]`;
+const SELECT = `${INPUT} cursor-pointer appearance-none pl-[14px] pr-[32px] text-[14px]`;
 /** Column label: caps at 45%; the sorted column reads in full ink with a red arrow. */
 const TH = 'font-barlow text-[11px] font-semibold uppercase tracking-[0.8px] text-[rgba(15,23,31,0.45)]';
 
@@ -281,7 +281,7 @@ function HistoricosTable({ total }: { total: number }) {
     <>
       <div className="flex gap-[10px] border-b border-[rgba(15,23,31,0.06)] px-[14px] py-[14px] md:px-[24px] md:py-[18px]">
         <SearchField value={search} onChange={(v) => { setSearch(v); reset(); }} placeholder="Buscar jugador por nombre, apellido o apodo" placeholderMobile="Buscar jugador" />
-        <SelectField label="Época" value={decade} onChange={(v) => { setDecade(v); reset(); }} className="w-[96px] md:w-[150px]">
+        <SelectField label="Época" value={decade} onChange={(v) => { setDecade(v); reset(); }} className="w-[108px] md:w-[150px]">
           <option value="">Épocas</option>
           {DECADES.map((d) => <option key={d} value={d}>{d}s</option>)}
         </SelectField>
@@ -300,9 +300,11 @@ function HistoricosTable({ total }: { total: number }) {
       <div className={cx('grid items-center gap-x-[8px] border-b border-[rgba(15,23,31,0.08)] px-[14px] md:gap-x-[12px] md:px-[24px]', HIST_COLS)} role="row">
         <SortTh label="Jugador" k="name" sort={sort} onSort={onSort} align="left" />
         <span className={cx('inline-flex h-[40px] items-center whitespace-nowrap', TH)}>Equipos</span>
+        <SortTh label="Temp." k="seasons" sort={sort} onSort={onSort} phoneOnly title="Temporadas" />
         <SortTh label="Temporadas" k="seasons" sort={sort} onSort={onSort} desktopOnly />
         <SortTh label="Años activo" k="years" sort={sort} onSort={onSort} desktopOnly title="Primera y última temporada" />
-        <SortTh label="Total juegos" k="games" sort={sort} onSort={onSort} title="Total de juegos jugados" />
+        <SortTh label="JJ" k="games" sort={sort} onSort={onSort} phoneOnly title="Juegos jugados" />
+        <SortTh label="Total juegos" k="games" sort={sort} onSort={onSort} desktopOnly title="Total de juegos jugados" />
         <span className="md:hidden" aria-hidden />
       </div>
 

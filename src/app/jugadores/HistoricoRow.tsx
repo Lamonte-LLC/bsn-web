@@ -9,7 +9,7 @@ import ClubMark from '@/historia/components/ClubMark';
 import { yearsSpan, type HistoricoClub, type HistoricoEntry } from './historicos-index';
 
 /** Grid of the historical table: player, clubs, seasons, years, games (phones: player with the years under the name, clubs, games, chevron). */
-export const HIST_COLS = 'grid-cols-[minmax(0,1fr)_84px_44px_16px] md:grid-cols-[minmax(0,1fr)_190px_110px_120px_110px]';
+export const HIST_COLS = 'grid-cols-[minmax(0,1fr)_78px_44px_44px_14px] md:grid-cols-[minmax(0,1fr)_190px_110px_120px_110px]';
 
 /** Numeric cell, same face and tone in every column so the three figures read as one row. */
 export const HIST_NUM = 'block text-center font-barlow text-[14px] tabular-nums text-[rgba(15,23,31,0.7)]';
@@ -30,7 +30,7 @@ export default function HistoricoRow({ p, clubs, first }: { p: HistoricoEntry; c
             {p.k ? <span className="text-[rgba(15,23,31,0.5)]"> “{p.k}”</span> : null}
           </span>
           {/* Phones only: the years line under the name (those columns are hidden there). */}
-          <span className="mt-[2px] block truncate font-barlow text-[12px] tabular-nums text-[rgba(15,23,31,0.5)] md:hidden">{p.s ? `${span} · ${p.s} temp.` : 'Sin temporadas registradas'}</span>
+          <span className="mt-[2px] block truncate font-barlow text-[12px] font-medium tabular-nums text-[rgba(15,23,31,0.7)] md:hidden">{p.s ? span : 'Sin temporadas registradas'}</span>
         </span>
       </span>
       <span className="flex items-center">
@@ -43,7 +43,7 @@ export default function HistoricoRow({ p, clubs, first }: { p: HistoricoEntry; c
           ))}
         </span>
       </span>
-      <span className={cx(HIST_NUM, 'hidden md:block')}>{p.s || '–'}</span>
+      <span className={HIST_NUM}>{p.s || '–'}</span>
       <span className={cx(HIST_NUM, 'hidden md:block')}>{span}</span>
       <span className={HIST_NUM}>{p.g ? fmtInt(p.g) : '–'}</span>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(15,23,31,0.3)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="justify-self-end md:hidden"><path d="M4.5 2.5L8 6l-3.5 3.5" /></svg>
