@@ -212,7 +212,7 @@ function columns(mode: Mode): Col[] {
 const TH = `whitespace-nowrap px-[10px] py-[10px] ${cls.label}`;
 const TD = 'h-[44px] whitespace-nowrap border-t border-[rgba(15,23,31,0.06)] px-[10px] font-barlow text-[14px] tabular-nums';
 /** The year column stays put while the rest scrolls on a phone. */
-const STICKY = 'sticky left-0 z-[1] bg-white pl-[16px] pr-[12px] lg:pl-[20px]';
+const STICKY = 'sticky left-0 z-[1] bg-white pl-[16px] pr-[4px] lg:pl-[20px] lg:pr-[12px]';
 
 function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine[]; career: LineStats | null; mode: Mode; seasonsCount: number }) {
   // A column nobody recorded (steals before 2010, minutes in the archive) is left out rather than shown as dashes.
@@ -225,7 +225,7 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
           <thead>
             <tr>
               <th className={`${TH} ${STICKY} text-left`}>Año</th>
-              <th className={`${TH} text-left`}>Equipo</th>
+              <th className={`${TH} pl-[6px] text-left lg:pl-[10px]`}>Equipo</th>
               <th className={`${TH} text-center`} title="Juegos">J</th>
               {cols.map((c) => (
                 <th key={c.code} className={`${TH} text-center`} title={c.title}>{c.code}</th>
@@ -236,21 +236,21 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
             {lines.map((l) => (
               <tr key={l.providerId}>
                 <td className={`${TD} ${STICKY} font-semibold text-[#0F171F]`}>{l.year}</td>
-                <td className={`${TD} text-[rgba(15,23,31,0.75)]`}>
-                  <span className="inline-flex items-center gap-[7px]">
-                    {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={20} />)}
+                <td className={`${TD} pl-[6px] text-[rgba(15,23,31,0.75)] lg:pl-[10px]`}>
+                  <span className="flex items-center gap-[6px] leading-none">
+                    {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={18} />)}
                     <span className="lg:hidden">{l.teams.map((t) => t.code).join('/')}</span>
                     <span className="hidden lg:inline">{l.teams.map((t) => t.nickname).join(' / ')}</span>
                   </span>
                 </td>
                 {num(f0(l.stats.games))}
-                {cols.map((c) => <Fragment key={c.code}>{num(c.render(l.stats), c.code === 'PTS')}</Fragment>)}
+                {cols.map((c) => <Fragment key={c.code}>{num(c.render(l.stats))}</Fragment>)}
               </tr>
             ))}
             {career ? (
               <tr className="bg-[#FAFAFA]">
                 <td className={`${TD} ${STICKY} bg-[#FAFAFA] font-semibold text-[#0F171F]`}>Carrera</td>
-                <td className={`${TD} text-[rgba(15,23,31,0.75)]`}>{seasonsCount} temp.</td>
+                <td className={`${TD} pl-[6px] text-[rgba(15,23,31,0.75)] lg:pl-[10px]`}>{seasonsCount} temp.</td>
                 {num(f0(career.games), true)}
                 {cols.map((c) => <Fragment key={c.code}>{num(c.render(career), true)}</Fragment>)}
               </tr>
@@ -388,7 +388,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
           </TabPanels>
         </TabGroup>
       </div>
-      <Link href={compare} className={`${COMPARE} mt-[14px] flex h-[48px] w-full border-[#0F171F] bg-white text-[16px] shadow-[0_6px_18px_rgba(15,23,31,0.10)] lg:hidden`}>
+      <Link href={compare} className={`${COMPARE} mt-[14px] flex h-[48px] w-full border-[#0F171F] bg-white text-[14px] shadow-[0_6px_18px_rgba(15,23,31,0.10)] lg:hidden`}>
         <CompareIcon />
         Comparar con otros jugadores
       </Link>
