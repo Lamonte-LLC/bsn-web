@@ -440,10 +440,10 @@ function GamesPanel({ profile, year }: { profile: PlayerProfileData; year: numbe
   return (
     <div>
       {year ? <h2 className="text-center text-[22px] leading-none text-[#0F171F] lg:text-left lg:text-[24px]">Temporada {year}</h2> : null}
-      <div className="mt-[16px] empty:hidden"><GameInsights playerProviderId={profile.providerId} /></div>
       <div className={`mt-[16px] ${PANEL_CARD} px-[16px] py-[6px]`}>
-        <PlayerMatchesWidget playerProviderId={profile.providerId} />
+        <PlayerMatchesWidget playerProviderId={profile.providerId} pageSize={5} />
       </div>
+      <div className="mt-[22px] empty:hidden lg:mt-[28px]"><GameInsights playerProviderId={profile.providerId} /></div>
     </div>
   );
 }

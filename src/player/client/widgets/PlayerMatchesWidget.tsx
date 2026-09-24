@@ -11,11 +11,13 @@ import { getFirstWord } from '@/utils/text';
 
 type Props = {
   playerProviderId: string;
+  /** Games per page; the profile shows five and loads five more at a time. */
+  pageSize?: number;
 };
 
-export default function PlayerMatchesWidget({ playerProviderId }: Props) {
+export default function PlayerMatchesWidget({ playerProviderId, pageSize = 10 }: Props) {
   const { playerMatches, loading, hasNextPage, loadMore } =
-    usePlayerMatches(playerProviderId);
+    usePlayerMatches(playerProviderId, pageSize);
   const router = useRouter();
 
   // Empty: one quiet line inside the panel's card, never a headerless table that a phone would clip.
@@ -227,15 +229,13 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
         </table>
       </div>
       {hasNextPage && (
-        <div className="flex justify-center mt-4 md:w-8/12 md:mx-auto">
+        <div className="flex justify-center py-[14px]">
           <button
             onClick={loadMore}
             disabled={loading}
-            className="bg-[#FCFCFC] border border-[#D9D3D3] cursor-pointer px-4 py-2.5 rounded-[12px] disabled:opacity-50 w-full"
+            className="inline-flex h-[44px] w-full max-w-[360px] cursor-pointer items-center justify-center rounded-[12px] border border-[rgba(15,23,31,0.16)] px-[28px] font-barlow text-[15px] font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] disabled:cursor-default disabled:opacity-60"
           >
-            <span className="text-base text-black tracking-[2%]">
-              {loading ? 'Cargando...' : 'Cargar más'}
-            </span>
+            {loading ? 'Cargando…' : 'Cargar más juegos'}
           </button>
         </div>
       )}
