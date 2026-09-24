@@ -156,17 +156,12 @@ function ArchivoMark() {
   );
 }
 
-/** Full-width strip under the nav that says the player belongs to the archive: the mark at the left, the span of the archive at the right. */
+/** Under the nav, the mark alone on a hairline: the player belongs to the archive. */
 function ArchivoStrip() {
   return (
     <div className="container pt-[14px] lg:pt-[18px]">
-      <div className="flex h-[42px] items-center justify-between rounded-[10px] border border-white/[0.1] bg-white/[0.045] px-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_2px_8px_rgba(0,0,0,0.08)] backdrop-blur-[14px] lg:h-[52px] lg:px-[20px]">
+      <div className="flex h-[36px] items-center border-b border-white/[0.1] lg:h-[44px]">
         <ArchivoMark />
-        <span className="inline-flex items-baseline gap-[6px] text-[16px] leading-none text-white/85 tabular-nums lg:text-[19px]">
-          1930
-          <span className="text-[12px] text-white/35 lg:text-[14px]">—</span>
-          hasta hoy
-        </span>
       </div>
     </div>
   );
