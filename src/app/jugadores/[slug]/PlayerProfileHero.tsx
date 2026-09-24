@@ -171,10 +171,10 @@ export default function PlayerProfileHero({ profile }: Props) {
     { label: 'Asistencias por juego', short: 'APJ', value: f1(s?.assistsAvg) },
   ];
   if (!p.active) boxes.push({ label: 'Temporadas en BSN', short: 'Temp.', value: p.seasonsCount ? String(p.seasonsCount) : '–' });
-  const blockMeta = p.active ? `Promedios · Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios de carrera', span].filter(Boolean).join(' · ');
+  const blockMeta = p.active ? `Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios de carrera', span].filter(Boolean).join(' · ');
 
   const phoneFacts = facts.filter((f) => f.label !== 'Equipos').map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'País' : f.label }));
-  const phoneFigures = p.active ? boxes.map((b) => ({ label: b.label, value: b.value })) : [{ label: 'Puntos', value: boxes[0].value }, { label: 'Rebotes', value: boxes[1].value }, { label: 'Asistencias', value: boxes[2].value }, { label: 'Temporadas', value: boxes[3].value }];
+  const phoneFigures = p.active ? boxes.map((b) => ({ label: b.short, value: b.value })) : [{ label: 'PPJ', value: boxes[0].value }, { label: 'RPJ', value: boxes[1].value }, { label: 'APJ', value: boxes[2].value }, { label: 'Temporadas', value: boxes[3].value }];
 
   return (
     <>
@@ -206,8 +206,8 @@ export default function PlayerProfileHero({ profile }: Props) {
         <div className={cx('grid', phoneFigures.length === 4 ? 'grid-cols-4' : 'grid-cols-3')}>
           {phoneFigures.map((b, i) => (
             <div key={b.label} className={cx('min-w-0', i && 'border-l border-white/[0.08] pl-[12px]')}>
-              <div className="whitespace-nowrap font-barlow-condensed text-[13px] text-white/70">{b.label}</div>
-              <div className="mt-[5px] text-[24px] leading-none text-white tabular-nums">{b.value}</div>
+              <div className="text-[24px] leading-none text-white tabular-nums">{b.value}</div>
+              <div className={`${LABEL} mt-[5px] text-[9.5px] tracking-[0.6px] text-white/55`}>{b.label}</div>
             </div>
           ))}
         </div>
