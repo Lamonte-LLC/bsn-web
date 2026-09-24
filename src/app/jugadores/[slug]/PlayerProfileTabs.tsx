@@ -122,8 +122,8 @@ function StatGrid({ cells }: { cells: Cell[] }) {
       <div className="-mb-px -mr-px grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {cells.map((c) => (
           <div key={c.label} className="min-w-0 border-b border-r border-[rgba(15,23,31,0.06)] px-[12px] py-[14px] lg:px-[16px] lg:py-[15px]">
-            <div className={cx('leading-none text-[#0F171F] tabular-nums', c.strong ? 'text-[25px] lg:text-[26px]' : 'text-[23px] lg:text-[24px]')}>{c.value}</div>
-            <div className={`mt-[6px] text-[10px] leading-[1.3] lg:text-[11px] ${cls.label}`}>{c.label}</div>
+            <div className={cx('leading-none text-[#0F171F] tabular-nums', c.strong ? 'text-[24px] lg:text-[26px]' : 'text-[22px] lg:text-[24px]')}>{c.value}</div>
+            <div className={`mt-[6px] text-[9px] leading-[1.3] lg:text-[11px] ${cls.label}`}>{c.label}</div>
           </div>
         ))}
       </div>

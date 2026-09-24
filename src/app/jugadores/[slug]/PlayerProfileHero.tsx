@@ -199,8 +199,7 @@ export default function PlayerProfileHero({ profile }: Props) {
     {!p.active ? <ArchivoStrip /> : null}
     {/* Phones: one translucent panel with the identity, the facts and the figures; only the panel has a border. */}
     <section className={cx('container pb-[36px] lg:hidden', p.active ? 'pt-[16px]' : 'pt-[12px]')}>
-      <div className="rounded-[14px] border border-white/[0.12] bg-white/[0.045] px-[14px] pb-[16px] pt-[16px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]">
-        <div className="flex items-center gap-[12px]">
+      <div className="flex items-center gap-[12px] px-[2px]">
           <Avatar profile={p} phone />
           <div className="min-w-0 flex-1">
             <h1 className="text-[26px] leading-[1] text-white">
@@ -220,8 +219,9 @@ export default function PlayerProfileHero({ profile }: Props) {
               ) : null}
             </div>
           </div>
-        </div>
-        <dl className={cx('grid grid-cols-2 gap-x-[14px] gap-y-[12px]', p.active ? 'mt-[26px]' : 'mt-[18px]')}>
+      </div>
+      <div className={cx('rounded-[14px] border border-white/[0.12] bg-white/[0.045] px-[14px] pb-[16px] pt-[16px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]', p.active ? 'mt-[24px]' : 'mt-[16px]')}>
+        <dl className="grid grid-cols-2 gap-x-[14px] gap-y-[12px]">
           {phoneFacts.map((f) => (
             <div key={f.label} className={cx('min-w-0', f.wide && 'col-span-2')}>
               <dt className={`${LABEL} text-[9.5px] tracking-[0.6px] text-white/55`}>{f.label}</dt>
