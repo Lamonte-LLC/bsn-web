@@ -19,55 +19,55 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
   return (
     <div>
       <div className="overflow-x-auto -mx-4 sm:-mx-3 player-stats-table">
-        <table className="w-full text-left">
+        <table className="w-full text-left lg:table-fixed">
           <thead>
             <tr>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
+              <th className="lg:w-[128px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Fecha
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
+              <th className="lg:w-[180px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Oponente
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
+              <th className="lg:w-[140px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Resultado
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Min
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Pts
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Reb
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Ast
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Stl
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Blk
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Fg
                 </span>
@@ -77,7 +77,7 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                   3pt
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
+              <th className="lg:w-[150px] border-b border-b-[rgba(0,0,0,0.07)] py-2 pl-6 pr-4 uppercase whitespace-nowrap w-[1%]">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   &nbsp;
                 </span>
@@ -180,7 +180,7 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                       )}
                     </span>
                   </td>
-                  <td className="px-3 py-4.5 text-center whitespace-nowrap">
+                  <td className="py-4.5 pl-6 pr-4 text-center whitespace-nowrap">
                     <Link
                       href={`/partidos/${playerMatch.match.providerId}`}
                       className="flex flex-row items-center gap-1"

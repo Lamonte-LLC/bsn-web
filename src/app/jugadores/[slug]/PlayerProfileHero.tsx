@@ -197,7 +197,7 @@ export default function PlayerProfileHero({ profile }: Props) {
       <div className="mt-[10px] rounded-[12px] border border-white/[0.12] bg-white/[0.045] px-[14px] py-[12px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]">
         <div className={cx('grid', phoneFigures.length === 4 ? 'grid-cols-4' : 'grid-cols-3')}>
           {phoneFigures.map((b, i) => (
-            <div key={b.label} className={cx('min-w-0', i && 'border-l border-white/[0.08] pl-[12px]')}>
+            <div key={b.label} className={cx('min-w-0 text-center', i && 'border-l border-white/[0.08]')}>
               <div className="text-[24px] leading-none text-white tabular-nums">{b.value}</div>
               <div className={`${LABEL} mt-[5px] text-[9.5px] tracking-[0.6px] text-white/55`}>{b.label}</div>
             </div>
