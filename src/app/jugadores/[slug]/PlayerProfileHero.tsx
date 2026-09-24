@@ -60,7 +60,7 @@ function Jersey({ n, small = false }: { n: string; small?: boolean }) {
 function Avatar({ profile, phone = false }: Props & { /** 68px inside the phone panel; 160px on the desktop band. */ phone?: boolean }) {
   const color = profile.club?.color ?? profile.mainClub?.color ?? 'rgba(255,255,255,0.22)';
   const shadow = phone ? '' : 'shadow-[0_10px_26px_rgba(0,0,0,0.26)]';
-  const px = phone ? 76 : 160;
+  const px = phone ? 96 : 160;
   return (
     <span className="relative inline-flex shrink-0">
       {profile.avatarUrl ? (
@@ -228,7 +228,7 @@ export default function PlayerProfileHero({ profile }: Props) {
         ))}
       </dl>
       {!p.active && p.clubs.length ? (
-        <div className="flex min-h-[46px] items-center justify-between gap-[10px] border-b border-white/[0.08]">
+        <div className="flex min-h-[46px] items-center gap-[14px] border-b border-white/[0.08]">
           <span className={`${LABEL} text-[10.5px] text-white/55`}>Equipos</span>
           <ClubRow clubs={p.clubs} size={18} />
         </div>
