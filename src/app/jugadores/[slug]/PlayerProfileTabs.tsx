@@ -274,7 +274,8 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
       {teams.map((t) => (
         <span key={t.code} className="inline-flex items-center gap-[8px] font-barlow text-[14px] font-semibold text-[#0F171F]">
           <ClubMark code={t.code} color={t.color} size={22} />
-          {t.name}
+          <span className="lg:hidden">{t.nickname}</span>
+          <span className="hidden lg:inline">{t.name}</span>
         </span>
       ))}
       {line?.stats.games ? (
