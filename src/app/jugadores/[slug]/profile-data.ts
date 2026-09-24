@@ -45,6 +45,18 @@ export type LineStats = {
   foulsPersonalAvg: number | null;
   plusMinusPointsAvg: number | null;
   efficiency: number | null;
+  twoPointsMade: number | null;
+  twoPointsMadeAvg: number | null;
+  twoPointsAttemptedAvg: number | null;
+  pointsInThePaint: number | null;
+  pointsSecondChance: number | null;
+  pointsFastBreak: number | null;
+  foulsDrawn: number | null;
+  foulsDrawnAvg: number | null;
+  pir: number | null;
+  assistsTurnoverRatio: number | null;
+  doubleDouble: number | null;
+  dunks: number | null;
 };
 
 export type ProfileClub = { code: string; name: string; nickname: string; color: string };

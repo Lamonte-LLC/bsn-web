@@ -137,6 +137,115 @@ function totalCells(s: LineStats): Cell[] {
   return cells;
 }
 
+/* ---------- Season modules: impact, scoring mix, shooting ---------- */
+
+/** Title of a module inside a panel: display face, the meta beside it in Barlow. */
+function ModuleTitle({ title, meta }: { title: string; meta?: string | null }) {
+  return (
+    <div className="mb-[12px] flex flex-wrap items-baseline gap-x-[10px] gap-y-[2px]">
+      <span className="text-[18px] leading-[1.1] text-[#0F171F]">{title}</span>
+      {meta ? <span className="font-barlow text-[12.5px] text-[rgba(15,23,31,0.5)] tabular-nums">{meta}</span> : null}
+    </div>
+  );
+}
+
+/** What the averages don't show: efficiency, ball security, fouls drawn, where the points come from. All per game. */
+function ImpactGrid({ s }: { s: LineStats }) {
+  const g = s.games || 0;
+  const per = (v: number | null | undefined) => (rec(v) && g ? v! / g : null);
+  const cells: Array<{ value: string; label: string; short?: string; sub: string | null }> = [];
+  if (rec(s.pir) && g) cells.push({ value: f1(s.pir! / g), label: 'Eficiencia por juego', short: 'Eficiencia', sub: `PIR ${f0(s.pir)} en ${f0(g)} juegos` });
+  if (rec(s.assistsTurnoverRatio)) cells.push({ value: f1(s.assistsTurnoverRatio), label: 'Asistencias por pérdida', sub: rec(s.assistsAvg) && rec(s.turnoversAvg) ? `${f1(s.assistsAvg)} asistencias · ${f1(s.turnoversAvg)} pérdidas` : null });
+  if (rec(s.foulsDrawnAvg)) cells.push({ value: f1(s.foulsDrawnAvg), label: 'Faltas recibidas por juego', short: 'Faltas recibidas', sub: rec(s.foulsDrawn) ? `${f0(s.foulsDrawn)} en la temporada` : null });
+  if (per(s.pointsInThePaint) !== null) cells.push({ value: f1(per(s.pointsInThePaint)), label: 'Puntos en la pintura por juego', short: 'En la pintura', sub: `${f0(s.pointsInThePaint)} en la temporada` });
+  if (per(s.pointsFastBreak) !== null) cells.push({ value: f1(per(s.pointsFastBreak)), label: 'Puntos en contraataque por juego', short: 'En contraataque', sub: `${f0(s.pointsFastBreak)} en la temporada` });
+  if (rec(s.plusMinusPointsAvg) && g) cells.push({ value: signed(s.plusMinusPointsAvg! / g).replace(/^([+-])(\d+)$/, '$1$2'), label: 'Más/menos por juego', short: 'Más/menos', sub: `${signed(s.plusMinusPointsAvg)} acumulado` });
+  if (cells.length < 3) return null;
+  return (
+    <div>
+      <ModuleTitle title="Impacto" meta="más allá del promedio" />
+      <div className={`${PANEL_CARD} overflow-hidden`}>
+        <div className="-mb-px -mr-px grid grid-cols-2 lg:grid-cols-3">
+          {cells.map((c) => (
+            <div key={c.label} className="min-w-0 border-b border-r border-[rgba(15,23,31,0.06)] px-[12px] py-[14px] lg:px-[18px] lg:py-[16px]">
+              <div className="text-[22px] leading-none text-[#0F171F] tabular-nums lg:text-[26px]">{c.value}</div>
+              <div className={`mt-[6px] text-[9px] leading-[1.3] lg:text-[11px] ${cls.label}`}>
+                <span className="lg:hidden">{c.short ?? c.label}</span>
+                <span className="hidden lg:inline">{c.label}</span>
+              </div>
+              {c.sub ? <div className="mt-[4px] font-barlow text-[11.5px] leading-[1.3] text-[rgba(15,23,31,0.5)] tabular-nums lg:text-[12px]">{c.sub}</div> : null}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Where the points come from (twos, threes, free throws) and the three shooting lines. */
+function ScoringMix({ s }: { s: LineStats }) {
+  const g = s.games || 0;
+  const twos = rec(s.twoPointsMade) ? s.twoPointsMade! * 2 : null;
+  const threes = rec(s.threePointersMade) ? s.threePointersMade! * 3 : null;
+  const fts = rec(s.freeThrowsMade) ? s.freeThrowsMade! : null;
+  const segs = [
+    { label: '2 puntos', pts: twos, color: '#0F171F' },
+    { label: 'Triples', pts: threes, color: '#1772D9' },
+    { label: 'Tiros libres', pts: fts, color: 'rgba(15,23,31,0.35)' },
+  ].filter((x): x is { label: string; pts: number; color: string } => x.pts !== null && x.pts > 0);
+  const total = segs.reduce((a, x) => a + x.pts, 0);
+  // Field goals per game come from twos and threes: the API's own fieldGoalsMadeAvg is 0 for this season.
+  const fgm = rec(s.twoPointsMadeAvg) && rec(s.threePointersMadeAvg) ? s.twoPointsMadeAvg! + s.threePointersMadeAvg! : null;
+  const fga = rec(s.twoPointsAttemptedAvg) && rec(s.threePointersAttemptedAvg) ? s.twoPointsAttemptedAvg! + s.threePointersAttemptedAvg! : null;
+  const shots = [
+    { label: 'Campo', pct: s.fieldGoalsPercentage, made: fgm, att: fga },
+    { label: 'Triples', pct: s.threePointersPercentage, made: s.threePointersMadeAvg, att: s.threePointersAttemptedAvg },
+    { label: 'Libres', pct: s.freeThrowsPercentage, made: s.freeThrowsMadeAvg, att: s.freeThrowsAttemptedAvg },
+  ].filter((x) => rec(x.pct));
+  const pctNum = (v: number | null) => (v === null ? 0 : v <= 1 ? v * 100 : v);
+  const notes = [rec(s.pointsInThePaint) ? `${f0(s.pointsInThePaint)} puntos en la pintura` : null, rec(s.pointsFastBreak) ? `${f0(s.pointsFastBreak)} en contraataque` : null, rec(s.pointsSecondChance) ? `${f0(s.pointsSecondChance)} de segunda oportunidad` : null].filter(Boolean);
+  if (!segs.length && !shots.length) return null;
+  return (
+    <div className="grid grid-cols-1 gap-[14px] lg:grid-cols-[7fr_5fr] lg:items-start">
+      {segs.length && total > 0 ? (
+        <div className={`${PANEL_CARD} px-[14px] py-[14px] lg:px-[20px] lg:py-[18px]`}>
+          <ModuleTitle title="Cómo anota" meta={`${f0(total)} puntos${g ? ` en ${f0(g)} juegos` : ''}`} />
+          <div className="flex h-[12px] gap-[2px] overflow-hidden rounded-[6px] lg:h-[14px]" role="img" aria-label={segs.map((x) => `${x.label} ${Math.round((x.pts / total) * 100)}%`).join(', ')}>
+            {segs.map((x) => <div key={x.label} style={{ width: `${(x.pts / total) * 100}%`, background: x.color }} />)}
+          </div>
+          <div className="mt-[12px] grid grid-cols-1 gap-[8px] lg:flex lg:flex-wrap lg:gap-x-[22px]">
+            {segs.map((x) => (
+              <div key={x.label} className="flex items-center gap-[8px]">
+                <span className="h-[10px] w-[10px] shrink-0 rounded-[3px]" style={{ background: x.color }} aria-hidden />
+                <span className="text-[20px] leading-none text-[#0F171F] tabular-nums">{Math.round((x.pts / total) * 100)}%</span>
+                <span className="font-barlow text-[12.5px] text-[rgba(15,23,31,0.6)] tabular-nums">{x.label} · {f0(x.pts)} pts</span>
+              </div>
+            ))}
+          </div>
+          {notes.length ? <p className="mt-[12px] font-barlow text-[12.5px] leading-[1.5] text-[rgba(15,23,31,0.6)] tabular-nums">{notes.join(' · ')}</p> : null}
+        </div>
+      ) : null}
+      {shots.length ? (
+        <div className={`${PANEL_CARD} px-[14px] py-[14px] lg:px-[20px] lg:py-[18px]`}>
+          <ModuleTitle title="Tiros" />
+          <div className="grid grid-cols-3 gap-[12px] lg:gap-[18px]">
+            {shots.map((x) => (
+              <div key={x.label} className="min-w-0">
+                <div className={`mb-[8px] ${cls.label}`}>{x.label}</div>
+                <div className="h-[8px] rounded-[4px] bg-[#EEF0F3] lg:h-[10px]">
+                  <div className="h-full rounded-[4px] bg-[#0F171F]" style={{ width: `${Math.min(100, pctNum(x.pct))}%` }} />
+                </div>
+                <div className="mt-[8px] text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{pct(x.pct)}</div>
+                {rec(x.made) && rec(x.att) ? <div className="mt-[4px] font-barlow text-[11.5px] leading-[1.3] text-[rgba(15,23,31,0.55)] tabular-nums lg:text-[12px]">{f1(x.made)} de {f1(x.att)} por juego</div> : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 /* ---------- Season by season ---------- */
 
 type Mode = 'avg' | 'tot';
@@ -282,6 +391,12 @@ function SeasonPanel({ profile, year }: { profile: PlayerProfileData; year: numb
       <div className="mt-[12px] lg:mt-[16px]">
         {view === 'po' ? (po ? <StatGrid cells={avgCells(po.stats, { games: true })} /> : <Empty text={`Sin juegos de postemporada en ${year ?? 'esta temporada'}.`} />) : s ? <StatGrid cells={view === 'avg' ? avgCells(s.stats) : totalCells(s.stats)} /> : <Empty text="Todavía sin juegos esta temporada." />}
       </div>
+      {line && view !== 'tot' ? (
+        <>
+          <div className="mt-[22px] lg:mt-[28px]"><ScoringMix s={line.stats} /></div>
+          <div className="mt-[22px] lg:mt-[28px]"><ImpactGrid s={line.stats} /></div>
+        </>
+      ) : null}
     </div>
   );
 }
