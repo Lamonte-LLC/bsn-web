@@ -262,7 +262,7 @@ function ScoringMix({ s, accent }: { s: LineStats; /** The club color the player
               {notes.map(([n, t]) => (
                 <div key={t} className="min-w-0">
                   <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{n}</div>
-                  <div className="mt-[4px] font-barlow text-[11px] font-medium leading-[1.3] text-[rgba(15,23,31,0.6)] lg:text-[12px]">{t}</div>
+                  <div className={`mt-[5px] text-[9px] leading-[1.3] lg:text-[11px] ${cls.label}`}>{t}</div>
                 </div>
               ))}
             </div>
