@@ -76,14 +76,14 @@ function Avatar({ profile }: Props) {
   );
 }
 
-/** Overlapping club marks, oldest first; larger on desktop where they sit at the right edge of the band. */
-function ClubStack({ clubs, size }: { clubs: PlayerProfileData['clubs']; size: number }) {
-  const disc = size + 8;
+/** The clubs of the career as a row of marks under the years, oldest first, each in its own dark disc. */
+function ClubRow({ clubs }: { clubs: PlayerProfileData['clubs'] }) {
   return (
-    <span className="inline-flex items-center" role="list" aria-label="Equipos">
-      {clubs.map((c, i) => (
-        <span key={c.code} role="listitem" title={c.name} className="relative inline-flex items-center justify-center rounded-full border border-white/12 bg-[#1A222B] shadow-[0_0_0_2px_#0F171F]" style={{ width: disc, height: disc, marginLeft: i ? -Math.round(size * 0.28) : 0, zIndex: clubs.length - i }}>
-          <ClubMark code={c.code} color={c.color} size={size} />
+    <span className="flex flex-wrap items-center gap-[6px]" role="list" aria-label="Equipos">
+      {clubs.map((c) => (
+        <span key={c.code} role="listitem" title={c.name} className="inline-flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white/12 bg-[#1A222B] lg:h-[34px] lg:w-[34px]">
+          <span className="lg:hidden"><ClubMark code={c.code} color={c.color} size={20} /></span>
+          <span className="hidden lg:block"><ClubMark code={c.code} color={c.color} size={24} /></span>
         </span>
       ))}
     </span>
@@ -125,6 +125,7 @@ function DeepBox({ label, short, value, boxes4 = false }: { label: string; short
 function Years({ fy, ly }: { fy: number; ly: number }) {
   return (
     <span className="inline-flex items-baseline gap-[6px] text-[18px] leading-none text-white tabular-nums lg:text-[20px]">
+      <span className={`${LABEL} mr-[4px] text-white/55`}>Activo</span>
       {fy}
       {fy !== ly ? (
         <>
@@ -181,36 +182,37 @@ export default function PlayerProfileHero({ profile }: Props) {
     <section className="container pb-[40px] pt-[22px] lg:pb-[56px] lg:pt-[36px]">
       <div className="flex items-start gap-[16px] lg:items-center lg:gap-[28px]">
         <Avatar profile={p} />
-        <div className="min-w-0 flex-1">
-          <h1 className="text-[27px] leading-[1] text-white lg:text-[42px]">
-            {p.name}
-            {p.nickname ? <span className="mt-[4px] block text-[19px] text-white/45 lg:mt-0 lg:inline lg:text-[42px]"><span className="hidden lg:inline"> </span>“{p.nickname}”</span> : null}
-          </h1>
-          <div className="mt-[10px] flex flex-wrap items-center gap-x-[8px] gap-y-[4px] font-barlow text-[13px] font-medium text-white/72 lg:text-[15px]">
-            {p.active ? (
-              <>
-                {p.position ? <span>{p.position}</span> : null}
-                {p.position && p.club ? <span className="text-white/30">·</span> : null}
-                {p.club ? (
-                  <span className="inline-flex items-center gap-[8px]">
-                    <ClubMark code={p.club.code} color={p.club.color} size={22} />
-                    {p.club.name}
-                  </span>
-                ) : null}
-              </>
-            ) : (
-              <>
-                {p.position ? <span>{p.position}</span> : null}
-                {p.position && span ? <span className="text-white/30">·</span> : null}
-                {span ? <Years fy={p.firstYear!} ly={p.lastYear!} /> : null}
-              </>
-            )}
+        <div className="min-w-0 flex-1 lg:flex lg:items-center lg:gap-[40px]">
+          <div className="min-w-0 lg:flex-1">
+            <h1 className="text-[27px] leading-[1] text-white lg:text-[42px]">
+              {p.name}
+              {p.nickname ? <span className="mt-[4px] block text-[19px] text-white/45 lg:mt-0 lg:inline lg:text-[42px]"><span className="hidden lg:inline"> </span>“{p.nickname}”</span> : null}
+            </h1>
+            <div className="mt-[10px] flex flex-wrap items-center gap-x-[8px] gap-y-[4px] font-barlow text-[13px] font-medium text-white/72 lg:text-[15px]">
+              {p.position ? <span>{p.position}</span> : null}
+              {p.active ? (
+                <>
+                  {p.position && p.club ? <span className="text-white/30">·</span> : null}
+                  {p.club ? (
+                    <span className="inline-flex items-center gap-[8px]">
+                      <ClubMark code={p.club.code} color={p.club.color} size={22} />
+                      {p.club.name}
+                    </span>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  {p.position && span ? <span className="text-white/30">·</span> : null}
+                  {span ? <Years fy={p.firstYear!} ly={p.lastYear!} /> : null}
+                </>
+              )}
+            </div>
+            {!p.active && p.clubs.length ? <div className="mt-[12px] lg:mt-[14px]"><ClubRow clubs={p.clubs} /></div> : null}
+            {p.active && facts.length ? <div className="mt-[22px] hidden lg:block"><Facts facts={facts} /></div> : null}
           </div>
-          {facts.length ? <div className="mt-[22px] hidden lg:block"><Facts facts={facts} /></div> : null}
+          {!p.active && facts.length ? <div className="hidden shrink-0 lg:block"><Facts facts={facts} /></div> : null}
         </div>
-        {!p.active && p.clubs.length ? <div className="hidden self-center lg:block"><ClubStack clubs={p.clubs} size={44} /></div> : null}
       </div>
-      {!p.active && p.clubs.length ? <div className="mt-[18px] lg:hidden"><ClubStack clubs={p.clubs} size={28} /></div> : null}
       {facts.length ? <div className="mt-[22px] lg:hidden"><Facts facts={facts} /></div> : null}
 
       <div className="mt-[36px] lg:mt-[46px]">

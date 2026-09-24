@@ -19,7 +19,7 @@ type Props = {
 
 const CARD = 'rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white shadow-[0_12px_32px_rgba(15,23,31,0.08)]';
 const PANEL_CARD = 'rounded-[12px] border border-[rgba(15,23,31,0.08)] bg-white';
-const TAB = `relative cursor-pointer whitespace-nowrap pb-[13px] pt-[16px] text-[17px] text-[rgba(15,23,31,0.4)] transition-colors duration-150 after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-[#0F171F] after:opacity-0 after:content-[''] hover:text-[rgba(15,23,31,0.7)] data-selected:text-[#0F171F] data-selected:after:opacity-100 lg:text-[18px] ${cls.focus} focus-visible:outline-offset-[-2px]`;
+const TAB = `relative cursor-pointer whitespace-nowrap pb-[13px] pt-[16px] text-[18px] text-[rgba(15,23,31,0.4)] transition-colors duration-150 after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-[#0F171F] after:opacity-0 after:content-[''] hover:text-[rgba(15,23,31,0.7)] data-selected:text-[#0F171F] data-selected:after:opacity-100 lg:text-[18px] ${cls.focus} focus-visible:outline-offset-[-2px]`;
 const COMPARE = `cursor-pointer items-center justify-center gap-[8px] rounded-full border border-[rgba(15,23,31,0.2)] font-barlow font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] ${cls.focus}`;
 
 function CompareIcon() {
@@ -42,13 +42,12 @@ function PanelHead({ meta, chips, children }: { meta?: string | null; chips?: Re
 }
 
 /** The career in three figures: seasons, games and the years, side by side with hairlines between them. */
-function CareerFigures({ seasons, games, fy, ly }: { seasons: number; games: number | null; fy: number | null; ly: number | null }) {
+function CareerFigures({ seasons, games }: { seasons: number; games: number | null }) {
   const items: Array<[string, string]> = [];
   if (seasons) items.push([String(seasons), seasons === 1 ? 'Temporada' : 'Temporadas']);
   if (games) items.push([f0(games), 'Juegos']);
-  if (fy !== null && ly !== null) items.push([fy === ly ? String(fy) : `${fy}–${ly}`, 'Años']);
   return (
-    <div className="flex items-stretch">
+    <div className="flex items-stretch justify-center lg:justify-start">
       {items.map(([v, l], i) => (
         <div key={l} className={cx('min-w-0', i && 'ml-[18px] border-l border-[rgba(15,23,31,0.1)] pl-[18px] lg:ml-[24px] lg:pl-[24px]')}>
           <div className="text-[24px] leading-none text-[#0F171F] tabular-nums lg:text-[26px]">{v}</div>
@@ -101,7 +100,7 @@ function Chip({ children, club }: { children: React.ReactNode; club?: { code: st
 /** Secondary choice inside a panel: pills, the chosen one in ink. */
 function Pills<T extends string>({ options, value, onChange, label }: { options: Array<[T, string]>; value: T; onChange: (v: T) => void; label: string }) {
   return (
-    <div role="radiogroup" aria-label={label} className="flex flex-wrap gap-[8px]">
+    <div role="radiogroup" aria-label={label} className="flex flex-wrap justify-center gap-[8px] lg:justify-start">
       {options.map(([k, l]) => {
         const on = k === value;
         return (
@@ -312,7 +311,7 @@ function CareerGridPanel({ profile }: { profile: PlayerProfileData }) {
   return (
     <div>
       <PanelHead>
-        <CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} fy={profile.firstYear} ly={profile.lastYear} />
+        <CareerFigures seasons={profile.seasonsCount} games={c?.games ?? null} />
       </PanelHead>
       <div className="mt-[16px]"><Pills label="Promedios o totales" value={mode} onChange={setMode} options={[['avg', 'Promedios'], ['tot', 'Totales']]} /></div>
       <div className="mt-[16px]">{c ? <StatGrid cells={mode === 'avg' ? avgCells(c) : totalCells(c)} /> : <Empty text="Sin estadísticas de carrera." />}</div>
