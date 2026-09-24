@@ -60,7 +60,7 @@ function Jersey({ n, small = false }: { n: string; small?: boolean }) {
 function Avatar({ profile, phone = false }: Props & { /** 68px inside the phone panel; 160px on the desktop band. */ phone?: boolean }) {
   const color = profile.club?.color ?? profile.mainClub?.color ?? 'rgba(255,255,255,0.22)';
   const shadow = phone ? '' : 'shadow-[0_10px_26px_rgba(0,0,0,0.26)]';
-  const px = phone ? 68 : 160;
+  const px = phone ? 76 : 160;
   return (
     <span className="relative inline-flex shrink-0">
       {profile.avatarUrl ? (
@@ -173,23 +173,21 @@ export default function PlayerProfileHero({ profile }: Props) {
   if (!p.active) boxes.push({ label: 'Temporadas en BSN', short: 'Temp.', value: p.seasonsCount ? String(p.seasonsCount) : '–' });
   const blockMeta = p.active ? `Promedios · Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios de carrera', span].filter(Boolean).join(' · ');
 
-  const phoneFacts = facts.map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'Origen' : f.label, value: f.label === 'Equipos' ? <ClubRow clubs={p.clubs} size={16} /> : f.value }));
-  const phoneFigures = [...boxes.map((b) => ({ label: b.short, value: b.value }))];
-  if (!p.active) phoneFigures[3] = { label: 'Temporadas', value: boxes[3].value };
+  const phoneFacts = facts.filter((f) => f.label !== 'Equipos').map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'País' : f.label }));
+  const phoneFigures = p.active ? boxes.map((b) => ({ label: b.label, value: b.value })) : [{ label: 'Puntos', value: boxes[0].value }, { label: 'Rebotes', value: boxes[1].value }, { label: 'Asistencias', value: boxes[2].value }, { label: 'Temporadas', value: boxes[3].value }];
 
   return (
     <>
-    {/* Phones: one translucent panel with the identity, the facts and the figures; only the panel has a border. */}
+    {/* Phones: identity, then the figures in a strip, then the bio as two columns of ruled rows. */}
     <section className="container pb-[36px] pt-[18px] lg:hidden">
-      <div className="flex items-center gap-[12px] px-[2px]">
+      <div className="flex items-center gap-[14px] px-[2px]">
           <Avatar profile={p} phone />
           <div className="min-w-0 flex-1">
-            {!p.active ? <div className="mb-[8px]"><ArchivoTag /></div> : null}
             <h1 className="text-[26px] leading-[1] text-white">
               {p.name}
               {p.nickname ? <span className="text-white/45"> “{p.nickname}”</span> : null}
             </h1>
-            <div className="mt-[8px] flex flex-wrap items-center gap-x-[7px] font-barlow text-[13px] font-medium text-white/72">
+            <div className={cx('flex flex-wrap items-center gap-x-[7px] font-barlow text-[13px] font-medium text-white/72', p.active ? 'mt-[8px]' : 'mt-[5px]')}>
               {p.active ? (
                 p.club ? (
                   <span className="inline-flex items-center gap-[7px]">
@@ -203,28 +201,38 @@ export default function PlayerProfileHero({ profile }: Props) {
             </div>
           </div>
       </div>
-      <div className={cx('rounded-[14px] border border-white/[0.12] bg-white/[0.045] px-[14px] pb-[16px] pt-[16px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]', p.active ? 'mt-[24px]' : 'mt-[16px]')}>
-        <dl className="grid grid-cols-2 gap-x-[14px] gap-y-[12px]">
-          {phoneFacts.map((f) => (
-            <div key={f.label} className={cx('min-w-0', f.wide && 'col-span-2')}>
-              <dt className={`${LABEL} text-[9.5px] tracking-[0.6px] text-white/55`}>{f.label}</dt>
-              <dd className="mt-[4px] flex items-baseline gap-[6px] whitespace-nowrap">
-                <span className="inline-flex items-center gap-[6px] text-[15px] leading-none text-white">{f.value}</span>
-                {f.sub ? <span className="font-barlow text-[11.5px] font-medium text-white/60 tabular-nums">{f.sub}</span> : null}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <div className={`mt-[20px] ${LABEL} text-[10px] text-white/50`}>{blockMeta}</div>
-        <div className={cx('mt-[10px] grid gap-[10px]', phoneFigures.length === 4 ? 'grid-cols-4' : 'grid-cols-3')}>
-          {phoneFigures.map((b) => (
-            <div key={b.label} className="min-w-0">
-              <div className="text-[24px] leading-none text-white tabular-nums">{b.value}</div>
-              <div className={`${LABEL} mt-[5px] text-[9.5px] tracking-[0.6px] text-white/55`}>{b.label}</div>
+      <div className={`mt-[28px] font-barlow text-[13px] font-semibold text-white tabular-nums`}>{blockMeta}</div>
+      <div className="mt-[10px] rounded-[12px] border border-white/[0.12] bg-white/[0.045] px-[14px] py-[12px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]">
+        <div className={cx('grid', phoneFigures.length === 4 ? 'grid-cols-4' : 'grid-cols-3')}>
+          {phoneFigures.map((b, i) => (
+            <div key={b.label} className={cx('min-w-0', i && 'border-l border-white/[0.08] pl-[12px]')}>
+              <div className="whitespace-nowrap font-barlow-condensed text-[13px] text-white/70">{b.label}</div>
+              <div className="mt-[5px] text-[24px] leading-none text-white tabular-nums">{b.value}</div>
             </div>
           ))}
         </div>
       </div>
+      <dl className="mt-[14px] grid grid-cols-2 gap-x-[24px]">
+        {[0, 1].map((col) => (
+          <div key={col} className="min-w-0">
+            {phoneFacts.filter((_, i) => i % 2 === col).map((f) => (
+              <div key={f.label} className="flex h-[46px] items-center justify-between gap-[10px] border-b border-white/[0.08]">
+                <dt className={`${LABEL} text-[10.5px] text-white/55`}>{f.label}</dt>
+                <dd className="flex items-baseline gap-[6px] whitespace-nowrap">
+                  <span className="inline-flex items-center gap-[6px] text-[16px] leading-none text-white">{f.value}</span>
+                  {f.sub ? <span className="font-barlow text-[12px] font-medium text-white/60 tabular-nums">{f.sub}</span> : null}
+                </dd>
+              </div>
+            ))}
+          </div>
+        ))}
+      </dl>
+      {!p.active && p.clubs.length ? (
+        <div className="flex min-h-[46px] items-center justify-between gap-[10px] border-b border-white/[0.08]">
+          <span className={`${LABEL} text-[10.5px] text-white/55`}>Equipos</span>
+          <ClubRow clubs={p.clubs} size={18} />
+        </div>
+      ) : null}
     </section>
     <section className="container hidden pb-[56px] pt-[36px] lg:block">
       <div className="flex items-center gap-[28px]">
