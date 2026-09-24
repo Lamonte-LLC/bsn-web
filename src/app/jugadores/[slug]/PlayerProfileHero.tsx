@@ -88,13 +88,13 @@ function ClubRow({ clubs, size = 24 }: { clubs: PlayerProfileData['clubs']; /** 
   );
 }
 
-type Fact = { label: string; value: React.ReactNode; sub?: string | null };
+type Fact = { label: string; value: React.ReactNode; sub?: string | null; /** Takes two columns of the grid (the club logos). */ wide?: boolean };
 
 function Facts({ facts, grid = false }: { facts: Fact[]; /** Desktop: a 4-column grid at the right of the name block instead of one row. */ grid?: boolean }) {
   return (
     <dl className={grid ? 'grid grid-cols-4 gap-x-[28px] gap-y-[18px]' : 'flex'}>
       {facts.map((f, i) => (
-        <div key={f.label} className={cx('min-w-0', i && !grid && 'ml-[22px] border-l border-white/12 pl-[22px]')}>
+        <div key={f.label} className={cx('min-w-0', i && !grid && 'ml-[22px] border-l border-white/12 pl-[22px]', grid && f.wide && 'col-span-2')}>
           <dt className={`${LABEL} text-white/55`}>{f.label}</dt>
           <dd className="mt-[6px] flex items-baseline gap-[7px] whitespace-nowrap">
             <span className="inline-flex items-center gap-[7px] text-[19px] leading-none text-white">{f.value}</span>
@@ -170,17 +170,16 @@ export default function PlayerProfileHero({ profile }: Props) {
   const country = nationalityLabel(p.nationality);
 
   const span = p.firstYear !== null && p.lastYear !== null ? `${p.firstYear}–${p.lastYear}` : null;
-  const dash = <span className="text-white/35">–</span>;
   const born = birthShort(p.dob);
-  const facts: Fact[] = [
-    { label: 'Posición', value: p.position ?? dash },
-    { label: 'Estatura', value: p.heightCm ? formatInches(centimeterToInches(p.heightCm)) : dash },
-    { label: 'Peso', value: p.weightKg ? `${Math.round(kilogramToPounds(p.weightKg))} lbs` : dash },
-    { label: 'Nacimiento', value: born ?? dash, sub: born && age !== null ? `${age} años` : null },
-    { label: 'Lugar de origen', value: country && p.nationality ? <><Flag code={p.nationality} />{country}</> : dash },
-    { label: 'Debut en BSN', value: p.debut ? String(p.debut.year) : dash, sub: p.debut?.club || null },
-    { label: 'Experiencia', value: p.seasonsCount ? `${p.seasonsCount} ${p.seasonsCount === 1 ? 'año' : 'años'}` : dash },
-  ];
+  const facts: Fact[] = [];
+  if (p.position) facts.push({ label: 'Posición', value: p.position });
+  if (p.heightCm) facts.push({ label: 'Estatura', value: formatInches(centimeterToInches(p.heightCm)) });
+  if (p.weightKg) facts.push({ label: 'Peso', value: `${Math.round(kilogramToPounds(p.weightKg))} lbs` });
+  if (born) facts.push({ label: 'Nacimiento', value: born, sub: age !== null ? `${age} años` : null });
+  if (country && p.nationality) facts.push({ label: 'Lugar de origen', value: <><Flag code={p.nationality} />{country}</> });
+  if (p.debut) facts.push({ label: 'Debut en BSN', value: String(p.debut.year), sub: p.debut.club || null });
+  if (p.seasonsCount) facts.push({ label: 'Experiencia', value: `${p.seasonsCount} ${p.seasonsCount === 1 ? 'año' : 'años'}` });
+  if (!p.active && p.clubs.length) facts.push({ label: 'Equipos', value: <ClubRow clubs={p.clubs} size={20} />, wide: true });
 
   const s = p.active ? p.season?.stats ?? null : p.career;
   const boxes = [
@@ -191,7 +190,7 @@ export default function PlayerProfileHero({ profile }: Props) {
   if (!p.active) boxes.push({ label: 'Temporadas en BSN', short: 'Temp.', value: p.seasonsCount ? String(p.seasonsCount) : '–' });
   const blockMeta = p.active ? `Promedios · Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios de carrera', span].filter(Boolean).join(' · ');
 
-  const phoneFacts = facts.map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'Origen' : f.label }));
+  const phoneFacts = facts.map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'Origen' : f.label, value: f.label === 'Equipos' ? <ClubRow clubs={p.clubs} size={16} /> : f.value }));
   const phoneFigures = [...boxes.map((b) => ({ label: b.short, value: b.value }))];
   if (!p.active) phoneFigures[3] = { label: 'Temporadas', value: boxes[3].value };
 
@@ -220,12 +219,11 @@ export default function PlayerProfileHero({ profile }: Props) {
                 <Years fy={p.firstYear!} ly={p.lastYear!} small />
               ) : null}
             </div>
-            {!p.active && p.clubs.length ? <div className="mt-[10px]"><ClubRow clubs={p.clubs} size={16} /></div> : null}
           </div>
         </div>
         <dl className={cx('grid grid-cols-2 gap-x-[14px] gap-y-[12px]', p.active ? 'mt-[26px]' : 'mt-[18px]')}>
           {phoneFacts.map((f) => (
-            <div key={f.label} className="min-w-0">
+            <div key={f.label} className={cx('min-w-0', f.wide && 'col-span-2')}>
               <dt className={`${LABEL} text-[9.5px] tracking-[0.6px] text-white/55`}>{f.label}</dt>
               <dd className="mt-[4px] flex items-baseline gap-[6px] whitespace-nowrap">
                 <span className="inline-flex items-center gap-[6px] text-[15px] leading-none text-white">{f.value}</span>
@@ -268,7 +266,6 @@ export default function PlayerProfileHero({ profile }: Props) {
                 <>{span ? <Years fy={p.firstYear!} ly={p.lastYear!} /> : null}</>
               )}
             </div>
-            {!p.active && p.clubs.length ? <div className="mt-[12px]"><ClubRow clubs={p.clubs} /></div> : null}
             {p.active ? <div className="mt-[22px]"><Facts facts={facts} /></div> : null}
           </div>
           {!p.active ? <div className="shrink-0"><Facts facts={facts} grid /></div> : null}
