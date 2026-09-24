@@ -132,16 +132,6 @@ function Years({ fy, ly, small = false }: { fy: number; ly: number; small?: bool
   );
 }
 
-/** Archivo BSN as a small frosted tag above the name: "ARCHIVO" light and tracked, "BSN" heavy in the archive's blue. */
-function ArchivoTag() {
-  return (
-    <span className="inline-flex h-[24px] items-center rounded-full border border-white/[0.14] bg-white/[0.06] px-[10px] leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[10px]" aria-label="Archivo BSN">
-      <span className="font-barlow-condensed text-[12px] uppercase tracking-[1.8px] text-white/90">Archivo</span>
-      <span className="text-[13px] uppercase tracking-[0.6px] text-[#4A8DF0]">BSN</span>
-    </span>
-  );
-}
-
 /**
  * The ink band of the profile: photo, name, position and club (or the span of the career), the facts row and
  * three headline boxes. An active player shows this season's averages; a retired one, the career's, under the
@@ -239,7 +229,6 @@ export default function PlayerProfileHero({ profile }: Props) {
         <Avatar profile={p} />
         <div className="flex min-w-0 flex-1 items-center gap-[40px]">
           <div className="min-w-0 flex-1">
-            {!p.active ? <div className="mb-[10px]"><ArchivoTag /></div> : null}
             <h1 className="text-[42px] leading-[1] text-white">
               {p.name}
               {p.nickname ? <span className="text-white/45"> “{p.nickname}”</span> : null}
