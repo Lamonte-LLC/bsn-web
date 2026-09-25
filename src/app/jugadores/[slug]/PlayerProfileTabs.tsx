@@ -217,17 +217,18 @@ function ScoringMix({ s, accent }: { s: LineStats; /** The club color the player
           <div className="flex h-[12px] gap-[2px] overflow-hidden rounded-[6px] lg:h-[14px]" role="img" aria-label={segs.map((x) => `${x.label} ${Math.round((x.pts / total) * 100)}%`).join(', ')}>
             {segs.map((x) => <div key={x.label} style={{ width: `${(x.pts / total) * 100}%`, background: x.color }} />)}
           </div>
-          <div className="mt-[14px] grid grid-cols-1 gap-[10px] lg:mb-[16px] lg:grid-cols-3 lg:gap-[12px]">
+          {/* Phones: three aligned columns (dot + label / percentage / points), one row per way of scoring. Desktop: one column per way, stacked label over figures. */}
+          <div className="mt-[14px] grid grid-cols-[1fr_auto_auto] items-center gap-x-[12px] gap-y-[10px] lg:mb-[16px] lg:grid-cols-3 lg:gap-x-[12px] lg:gap-y-0">
             {segs.map((x) => (
-              <div key={x.label} className="flex items-center gap-[10px] lg:flex-col lg:items-start lg:gap-[6px]">
-                <span className="inline-flex items-center gap-[7px]">
+              <div key={x.label} className="contents lg:grid lg:grid-cols-[auto_1fr] lg:items-center lg:gap-x-[8px] lg:gap-y-[6px]">
+                <span className="inline-flex items-center gap-[7px] lg:col-span-2">
                   <span className="h-[10px] w-[10px] shrink-0 rounded-[3px]" style={{ background: x.color }} aria-hidden />
                   <span className="font-barlow text-[12.5px] font-medium text-[rgba(15,23,31,0.7)]">{x.label}</span>
                 </span>
-                <span className="inline-flex items-center gap-[8px]">
-                  <span className="text-[22px] leading-none text-[#0F171F] tabular-nums">{Math.round((x.pts / total) * 100)}%</span>
-                  <span className="inline-flex h-[22px] items-center rounded-[6px] bg-[#F1F2F4] px-[7px] text-[13px] leading-none text-[#0F171F] tabular-nums">{f0(x.pts)} <span className="ml-[4px] font-barlow text-[10.5px] font-medium text-[rgba(15,23,31,0.6)]">pts</span></span>
+                <span className="lg:inline-flex lg:items-center lg:gap-[8px]">
+                  <span className="block text-right text-[22px] leading-none text-[#0F171F] tabular-nums lg:inline lg:text-left">{Math.round((x.pts / total) * 100)}%</span>
                 </span>
+                <span className="inline-flex h-[22px] items-center justify-self-end rounded-[6px] bg-[#F1F2F4] px-[7px] text-[13px] leading-none text-[#0F171F] tabular-nums lg:justify-self-start">{f0(x.pts)} <span className="ml-[4px] font-barlow text-[10.5px] font-medium text-[rgba(15,23,31,0.6)]">pts</span></span>
               </div>
             ))}
           </div>
