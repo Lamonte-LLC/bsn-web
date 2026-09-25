@@ -176,15 +176,18 @@ export default function PlayerProfileHero({ profile }: Props) {
       </div>
       <dl className="mt-[14px]">
         {Array.from({ length: Math.ceil(phoneFacts.length / 2) }, (_, r) => phoneFacts.slice(r * 2, r * 2 + 2)).map((pair, r) => (
-          <div key={r} className={cx('grid grid-cols-2 gap-x-[24px]', r && 'border-t border-white/[0.08]')}>
-            {pair.map((f) => (
-              <div key={f.label} className="flex h-[46px] min-w-0 items-center justify-between gap-[10px]">
+          <div key={r} className="grid grid-cols-2 gap-x-[24px]">
+            {/* Each cell draws its own hairline (the gap stays clear); an empty right cell still draws one under the row above. */}
+            {[pair[0], pair[1] ?? null].map((f, c) => f ? (
+              <div key={f.label} className={cx('flex h-[46px] min-w-0 items-center justify-between gap-[10px]', r && 'border-t border-white/[0.08]')}>
                 <dt className={`${LABEL} text-[10.5px] text-white/55`}>{f.label}</dt>
                 <dd className="flex items-baseline gap-[6px] whitespace-nowrap">
                   <span className="inline-flex items-center gap-[6px] text-[16px] leading-none text-white">{f.value}</span>
                   {f.sub ? <span className="font-barlow text-[12px] font-medium text-white/60 tabular-nums">{f.sub}</span> : null}
                 </dd>
               </div>
+            ) : (
+              <div key={`empty-${c}`} className={cx(r && 'border-t border-white/[0.08]')} aria-hidden />
             ))}
           </div>
         ))}
