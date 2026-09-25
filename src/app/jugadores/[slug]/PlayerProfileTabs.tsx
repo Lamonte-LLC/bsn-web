@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';

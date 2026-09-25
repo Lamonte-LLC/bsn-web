@@ -172,7 +172,8 @@ export function buildProfile(p: ProfileQueryPlayer, c: ComparisonQueryPlayer): P
   }
   const mainClub = [...tally.values()].sort((a, b) => b.seasons - a.seasons || b.latest - a.latest)[0]?.club ?? null;
   const earliest = lines[lines.length - 1] ?? null;
-  const debut = earliest && firstYear !== null ? { year: firstYear, club: earliest.teams[0]?.nickname ?? '' } : null;
+  // Some extinct clubs keep the city in their nickname ("Brujos de Guayama"); the fact shows the club alone.
+  const debut = earliest && firstYear !== null ? { year: firstYear, club: (earliest.teams[0]?.nickname ?? '').replace(/\s+de\s+.+$/i, '') } : null;
 
   const roster = p.seasonRoster;
   const active = roster !== null;

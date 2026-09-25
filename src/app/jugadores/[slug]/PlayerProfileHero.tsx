@@ -116,7 +116,6 @@ export default function PlayerProfileHero({ profile }: Props) {
   if (country && p.nationality && (nationalityIso2(p.nationality) || NATIONALITY_KNOWN.has(p.nationality.toUpperCase()))) facts.push({ label: 'Lugar de origen', value: <><Flag code={p.nationality} />{country}</> });
   if (p.debut) facts.push({ label: 'Debut en BSN', value: String(p.debut.year), sub: p.debut.club || null });
   if (p.seasonsCount) facts.push({ label: 'Experiencia', value: `${p.seasonsCount} ${p.seasonsCount === 1 ? 'año' : 'años'}` });
-  if (!p.active && p.clubs.length) facts.push({ label: 'Equipos', value: <ClubRow clubs={p.clubs} size={20} />, wide: true });
 
   const s = p.active ? p.season?.stats ?? null : p.career;
   const boxes = [
@@ -125,9 +124,15 @@ export default function PlayerProfileHero({ profile }: Props) {
     { label: 'Asistencias por juego', short: 'APJ', value: f1(s?.assistsAvg) },
   ];
   if (!p.active) boxes.push({ label: 'Temporadas en BSN', short: 'Temp.', value: p.seasonsCount ? String(p.seasonsCount) : '–' });
-  const blockMeta = p.active ? `Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios de carrera', span].filter(Boolean).join(' · ');
+  const blockMeta = p.active ? `Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios', span].filter(Boolean).join(' · ');
 
-  const phoneFacts = facts.filter((f) => f.label !== 'Equipos').map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'País' : f.label }));
+  const phoneFacts = facts.map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'País' : f.label }));
+  const clubsRow = !p.active && p.clubs.length ? (
+    <span className="inline-flex items-center gap-[10px]">
+      <span className={`${LABEL} text-[10.5px] text-white/55`}>Equipos</span>
+      <ClubRow clubs={p.clubs} size={20} stack={p.clubs.length > 3} />
+    </span>
+  ) : null;
   const phoneFigures = p.active ? boxes.map((b) => ({ label: b.short, value: b.value })) : [{ label: 'PPJ', value: boxes[0].value }, { label: 'RPJ', value: boxes[1].value }, { label: 'APJ', value: boxes[2].value }, { label: 'Temporadas', value: boxes[3].value }];
 
   return (
@@ -155,7 +160,10 @@ export default function PlayerProfileHero({ profile }: Props) {
             </div>
           </div>
       </div>
-      <div className={`mt-[28px] font-barlow text-[13px] font-semibold text-white tabular-nums`}>{blockMeta}</div>
+      <div className="mt-[28px] flex items-center justify-between gap-[12px]">
+        <span className="whitespace-nowrap font-barlow text-[13px] font-semibold text-white tabular-nums">{blockMeta}</span>
+        {clubsRow}
+      </div>
       <div className="mt-[10px] rounded-[12px] border border-white/[0.12] bg-white/[0.045] px-[14px] py-[12px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]">
         <div className={cx('grid', phoneFigures.length === 4 ? 'grid-cols-4' : 'grid-cols-3')}>
           {phoneFigures.map((b, i) => (
@@ -166,11 +174,11 @@ export default function PlayerProfileHero({ profile }: Props) {
           ))}
         </div>
       </div>
-      <dl className="mt-[14px] grid grid-cols-2 gap-x-[24px]">
-        {[0, 1].map((col) => (
-          <div key={col} className="min-w-0">
-            {phoneFacts.filter((_, i) => i % 2 === col).map((f) => (
-              <div key={f.label} className="flex h-[46px] items-center justify-between gap-[10px] border-t border-white/[0.08] first:border-t-0">
+      <dl className="mt-[14px]">
+        {Array.from({ length: Math.ceil(phoneFacts.length / 2) }, (_, r) => phoneFacts.slice(r * 2, r * 2 + 2)).map((pair, r) => (
+          <div key={r} className={cx('grid grid-cols-2 gap-x-[24px]', r && 'border-t border-white/[0.08]')}>
+            {pair.map((f) => (
+              <div key={f.label} className="flex h-[46px] min-w-0 items-center justify-between gap-[10px]">
                 <dt className={`${LABEL} text-[10.5px] text-white/55`}>{f.label}</dt>
                 <dd className="flex items-baseline gap-[6px] whitespace-nowrap">
                   <span className="inline-flex items-center gap-[6px] text-[16px] leading-none text-white">{f.value}</span>
@@ -181,12 +189,6 @@ export default function PlayerProfileHero({ profile }: Props) {
           </div>
         ))}
       </dl>
-      {!p.active && p.clubs.length ? (
-        <div className="flex min-h-[46px] items-center gap-[14px] border-t border-white/[0.08]">
-          <span className={`${LABEL} text-[10.5px] text-white/55`}>Equipos</span>
-          <ClubRow clubs={p.clubs} size={18} />
-        </div>
-      ) : null}
     </section>
     <section className="container hidden pb-[56px] pt-[36px] lg:block">
       <div className="flex items-center gap-[28px]">
@@ -225,6 +227,12 @@ export default function PlayerProfileHero({ profile }: Props) {
         <div className="mb-[12px] flex items-center gap-[12px]">
           <span className="truncate font-barlow text-[14px] font-semibold text-white tabular-nums">{blockMeta}</span>
           <span className="h-px min-w-[24px] flex-1 bg-white/10" aria-hidden />
+          {!p.active && p.clubs.length ? (
+            <span className="inline-flex items-center gap-[12px]">
+              <span className={`${LABEL} text-white/55`}>Equipos</span>
+              <ClubRow clubs={p.clubs} size={26} stack={p.clubs.length > 3} />
+            </span>
+          ) : null}
         </div>
         <div className={`grid gap-[12px] ${boxes.length === 4 ? 'grid-cols-4' : 'grid-cols-3'}`}>
           {boxes.map((b) => <DeepBox key={b.label} label={b.label} value={b.value} />)}

@@ -28,7 +28,7 @@ function ClubChip({ club, size }: { club: ProfileClub; size: number }) {
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
         onBlur={() => setOpen(false)}
-        className="flex cursor-default items-center justify-center rounded-full border border-white/12 bg-[#1A222B] outline-none transition-colors duration-150 hover:border-white/30 focus-visible:border-white/50"
+        className="flex cursor-default items-center justify-center rounded-full border border-white/12 bg-[#1A222B] shadow-[0_0_0_2px_#0F171F] outline-none transition-colors duration-150 hover:border-white/30 focus-visible:border-white/50"
         style={{ width: size + 10, height: size + 10 }}
       >
         <ClubMark code={club.code} color={club.color} size={size} />
@@ -48,11 +48,11 @@ function ClubChip({ club, size }: { club: ProfileClub; size: number }) {
 }
 
 /** The clubs of the career as a row of marks, oldest first, each with its name on hover or tap. */
-export default function ClubRow({ clubs, size = 24 }: { clubs: ProfileClub[]; /** Mark size; the disc adds 10px. */ size?: number }) {
+export default function ClubRow({ clubs, size = 24, stack = false }: { clubs: ProfileClub[]; /** Mark size; the disc adds 10px. */ size?: number; /** Overlap the discs (four or more clubs on one line), like the season table's stacks. */ stack?: boolean }) {
   return (
-    <span className="flex flex-wrap items-center gap-[5px]" role="list" aria-label="Equipos">
-      {clubs.map((c) => (
-        <span key={c.code} role="listitem" className="inline-flex">
+    <span className={cx('flex items-center', stack ? 'flex-nowrap' : 'flex-wrap gap-[5px]')} role="list" aria-label="Equipos">
+      {clubs.map((c, i) => (
+        <span key={c.code} role="listitem" className="relative inline-flex" style={stack ? { marginLeft: i ? -Math.round(size * 0.3) : 0, zIndex: clubs.length - i } : undefined}>
           <ClubChip club={c} size={size} />
         </span>
       ))}
