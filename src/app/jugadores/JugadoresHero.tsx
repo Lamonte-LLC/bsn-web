@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import cx from 'classnames';
 import { fmtInt } from '@/archivo/lib/format';
@@ -13,6 +13,17 @@ type Props = {
   historicCount: number;
 };
 
+/** Follows `?tab=` into the shared tab. On its own under Suspense so the hero still prerenders statically. */
+function TabFromUrl() {
+  const fromUrl = useSearchParams().get('tab');
+
+  useEffect(() => {
+    if (isJugadoresTab(fromUrl)) setJugadoresTab(fromUrl);
+  }, [fromUrl]);
+
+  return null;
+}
+
 /**
  * Title and the two tabs, centered on the band like /estadisticas, with each tab's count beside it. The card
  * with the list overlaps the bottom of the band, so the band keeps extra room under the tabs.
@@ -21,12 +32,6 @@ export default function JugadoresHero({ activeCount, historicCount }: Props) {
   const tab = useJugadoresTab();
   const router = useRouter();
   const pathname = usePathname();
-  const params = useSearchParams();
-  const fromUrl = params.get('tab');
-
-  useEffect(() => {
-    if (isJugadoresTab(fromUrl)) setJugadoresTab(fromUrl);
-  }, [fromUrl]);
 
   const pick = (next: JugadoresTab) => {
     setJugadoresTab(next);
@@ -40,6 +45,9 @@ export default function JugadoresHero({ activeCount, historicCount }: Props) {
 
   return (
     <section className="pb-[64px] pt-8 text-center lg:pb-[84px] lg:pt-[50px]">
+      <Suspense fallback={null}>
+        <TabFromUrl />
+      </Suspense>
       <div className="container">
         <h1 className="text-[38px] tracking-[0.4px] text-white lg:text-[42px]">Jugadores</h1>
         <div role="tablist" aria-label="Jugadores activos o históricos" className="mt-4 flex justify-center gap-[24px] lg:mt-5 lg:gap-[28px]">
