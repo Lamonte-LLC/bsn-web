@@ -15,6 +15,8 @@ import { ageFrom, f1, nationalityIso2, type PlayerProfileData } from './profile-
 type Props = { profile: PlayerProfileData };
 
 const LABEL = 'whitespace-nowrap font-barlow text-[11px] font-semibold uppercase tracking-[0.8px]';
+/** The club under the name reads as a link: a hairline underline that brightens with the text on hover. */
+const CLUB_NAME = 'underline decoration-[1px] underline-offset-[4px] decoration-white/35 transition-colors duration-150 group-hover:decoration-white';
 
 /** The country's flag (3:2 SVGs from country-flag-icons) for every nationality the API returns; nothing for the rest. */
 function Flag({ code }: { code: string }) {
@@ -127,12 +129,6 @@ export default function PlayerProfileHero({ profile }: Props) {
   const blockMeta = p.active ? `Temporada ${p.season?.year ?? ''}`.trim() : ['Promedios', span].filter(Boolean).join(' · ');
 
   const phoneFacts = facts.map((f) => ({ ...f, label: f.label === 'Lugar de origen' ? 'País' : f.label }));
-  const clubsRow = !p.active && p.clubs.length ? (
-    <span className="inline-flex items-center gap-[10px]">
-      <span className={`${LABEL} text-[10.5px] text-white/55`}>Equipos</span>
-      <ClubRow clubs={p.clubs} size={20} stack={p.clubs.length > 3} />
-    </span>
-  ) : null;
   const phoneFigures = p.active ? boxes.map((b) => ({ label: b.short, value: b.value })) : [{ label: 'PPJ', value: boxes[0].value }, { label: 'RPJ', value: boxes[1].value }, { label: 'APJ', value: boxes[2].value }, { label: 'Temporadas', value: boxes[3].value }];
 
   return (
@@ -149,21 +145,19 @@ export default function PlayerProfileHero({ profile }: Props) {
             <div className={cx('flex flex-wrap items-center gap-x-[7px] font-barlow text-[13px] font-medium text-white/72', p.active ? 'mt-[8px]' : 'mt-[5px]')}>
               {p.active ? (
                 p.club ? (
-                  <Link href={`/equipos/${p.club.code}`} className="inline-flex items-center gap-[7px] rounded-[4px] transition-colors duration-150 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
+                  <Link href={`/equipos/${p.club.code}`} className="group inline-flex items-center gap-[7px] rounded-[4px] text-[14px] transition-colors duration-150 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
                     <ClubMark code={p.club.code} color={p.club.color} size={18} />
-                    {p.club.name}
+                    <span className={CLUB_NAME}>{p.club.name}</span>
                   </Link>
                 ) : null
               ) : span ? (
                 <Years fy={p.firstYear!} ly={p.lastYear!} small />
               ) : null}
             </div>
+            {!p.active && p.clubs.length ? <div className="mt-[18px]"><ClubRow clubs={p.clubs} size={19} stack={p.clubs.length > 4} /></div> : null}
           </div>
       </div>
-      <div className="mt-[28px] flex items-center justify-between gap-[12px]">
-        <span className="whitespace-nowrap font-barlow text-[13px] font-semibold text-white tabular-nums">{blockMeta}</span>
-        {clubsRow}
-      </div>
+      <div className="mt-[28px] font-barlow text-[13px] font-semibold text-white tabular-nums">{blockMeta}</div>
       <div className="mt-[10px] rounded-[12px] border border-white/[0.12] bg-white/[0.045] px-[14px] py-[12px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-[14px]">
         <div className={cx('grid', phoneFigures.length === 4 ? 'grid-cols-4' : 'grid-cols-3')}>
           {phoneFigures.map((b, i) => (
@@ -201,9 +195,9 @@ export default function PlayerProfileHero({ profile }: Props) {
               {p.active ? (
                 <>
                   {p.club ? (
-                    <Link href={`/equipos/${p.club.code}`} className="inline-flex items-center gap-[8px] rounded-[4px] transition-colors duration-150 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
+                    <Link href={`/equipos/${p.club.code}`} className="group inline-flex items-center gap-[8px] rounded-[4px] text-[16px] transition-colors duration-150 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
                       <ClubMark code={p.club.code} color={p.club.color} size={22} />
-                      {p.club.name}
+                      <span className={CLUB_NAME}>{p.club.name}</span>
                     </Link>
                   ) : null}
                 </>
@@ -211,6 +205,7 @@ export default function PlayerProfileHero({ profile }: Props) {
                 <>{span ? <Years fy={p.firstYear!} ly={p.lastYear!} /> : null}</>
               )}
             </div>
+            {!p.active && p.clubs.length ? <div className="mt-[12px]"><ClubRow clubs={p.clubs} size={22} stack={p.clubs.length > 5} /></div> : null}
             {p.active ? <div className="mt-[30px]"><Facts facts={facts} /></div> : null}
             <Link href={compareHref([p.providerId])} className="mt-[25px] inline-flex h-[34px] items-center gap-[8px] rounded-full border border-white/30 px-[14px] font-barlow text-[13px] font-semibold text-white transition-colors duration-150 hover:border-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M3 13V7M8 13V3M13 13V9" /></svg>
@@ -225,12 +220,6 @@ export default function PlayerProfileHero({ profile }: Props) {
         <div className="mb-[12px] flex items-center gap-[12px]">
           <span className="truncate font-barlow text-[14px] font-semibold text-white tabular-nums">{blockMeta}</span>
           <span className="h-px min-w-[24px] flex-1 bg-white/10" aria-hidden />
-          {!p.active && p.clubs.length ? (
-            <span className="inline-flex items-center gap-[12px]">
-              <span className={`${LABEL} text-white/55`}>Equipos</span>
-              <ClubRow clubs={p.clubs} size={26} stack={p.clubs.length > 3} />
-            </span>
-          ) : null}
         </div>
         <div className={`grid gap-[12px] ${boxes.length === 4 ? 'grid-cols-4' : 'grid-cols-3'}`}>
           {boxes.map((b) => <DeepBox key={b.label} label={b.label} value={b.value} />)}

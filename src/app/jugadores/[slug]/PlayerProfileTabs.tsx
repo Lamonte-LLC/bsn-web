@@ -315,6 +315,12 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
   const cols = columns(mode).filter((c) => lines.some((l) => rec(c.get(l.stats))) || (career ? rec(c.get(career)) : false));
   // A season with two clubs shows two marks and "ARE/PON": the column widens so it never runs into J.
   const multiClub = lines.some((l) => l.teams.length > 1);
+  const codesOf = (l: SeasonLine) => l.teams.map((t) => t.code).join('/');
+  // Desktop spells out the nicknames unless three clubs or a long pair ("Grises de Humacao / Capitanes") would overrun the column.
+  const desktopTeams = (l: SeasonLine) => {
+    const names = l.teams.map((t) => t.nickname).join(' / ');
+    return l.teams.length > 2 || names.length > 22 ? codesOf(l) : names;
+  };
   const num = (v: string, strong = false) => <td className={cx(TD, 'text-center', strong ? 'font-semibold text-[#0F171F]' : 'text-[rgba(15,23,31,0.75)]')}>{v}</td>;
   return (
     <div className={`${PANEL_CARD} overflow-hidden`}>
@@ -336,10 +342,13 @@ function SeasonsTable({ lines, career, mode, seasonsCount }: { lines: SeasonLine
               <tr key={l.providerId}>
                 <td className={`${TD} ${STICKY} font-semibold text-[#0F171F]`}>{l.year}</td>
                 <td className={`${TD} pl-[6px] text-[rgba(15,23,31,0.75)] lg:pl-[10px]`}>
-                  <span className="flex items-center gap-[5px] whitespace-nowrap leading-none lg:gap-[6px]">
-                    {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={18} />)}
-                    <span className="font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:hidden">{l.teams.map((t) => t.code).join('/')}</span>
-                    <span className="hidden font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:inline">{l.teams.length > 2 ? l.teams.map((t) => t.code).join('/') : l.teams.map((t) => t.nickname).join(' / ')}</span>
+                  {/* Three or more clubs in one season (the odd double trade) stack the marks over the codes so the cell never runs into J. */}
+                  <span className={cx('flex whitespace-nowrap leading-none', l.teams.length > 2 ? 'flex-col items-start gap-[6px]' : 'items-center gap-[5px] lg:gap-[6px]')}>
+                    <span className="flex shrink-0 items-center gap-[5px] lg:gap-[6px]">
+                      {l.teams.map((t) => <ClubMark key={t.code} code={t.code} color={t.color} size={18} />)}
+                    </span>
+                    <span className="font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:hidden">{codesOf(l)}</span>
+                    <span className="hidden font-special-gothic-condensed-one text-[16px] tracking-[0.3px] text-[#0F171F] lg:inline">{desktopTeams(l)}</span>
                   </span>
                 </td>
                 {num(f0(l.stats.games))}
@@ -370,7 +379,7 @@ function EraNotes({ debutYear, minutesSince }: { debutYear: number | null; minut
     <ul className="mt-[12px] space-y-[4px]">
       {notes.map((n) => (
         <li key={n} className="flex items-start gap-[8px] font-barlow text-[12px] leading-[1.5] text-[rgba(15,23,31,0.6)] lg:text-[13px]">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" strokeLinecap="round" className="mt-[3px] shrink-0" aria-hidden><path d="M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 7.5v4M8 5h.01" /></svg>
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="rgba(15,23,31,0.4)" strokeWidth="1.5" strokeLinecap="round" className="mt-[4px] shrink-0" aria-hidden><path d="M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 7.5v4M8 5h.01" /></svg>
           {n}
         </li>
       ))}
@@ -500,7 +509,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
         <TabGroup>
           <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] bg-white px-[16px] lg:px-[24px]">
             <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 3 ? 'gap-[18px]' : tabs.length > 2 ? 'gap-[22px]' : 'gap-[28px]')}>
-              {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 3 ? 'text-[16px] lg:text-[18px]' : tabs.length > 2 ? 'text-[18px]' : 'text-[20px] lg:text-[18px]')}>{label}</Tab>)}
+              {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 3 ? 'text-[16px] lg:text-[18px]' : tabs.length > 2 ? 'text-[18px]' : 'text-[19px] lg:text-[18px]')}>{label}</Tab>)}
             </TabList>
           </div>
           <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[24px] pt-[24px] lg:px-[24px] lg:pb-[24px] lg:pt-[32px]">
