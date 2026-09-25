@@ -115,6 +115,8 @@ export const usePlayerMatches = (
   return {
     playerMatches,
     loading,
+    /** True once a response has arrived; before that the list is empty only because nothing was fetched yet. */
+    loaded: data !== undefined,
     error,
     hasNextPage,
     loadMore,

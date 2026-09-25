@@ -1,7 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import ScrollHint from '@/shared/client/components/ui/ScrollHint';
+import { useRouter } from 'next/navigation';
 import numeral from 'numeral';
+import ShimmerLine from '@/shared/client/components/ui/ShimmerLine';
 import { usePlayerMatches } from '../hooks/player';
 import TeamLogoAvatar from '@/team/components/avatar/TeamLogoAvatar';
 import { formatDate } from '@/utils/date-formatter';
@@ -10,64 +13,88 @@ import { getFirstWord } from '@/utils/text';
 
 type Props = {
   playerProviderId: string;
+  /** Games per page; the profile shows five and loads five more at a time. */
+  pageSize?: number;
 };
 
-export default function PlayerMatchesWidget({ playerProviderId }: Props) {
-  const { playerMatches, loading, hasNextPage, loadMore } =
-    usePlayerMatches(playerProviderId);
+export default function PlayerMatchesWidget({ playerProviderId, pageSize = 10 }: Props) {
+  const { playerMatches, loading, loaded, hasNextPage, loadMore } =
+    usePlayerMatches(playerProviderId, pageSize);
+  const router = useRouter();
+
+  // Before the first response: a few shimmering rows, never the empty message.
+  if (!loaded) {
+    return (
+      <div className="space-y-[10px] py-[10px]">
+        <ShimmerLine height="20px" />
+        <ShimmerLine height="20px" />
+        <ShimmerLine height="20px" />
+      </div>
+    );
+  }
+
+  // Empty: one quiet line inside the panel's card, never a headerless table that a phone would clip.
+  if (playerMatches.length === 0) {
+    return (
+      <p className="py-[16px] text-center font-barlow text-[14px] text-[rgba(15,23,31,0.55)]">
+        No se han encontrado juegos para este jugador.
+      </p>
+    );
+  }
 
   return (
     <div>
-      <div className="overflow-x-auto -mx-4 sm:-mx-3 player-stats-table">
-        <table className="w-full text-left">
+      {/* Phones: the table scrolls sideways with a fading edge; the date column stays put. */}
+      <ScrollHint className="-mx-4 sm:-mx-3" innerClassName="player-stats-table">
+        <table className="w-full text-left lg:table-fixed">
           <thead>
             <tr>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
+              <th className="sticky left-0 z-[1] bg-white lg:static lg:w-[128px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Fecha
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
+              <th className="lg:w-[180px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Oponente
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
+              <th className="lg:w-[140px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Resultado
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Min
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Pts
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Reb
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Ast
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Stl
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Blk
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
+              <th className="min-w-[56px] border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase text-center">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   Fg
                 </span>
@@ -77,7 +104,7 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                   3pt
                 </span>
               </th>
-              <th className="border-b border-b-[rgba(0,0,0,0.07)] px-3 py-2 uppercase whitespace-nowrap w-[1%]">
+              <th className="lg:w-[150px] border-b border-b-[rgba(0,0,0,0.07)] py-2 pl-6 pr-4 uppercase whitespace-nowrap w-[1%]">
                 <span className="font-normal text-[13px] text-[rgba(0,0,0,0.6)]">
                   &nbsp;
                 </span>
@@ -94,12 +121,14 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
               return (
                 <tr
                   key={playerMatch.match.providerId}
+                  onClick={() => router.push(`/partidos/${playerMatch.match.providerId}`)}
+                  className="group cursor-pointer transition-colors duration-150 hover:[&>td]:!bg-[#F3F4F6]"
                   style={{
                     backgroundColor:
                       index % 2 === 0 ? 'transparent' : '#F9F9F9',
                   }}
                 >
-                  <td className="px-3 py-4.5 whitespace-nowrap">
+                  <td className="sticky left-0 z-[1] px-3 py-4.5 whitespace-nowrap lg:static">
                     <span className="font-barlow font-medium text-[13px] text-[rgba(15,23,31,0.9)] md:text-sm">
                       {formatDate(
                         playerMatch.match.startAt,
@@ -115,7 +144,7 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                           size={24}
                         />
                       </div>
-                      <span className="text-[15px] text-black">
+                      <span className="text-[16px] text-black">
                         {getFirstWord(playerMatch.opponentTeam.nickname)}
                       </span>
                     </div>
@@ -180,12 +209,13 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
                       )}
                     </span>
                   </td>
-                  <td className="px-3 py-4.5 text-center whitespace-nowrap">
+                  <td className="py-4.5 pl-6 pr-4 text-center whitespace-nowrap">
                     <Link
                       href={`/partidos/${playerMatch.match.providerId}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="flex flex-row items-center gap-1"
                     >
-                      <span className="text-[15px] text-black">
+                      <span className="text-[15px] text-black underline decoration-transparent decoration-1 underline-offset-4 transition-[text-decoration-color] duration-150 group-hover:decoration-[rgba(15,23,31,0.3)] md:text-[16px]">
                         Ver resultado
                       </span>
                       <img
@@ -211,17 +241,15 @@ export default function PlayerMatchesWidget({ playerProviderId }: Props) {
             )}
           </tbody>
         </table>
-      </div>
+      </ScrollHint>
       {hasNextPage && (
-        <div className="flex justify-center mt-4 md:w-8/12 md:mx-auto">
+        <div className="flex justify-center py-[14px]">
           <button
             onClick={loadMore}
             disabled={loading}
-            className="bg-[#FCFCFC] border border-[#D9D3D3] cursor-pointer px-4 py-2.5 rounded-[12px] disabled:opacity-50 w-full"
+            className="inline-flex h-[44px] w-full max-w-[360px] cursor-pointer items-center justify-center rounded-[12px] border border-[rgba(15,23,31,0.16)] px-[28px] font-barlow text-[15px] font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] disabled:cursor-default disabled:opacity-60"
           >
-            <span className="text-base text-black tracking-[2%]">
-              {loading ? 'Cargando...' : 'Cargar más'}
-            </span>
+            {loading ? 'Cargando…' : 'Cargar más juegos'}
           </button>
         </div>
       )}

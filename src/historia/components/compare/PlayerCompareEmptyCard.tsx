@@ -38,7 +38,7 @@ export default function PlayerCompareEmptyCard({ selectedKeys, suggested, season
         <h2 className="text-[21px] leading-[1.1] tracking-[0.3px] text-[#0F171F] [text-wrap:balance] lg:text-[26px]">
           Compara de {MIN_COMPARE_PLAYERS} a {MAX_COMPARE_PLAYERS} jugadores del BSN
         </h2>
-        <p className="mx-auto mt-[6px] max-w-[520px] font-barlow text-[15px] font-normal leading-[1.45] text-[rgba(15,23,31,0.78)] lg:mt-[8px] lg:text-[16px]">Activos o históricos, de cualquier época, lado a lado.</p>
+        <p className="mx-auto mt-[6px] max-w-[520px] font-barlow text-[14px] font-normal leading-[1.45] text-[rgba(15,23,31,0.78)] lg:mt-[8px] lg:text-[16px]">Activos o históricos, de cualquier época, lado a lado.</p>
       </div>
 
       <button type="button" onClick={() => setPickerOpen(true)} className={`mt-[20px] flex h-[46px] w-full cursor-pointer items-center gap-[10px] rounded-[10px] border border-[#D4D4D4] bg-[#fafafa] px-[16px] text-left font-barlow text-[15px] font-medium text-[rgba(15,23,31,0.45)] transition-colors duration-150 hover:border-[#0F171F] ${cls.focus}`}>

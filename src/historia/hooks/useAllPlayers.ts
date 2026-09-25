@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client/react';
 type Node = { providerId: string; avatarUrl: string | null; name: string; nickname: string | null; playingPosition: string };
 type Response = { playersConnection: { pageInfo: { hasNextPage: boolean; endCursor: string | null }; edges: { node: Node }[] } };
 
-const PAGE = 60;
+const PAGE = 50;
 
 /**
  * Every player of the API from A to Z, one page at a time: the picker shows them under the featured list and
