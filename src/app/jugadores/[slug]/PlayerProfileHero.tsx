@@ -138,7 +138,7 @@ export default function PlayerProfileHero({ profile }: Props) {
   return (
     <>
     {/* Phones: identity, then the figures in a strip, then the bio as two columns of ruled rows. */}
-    <section className="container pb-[36px] pt-[18px] lg:hidden">
+    <section className="container pb-[24px] pt-[18px] lg:hidden">
       <div className="flex items-center gap-[14px] px-[2px]">
           <Avatar profile={p} phone />
           <div className="min-w-0 flex-1">
@@ -174,23 +174,18 @@ export default function PlayerProfileHero({ profile }: Props) {
           ))}
         </div>
       </div>
-      <dl className="mt-[14px]">
-        {Array.from({ length: Math.ceil(phoneFacts.length / 2) }, (_, r) => phoneFacts.slice(r * 2, r * 2 + 2)).map((pair, r) => (
-          <div key={r} className="grid grid-cols-2 gap-x-[24px]">
-            {/* Each cell draws its own hairline (the gap stays clear); an empty right cell still draws one under the row above. */}
-            {[pair[0], pair[1] ?? null].map((f, c) => f ? (
-              <div key={f.label} className={cx('flex h-[46px] min-w-0 items-center justify-between gap-[10px]', r && 'border-t border-white/[0.08]')}>
-                <dt className={`${LABEL} text-[10.5px] text-white/55`}>{f.label}</dt>
-                <dd className="flex items-baseline gap-[6px] whitespace-nowrap">
-                  <span className="inline-flex items-center gap-[6px] text-[16px] leading-none text-white">{f.value}</span>
-                  {f.sub ? <span className="font-barlow text-[12px] font-medium text-white/60 tabular-nums">{f.sub}</span> : null}
-                </dd>
-              </div>
-            ) : (
-              <div key={`empty-${c}`} className={cx(r && 'border-t border-white/[0.08]')} aria-hidden />
-            ))}
+      {/* Phones: two left-aligned columns, label over value; a hairline between rows, per column. */}
+      <dl className="mt-[14px] grid grid-cols-2 gap-x-[24px]">
+        {phoneFacts.map((f, i) => (
+          <div key={f.label} className={cx('min-w-0 py-[12px]', i >= 2 && 'border-t border-white/[0.08]')}>
+            <dt className={`${LABEL} text-[10.5px] text-white/55`}>{f.label}</dt>
+            <dd className="mt-[5px] flex items-baseline gap-[6px] whitespace-nowrap">
+              <span className="inline-flex items-center gap-[6px] text-[17px] leading-none text-white">{f.value}</span>
+              {f.sub ? <span className="font-barlow text-[12px] font-medium text-white/60 tabular-nums">{f.sub}</span> : null}
+            </dd>
           </div>
         ))}
+        {phoneFacts.length % 2 ? <div className="border-t border-white/[0.08]" aria-hidden /> : null}
       </dl>
     </section>
     <section className="container hidden pb-[56px] pt-[36px] lg:block">

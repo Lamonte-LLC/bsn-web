@@ -20,8 +20,10 @@ type Props = {
   currentYear: number | null;
 };
 
-const CARD = 'rounded-[16px] border border-[rgba(15,23,31,0.06)] bg-white shadow-[0_1px_2px_rgba(15,23,31,0.04),0_6px_16px_rgba(15,23,31,0.05)]';
 const PANEL_CARD = 'rounded-[12px] border border-[rgba(15,23,31,0.08)] bg-white';
+/** Every figure in a stat grid: the display face (inherited from the body), one size on phones and one on desktop. */
+const GRID_NUM = 'font-special-gothic-condensed-one text-[21px] leading-none text-[#0F171F] tabular-nums lg:text-[24px]';
+const GRID_LBL = `mt-[6px] text-[8px] leading-[1.3] lg:text-[11px] ${cls.label}`;
 const TAB = `relative cursor-pointer whitespace-nowrap pb-[13px] pt-[16px] text-[rgba(15,23,31,0.4)] transition-colors duration-150 after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-[#0F171F] after:opacity-0 after:content-[''] hover:text-[rgba(15,23,31,0.7)] data-selected:text-[#0F171F] data-selected:after:opacity-100 lg:text-[18px] ${cls.focus} focus-visible:outline-offset-[-2px]`;
 const COMPARE = `cursor-pointer items-center justify-center gap-[8px] rounded-full border border-[rgba(15,23,31,0.2)] font-barlow font-semibold text-[#0F171F] transition-colors duration-150 hover:border-[#0F171F] hover:bg-[#FAFAFA] active:bg-[#F3F3F3] ${cls.focus}`;
 
@@ -49,7 +51,7 @@ function Pills<T extends string>({ options, value, onChange, label, inline = fal
   );
 }
 
-type Cell = { label: string; value: string; strong?: boolean };
+type Cell = { label: string; value: string };
 
 /** Equal-width stat cells separated by hairlines, numbers in the display face and labels in Barlow. */
 function StatGrid({ cells }: { cells: Cell[] }) {
@@ -58,8 +60,8 @@ function StatGrid({ cells }: { cells: Cell[] }) {
       <div className="-mb-px -mr-px grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {cells.map((c) => (
           <div key={c.label} className="min-w-0 border-b border-r border-[rgba(15,23,31,0.06)] px-[12px] py-[14px] lg:px-[16px] lg:py-[15px]">
-            <div className={cx('leading-none text-[#0F171F] tabular-nums', c.strong ? 'text-[24px] lg:text-[26px]' : 'text-[22px] lg:text-[24px]')}>{c.value}</div>
-            <div className={`mt-[6px] text-[9px] leading-[1.3] lg:text-[11px] ${cls.label}`}>{c.label}</div>
+            <div className={GRID_NUM}>{c.value}</div>
+            <div className={GRID_LBL}>{c.label}</div>
           </div>
         ))}
       </div>
@@ -81,7 +83,7 @@ function avgCells(s: LineStats, opts: { games?: boolean } = {}): Cell[] {
   const cells: Cell[] = [];
   if (opts.games) cells.push({ label: 'Juegos', value: f0(s.games) });
   if (rec(s.minutesAvg)) cells.push({ label: 'Minutos', value: f1(s.minutesAvg) });
-  cells.push({ label: 'Puntos', value: f1(s.pointsAvg), strong: true });
+  cells.push({ label: 'Puntos', value: f1(s.pointsAvg) });
   cells.push({ label: 'Rebotes', value: f1(s.reboundsTotalAvg) });
   cells.push({ label: 'Asistencias', value: f1(s.assistsAvg) });
   if (rec(s.stealsAvg)) cells.push({ label: 'Robos', value: f1(s.stealsAvg) });
@@ -98,7 +100,7 @@ function avgCells(s: LineStats, opts: { games?: boolean } = {}): Cell[] {
 function totalCells(s: LineStats): Cell[] {
   const cells: Cell[] = [{ label: 'Juegos', value: f0(s.games) }];
   if (rec(s.minutes)) cells.push({ label: 'Minutos', value: f0(s.minutes) });
-  cells.push({ label: 'Puntos', value: f0(s.points), strong: true });
+  cells.push({ label: 'Puntos', value: f0(s.points) });
   cells.push({ label: 'Rebotes', value: f0(s.reboundsTotal) });
   cells.push({ label: 'Asistencias', value: f0(s.assists) });
   if (rec(s.steals)) cells.push({ label: 'Robos', value: f0(s.steals) });
@@ -154,7 +156,7 @@ function ImpactGrid({ s }: { s: LineStats }) {
   const per = (v: number | null | undefined) => (rec(v) && g ? v! / g : null);
   const cells: Array<{ value: string; label: string; short?: string; sub: Part[] | null }> = [];
   if (rec(s.pir) && g) cells.push({ value: f1(s.pir! / g), label: 'Eficiencia por juego', short: 'Eficiencia', sub: [[f0(s.pir), 'PIR'], [f0(g), 'juegos']] });
-  if (rec(s.assistsTurnoverRatio)) cells.push({ value: f1(s.assistsTurnoverRatio), label: 'Asistencias por pérdida', sub: rec(s.assistsAvg) && rec(s.turnoversAvg) ? [[f1(s.assistsAvg), 'asistencias'], [f1(s.turnoversAvg), 'pérdidas']] : null });
+  if (rec(s.assistsTurnoverRatio)) cells.push({ value: f1(s.assistsTurnoverRatio), label: 'Asistencias por pérdida', sub: rec(s.assistsAvg) && rec(s.turnoversAvg) ? [[f1(s.assistsAvg), 'AST'], [f1(s.turnoversAvg), 'TO']] : null });
   if (rec(s.foulsDrawnAvg)) cells.push({ value: f1(s.foulsDrawnAvg), label: 'Faltas recibidas por juego', short: 'Faltas recibidas', sub: rec(s.foulsDrawn) ? [[f0(s.foulsDrawn), 'en la temporada']] : null });
   if (per(s.pointsInThePaint) !== null) cells.push({ value: f1(per(s.pointsInThePaint)), label: 'Puntos en la pintura por juego', short: 'En la pintura', sub: [[f0(s.pointsInThePaint), 'en la temporada']] });
   if (per(s.pointsFastBreak) !== null) cells.push({ value: f1(per(s.pointsFastBreak)), label: 'Puntos en contraataque por juego', short: 'En contraataque', sub: [[f0(s.pointsFastBreak), 'en la temporada']] });
@@ -167,8 +169,8 @@ function ImpactGrid({ s }: { s: LineStats }) {
         <div className="-mb-px -mr-px grid grid-cols-2 lg:grid-cols-3">
           {cells.map((c) => (
             <div key={c.label} className="min-w-0 border-b border-r border-[rgba(15,23,31,0.06)] px-[12px] py-[14px] lg:px-[18px] lg:py-[16px]">
-              <div className="text-[22px] leading-none text-[#0F171F] tabular-nums lg:text-[26px]">{c.value}</div>
-              <div className={`mt-[6px] text-[9px] leading-[1.3] lg:text-[11px] ${cls.label}`}>
+              <div className={GRID_NUM}>{c.value}</div>
+              <div className={GRID_LBL}>
                 <span className="lg:hidden">{c.short ?? c.label}</span>
                 <span className="hidden lg:inline">{c.label}</span>
               </div>
@@ -233,8 +235,8 @@ function ScoringMix({ s, accent }: { s: LineStats; /** The club color the player
             <div className="mt-[16px] grid grid-cols-3 gap-[10px] border-t border-[rgba(15,23,31,0.08)] pt-[16px] lg:mt-auto">
               {notes.map(([n, t]) => (
                 <div key={t} className="min-w-0">
-                  <div className="text-[20px] leading-none text-[#0F171F] tabular-nums lg:text-[22px]">{n}</div>
-                  <div className={`mt-[5px] text-[9px] leading-[1.3] lg:text-[11px] ${cls.label}`}>{t}</div>
+                  <div className={GRID_NUM}>{n}</div>
+                  <div className={GRID_LBL}>{t}</div>
                 </div>
               ))}
             </div>
@@ -490,23 +492,27 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
       ];
 
   return (
-    <section className="container -mt-[20px] mb-[28px] lg:-mt-[28px] lg:mb-[40px]">
-      <div className={`${CARD} overflow-hidden`}>
+    // Phones: no card. The tab bar sits on white at full width and the panels run edge to edge on light grey, so
+    // the tables get the whole screen. Desktop keeps the card that overlaps the band.
+    <section className="mb-[28px] lg:container lg:-mt-[28px] lg:mb-[40px]">
+      <div className="overflow-hidden lg:rounded-[16px] lg:border lg:border-[rgba(15,23,31,0.06)] lg:bg-white lg:shadow-[0_1px_2px_rgba(15,23,31,0.04),0_6px_16px_rgba(15,23,31,0.05)]">
         <TabGroup>
-          <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
+          <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] bg-white px-[16px] lg:px-[24px]">
             <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 3 ? 'gap-[18px]' : tabs.length > 2 ? 'gap-[22px]' : 'gap-[28px]')}>
               {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 3 ? 'text-[16px] lg:text-[18px]' : tabs.length > 2 ? 'text-[18px]' : 'text-[20px] lg:text-[18px]')}>{label}</Tab>)}
             </TabList>
           </div>
-          <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[18px] pt-[24px] lg:px-[24px] lg:pb-[24px] lg:pt-[32px]">
+          <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[24px] pt-[24px] lg:px-[24px] lg:pb-[24px] lg:pt-[32px]">
             {tabs.map(([label, panel]) => <TabPanel key={label} className={cls.focus}>{panel}</TabPanel>)}
           </TabPanels>
         </TabGroup>
+        <div className="bg-[#FBFBFB] px-[16px] pb-[24px] lg:hidden">
+          <Link href={compare} className={`${COMPARE} flex h-[48px] w-full border-[#0F171F] bg-white text-[14px] shadow-[0_2px_6px_rgba(15,23,31,0.06)]`}>
+            <CompareIcon />
+            Comparar con otros jugadores
+          </Link>
+        </div>
       </div>
-      <Link href={compare} className={`${COMPARE} mt-[14px] flex h-[48px] w-full border-[#0F171F] bg-white text-[14px] shadow-[0_2px_6px_rgba(15,23,31,0.06)] lg:hidden`}>
-        <CompareIcon />
-        Comparar con otros jugadores
-      </Link>
     </section>
   );
 }
