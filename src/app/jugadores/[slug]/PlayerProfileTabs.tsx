@@ -495,7 +495,7 @@ export default function PlayerProfileTabs({ profile, currentYear }: Props) {
         <TabGroup>
           <div className="flex items-center border-b border-[rgba(15,23,31,0.08)] px-[16px] lg:px-[24px]">
             <TabList className={cx('flex w-full justify-center lg:gap-[28px]', tabs.length > 3 ? 'gap-[18px]' : tabs.length > 2 ? 'gap-[22px]' : 'gap-[28px]')}>
-              {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 3 ? 'text-[16px] lg:text-[18px]' : tabs.length > 2 ? 'text-[18px]' : 'text-[21px] lg:text-[18px]')}>{label}</Tab>)}
+              {tabs.map(([label]) => <Tab key={label} className={cx(TAB, tabs.length > 3 ? 'text-[16px] lg:text-[18px]' : tabs.length > 2 ? 'text-[18px]' : 'text-[20px] lg:text-[18px]')}>{label}</Tab>)}
             </TabList>
           </div>
           <TabPanels className="bg-[#FBFBFB] px-[16px] pb-[18px] pt-[24px] lg:px-[24px] lg:pb-[24px] lg:pt-[32px]">
