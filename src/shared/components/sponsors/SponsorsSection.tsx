@@ -24,6 +24,7 @@ const PRESENTADO_POR: Sponsor[] = [
   { name: 'Palo Ready',                     logo: '/assets/images/sponsors/palo-ready.jpg' },
   { name: 'Ron Don Q',                      logo: '/assets/images/sponsors/don-q.jpg' },
   { name: 'Toyota',                         logo: '/assets/images/sponsors/toyota.jpg' },
+  { name: 'Compañía de Turismo de Puerto Rico', logo: '/assets/images/sponsors/turismo.png' },
 ];
 
 const CON_EL_AUSPICIO_DE: Sponsor[] = [
@@ -62,20 +63,38 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
       <img
         src={sponsor.logo}
         alt={sponsor.name}
+        draggable={false}
         className="max-h-[72px] lg:max-h-[87px] max-w-full object-contain"
       />
     </div>
   );
 }
 
-// Pure CSS scroll — no slick, no hidden margins
+// Autoplay waits this long after the user lets go before moving again.
+const RESUME_AFTER_MS = 4000;
+
+// Pure CSS scroll — no slick, no hidden margins.
+// Touch swipes use the browser's own scrolling; mouse drags are handled below.
+// Autoplay pauses while the user is touching or dragging, and for a moment after.
+// The track bleeds to both screen edges (-mx-4) but is inset by the container padding (px-4):
+// the first card lines up with the title, and scrolled cards run to the edge instead of being cut.
 function MobileScroller({ sponsors }: { sponsors: Sponsor[] }) {
   const ref = useRef<HTMLDivElement>(null);
+  const touching = useRef(false);
+  const drag = useRef<{ x: number; left: number } | null>(null);
+  const pausedUntil = useRef(0);
+
+  const release = () => {
+    touching.current = false;
+    drag.current = null;
+    pausedUntil.current = Date.now() + RESUME_AFTER_MS;
+  };
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const interval = setInterval(() => {
+      if (touching.current || drag.current || Date.now() < pausedUntil.current) return;
       const maxScroll = el.scrollWidth - el.clientWidth;
       if (el.scrollLeft >= maxScroll - 2) {
         el.scrollTo({ left: 0, behavior: 'smooth' });
@@ -89,8 +108,24 @@ function MobileScroller({ sponsors }: { sponsors: Sponsor[] }) {
   return (
     <div
       ref={ref}
-      className="flex gap-2 overflow-x-auto -mr-4"
+      className="flex gap-2 overflow-x-auto overscroll-x-contain -mx-4 px-4 cursor-grab active:cursor-grabbing select-none"
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      onTouchStart={() => {
+        touching.current = true;
+      }}
+      onTouchEnd={release}
+      onTouchCancel={release}
+      onPointerDown={(e) => {
+        if (e.pointerType !== 'mouse' || !ref.current) return;
+        drag.current = { x: e.clientX, left: ref.current.scrollLeft };
+        ref.current.setPointerCapture(e.pointerId);
+      }}
+      onPointerMove={(e) => {
+        if (!drag.current || !ref.current) return;
+        ref.current.scrollLeft = drag.current.left - (e.clientX - drag.current.x);
+      }}
+      onPointerUp={() => drag.current && release()}
+      onPointerCancel={() => drag.current && release()}
     >
       {sponsors.map((sponsor) => (
         <div key={sponsor.name} className="shrink-0 w-[30vw]">
